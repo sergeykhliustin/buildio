@@ -9,7 +9,8 @@ import Foundation
 
 
 
-public struct V0BuildListAllResponseItemModel: Codable {
+public struct V0BuildListAllResponseItemModel: Codable, Identifiable {
+    public let id = UUID()
 
     public var abortReason: NullsString?
     public var branch: NullsString?

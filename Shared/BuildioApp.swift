@@ -11,15 +11,8 @@ import SwiftUI
 struct BuildioApp: App {
     
     var body: some Scene {
-        testMe()
-        return WindowGroup {
-            ContentView()
-        }
-    }
-    
-    func testMe() {
-        UserAPI.userProfile { data, error in
-            print(data)
+        WindowGroup {
+            MainCoordinatorView()
         }
     }
 }

@@ -9,7 +9,7 @@ import Foundation
 open class SwaggerClientAPI {
     public static var basePath = "https://api.bitrise.io/v0.1"
     public static var credential: URLCredential?
-    public static var customHeaders: [String:String] = ["Authorization":"q_xuGwFdJX_UKgOFglG5zS2snuB5qoyEuSYf4uzto-TeyWdGPdcP2bTR9Yc3EtXK1uNHU0PgGQnQVHQl5aEyug"]
+    public static var customHeaders: [String:String] = [:]
     public static var requestBuilderFactory: RequestBuilderFactory = AlamofireRequestBuilderFactory()
 }
 
