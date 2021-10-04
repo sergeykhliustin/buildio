@@ -12,16 +12,16 @@ import Foundation
 public struct V0ActivityEventResponseItemModel: Codable {
 
     public var createdAt: String?
-    public var _description: NullsString?
-    public var eventIcon: NullsString?
-    public var eventStype: NullsString?
+    public var _description: String?
+    public var eventIcon: String?
+    public var eventStype: String?
     public var repositoryAvatarIconUrl: String?
     public var repositoryTitle: String?
     public var slug: String?
-    public var targetPathString: NullsString?
-    public var title: NullsString?
+    public var targetPathString: String?
+    public var title: String?
 
-    public init(createdAt: String? = nil, _description: NullsString? = nil, eventIcon: NullsString? = nil, eventStype: NullsString? = nil, repositoryAvatarIconUrl: String? = nil, repositoryTitle: String? = nil, slug: String? = nil, targetPathString: NullsString? = nil, title: NullsString? = nil) {
+    public init(createdAt: String? = nil, _description: String? = nil, eventIcon: String? = nil, eventStype: String? = nil, repositoryAvatarIconUrl: String? = nil, repositoryTitle: String? = nil, slug: String? = nil, targetPathString: String? = nil, title: String? = nil) {
         self.createdAt = createdAt
         self._description = _description
         self.eventIcon = eventIcon

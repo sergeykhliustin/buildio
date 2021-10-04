@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import Combine
+import Models
 
 class MainCoordinator: ObservableObject {
     @Published var token: String?

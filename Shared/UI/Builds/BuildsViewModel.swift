@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Models
 
 class BuildsViewModel: BaseViewModel<[V0BuildListAllResponseItemModel]> {
     override func fetch(_ completion: @escaping (([V0BuildListAllResponseItemModel]?, Error?) -> Void)) {

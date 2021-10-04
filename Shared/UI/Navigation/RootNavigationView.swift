@@ -8,14 +8,23 @@
 import SwiftUI
 
 struct RootNavigationView: View {
+    @State private var selectedTab = 0
     var body: some View {
-        TabView {
-            BuildsView().tabItem {
-                Text("Builds")
-            }
-            ProfileView().tabItem {
-                Text("Profile")
-            }
+        TabView(selection: $selectedTab) {
+            BuildsScreenView()
+                .onTapGesture {
+                    selectedTab = 0
+                }
+                .tabItem {
+                    Text("Builds")
+                }.tag(0)
+            ProfileScreenView()
+                .onTapGesture {
+                    selectedTab = 1
+                }
+                .tabItem {
+                    Text("Profile")
+                }.tag(1)
         }
     }
 }

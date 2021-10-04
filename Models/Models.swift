@@ -6,7 +6,7 @@
 
 import Foundation
 
-protocol JSONEncodable {
+public protocol JSONEncodable {
     func encodeToJSON() -> Any
 }
 

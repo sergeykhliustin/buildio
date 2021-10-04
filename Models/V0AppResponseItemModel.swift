@@ -11,20 +11,20 @@ import Foundation
 
 public struct V0AppResponseItemModel: Codable {
 
-    public var avatarUrl: NullsString?
+    public var avatarUrl: String?
     public var isDisabled: Bool?
     public var isPublic: Bool?
     public var owner: V0OwnerAccountResponseModel?
-    public var projectType: NullsString?
-    public var provider: NullsString?
-    public var repoOwner: NullsString?
-    public var repoSlug: NullsString?
-    public var repoUrl: NullsString?
+    public var projectType: String?
+    public var provider: String?
+    public var repoOwner: String?
+    public var repoSlug: String?
+    public var repoUrl: String?
     public var slug: String?
     public var status: Int?
     public var title: String?
 
-    public init(avatarUrl: NullsString? = nil, isDisabled: Bool? = nil, isPublic: Bool? = nil, owner: V0OwnerAccountResponseModel? = nil, projectType: NullsString? = nil, provider: NullsString? = nil, repoOwner: NullsString? = nil, repoSlug: NullsString? = nil, repoUrl: NullsString? = nil, slug: String? = nil, status: Int? = nil, title: String? = nil) {
+    public init(avatarUrl: String? = nil, isDisabled: Bool? = nil, isPublic: Bool? = nil, owner: V0OwnerAccountResponseModel? = nil, projectType: String? = nil, provider: String? = nil, repoOwner: String? = nil, repoSlug: String? = nil, repoUrl: String? = nil, slug: String? = nil, status: Int? = nil, title: String? = nil) {
         self.avatarUrl = avatarUrl
         self.isDisabled = isDisabled
         self.isPublic = isPublic

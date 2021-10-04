@@ -14,14 +14,14 @@ public struct V0UserProfileDataModel: Codable {
     public var avatarUrl: String?
     public var createdAt: String?
     public var dataId: Int?
-    public var email: String?
+    public var email: String
     public var hasUsedOrganizationTrial: Bool?
     public var paymentProcessor: String?
     public var slug: String?
     public var unconfirmedEmail: String?
-    public var username: String?
+    public var username: String
 
-    public init(avatarUrl: String? = nil, createdAt: String? = nil, dataId: Int? = nil, email: String? = nil, hasUsedOrganizationTrial: Bool? = nil, paymentProcessor: String? = nil, slug: String? = nil, unconfirmedEmail: String? = nil, username: String? = nil) {
+    public init(avatarUrl: String? = nil, createdAt: String? = nil, dataId: Int? = nil, email: String = "", hasUsedOrganizationTrial: Bool? = nil, paymentProcessor: String? = nil, slug: String? = nil, unconfirmedEmail: String? = nil, username: String = "") {
         self.avatarUrl = avatarUrl
         self.createdAt = createdAt
         self.dataId = dataId

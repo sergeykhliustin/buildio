@@ -8,6 +8,115 @@
 
 /* Begin PBXBuildFile section */
 		14D3B93BFD545FEFACF72EFE /* Pods_Buildio__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C5FE24ECC9C4B00CB6597F2 /* Pods_Buildio__iOS_.framework */; };
+		3FA5136A270B777D00A5B881 /* URLSessionRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA51369270B777D00A5B881 /* URLSessionRequestBuilder.swift */; };
+		3FA5136B270B777D00A5B881 /* URLSessionRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA51369270B777D00A5B881 /* URLSessionRequestBuilder.swift */; };
+		3FA5136E270B9D6900A5B881 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5136D270B9D6900A5B881 /* Logger.swift */; };
+		3FA5136F270B9D6900A5B881 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5136D270B9D6900A5B881 /* Logger.swift */; };
+		3FA513E1270BA4B700A5B881 /* V0AvatarPromoteResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5137B270BA4B100A5B881 /* V0AvatarPromoteResponseModel.swift */; };
+		3FA513E2270BA4B700A5B881 /* V0AppWebhookListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5137C270BA4B100A5B881 /* V0AppWebhookListResponseModel.swift */; };
+		3FA513E3270BA4B700A5B881 /* V0OwnerAccountResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5137D270BA4B100A5B881 /* V0OwnerAccountResponseModel.swift */; };
+		3FA513E4270BA4B700A5B881 /* V0UserPlanRespModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5137E270BA4B100A5B881 /* V0UserPlanRespModel.swift */; };
+		3FA513E5270BA4B700A5B881 /* V0FindAvatarCandidateResponseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5137F270BA4B100A5B881 /* V0FindAvatarCandidateResponseItem.swift */; };
+		3FA513E6270BA4B700A5B881 /* V0SSHKeyUploadParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA51380270BA4B100A5B881 /* V0SSHKeyUploadParams.swift */; };
+		3FA513E7270BA4B700A5B881 /* V0AppleAPICredentialResponseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA51381270BA4B100A5B881 /* V0AppleAPICredentialResponseItem.swift */; };
+		3FA513E8270BA4B700A5B881 /* V0WebhookRespModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA51382270BA4B100A5B881 /* V0WebhookRespModel.swift */; };
+		3FA513E9270BA4B700A5B881 /* V0ProvisionProfileListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA51383270BA4B100A5B881 /* V0ProvisionProfileListResponseModel.swift */; };
+		3FA513EA270BA4B700A5B881 /* V0PlanDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA51384270BA4B100A5B881 /* V0PlanDataModel.swift */; };
+		3FA513EB270BA4B700A5B881 /* AddonsDeveloperLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA51385270BA4B100A5B881 /* AddonsDeveloperLink.swift */; };
+		3FA513EC270BA4B700A5B881 /* V0AddonsShowResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA51386270BA4B100A5B881 /* V0AddonsShowResponseModel.swift */; };
+		3FA513ED270BA4B700A5B881 /* V0ProvisionProfileResponseItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA51387270BA4B100A5B881 /* V0ProvisionProfileResponseItemModel.swift */; };
+		3FA513EE270BA4B700A5B881 /* V0ActivityEventListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA51388270BA4B200A5B881 /* V0ActivityEventListResponseModel.swift */; };
+		3FA513EF270BA4B700A5B881 /* V0AppWebhookCreatedResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA51389270BA4B200A5B881 /* V0AppWebhookCreatedResponseModel.swift */; };
+		3FA513F0270BA4B700A5B881 /* AddonsSetupGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5138A270BA4B200A5B881 /* AddonsSetupGuide.swift */; };
+		3FA513F1270BA4B700A5B881 /* V0AvatarCandidateCreateParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5138B270BA4B200A5B881 /* V0AvatarCandidateCreateParams.swift */; };
+		3FA513F2270BA4B700A5B881 /* V0AvatarCandidateCreateResponseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5138C270BA4B200A5B881 /* V0AvatarCandidateCreateResponseItem.swift */; };
+		3FA513F3270BA4B700A5B881 /* V0AppWebhookDeletedResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5138D270BA4B200A5B881 /* V0AppWebhookDeletedResponseModel.swift */; };
+		3FA513F4270BA4B700A5B881 /* V0ProjectFileStorageResponseItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5138E270BA4B200A5B881 /* V0ProjectFileStorageResponseItemModel.swift */; };
+		3FA513F5270BA4B700A5B881 /* V0AppAddOnResponseItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5138F270BA4B200A5B881 /* V0AppAddOnResponseItemModel.swift */; };
+		3FA513F6270BA4B700A5B881 /* V0FindAvatarCandidateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA51390270BA4B200A5B881 /* V0FindAvatarCandidateResponse.swift */; };
+		3FA513F7270BA4B700A5B881 /* V0AppListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA51391270BA4B200A5B881 /* V0AppListResponseModel.swift */; };
+		3FA513F8270BA4B700A5B881 /* V0AppWebhookResponseItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA51392270BA4B200A5B881 /* V0AppWebhookResponseItemModel.swift */; };
+		3FA513F9270BA4B700A5B881 /* V0CommitPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA51393270BA4B200A5B881 /* V0CommitPaths.swift */; };
+		3FA513FA270BA4B700A5B881 /* V0BuildRequestUpdateResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA51394270BA4B200A5B881 /* V0BuildRequestUpdateResponseModel.swift */; };
+		3FA513FB270BA4B700A5B881 /* V0BuildCertificateResponseItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA51395270BA4B200A5B881 /* V0BuildCertificateResponseItemModel.swift */; };
+		3FA513FC270BA4B700A5B881 /* V0BuildListAllResponseItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA51396270BA4B300A5B881 /* V0BuildListAllResponseItemModel.swift */; };
+		3FA513FD270BA4B700A5B881 /* V0BuildAbortParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA51397270BA4B300A5B881 /* V0BuildAbortParams.swift */; };
+		3FA513FE270BA4B700A5B881 /* AddonsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA51398270BA4B300A5B881 /* AddonsFeature.swift */; };
+		3FA513FF270BA4B700A5B881 /* V0ActivityEventResponseItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA51399270BA4B300A5B881 /* V0ActivityEventResponseItemModel.swift */; };
+		3FA51400270BA4B700A5B881 /* V0OrganizationListRespModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5139A270BA4B300A5B881 /* V0OrganizationListRespModel.swift */; };
+		3FA51401270BA4B700A5B881 /* V0BuildCertificateListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5139B270BA4B300A5B881 /* V0BuildCertificateListResponseModel.swift */; };
+		3FA51402270BA4B700A5B881 /* V0AppWebhookResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5139C270BA4B300A5B881 /* V0AppWebhookResponseModel.swift */; };
+		3FA51403270BA4B700A5B881 /* V0UserPlanDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5139D270BA4B300A5B881 /* V0UserPlanDataModel.swift */; };
+		3FA51404270BA4B700A5B881 /* V0AppConfigRequestParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5139E270BA4B300A5B881 /* V0AppConfigRequestParam.swift */; };
+		3FA51405270BA4B700A5B881 /* V0BuildRequestUpdateParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5139F270BA4B300A5B881 /* V0BuildRequestUpdateParams.swift */; };
+		3FA51406270BA4B700A5B881 /* V0AppConfigRespModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513A0270BA4B300A5B881 /* V0AppConfigRespModel.swift */; };
+		3FA51407270BA4B700A5B881 /* V0ArtifactDeleteResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513A1270BA4B300A5B881 /* V0ArtifactDeleteResponseModel.swift */; };
+		3FA51408270BA4B700A5B881 /* AddonsSetupInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513A2270BA4B300A5B881 /* AddonsSetupInstruction.swift */; };
+		3FA51409270BA4B700A5B881 /* V0AppFinishRespModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513A3270BA4B300A5B881 /* V0AppFinishRespModel.swift */; };
+		3FA5140A270BA4B700A5B881 /* V0BuildAbortResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513A4270BA4B400A5B881 /* V0BuildAbortResponseModel.swift */; };
+		3FA5140B270BA4B700A5B881 /* V0ArtifactUpdateParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513A5270BA4B400A5B881 /* V0ArtifactUpdateParams.swift */; };
+		3FA5140C270BA4B700A5B881 /* V0BuildTriggerParamsBuildParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513A6270BA4B400A5B881 /* V0BuildTriggerParamsBuildParams.swift */; };
+		3FA5140D270BA4B700A5B881 /* V0BuildListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513A7270BA4B400A5B881 /* V0BuildListResponseModel.swift */; };
+		3FA5140E270BA4B700A5B881 /* AddonsPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513A8270BA4B400A5B881 /* AddonsPlan.swift */; };
+		3FA5140F270BA4B700A5B881 /* V0AddonsListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513A9270BA4B400A5B881 /* V0AddonsListResponseModel.swift */; };
+		3FA51410270BA4B700A5B881 /* V0ProjectFileStorageResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513AA270BA4B400A5B881 /* V0ProjectFileStorageResponseModel.swift */; };
+		3FA51411270BA4B700A5B881 /* V0ProxyErrorRespModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513AB270BA4B400A5B881 /* V0ProxyErrorRespModel.swift */; };
+		3FA51412270BA4B700A5B881 /* V0ProjectFileStorageUploadParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513AC270BA4B400A5B881 /* V0ProjectFileStorageUploadParams.swift */; };
+		3FA51413270BA4B700A5B881 /* V0ArtifactListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513AD270BA4B400A5B881 /* V0ArtifactListResponseModel.swift */; };
+		3FA51414270BA4B700A5B881 /* V0BuildWorkflowListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513AE270BA4B400A5B881 /* V0BuildWorkflowListResponseModel.swift */; };
+		3FA51415270BA4B700A5B881 /* V0OwnerAddOnResponseItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513AF270BA4B400A5B881 /* V0OwnerAddOnResponseItemModel.swift */; };
+		3FA51416270BA4B700A5B881 /* V0AppWebhookCreateParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513B0270BA4B400A5B881 /* V0AppWebhookCreateParams.swift */; };
+		3FA51417270BA4B700A5B881 /* V0ProjectFileStorageDocumentUpdateParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513B1270BA4B400A5B881 /* V0ProjectFileStorageDocumentUpdateParams.swift */; };
+		3FA51418270BA4B700A5B881 /* V0AppleAPICredentialsListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513B2270BA4B400A5B881 /* V0AppleAPICredentialsListResponse.swift */; };
+		3FA51419270BA4B700A5B881 /* V0OwnerAddOnsListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513B3270BA4B400A5B881 /* V0OwnerAddOnsListResponseModel.swift */; };
+		3FA5141A270BA4B700A5B881 /* V0BuildTriggerParamsHookInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513B4270BA4B500A5B881 /* V0BuildTriggerParamsHookInfo.swift */; };
+		3FA5141B270BA4B700A5B881 /* V0AppUploadParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513B5270BA4B500A5B881 /* V0AppUploadParams.swift */; };
+		3FA5141C270BA4B700A5B881 /* V0BranchListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513B6270BA4B500A5B881 /* V0BranchListResponseModel.swift */; };
+		3FA5141D270BA4B700A5B881 /* V0OrganizationDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513B7270BA4B500A5B881 /* V0OrganizationDataModel.swift */; };
+		3FA5141E270BA4B700A5B881 /* V0ProvProfileDocumentUpdateParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513B8270BA4B500A5B881 /* V0ProvProfileDocumentUpdateParams.swift */; };
+		3FA5141F270BA4B700A5B881 /* V0TestDeviceResponseItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513B9270BA4B500A5B881 /* V0TestDeviceResponseItemModel.swift */; };
+		3FA51420270BA4B700A5B881 /* V0BuildListAllResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513BA270BA4B500A5B881 /* V0BuildListAllResponseModel.swift */; };
+		3FA51421270BA4B700A5B881 /* V0WebhookDeliveryItemResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513BB270BA4B500A5B881 /* V0WebhookDeliveryItemResponseModel.swift */; };
+		3FA51422270BA4B700A5B881 /* V0ProvisionProfileResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513BC270BA4B500A5B881 /* V0ProvisionProfileResponseModel.swift */; };
+		3FA51423270BA4B700A5B881 /* V0BuildResponseItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513BD270BA4B500A5B881 /* V0BuildResponseItemModel.swift */; };
+		3FA51424270BA4B700A5B881 /* V0UserProfileDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513BE270BA4B500A5B881 /* V0UserProfileDataModel.swift */; };
+		3FA51425270BA4B700A5B881 /* V0UserProfileRespModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513BF270BA4B500A5B881 /* V0UserProfileRespModel.swift */; };
+		3FA51426270BA4B700A5B881 /* V0BuildRequestResponseItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513C0270BA4B500A5B881 /* V0BuildRequestResponseItemModel.swift */; };
+		3FA51427270BA4B700A5B881 /* V0BuildCertificateResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513C1270BA4B500A5B881 /* V0BuildCertificateResponseModel.swift */; };
+		3FA51428270BA4B700A5B881 /* V0SSHKeyRespModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513C2270BA4B500A5B881 /* V0SSHKeyRespModel.swift */; };
+		3FA51429270BA4B700A5B881 /* V0BuildTriggerParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513C3270BA4B500A5B881 /* V0BuildTriggerParams.swift */; };
+		3FA5142A270BA4B700A5B881 /* V0ProjectFileStorageListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513C4270BA4B500A5B881 /* V0ProjectFileStorageListResponseModel.swift */; };
+		3FA5142B270BA4B700A5B881 /* V0AndroidKeystoreFileUploadParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513C5270BA4B500A5B881 /* V0AndroidKeystoreFileUploadParams.swift */; };
+		3FA5142C270BA4B700A5B881 /* V0AddOnAppResponseItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513C6270BA4B500A5B881 /* V0AddOnAppResponseItemModel.swift */; };
+		3FA5142D270BA4B700A5B881 /* V0BuildRequestListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513C7270BA4B600A5B881 /* V0BuildRequestListResponseModel.swift */; };
+		3FA5142E270BA4B700A5B881 /* V0AppResponseItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513C8270BA4B600A5B881 /* V0AppResponseItemModel.swift */; };
+		3FA5142F270BA4B700A5B881 /* V0ArtifactShowResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513C9270BA4B600A5B881 /* V0ArtifactShowResponseModel.swift */; };
+		3FA51430270BA4B700A5B881 /* V0OrganizationRespModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513CA270BA4B600A5B881 /* V0OrganizationRespModel.swift */; };
+		3FA51431270BA4B700A5B881 /* V0ArtifactListElementResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513CB270BA4B600A5B881 /* V0ArtifactListElementResponseModel.swift */; };
+		3FA51432270BA4B700A5B881 /* V0PagingResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513CC270BA4B600A5B881 /* V0PagingResponseModel.swift */; };
+		3FA51433270BA4B700A5B881 /* V0AppShowResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513CD270BA4B600A5B881 /* V0AppShowResponseModel.swift */; };
+		3FA51434270BA4B700A5B881 /* V0BuildCertificateUpdateParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513CE270BA4B600A5B881 /* V0BuildCertificateUpdateParams.swift */; };
+		3FA51435270BA4B700A5B881 /* V0BuildShowResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513CF270BA4B600A5B881 /* V0BuildShowResponseModel.swift */; };
+		3FA51436270BA4B700A5B881 /* V0AvatarPromoteParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513D0270BA4B600A5B881 /* V0AvatarPromoteParams.swift */; };
+		3FA51437270BA4B700A5B881 /* V0BuildTriggerRespModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513D1270BA4B600A5B881 /* V0BuildTriggerRespModel.swift */; };
+		3FA51438270BA4B700A5B881 /* V0BuildCertificateUploadParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513D2270BA4B600A5B881 /* V0BuildCertificateUploadParams.swift */; };
+		3FA51439270BA4B700A5B881 /* V0WebhookDeliveryItemShowResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513D3270BA4B600A5B881 /* V0WebhookDeliveryItemShowResponseModel.swift */; };
+		3FA5143A270BA4B700A5B881 /* V0BuildParamsEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513D4270BA4B600A5B881 /* V0BuildParamsEnvironment.swift */; };
+		3FA5143B270BA4B700A5B881 /* V0ArtifactResponseItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513D5270BA4B600A5B881 /* V0ArtifactResponseItemModel.swift */; };
+		3FA5143C270BA4B700A5B881 /* V0AppFinishParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513D6270BA4B600A5B881 /* V0AppFinishParams.swift */; };
+		3FA5143D270BA4B700A5B881 /* V0ProvisionProfileUploadParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513D7270BA4B600A5B881 /* V0ProvisionProfileUploadParams.swift */; };
+		3FA5143E270BA4B700A5B881 /* ServiceStandardErrorRespModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513D8270BA4B600A5B881 /* ServiceStandardErrorRespModel.swift */; };
+		3FA5143F270BA4B700A5B881 /* AddonsAddon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513D9270BA4B600A5B881 /* AddonsAddon.swift */; };
+		3FA51440270BA4B700A5B881 /* V0AppWebhookUpdateParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513DA270BA4B600A5B881 /* V0AppWebhookUpdateParams.swift */; };
+		3FA51441270BA4B700A5B881 /* NullsInt64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513DB270BA4B700A5B881 /* NullsInt64.swift */; };
+		3FA51442270BA4B700A5B881 /* V0AppAddOnsListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513DC270BA4B700A5B881 /* V0AppAddOnsListResponseModel.swift */; };
+		3FA51443270BA4B700A5B881 /* V0TestDeviceListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513DD270BA4B700A5B881 /* V0TestDeviceListResponseModel.swift */; };
+		3FA51444270BA4B700A5B881 /* V0AvatarPromoteResponseItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513DE270BA4B700A5B881 /* V0AvatarPromoteResponseItemModel.swift */; };
+		3FA51445270BA4B700A5B881 /* V0AppRespModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513DF270BA4B700A5B881 /* V0AppRespModel.swift */; };
+		3FA51446270BA4B700A5B881 /* V0OrganizationOwner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA513E0270BA4B700A5B881 /* V0OrganizationOwner.swift */; };
+		3FA51449270BA55400A5B881 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B7202707350E00A6D8E1 /* Extensions.swift */; };
+		3FA5144A270BA70700A5B881 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B7222707350E00A6D8E1 /* Models.swift */; };
+		3FA5144B270BA80800A5B881 /* libModels.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FA51374270BA46E00A5B881 /* libModels.a */; };
 		3FCC459C27075AE80001A9C2 /* TokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC459B27075AE80001A9C2 /* TokenView.swift */; };
 		3FCC459D27075AE80001A9C2 /* TokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC459B27075AE80001A9C2 /* TokenView.swift */; };
 		3FCC45A227075D170001A9C2 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45A127075D170001A9C2 /* Coordinator.swift */; };
@@ -22,12 +131,12 @@
 		3FCC45B1270767480001A9C2 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45AF270767480001A9C2 /* MainCoordinator.swift */; };
 		3FCC45B427078D250001A9C2 /* RootNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45B327078D250001A9C2 /* RootNavigationView.swift */; };
 		3FCC45B527078D250001A9C2 /* RootNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45B327078D250001A9C2 /* RootNavigationView.swift */; };
-		3FCC45B827078E040001A9C2 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45B727078E040001A9C2 /* ProfileView.swift */; };
-		3FCC45B927078E040001A9C2 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45B727078E040001A9C2 /* ProfileView.swift */; };
+		3FCC45B827078E040001A9C2 /* ProfileScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45B727078E040001A9C2 /* ProfileScreenView.swift */; };
+		3FCC45B927078E040001A9C2 /* ProfileScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45B727078E040001A9C2 /* ProfileScreenView.swift */; };
 		3FCC45BB27078EB40001A9C2 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45BA27078EB40001A9C2 /* ProfileViewModel.swift */; };
 		3FCC45BC27078EB40001A9C2 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45BA27078EB40001A9C2 /* ProfileViewModel.swift */; };
-		3FCC45BF2707923F0001A9C2 /* BuildsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45BE2707923F0001A9C2 /* BuildsView.swift */; };
-		3FCC45C02707923F0001A9C2 /* BuildsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45BE2707923F0001A9C2 /* BuildsView.swift */; };
+		3FCC45BF2707923F0001A9C2 /* BuildsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45BE2707923F0001A9C2 /* BuildsScreenView.swift */; };
+		3FCC45C02707923F0001A9C2 /* BuildsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45BE2707923F0001A9C2 /* BuildsScreenView.swift */; };
 		3FCC45C22707924D0001A9C2 /* BuildsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45C12707924D0001A9C2 /* BuildsViewModel.swift */; };
 		3FCC45C32707924D0001A9C2 /* BuildsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45C12707924D0001A9C2 /* BuildsViewModel.swift */; };
 		3FCC45C52707930E0001A9C2 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45C42707930E0001A9C2 /* BaseViewModel.swift */; };
@@ -65,119 +174,141 @@
 		3FE7B73A2707350E00A6D8E1 /* CodableHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6B52707350E00A6D8E1 /* CodableHelper.swift */; };
 		3FE7B73B2707350E00A6D8E1 /* JSONEncodableEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6B62707350E00A6D8E1 /* JSONEncodableEncoding.swift */; };
 		3FE7B73C2707350E00A6D8E1 /* APIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6B72707350E00A6D8E1 /* APIs.swift */; };
-		3FE7B73D2707350E00A6D8E1 /* V0ArtifactListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6B92707350E00A6D8E1 /* V0ArtifactListResponseModel.swift */; };
-		3FE7B73E2707350E00A6D8E1 /* V0AppWebhookCreatedResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6BA2707350E00A6D8E1 /* V0AppWebhookCreatedResponseModel.swift */; };
-		3FE7B73F2707350E00A6D8E1 /* V0WebhookRespModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6BB2707350E00A6D8E1 /* V0WebhookRespModel.swift */; };
-		3FE7B7402707350E00A6D8E1 /* V0ProjectFileStorageResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6BC2707350E00A6D8E1 /* V0ProjectFileStorageResponseModel.swift */; };
-		3FE7B7412707350E00A6D8E1 /* V0AvatarPromoteResponseItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6BD2707350E00A6D8E1 /* V0AvatarPromoteResponseItemModel.swift */; };
-		3FE7B7422707350E00A6D8E1 /* V0BuildListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6BE2707350E00A6D8E1 /* V0BuildListResponseModel.swift */; };
-		3FE7B7432707350E00A6D8E1 /* AddonsPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6BF2707350E00A6D8E1 /* AddonsPlan.swift */; };
-		3FE7B7442707350E00A6D8E1 /* V0AppleAPICredentialResponseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6C02707350E00A6D8E1 /* V0AppleAPICredentialResponseItem.swift */; };
-		3FE7B7452707350E00A6D8E1 /* V0BuildResponseItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6C12707350E00A6D8E1 /* V0BuildResponseItemModel.swift */; };
-		3FE7B7462707350E00A6D8E1 /* V0FindAvatarCandidateResponseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6C22707350E00A6D8E1 /* V0FindAvatarCandidateResponseItem.swift */; };
-		3FE7B7472707350E00A6D8E1 /* V0BuildCertificateUpdateParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6C32707350E00A6D8E1 /* V0BuildCertificateUpdateParams.swift */; };
-		3FE7B7482707350E00A6D8E1 /* V0OrganizationDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6C42707350E00A6D8E1 /* V0OrganizationDataModel.swift */; };
-		3FE7B7492707350E00A6D8E1 /* V0SSHKeyUploadParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6C52707350E00A6D8E1 /* V0SSHKeyUploadParams.swift */; };
-		3FE7B74A2707350E00A6D8E1 /* V0WebhookDeliveryItemResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6C62707350E00A6D8E1 /* V0WebhookDeliveryItemResponseModel.swift */; };
-		3FE7B74B2707350E00A6D8E1 /* V0ArtifactResponseItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6C72707350E00A6D8E1 /* V0ArtifactResponseItemModel.swift */; };
-		3FE7B74C2707350E00A6D8E1 /* AddonsAddon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6C82707350E00A6D8E1 /* AddonsAddon.swift */; };
-		3FE7B74D2707350E00A6D8E1 /* V0AppFinishParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6C92707350E00A6D8E1 /* V0AppFinishParams.swift */; };
-		3FE7B74E2707350E00A6D8E1 /* V0ProjectFileStorageListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6CA2707350E00A6D8E1 /* V0ProjectFileStorageListResponseModel.swift */; };
-		3FE7B74F2707350E00A6D8E1 /* V0BuildCertificateResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6CB2707350E00A6D8E1 /* V0BuildCertificateResponseModel.swift */; };
-		3FE7B7502707350E00A6D8E1 /* V0AppWebhookDeletedResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6CC2707350E00A6D8E1 /* V0AppWebhookDeletedResponseModel.swift */; };
-		3FE7B7512707350E00A6D8E1 /* AddonsDeveloperLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6CD2707350E00A6D8E1 /* AddonsDeveloperLink.swift */; };
-		3FE7B7522707350E00A6D8E1 /* V0AppConfigRespModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6CE2707350E00A6D8E1 /* V0AppConfigRespModel.swift */; };
-		3FE7B7532707350E00A6D8E1 /* V0ProjectFileStorageResponseItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6CF2707350E00A6D8E1 /* V0ProjectFileStorageResponseItemModel.swift */; };
-		3FE7B7542707350E00A6D8E1 /* V0AddonsShowResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6D02707350E00A6D8E1 /* V0AddonsShowResponseModel.swift */; };
-		3FE7B7552707350E00A6D8E1 /* V0WebhookDeliveryItemShowResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6D12707350E00A6D8E1 /* V0WebhookDeliveryItemShowResponseModel.swift */; };
-		3FE7B7562707350E00A6D8E1 /* V0FindAvatarCandidateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6D22707350E00A6D8E1 /* V0FindAvatarCandidateResponse.swift */; };
-		3FE7B7572707350E00A6D8E1 /* V0ProvisionProfileUploadParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6D32707350E00A6D8E1 /* V0ProvisionProfileUploadParams.swift */; };
-		3FE7B7582707350E00A6D8E1 /* V0AddonsListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6D42707350E00A6D8E1 /* V0AddonsListResponseModel.swift */; };
-		3FE7B7592707350E00A6D8E1 /* V0BuildTriggerParamsHookInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6D52707350E00A6D8E1 /* V0BuildTriggerParamsHookInfo.swift */; };
-		3FE7B75A2707350E00A6D8E1 /* V0AppFinishRespModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6D62707350E00A6D8E1 /* V0AppFinishRespModel.swift */; };
-		3FE7B75B2707350E00A6D8E1 /* NullsString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6D72707350E00A6D8E1 /* NullsString.swift */; };
-		3FE7B75C2707350E00A6D8E1 /* V0AvatarCandidateCreateParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6D82707350E00A6D8E1 /* V0AvatarCandidateCreateParams.swift */; };
-		3FE7B75D2707350E00A6D8E1 /* V0BuildWorkflowListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6D92707350E00A6D8E1 /* V0BuildWorkflowListResponseModel.swift */; };
-		3FE7B75E2707350E00A6D8E1 /* V0OrganizationRespModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6DA2707350E00A6D8E1 /* V0OrganizationRespModel.swift */; };
-		3FE7B75F2707350E00A6D8E1 /* V0AppAddOnsListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6DB2707350E00A6D8E1 /* V0AppAddOnsListResponseModel.swift */; };
-		3FE7B7602707350E00A6D8E1 /* V0OrganizationListRespModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6DC2707350E00A6D8E1 /* V0OrganizationListRespModel.swift */; };
-		3FE7B7612707350E00A6D8E1 /* V0OwnerAccountResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6DD2707350E00A6D8E1 /* V0OwnerAccountResponseModel.swift */; };
-		3FE7B7622707350E00A6D8E1 /* V0BuildTriggerRespModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6DE2707350E00A6D8E1 /* V0BuildTriggerRespModel.swift */; };
-		3FE7B7632707350E00A6D8E1 /* V0OwnerAddOnsListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6DF2707350E00A6D8E1 /* V0OwnerAddOnsListResponseModel.swift */; };
-		3FE7B7642707350E00A6D8E1 /* V0TestDeviceResponseItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6E02707350E00A6D8E1 /* V0TestDeviceResponseItemModel.swift */; };
-		3FE7B7652707350E00A6D8E1 /* V0AndroidKeystoreFileUploadParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6E12707350E00A6D8E1 /* V0AndroidKeystoreFileUploadParams.swift */; };
-		3FE7B7662707350E00A6D8E1 /* V0TestDeviceListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6E22707350E00A6D8E1 /* V0TestDeviceListResponseModel.swift */; };
-		3FE7B7672707350E00A6D8E1 /* V0BuildRequestUpdateParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6E32707350E00A6D8E1 /* V0BuildRequestUpdateParams.swift */; };
-		3FE7B7682707350E00A6D8E1 /* V0BuildShowResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6E42707350E00A6D8E1 /* V0BuildShowResponseModel.swift */; };
-		3FE7B7692707350E00A6D8E1 /* V0ArtifactShowResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6E52707350E00A6D8E1 /* V0ArtifactShowResponseModel.swift */; };
-		3FE7B76A2707350E00A6D8E1 /* V0ProvProfileDocumentUpdateParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6E62707350E00A6D8E1 /* V0ProvProfileDocumentUpdateParams.swift */; };
-		3FE7B76B2707350E00A6D8E1 /* AddonsSetupInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6E72707350E00A6D8E1 /* AddonsSetupInstruction.swift */; };
-		3FE7B76C2707350E00A6D8E1 /* V0PagingResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6E82707350E00A6D8E1 /* V0PagingResponseModel.swift */; };
-		3FE7B76D2707350E00A6D8E1 /* ServiceStandardErrorRespModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6E92707350E00A6D8E1 /* ServiceStandardErrorRespModel.swift */; };
-		3FE7B76E2707350E00A6D8E1 /* V0AvatarCandidateCreateResponseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6EA2707350E00A6D8E1 /* V0AvatarCandidateCreateResponseItem.swift */; };
-		3FE7B76F2707350E00A6D8E1 /* V0BuildCertificateListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6EB2707350E00A6D8E1 /* V0BuildCertificateListResponseModel.swift */; };
-		3FE7B7702707350E00A6D8E1 /* V0BuildParamsEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6EC2707350E00A6D8E1 /* V0BuildParamsEnvironment.swift */; };
-		3FE7B7712707350E00A6D8E1 /* V0AppShowResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6ED2707350E00A6D8E1 /* V0AppShowResponseModel.swift */; };
-		3FE7B7722707350E00A6D8E1 /* V0BuildListAllResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6EE2707350E00A6D8E1 /* V0BuildListAllResponseModel.swift */; };
-		3FE7B7732707350E00A6D8E1 /* V0BuildCertificateResponseItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6EF2707350E00A6D8E1 /* V0BuildCertificateResponseItemModel.swift */; };
-		3FE7B7742707350E00A6D8E1 /* V0AppUploadParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6F02707350E00A6D8E1 /* V0AppUploadParams.swift */; };
-		3FE7B7752707350E00A6D8E1 /* V0UserProfileRespModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6F12707350E00A6D8E1 /* V0UserProfileRespModel.swift */; };
-		3FE7B7762707350E00A6D8E1 /* V0AvatarPromoteParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6F22707350E00A6D8E1 /* V0AvatarPromoteParams.swift */; };
-		3FE7B7772707350E00A6D8E1 /* V0BuildListAllResponseItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6F32707350E00A6D8E1 /* V0BuildListAllResponseItemModel.swift */; };
-		3FE7B7782707350E00A6D8E1 /* V0UserPlanDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6F42707350E00A6D8E1 /* V0UserPlanDataModel.swift */; };
-		3FE7B7792707350E00A6D8E1 /* V0AppWebhookCreateParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6F52707350E00A6D8E1 /* V0AppWebhookCreateParams.swift */; };
-		3FE7B77A2707350E00A6D8E1 /* V0BuildTriggerParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6F62707350E00A6D8E1 /* V0BuildTriggerParams.swift */; };
-		3FE7B77B2707350E00A6D8E1 /* V0AppWebhookResponseItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6F72707350E00A6D8E1 /* V0AppWebhookResponseItemModel.swift */; };
-		3FE7B77C2707350E00A6D8E1 /* V0AddOnAppResponseItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6F82707350E00A6D8E1 /* V0AddOnAppResponseItemModel.swift */; };
-		3FE7B77D2707350E00A6D8E1 /* V0AppWebhookListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6F92707350E00A6D8E1 /* V0AppWebhookListResponseModel.swift */; };
-		3FE7B77E2707350E00A6D8E1 /* V0ProjectFileStorageDocumentUpdateParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6FA2707350E00A6D8E1 /* V0ProjectFileStorageDocumentUpdateParams.swift */; };
-		3FE7B77F2707350E00A6D8E1 /* AddonsSetupGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6FB2707350E00A6D8E1 /* AddonsSetupGuide.swift */; };
-		3FE7B7802707350E00A6D8E1 /* V0CommitPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6FC2707350E00A6D8E1 /* V0CommitPaths.swift */; };
-		3FE7B7812707350E00A6D8E1 /* V0AppConfigRequestParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6FD2707350E00A6D8E1 /* V0AppConfigRequestParam.swift */; };
-		3FE7B7822707350E00A6D8E1 /* V0OrganizationOwner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6FE2707350E00A6D8E1 /* V0OrganizationOwner.swift */; };
-		3FE7B7832707350E00A6D8E1 /* V0AppWebhookResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B6FF2707350E00A6D8E1 /* V0AppWebhookResponseModel.swift */; };
-		3FE7B7842707350E00A6D8E1 /* V0AvatarPromoteResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B7002707350E00A6D8E1 /* V0AvatarPromoteResponseModel.swift */; };
-		3FE7B7852707350E00A6D8E1 /* V0ProvisionProfileResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B7012707350E00A6D8E1 /* V0ProvisionProfileResponseModel.swift */; };
-		3FE7B7862707350E00A6D8E1 /* V0BuildCertificateUploadParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B7022707350E00A6D8E1 /* V0BuildCertificateUploadParams.swift */; };
-		3FE7B7872707350E00A6D8E1 /* V0ProxyErrorRespModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B7032707350E00A6D8E1 /* V0ProxyErrorRespModel.swift */; };
-		3FE7B7882707350E00A6D8E1 /* V0ActivityEventResponseItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B7042707350E00A6D8E1 /* V0ActivityEventResponseItemModel.swift */; };
-		3FE7B7892707350E00A6D8E1 /* V0AppWebhookUpdateParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B7052707350E00A6D8E1 /* V0AppWebhookUpdateParams.swift */; };
-		3FE7B78A2707350E00A6D8E1 /* V0ProvisionProfileResponseItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B7062707350E00A6D8E1 /* V0ProvisionProfileResponseItemModel.swift */; };
-		3FE7B78B2707350E00A6D8E1 /* AddonsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B7072707350E00A6D8E1 /* AddonsFeature.swift */; };
-		3FE7B78C2707350E00A6D8E1 /* V0PlanDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B7082707350E00A6D8E1 /* V0PlanDataModel.swift */; };
-		3FE7B78D2707350E00A6D8E1 /* V0BuildRequestUpdateResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B7092707350E00A6D8E1 /* V0BuildRequestUpdateResponseModel.swift */; };
-		3FE7B78E2707350E00A6D8E1 /* V0AppAddOnResponseItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B70A2707350E00A6D8E1 /* V0AppAddOnResponseItemModel.swift */; };
-		3FE7B78F2707350E00A6D8E1 /* V0ProvisionProfileListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B70B2707350E00A6D8E1 /* V0ProvisionProfileListResponseModel.swift */; };
-		3FE7B7902707350E00A6D8E1 /* V0BuildAbortParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B70C2707350E00A6D8E1 /* V0BuildAbortParams.swift */; };
-		3FE7B7912707350E00A6D8E1 /* V0UserProfileDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B70D2707350E00A6D8E1 /* V0UserProfileDataModel.swift */; };
-		3FE7B7922707350E00A6D8E1 /* V0ActivityEventListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B70E2707350E00A6D8E1 /* V0ActivityEventListResponseModel.swift */; };
-		3FE7B7932707350E00A6D8E1 /* V0AppleAPICredentialsListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B70F2707350E00A6D8E1 /* V0AppleAPICredentialsListResponse.swift */; };
-		3FE7B7942707350E00A6D8E1 /* V0UserPlanRespModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B7102707350E00A6D8E1 /* V0UserPlanRespModel.swift */; };
-		3FE7B7952707350E00A6D8E1 /* V0OwnerAddOnResponseItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B7112707350E00A6D8E1 /* V0OwnerAddOnResponseItemModel.swift */; };
-		3FE7B7962707350E00A6D8E1 /* V0BuildRequestListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B7122707350E00A6D8E1 /* V0BuildRequestListResponseModel.swift */; };
-		3FE7B7972707350E00A6D8E1 /* NullsInt64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B7132707350E00A6D8E1 /* NullsInt64.swift */; };
-		3FE7B7982707350E00A6D8E1 /* V0AppListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B7142707350E00A6D8E1 /* V0AppListResponseModel.swift */; };
-		3FE7B7992707350E00A6D8E1 /* V0BuildAbortResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B7152707350E00A6D8E1 /* V0BuildAbortResponseModel.swift */; };
-		3FE7B79B2707350E00A6D8E1 /* V0AppRespModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B7172707350E00A6D8E1 /* V0AppRespModel.swift */; };
-		3FE7B79C2707350E00A6D8E1 /* V0ArtifactListElementResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B7182707350E00A6D8E1 /* V0ArtifactListElementResponseModel.swift */; };
-		3FE7B79D2707350E00A6D8E1 /* V0ArtifactUpdateParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B7192707350E00A6D8E1 /* V0ArtifactUpdateParams.swift */; };
-		3FE7B79E2707350E00A6D8E1 /* V0SSHKeyRespModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B71A2707350E00A6D8E1 /* V0SSHKeyRespModel.swift */; };
-		3FE7B79F2707350E00A6D8E1 /* V0AppResponseItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B71B2707350E00A6D8E1 /* V0AppResponseItemModel.swift */; };
-		3FE7B7A02707350E00A6D8E1 /* V0ArtifactDeleteResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B71C2707350E00A6D8E1 /* V0ArtifactDeleteResponseModel.swift */; };
-		3FE7B7A12707350E00A6D8E1 /* V0BuildRequestResponseItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B71D2707350E00A6D8E1 /* V0BuildRequestResponseItemModel.swift */; };
-		3FE7B7A22707350E00A6D8E1 /* V0ProjectFileStorageUploadParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B71E2707350E00A6D8E1 /* V0ProjectFileStorageUploadParams.swift */; };
-		3FE7B7A32707350E00A6D8E1 /* V0BranchListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B71F2707350E00A6D8E1 /* V0BranchListResponseModel.swift */; };
-		3FE7B7A42707350E00A6D8E1 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B7202707350E00A6D8E1 /* Extensions.swift */; };
 		3FE7B7A52707350E00A6D8E1 /* JSONEncodingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B7212707350E00A6D8E1 /* JSONEncodingHelper.swift */; };
-		3FE7B7A62707350E00A6D8E1 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B7222707350E00A6D8E1 /* Models.swift */; };
 		3FE7B7A72707350E00A6D8E1 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B7232707350E00A6D8E1 /* Configuration.swift */; };
-		3FE837A2270737370059FB8C /* V0BuildTriggerParamsBuildParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B7162707350E00A6D8E1 /* V0BuildTriggerParamsBuildParams.swift */; };
 		5580CC8F41DB0FF517EDFC18 /* Pods_Buildio__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5061F1EEBAB2277A477BCE /* Pods_Buildio__macOS_.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3FA51447270BA4D400A5B881 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3FE7B53F27072C1B00A6D8E1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3FA51373270BA46E00A5B881;
+			remoteInfo = Models;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3FA51372270BA46E00A5B881 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		02A045F883245F19B2236D5A /* Pods-Buildio (macOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buildio (macOS).debug.xcconfig"; path = "Target Support Files/Pods-Buildio (macOS)/Pods-Buildio (macOS).debug.xcconfig"; sourceTree = "<group>"; };
 		02BC01504528BADE88AE233D /* Pods-Buildio (iOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buildio (iOS).release.xcconfig"; path = "Target Support Files/Pods-Buildio (iOS)/Pods-Buildio (iOS).release.xcconfig"; sourceTree = "<group>"; };
+		3FA51369270B777D00A5B881 /* URLSessionRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionRequestBuilder.swift; sourceTree = "<group>"; };
+		3FA5136D270B9D6900A5B881 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		3FA51374270BA46E00A5B881 /* libModels.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libModels.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FA5137B270BA4B100A5B881 /* V0AvatarPromoteResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AvatarPromoteResponseModel.swift; sourceTree = "<group>"; };
+		3FA5137C270BA4B100A5B881 /* V0AppWebhookListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppWebhookListResponseModel.swift; sourceTree = "<group>"; };
+		3FA5137D270BA4B100A5B881 /* V0OwnerAccountResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0OwnerAccountResponseModel.swift; sourceTree = "<group>"; };
+		3FA5137E270BA4B100A5B881 /* V0UserPlanRespModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0UserPlanRespModel.swift; sourceTree = "<group>"; };
+		3FA5137F270BA4B100A5B881 /* V0FindAvatarCandidateResponseItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0FindAvatarCandidateResponseItem.swift; sourceTree = "<group>"; };
+		3FA51380270BA4B100A5B881 /* V0SSHKeyUploadParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0SSHKeyUploadParams.swift; sourceTree = "<group>"; };
+		3FA51381270BA4B100A5B881 /* V0AppleAPICredentialResponseItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppleAPICredentialResponseItem.swift; sourceTree = "<group>"; };
+		3FA51382270BA4B100A5B881 /* V0WebhookRespModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0WebhookRespModel.swift; sourceTree = "<group>"; };
+		3FA51383270BA4B100A5B881 /* V0ProvisionProfileListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ProvisionProfileListResponseModel.swift; sourceTree = "<group>"; };
+		3FA51384270BA4B100A5B881 /* V0PlanDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0PlanDataModel.swift; sourceTree = "<group>"; };
+		3FA51385270BA4B100A5B881 /* AddonsDeveloperLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddonsDeveloperLink.swift; sourceTree = "<group>"; };
+		3FA51386270BA4B100A5B881 /* V0AddonsShowResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AddonsShowResponseModel.swift; sourceTree = "<group>"; };
+		3FA51387270BA4B100A5B881 /* V0ProvisionProfileResponseItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ProvisionProfileResponseItemModel.swift; sourceTree = "<group>"; };
+		3FA51388270BA4B200A5B881 /* V0ActivityEventListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ActivityEventListResponseModel.swift; sourceTree = "<group>"; };
+		3FA51389270BA4B200A5B881 /* V0AppWebhookCreatedResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppWebhookCreatedResponseModel.swift; sourceTree = "<group>"; };
+		3FA5138A270BA4B200A5B881 /* AddonsSetupGuide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddonsSetupGuide.swift; sourceTree = "<group>"; };
+		3FA5138B270BA4B200A5B881 /* V0AvatarCandidateCreateParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AvatarCandidateCreateParams.swift; sourceTree = "<group>"; };
+		3FA5138C270BA4B200A5B881 /* V0AvatarCandidateCreateResponseItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AvatarCandidateCreateResponseItem.swift; sourceTree = "<group>"; };
+		3FA5138D270BA4B200A5B881 /* V0AppWebhookDeletedResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppWebhookDeletedResponseModel.swift; sourceTree = "<group>"; };
+		3FA5138E270BA4B200A5B881 /* V0ProjectFileStorageResponseItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ProjectFileStorageResponseItemModel.swift; sourceTree = "<group>"; };
+		3FA5138F270BA4B200A5B881 /* V0AppAddOnResponseItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppAddOnResponseItemModel.swift; sourceTree = "<group>"; };
+		3FA51390270BA4B200A5B881 /* V0FindAvatarCandidateResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0FindAvatarCandidateResponse.swift; sourceTree = "<group>"; };
+		3FA51391270BA4B200A5B881 /* V0AppListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppListResponseModel.swift; sourceTree = "<group>"; };
+		3FA51392270BA4B200A5B881 /* V0AppWebhookResponseItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppWebhookResponseItemModel.swift; sourceTree = "<group>"; };
+		3FA51393270BA4B200A5B881 /* V0CommitPaths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0CommitPaths.swift; sourceTree = "<group>"; };
+		3FA51394270BA4B200A5B881 /* V0BuildRequestUpdateResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildRequestUpdateResponseModel.swift; sourceTree = "<group>"; };
+		3FA51395270BA4B200A5B881 /* V0BuildCertificateResponseItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildCertificateResponseItemModel.swift; sourceTree = "<group>"; };
+		3FA51396270BA4B300A5B881 /* V0BuildListAllResponseItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildListAllResponseItemModel.swift; sourceTree = "<group>"; };
+		3FA51397270BA4B300A5B881 /* V0BuildAbortParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildAbortParams.swift; sourceTree = "<group>"; };
+		3FA51398270BA4B300A5B881 /* AddonsFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddonsFeature.swift; sourceTree = "<group>"; };
+		3FA51399270BA4B300A5B881 /* V0ActivityEventResponseItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ActivityEventResponseItemModel.swift; sourceTree = "<group>"; };
+		3FA5139A270BA4B300A5B881 /* V0OrganizationListRespModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0OrganizationListRespModel.swift; sourceTree = "<group>"; };
+		3FA5139B270BA4B300A5B881 /* V0BuildCertificateListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildCertificateListResponseModel.swift; sourceTree = "<group>"; };
+		3FA5139C270BA4B300A5B881 /* V0AppWebhookResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppWebhookResponseModel.swift; sourceTree = "<group>"; };
+		3FA5139D270BA4B300A5B881 /* V0UserPlanDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0UserPlanDataModel.swift; sourceTree = "<group>"; };
+		3FA5139E270BA4B300A5B881 /* V0AppConfigRequestParam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppConfigRequestParam.swift; sourceTree = "<group>"; };
+		3FA5139F270BA4B300A5B881 /* V0BuildRequestUpdateParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildRequestUpdateParams.swift; sourceTree = "<group>"; };
+		3FA513A0270BA4B300A5B881 /* V0AppConfigRespModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppConfigRespModel.swift; sourceTree = "<group>"; };
+		3FA513A1270BA4B300A5B881 /* V0ArtifactDeleteResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ArtifactDeleteResponseModel.swift; sourceTree = "<group>"; };
+		3FA513A2270BA4B300A5B881 /* AddonsSetupInstruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddonsSetupInstruction.swift; sourceTree = "<group>"; };
+		3FA513A3270BA4B300A5B881 /* V0AppFinishRespModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppFinishRespModel.swift; sourceTree = "<group>"; };
+		3FA513A4270BA4B400A5B881 /* V0BuildAbortResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildAbortResponseModel.swift; sourceTree = "<group>"; };
+		3FA513A5270BA4B400A5B881 /* V0ArtifactUpdateParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ArtifactUpdateParams.swift; sourceTree = "<group>"; };
+		3FA513A6270BA4B400A5B881 /* V0BuildTriggerParamsBuildParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildTriggerParamsBuildParams.swift; sourceTree = "<group>"; };
+		3FA513A7270BA4B400A5B881 /* V0BuildListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildListResponseModel.swift; sourceTree = "<group>"; };
+		3FA513A8270BA4B400A5B881 /* AddonsPlan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddonsPlan.swift; sourceTree = "<group>"; };
+		3FA513A9270BA4B400A5B881 /* V0AddonsListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AddonsListResponseModel.swift; sourceTree = "<group>"; };
+		3FA513AA270BA4B400A5B881 /* V0ProjectFileStorageResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ProjectFileStorageResponseModel.swift; sourceTree = "<group>"; };
+		3FA513AB270BA4B400A5B881 /* V0ProxyErrorRespModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ProxyErrorRespModel.swift; sourceTree = "<group>"; };
+		3FA513AC270BA4B400A5B881 /* V0ProjectFileStorageUploadParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ProjectFileStorageUploadParams.swift; sourceTree = "<group>"; };
+		3FA513AD270BA4B400A5B881 /* V0ArtifactListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ArtifactListResponseModel.swift; sourceTree = "<group>"; };
+		3FA513AE270BA4B400A5B881 /* V0BuildWorkflowListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildWorkflowListResponseModel.swift; sourceTree = "<group>"; };
+		3FA513AF270BA4B400A5B881 /* V0OwnerAddOnResponseItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0OwnerAddOnResponseItemModel.swift; sourceTree = "<group>"; };
+		3FA513B0270BA4B400A5B881 /* V0AppWebhookCreateParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppWebhookCreateParams.swift; sourceTree = "<group>"; };
+		3FA513B1270BA4B400A5B881 /* V0ProjectFileStorageDocumentUpdateParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ProjectFileStorageDocumentUpdateParams.swift; sourceTree = "<group>"; };
+		3FA513B2270BA4B400A5B881 /* V0AppleAPICredentialsListResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppleAPICredentialsListResponse.swift; sourceTree = "<group>"; };
+		3FA513B3270BA4B400A5B881 /* V0OwnerAddOnsListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0OwnerAddOnsListResponseModel.swift; sourceTree = "<group>"; };
+		3FA513B4270BA4B500A5B881 /* V0BuildTriggerParamsHookInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildTriggerParamsHookInfo.swift; sourceTree = "<group>"; };
+		3FA513B5270BA4B500A5B881 /* V0AppUploadParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppUploadParams.swift; sourceTree = "<group>"; };
+		3FA513B6270BA4B500A5B881 /* V0BranchListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BranchListResponseModel.swift; sourceTree = "<group>"; };
+		3FA513B7270BA4B500A5B881 /* V0OrganizationDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0OrganizationDataModel.swift; sourceTree = "<group>"; };
+		3FA513B8270BA4B500A5B881 /* V0ProvProfileDocumentUpdateParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ProvProfileDocumentUpdateParams.swift; sourceTree = "<group>"; };
+		3FA513B9270BA4B500A5B881 /* V0TestDeviceResponseItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0TestDeviceResponseItemModel.swift; sourceTree = "<group>"; };
+		3FA513BA270BA4B500A5B881 /* V0BuildListAllResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildListAllResponseModel.swift; sourceTree = "<group>"; };
+		3FA513BB270BA4B500A5B881 /* V0WebhookDeliveryItemResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0WebhookDeliveryItemResponseModel.swift; sourceTree = "<group>"; };
+		3FA513BC270BA4B500A5B881 /* V0ProvisionProfileResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ProvisionProfileResponseModel.swift; sourceTree = "<group>"; };
+		3FA513BD270BA4B500A5B881 /* V0BuildResponseItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildResponseItemModel.swift; sourceTree = "<group>"; };
+		3FA513BE270BA4B500A5B881 /* V0UserProfileDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0UserProfileDataModel.swift; sourceTree = "<group>"; };
+		3FA513BF270BA4B500A5B881 /* V0UserProfileRespModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0UserProfileRespModel.swift; sourceTree = "<group>"; };
+		3FA513C0270BA4B500A5B881 /* V0BuildRequestResponseItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildRequestResponseItemModel.swift; sourceTree = "<group>"; };
+		3FA513C1270BA4B500A5B881 /* V0BuildCertificateResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildCertificateResponseModel.swift; sourceTree = "<group>"; };
+		3FA513C2270BA4B500A5B881 /* V0SSHKeyRespModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0SSHKeyRespModel.swift; sourceTree = "<group>"; };
+		3FA513C3270BA4B500A5B881 /* V0BuildTriggerParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildTriggerParams.swift; sourceTree = "<group>"; };
+		3FA513C4270BA4B500A5B881 /* V0ProjectFileStorageListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ProjectFileStorageListResponseModel.swift; sourceTree = "<group>"; };
+		3FA513C5270BA4B500A5B881 /* V0AndroidKeystoreFileUploadParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AndroidKeystoreFileUploadParams.swift; sourceTree = "<group>"; };
+		3FA513C6270BA4B500A5B881 /* V0AddOnAppResponseItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AddOnAppResponseItemModel.swift; sourceTree = "<group>"; };
+		3FA513C7270BA4B600A5B881 /* V0BuildRequestListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildRequestListResponseModel.swift; sourceTree = "<group>"; };
+		3FA513C8270BA4B600A5B881 /* V0AppResponseItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppResponseItemModel.swift; sourceTree = "<group>"; };
+		3FA513C9270BA4B600A5B881 /* V0ArtifactShowResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ArtifactShowResponseModel.swift; sourceTree = "<group>"; };
+		3FA513CA270BA4B600A5B881 /* V0OrganizationRespModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0OrganizationRespModel.swift; sourceTree = "<group>"; };
+		3FA513CB270BA4B600A5B881 /* V0ArtifactListElementResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ArtifactListElementResponseModel.swift; sourceTree = "<group>"; };
+		3FA513CC270BA4B600A5B881 /* V0PagingResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0PagingResponseModel.swift; sourceTree = "<group>"; };
+		3FA513CD270BA4B600A5B881 /* V0AppShowResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppShowResponseModel.swift; sourceTree = "<group>"; };
+		3FA513CE270BA4B600A5B881 /* V0BuildCertificateUpdateParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildCertificateUpdateParams.swift; sourceTree = "<group>"; };
+		3FA513CF270BA4B600A5B881 /* V0BuildShowResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildShowResponseModel.swift; sourceTree = "<group>"; };
+		3FA513D0270BA4B600A5B881 /* V0AvatarPromoteParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AvatarPromoteParams.swift; sourceTree = "<group>"; };
+		3FA513D1270BA4B600A5B881 /* V0BuildTriggerRespModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildTriggerRespModel.swift; sourceTree = "<group>"; };
+		3FA513D2270BA4B600A5B881 /* V0BuildCertificateUploadParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildCertificateUploadParams.swift; sourceTree = "<group>"; };
+		3FA513D3270BA4B600A5B881 /* V0WebhookDeliveryItemShowResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0WebhookDeliveryItemShowResponseModel.swift; sourceTree = "<group>"; };
+		3FA513D4270BA4B600A5B881 /* V0BuildParamsEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildParamsEnvironment.swift; sourceTree = "<group>"; };
+		3FA513D5270BA4B600A5B881 /* V0ArtifactResponseItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ArtifactResponseItemModel.swift; sourceTree = "<group>"; };
+		3FA513D6270BA4B600A5B881 /* V0AppFinishParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppFinishParams.swift; sourceTree = "<group>"; };
+		3FA513D7270BA4B600A5B881 /* V0ProvisionProfileUploadParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ProvisionProfileUploadParams.swift; sourceTree = "<group>"; };
+		3FA513D8270BA4B600A5B881 /* ServiceStandardErrorRespModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceStandardErrorRespModel.swift; sourceTree = "<group>"; };
+		3FA513D9270BA4B600A5B881 /* AddonsAddon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddonsAddon.swift; sourceTree = "<group>"; };
+		3FA513DA270BA4B600A5B881 /* V0AppWebhookUpdateParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppWebhookUpdateParams.swift; sourceTree = "<group>"; };
+		3FA513DB270BA4B700A5B881 /* NullsInt64.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NullsInt64.swift; sourceTree = "<group>"; };
+		3FA513DC270BA4B700A5B881 /* V0AppAddOnsListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppAddOnsListResponseModel.swift; sourceTree = "<group>"; };
+		3FA513DD270BA4B700A5B881 /* V0TestDeviceListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0TestDeviceListResponseModel.swift; sourceTree = "<group>"; };
+		3FA513DE270BA4B700A5B881 /* V0AvatarPromoteResponseItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AvatarPromoteResponseItemModel.swift; sourceTree = "<group>"; };
+		3FA513DF270BA4B700A5B881 /* V0AppRespModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppRespModel.swift; sourceTree = "<group>"; };
+		3FA513E0270BA4B700A5B881 /* V0OrganizationOwner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0OrganizationOwner.swift; sourceTree = "<group>"; };
 		3FCC459B27075AE80001A9C2 /* TokenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenView.swift; sourceTree = "<group>"; };
 		3FCC45A127075D170001A9C2 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		3FCC45A527075EDF0001A9C2 /* UserDefaults+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Additions.swift"; sourceTree = "<group>"; };
@@ -185,9 +316,9 @@
 		3FCC45AC270767370001A9C2 /* MainCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorView.swift; sourceTree = "<group>"; };
 		3FCC45AF270767480001A9C2 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		3FCC45B327078D250001A9C2 /* RootNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationView.swift; sourceTree = "<group>"; };
-		3FCC45B727078E040001A9C2 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		3FCC45B727078E040001A9C2 /* ProfileScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreenView.swift; sourceTree = "<group>"; };
 		3FCC45BA27078EB40001A9C2 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
-		3FCC45BE2707923F0001A9C2 /* BuildsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildsView.swift; sourceTree = "<group>"; };
+		3FCC45BE2707923F0001A9C2 /* BuildsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildsScreenView.swift; sourceTree = "<group>"; };
 		3FCC45C12707924D0001A9C2 /* BuildsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildsViewModel.swift; sourceTree = "<group>"; };
 		3FCC45C42707930E0001A9C2 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		3FCC45C7270797E30001A9C2 /* RefreshableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshableView.swift; sourceTree = "<group>"; };
@@ -222,109 +353,6 @@
 		3FE7B6B52707350E00A6D8E1 /* CodableHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableHelper.swift; sourceTree = "<group>"; };
 		3FE7B6B62707350E00A6D8E1 /* JSONEncodableEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONEncodableEncoding.swift; sourceTree = "<group>"; };
 		3FE7B6B72707350E00A6D8E1 /* APIs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIs.swift; sourceTree = "<group>"; };
-		3FE7B6B92707350E00A6D8E1 /* V0ArtifactListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ArtifactListResponseModel.swift; sourceTree = "<group>"; };
-		3FE7B6BA2707350E00A6D8E1 /* V0AppWebhookCreatedResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppWebhookCreatedResponseModel.swift; sourceTree = "<group>"; };
-		3FE7B6BB2707350E00A6D8E1 /* V0WebhookRespModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0WebhookRespModel.swift; sourceTree = "<group>"; };
-		3FE7B6BC2707350E00A6D8E1 /* V0ProjectFileStorageResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ProjectFileStorageResponseModel.swift; sourceTree = "<group>"; };
-		3FE7B6BD2707350E00A6D8E1 /* V0AvatarPromoteResponseItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AvatarPromoteResponseItemModel.swift; sourceTree = "<group>"; };
-		3FE7B6BE2707350E00A6D8E1 /* V0BuildListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildListResponseModel.swift; sourceTree = "<group>"; };
-		3FE7B6BF2707350E00A6D8E1 /* AddonsPlan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddonsPlan.swift; sourceTree = "<group>"; };
-		3FE7B6C02707350E00A6D8E1 /* V0AppleAPICredentialResponseItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppleAPICredentialResponseItem.swift; sourceTree = "<group>"; };
-		3FE7B6C12707350E00A6D8E1 /* V0BuildResponseItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildResponseItemModel.swift; sourceTree = "<group>"; };
-		3FE7B6C22707350E00A6D8E1 /* V0FindAvatarCandidateResponseItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0FindAvatarCandidateResponseItem.swift; sourceTree = "<group>"; };
-		3FE7B6C32707350E00A6D8E1 /* V0BuildCertificateUpdateParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildCertificateUpdateParams.swift; sourceTree = "<group>"; };
-		3FE7B6C42707350E00A6D8E1 /* V0OrganizationDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0OrganizationDataModel.swift; sourceTree = "<group>"; };
-		3FE7B6C52707350E00A6D8E1 /* V0SSHKeyUploadParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0SSHKeyUploadParams.swift; sourceTree = "<group>"; };
-		3FE7B6C62707350E00A6D8E1 /* V0WebhookDeliveryItemResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0WebhookDeliveryItemResponseModel.swift; sourceTree = "<group>"; };
-		3FE7B6C72707350E00A6D8E1 /* V0ArtifactResponseItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ArtifactResponseItemModel.swift; sourceTree = "<group>"; };
-		3FE7B6C82707350E00A6D8E1 /* AddonsAddon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddonsAddon.swift; sourceTree = "<group>"; };
-		3FE7B6C92707350E00A6D8E1 /* V0AppFinishParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppFinishParams.swift; sourceTree = "<group>"; };
-		3FE7B6CA2707350E00A6D8E1 /* V0ProjectFileStorageListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ProjectFileStorageListResponseModel.swift; sourceTree = "<group>"; };
-		3FE7B6CB2707350E00A6D8E1 /* V0BuildCertificateResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildCertificateResponseModel.swift; sourceTree = "<group>"; };
-		3FE7B6CC2707350E00A6D8E1 /* V0AppWebhookDeletedResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppWebhookDeletedResponseModel.swift; sourceTree = "<group>"; };
-		3FE7B6CD2707350E00A6D8E1 /* AddonsDeveloperLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddonsDeveloperLink.swift; sourceTree = "<group>"; };
-		3FE7B6CE2707350E00A6D8E1 /* V0AppConfigRespModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppConfigRespModel.swift; sourceTree = "<group>"; };
-		3FE7B6CF2707350E00A6D8E1 /* V0ProjectFileStorageResponseItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ProjectFileStorageResponseItemModel.swift; sourceTree = "<group>"; };
-		3FE7B6D02707350E00A6D8E1 /* V0AddonsShowResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AddonsShowResponseModel.swift; sourceTree = "<group>"; };
-		3FE7B6D12707350E00A6D8E1 /* V0WebhookDeliveryItemShowResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0WebhookDeliveryItemShowResponseModel.swift; sourceTree = "<group>"; };
-		3FE7B6D22707350E00A6D8E1 /* V0FindAvatarCandidateResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0FindAvatarCandidateResponse.swift; sourceTree = "<group>"; };
-		3FE7B6D32707350E00A6D8E1 /* V0ProvisionProfileUploadParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ProvisionProfileUploadParams.swift; sourceTree = "<group>"; };
-		3FE7B6D42707350E00A6D8E1 /* V0AddonsListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AddonsListResponseModel.swift; sourceTree = "<group>"; };
-		3FE7B6D52707350E00A6D8E1 /* V0BuildTriggerParamsHookInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildTriggerParamsHookInfo.swift; sourceTree = "<group>"; };
-		3FE7B6D62707350E00A6D8E1 /* V0AppFinishRespModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppFinishRespModel.swift; sourceTree = "<group>"; };
-		3FE7B6D72707350E00A6D8E1 /* NullsString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NullsString.swift; sourceTree = "<group>"; };
-		3FE7B6D82707350E00A6D8E1 /* V0AvatarCandidateCreateParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AvatarCandidateCreateParams.swift; sourceTree = "<group>"; };
-		3FE7B6D92707350E00A6D8E1 /* V0BuildWorkflowListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildWorkflowListResponseModel.swift; sourceTree = "<group>"; };
-		3FE7B6DA2707350E00A6D8E1 /* V0OrganizationRespModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0OrganizationRespModel.swift; sourceTree = "<group>"; };
-		3FE7B6DB2707350E00A6D8E1 /* V0AppAddOnsListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppAddOnsListResponseModel.swift; sourceTree = "<group>"; };
-		3FE7B6DC2707350E00A6D8E1 /* V0OrganizationListRespModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0OrganizationListRespModel.swift; sourceTree = "<group>"; };
-		3FE7B6DD2707350E00A6D8E1 /* V0OwnerAccountResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0OwnerAccountResponseModel.swift; sourceTree = "<group>"; };
-		3FE7B6DE2707350E00A6D8E1 /* V0BuildTriggerRespModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildTriggerRespModel.swift; sourceTree = "<group>"; };
-		3FE7B6DF2707350E00A6D8E1 /* V0OwnerAddOnsListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0OwnerAddOnsListResponseModel.swift; sourceTree = "<group>"; };
-		3FE7B6E02707350E00A6D8E1 /* V0TestDeviceResponseItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0TestDeviceResponseItemModel.swift; sourceTree = "<group>"; };
-		3FE7B6E12707350E00A6D8E1 /* V0AndroidKeystoreFileUploadParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AndroidKeystoreFileUploadParams.swift; sourceTree = "<group>"; };
-		3FE7B6E22707350E00A6D8E1 /* V0TestDeviceListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0TestDeviceListResponseModel.swift; sourceTree = "<group>"; };
-		3FE7B6E32707350E00A6D8E1 /* V0BuildRequestUpdateParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildRequestUpdateParams.swift; sourceTree = "<group>"; };
-		3FE7B6E42707350E00A6D8E1 /* V0BuildShowResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildShowResponseModel.swift; sourceTree = "<group>"; };
-		3FE7B6E52707350E00A6D8E1 /* V0ArtifactShowResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ArtifactShowResponseModel.swift; sourceTree = "<group>"; };
-		3FE7B6E62707350E00A6D8E1 /* V0ProvProfileDocumentUpdateParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ProvProfileDocumentUpdateParams.swift; sourceTree = "<group>"; };
-		3FE7B6E72707350E00A6D8E1 /* AddonsSetupInstruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddonsSetupInstruction.swift; sourceTree = "<group>"; };
-		3FE7B6E82707350E00A6D8E1 /* V0PagingResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0PagingResponseModel.swift; sourceTree = "<group>"; };
-		3FE7B6E92707350E00A6D8E1 /* ServiceStandardErrorRespModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceStandardErrorRespModel.swift; sourceTree = "<group>"; };
-		3FE7B6EA2707350E00A6D8E1 /* V0AvatarCandidateCreateResponseItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AvatarCandidateCreateResponseItem.swift; sourceTree = "<group>"; };
-		3FE7B6EB2707350E00A6D8E1 /* V0BuildCertificateListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildCertificateListResponseModel.swift; sourceTree = "<group>"; };
-		3FE7B6EC2707350E00A6D8E1 /* V0BuildParamsEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildParamsEnvironment.swift; sourceTree = "<group>"; };
-		3FE7B6ED2707350E00A6D8E1 /* V0AppShowResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppShowResponseModel.swift; sourceTree = "<group>"; };
-		3FE7B6EE2707350E00A6D8E1 /* V0BuildListAllResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildListAllResponseModel.swift; sourceTree = "<group>"; };
-		3FE7B6EF2707350E00A6D8E1 /* V0BuildCertificateResponseItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildCertificateResponseItemModel.swift; sourceTree = "<group>"; };
-		3FE7B6F02707350E00A6D8E1 /* V0AppUploadParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppUploadParams.swift; sourceTree = "<group>"; };
-		3FE7B6F12707350E00A6D8E1 /* V0UserProfileRespModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0UserProfileRespModel.swift; sourceTree = "<group>"; };
-		3FE7B6F22707350E00A6D8E1 /* V0AvatarPromoteParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AvatarPromoteParams.swift; sourceTree = "<group>"; };
-		3FE7B6F32707350E00A6D8E1 /* V0BuildListAllResponseItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildListAllResponseItemModel.swift; sourceTree = "<group>"; };
-		3FE7B6F42707350E00A6D8E1 /* V0UserPlanDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0UserPlanDataModel.swift; sourceTree = "<group>"; };
-		3FE7B6F52707350E00A6D8E1 /* V0AppWebhookCreateParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppWebhookCreateParams.swift; sourceTree = "<group>"; };
-		3FE7B6F62707350E00A6D8E1 /* V0BuildTriggerParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildTriggerParams.swift; sourceTree = "<group>"; };
-		3FE7B6F72707350E00A6D8E1 /* V0AppWebhookResponseItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppWebhookResponseItemModel.swift; sourceTree = "<group>"; };
-		3FE7B6F82707350E00A6D8E1 /* V0AddOnAppResponseItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AddOnAppResponseItemModel.swift; sourceTree = "<group>"; };
-		3FE7B6F92707350E00A6D8E1 /* V0AppWebhookListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppWebhookListResponseModel.swift; sourceTree = "<group>"; };
-		3FE7B6FA2707350E00A6D8E1 /* V0ProjectFileStorageDocumentUpdateParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ProjectFileStorageDocumentUpdateParams.swift; sourceTree = "<group>"; };
-		3FE7B6FB2707350E00A6D8E1 /* AddonsSetupGuide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddonsSetupGuide.swift; sourceTree = "<group>"; };
-		3FE7B6FC2707350E00A6D8E1 /* V0CommitPaths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0CommitPaths.swift; sourceTree = "<group>"; };
-		3FE7B6FD2707350E00A6D8E1 /* V0AppConfigRequestParam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppConfigRequestParam.swift; sourceTree = "<group>"; };
-		3FE7B6FE2707350E00A6D8E1 /* V0OrganizationOwner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0OrganizationOwner.swift; sourceTree = "<group>"; };
-		3FE7B6FF2707350E00A6D8E1 /* V0AppWebhookResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppWebhookResponseModel.swift; sourceTree = "<group>"; };
-		3FE7B7002707350E00A6D8E1 /* V0AvatarPromoteResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AvatarPromoteResponseModel.swift; sourceTree = "<group>"; };
-		3FE7B7012707350E00A6D8E1 /* V0ProvisionProfileResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ProvisionProfileResponseModel.swift; sourceTree = "<group>"; };
-		3FE7B7022707350E00A6D8E1 /* V0BuildCertificateUploadParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildCertificateUploadParams.swift; sourceTree = "<group>"; };
-		3FE7B7032707350E00A6D8E1 /* V0ProxyErrorRespModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ProxyErrorRespModel.swift; sourceTree = "<group>"; };
-		3FE7B7042707350E00A6D8E1 /* V0ActivityEventResponseItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ActivityEventResponseItemModel.swift; sourceTree = "<group>"; };
-		3FE7B7052707350E00A6D8E1 /* V0AppWebhookUpdateParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppWebhookUpdateParams.swift; sourceTree = "<group>"; };
-		3FE7B7062707350E00A6D8E1 /* V0ProvisionProfileResponseItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ProvisionProfileResponseItemModel.swift; sourceTree = "<group>"; };
-		3FE7B7072707350E00A6D8E1 /* AddonsFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddonsFeature.swift; sourceTree = "<group>"; };
-		3FE7B7082707350E00A6D8E1 /* V0PlanDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0PlanDataModel.swift; sourceTree = "<group>"; };
-		3FE7B7092707350E00A6D8E1 /* V0BuildRequestUpdateResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildRequestUpdateResponseModel.swift; sourceTree = "<group>"; };
-		3FE7B70A2707350E00A6D8E1 /* V0AppAddOnResponseItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppAddOnResponseItemModel.swift; sourceTree = "<group>"; };
-		3FE7B70B2707350E00A6D8E1 /* V0ProvisionProfileListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ProvisionProfileListResponseModel.swift; sourceTree = "<group>"; };
-		3FE7B70C2707350E00A6D8E1 /* V0BuildAbortParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildAbortParams.swift; sourceTree = "<group>"; };
-		3FE7B70D2707350E00A6D8E1 /* V0UserProfileDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0UserProfileDataModel.swift; sourceTree = "<group>"; };
-		3FE7B70E2707350E00A6D8E1 /* V0ActivityEventListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ActivityEventListResponseModel.swift; sourceTree = "<group>"; };
-		3FE7B70F2707350E00A6D8E1 /* V0AppleAPICredentialsListResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppleAPICredentialsListResponse.swift; sourceTree = "<group>"; };
-		3FE7B7102707350E00A6D8E1 /* V0UserPlanRespModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0UserPlanRespModel.swift; sourceTree = "<group>"; };
-		3FE7B7112707350E00A6D8E1 /* V0OwnerAddOnResponseItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0OwnerAddOnResponseItemModel.swift; sourceTree = "<group>"; };
-		3FE7B7122707350E00A6D8E1 /* V0BuildRequestListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildRequestListResponseModel.swift; sourceTree = "<group>"; };
-		3FE7B7132707350E00A6D8E1 /* NullsInt64.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NullsInt64.swift; sourceTree = "<group>"; };
-		3FE7B7142707350E00A6D8E1 /* V0AppListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppListResponseModel.swift; sourceTree = "<group>"; };
-		3FE7B7152707350E00A6D8E1 /* V0BuildAbortResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildAbortResponseModel.swift; sourceTree = "<group>"; };
-		3FE7B7162707350E00A6D8E1 /* V0BuildTriggerParamsBuildParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildTriggerParamsBuildParams.swift; sourceTree = "<group>"; };
-		3FE7B7172707350E00A6D8E1 /* V0AppRespModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppRespModel.swift; sourceTree = "<group>"; };
-		3FE7B7182707350E00A6D8E1 /* V0ArtifactListElementResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ArtifactListElementResponseModel.swift; sourceTree = "<group>"; };
-		3FE7B7192707350E00A6D8E1 /* V0ArtifactUpdateParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ArtifactUpdateParams.swift; sourceTree = "<group>"; };
-		3FE7B71A2707350E00A6D8E1 /* V0SSHKeyRespModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0SSHKeyRespModel.swift; sourceTree = "<group>"; };
-		3FE7B71B2707350E00A6D8E1 /* V0AppResponseItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0AppResponseItemModel.swift; sourceTree = "<group>"; };
-		3FE7B71C2707350E00A6D8E1 /* V0ArtifactDeleteResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ArtifactDeleteResponseModel.swift; sourceTree = "<group>"; };
-		3FE7B71D2707350E00A6D8E1 /* V0BuildRequestResponseItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BuildRequestResponseItemModel.swift; sourceTree = "<group>"; };
-		3FE7B71E2707350E00A6D8E1 /* V0ProjectFileStorageUploadParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0ProjectFileStorageUploadParams.swift; sourceTree = "<group>"; };
-		3FE7B71F2707350E00A6D8E1 /* V0BranchListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V0BranchListResponseModel.swift; sourceTree = "<group>"; };
 		3FE7B7202707350E00A6D8E1 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3FE7B7212707350E00A6D8E1 /* JSONEncodingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONEncodingHelper.swift; sourceTree = "<group>"; };
 		3FE7B7222707350E00A6D8E1 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
@@ -336,10 +364,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3FA51371270BA46E00A5B881 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3FE7B54827072C1E00A6D8E1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FA5144B270BA80800A5B881 /* libModels.a in Frameworks */,
 				14D3B93BFD545FEFACF72EFE /* Pods_Buildio__iOS_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -355,6 +391,125 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3FA5136C270B9D5100A5B881 /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				3FA5136D270B9D6900A5B881 /* Logger.swift */,
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
+		3FA51375270BA46E00A5B881 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3FA513D9270BA4B600A5B881 /* AddonsAddon.swift */,
+				3FA51385270BA4B100A5B881 /* AddonsDeveloperLink.swift */,
+				3FA51398270BA4B300A5B881 /* AddonsFeature.swift */,
+				3FA513A8270BA4B400A5B881 /* AddonsPlan.swift */,
+				3FA5138A270BA4B200A5B881 /* AddonsSetupGuide.swift */,
+				3FA513A2270BA4B300A5B881 /* AddonsSetupInstruction.swift */,
+				3FA513DB270BA4B700A5B881 /* NullsInt64.swift */,
+				3FA513D8270BA4B600A5B881 /* ServiceStandardErrorRespModel.swift */,
+				3FA51388270BA4B200A5B881 /* V0ActivityEventListResponseModel.swift */,
+				3FA51399270BA4B300A5B881 /* V0ActivityEventResponseItemModel.swift */,
+				3FA513C6270BA4B500A5B881 /* V0AddOnAppResponseItemModel.swift */,
+				3FA513A9270BA4B400A5B881 /* V0AddonsListResponseModel.swift */,
+				3FA51386270BA4B100A5B881 /* V0AddonsShowResponseModel.swift */,
+				3FA513C5270BA4B500A5B881 /* V0AndroidKeystoreFileUploadParams.swift */,
+				3FA5138F270BA4B200A5B881 /* V0AppAddOnResponseItemModel.swift */,
+				3FA513DC270BA4B700A5B881 /* V0AppAddOnsListResponseModel.swift */,
+				3FA5139E270BA4B300A5B881 /* V0AppConfigRequestParam.swift */,
+				3FA513A0270BA4B300A5B881 /* V0AppConfigRespModel.swift */,
+				3FA513D6270BA4B600A5B881 /* V0AppFinishParams.swift */,
+				3FA513A3270BA4B300A5B881 /* V0AppFinishRespModel.swift */,
+				3FA51381270BA4B100A5B881 /* V0AppleAPICredentialResponseItem.swift */,
+				3FA513B2270BA4B400A5B881 /* V0AppleAPICredentialsListResponse.swift */,
+				3FA51391270BA4B200A5B881 /* V0AppListResponseModel.swift */,
+				3FA513DF270BA4B700A5B881 /* V0AppRespModel.swift */,
+				3FA513C8270BA4B600A5B881 /* V0AppResponseItemModel.swift */,
+				3FA513CD270BA4B600A5B881 /* V0AppShowResponseModel.swift */,
+				3FA513B5270BA4B500A5B881 /* V0AppUploadParams.swift */,
+				3FA51389270BA4B200A5B881 /* V0AppWebhookCreatedResponseModel.swift */,
+				3FA513B0270BA4B400A5B881 /* V0AppWebhookCreateParams.swift */,
+				3FA5138D270BA4B200A5B881 /* V0AppWebhookDeletedResponseModel.swift */,
+				3FA5137C270BA4B100A5B881 /* V0AppWebhookListResponseModel.swift */,
+				3FA51392270BA4B200A5B881 /* V0AppWebhookResponseItemModel.swift */,
+				3FA5139C270BA4B300A5B881 /* V0AppWebhookResponseModel.swift */,
+				3FA513DA270BA4B600A5B881 /* V0AppWebhookUpdateParams.swift */,
+				3FA513A1270BA4B300A5B881 /* V0ArtifactDeleteResponseModel.swift */,
+				3FA513CB270BA4B600A5B881 /* V0ArtifactListElementResponseModel.swift */,
+				3FA513AD270BA4B400A5B881 /* V0ArtifactListResponseModel.swift */,
+				3FA513D5270BA4B600A5B881 /* V0ArtifactResponseItemModel.swift */,
+				3FA513C9270BA4B600A5B881 /* V0ArtifactShowResponseModel.swift */,
+				3FA513A5270BA4B400A5B881 /* V0ArtifactUpdateParams.swift */,
+				3FA5138B270BA4B200A5B881 /* V0AvatarCandidateCreateParams.swift */,
+				3FA5138C270BA4B200A5B881 /* V0AvatarCandidateCreateResponseItem.swift */,
+				3FA513D0270BA4B600A5B881 /* V0AvatarPromoteParams.swift */,
+				3FA513DE270BA4B700A5B881 /* V0AvatarPromoteResponseItemModel.swift */,
+				3FA5137B270BA4B100A5B881 /* V0AvatarPromoteResponseModel.swift */,
+				3FA513B6270BA4B500A5B881 /* V0BranchListResponseModel.swift */,
+				3FA51397270BA4B300A5B881 /* V0BuildAbortParams.swift */,
+				3FA513A4270BA4B400A5B881 /* V0BuildAbortResponseModel.swift */,
+				3FA5139B270BA4B300A5B881 /* V0BuildCertificateListResponseModel.swift */,
+				3FA51395270BA4B200A5B881 /* V0BuildCertificateResponseItemModel.swift */,
+				3FA513C1270BA4B500A5B881 /* V0BuildCertificateResponseModel.swift */,
+				3FA513CE270BA4B600A5B881 /* V0BuildCertificateUpdateParams.swift */,
+				3FA513D2270BA4B600A5B881 /* V0BuildCertificateUploadParams.swift */,
+				3FA51396270BA4B300A5B881 /* V0BuildListAllResponseItemModel.swift */,
+				3FA513BA270BA4B500A5B881 /* V0BuildListAllResponseModel.swift */,
+				3FA513A7270BA4B400A5B881 /* V0BuildListResponseModel.swift */,
+				3FA513D4270BA4B600A5B881 /* V0BuildParamsEnvironment.swift */,
+				3FA513C7270BA4B600A5B881 /* V0BuildRequestListResponseModel.swift */,
+				3FA513C0270BA4B500A5B881 /* V0BuildRequestResponseItemModel.swift */,
+				3FA5139F270BA4B300A5B881 /* V0BuildRequestUpdateParams.swift */,
+				3FA51394270BA4B200A5B881 /* V0BuildRequestUpdateResponseModel.swift */,
+				3FA513BD270BA4B500A5B881 /* V0BuildResponseItemModel.swift */,
+				3FA513CF270BA4B600A5B881 /* V0BuildShowResponseModel.swift */,
+				3FA513C3270BA4B500A5B881 /* V0BuildTriggerParams.swift */,
+				3FA513A6270BA4B400A5B881 /* V0BuildTriggerParamsBuildParams.swift */,
+				3FA513B4270BA4B500A5B881 /* V0BuildTriggerParamsHookInfo.swift */,
+				3FA513D1270BA4B600A5B881 /* V0BuildTriggerRespModel.swift */,
+				3FA513AE270BA4B400A5B881 /* V0BuildWorkflowListResponseModel.swift */,
+				3FA51393270BA4B200A5B881 /* V0CommitPaths.swift */,
+				3FA51390270BA4B200A5B881 /* V0FindAvatarCandidateResponse.swift */,
+				3FA5137F270BA4B100A5B881 /* V0FindAvatarCandidateResponseItem.swift */,
+				3FA513B7270BA4B500A5B881 /* V0OrganizationDataModel.swift */,
+				3FA5139A270BA4B300A5B881 /* V0OrganizationListRespModel.swift */,
+				3FA513E0270BA4B700A5B881 /* V0OrganizationOwner.swift */,
+				3FA513CA270BA4B600A5B881 /* V0OrganizationRespModel.swift */,
+				3FA5137D270BA4B100A5B881 /* V0OwnerAccountResponseModel.swift */,
+				3FA513AF270BA4B400A5B881 /* V0OwnerAddOnResponseItemModel.swift */,
+				3FA513B3270BA4B400A5B881 /* V0OwnerAddOnsListResponseModel.swift */,
+				3FA513CC270BA4B600A5B881 /* V0PagingResponseModel.swift */,
+				3FA51384270BA4B100A5B881 /* V0PlanDataModel.swift */,
+				3FA513B1270BA4B400A5B881 /* V0ProjectFileStorageDocumentUpdateParams.swift */,
+				3FA513C4270BA4B500A5B881 /* V0ProjectFileStorageListResponseModel.swift */,
+				3FA5138E270BA4B200A5B881 /* V0ProjectFileStorageResponseItemModel.swift */,
+				3FA513AA270BA4B400A5B881 /* V0ProjectFileStorageResponseModel.swift */,
+				3FA513AC270BA4B400A5B881 /* V0ProjectFileStorageUploadParams.swift */,
+				3FA51383270BA4B100A5B881 /* V0ProvisionProfileListResponseModel.swift */,
+				3FA51387270BA4B100A5B881 /* V0ProvisionProfileResponseItemModel.swift */,
+				3FA513BC270BA4B500A5B881 /* V0ProvisionProfileResponseModel.swift */,
+				3FA513D7270BA4B600A5B881 /* V0ProvisionProfileUploadParams.swift */,
+				3FA513B8270BA4B500A5B881 /* V0ProvProfileDocumentUpdateParams.swift */,
+				3FA513AB270BA4B400A5B881 /* V0ProxyErrorRespModel.swift */,
+				3FA513C2270BA4B500A5B881 /* V0SSHKeyRespModel.swift */,
+				3FA51380270BA4B100A5B881 /* V0SSHKeyUploadParams.swift */,
+				3FA513DD270BA4B700A5B881 /* V0TestDeviceListResponseModel.swift */,
+				3FA513B9270BA4B500A5B881 /* V0TestDeviceResponseItemModel.swift */,
+				3FA5139D270BA4B300A5B881 /* V0UserPlanDataModel.swift */,
+				3FA5137E270BA4B100A5B881 /* V0UserPlanRespModel.swift */,
+				3FA513BE270BA4B500A5B881 /* V0UserProfileDataModel.swift */,
+				3FA513BF270BA4B500A5B881 /* V0UserProfileRespModel.swift */,
+				3FA513BB270BA4B500A5B881 /* V0WebhookDeliveryItemResponseModel.swift */,
+				3FA513D3270BA4B600A5B881 /* V0WebhookDeliveryItemShowResponseModel.swift */,
+				3FA51382270BA4B100A5B881 /* V0WebhookRespModel.swift */,
+				3FE7B7202707350E00A6D8E1 /* Extensions.swift */,
+				3FE7B7222707350E00A6D8E1 /* Models.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		3FCC4597270759880001A9C2 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -398,7 +553,7 @@
 		3FCC45B627078DFA0001A9C2 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				3FCC45B727078E040001A9C2 /* ProfileView.swift */,
+				3FCC45B727078E040001A9C2 /* ProfileScreenView.swift */,
 				3FCC45BA27078EB40001A9C2 /* ProfileViewModel.swift */,
 			);
 			path = Profile;
@@ -407,7 +562,7 @@
 		3FCC45BD270791F80001A9C2 /* Builds */ = {
 			isa = PBXGroup;
 			children = (
-				3FCC45BE2707923F0001A9C2 /* BuildsView.swift */,
+				3FCC45BE2707923F0001A9C2 /* BuildsScreenView.swift */,
 				3FCC45C12707924D0001A9C2 /* BuildsViewModel.swift */,
 			);
 			path = Builds;
@@ -416,6 +571,7 @@
 		3FE7B53E27072C1B00A6D8E1 = {
 			isa = PBXGroup;
 			children = (
+				3FA51375270BA46E00A5B881 /* Models */,
 				3FE7B69B2707350E00A6D8E1 /* SwaggerClient */,
 				3FE7B54327072C1C00A6D8E1 /* Shared */,
 				3FE7B55227072C1E00A6D8E1 /* macOS */,
@@ -428,6 +584,7 @@
 		3FE7B54327072C1C00A6D8E1 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				3FA5136C270B9D5100A5B881 /* Logger */,
 				3FCC45AB2707672B0001A9C2 /* Coordinator */,
 				3FCC45A427075ED40001A9C2 /* Additions */,
 				3FCC4597270759880001A9C2 /* UI */,
@@ -443,6 +600,7 @@
 			children = (
 				3FE7B54B27072C1E00A6D8E1 /* Buildio.app */,
 				3FE7B55127072C1E00A6D8E1 /* Buildio.app */,
+				3FA51374270BA46E00A5B881 /* libModels.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -474,6 +632,7 @@
 		3FE7B69D2707350E00A6D8E1 /* Swaggers */ = {
 			isa = PBXGroup;
 			children = (
+				3FA51369270B777D00A5B881 /* URLSessionRequestBuilder.swift */,
 				3FE7B69E2707350E00A6D8E1 /* APIHelper.swift */,
 				3FE7B69F2707350E00A6D8E1 /* AlamofireImplementations.swift */,
 				3FE7B6A02707350E00A6D8E1 /* JSONValue.swift */,
@@ -481,10 +640,7 @@
 				3FE7B6B52707350E00A6D8E1 /* CodableHelper.swift */,
 				3FE7B6B62707350E00A6D8E1 /* JSONEncodableEncoding.swift */,
 				3FE7B6B72707350E00A6D8E1 /* APIs.swift */,
-				3FE7B6B82707350E00A6D8E1 /* Models */,
-				3FE7B7202707350E00A6D8E1 /* Extensions.swift */,
 				3FE7B7212707350E00A6D8E1 /* JSONEncodingHelper.swift */,
-				3FE7B7222707350E00A6D8E1 /* Models.swift */,
 				3FE7B7232707350E00A6D8E1 /* Configuration.swift */,
 			);
 			path = Swaggers;
@@ -516,116 +672,6 @@
 			path = APIs;
 			sourceTree = "<group>";
 		};
-		3FE7B6B82707350E00A6D8E1 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				3FE7B6B92707350E00A6D8E1 /* V0ArtifactListResponseModel.swift */,
-				3FE7B6BA2707350E00A6D8E1 /* V0AppWebhookCreatedResponseModel.swift */,
-				3FE7B6BB2707350E00A6D8E1 /* V0WebhookRespModel.swift */,
-				3FE7B6BC2707350E00A6D8E1 /* V0ProjectFileStorageResponseModel.swift */,
-				3FE7B6BD2707350E00A6D8E1 /* V0AvatarPromoteResponseItemModel.swift */,
-				3FE7B6BE2707350E00A6D8E1 /* V0BuildListResponseModel.swift */,
-				3FE7B6BF2707350E00A6D8E1 /* AddonsPlan.swift */,
-				3FE7B6C02707350E00A6D8E1 /* V0AppleAPICredentialResponseItem.swift */,
-				3FE7B6C12707350E00A6D8E1 /* V0BuildResponseItemModel.swift */,
-				3FE7B6C22707350E00A6D8E1 /* V0FindAvatarCandidateResponseItem.swift */,
-				3FE7B6C32707350E00A6D8E1 /* V0BuildCertificateUpdateParams.swift */,
-				3FE7B6C42707350E00A6D8E1 /* V0OrganizationDataModel.swift */,
-				3FE7B6C52707350E00A6D8E1 /* V0SSHKeyUploadParams.swift */,
-				3FE7B6C62707350E00A6D8E1 /* V0WebhookDeliveryItemResponseModel.swift */,
-				3FE7B6C72707350E00A6D8E1 /* V0ArtifactResponseItemModel.swift */,
-				3FE7B6C82707350E00A6D8E1 /* AddonsAddon.swift */,
-				3FE7B6C92707350E00A6D8E1 /* V0AppFinishParams.swift */,
-				3FE7B6CA2707350E00A6D8E1 /* V0ProjectFileStorageListResponseModel.swift */,
-				3FE7B6CB2707350E00A6D8E1 /* V0BuildCertificateResponseModel.swift */,
-				3FE7B6CC2707350E00A6D8E1 /* V0AppWebhookDeletedResponseModel.swift */,
-				3FE7B6CD2707350E00A6D8E1 /* AddonsDeveloperLink.swift */,
-				3FE7B6CE2707350E00A6D8E1 /* V0AppConfigRespModel.swift */,
-				3FE7B6CF2707350E00A6D8E1 /* V0ProjectFileStorageResponseItemModel.swift */,
-				3FE7B6D02707350E00A6D8E1 /* V0AddonsShowResponseModel.swift */,
-				3FE7B6D12707350E00A6D8E1 /* V0WebhookDeliveryItemShowResponseModel.swift */,
-				3FE7B6D22707350E00A6D8E1 /* V0FindAvatarCandidateResponse.swift */,
-				3FE7B6D32707350E00A6D8E1 /* V0ProvisionProfileUploadParams.swift */,
-				3FE7B6D42707350E00A6D8E1 /* V0AddonsListResponseModel.swift */,
-				3FE7B6D52707350E00A6D8E1 /* V0BuildTriggerParamsHookInfo.swift */,
-				3FE7B6D62707350E00A6D8E1 /* V0AppFinishRespModel.swift */,
-				3FE7B6D72707350E00A6D8E1 /* NullsString.swift */,
-				3FE7B6D82707350E00A6D8E1 /* V0AvatarCandidateCreateParams.swift */,
-				3FE7B6D92707350E00A6D8E1 /* V0BuildWorkflowListResponseModel.swift */,
-				3FE7B6DA2707350E00A6D8E1 /* V0OrganizationRespModel.swift */,
-				3FE7B6DB2707350E00A6D8E1 /* V0AppAddOnsListResponseModel.swift */,
-				3FE7B6DC2707350E00A6D8E1 /* V0OrganizationListRespModel.swift */,
-				3FE7B6DD2707350E00A6D8E1 /* V0OwnerAccountResponseModel.swift */,
-				3FE7B6DE2707350E00A6D8E1 /* V0BuildTriggerRespModel.swift */,
-				3FE7B6DF2707350E00A6D8E1 /* V0OwnerAddOnsListResponseModel.swift */,
-				3FE7B6E02707350E00A6D8E1 /* V0TestDeviceResponseItemModel.swift */,
-				3FE7B6E12707350E00A6D8E1 /* V0AndroidKeystoreFileUploadParams.swift */,
-				3FE7B6E22707350E00A6D8E1 /* V0TestDeviceListResponseModel.swift */,
-				3FE7B6E32707350E00A6D8E1 /* V0BuildRequestUpdateParams.swift */,
-				3FE7B6E42707350E00A6D8E1 /* V0BuildShowResponseModel.swift */,
-				3FE7B6E52707350E00A6D8E1 /* V0ArtifactShowResponseModel.swift */,
-				3FE7B6E62707350E00A6D8E1 /* V0ProvProfileDocumentUpdateParams.swift */,
-				3FE7B6E72707350E00A6D8E1 /* AddonsSetupInstruction.swift */,
-				3FE7B6E82707350E00A6D8E1 /* V0PagingResponseModel.swift */,
-				3FE7B6E92707350E00A6D8E1 /* ServiceStandardErrorRespModel.swift */,
-				3FE7B6EA2707350E00A6D8E1 /* V0AvatarCandidateCreateResponseItem.swift */,
-				3FE7B6EB2707350E00A6D8E1 /* V0BuildCertificateListResponseModel.swift */,
-				3FE7B6EC2707350E00A6D8E1 /* V0BuildParamsEnvironment.swift */,
-				3FE7B6ED2707350E00A6D8E1 /* V0AppShowResponseModel.swift */,
-				3FE7B6EE2707350E00A6D8E1 /* V0BuildListAllResponseModel.swift */,
-				3FE7B6EF2707350E00A6D8E1 /* V0BuildCertificateResponseItemModel.swift */,
-				3FE7B6F02707350E00A6D8E1 /* V0AppUploadParams.swift */,
-				3FE7B6F12707350E00A6D8E1 /* V0UserProfileRespModel.swift */,
-				3FE7B6F22707350E00A6D8E1 /* V0AvatarPromoteParams.swift */,
-				3FE7B6F32707350E00A6D8E1 /* V0BuildListAllResponseItemModel.swift */,
-				3FE7B6F42707350E00A6D8E1 /* V0UserPlanDataModel.swift */,
-				3FE7B6F52707350E00A6D8E1 /* V0AppWebhookCreateParams.swift */,
-				3FE7B6F62707350E00A6D8E1 /* V0BuildTriggerParams.swift */,
-				3FE7B6F72707350E00A6D8E1 /* V0AppWebhookResponseItemModel.swift */,
-				3FE7B6F82707350E00A6D8E1 /* V0AddOnAppResponseItemModel.swift */,
-				3FE7B6F92707350E00A6D8E1 /* V0AppWebhookListResponseModel.swift */,
-				3FE7B6FA2707350E00A6D8E1 /* V0ProjectFileStorageDocumentUpdateParams.swift */,
-				3FE7B6FB2707350E00A6D8E1 /* AddonsSetupGuide.swift */,
-				3FE7B6FC2707350E00A6D8E1 /* V0CommitPaths.swift */,
-				3FE7B6FD2707350E00A6D8E1 /* V0AppConfigRequestParam.swift */,
-				3FE7B6FE2707350E00A6D8E1 /* V0OrganizationOwner.swift */,
-				3FE7B6FF2707350E00A6D8E1 /* V0AppWebhookResponseModel.swift */,
-				3FE7B7002707350E00A6D8E1 /* V0AvatarPromoteResponseModel.swift */,
-				3FE7B7012707350E00A6D8E1 /* V0ProvisionProfileResponseModel.swift */,
-				3FE7B7022707350E00A6D8E1 /* V0BuildCertificateUploadParams.swift */,
-				3FE7B7032707350E00A6D8E1 /* V0ProxyErrorRespModel.swift */,
-				3FE7B7042707350E00A6D8E1 /* V0ActivityEventResponseItemModel.swift */,
-				3FE7B7052707350E00A6D8E1 /* V0AppWebhookUpdateParams.swift */,
-				3FE7B7062707350E00A6D8E1 /* V0ProvisionProfileResponseItemModel.swift */,
-				3FE7B7072707350E00A6D8E1 /* AddonsFeature.swift */,
-				3FE7B7082707350E00A6D8E1 /* V0PlanDataModel.swift */,
-				3FE7B7092707350E00A6D8E1 /* V0BuildRequestUpdateResponseModel.swift */,
-				3FE7B70A2707350E00A6D8E1 /* V0AppAddOnResponseItemModel.swift */,
-				3FE7B70B2707350E00A6D8E1 /* V0ProvisionProfileListResponseModel.swift */,
-				3FE7B70C2707350E00A6D8E1 /* V0BuildAbortParams.swift */,
-				3FE7B70D2707350E00A6D8E1 /* V0UserProfileDataModel.swift */,
-				3FE7B70E2707350E00A6D8E1 /* V0ActivityEventListResponseModel.swift */,
-				3FE7B70F2707350E00A6D8E1 /* V0AppleAPICredentialsListResponse.swift */,
-				3FE7B7102707350E00A6D8E1 /* V0UserPlanRespModel.swift */,
-				3FE7B7112707350E00A6D8E1 /* V0OwnerAddOnResponseItemModel.swift */,
-				3FE7B7122707350E00A6D8E1 /* V0BuildRequestListResponseModel.swift */,
-				3FE7B7132707350E00A6D8E1 /* NullsInt64.swift */,
-				3FE7B7142707350E00A6D8E1 /* V0AppListResponseModel.swift */,
-				3FE7B7152707350E00A6D8E1 /* V0BuildAbortResponseModel.swift */,
-				3FE7B7162707350E00A6D8E1 /* V0BuildTriggerParamsBuildParams.swift */,
-				3FE7B7172707350E00A6D8E1 /* V0AppRespModel.swift */,
-				3FE7B7182707350E00A6D8E1 /* V0ArtifactListElementResponseModel.swift */,
-				3FE7B7192707350E00A6D8E1 /* V0ArtifactUpdateParams.swift */,
-				3FE7B71A2707350E00A6D8E1 /* V0SSHKeyRespModel.swift */,
-				3FE7B71B2707350E00A6D8E1 /* V0AppResponseItemModel.swift */,
-				3FE7B71C2707350E00A6D8E1 /* V0ArtifactDeleteResponseModel.swift */,
-				3FE7B71D2707350E00A6D8E1 /* V0BuildRequestResponseItemModel.swift */,
-				3FE7B71E2707350E00A6D8E1 /* V0ProjectFileStorageUploadParams.swift */,
-				3FE7B71F2707350E00A6D8E1 /* V0BranchListResponseModel.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		4B393650991B721A466C562B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -649,6 +695,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3FA51373270BA46E00A5B881 /* Models */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3FA51378270BA46E00A5B881 /* Build configuration list for PBXNativeTarget "Models" */;
+			buildPhases = (
+				3FA51370270BA46E00A5B881 /* Sources */,
+				3FA51371270BA46E00A5B881 /* Frameworks */,
+				3FA51372270BA46E00A5B881 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Models;
+			productName = Models;
+			productReference = 3FA51374270BA46E00A5B881 /* libModels.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		3FE7B54A27072C1E00A6D8E1 /* Buildio (iOS) */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3FE7B55C27072C1E00A6D8E1 /* Build configuration list for PBXNativeTarget "Buildio (iOS)" */;
@@ -662,6 +725,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3FA51448270BA4D400A5B881 /* PBXTargetDependency */,
 			);
 			name = "Buildio (iOS)";
 			productName = "Buildio (iOS)";
@@ -696,6 +760,10 @@
 				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 1300;
 				TargetAttributes = {
+					3FA51373270BA46E00A5B881 = {
+						CreatedOnToolsVersion = 13.0;
+						LastSwiftMigration = 1300;
+					};
 					3FE7B54A27072C1E00A6D8E1 = {
 						CreatedOnToolsVersion = 13.0;
 					};
@@ -719,6 +787,7 @@
 			targets = (
 				3FE7B54A27072C1E00A6D8E1 /* Buildio (iOS) */,
 				3FE7B55027072C1E00A6D8E1 /* Buildio (macOS) */,
+				3FA51373270BA46E00A5B881 /* Models */,
 			);
 		};
 /* End PBXProject section */
@@ -807,157 +876,165 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3FA51370270BA46E00A5B881 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FA5143B270BA4B700A5B881 /* V0ArtifactResponseItemModel.swift in Sources */,
+				3FA51429270BA4B700A5B881 /* V0BuildTriggerParams.swift in Sources */,
+				3FA5140A270BA4B700A5B881 /* V0BuildAbortResponseModel.swift in Sources */,
+				3FA51416270BA4B700A5B881 /* V0AppWebhookCreateParams.swift in Sources */,
+				3FA513F5270BA4B700A5B881 /* V0AppAddOnResponseItemModel.swift in Sources */,
+				3FA513F1270BA4B700A5B881 /* V0AvatarCandidateCreateParams.swift in Sources */,
+				3FA5140E270BA4B700A5B881 /* AddonsPlan.swift in Sources */,
+				3FA513FC270BA4B700A5B881 /* V0BuildListAllResponseItemModel.swift in Sources */,
+				3FA51434270BA4B700A5B881 /* V0BuildCertificateUpdateParams.swift in Sources */,
+				3FA513FF270BA4B700A5B881 /* V0ActivityEventResponseItemModel.swift in Sources */,
+				3FA51414270BA4B700A5B881 /* V0BuildWorkflowListResponseModel.swift in Sources */,
+				3FA51444270BA4B700A5B881 /* V0AvatarPromoteResponseItemModel.swift in Sources */,
+				3FA5143A270BA4B700A5B881 /* V0BuildParamsEnvironment.swift in Sources */,
+				3FA5140D270BA4B700A5B881 /* V0BuildListResponseModel.swift in Sources */,
+				3FA51439270BA4B700A5B881 /* V0WebhookDeliveryItemShowResponseModel.swift in Sources */,
+				3FA51415270BA4B700A5B881 /* V0OwnerAddOnResponseItemModel.swift in Sources */,
+				3FA5141A270BA4B700A5B881 /* V0BuildTriggerParamsHookInfo.swift in Sources */,
+				3FA51443270BA4B700A5B881 /* V0TestDeviceListResponseModel.swift in Sources */,
+				3FA5142F270BA4B700A5B881 /* V0ArtifactShowResponseModel.swift in Sources */,
+				3FA51409270BA4B700A5B881 /* V0AppFinishRespModel.swift in Sources */,
+				3FA51435270BA4B700A5B881 /* V0BuildShowResponseModel.swift in Sources */,
+				3FA51421270BA4B700A5B881 /* V0WebhookDeliveryItemResponseModel.swift in Sources */,
+				3FA513ED270BA4B700A5B881 /* V0ProvisionProfileResponseItemModel.swift in Sources */,
+				3FA513F8270BA4B700A5B881 /* V0AppWebhookResponseItemModel.swift in Sources */,
+				3FA51423270BA4B700A5B881 /* V0BuildResponseItemModel.swift in Sources */,
+				3FA51419270BA4B700A5B881 /* V0OwnerAddOnsListResponseModel.swift in Sources */,
+				3FA513FB270BA4B700A5B881 /* V0BuildCertificateResponseItemModel.swift in Sources */,
+				3FA5144A270BA70700A5B881 /* Models.swift in Sources */,
+				3FA513E2270BA4B700A5B881 /* V0AppWebhookListResponseModel.swift in Sources */,
+				3FA513F9270BA4B700A5B881 /* V0CommitPaths.swift in Sources */,
+				3FA5141B270BA4B700A5B881 /* V0AppUploadParams.swift in Sources */,
+				3FA5142A270BA4B700A5B881 /* V0ProjectFileStorageListResponseModel.swift in Sources */,
+				3FA5142D270BA4B700A5B881 /* V0BuildRequestListResponseModel.swift in Sources */,
+				3FA5143C270BA4B700A5B881 /* V0AppFinishParams.swift in Sources */,
+				3FA5141F270BA4B700A5B881 /* V0TestDeviceResponseItemModel.swift in Sources */,
+				3FA5142C270BA4B700A5B881 /* V0AddOnAppResponseItemModel.swift in Sources */,
+				3FA513F6270BA4B700A5B881 /* V0FindAvatarCandidateResponse.swift in Sources */,
+				3FA513F4270BA4B700A5B881 /* V0ProjectFileStorageResponseItemModel.swift in Sources */,
+				3FA51436270BA4B700A5B881 /* V0AvatarPromoteParams.swift in Sources */,
+				3FA513E3270BA4B700A5B881 /* V0OwnerAccountResponseModel.swift in Sources */,
+				3FA5140C270BA4B700A5B881 /* V0BuildTriggerParamsBuildParams.swift in Sources */,
+				3FA51428270BA4B700A5B881 /* V0SSHKeyRespModel.swift in Sources */,
+				3FA51425270BA4B700A5B881 /* V0UserProfileRespModel.swift in Sources */,
+				3FA51441270BA4B700A5B881 /* NullsInt64.swift in Sources */,
+				3FA513EA270BA4B700A5B881 /* V0PlanDataModel.swift in Sources */,
+				3FA51418270BA4B700A5B881 /* V0AppleAPICredentialsListResponse.swift in Sources */,
+				3FA51413270BA4B700A5B881 /* V0ArtifactListResponseModel.swift in Sources */,
+				3FA513E1270BA4B700A5B881 /* V0AvatarPromoteResponseModel.swift in Sources */,
+				3FA513EB270BA4B700A5B881 /* AddonsDeveloperLink.swift in Sources */,
+				3FA51438270BA4B700A5B881 /* V0BuildCertificateUploadParams.swift in Sources */,
+				3FA51410270BA4B700A5B881 /* V0ProjectFileStorageResponseModel.swift in Sources */,
+				3FA5140F270BA4B700A5B881 /* V0AddonsListResponseModel.swift in Sources */,
+				3FA51432270BA4B700A5B881 /* V0PagingResponseModel.swift in Sources */,
+				3FA51404270BA4B700A5B881 /* V0AppConfigRequestParam.swift in Sources */,
+				3FA513E8270BA4B700A5B881 /* V0WebhookRespModel.swift in Sources */,
+				3FA5141E270BA4B700A5B881 /* V0ProvProfileDocumentUpdateParams.swift in Sources */,
+				3FA51424270BA4B700A5B881 /* V0UserProfileDataModel.swift in Sources */,
+				3FA5143D270BA4B700A5B881 /* V0ProvisionProfileUploadParams.swift in Sources */,
+				3FA51440270BA4B700A5B881 /* V0AppWebhookUpdateParams.swift in Sources */,
+				3FA51407270BA4B700A5B881 /* V0ArtifactDeleteResponseModel.swift in Sources */,
+				3FA513F3270BA4B700A5B881 /* V0AppWebhookDeletedResponseModel.swift in Sources */,
+				3FA5143F270BA4B700A5B881 /* AddonsAddon.swift in Sources */,
+				3FA51449270BA55400A5B881 /* Extensions.swift in Sources */,
+				3FA51430270BA4B700A5B881 /* V0OrganizationRespModel.swift in Sources */,
+				3FA5141C270BA4B700A5B881 /* V0BranchListResponseModel.swift in Sources */,
+				3FA51422270BA4B700A5B881 /* V0ProvisionProfileResponseModel.swift in Sources */,
+				3FA513EC270BA4B700A5B881 /* V0AddonsShowResponseModel.swift in Sources */,
+				3FA513EE270BA4B700A5B881 /* V0ActivityEventListResponseModel.swift in Sources */,
+				3FA5142E270BA4B700A5B881 /* V0AppResponseItemModel.swift in Sources */,
+				3FA51433270BA4B700A5B881 /* V0AppShowResponseModel.swift in Sources */,
+				3FA51426270BA4B700A5B881 /* V0BuildRequestResponseItemModel.swift in Sources */,
+				3FA51412270BA4B700A5B881 /* V0ProjectFileStorageUploadParams.swift in Sources */,
+				3FA513F2270BA4B700A5B881 /* V0AvatarCandidateCreateResponseItem.swift in Sources */,
+				3FA513F0270BA4B700A5B881 /* AddonsSetupGuide.swift in Sources */,
+				3FA513E5270BA4B700A5B881 /* V0FindAvatarCandidateResponseItem.swift in Sources */,
+				3FA51405270BA4B700A5B881 /* V0BuildRequestUpdateParams.swift in Sources */,
+				3FA5140B270BA4B700A5B881 /* V0ArtifactUpdateParams.swift in Sources */,
+				3FA51431270BA4B700A5B881 /* V0ArtifactListElementResponseModel.swift in Sources */,
+				3FA51401270BA4B700A5B881 /* V0BuildCertificateListResponseModel.swift in Sources */,
+				3FA513EF270BA4B700A5B881 /* V0AppWebhookCreatedResponseModel.swift in Sources */,
+				3FA513E4270BA4B700A5B881 /* V0UserPlanRespModel.swift in Sources */,
+				3FA51417270BA4B700A5B881 /* V0ProjectFileStorageDocumentUpdateParams.swift in Sources */,
+				3FA51445270BA4B700A5B881 /* V0AppRespModel.swift in Sources */,
+				3FA513E9270BA4B700A5B881 /* V0ProvisionProfileListResponseModel.swift in Sources */,
+				3FA513FD270BA4B700A5B881 /* V0BuildAbortParams.swift in Sources */,
+				3FA5141D270BA4B700A5B881 /* V0OrganizationDataModel.swift in Sources */,
+				3FA51400270BA4B700A5B881 /* V0OrganizationListRespModel.swift in Sources */,
+				3FA51420270BA4B700A5B881 /* V0BuildListAllResponseModel.swift in Sources */,
+				3FA513FA270BA4B700A5B881 /* V0BuildRequestUpdateResponseModel.swift in Sources */,
+				3FA513E7270BA4B700A5B881 /* V0AppleAPICredentialResponseItem.swift in Sources */,
+				3FA51402270BA4B700A5B881 /* V0AppWebhookResponseModel.swift in Sources */,
+				3FA513FE270BA4B700A5B881 /* AddonsFeature.swift in Sources */,
+				3FA51442270BA4B700A5B881 /* V0AppAddOnsListResponseModel.swift in Sources */,
+				3FA51427270BA4B700A5B881 /* V0BuildCertificateResponseModel.swift in Sources */,
+				3FA5143E270BA4B700A5B881 /* ServiceStandardErrorRespModel.swift in Sources */,
+				3FA51408270BA4B700A5B881 /* AddonsSetupInstruction.swift in Sources */,
+				3FA513E6270BA4B700A5B881 /* V0SSHKeyUploadParams.swift in Sources */,
+				3FA51406270BA4B700A5B881 /* V0AppConfigRespModel.swift in Sources */,
+				3FA5142B270BA4B700A5B881 /* V0AndroidKeystoreFileUploadParams.swift in Sources */,
+				3FA51411270BA4B700A5B881 /* V0ProxyErrorRespModel.swift in Sources */,
+				3FA51446270BA4B700A5B881 /* V0OrganizationOwner.swift in Sources */,
+				3FA51437270BA4B700A5B881 /* V0BuildTriggerRespModel.swift in Sources */,
+				3FA51403270BA4B700A5B881 /* V0UserPlanDataModel.swift in Sources */,
+				3FA513F7270BA4B700A5B881 /* V0AppListResponseModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3FE7B54727072C1E00A6D8E1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FE7B7902707350E00A6D8E1 /* V0BuildAbortParams.swift in Sources */,
-				3FE7B7482707350E00A6D8E1 /* V0OrganizationDataModel.swift in Sources */,
-				3FE7B76B2707350E00A6D8E1 /* AddonsSetupInstruction.swift in Sources */,
-				3FE7B7782707350E00A6D8E1 /* V0UserPlanDataModel.swift in Sources */,
-				3FE7B7632707350E00A6D8E1 /* V0OwnerAddOnsListResponseModel.swift in Sources */,
-				3FE7B7722707350E00A6D8E1 /* V0BuildListAllResponseModel.swift in Sources */,
-				3FE7B7622707350E00A6D8E1 /* V0BuildTriggerRespModel.swift in Sources */,
-				3FE7B7402707350E00A6D8E1 /* V0ProjectFileStorageResponseModel.swift in Sources */,
-				3FE7B75D2707350E00A6D8E1 /* V0BuildWorkflowListResponseModel.swift in Sources */,
-				3FE7B77D2707350E00A6D8E1 /* V0AppWebhookListResponseModel.swift in Sources */,
-				3FE7B77A2707350E00A6D8E1 /* V0BuildTriggerParams.swift in Sources */,
-				3FE7B77B2707350E00A6D8E1 /* V0AppWebhookResponseItemModel.swift in Sources */,
 				3FE7B7392707350E00A6D8E1 /* OutgoingWebhookAPI.swift in Sources */,
-				3FE7B7752707350E00A6D8E1 /* V0UserProfileRespModel.swift in Sources */,
 				3FE7B7382707350E00A6D8E1 /* AddonsAPI.swift in Sources */,
 				3FE7B72C2707350E00A6D8E1 /* AndroidKeystoreFileAPI.swift in Sources */,
 				3FCC45AD270767370001A9C2 /* MainCoordinatorView.swift in Sources */,
-				3FE7B7812707350E00A6D8E1 /* V0AppConfigRequestParam.swift in Sources */,
 				3FE7B7342707350E00A6D8E1 /* OrganizationsAPI.swift in Sources */,
-				3FE7B73D2707350E00A6D8E1 /* V0ArtifactListResponseModel.swift in Sources */,
-				3FE7B74B2707350E00A6D8E1 /* V0ArtifactResponseItemModel.swift in Sources */,
 				3FE7B7362707350E00A6D8E1 /* TestDevicesAPI.swift in Sources */,
-				3FE7B74E2707350E00A6D8E1 /* V0ProjectFileStorageListResponseModel.swift in Sources */,
 				3FE7B7242707350E00A6D8E1 /* APIHelper.swift in Sources */,
-				3FE7B7422707350E00A6D8E1 /* V0BuildListResponseModel.swift in Sources */,
-				3FE7B7702707350E00A6D8E1 /* V0BuildParamsEnvironment.swift in Sources */,
 				3FE7B7292707350E00A6D8E1 /* ProvisioningProfileAPI.swift in Sources */,
-				3FE7B7762707350E00A6D8E1 /* V0AvatarPromoteParams.swift in Sources */,
-				3FE7B7612707350E00A6D8E1 /* V0OwnerAccountResponseModel.swift in Sources */,
-				3FE7B7532707350E00A6D8E1 /* V0ProjectFileStorageResponseItemModel.swift in Sources */,
-				3FE7B76F2707350E00A6D8E1 /* V0BuildCertificateListResponseModel.swift in Sources */,
-				3FE7B75F2707350E00A6D8E1 /* V0AppAddOnsListResponseModel.swift in Sources */,
-				3FE7B7832707350E00A6D8E1 /* V0AppWebhookResponseModel.swift in Sources */,
 				3FCC45B427078D250001A9C2 /* RootNavigationView.swift in Sources */,
-				3FE7B7692707350E00A6D8E1 /* V0ArtifactShowResponseModel.swift in Sources */,
-				3FE7B7A62707350E00A6D8E1 /* Models.swift in Sources */,
-				3FE7B7492707350E00A6D8E1 /* V0SSHKeyUploadParams.swift in Sources */,
-				3FE7B77E2707350E00A6D8E1 /* V0ProjectFileStorageDocumentUpdateParams.swift in Sources */,
-				3FE7B7682707350E00A6D8E1 /* V0BuildShowResponseModel.swift in Sources */,
 				3FCC45C8270797E30001A9C2 /* RefreshableView.swift in Sources */,
-				3FE7B7542707350E00A6D8E1 /* V0AddonsShowResponseModel.swift in Sources */,
-				3FCC45B827078E040001A9C2 /* ProfileView.swift in Sources */,
+				3FCC45B827078E040001A9C2 /* ProfileScreenView.swift in Sources */,
 				3FCC45C22707924D0001A9C2 /* BuildsViewModel.swift in Sources */,
 				3FE7B7312707350E00A6D8E1 /* WebhookDeliveryItemAPI.swift in Sources */,
 				3FE7B55627072C1E00A6D8E1 /* ContentView.swift in Sources */,
 				3FE7B7322707350E00A6D8E1 /* BuildArtifactAPI.swift in Sources */,
-				3FE7B75E2707350E00A6D8E1 /* V0OrganizationRespModel.swift in Sources */,
-				3FE7B7852707350E00A6D8E1 /* V0ProvisionProfileResponseModel.swift in Sources */,
 				3FE7B7A72707350E00A6D8E1 /* Configuration.swift in Sources */,
-				3FE7B7512707350E00A6D8E1 /* AddonsDeveloperLink.swift in Sources */,
 				3FCC45A627075EDF0001A9C2 /* UserDefaults+Additions.swift in Sources */,
-				3FE7B74A2707350E00A6D8E1 /* V0WebhookDeliveryItemResponseModel.swift in Sources */,
-				3FE837A2270737370059FB8C /* V0BuildTriggerParamsBuildParams.swift in Sources */,
-				3FE7B76E2707350E00A6D8E1 /* V0AvatarCandidateCreateResponseItem.swift in Sources */,
-				3FE7B75C2707350E00A6D8E1 /* V0AvatarCandidateCreateParams.swift in Sources */,
-				3FE7B79E2707350E00A6D8E1 /* V0SSHKeyRespModel.swift in Sources */,
 				3FCC45A227075D170001A9C2 /* Coordinator.swift in Sources */,
-				3FE7B7522707350E00A6D8E1 /* V0AppConfigRespModel.swift in Sources */,
-				3FE7B79F2707350E00A6D8E1 /* V0AppResponseItemModel.swift in Sources */,
-				3FE7B7432707350E00A6D8E1 /* AddonsPlan.swift in Sources */,
-				3FE7B76D2707350E00A6D8E1 /* ServiceStandardErrorRespModel.swift in Sources */,
 				3FCC45B0270767480001A9C2 /* MainCoordinator.swift in Sources */,
-				3FE7B74D2707350E00A6D8E1 /* V0AppFinishParams.swift in Sources */,
 				3FE7B7332707350E00A6D8E1 /* GenericProjectFileAPI.swift in Sources */,
 				3FCC45BB27078EB40001A9C2 /* ProfileViewModel.swift in Sources */,
-				3FE7B7732707350E00A6D8E1 /* V0BuildCertificateResponseItemModel.swift in Sources */,
 				3FE7B7302707350E00A6D8E1 /* AppSetupAPI.swift in Sources */,
 				3FE7B7252707350E00A6D8E1 /* AlamofireImplementations.swift in Sources */,
 				3FE7B55427072C1E00A6D8E1 /* BuildioApp.swift in Sources */,
-				3FE7B7892707350E00A6D8E1 /* V0AppWebhookUpdateParams.swift in Sources */,
-				3FE7B7912707350E00A6D8E1 /* V0UserProfileDataModel.swift in Sources */,
-				3FE7B7792707350E00A6D8E1 /* V0AppWebhookCreateParams.swift in Sources */,
-				3FE7B7822707350E00A6D8E1 /* V0OrganizationOwner.swift in Sources */,
-				3FE7B73E2707350E00A6D8E1 /* V0AppWebhookCreatedResponseModel.swift in Sources */,
-				3FE7B7642707350E00A6D8E1 /* V0TestDeviceResponseItemModel.swift in Sources */,
-				3FE7B7442707350E00A6D8E1 /* V0AppleAPICredentialResponseItem.swift in Sources */,
-				3FE7B78C2707350E00A6D8E1 /* V0PlanDataModel.swift in Sources */,
-				3FE7B7932707350E00A6D8E1 /* V0AppleAPICredentialsListResponse.swift in Sources */,
-				3FE7B7952707350E00A6D8E1 /* V0OwnerAddOnResponseItemModel.swift in Sources */,
 				3FE7B72B2707350E00A6D8E1 /* ActivityAPI.swift in Sources */,
 				3FE7B7262707350E00A6D8E1 /* JSONValue.swift in Sources */,
-				3FE7B7712707350E00A6D8E1 /* V0AppShowResponseModel.swift in Sources */,
-				3FE7B78F2707350E00A6D8E1 /* V0ProvisionProfileListResponseModel.swift in Sources */,
-				3FE7B78B2707350E00A6D8E1 /* AddonsFeature.swift in Sources */,
 				3FCC45C52707930E0001A9C2 /* BaseViewModel.swift in Sources */,
-				3FE7B79C2707350E00A6D8E1 /* V0ArtifactListElementResponseModel.swift in Sources */,
-				3FE7B7662707350E00A6D8E1 /* V0TestDeviceListResponseModel.swift in Sources */,
 				3FE7B73C2707350E00A6D8E1 /* APIs.swift in Sources */,
-				3FE7B7992707350E00A6D8E1 /* V0BuildAbortResponseModel.swift in Sources */,
-				3FE7B7922707350E00A6D8E1 /* V0ActivityEventListResponseModel.swift in Sources */,
 				3FE7B7352707350E00A6D8E1 /* ApplicationAPI.swift in Sources */,
 				3FE7B7372707350E00A6D8E1 /* AppleApiCredentialsAPI.swift in Sources */,
-				3FCC45BF2707923F0001A9C2 /* BuildsView.swift in Sources */,
-				3FE7B7942707350E00A6D8E1 /* V0UserPlanRespModel.swift in Sources */,
+				3FCC45BF2707923F0001A9C2 /* BuildsScreenView.swift in Sources */,
 				3FE7B72A2707350E00A6D8E1 /* BuildCertificateAPI.swift in Sources */,
-				3FE7B7462707350E00A6D8E1 /* V0FindAvatarCandidateResponseItem.swift in Sources */,
-				3FE7B7862707350E00A6D8E1 /* V0BuildCertificateUploadParams.swift in Sources */,
-				3FE7B7472707350E00A6D8E1 /* V0BuildCertificateUpdateParams.swift in Sources */,
 				3FE7B7282707350E00A6D8E1 /* AvatarCandidateAPI.swift in Sources */,
-				3FE7B77C2707350E00A6D8E1 /* V0AddOnAppResponseItemModel.swift in Sources */,
-				3FE7B7602707350E00A6D8E1 /* V0OrganizationListRespModel.swift in Sources */,
-				3FE7B76C2707350E00A6D8E1 /* V0PagingResponseModel.swift in Sources */,
 				3FE7B73B2707350E00A6D8E1 /* JSONEncodableEncoding.swift in Sources */,
-				3FE7B7592707350E00A6D8E1 /* V0BuildTriggerParamsHookInfo.swift in Sources */,
 				3FE7B72F2707350E00A6D8E1 /* PipelinesAPI.swift in Sources */,
-				3FE7B76A2707350E00A6D8E1 /* V0ProvProfileDocumentUpdateParams.swift in Sources */,
-				3FE7B7672707350E00A6D8E1 /* V0BuildRequestUpdateParams.swift in Sources */,
-				3FE7B74C2707350E00A6D8E1 /* AddonsAddon.swift in Sources */,
-				3FE7B7772707350E00A6D8E1 /* V0BuildListAllResponseItemModel.swift in Sources */,
-				3FE7B7652707350E00A6D8E1 /* V0AndroidKeystoreFileUploadParams.swift in Sources */,
-				3FE7B7982707350E00A6D8E1 /* V0AppListResponseModel.swift in Sources */,
-				3FE7B7742707350E00A6D8E1 /* V0AppUploadParams.swift in Sources */,
-				3FE7B78E2707350E00A6D8E1 /* V0AppAddOnResponseItemModel.swift in Sources */,
-				3FE7B7A42707350E00A6D8E1 /* Extensions.swift in Sources */,
+				3FA5136E270B9D6900A5B881 /* Logger.swift in Sources */,
 				3FE7B7272707350E00A6D8E1 /* UserAPI.swift in Sources */,
-				3FE7B74F2707350E00A6D8E1 /* V0BuildCertificateResponseModel.swift in Sources */,
-				3FE7B7842707350E00A6D8E1 /* V0AvatarPromoteResponseModel.swift in Sources */,
-				3FE7B7572707350E00A6D8E1 /* V0ProvisionProfileUploadParams.swift in Sources */,
 				3FCC459C27075AE80001A9C2 /* TokenView.swift in Sources */,
-				3FE7B7882707350E00A6D8E1 /* V0ActivityEventResponseItemModel.swift in Sources */,
-				3FE7B7552707350E00A6D8E1 /* V0WebhookDeliveryItemShowResponseModel.swift in Sources */,
-				3FE7B7962707350E00A6D8E1 /* V0BuildRequestListResponseModel.swift in Sources */,
-				3FE7B7A22707350E00A6D8E1 /* V0ProjectFileStorageUploadParams.swift in Sources */,
-				3FE7B78A2707350E00A6D8E1 /* V0ProvisionProfileResponseItemModel.swift in Sources */,
-				3FE7B75A2707350E00A6D8E1 /* V0AppFinishRespModel.swift in Sources */,
-				3FE7B7A02707350E00A6D8E1 /* V0ArtifactDeleteResponseModel.swift in Sources */,
-				3FE7B7A12707350E00A6D8E1 /* V0BuildRequestResponseItemModel.swift in Sources */,
-				3FE7B7412707350E00A6D8E1 /* V0AvatarPromoteResponseItemModel.swift in Sources */,
 				3FE7B72D2707350E00A6D8E1 /* BuildRequestAPI.swift in Sources */,
-				3FE7B78D2707350E00A6D8E1 /* V0BuildRequestUpdateResponseModel.swift in Sources */,
 				3FE7B7A52707350E00A6D8E1 /* JSONEncodingHelper.swift in Sources */,
-				3FE7B7802707350E00A6D8E1 /* V0CommitPaths.swift in Sources */,
-				3FE7B7502707350E00A6D8E1 /* V0AppWebhookDeletedResponseModel.swift in Sources */,
 				3FE7B73A2707350E00A6D8E1 /* CodableHelper.swift in Sources */,
-				3FE7B77F2707350E00A6D8E1 /* AddonsSetupGuide.swift in Sources */,
 				3FE7B72E2707350E00A6D8E1 /* BuildsAPI.swift in Sources */,
-				3FE7B75B2707350E00A6D8E1 /* NullsString.swift in Sources */,
-				3FE7B7452707350E00A6D8E1 /* V0BuildResponseItemModel.swift in Sources */,
 				3FCC45A927075F690001A9C2 /* FullscreenLoadingView.swift in Sources */,
-				3FE7B7582707350E00A6D8E1 /* V0AddonsListResponseModel.swift in Sources */,
-				3FE7B79D2707350E00A6D8E1 /* V0ArtifactUpdateParams.swift in Sources */,
-				3FE7B7A32707350E00A6D8E1 /* V0BranchListResponseModel.swift in Sources */,
-				3FE7B79B2707350E00A6D8E1 /* V0AppRespModel.swift in Sources */,
-				3FE7B7972707350E00A6D8E1 /* NullsInt64.swift in Sources */,
-				3FE7B7872707350E00A6D8E1 /* V0ProxyErrorRespModel.swift in Sources */,
-				3FE7B73F2707350E00A6D8E1 /* V0WebhookRespModel.swift in Sources */,
-				3FE7B7562707350E00A6D8E1 /* V0FindAvatarCandidateResponse.swift in Sources */,
+				3FA5136A270B777D00A5B881 /* URLSessionRequestBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -965,14 +1042,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FA5136B270B777D00A5B881 /* URLSessionRequestBuilder.swift in Sources */,
 				3FCC45AE270767370001A9C2 /* MainCoordinatorView.swift in Sources */,
 				3FCC45C32707924D0001A9C2 /* BuildsViewModel.swift in Sources */,
 				3FE7B55727072C1E00A6D8E1 /* ContentView.swift in Sources */,
 				3FCC45C62707930E0001A9C2 /* BaseViewModel.swift in Sources */,
-				3FCC45B927078E040001A9C2 /* ProfileView.swift in Sources */,
+				3FCC45B927078E040001A9C2 /* ProfileScreenView.swift in Sources */,
 				3FCC45A327075D170001A9C2 /* Coordinator.swift in Sources */,
 				3FCC45B527078D250001A9C2 /* RootNavigationView.swift in Sources */,
-				3FCC45C02707923F0001A9C2 /* BuildsView.swift in Sources */,
+				3FA5136F270B9D6900A5B881 /* Logger.swift in Sources */,
+				3FCC45C02707923F0001A9C2 /* BuildsScreenView.swift in Sources */,
 				3FE7B55527072C1E00A6D8E1 /* BuildioApp.swift in Sources */,
 				3FCC45A727075EDF0001A9C2 /* UserDefaults+Additions.swift in Sources */,
 				3FCC45BC27078EB40001A9C2 /* ProfileViewModel.swift in Sources */,
@@ -985,7 +1064,57 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		3FA51448270BA4D400A5B881 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3FA51373270BA46E00A5B881 /* Models */;
+			targetProxy = 3FA51447270BA4D400A5B881 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		3FA51379270BA46E00A5B881 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RUAYJDT8WF;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3FA5137A270BA46E00A5B881 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RUAYJDT8WF;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		3FE7B55A27072C1E00A6D8E1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1221,6 +1350,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3FA51378270BA46E00A5B881 /* Build configuration list for PBXNativeTarget "Models" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3FA51379270BA46E00A5B881 /* Debug */,
+				3FA5137A270BA46E00A5B881 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3FE7B54227072C1B00A6D8E1 /* Build configuration list for PBXProject "Buildio" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

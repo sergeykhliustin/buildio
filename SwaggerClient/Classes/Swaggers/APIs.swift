@@ -5,6 +5,7 @@
 //
 
 import Foundation
+import Models
 
 open class SwaggerClientAPI {
     public static var basePath = "https://api.bitrise.io/v0.1"

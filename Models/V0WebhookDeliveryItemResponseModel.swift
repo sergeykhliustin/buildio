@@ -15,14 +15,14 @@ public struct V0WebhookDeliveryItemResponseModel: Codable {
     public var requestHeaders: String?
     public var requestPayload: String?
     public var requestUrl: String?
-    public var responseBody: NullsString?
-    public var responseHeaders: NullsString?
+    public var responseBody: String?
+    public var responseHeaders: String?
     public var responseHttpStatus: NullsInt64?
     public var responseSeconds: NullsInt64?
     public var slug: String?
     public var updatedAt: String?
 
-    public init(createdAt: String? = nil, requestHeaders: String? = nil, requestPayload: String? = nil, requestUrl: String? = nil, responseBody: NullsString? = nil, responseHeaders: NullsString? = nil, responseHttpStatus: NullsInt64? = nil, responseSeconds: NullsInt64? = nil, slug: String? = nil, updatedAt: String? = nil) {
+    public init(createdAt: String? = nil, requestHeaders: String? = nil, requestPayload: String? = nil, requestUrl: String? = nil, responseBody: String? = nil, responseHeaders: String? = nil, responseHttpStatus: NullsInt64? = nil, responseSeconds: NullsInt64? = nil, slug: String? = nil, updatedAt: String? = nil) {
         self.createdAt = createdAt
         self.requestHeaders = requestHeaders
         self.requestPayload = requestPayload

@@ -6,6 +6,7 @@
 
 import Foundation
 import Alamofire
+import Models
 
 class AlamofireRequestBuilderFactory: RequestBuilderFactory {
     func getNonDecodableBuilder<T>() -> RequestBuilder<T>.Type {
@@ -106,7 +107,16 @@ open class AlamofireRequestBuilder<T>: RequestBuilder<T> {
             if let onProgressReady = self.onProgressReady {
                 onProgressReady(request.progress)
             }
-            processRequest(request: request, managerId, completion)
+            let requestUrl = request.request?.url?.absoluteString ?? ""
+            let wrappedCompletion: (_ response: Response<T>?, _ error: Error?) -> Void = { response, error in
+                completion(response, error)
+                logger.info("Request: \(T.self), \(requestUrl)")
+                if let error = error {
+                    logger.error(error)
+                }
+            }
+            
+            processRequest(request: request, managerId, wrappedCompletion)
         }
 
     }

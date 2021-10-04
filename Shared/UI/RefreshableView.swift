@@ -7,48 +7,59 @@
 
 import SwiftUI
 
-protocol RefreshableView {
+protocol RefreshableView: View {
     associatedtype VALUE
     var model: BaseViewModel<VALUE> { get }
     
-    func buildBody() -> AnyView
-    func buildValueView(_ value: VALUE) -> AnyView
-    func buildErrorView(_ error: Error) -> AnyView
-    func buildLoadingView() -> AnyView
+    associatedtype ValueBody: View
+    associatedtype LoadingBody: View
+    associatedtype ErrorBody: View
+    
+    func buildValueView(_ value: VALUE) -> ValueBody
+    func buildErrorView(_ error: Error) -> ErrorBody
+    func buildLoadingView() -> LoadingBody
 }
 
 extension RefreshableView {
-    func buildBody() -> AnyView {
+    
+    @ViewBuilder
+    var body: some View {
+        buildBody()
+    }
+    
+    @ViewBuilder
+    func buildBody() -> some View {
         if model.isLoading {
-            return buildLoadingView()
+            self.buildLoadingView()
         } else if let value = model.value {
-            return AnyView(buildValueView(value).padding())
+            buildValueView(value)
         } else if let error = model.error {
-            return buildErrorView(error)
+            buildErrorView(error)
         } else {
             fatalError("Something went wrong")
         }
     }
     
-    func buildValueView(_ value: VALUE) -> AnyView {
-        fatalError("Should override")
-    }
-    
-    func buildErrorView(_ error: Error) -> AnyView {
-        AnyView(
-            VStack {
-                HStack {
-                    Spacer()
-                    Button("Refresh", action: model.refresh)
-                }
+    @ViewBuilder
+    func buildErrorView(_ error: Error) -> some View {
+        VStack {
+            HStack {
                 Spacer()
-                Text(error.localizedDescription)
-                Spacer()
+                Button("Refresh", action: model.refresh)
             }.padding()
-        )
+            Spacer()
+            Text(error.localizedDescription)
+            Spacer()
+        }.padding()
+        
     }
     
-    func buildLoadingView() -> AnyView {
-        return AnyView(ProgressView())
+    @ViewBuilder
+    func buildLoadingView() -> some View {
+        VStack {
+            HStack {
+                ProgressView()
+            }
+        }
     }
 }

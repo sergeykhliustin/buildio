@@ -12,34 +12,34 @@ import Foundation
 public struct V0BuildListAllResponseItemModel: Codable, Identifiable {
     public let id = UUID()
 
-    public var abortReason: NullsString?
-    public var branch: NullsString?
+    public var abortReason: String?
+    public var branch: String?
     public var buildNumber: Int?
-    public var commitHash: NullsString?
-    public var commitMessage: NullsString?
-    public var commitViewUrl: NullsString?
+    public var commitHash: String?
+    public var commitMessage: String?
+    public var commitViewUrl: String?
     public var creditCost: NullsInt64?
     public var environmentPrepareFinishedAt: String?
     public var finishedAt: String?
     public var isOnHold: Bool?
     public var isProcessed: Bool?
-    public var machineTypeId: NullsString?
-    public var originalBuildParams: [Int]?
+    public var machineTypeId: String?
+    public var originalBuildParams: [String: String]?
     public var pullRequestId: Int?
-    public var pullRequestTargetBranch: NullsString?
-    public var pullRequestViewUrl: NullsString?
+    public var pullRequestTargetBranch: String?
+    public var pullRequestViewUrl: String?
     public var repository: V0AppResponseItemModel?
     public var slug: String?
-    public var stackIdentifier: NullsString?
+    public var stackIdentifier: String?
     public var startedOnWorkerAt: String?
     public var status: Int?
     public var statusText: String?
-    public var tag: NullsString?
+    public var tag: String?
     public var triggeredAt: String?
-    public var triggeredBy: NullsString?
+    public var triggeredBy: String?
     public var triggeredWorkflow: String?
 
-    public init(abortReason: NullsString? = nil, branch: NullsString? = nil, buildNumber: Int? = nil, commitHash: NullsString? = nil, commitMessage: NullsString? = nil, commitViewUrl: NullsString? = nil, creditCost: NullsInt64? = nil, environmentPrepareFinishedAt: String? = nil, finishedAt: String? = nil, isOnHold: Bool? = nil, isProcessed: Bool? = nil, machineTypeId: NullsString? = nil, originalBuildParams: [Int]? = nil, pullRequestId: Int? = nil, pullRequestTargetBranch: NullsString? = nil, pullRequestViewUrl: NullsString? = nil, repository: V0AppResponseItemModel? = nil, slug: String? = nil, stackIdentifier: NullsString? = nil, startedOnWorkerAt: String? = nil, status: Int? = nil, statusText: String? = nil, tag: NullsString? = nil, triggeredAt: String? = nil, triggeredBy: NullsString? = nil, triggeredWorkflow: String? = nil) {
+    public init(abortReason: String? = nil, branch: String? = nil, buildNumber: Int? = nil, commitHash: String? = nil, commitMessage: String? = nil, commitViewUrl: String? = nil, creditCost: NullsInt64? = nil, environmentPrepareFinishedAt: String? = nil, finishedAt: String? = nil, isOnHold: Bool? = nil, isProcessed: Bool? = nil, machineTypeId: String? = nil, originalBuildParams: [String: String]? = nil, pullRequestId: Int? = nil, pullRequestTargetBranch: String? = nil, pullRequestViewUrl: String? = nil, repository: V0AppResponseItemModel? = nil, slug: String? = nil, stackIdentifier: String? = nil, startedOnWorkerAt: String? = nil, status: Int? = nil, statusText: String? = nil, tag: String? = nil, triggeredAt: String? = nil, triggeredBy: String? = nil, triggeredWorkflow: String? = nil) {
         self.abortReason = abortReason
         self.branch = branch
         self.buildNumber = buildNumber
