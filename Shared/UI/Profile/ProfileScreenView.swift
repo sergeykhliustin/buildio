@@ -12,7 +12,7 @@ struct ProfileScreenView: View, RefreshableView {
     
     typealias VALUE = V0UserProfileDataModel
     
-    @ObservedObject var model: BaseViewModel<V0UserProfileDataModel> = ProfileViewModel()
+    @StateObject var model: BaseViewModel<V0UserProfileDataModel> = ProfileViewModel()
     
 //    var body: some View {
 //        buildBody()

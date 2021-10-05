@@ -10,7 +10,7 @@ import Models
 
 struct BuildsScreenView: View, RefreshableView {
     typealias VALUE = [V0BuildListAllResponseItemModel]
-    @ObservedObject var model: BaseViewModel<[V0BuildListAllResponseItemModel]> = BuildsViewModel()
+    @StateObject var model: BaseViewModel<[V0BuildListAllResponseItemModel]> = BuildsViewModel()
     
     func buildValueView(_ value: [V0BuildListAllResponseItemModel]) -> some View {
         VStack {

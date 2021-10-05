@@ -13,7 +13,7 @@ struct TokenView: View {
     
     var body: some View {
         VStack {
-            TextField("API token", text: $tokenState).padding().textFieldStyle(.roundedBorder)
+            TextField("API token", text: $tokenState).padding()
             Button("Submit") {
                 token = tokenState
             }
