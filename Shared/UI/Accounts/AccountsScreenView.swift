@@ -8,10 +8,28 @@
 import SwiftUI
 
 struct AccountsScreenView: View {
+    @State private var showingSheet = false
+    
     var body: some View {
-        List(0..<5) { _ in
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            HStack {
+                Spacer()
+                Button {
+                    showingSheet.toggle()
+                } label: {
+                    Image(systemName: "plus.circle")
+                        .imageScale(.large)
+                }
+                .padding()
+                .sheet(isPresented: $showingSheet) {
+                    TokenView(token: .constant(nil))
+                }
+            }
+            List(0..<5) { _ in
+                Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            }
         }
+        
     }
 }
 
