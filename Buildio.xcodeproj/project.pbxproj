@@ -38,12 +38,16 @@
 		3F2BE9E3270CA0C00051C910 /* AccountsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2BE9E1270CA0C00051C910 /* AccountsScreenView.swift */; };
 		3F2BE9E5270CA5E00051C910 /* TabsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2BE9E4270CA5E00051C910 /* TabsScreenView.swift */; };
 		3F2BE9E6270CA5E00051C910 /* TabsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2BE9E4270CA5E00051C910 /* TabsScreenView.swift */; };
+		3F70EBBB2714E43600A4841E /* BTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F70EBBA2714E43600A4841E /* BTextField.swift */; };
+		3F70EBBC2714E43600A4841E /* BTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F70EBBA2714E43600A4841E /* BTextField.swift */; };
+		3F70EBBF2714EAAE00A4841E /* Color+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F70EBBE2714EAAE00A4841E /* Color+Additions.swift */; };
+		3F70EBC02714EAAE00A4841E /* Color+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F70EBBE2714EAAE00A4841E /* Color+Additions.swift */; };
 		3FA5136A270B777D00A5B881 /* URLSessionRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA51369270B777D00A5B881 /* URLSessionRequestBuilder.swift */; };
 		3FA5136B270B777D00A5B881 /* URLSessionRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA51369270B777D00A5B881 /* URLSessionRequestBuilder.swift */; };
 		3FA5136E270B9D6900A5B881 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5136D270B9D6900A5B881 /* Logger.swift */; };
 		3FA5136F270B9D6900A5B881 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5136D270B9D6900A5B881 /* Logger.swift */; };
-		3FCC459C27075AE80001A9C2 /* TokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC459B27075AE80001A9C2 /* TokenView.swift */; };
-		3FCC459D27075AE80001A9C2 /* TokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC459B27075AE80001A9C2 /* TokenView.swift */; };
+		3FCC459C27075AE80001A9C2 /* TokenScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC459B27075AE80001A9C2 /* TokenScreenView.swift */; };
+		3FCC459D27075AE80001A9C2 /* TokenScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC459B27075AE80001A9C2 /* TokenScreenView.swift */; };
 		3FCC45A227075D170001A9C2 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45A127075D170001A9C2 /* Coordinator.swift */; };
 		3FCC45A327075D170001A9C2 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45A127075D170001A9C2 /* Coordinator.swift */; };
 		3FCC45A627075EDF0001A9C2 /* UserDefaults+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45A527075EDF0001A9C2 /* UserDefaults+Additions.swift */; };
@@ -110,9 +114,11 @@
 		02BC01504528BADE88AE233D /* Pods-Buildio (iOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buildio (iOS).release.xcconfig"; path = "Target Support Files/Pods-Buildio (iOS)/Pods-Buildio (iOS).release.xcconfig"; sourceTree = "<group>"; };
 		3F2BE9E1270CA0C00051C910 /* AccountsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsScreenView.swift; sourceTree = "<group>"; };
 		3F2BE9E4270CA5E00051C910 /* TabsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsScreenView.swift; sourceTree = "<group>"; };
+		3F70EBBA2714E43600A4841E /* BTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTextField.swift; sourceTree = "<group>"; };
+		3F70EBBE2714EAAE00A4841E /* Color+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Additions.swift"; sourceTree = "<group>"; };
 		3FA51369270B777D00A5B881 /* URLSessionRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionRequestBuilder.swift; sourceTree = "<group>"; };
 		3FA5136D270B9D6900A5B881 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
-		3FCC459B27075AE80001A9C2 /* TokenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenView.swift; sourceTree = "<group>"; };
+		3FCC459B27075AE80001A9C2 /* TokenScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenScreenView.swift; sourceTree = "<group>"; };
 		3FCC45A127075D170001A9C2 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		3FCC45A527075EDF0001A9C2 /* UserDefaults+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Additions.swift"; sourceTree = "<group>"; };
 		3FCC45A827075F690001A9C2 /* FullscreenLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullscreenLoadingView.swift; sourceTree = "<group>"; };
@@ -192,6 +198,22 @@
 			path = Accounts;
 			sourceTree = "<group>";
 		};
+		3F70EBB92714E41700A4841E /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				3F70EBBA2714E43600A4841E /* BTextField.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		3F70EBBD2714EA9C00A4841E /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				3F70EBBE2714EAAE00A4841E /* Color+Additions.swift */,
+			);
+			path = Additions;
+			sourceTree = "<group>";
+		};
 		3FA5136C270B9D5100A5B881 /* Logger */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,13 +225,15 @@
 		3FCC4597270759880001A9C2 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				3F70EBBD2714EA9C00A4841E /* Additions */,
+				3F70EBB92714E41700A4841E /* CustomViews */,
 				3FCC45C42707930E0001A9C2 /* BaseViewModel.swift */,
 				3FCC45C7270797E30001A9C2 /* RefreshableView.swift */,
 				3F2BE9E0270CA0AD0051C910 /* Accounts */,
 				3FCC45BD270791F80001A9C2 /* Builds */,
 				3FCC45B627078DFA0001A9C2 /* Profile */,
 				3FCC45B227078D130001A9C2 /* Navigation */,
-				3FCC459B27075AE80001A9C2 /* TokenView.swift */,
+				3FCC459B27075AE80001A9C2 /* TokenScreenView.swift */,
 				3FCC45A127075D170001A9C2 /* Coordinator.swift */,
 				3FCC45A827075F690001A9C2 /* FullscreenLoadingView.swift */,
 			);
@@ -552,7 +576,9 @@
 				3FCC45B0270767480001A9C2 /* MainCoordinator.swift in Sources */,
 				3FE7B7332707350E00A6D8E1 /* GenericProjectFileAPI.swift in Sources */,
 				3FCC45BB27078EB40001A9C2 /* ProfileViewModel.swift in Sources */,
+				3F70EBBB2714E43600A4841E /* BTextField.swift in Sources */,
 				3FE7B7302707350E00A6D8E1 /* AppSetupAPI.swift in Sources */,
+				3F70EBBF2714EAAE00A4841E /* Color+Additions.swift in Sources */,
 				3FE7B7252707350E00A6D8E1 /* AlamofireImplementations.swift in Sources */,
 				3FE7B55427072C1E00A6D8E1 /* BuildioApp.swift in Sources */,
 				3FE7B72B2707350E00A6D8E1 /* ActivityAPI.swift in Sources */,
@@ -568,7 +594,7 @@
 				3FE7B72F2707350E00A6D8E1 /* PipelinesAPI.swift in Sources */,
 				3FA5136E270B9D6900A5B881 /* Logger.swift in Sources */,
 				3FE7B7272707350E00A6D8E1 /* UserAPI.swift in Sources */,
-				3FCC459C27075AE80001A9C2 /* TokenView.swift in Sources */,
+				3FCC459C27075AE80001A9C2 /* TokenScreenView.swift in Sources */,
 				3FE7B72D2707350E00A6D8E1 /* BuildRequestAPI.swift in Sources */,
 				3FE7B7A52707350E00A6D8E1 /* JSONEncodingHelper.swift in Sources */,
 				3FE7B73A2707350E00A6D8E1 /* CodableHelper.swift in Sources */,
@@ -605,7 +631,9 @@
 				3FCC45C62707930E0001A9C2 /* BaseViewModel.swift in Sources */,
 				3FCC45B927078E040001A9C2 /* ProfileScreenView.swift in Sources */,
 				3FCC45A327075D170001A9C2 /* Coordinator.swift in Sources */,
+				3F70EBBC2714E43600A4841E /* BTextField.swift in Sources */,
 				3F2BE9CD270C99A50051C910 /* AndroidKeystoreFileAPI.swift in Sources */,
+				3F70EBC02714EAAE00A4841E /* Color+Additions.swift in Sources */,
 				3F2BE9CB270C99A00051C910 /* BuildCertificateAPI.swift in Sources */,
 				3F2BE9C7270C99940051C910 /* JSONValue.swift in Sources */,
 				3F2BE9DD270C99CF0051C910 /* APIs.swift in Sources */,
@@ -622,7 +650,7 @@
 				3F2BE9D4270C99B80051C910 /* GenericProjectFileAPI.swift in Sources */,
 				3F2BE9CA270C999D0051C910 /* ProvisioningProfileAPI.swift in Sources */,
 				3FCC45BC27078EB40001A9C2 /* ProfileViewModel.swift in Sources */,
-				3FCC459D27075AE80001A9C2 /* TokenView.swift in Sources */,
+				3FCC459D27075AE80001A9C2 /* TokenScreenView.swift in Sources */,
 				3FCC45C9270797E30001A9C2 /* RefreshableView.swift in Sources */,
 				3FCC45B1270767480001A9C2 /* MainCoordinator.swift in Sources */,
 				3FCC45AA27075F690001A9C2 /* FullscreenLoadingView.swift in Sources */,

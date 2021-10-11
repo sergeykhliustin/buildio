@@ -22,7 +22,7 @@ struct AccountsScreenView: View {
                 }
                 .padding()
                 .sheet(isPresented: $showingSheet) {
-                    TokenView(token: .constant(nil))
+                    TokenScreenView(token: .constant(nil))
                 }
             }
             List(0..<5) { _ in
