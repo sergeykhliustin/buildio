@@ -12,7 +12,7 @@ struct MainCoordinatorView: View {
     
     var body: some View {
         if coordinator.token == nil {
-            TokenScreenView(token: $coordinator.token)
+            TokenFigmaScreenView(token: $coordinator.token)
         } else if let me = coordinator.user {
             RootNavigationView()
         } else {

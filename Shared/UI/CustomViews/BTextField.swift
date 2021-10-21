@@ -12,11 +12,15 @@ private struct BTextFieldStyle: TextFieldStyle {
 
     func _body(configuration: TextField<Self._Label>) -> some View {
         configuration
+            .cornerRadius(4)
+            .font(.callout)
             .padding()
             .foregroundColor(.init(hex: 0x351d48))
             .background(
-                RoundedRectangle(cornerRadius: 4, style: .continuous)
-                    .stroke(focused ? Color(hex: 0x760fc3) : Color(hex: 0xDDDDDD))
+                RoundedRectangle(cornerRadius: 4)
+                    .fill(Color.white)
+                    .overlay(RoundedRectangle(cornerRadius: 4).stroke(focused ? Color.b_ButtonPrimaryLight : Color.b_BorderLight, lineWidth: 1))
+                    .shadow(color: .b_ShadowLight, radius: 3, y: 2)
             )
     }
 }
@@ -36,13 +40,21 @@ struct BTextField: View {
     }
     
     var body: some View {
-        TextField(title,
-                  text: text,
-                  onEditingChanged: { editing in
-            self.focused = editing
-            self.onEditingChanged(editing)
-        }, onCommit: self.onCommit)
-            .textFieldStyle(BTextFieldStyle(focused: $focused))
+        ZStack(alignment: .trailing) {
+            TextField(title,
+                      text: text,
+                      onEditingChanged: { editing in
+                self.focused = editing
+                self.onEditingChanged(editing)
+            }, onCommit: self.onCommit)
+                .textFieldStyle(BTextFieldStyle(focused: $focused))
+//            Button {
+//                
+//            } label: {
+//                Image(systemName: "doc.on.clipboard.fill").foregroundColor(Color.b_ButtonPrimaryLight)
+//            }
+//            .frame(width: 44, height: 44, alignment: .center)
+        }
     }
 }
 
