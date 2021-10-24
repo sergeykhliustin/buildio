@@ -8,8 +8,18 @@
 import Foundation
 import Models
 
-class ProfileViewModel: BaseViewModel<V0UserProfileDataModel> {
-    override func fetch(_ completion: @escaping ((V0UserProfileDataModel?, Error?) -> Void)) {
+class ProfileViewModel: BaseViewModel {
+    @Published var state: BaseViewModelState<V0UserProfileDataModel> = .loading
+    
+    init() {
+        refresh()
+    }
+    
+    func beforeRefresh() {
+        
+    }
+    
+    func fetch(_ completion: @escaping ((V0UserProfileDataModel?, Error?) -> Void)) {
         
         UserAPI.userProfile { data, error in
             DispatchQueue.global().asyncAfter(deadline: .now() + 5) {

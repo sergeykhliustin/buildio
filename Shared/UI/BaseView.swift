@@ -7,20 +7,22 @@
 
 import SwiftUI
 
-protocol RefreshableView: View {
-    associatedtype VALUE
-    var model: BaseViewModel<VALUE> { get }
+protocol BaseView: View {
+    associatedtype MODEL: BaseViewModel
+    var model: MODEL { get }
     
     associatedtype ValueBody: View
-    associatedtype LoadingBody: View
-    associatedtype ErrorBody: View
+//    associatedtype LoadingBody: View
+//    associatedtype ErrorBody: View
     
-    func buildValueView(_ value: VALUE) -> ValueBody
-    func buildErrorView(_ error: Error) -> ErrorBody
-    func buildLoadingView() -> LoadingBody
+    func buildValueView(_ value: MODEL.VALUE) -> ValueBody
 }
 
-extension RefreshableView {
+protocol PaginatedView: BaseView {
+    
+}
+
+extension BaseView {
     
     @ViewBuilder
     var body: some View {
@@ -29,26 +31,25 @@ extension RefreshableView {
     
     @ViewBuilder
     func buildBody() -> some View {
-        if model.isLoading {
-            self.buildLoadingView()
-        } else if let value = model.value {
+        switch model.state {
+        case .loading:
+            buildLoadingView()
+        case .value(let value):
             buildValueView(value)
-        } else if let error = model.error {
+        case .error(let error):
             buildErrorView(error)
-        } else {
-            fatalError("Something went wrong")
         }
     }
     
     @ViewBuilder
-    func buildErrorView(_ error: Error) -> some View {
+    func buildErrorView(_ error: Error?) -> some View {
         VStack {
             HStack {
                 Spacer()
                 Button("Refresh", action: model.refresh)
             }.padding()
             Spacer()
-            Text(error.localizedDescription)
+            Text(error?.localizedDescription ?? "Unknown error")
             Spacer()
         }.padding()
         

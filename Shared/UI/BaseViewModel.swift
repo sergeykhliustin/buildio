@@ -8,30 +8,43 @@
 import Foundation
 import Combine
 
-class BaseViewModel<T>: ObservableObject {
-    @Published var value: T?
-    @Published var error: Error?
-    @Published var isLoading: Bool = false
+enum BaseViewModelState<T> {
+    case loading
+    case value(T)
+    case error(Error?)
+}
+
+protocol BaseViewModel: ObservableObject {
+    associatedtype VALUE
     
-    init() {
-        refresh()
+    var state: BaseViewModelState<VALUE> { get set }
+    
+    func fetch(_ completion: @escaping ((VALUE?, Error?) -> Void))
+    
+    func refresh()
+    
+    func beforeRefresh()
+}
+
+extension BaseViewModel {
+    var value: VALUE? {
+        if case .value(let value) = state {
+            return value
+        }
+        return nil
     }
     
     func refresh() {
-        isLoading = true
-        value = nil
-        error = nil
+        beforeRefresh()
+        state = .loading
         
         fetch { [weak self] value, error in
             guard let self = self else { return }
-            
-            self.value = value
-            self.error = error
-            self.isLoading = false
+            if let value = value {
+                self.state = .value(value)
+            } else {
+                self.state = .error(error)
+            }
         }
-    }
-    
-    func fetch(_ completion: @escaping ((T?, Error?) -> Void)) {
-        fatalError("Should override")
     }
 }

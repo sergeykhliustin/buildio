@@ -8,9 +8,8 @@
 import SwiftUI
 import Models
 
-struct BuildsScreenView: View, RefreshableView {
-    typealias VALUE = [V0BuildListAllResponseItemModel]
-    @StateObject var model: BaseViewModel<[V0BuildListAllResponseItemModel]> = BuildsViewModel()
+struct BuildsScreenView: View, BaseView {
+    @StateObject var model = BuildsViewModel()
     
     func buildValueView(_ value: [V0BuildListAllResponseItemModel]) -> some View {
         VStack {
@@ -18,10 +17,20 @@ struct BuildsScreenView: View, RefreshableView {
                 Spacer()
                 Button("Refresh", action: model.refresh)
             }
-            List(value) { item in
-                let mirror = Mirror(reflecting: item)
-                let string = mirror.children.map({ "\($0.label ?? ""): \($0.value)" }).joined(separator: "\n")
-                Text(string)
+            ScrollView {
+                LazyVStack {
+                    ForEach(value, id: \.self) { item in
+                        BuildRowView(model: item).onAppear {
+                            if item == value.last {
+                                logger.warning("load more item")
+                                model.loadNextPage()
+                            }
+                        }
+                    }
+                }
+                if model.isLoadingPage {
+                    ProgressView()
+                }
             }
         }
     }

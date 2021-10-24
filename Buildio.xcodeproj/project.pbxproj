@@ -70,8 +70,10 @@
 		3FCC45C32707924D0001A9C2 /* BuildsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45C12707924D0001A9C2 /* BuildsViewModel.swift */; };
 		3FCC45C52707930E0001A9C2 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45C42707930E0001A9C2 /* BaseViewModel.swift */; };
 		3FCC45C62707930E0001A9C2 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45C42707930E0001A9C2 /* BaseViewModel.swift */; };
-		3FCC45C8270797E30001A9C2 /* RefreshableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45C7270797E30001A9C2 /* RefreshableView.swift */; };
-		3FCC45C9270797E30001A9C2 /* RefreshableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45C7270797E30001A9C2 /* RefreshableView.swift */; };
+		3FCC45C8270797E30001A9C2 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45C7270797E30001A9C2 /* BaseView.swift */; };
+		3FCC45C9270797E30001A9C2 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45C7270797E30001A9C2 /* BaseView.swift */; };
+		3FD2FCA82724C7520093BE62 /* PagingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD2FCA72724C7510093BE62 /* PagingViewModel.swift */; };
+		3FD2FCA92724C7520093BE62 /* PagingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD2FCA72724C7510093BE62 /* PagingViewModel.swift */; };
 		3FD85D0E2721CAC200E894E8 /* SubmitButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD85D0D2721CAC200E894E8 /* SubmitButtonStyle.swift */; };
 		3FD85D0F2721CAC200E894E8 /* SubmitButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD85D0D2721CAC200E894E8 /* SubmitButtonStyle.swift */; };
 		3FD85D112721CF6F00E894E8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD85D102721CF6F00E894E8 /* Color.swift */; };
@@ -140,7 +142,8 @@
 		3FCC45BE2707923F0001A9C2 /* BuildsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildsScreenView.swift; sourceTree = "<group>"; };
 		3FCC45C12707924D0001A9C2 /* BuildsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildsViewModel.swift; sourceTree = "<group>"; };
 		3FCC45C42707930E0001A9C2 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
-		3FCC45C7270797E30001A9C2 /* RefreshableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshableView.swift; sourceTree = "<group>"; };
+		3FCC45C7270797E30001A9C2 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		3FD2FCA72724C7510093BE62 /* PagingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingViewModel.swift; sourceTree = "<group>"; };
 		3FD85D0D2721CAC200E894E8 /* SubmitButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitButtonStyle.swift; sourceTree = "<group>"; };
 		3FD85D102721CF6F00E894E8 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		3FD85D132721D53600E894E8 /* ClearButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearButton.swift; sourceTree = "<group>"; };
@@ -246,7 +249,8 @@
 				3F70EBBD2714EA9C00A4841E /* Additions */,
 				3F70EBB92714E41700A4841E /* CustomViews */,
 				3FCC45C42707930E0001A9C2 /* BaseViewModel.swift */,
-				3FCC45C7270797E30001A9C2 /* RefreshableView.swift */,
+				3FD2FCA72724C7510093BE62 /* PagingViewModel.swift */,
+				3FCC45C7270797E30001A9C2 /* BaseView.swift */,
 				3FF276152721AAD400701113 /* Auth */,
 				3F2BE9E0270CA0AD0051C910 /* Accounts */,
 				3FCC45BD270791F80001A9C2 /* Builds */,
@@ -593,7 +597,7 @@
 				3F2BE9E2270CA0C00051C910 /* AccountsScreenView.swift in Sources */,
 				3FCC45B427078D250001A9C2 /* RootNavigationView.swift in Sources */,
 				3FF276172721AB1700701113 /* TokenFigmaScreenView.swift in Sources */,
-				3FCC45C8270797E30001A9C2 /* RefreshableView.swift in Sources */,
+				3FCC45C8270797E30001A9C2 /* BaseView.swift in Sources */,
 				3FCC45B827078E040001A9C2 /* ProfileScreenView.swift in Sources */,
 				3FCC45C22707924D0001A9C2 /* BuildsViewModel.swift in Sources */,
 				3FE7B7312707350E00A6D8E1 /* WebhookDeliveryItemAPI.swift in Sources */,
@@ -609,6 +613,8 @@
 				3F70EBBB2714E43600A4841E /* BTextField.swift in Sources */,
 				3FE7B7302707350E00A6D8E1 /* AppSetupAPI.swift in Sources */,
 				3F70EBBF2714EAAE00A4841E /* Color+Additions.swift in Sources */,
+				3FD85D1A27221A3C00E894E8 /* BuildRowView.swift in Sources */,
+				3FD2FCA82724C7520093BE62 /* PagingViewModel.swift in Sources */,
 				3FE7B7252707350E00A6D8E1 /* AlamofireImplementations.swift in Sources */,
 				3FD85D142721D53600E894E8 /* ClearButton.swift in Sources */,
 				3FE7B55427072C1E00A6D8E1 /* BuildioApp.swift in Sources */,
@@ -669,6 +675,8 @@
 				3F70EBBC2714E43600A4841E /* BTextField.swift in Sources */,
 				3F2BE9CD270C99A50051C910 /* AndroidKeystoreFileAPI.swift in Sources */,
 				3F70EBC02714EAAE00A4841E /* Color+Additions.swift in Sources */,
+				3FD85D1B27221A3C00E894E8 /* BuildRowView.swift in Sources */,
+				3FD2FCA92724C7520093BE62 /* PagingViewModel.swift in Sources */,
 				3F2BE9CB270C99A00051C910 /* BuildCertificateAPI.swift in Sources */,
 				3FD85D152721D53600E894E8 /* ClearButton.swift in Sources */,
 				3F2BE9C7270C99940051C910 /* JSONValue.swift in Sources */,
@@ -688,7 +696,7 @@
 				3F2BE9CA270C999D0051C910 /* ProvisioningProfileAPI.swift in Sources */,
 				3FCC45BC27078EB40001A9C2 /* ProfileViewModel.swift in Sources */,
 				3FCC459D27075AE80001A9C2 /* TokenScreenView.swift in Sources */,
-				3FCC45C9270797E30001A9C2 /* RefreshableView.swift in Sources */,
+				3FCC45C9270797E30001A9C2 /* BaseView.swift in Sources */,
 				3FCC45B1270767480001A9C2 /* MainCoordinator.swift in Sources */,
 				3FCC45AA27075F690001A9C2 /* FullscreenLoadingView.swift in Sources */,
 				3FD85D182721D84F00E894E8 /* PasteButton.swift in Sources */,

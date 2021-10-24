@@ -8,15 +8,9 @@
 import SwiftUI
 import Models
 
-struct ProfileScreenView: View, RefreshableView {
+struct ProfileScreenView: View, BaseView {
     
-    typealias VALUE = V0UserProfileDataModel
-    
-    @StateObject var model: BaseViewModel<V0UserProfileDataModel> = ProfileViewModel()
-    
-//    var body: some View {
-//        buildBody()
-//    }
+    @StateObject var model = ProfileViewModel()
     
     func buildValueView(_ value: V0UserProfileDataModel) -> some View {
         VStack {
