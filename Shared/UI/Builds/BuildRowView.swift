@@ -9,19 +9,19 @@ import SwiftUI
 import Models
 
 struct BuildRowView: View {
-    @State fileprivate var expanded: Bool = false
+    @State var expanded: Bool = false
     @State var model: V0BuildListAllResponseItemModel
     
     var body: some View {
         HStack(alignment: .top) {
             let statusColor = model.status?.color ?? Color.white.opacity(0)
             ZStack(alignment: .trailing) {
-                RoundedRectangle(cornerRadius: 4, style: .continuous)
-                    .fill(statusColor)
-                    .frame(width: 20)
-                Rectangle()
+                RoundedRectangle(cornerRadius: 5)
                     .fill(statusColor)
                     .frame(width: 10)
+                Rectangle()
+                    .fill(statusColor)
+                    .frame(width: 5)
             }
             
             VStack(alignment: .leading) {
@@ -188,7 +188,7 @@ struct BuildRowView: View {
         .font(.body)
         .foregroundColor(Color(red: 0.67, green: 0.67, blue: 0.67))
         .background(Color.white)
-        .padding()
+//        .padding()
     }
 }
 

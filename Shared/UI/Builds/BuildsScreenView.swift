@@ -10,22 +10,43 @@ import Models
 
 struct BuildsScreenView: View, BaseView {
     @StateObject var model = BuildsViewModel()
+    @State private var selected: V0BuildListAllResponseItemModel?
     
     func buildValueView(_ value: [V0BuildListAllResponseItemModel]) -> some View {
+        
         VStack {
-            HStack {
-                Spacer()
-                Button("Refresh", action: model.refresh)
+            //                HStack {
+            //                    Spacer()
+            //                    Button("Refresh", action: model.refresh)
+            //                }
+            
+            if let selected = selected {
+                NavigationLink("", tag: selected, selection: $selected) {
+                    BuildScreenView(model: selected)
+                }
+                .frame(width: 0, height: 0)
             }
+            
             ScrollView {
-                LazyVStack {
+                LazyVStack(spacing: 0) {
                     ForEach(value, id: \.self) { item in
-                        BuildRowView(model: item).onAppear {
-                            if item == value.last {
-                                logger.warning("load more item")
-                                model.loadNextPage()
+                        NavigationLink {
+                            BuildScreenView(model: item)
+                        } label: {
+                            BuildRowView(model: item).onAppear {
+                                if item == value.last {
+                                    logger.warning("load more item")
+                                    model.loadNextPage()
+                                }
                             }
+                            .padding(8)
+//                            .onTapGesture {
+//                                logger.debug(item.slug)
+//                                selected = item
+//                            }
                         }
+                        .isDetailLink(true)
+                        .buttonStyle(.plain)
                     }
                 }
                 if model.isLoadingPage {

@@ -74,6 +74,8 @@
 		3FCC45C9270797E30001A9C2 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45C7270797E30001A9C2 /* BaseView.swift */; };
 		3FD2FCA82724C7520093BE62 /* PagingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD2FCA72724C7510093BE62 /* PagingViewModel.swift */; };
 		3FD2FCA92724C7520093BE62 /* PagingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD2FCA72724C7510093BE62 /* PagingViewModel.swift */; };
+		3FD2FCAC2725E5520093BE62 /* BuildScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD2FCAB2725E5520093BE62 /* BuildScreenView.swift */; };
+		3FD2FCAD2725E5520093BE62 /* BuildScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD2FCAB2725E5520093BE62 /* BuildScreenView.swift */; };
 		3FD85D0E2721CAC200E894E8 /* SubmitButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD85D0D2721CAC200E894E8 /* SubmitButtonStyle.swift */; };
 		3FD85D0F2721CAC200E894E8 /* SubmitButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD85D0D2721CAC200E894E8 /* SubmitButtonStyle.swift */; };
 		3FD85D112721CF6F00E894E8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD85D102721CF6F00E894E8 /* Color.swift */; };
@@ -144,6 +146,7 @@
 		3FCC45C42707930E0001A9C2 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		3FCC45C7270797E30001A9C2 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		3FD2FCA72724C7510093BE62 /* PagingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingViewModel.swift; sourceTree = "<group>"; };
+		3FD2FCAB2725E5520093BE62 /* BuildScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildScreenView.swift; sourceTree = "<group>"; };
 		3FD85D0D2721CAC200E894E8 /* SubmitButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitButtonStyle.swift; sourceTree = "<group>"; };
 		3FD85D102721CF6F00E894E8 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		3FD85D132721D53600E894E8 /* ClearButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearButton.swift; sourceTree = "<group>"; };
@@ -253,6 +256,7 @@
 				3FCC45C7270797E30001A9C2 /* BaseView.swift */,
 				3FF276152721AAD400701113 /* Auth */,
 				3F2BE9E0270CA0AD0051C910 /* Accounts */,
+				3FD2FCAA2725E5420093BE62 /* Build */,
 				3FCC45BD270791F80001A9C2 /* Builds */,
 				3FCC45B627078DFA0001A9C2 /* Profile */,
 				3FCC45B227078D130001A9C2 /* Navigation */,
@@ -305,6 +309,14 @@
 				3FCC45C12707924D0001A9C2 /* BuildsViewModel.swift */,
 			);
 			path = Builds;
+			sourceTree = "<group>";
+		};
+		3FD2FCAA2725E5420093BE62 /* Build */ = {
+			isa = PBXGroup;
+			children = (
+				3FD2FCAB2725E5520093BE62 /* BuildScreenView.swift */,
+			);
+			path = Build;
 			sourceTree = "<group>";
 		};
 		3FE7B53E27072C1B00A6D8E1 = {
@@ -596,6 +608,7 @@
 				3FE7B7292707350E00A6D8E1 /* ProvisioningProfileAPI.swift in Sources */,
 				3F2BE9E2270CA0C00051C910 /* AccountsScreenView.swift in Sources */,
 				3FCC45B427078D250001A9C2 /* RootNavigationView.swift in Sources */,
+				3FD2FCAC2725E5520093BE62 /* BuildScreenView.swift in Sources */,
 				3FF276172721AB1700701113 /* TokenFigmaScreenView.swift in Sources */,
 				3FCC45C8270797E30001A9C2 /* BaseView.swift in Sources */,
 				3FCC45B827078E040001A9C2 /* ProfileScreenView.swift in Sources */,
@@ -658,6 +671,7 @@
 				3F2BE9DA270C99C70051C910 /* OutgoingWebhookAPI.swift in Sources */,
 				3F2BE9E3270CA0C00051C910 /* AccountsScreenView.swift in Sources */,
 				3F2BE9D1270C99B00051C910 /* AppSetupAPI.swift in Sources */,
+				3FD2FCAD2725E5520093BE62 /* BuildScreenView.swift in Sources */,
 				3FF276182721AB1700701113 /* TokenFigmaScreenView.swift in Sources */,
 				3F2BE9DB270C99CA0051C910 /* CodableHelper.swift in Sources */,
 				3F2BE9DF270C99D40051C910 /* Configuration.swift in Sources */,
