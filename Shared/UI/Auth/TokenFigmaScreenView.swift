@@ -9,8 +9,13 @@ import SwiftUI
 
 struct TokenFigmaScreenView: View {
     @Environment(\.openURL) private var openURL
-    @Binding var token: String?
     @State var tokenState: String = ""
+    
+    @State private var isLoading: Bool = false
+    @State private var isError: Bool = false
+    @State private var error: Error?
+    
+    var onCompletion: (() -> Void)?
     
     var body: some View {
         VStack {
@@ -62,13 +67,34 @@ struct TokenFigmaScreenView: View {
             
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        
+        .alert(isPresented: $isError) {
+            Alert(title: Text("Error"),
+                  message: Text(error?.localizedDescription ?? "Unknown error"), dismissButton: .cancel() {
+                error = nil
+                isError = false
+            })
+        }
+    }
+    
+    private func checkToken(_ token: String) {
+        isLoading = true
+        SwaggerClientAPI.customHeaders["Authorization"] = token
+        UserAPI.userProfile { data, error in
+            isLoading = false
+            SwaggerClientAPI.customHeaders["Authorization"] = token
+            if let error = error {
+                self.error = error
+                self.isError = true
+            } else {
+                TokenManager.shared.setToken(token)
+                onCompletion?()
+            }
+        }
     }
 }
 
 struct TokenFigmaScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        TokenFigmaScreenView(token: .constant(nil))
-            
+        TokenFigmaScreenView()
     }
 }

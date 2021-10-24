@@ -18,6 +18,7 @@ protocol BaseViewModel: ObservableObject {
     associatedtype VALUE
     
     var state: BaseViewModelState<VALUE> { get set }
+    var tokenRefresher: AnyCancellable? { get set }
     
     func fetch(_ completion: @escaping ((VALUE?, Error?) -> Void))
     
@@ -45,6 +46,14 @@ extension BaseViewModel {
             } else {
                 self.state = .error(error)
             }
+        }
+        
+        if tokenRefresher == nil {
+            tokenRefresher = TokenManager.shared.$currentToken
+                .dropFirst()
+                .sink { [weak self] value in
+                    self?.refresh()
+                }
         }
     }
 }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AccountsScreenView: View {
     @State private var showingSheet = false
+    @StateObject private var tokenManager = TokenManager.shared
     
     var body: some View {
         VStack {
@@ -22,11 +23,27 @@ struct AccountsScreenView: View {
                 }
                 .padding()
                 .sheet(isPresented: $showingSheet) {
-                    TokenScreenView(token: .constant(nil))
+                    TokenFigmaScreenView {
+                        showingSheet = false
+                    }
                 }
             }
-            List(0..<5) { _ in
-                Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            
+            ScrollView {
+                LazyVStack {
+                    ForEach(tokenManager.tokens, id: \.self) { token in
+                        Button {
+                            tokenManager.setToken(token)
+                        } label: {
+                            Text(token)
+                            if token == tokenManager.currentToken {
+                                Image(systemName: "checkmark")
+                            }
+                        }
+                        .buttonStyle(.plain)
+                        
+                    }
+                }
             }
         }
         

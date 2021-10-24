@@ -11,11 +11,12 @@ import Combine
 import Models
 
 class MainCoordinator: ObservableObject {
+//    var tokenManager = TokenManager()
     @Published var token: String?
     @Published var user: Result<V0UserProfileRespModel, Error>?
     private var tokenSaver: AnyCancellable?
     init() {
-        token = UserDefaults.standard.token
+        token = UserDefaults.standard.currentToken
         tokenSaver = $token.sink { [weak self] token in
             guard let self = self else { return }
             UserDefaults.standard.token = token

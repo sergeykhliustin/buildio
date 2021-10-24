@@ -7,8 +7,11 @@
 
 import Foundation
 import Models
+import Combine
 
 class ProfileViewModel: BaseViewModel {
+    var tokenRefresher: AnyCancellable?
+    
     @Published var state: BaseViewModelState<V0UserProfileDataModel> = .loading
     
     init() {

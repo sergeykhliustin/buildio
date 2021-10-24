@@ -7,8 +7,11 @@
 
 import Foundation
 import Models
+import Combine
 
 class BuildsViewModel: PagingViewModel {
+    var tokenRefresher: AnyCancellable?
+    
     @Published var isLoadingPage: Bool = false
     @Published var errorLoadingPage: Error? = nil
     @Published var state: BaseViewModelState<Array<V0BuildListAllResponseItemModel>> = .loading

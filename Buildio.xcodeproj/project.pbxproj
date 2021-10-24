@@ -50,14 +50,10 @@
 		3FCC459D27075AE80001A9C2 /* TokenScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC459B27075AE80001A9C2 /* TokenScreenView.swift */; };
 		3FCC45A227075D170001A9C2 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45A127075D170001A9C2 /* Coordinator.swift */; };
 		3FCC45A327075D170001A9C2 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45A127075D170001A9C2 /* Coordinator.swift */; };
-		3FCC45A627075EDF0001A9C2 /* UserDefaults+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45A527075EDF0001A9C2 /* UserDefaults+Additions.swift */; };
-		3FCC45A727075EDF0001A9C2 /* UserDefaults+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45A527075EDF0001A9C2 /* UserDefaults+Additions.swift */; };
 		3FCC45A927075F690001A9C2 /* FullscreenLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45A827075F690001A9C2 /* FullscreenLoadingView.swift */; };
 		3FCC45AA27075F690001A9C2 /* FullscreenLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45A827075F690001A9C2 /* FullscreenLoadingView.swift */; };
 		3FCC45AD270767370001A9C2 /* MainCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45AC270767370001A9C2 /* MainCoordinatorView.swift */; };
 		3FCC45AE270767370001A9C2 /* MainCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45AC270767370001A9C2 /* MainCoordinatorView.swift */; };
-		3FCC45B0270767480001A9C2 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45AF270767480001A9C2 /* MainCoordinator.swift */; };
-		3FCC45B1270767480001A9C2 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45AF270767480001A9C2 /* MainCoordinator.swift */; };
 		3FCC45B427078D250001A9C2 /* RootNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45B327078D250001A9C2 /* RootNavigationView.swift */; };
 		3FCC45B527078D250001A9C2 /* RootNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45B327078D250001A9C2 /* RootNavigationView.swift */; };
 		3FCC45B827078E040001A9C2 /* ProfileScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45B727078E040001A9C2 /* ProfileScreenView.swift */; };
@@ -76,6 +72,8 @@
 		3FD2FCA92724C7520093BE62 /* PagingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD2FCA72724C7510093BE62 /* PagingViewModel.swift */; };
 		3FD2FCAC2725E5520093BE62 /* BuildScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD2FCAB2725E5520093BE62 /* BuildScreenView.swift */; };
 		3FD2FCAD2725E5520093BE62 /* BuildScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD2FCAB2725E5520093BE62 /* BuildScreenView.swift */; };
+		3FD2FCAF272604C90093BE62 /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD2FCAE272604C90093BE62 /* TokenManager.swift */; };
+		3FD2FCB0272604C90093BE62 /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD2FCAE272604C90093BE62 /* TokenManager.swift */; };
 		3FD85D0E2721CAC200E894E8 /* SubmitButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD85D0D2721CAC200E894E8 /* SubmitButtonStyle.swift */; };
 		3FD85D0F2721CAC200E894E8 /* SubmitButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD85D0D2721CAC200E894E8 /* SubmitButtonStyle.swift */; };
 		3FD85D112721CF6F00E894E8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD85D102721CF6F00E894E8 /* Color.swift */; };
@@ -134,7 +132,6 @@
 		3FA5136D270B9D6900A5B881 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		3FCC459B27075AE80001A9C2 /* TokenScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenScreenView.swift; sourceTree = "<group>"; };
 		3FCC45A127075D170001A9C2 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
-		3FCC45A527075EDF0001A9C2 /* UserDefaults+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Additions.swift"; sourceTree = "<group>"; };
 		3FCC45A827075F690001A9C2 /* FullscreenLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullscreenLoadingView.swift; sourceTree = "<group>"; };
 		3FCC45AC270767370001A9C2 /* MainCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorView.swift; sourceTree = "<group>"; };
 		3FCC45AF270767480001A9C2 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
@@ -147,6 +144,7 @@
 		3FCC45C7270797E30001A9C2 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		3FD2FCA72724C7510093BE62 /* PagingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingViewModel.swift; sourceTree = "<group>"; };
 		3FD2FCAB2725E5520093BE62 /* BuildScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildScreenView.swift; sourceTree = "<group>"; };
+		3FD2FCAE272604C90093BE62 /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
 		3FD85D0D2721CAC200E894E8 /* SubmitButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitButtonStyle.swift; sourceTree = "<group>"; };
 		3FD85D102721CF6F00E894E8 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		3FD85D132721D53600E894E8 /* ClearButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearButton.swift; sourceTree = "<group>"; };
@@ -269,7 +267,6 @@
 		3FCC45A427075ED40001A9C2 /* Additions */ = {
 			isa = PBXGroup;
 			children = (
-				3FCC45A527075EDF0001A9C2 /* UserDefaults+Additions.swift */,
 				3FD85D102721CF6F00E894E8 /* Color.swift */,
 			);
 			path = Additions;
@@ -334,6 +331,7 @@
 		3FE7B54327072C1C00A6D8E1 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				3FD2FCAE272604C90093BE62 /* TokenManager.swift */,
 				3FA5136C270B9D5100A5B881 /* Logger */,
 				3FCC45AB2707672B0001A9C2 /* Coordinator */,
 				3FCC45A427075ED40001A9C2 /* Additions */,
@@ -604,6 +602,7 @@
 				3F2BE9E5270CA5E00051C910 /* TabsScreenView.swift in Sources */,
 				3FE7B7342707350E00A6D8E1 /* OrganizationsAPI.swift in Sources */,
 				3FE7B7362707350E00A6D8E1 /* TestDevicesAPI.swift in Sources */,
+				3FD2FCAF272604C90093BE62 /* TokenManager.swift in Sources */,
 				3FE7B7242707350E00A6D8E1 /* APIHelper.swift in Sources */,
 				3FE7B7292707350E00A6D8E1 /* ProvisioningProfileAPI.swift in Sources */,
 				3F2BE9E2270CA0C00051C910 /* AccountsScreenView.swift in Sources */,
@@ -617,9 +616,7 @@
 				3FE7B55627072C1E00A6D8E1 /* ContentView.swift in Sources */,
 				3FE7B7322707350E00A6D8E1 /* BuildArtifactAPI.swift in Sources */,
 				3FE7B7A72707350E00A6D8E1 /* Configuration.swift in Sources */,
-				3FCC45A627075EDF0001A9C2 /* UserDefaults+Additions.swift in Sources */,
 				3FCC45A227075D170001A9C2 /* Coordinator.swift in Sources */,
-				3FCC45B0270767480001A9C2 /* MainCoordinator.swift in Sources */,
 				3FE7B7332707350E00A6D8E1 /* GenericProjectFileAPI.swift in Sources */,
 				3FD85D0E2721CAC200E894E8 /* SubmitButtonStyle.swift in Sources */,
 				3FCC45BB27078EB40001A9C2 /* ProfileViewModel.swift in Sources */,
@@ -667,6 +664,7 @@
 				3F2BE9E6270CA5E00051C910 /* TabsScreenView.swift in Sources */,
 				3F2BE9D8270C99C20051C910 /* AppleApiCredentialsAPI.swift in Sources */,
 				3FCC45C32707924D0001A9C2 /* BuildsViewModel.swift in Sources */,
+				3FD2FCB0272604C90093BE62 /* TokenManager.swift in Sources */,
 				3F2BE9DE270C99D10051C910 /* JSONEncodingHelper.swift in Sources */,
 				3F2BE9DA270C99C70051C910 /* OutgoingWebhookAPI.swift in Sources */,
 				3F2BE9E3270CA0C00051C910 /* AccountsScreenView.swift in Sources */,
@@ -704,14 +702,12 @@
 				3F2BE9CE270C99A80051C910 /* BuildRequestAPI.swift in Sources */,
 				3FD85D122721CF6F00E894E8 /* Color.swift in Sources */,
 				3F2BE9D6270C99BD0051C910 /* ApplicationAPI.swift in Sources */,
-				3FCC45A727075EDF0001A9C2 /* UserDefaults+Additions.swift in Sources */,
 				3F2BE9C9270C999B0051C910 /* AvatarCandidateAPI.swift in Sources */,
 				3F2BE9D4270C99B80051C910 /* GenericProjectFileAPI.swift in Sources */,
 				3F2BE9CA270C999D0051C910 /* ProvisioningProfileAPI.swift in Sources */,
 				3FCC45BC27078EB40001A9C2 /* ProfileViewModel.swift in Sources */,
 				3FCC459D27075AE80001A9C2 /* TokenScreenView.swift in Sources */,
 				3FCC45C9270797E30001A9C2 /* BaseView.swift in Sources */,
-				3FCC45B1270767480001A9C2 /* MainCoordinator.swift in Sources */,
 				3FCC45AA27075F690001A9C2 /* FullscreenLoadingView.swift in Sources */,
 				3FD85D182721D84F00E894E8 /* PasteButton.swift in Sources */,
 				3F2BE9C8270C99980051C910 /* UserAPI.swift in Sources */,
@@ -853,6 +849,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -883,6 +880,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

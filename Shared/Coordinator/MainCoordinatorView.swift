@@ -8,15 +8,13 @@
 import SwiftUI
 
 struct MainCoordinatorView: View {
-    @ObservedObject var coordinator = MainCoordinator()
+    @ObservedObject var tokenManager = TokenManager.shared
     
     var body: some View {
-        if coordinator.token == nil {
-            TokenFigmaScreenView(token: $coordinator.token)
-        } else if let me = coordinator.user {
-            RootNavigationView()
+        if tokenManager.currentToken == nil {
+            TokenFigmaScreenView()
         } else {
-            FullscreenLoadingView()
+            RootNavigationView()
         }
     }
 }
