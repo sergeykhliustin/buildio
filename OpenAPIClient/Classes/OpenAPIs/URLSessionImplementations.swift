@@ -149,7 +149,16 @@ open class URLSessionRequestBuilder<T>: RequestBuilder<T> {
                     }
                 } else {
                     apiResponseQueue.async {
-                        self.processRequestResponse(urlRequest: request, data: data, response: response, error: error, completion: completion)
+                        let requestUrl = request.url?.absoluteString ?? ""
+                        let wrappedCompletion: (_ result: Swift.Result<Response<T>, ErrorResponse>) -> Void = { result in
+                            completion(result)
+                            logger.info("Request: \(T.self), \(requestUrl)")
+                            if case .failure(let error) = result {
+                                logger.error(error)
+                            }
+                        }
+
+                        self.processRequestResponse(urlRequest: request, data: data, response: response, error: error, completion: wrappedCompletion)
                         cleanupRequest()
                     }
                 }

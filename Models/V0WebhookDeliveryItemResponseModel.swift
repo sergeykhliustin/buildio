@@ -16,12 +16,12 @@ public struct V0WebhookDeliveryItemResponseModel: Codable, Hashable {
     public var requestUrl: String?
     public var responseBody: String?
     public var responseHeaders: String?
-    public var responseHttpStatus: NullsInt64?
-    public var responseSeconds: NullsInt64?
+    public var responseHttpStatus: Int?
+    public var responseSeconds: Int?
     public var slug: String?
     public var updatedAt: String?
 
-    public init(createdAt: String? = nil, requestHeaders: String? = nil, requestPayload: String? = nil, requestUrl: String? = nil, responseBody: String? = nil, responseHeaders: String? = nil, responseHttpStatus: NullsInt64? = nil, responseSeconds: NullsInt64? = nil, slug: String? = nil, updatedAt: String? = nil) {
+    public init(createdAt: String? = nil, requestHeaders: String? = nil, requestPayload: String? = nil, requestUrl: String? = nil, responseBody: String? = nil, responseHeaders: String? = nil, responseHttpStatus: Int? = nil, responseSeconds: Int? = nil, slug: String? = nil, updatedAt: String? = nil) {
         self.createdAt = createdAt
         self.requestHeaders = requestHeaders
         self.requestPayload = requestPayload

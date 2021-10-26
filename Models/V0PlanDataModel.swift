@@ -14,9 +14,9 @@ public struct V0PlanDataModel: Codable, Hashable {
     public var expiresAt: String?
     public var id: String?
     public var name: String?
-    public var price: NullsInt64?
+    public var price: Int?
 
-    public init(containerCount: Int? = nil, expiresAt: String? = nil, id: String? = nil, name: String? = nil, price: NullsInt64? = nil) {
+    public init(containerCount: Int? = nil, expiresAt: String? = nil, id: String? = nil, name: String? = nil, price: Int? = nil) {
         self.containerCount = containerCount
         self.expiresAt = expiresAt
         self.id = id
