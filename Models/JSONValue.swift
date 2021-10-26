@@ -8,7 +8,7 @@
 import Foundation
 
 
-public enum JSONValue: Codable, Equatable {
+public enum JSONValue: Codable, Equatable, Hashable {
     case string(String)
     case int(Int)
     case double(Double)

@@ -26,7 +26,7 @@ class TokenManager: ObservableObject {
         self.tokens = UserDefaults.standard.tokens
         self.currentToken = UserDefaults.standard.currentToken
         if let currentToken = self.currentToken {
-            SwaggerClientAPI.customHeaders = ["Authorization": currentToken]
+            OpenAPIClientAPI.customHeaders = ["Authorization": currentToken]
             if self.tokens.isEmpty {
                 self.tokens = [currentToken]
             }
@@ -34,7 +34,7 @@ class TokenManager: ObservableObject {
     }
     
     func setToken(_ token: String) {
-        SwaggerClientAPI.customHeaders = ["Authorization": token]
+        OpenAPIClientAPI.customHeaders = ["Authorization": token]
         if !self.tokens.contains(token) {
             self.tokens.append(token)
         }

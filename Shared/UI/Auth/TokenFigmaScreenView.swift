@@ -78,10 +78,10 @@ struct TokenFigmaScreenView: View {
     
     private func checkToken(_ token: String) {
         isLoading = true
-        SwaggerClientAPI.customHeaders["Authorization"] = token
+        OpenAPIClientAPI.customHeaders["Authorization"] = token
         UserAPI.userProfile { data, error in
             isLoading = false
-            SwaggerClientAPI.customHeaders["Authorization"] = token
+            OpenAPIClientAPI.customHeaders["Authorization"] = token
             if let error = error {
                 self.error = error
                 self.isError = true

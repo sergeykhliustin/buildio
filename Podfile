@@ -5,7 +5,6 @@ def shared
   use_modular_headers!
   
   pod 'SwiftyBeaver', '~> 1.9.5'
-  pod 'Alamofire', '~> 4.9.0'
   pod 'Models', :path => './'
 end
 

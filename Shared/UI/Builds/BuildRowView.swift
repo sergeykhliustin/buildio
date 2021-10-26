@@ -14,7 +14,7 @@ struct BuildRowView: View {
     
     var body: some View {
         HStack(alignment: .top) {
-            let statusColor = model.status?.color ?? Color.white.opacity(0)
+            let statusColor = model.status.color
             ZStack(alignment: .trailing) {
                 RoundedRectangle(cornerRadius: 5)
                     .fill(statusColor)
@@ -165,11 +165,11 @@ struct BuildRowView: View {
                     
                     if let params = model.originalBuildParams {
                         Group {
-//                            let text = "{" + params.map({ ["\"\($0.key)\"", "\"\($0.value)\""].joined(separator: ":") }).joined(separator: ",") + "}"
+                            let text = "{" + params.map({ ["\"\($0.key)\"", "\"\($0.value)\""].joined(separator: ":") }).joined(separator: ",") + "}"
                             Text("Build parameters:")
                             
                             Group {
-                                Text(params)
+                                Text(text)
                                     .lineLimit(nil)
                                     .font(.subheadline)
                                     .foregroundColor(Color.b_Primary)
@@ -210,7 +210,7 @@ struct BuildRowView_Previews: PreviewProvider {
             isOnHold: false,
             isProcessed: true,
             machineTypeId: "standard",
-            originalBuildParams: "params", //["branch" : "develop", "workflow_id": "ttestflight"],
+            originalBuildParams: ["branch" : "develop", "workflow_id": "ttestflight"],
             pullRequestId: nil,
             pullRequestTargetBranch: nil,
             pullRequestViewUrl: nil,

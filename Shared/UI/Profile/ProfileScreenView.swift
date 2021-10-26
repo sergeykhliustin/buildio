@@ -20,7 +20,7 @@ struct ProfileScreenView: View, BaseView {
             }
             
             Spacer()
-            Text(value.email)
+            Text(value.email ?? "")
             Spacer()
         }
     }
