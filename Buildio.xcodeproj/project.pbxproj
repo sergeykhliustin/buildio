@@ -42,8 +42,8 @@
 		3F70EBBC2714E43600A4841E /* BTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F70EBBA2714E43600A4841E /* BTextField.swift */; };
 		3F70EBBF2714EAAE00A4841E /* Color+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F70EBBE2714EAAE00A4841E /* Color+Additions.swift */; };
 		3F70EBC02714EAAE00A4841E /* Color+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F70EBBE2714EAAE00A4841E /* Color+Additions.swift */; };
-		3FA5136A270B777D00A5B881 /* URLSessionRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA51369270B777D00A5B881 /* URLSessionRequestBuilder.swift */; };
-		3FA5136B270B777D00A5B881 /* URLSessionRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA51369270B777D00A5B881 /* URLSessionRequestBuilder.swift */; };
+		3FA5136A270B777D00A5B881 /* URLSessionRequestBuilderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA51369270B777D00A5B881 /* URLSessionRequestBuilderFactory.swift */; };
+		3FA5136B270B777D00A5B881 /* URLSessionRequestBuilderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA51369270B777D00A5B881 /* URLSessionRequestBuilderFactory.swift */; };
 		3FA5136E270B9D6900A5B881 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5136D270B9D6900A5B881 /* Logger.swift */; };
 		3FA5136F270B9D6900A5B881 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5136D270B9D6900A5B881 /* Logger.swift */; };
 		3FCC459C27075AE80001A9C2 /* TokenScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC459B27075AE80001A9C2 /* TokenScreenView.swift */; };
@@ -82,6 +82,10 @@
 		3FD85D152721D53600E894E8 /* ClearButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD85D132721D53600E894E8 /* ClearButton.swift */; };
 		3FD85D172721D84F00E894E8 /* PasteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD85D162721D84F00E894E8 /* PasteButton.swift */; };
 		3FD85D182721D84F00E894E8 /* PasteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD85D162721D84F00E894E8 /* PasteButton.swift */; };
+		3FD85D1A27221A3C00E894E8 /* BuildRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD85D1927221A3C00E894E8 /* BuildRowView.swift */; };
+		3FD85D1B27221A3C00E894E8 /* BuildRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD85D1927221A3C00E894E8 /* BuildRowView.swift */; };
+		3FE10799272839A900B533EE /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE10798272839A900B533EE /* TagView.swift */; };
+		3FE1079A272839A900B533EE /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE10798272839A900B533EE /* TagView.swift */; };
 		3FE7B55427072C1E00A6D8E1 /* BuildioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B54427072C1C00A6D8E1 /* BuildioApp.swift */; };
 		3FE7B55527072C1E00A6D8E1 /* BuildioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B54427072C1C00A6D8E1 /* BuildioApp.swift */; };
 		3FE7B55627072C1E00A6D8E1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B54527072C1C00A6D8E1 /* ContentView.swift */; };
@@ -128,7 +132,7 @@
 		3F2BE9E4270CA5E00051C910 /* TabsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsScreenView.swift; sourceTree = "<group>"; };
 		3F70EBBA2714E43600A4841E /* BTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTextField.swift; sourceTree = "<group>"; };
 		3F70EBBE2714EAAE00A4841E /* Color+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Additions.swift"; sourceTree = "<group>"; };
-		3FA51369270B777D00A5B881 /* URLSessionRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionRequestBuilder.swift; sourceTree = "<group>"; };
+		3FA51369270B777D00A5B881 /* URLSessionRequestBuilderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionRequestBuilderFactory.swift; sourceTree = "<group>"; };
 		3FA5136D270B9D6900A5B881 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		3FCC459B27075AE80001A9C2 /* TokenScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenScreenView.swift; sourceTree = "<group>"; };
 		3FCC45A127075D170001A9C2 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -149,6 +153,8 @@
 		3FD85D102721CF6F00E894E8 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		3FD85D132721D53600E894E8 /* ClearButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearButton.swift; sourceTree = "<group>"; };
 		3FD85D162721D84F00E894E8 /* PasteButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasteButton.swift; sourceTree = "<group>"; };
+		3FD85D1927221A3C00E894E8 /* BuildRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildRowView.swift; sourceTree = "<group>"; };
+		3FE10798272839A900B533EE /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		3FE7B54427072C1C00A6D8E1 /* BuildioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildioApp.swift; sourceTree = "<group>"; };
 		3FE7B54527072C1C00A6D8E1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3FE7B54627072C1D00A6D8E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -224,6 +230,7 @@
 				3FD85D0D2721CAC200E894E8 /* SubmitButtonStyle.swift */,
 				3FD85D132721D53600E894E8 /* ClearButton.swift */,
 				3FD85D162721D84F00E894E8 /* PasteButton.swift */,
+				3FE10798272839A900B533EE /* TagView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -379,7 +386,7 @@
 		3FE7B69D2707350E00A6D8E1 /* Swaggers */ = {
 			isa = PBXGroup;
 			children = (
-				3FA51369270B777D00A5B881 /* URLSessionRequestBuilder.swift */,
+				3FA51369270B777D00A5B881 /* URLSessionRequestBuilderFactory.swift */,
 				3FE7B69E2707350E00A6D8E1 /* APIHelper.swift */,
 				3FE7B69F2707350E00A6D8E1 /* AlamofireImplementations.swift */,
 				3FE7B6A02707350E00A6D8E1 /* JSONValue.swift */,
@@ -634,6 +641,7 @@
 				3FE7B73C2707350E00A6D8E1 /* APIs.swift in Sources */,
 				3FE7B7352707350E00A6D8E1 /* ApplicationAPI.swift in Sources */,
 				3FE7B7372707350E00A6D8E1 /* AppleApiCredentialsAPI.swift in Sources */,
+				3FE10799272839A900B533EE /* TagView.swift in Sources */,
 				3FCC45BF2707923F0001A9C2 /* BuildsScreenView.swift in Sources */,
 				3FE7B72A2707350E00A6D8E1 /* BuildCertificateAPI.swift in Sources */,
 				3FD85D112721CF6F00E894E8 /* Color.swift in Sources */,
@@ -649,7 +657,7 @@
 				3FE7B72E2707350E00A6D8E1 /* BuildsAPI.swift in Sources */,
 				3FD85D172721D84F00E894E8 /* PasteButton.swift in Sources */,
 				3FCC45A927075F690001A9C2 /* FullscreenLoadingView.swift in Sources */,
-				3FA5136A270B777D00A5B881 /* URLSessionRequestBuilder.swift in Sources */,
+				3FA5136A270B777D00A5B881 /* URLSessionRequestBuilderFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -658,7 +666,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F2BE9C5270C998E0051C910 /* APIHelper.swift in Sources */,
-				3FA5136B270B777D00A5B881 /* URLSessionRequestBuilder.swift in Sources */,
+				3FA5136B270B777D00A5B881 /* URLSessionRequestBuilderFactory.swift in Sources */,
 				3FCC45AE270767370001A9C2 /* MainCoordinatorView.swift in Sources */,
 				3F2BE9D2270C99B20051C910 /* WebhookDeliveryItemAPI.swift in Sources */,
 				3F2BE9E6270CA5E00051C910 /* TabsScreenView.swift in Sources */,
@@ -696,6 +704,7 @@
 				3FCC45B527078D250001A9C2 /* RootNavigationView.swift in Sources */,
 				3F2BE9D5270C99BA0051C910 /* OrganizationsAPI.swift in Sources */,
 				3FA5136F270B9D6900A5B881 /* Logger.swift in Sources */,
+				3FE1079A272839A900B533EE /* TagView.swift in Sources */,
 				3FCC45C02707923F0001A9C2 /* BuildsScreenView.swift in Sources */,
 				3FE7B55527072C1E00A6D8E1 /* BuildioApp.swift in Sources */,
 				3F2BE9D0270C99AD0051C910 /* PipelinesAPI.swift in Sources */,

@@ -28,13 +28,13 @@ public struct V0BuildListAllResponseItemModel: Codable, Identifiable, Hashable {
     public var commitHash: String?
     public var commitMessage: String?
     public var commitViewUrl: String?
-    public var creditCost: NullsInt64?
+    public var creditCost: Int?
     public var environmentPrepareFinishedAt: String?
     public var finishedAt: String?
     public var isOnHold: Bool?
     public var isProcessed: Bool?
     public var machineTypeId: String?
-    public var originalBuildParams: [String: String]?
+    public var originalBuildParams: String?
     public var pullRequestId: Int?
     public var pullRequestTargetBranch: String?
     public var pullRequestViewUrl: String?
@@ -43,13 +43,13 @@ public struct V0BuildListAllResponseItemModel: Codable, Identifiable, Hashable {
     public var stackIdentifier: String?
     public var startedOnWorkerAt: String?
     public var status: Status?
-    public var statusText: String?
+    public var statusText: String
     public var tag: String?
     public var triggeredAt: String?
     public var triggeredBy: String?
     public var triggeredWorkflow: String?
 
-    public init(abortReason: String? = nil, branch: String? = nil, buildNumber: Int? = nil, commitHash: String? = nil, commitMessage: String? = nil, commitViewUrl: String? = nil, creditCost: NullsInt64? = nil, environmentPrepareFinishedAt: String? = nil, finishedAt: String? = nil, isOnHold: Bool? = nil, isProcessed: Bool? = nil, machineTypeId: String? = nil, originalBuildParams: [String: String]? = nil, pullRequestId: Int? = nil, pullRequestTargetBranch: String? = nil, pullRequestViewUrl: String? = nil, repository: V0AppResponseItemModel? = nil, slug: String = "", stackIdentifier: String? = nil, startedOnWorkerAt: String? = nil, status: Status? = nil, statusText: String? = nil, tag: String? = nil, triggeredAt: String? = nil, triggeredBy: String? = nil, triggeredWorkflow: String? = nil) {
+    public init(abortReason: String? = nil, branch: String? = nil, buildNumber: Int? = nil, commitHash: String? = nil, commitMessage: String? = nil, commitViewUrl: String? = nil, creditCost: Int? = nil, environmentPrepareFinishedAt: String? = nil, finishedAt: String? = nil, isOnHold: Bool? = nil, isProcessed: Bool? = nil, machineTypeId: String? = nil, originalBuildParams: String? = nil, pullRequestId: Int? = nil, pullRequestTargetBranch: String? = nil, pullRequestViewUrl: String? = nil, repository: V0AppResponseItemModel? = nil, slug: String = "", stackIdentifier: String? = nil, startedOnWorkerAt: String? = nil, status: Status? = nil, statusText: String = "", tag: String? = nil, triggeredAt: String? = nil, triggeredBy: String? = nil, triggeredWorkflow: String? = nil) {
         self.abortReason = abortReason
         self.branch = branch
         self.buildNumber = buildNumber
@@ -91,7 +91,7 @@ public struct V0BuildListAllResponseItemModel: Codable, Identifiable, Hashable {
         case isOnHold = "is_on_hold"
         case isProcessed = "is_processed"
         case machineTypeId = "machine_type_id"
-        case originalBuildParams = "original_build_params"
+//        case originalBuildParams = "original_build_params"
         case pullRequestId = "pull_request_id"
         case pullRequestTargetBranch = "pull_request_target_branch"
         case pullRequestViewUrl = "pull_request_view_url"
@@ -109,6 +109,7 @@ public struct V0BuildListAllResponseItemModel: Codable, Identifiable, Hashable {
     
     
     @frozen public enum Status: Int, Codable {
+        case running = 0
         case success = 1
         case error = 2
         case aborted = 3

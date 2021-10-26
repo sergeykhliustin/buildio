@@ -26,30 +26,33 @@ struct BuildRowView: View {
             
             VStack(alignment: .leading) {
                 Group {
-                    HStack {
-                        if let statusText = model.statusText {
-                            Text(statusText.capitalized)
+                    TagView(spacing: 4, content: { [
+                        AnyView(
+                            Text(model.statusText.capitalized)
                                 .foregroundColor(statusColor)
-                        }
+                                .padding(8)
+                        ),
                         
-                        if let branch = model.branch {
-                            ZStack {
-                                Text(branch)
+                        AnyView(
+                            Group {
+                                Text(model.branch ?? "No branch")
                                     .foregroundColor(.white)
                                     .padding(8)
+                                    .lineLimit(1)
                             }
-                            .background(Color(red: 0.27, green: 0.75, blue: 0.91))
-                            .cornerRadius(4)
-                        }
+                                .background(Color(red: 0.27, green: 0.75, blue: 0.91))
+                                .cornerRadius(4)
+                        ),
                         
-                        if let workflow = model.triggeredWorkflow {
-                            Text(workflow)
+                        AnyView(
+                            Text(model.triggeredWorkflow ?? "No workflow")
                                 .padding(8)
                                 .border(Color.b_BorderLight, width: 2)
                                 .cornerRadius(4)
-                        }
-                    }
-                    .font(.subheadline)
+                        ),
+                    ]
+                    })
+                        .font(.subheadline)
                     
                     Rectangle()
                         .fill(Color(red: 0.80, green: 0.80, blue: 0.80))
@@ -162,11 +165,11 @@ struct BuildRowView: View {
                     
                     if let params = model.originalBuildParams {
                         Group {
-                            let text = "{" + params.map({ ["\"\($0.key)\"", "\"\($0.value)\""].joined(separator: ":") }).joined(separator: ",") + "}"
+//                            let text = "{" + params.map({ ["\"\($0.key)\"", "\"\($0.value)\""].joined(separator: ":") }).joined(separator: ",") + "}"
                             Text("Build parameters:")
                             
                             Group {
-                                Text(text)
+                                Text(params)
                                     .lineLimit(nil)
                                     .font(.subheadline)
                                     .foregroundColor(Color.b_Primary)
@@ -207,7 +210,7 @@ struct BuildRowView_Previews: PreviewProvider {
             isOnHold: false,
             isProcessed: true,
             machineTypeId: "standard",
-            originalBuildParams: ["branch" : "develop", "workflow_id": "ttestflight"],
+            originalBuildParams: "params", //["branch" : "develop", "workflow_id": "ttestflight"],
             pullRequestId: nil,
             pullRequestTargetBranch: nil,
             pullRequestViewUrl: nil,
