@@ -7,40 +7,103 @@
 
 import Foundation
 import Combine
+import KeychainAccess
+
+struct Token: Equatable {
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        return lhs.token == rhs.token && lhs.token == rhs.token
+    }
+    
+    let token: String
+    let email: String
+    var current: Bool
+    
+    init(token: String, email: String) {
+        self.token = token
+        self.email = email
+        self.current = false
+    }
+    
+    fileprivate init(token: String, email: String, current: Bool) {
+        self.token = token
+        self.email = email
+        self.current = current
+    }
+}
 
 class TokenManager: ObservableObject {
-    @Published private(set) var tokens: [String] {
+    private static let keychain = Keychain()
+    
+    @Published private(set) var tokens: [Token] {
         didSet {
-            UserDefaults.standard.tokens = tokens
+            saveTokens()
         }
     }
-    @Published private(set) var currentToken: String? {
+    
+    @Published var token: Token? = nil {
+        willSet {
+            if let token = newValue?.token {
+                OpenAPIClientAPI.customHeaders = ["Authorization": token]
+            } else {
+                OpenAPIClientAPI.customHeaders = [:]
+            }
+        }
         didSet {
-            UserDefaults.standard.currentToken = currentToken
+            guard let newValue = token else { return }
+            
+            var tokens = tokens
+            if !tokens.contains(newValue) {
+                tokens.append(newValue)
+            }
+            
+            self.tokens = tokens.reduce([Token](), { partialResult, token in
+                var result = partialResult
+                var token = token
+                token.current = token.token == newValue.token
+                result.append(token)
+                return result
+            })
         }
     }
     
     static let shared = TokenManager()
     
     private init() {
-        self.tokens = UserDefaults.standard.tokens
-        self.currentToken = UserDefaults.standard.currentToken
-        if let currentToken = self.currentToken {
+        self.tokens = TokenManager.getTokens()
+        self.token = self.tokens.first(where: { $0.current })
+        
+        if let currentToken = self.token?.token {
             OpenAPIClientAPI.customHeaders = ["Authorization": currentToken]
-            if self.tokens.isEmpty {
-                self.tokens = [currentToken]
+        }
+    }
+    
+    private static func getTokens() -> [Token] {
+        let keychain = TokenManager.keychain
+        return keychain.allKeys().reduce([Token]()) { partialResult, key in
+            var result = partialResult
+            if let token = keychain[key] {
+                let current = keychain[attributes: key]?.label == "current"
+                result.append(Token(token: token, email: key, current: current))
+            }
+            return result
+        }
+    }
+    
+    private func saveTokens() {
+        var keychain = TokenManager.keychain
+        tokens.forEach { token in
+            if token.current {
+                keychain = keychain.label("current")
+            }
+            do {
+               try keychain.set(token.token, key: token.email)
+            }
+            catch {
+                logger.error(error)
             }
         }
     }
     
-    func setToken(_ token: String) {
-        OpenAPIClientAPI.customHeaders = ["Authorization": token]
-        if !self.tokens.contains(token) {
-            self.tokens.append(token)
-        }
-        
-        self.currentToken = token
-    }
 }
 
 fileprivate extension UserDefaults {

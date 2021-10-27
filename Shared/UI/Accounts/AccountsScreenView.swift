@@ -12,37 +12,42 @@ struct AccountsScreenView: View {
     @StateObject private var tokenManager = TokenManager.shared
     
     var body: some View {
-        VStack {
-            HStack {
-                Spacer()
-                Button {
-                    showingSheet.toggle()
-                } label: {
-                    Image(systemName: "plus.circle")
-                        .imageScale(.large)
-                }
-                .padding()
-                .sheet(isPresented: $showingSheet) {
-                    TokenFigmaScreenView {
-                        showingSheet = false
-                    }
-                }
-            }
-            
-            ScrollView {
-                LazyVStack {
-                    ForEach(tokenManager.tokens, id: \.self) { token in
-                        Button {
-                            tokenManager.setToken(token)
-                        } label: {
-                            Text(token)
-                            if token == tokenManager.currentToken {
+        
+        ScrollView {
+            LazyVStack {
+                ForEach(tokenManager.tokens, id: \.token) { token in
+                    Button {
+                        tokenManager.token = token
+                    } label: {
+                        HStack {
+                            Text(token.email)
+                            Spacer()
+                            if token.current {
                                 Image(systemName: "checkmark")
                             }
                         }
-                        .buttonStyle(.plain)
-                        
+                        .padding(16)
+                        .border(Color.b_BorderLight, width: 1)
+                        .cornerRadius(4)
                     }
+                    .frame(alignment: .leading)
+                    .buttonStyle(.plain)
+                    
+                }
+            }
+            .padding(.horizontal, 16)
+        }
+        .toolbar {
+            Button {
+                showingSheet.toggle()
+            } label: {
+                Image(systemName: "plus.circle")
+                    .imageScale(.large)
+            }
+            .padding()
+            .sheet(isPresented: $showingSheet) {
+                TokenFigmaScreenView {
+                    showingSheet = false
                 }
             }
         }

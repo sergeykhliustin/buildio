@@ -24,9 +24,7 @@ struct TabsScreenView: View {
                 NavigationView {
                     BuildsScreenView()
                         .navigationTitle("Builds")
-                        .onTapGesture {
-                            selectedTab = 0
-                        }
+                        
                         .toolbar {
                             Button {
                                 withAnimation {
@@ -39,31 +37,41 @@ struct TabsScreenView: View {
                             .frame(width: 44, height: 44, alignment: .center)
                         }
                 }
+                .onTapGesture {
+                    selectedTab = 0
+                }
                 .tag(0)
                 .tabItem {
                     Image(systemName: "hammer.fill")
                     Text("Builds")
                 }
                 
-                AccountsScreenView()
-                    .onTapGesture {
-                        selectedTab = 1
-                    }
-                    .tag(1)
-                    .tabItem {
-                        Image(systemName: "ellipsis.rectangle")
-                        Text("Accounts")
-                    }
+                NavigationView {
+                    AccountsScreenView()
+                        .navigationTitle("Accounts")
+                        
+                }
+                .onTapGesture {
+                    selectedTab = 1
+                }
+                .tag(1)
+                .tabItem {
+                    Image(systemName: "ellipsis.rectangle")
+                    Text("Accounts")
+                }
                 
-                ProfileScreenView()
-                    .onTapGesture {
-                        selectedTab = 2
-                    }
-                    .tag(2)
-                    .tabItem {
-                        Image(systemName: "person.crop.circle.fill")
-                        Text("Profile")
-                    }
+                NavigationView {
+                    ProfileScreenView()
+                        .navigationTitle("Profile")
+                }
+                .onTapGesture {
+                    selectedTab = 2
+                }
+                .tag(2)
+                .tabItem {
+                    Image(systemName: "person.crop.circle.fill")
+                    Text("Profile")
+                }
             }
             
 

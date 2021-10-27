@@ -6,11 +6,20 @@ def shared
   
   pod 'SwiftyBeaver', '~> 1.9.5'
   pod 'Models', :path => './'
+  pod 'KeychainAccess', '~> 4.2.2'
+end
+
+def tests
+  inhibit_all_warnings!
+  use_modular_headers!
+  
+  pod 'SwiftyBeaver', '~> 1.9.5'
+  pod 'Models', :path => './'
 end
 
 target 'ModelsTests' do
   platform :osx, '10.15'
-  shared
+  tests
 end
 
 target 'Buildio (iOS)' do

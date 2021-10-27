@@ -49,7 +49,7 @@ extension BaseViewModel {
         }
         
         if tokenRefresher == nil {
-            tokenRefresher = TokenManager.shared.$currentToken
+            tokenRefresher = TokenManager.shared.$token
                 .dropFirst()
                 .sink { [weak self] value in
                     self?.refresh()

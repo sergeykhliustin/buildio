@@ -143,7 +143,6 @@
 		3FCC45A127075D170001A9C2 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		3FCC45A827075F690001A9C2 /* FullscreenLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullscreenLoadingView.swift; sourceTree = "<group>"; };
 		3FCC45AC270767370001A9C2 /* MainCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorView.swift; sourceTree = "<group>"; };
-		3FCC45AF270767480001A9C2 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		3FCC45B327078D250001A9C2 /* RootNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationView.swift; sourceTree = "<group>"; };
 		3FCC45B727078E040001A9C2 /* ProfileScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreenView.swift; sourceTree = "<group>"; };
 		3FCC45BA27078EB40001A9C2 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
@@ -307,7 +306,6 @@
 			isa = PBXGroup;
 			children = (
 				3FCC45AC270767370001A9C2 /* MainCoordinatorView.swift */,
-				3FCC45AF270767480001A9C2 /* MainCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";

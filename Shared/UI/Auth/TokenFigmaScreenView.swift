@@ -40,19 +40,23 @@ struct TokenFigmaScreenView: View {
                 BTextField("*******************", text: $tokenState)
                     .modifier(ClearButton(text: $tokenState))
                     .modifier(PasteButton(text: $tokenState))
-                
-                
-                Button {
-                    guard let url = URL(string: "https://app.bitrise.io/me/profile#/security") else {
-                        return
-                    }
-                    
-                    openURL(url)
-                } label: {
-                    HStack(spacing: 0) {
-                        Text("Get your token ").foregroundColor(.black)
-                            
-                        Text("here").foregroundColor(Color(hex: 0x760FC3))
+            }
+//            .padding(.horizontal, 16)
+            .background(Color.white)
+            
+            VStack(alignment: .center, spacing: 25) {
+                HStack(spacing: 0) {
+                    Text("Don't have one? ")
+                        .foregroundColor(.black)
+                        .font(.callout)
+                    Button {
+                        guard let url = URL(string: "https://app.bitrise.io/me/profile#/security") else {
+                            return
+                        }
+                        
+                        openURL(url)
+                    } label: {
+                        Text("Click here").foregroundColor(Color.b_ButtonPrimaryLight)
                     }
                     .font(.callout)
                 }
@@ -66,7 +70,8 @@ struct TokenFigmaScreenView: View {
                 .frame(alignment: .center)
             
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+//        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding(16)
         .alert(isPresented: $isError) {
             Alert(title: Text("Error"),
                   message: Text(error?.localizedDescription ?? "Unknown error"), dismissButton: .cancel() {
@@ -82,12 +87,12 @@ struct TokenFigmaScreenView: View {
         UserAPI.userProfile { data, error in
             isLoading = false
             OpenAPIClientAPI.customHeaders["Authorization"] = token
-            if let error = error {
+            if let email = data?.data?.email {
+                TokenManager.shared.token = Token(token: token, email: email)
+                onCompletion?()
+            } else {
                 self.error = error
                 self.isError = true
-            } else {
-                TokenManager.shared.setToken(token)
-                onCompletion?()
             }
         }
     }
@@ -96,5 +101,6 @@ struct TokenFigmaScreenView: View {
 struct TokenFigmaScreenView_Previews: PreviewProvider {
     static var previews: some View {
         TokenFigmaScreenView()
+            .previewDevice("iPhone 8")
     }
 }

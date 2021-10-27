@@ -11,7 +11,7 @@ struct MainCoordinatorView: View {
     @ObservedObject var tokenManager = TokenManager.shared
     
     var body: some View {
-        if tokenManager.currentToken == nil {
+        if tokenManager.token == nil {
             TokenFigmaScreenView()
         } else {
             RootNavigationView()
