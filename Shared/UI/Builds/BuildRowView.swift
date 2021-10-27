@@ -35,7 +35,7 @@ struct BuildRowView: View {
                         
                         AnyView(
                             Group {
-                                Text(model.branch ?? "No branch")
+                                Text(model.branch)
                                     .foregroundColor(.white)
                                     .padding(8)
                                     .lineLimit(1)
@@ -45,7 +45,7 @@ struct BuildRowView: View {
                         ),
                         
                         AnyView(
-                            Text(model.triggeredWorkflow ?? "No workflow")
+                            Text(model.triggeredWorkflow)
                                 .padding(8)
                                 .border(Color.b_BorderLight, width: 2)
                                 .cornerRadius(4)
@@ -60,11 +60,10 @@ struct BuildRowView: View {
                 }
                 
                 Group {
-                    if let triggeredAt = model.triggeredAt {
-                        Text("Triggered on \(triggeredAt)")
-                    }
                     
-                    Text("12m 17s")
+                    Text("Triggered on \(model.triggeredAt.full)")
+                    
+                    Text(model.triggeredAt.relativeToNow)
                     
                     if let buildNumber = model.buildNumber {
                         Text("\(buildNumber)")
@@ -139,9 +138,9 @@ struct BuildRowView: View {
 //
                     if let startedOn = model.startedOnWorkerAt {
                         Group {
-                            Text("Started on worker at:")
+                            Text("Started @")
                             
-                            Text(startedOn)
+                            Text(startedOn.full)
                                 .foregroundColor(Color(red: 0.38, green: 0.38, blue: 0.38))
                             
                             Rectangle()
@@ -152,9 +151,9 @@ struct BuildRowView: View {
                     
                     if let finishedAt = model.finishedAt {
                         Group {
-                            Text("Finished at:")
+                            Text("Finished @")
                             
-                            Text(finishedAt)
+                            Text(finishedAt.full)
                                 .foregroundColor(Color(red: 0.38, green: 0.38, blue: 0.38))
                             
                             Rectangle()
@@ -197,34 +196,7 @@ struct BuildRowView: View {
 
 struct BuildRowView_Previews: PreviewProvider {
     static var previews: some View {
-        let model = V0BuildListAllResponseItemModel(
-            abortReason: nil,
-            branch: "develop",
-            buildNumber: 1,
-            commitHash: "some hash",
-            commitMessage: "some message",
-            commitViewUrl: nil,
-            creditCost: nil,
-            environmentPrepareFinishedAt: nil,
-            finishedAt: "2021-10-07 07:13:16",
-            isOnHold: false,
-            isProcessed: true,
-            machineTypeId: "standard",
-            originalBuildParams: ["branch" : "develop", "workflow_id": "ttestflight"],
-            pullRequestId: nil,
-            pullRequestTargetBranch: nil,
-            pullRequestViewUrl: nil,
-            repository: nil,
-            slug: "nil",
-            stackIdentifier: "osx-xcode-12.5.x",
-            startedOnWorkerAt: "2021-10-07 07:13:16",
-            status: .success,
-            statusText: "success",
-            tag: nil,
-            triggeredAt: "2020-03-05T09:38:04Z",
-            triggeredBy: "manual-antonvolo2",
-            triggeredWorkflow: "ttestflight")
-        BuildRowView(model: model)
+        BuildRowView(model: V0BuildListAllResponseItemModel.preview())
             .preferredColorScheme(.light)
             
     }

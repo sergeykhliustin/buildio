@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		021F26A449E1E5812989266A /* libPods-ModelsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3979E25783E3B069CC563A15 /* libPods-ModelsTests.a */; };
 		3F2BE9E2270CA0C00051C910 /* AccountsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2BE9E1270CA0C00051C910 /* AccountsScreenView.swift */; };
 		3F2BE9E3270CA0C00051C910 /* AccountsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2BE9E1270CA0C00051C910 /* AccountsScreenView.swift */; };
 		3F2BE9E5270CA5E00051C910 /* TabsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2BE9E4270CA5E00051C910 /* TabsScreenView.swift */; };
@@ -113,8 +114,10 @@
 		3FE1097F27285EDB00B533EE /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE1094727285EDB00B533EE /* Models.swift */; };
 		3FE1098027285EDB00B533EE /* SynchronizedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE1094827285EDB00B533EE /* SynchronizedDictionary.swift */; };
 		3FE1098127285EDB00B533EE /* SynchronizedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE1094827285EDB00B533EE /* SynchronizedDictionary.swift */; };
-		3FE1098B272869EE00B533EE /* TestModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE1098A272869EE00B533EE /* TestModels.swift */; };
-		3FE109942728723500B533EE /* TestResources in Resources */ = {isa = PBXBuildFile; fileRef = 3FE109932728723400B533EE /* TestResources */; };
+		3FE1099D272876DD00B533EE /* ModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE1099C272876DD00B533EE /* ModelsTests.swift */; };
+		3FE109A22728773000B533EE /* TestResources in Resources */ = {isa = PBXBuildFile; fileRef = 3FE109A12728773000B533EE /* TestResources */; };
+		3FE109A42728801800B533EE /* Date+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE109A32728801800B533EE /* Date+Additions.swift */; };
+		3FE109A52728801800B533EE /* Date+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE109A32728801800B533EE /* Date+Additions.swift */; };
 		3FE7B55427072C1E00A6D8E1 /* BuildioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B54427072C1C00A6D8E1 /* BuildioApp.swift */; };
 		3FE7B55527072C1E00A6D8E1 /* BuildioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B54427072C1C00A6D8E1 /* BuildioApp.swift */; };
 		3FE7B55627072C1E00A6D8E1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B54527072C1C00A6D8E1 /* ContentView.swift */; };
@@ -125,22 +128,12 @@
 		3FF276182721AB1700701113 /* TokenFigmaScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF276162721AB1700701113 /* TokenFigmaScreenView.swift */; };
 		6258271CD3DFD6D0A3D67B3A /* libPods-Buildio (iOS).a in Frameworks */ = {isa = PBXBuildFile; fileRef = F0BF57EFECF9AFC820E70F9A /* libPods-Buildio (iOS).a */; };
 		81147B81F01A0549AFFB8BD7 /* libPods-Buildio (macOS).a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1D2CC45787AF8F5E97DEF0C /* libPods-Buildio (macOS).a */; };
-		E3E79A81A0921769F0583E7E /* libPods-BuildioTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CAB0741D0AAF18F4D19503D /* libPods-BuildioTests.a */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		3FE1098C272869EE00B533EE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3FE7B53F27072C1B00A6D8E1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3FE7B54A27072C1E00A6D8E1;
-			remoteInfo = "Buildio (iOS)";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		02A045F883245F19B2236D5A /* Pods-Buildio (macOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buildio (macOS).debug.xcconfig"; path = "Target Support Files/Pods-Buildio (macOS)/Pods-Buildio (macOS).debug.xcconfig"; sourceTree = "<group>"; };
 		02BC01504528BADE88AE233D /* Pods-Buildio (iOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buildio (iOS).release.xcconfig"; path = "Target Support Files/Pods-Buildio (iOS)/Pods-Buildio (iOS).release.xcconfig"; sourceTree = "<group>"; };
+		3979E25783E3B069CC563A15 /* libPods-ModelsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ModelsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F2BE9E1270CA0C00051C910 /* AccountsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsScreenView.swift; sourceTree = "<group>"; };
 		3F2BE9E4270CA5E00051C910 /* TabsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsScreenView.swift; sourceTree = "<group>"; };
 		3F70EBBA2714E43600A4841E /* BTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTextField.swift; sourceTree = "<group>"; };
@@ -195,9 +188,10 @@
 		3FE1094627285EDB00B533EE /* JSONEncodingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONEncodingHelper.swift; sourceTree = "<group>"; };
 		3FE1094727285EDB00B533EE /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		3FE1094827285EDB00B533EE /* SynchronizedDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynchronizedDictionary.swift; sourceTree = "<group>"; };
-		3FE10988272869ED00B533EE /* BuildioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BuildioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3FE1098A272869EE00B533EE /* TestModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestModels.swift; sourceTree = "<group>"; };
-		3FE109932728723400B533EE /* TestResources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TestResources; sourceTree = "<group>"; };
+		3FE1099A272876DD00B533EE /* ModelsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ModelsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FE1099C272876DD00B533EE /* ModelsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelsTests.swift; sourceTree = "<group>"; };
+		3FE109A12728773000B533EE /* TestResources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TestResources; sourceTree = "<group>"; };
+		3FE109A32728801800B533EE /* Date+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Additions.swift"; sourceTree = "<group>"; };
 		3FE7B54427072C1C00A6D8E1 /* BuildioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildioApp.swift; sourceTree = "<group>"; };
 		3FE7B54527072C1C00A6D8E1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3FE7B54627072C1D00A6D8E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -210,16 +204,18 @@
 		8C4DE6F17360FF1223A975F5 /* Pods-BuildioTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuildioTests.debug.xcconfig"; path = "Target Support Files/Pods-BuildioTests/Pods-BuildioTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9CAB0741D0AAF18F4D19503D /* libPods-BuildioTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BuildioTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1D2CC45787AF8F5E97DEF0C /* libPods-Buildio (macOS).a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Buildio (macOS).a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC54892925CE6C890BCE3504 /* Pods-ModelsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModelsTests.debug.xcconfig"; path = "Target Support Files/Pods-ModelsTests/Pods-ModelsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DF5FA61225CB4DC3D7756AF6 /* Pods-BuildioTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuildioTests.release.xcconfig"; path = "Target Support Files/Pods-BuildioTests/Pods-BuildioTests.release.xcconfig"; sourceTree = "<group>"; };
+		E0DBC4A9278672631678ECE2 /* Pods-ModelsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModelsTests.release.xcconfig"; path = "Target Support Files/Pods-ModelsTests/Pods-ModelsTests.release.xcconfig"; sourceTree = "<group>"; };
 		F0BF57EFECF9AFC820E70F9A /* libPods-Buildio (iOS).a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Buildio (iOS).a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		3FE10985272869ED00B533EE /* Frameworks */ = {
+		3FE10997272876DD00B533EE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3E79A81A0921769F0583E7E /* libPods-BuildioTests.a in Frameworks */,
+				021F26A449E1E5812989266A /* libPods-ModelsTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				3F70EBBE2714EAAE00A4841E /* Color+Additions.swift */,
+				3FE109A32728801800B533EE /* Date+Additions.swift */,
 			);
 			path = Additions;
 			sourceTree = "<group>";
@@ -409,13 +406,13 @@
 			path = APIs;
 			sourceTree = "<group>";
 		};
-		3FE10989272869EE00B533EE /* BuildioTests */ = {
+		3FE1099B272876DD00B533EE /* ModelsTests */ = {
 			isa = PBXGroup;
 			children = (
-				3FE1098A272869EE00B533EE /* TestModels.swift */,
-				3FE109932728723400B533EE /* TestResources */,
+				3FE109A12728773000B533EE /* TestResources */,
+				3FE1099C272876DD00B533EE /* ModelsTests.swift */,
 			);
-			path = BuildioTests;
+			path = ModelsTests;
 			sourceTree = "<group>";
 		};
 		3FE7B53E27072C1B00A6D8E1 = {
@@ -424,7 +421,7 @@
 				3FE1092927285EDB00B533EE /* OpenAPIClient */,
 				3FE7B54327072C1C00A6D8E1 /* Shared */,
 				3FE7B55227072C1E00A6D8E1 /* macOS */,
-				3FE10989272869EE00B533EE /* BuildioTests */,
+				3FE1099B272876DD00B533EE /* ModelsTests */,
 				3FE7B54C27072C1E00A6D8E1 /* Products */,
 				C01BF622C9E3A1CE1A4670B5 /* Pods */,
 				4B393650991B721A466C562B /* Frameworks */,
@@ -451,7 +448,7 @@
 			children = (
 				3FE7B54B27072C1E00A6D8E1 /* Buildio.app */,
 				3FE7B55127072C1E00A6D8E1 /* Buildio.app */,
-				3FE10988272869ED00B533EE /* BuildioTests.xctest */,
+				3FE1099A272876DD00B533EE /* ModelsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -479,6 +476,7 @@
 				F0BF57EFECF9AFC820E70F9A /* libPods-Buildio (iOS).a */,
 				B1D2CC45787AF8F5E97DEF0C /* libPods-Buildio (macOS).a */,
 				9CAB0741D0AAF18F4D19503D /* libPods-BuildioTests.a */,
+				3979E25783E3B069CC563A15 /* libPods-ModelsTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -492,6 +490,8 @@
 				42E34A8CEAD7D2C2589E44D1 /* Pods-Buildio (macOS).release.xcconfig */,
 				8C4DE6F17360FF1223A975F5 /* Pods-BuildioTests.debug.xcconfig */,
 				DF5FA61225CB4DC3D7756AF6 /* Pods-BuildioTests.release.xcconfig */,
+				BC54892925CE6C890BCE3504 /* Pods-ModelsTests.debug.xcconfig */,
+				E0DBC4A9278672631678ECE2 /* Pods-ModelsTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -499,23 +499,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3FE10987272869ED00B533EE /* BuildioTests */ = {
+		3FE10999272876DD00B533EE /* ModelsTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3FE10990272869EE00B533EE /* Build configuration list for PBXNativeTarget "BuildioTests" */;
+			buildConfigurationList = 3FE1099E272876DD00B533EE /* Build configuration list for PBXNativeTarget "ModelsTests" */;
 			buildPhases = (
-				55DDF041D8CBC9FBD04A83F1 /* [CP] Check Pods Manifest.lock */,
-				3FE10984272869ED00B533EE /* Sources */,
-				3FE10985272869ED00B533EE /* Frameworks */,
-				3FE10986272869ED00B533EE /* Resources */,
+				200E2E192688B14C79E5740D /* [CP] Check Pods Manifest.lock */,
+				3FE10996272876DD00B533EE /* Sources */,
+				3FE10997272876DD00B533EE /* Frameworks */,
+				3FE10998272876DD00B533EE /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				3FE1098D272869EE00B533EE /* PBXTargetDependency */,
 			);
-			name = BuildioTests;
-			productName = BuildioTests;
-			productReference = 3FE10988272869ED00B533EE /* BuildioTests.xctest */;
+			name = ModelsTests;
+			productName = ModelsTests;
+			productReference = 3FE1099A272876DD00B533EE /* ModelsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		3FE7B54A27072C1E00A6D8E1 /* Buildio (iOS) */ = {
@@ -564,9 +563,8 @@
 				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 1300;
 				TargetAttributes = {
-					3FE10987272869ED00B533EE = {
+					3FE10999272876DD00B533EE = {
 						CreatedOnToolsVersion = 13.0;
-						TestTargetID = 3FE7B54A27072C1E00A6D8E1;
 					};
 					3FE7B54A27072C1E00A6D8E1 = {
 						CreatedOnToolsVersion = 13.0;
@@ -591,17 +589,17 @@
 			targets = (
 				3FE7B54A27072C1E00A6D8E1 /* Buildio (iOS) */,
 				3FE7B55027072C1E00A6D8E1 /* Buildio (macOS) */,
-				3FE10987272869ED00B533EE /* BuildioTests */,
+				3FE10999272876DD00B533EE /* ModelsTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		3FE10986272869ED00B533EE /* Resources */ = {
+		3FE10998272876DD00B533EE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FE109942728723500B533EE /* TestResources in Resources */,
+				3FE109A22728773000B533EE /* TestResources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -624,6 +622,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		200E2E192688B14C79E5740D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ModelsTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2B209C1A90F9BB69372C24E8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -640,28 +660,6 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Buildio (macOS)-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		55DDF041D8CBC9FBD04A83F1 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BuildioTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -693,11 +691,11 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		3FE10984272869ED00B533EE /* Sources */ = {
+		3FE10996272876DD00B533EE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FE1098B272869EE00B533EE /* TestModels.swift in Sources */,
+				3FE1099D272876DD00B533EE /* ModelsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -729,6 +727,7 @@
 				3FE1095827285EDB00B533EE /* AndroidKeystoreFileAPI.swift in Sources */,
 				3FE1095C27285EDB00B533EE /* BuildsAPI.swift in Sources */,
 				3FCC45B827078E040001A9C2 /* ProfileScreenView.swift in Sources */,
+				3FE109A42728801800B533EE /* Date+Additions.swift in Sources */,
 				3FE1096E27285EDB00B533EE /* AddonsAPI.swift in Sources */,
 				3FE1095427285EDB00B533EE /* BuildCertificateAPI.swift in Sources */,
 				3FCC45C22707924D0001A9C2 /* BuildsViewModel.swift in Sources */,
@@ -792,6 +791,7 @@
 				3FE1095927285EDB00B533EE /* AndroidKeystoreFileAPI.swift in Sources */,
 				3FE1095D27285EDB00B533EE /* BuildsAPI.swift in Sources */,
 				3FCC45C62707930E0001A9C2 /* BaseViewModel.swift in Sources */,
+				3FE109A52728801800B533EE /* Date+Additions.swift in Sources */,
 				3FE1096F27285EDB00B533EE /* AddonsAPI.swift in Sources */,
 				3FE1095527285EDB00B533EE /* BuildCertificateAPI.swift in Sources */,
 				3FCC45B927078E040001A9C2 /* ProfileScreenView.swift in Sources */,
@@ -829,65 +829,52 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		3FE1098D272869EE00B533EE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3FE7B54A27072C1E00A6D8E1 /* Buildio (iOS) */;
-			targetProxy = 3FE1098C272869EE00B533EE /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
-		3FE1098E272869EE00B533EE /* Debug */ = {
+		3FE1099F272876DD00B533EE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8C4DE6F17360FF1223A975F5 /* Pods-BuildioTests.debug.xcconfig */;
+			baseConfigurationReference = BC54892925CE6C890BCE3504 /* Pods-ModelsTests.debug.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RUAYJDT8WF;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.home.BuildioTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.home.ModelsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
+				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Buildio.app/Buildio";
 			};
 			name = Debug;
 		};
-		3FE1098F272869EE00B533EE /* Release */ = {
+		3FE109A0272876DD00B533EE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DF5FA61225CB4DC3D7756AF6 /* Pods-BuildioTests.release.xcconfig */;
+			baseConfigurationReference = E0DBC4A9278672631678ECE2 /* Pods-ModelsTests.release.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RUAYJDT8WF;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.home.BuildioTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.home.ModelsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
+				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Buildio.app/Buildio";
-				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -1132,11 +1119,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3FE10990272869EE00B533EE /* Build configuration list for PBXNativeTarget "BuildioTests" */ = {
+		3FE1099E272876DD00B533EE /* Build configuration list for PBXNativeTarget "ModelsTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3FE1098E272869EE00B533EE /* Debug */,
-				3FE1098F272869EE00B533EE /* Release */,
+				3FE1099F272876DD00B533EE /* Debug */,
+				3FE109A0272876DD00B533EE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

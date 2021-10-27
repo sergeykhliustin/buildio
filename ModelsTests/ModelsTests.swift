@@ -1,6 +1,6 @@
 //
-//  BuildioTests.swift
-//  BuildioTests
+//  ModelsTests.swift
+//  ModelsTests
 //
 //  Created by severehed on 26.10.2021.
 //
@@ -8,7 +8,7 @@
 import XCTest
 import Models
 
-class BuildioTests: XCTestCase {
+class ModelsTests: XCTestCase {
     lazy var jsons: [String: [Data]] = {
         guard let jsonsURL = Bundle(for: type(of: self)).resourceURL?.appendingPathComponent("TestResources").appendingPathComponent("TestJSONs") else { return [:]}
         let contents = (try? FileManager.default.contentsOfDirectory(at: jsonsURL, includingPropertiesForKeys: nil, options: [.producesRelativePathURLs])) ?? []
@@ -33,19 +33,14 @@ class BuildioTests: XCTestCase {
         let models = [
             V0BuildListAllResponseModel.self
         ]
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        decoder.dateDecodingStrategy = .iso8601
         for model in models {
             let dataArray = jsons[String(describing: model)] ?? []
             for data in dataArray {
-                _ = try JSONDecoder().decode(model, from: data)
+                XCTAssertNoThrow(try decoder.decode(model, from: data))
             }
         }
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }

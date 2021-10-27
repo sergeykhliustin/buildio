@@ -15,6 +15,7 @@ open class CodableHelper {
     private static var defaultJSONDecoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .formatted(CodableHelper.dateFormatter)
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
 
@@ -23,6 +24,7 @@ open class CodableHelper {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .formatted(CodableHelper.dateFormatter)
         encoder.outputFormatting = .prettyPrinted
+        encoder.keyEncodingStrategy = .convertToSnakeCase
         return encoder
     }()
 

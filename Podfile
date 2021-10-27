@@ -8,8 +8,8 @@ def shared
   pod 'Models', :path => './'
 end
 
-target 'BuildioTests' do
-  platform :ios, '14.0'
+target 'ModelsTests' do
+  platform :osx, '10.15'
   shared
 end
 

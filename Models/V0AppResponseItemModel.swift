@@ -9,21 +9,31 @@ import Foundation
 
 
 public struct V0AppResponseItemModel: Codable, Hashable {
-
     public var avatarUrl: String?
-    public var isDisabled: Bool?
-    public var isPublic: Bool?
-    public var owner: V0OwnerAccountResponseModel?
-    public var projectType: String?
-    public var provider: String?
-    public var repoOwner: String?
-    public var repoSlug: String?
-    public var repoUrl: String?
-    public var slug: String?
-    public var status: Int?
-    public var title: String?
-
-    public init(avatarUrl: String? = nil, isDisabled: Bool? = nil, isPublic: Bool? = nil, owner: V0OwnerAccountResponseModel? = nil, projectType: String? = nil, provider: String? = nil, repoOwner: String? = nil, repoSlug: String? = nil, repoUrl: String? = nil, slug: String? = nil, status: Int? = nil, title: String? = nil) {
+    public var isDisabled: Bool
+    public var isPublic: Bool
+    public var owner: V0OwnerAccountResponseModel
+    public var projectType: String
+    public var provider: String
+    public var repoOwner: String
+    public var repoSlug: String
+    public var repoUrl: String
+    public var slug: String
+    public var status: Int
+    public var title: String
+    
+    public init(avatarUrl: String? = nil,
+                isDisabled: Bool,
+                isPublic: Bool,
+                owner: V0OwnerAccountResponseModel,
+                projectType: String,
+                provider: String,
+                repoOwner: String,
+                repoSlug: String,
+                repoUrl: String,
+                slug: String,
+                status: Int,
+                title: String) {
         self.avatarUrl = avatarUrl
         self.isDisabled = isDisabled
         self.isPublic = isPublic
@@ -37,38 +47,20 @@ public struct V0AppResponseItemModel: Codable, Hashable {
         self.status = status
         self.title = title
     }
-
-    public enum CodingKeys: String, CodingKey, CaseIterable {
-        case avatarUrl = "avatar_url"
-        case isDisabled = "is_disabled"
-        case isPublic = "is_public"
-        case owner
-        case projectType = "project_type"
-        case provider
-        case repoOwner = "repo_owner"
-        case repoSlug = "repo_slug"
-        case repoUrl = "repo_url"
-        case slug
-        case status
-        case title
-    }
-
-    // Encodable protocol methods
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(avatarUrl, forKey: .avatarUrl)
-        try container.encodeIfPresent(isDisabled, forKey: .isDisabled)
-        try container.encodeIfPresent(isPublic, forKey: .isPublic)
-        try container.encodeIfPresent(owner, forKey: .owner)
-        try container.encodeIfPresent(projectType, forKey: .projectType)
-        try container.encodeIfPresent(provider, forKey: .provider)
-        try container.encodeIfPresent(repoOwner, forKey: .repoOwner)
-        try container.encodeIfPresent(repoSlug, forKey: .repoSlug)
-        try container.encodeIfPresent(repoUrl, forKey: .repoUrl)
-        try container.encodeIfPresent(slug, forKey: .slug)
-        try container.encodeIfPresent(status, forKey: .status)
-        try container.encodeIfPresent(title, forKey: .title)
+    
+    public static func preview() -> Self {
+        return V0AppResponseItemModel(avatarUrl: nil,
+                                      isDisabled: false,
+                                      isPublic: false,
+                                      owner: V0OwnerAccountResponseModel.preview(),
+                                      projectType: "projectType",
+                                      provider: "provider",
+                                      repoOwner: "repoOwner",
+                                      repoSlug: "repoSlug",
+                                      repoUrl: "repoUrl",
+                                      slug: "slug",
+                                      status: 1,
+                                      title: "title")
     }
 }
 

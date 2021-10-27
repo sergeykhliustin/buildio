@@ -9,30 +9,18 @@ import Foundation
 
 
 public struct V0OwnerAccountResponseModel: Codable, Hashable {
-
-    public var accountType: String?
-    public var name: String?
-    public var slug: String?
-
-    public init(accountType: String? = nil, name: String? = nil, slug: String? = nil) {
+    public var accountType: String
+    public var name: String
+    public var slug: String
+    
+    public init(accountType: String, name: String, slug: String) {
         self.accountType = accountType
         self.name = name
         self.slug = slug
     }
-
-    public enum CodingKeys: String, CodingKey, CaseIterable {
-        case accountType = "account_type"
-        case name
-        case slug
-    }
-
-    // Encodable protocol methods
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(accountType, forKey: .accountType)
-        try container.encodeIfPresent(name, forKey: .name)
-        try container.encodeIfPresent(slug, forKey: .slug)
+    
+    public static func preview() -> Self {
+        return V0OwnerAccountResponseModel(accountType: "accountType", name: "name", slug: "slug")
     }
 }
 
