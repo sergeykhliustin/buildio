@@ -13,7 +13,9 @@ struct TabsScreenView: View {
     
     init(showSideMenu: Binding<Bool>) {
         self._showSideMenu = showSideMenu
+        #if os(iOS)
         UITabBar.appearance().backgroundColor = .white
+        #endif
     }
     
     var body: some View {

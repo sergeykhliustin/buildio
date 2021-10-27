@@ -7,7 +7,9 @@
 
 import Foundation
 import SwiftUI
+#if !os(macOS)
 import UIKit
+#endif
 
 struct PasteButton: ViewModifier {
     @Binding var text: String
@@ -19,9 +21,15 @@ struct PasteButton: ViewModifier {
             
             if text.isEmpty {
                 Button {
+                    #if os(macOS)
+                    if let pb = NSPasteboard.general.string(forType: .string) {
+                        text = pb
+                    }
+                    #else
                     if let pb = UIPasteboard.general.string {
                         text = pb
                     }
+                    #endif
                 } label: {
                     Image(systemName: "doc.on.clipboard.fill")
                         .foregroundColor(Color.b_ButtonPrimaryLight)

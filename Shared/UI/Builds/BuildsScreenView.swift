@@ -8,6 +8,16 @@
 import SwiftUI
 import Models
 
+private extension View {
+    func buttonStylePlain() -> some View {
+        #if os(iOS)
+        return self.buttonStyle(.plain)
+        #else
+        return self
+        #endif
+    }
+}
+
 struct BuildsScreenView: View, BaseView {
     @StateObject var model = BuildsViewModel()
     @State private var selected: V0BuildListAllResponseItemModel?
@@ -46,7 +56,7 @@ struct BuildsScreenView: View, BaseView {
 //                            }
                         }
                         .isDetailLink(true)
-                        .buttonStyle(.plain)
+                        .buttonStylePlain()
                     }
                 }
                 if model.isLoadingPage {
