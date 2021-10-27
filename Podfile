@@ -31,6 +31,9 @@ post_install do |installer|
     target.build_configurations.each do |config|
       config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
       config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'
+      config.build_settings['ENABLE_BITCODE'] = 'NO'
+      config.build_settings['VALID_ARCHS'] = 'arm64'
+      config.build_settings['APPLICATION_EXTENSION_API_ONLY'] = 'YES'
     end
   end
 end

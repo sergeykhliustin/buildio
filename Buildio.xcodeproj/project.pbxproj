@@ -42,8 +42,6 @@
 		3FCC45C9270797E30001A9C2 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45C7270797E30001A9C2 /* BaseView.swift */; };
 		3FD2FCA82724C7520093BE62 /* PagingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD2FCA72724C7510093BE62 /* PagingViewModel.swift */; };
 		3FD2FCA92724C7520093BE62 /* PagingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD2FCA72724C7510093BE62 /* PagingViewModel.swift */; };
-		3FD2FCAC2725E5520093BE62 /* BuildScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD2FCAB2725E5520093BE62 /* BuildScreenView.swift */; };
-		3FD2FCAD2725E5520093BE62 /* BuildScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD2FCAB2725E5520093BE62 /* BuildScreenView.swift */; };
 		3FD2FCAF272604C90093BE62 /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD2FCAE272604C90093BE62 /* TokenManager.swift */; };
 		3FD2FCB0272604C90093BE62 /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD2FCAE272604C90093BE62 /* TokenManager.swift */; };
 		3FD85D0E2721CAC200E894E8 /* SubmitButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD85D0D2721CAC200E894E8 /* SubmitButtonStyle.swift */; };
@@ -128,6 +126,8 @@
 		3FF276182721AB1700701113 /* TokenFigmaScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF276162721AB1700701113 /* TokenFigmaScreenView.swift */; };
 		6258271CD3DFD6D0A3D67B3A /* libPods-Buildio (iOS).a in Frameworks */ = {isa = PBXBuildFile; fileRef = F0BF57EFECF9AFC820E70F9A /* libPods-Buildio (iOS).a */; };
 		81147B81F01A0549AFFB8BD7 /* libPods-Buildio (macOS).a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1D2CC45787AF8F5E97DEF0C /* libPods-Buildio (macOS).a */; };
+		C65D08E52729649900075618 /* BuildScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65D08E42729649900075618 /* BuildScreenView.swift */; };
+		C65D08E62729649900075618 /* BuildScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65D08E42729649900075618 /* BuildScreenView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -152,7 +152,6 @@
 		3FCC45C42707930E0001A9C2 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		3FCC45C7270797E30001A9C2 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		3FD2FCA72724C7510093BE62 /* PagingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingViewModel.swift; sourceTree = "<group>"; };
-		3FD2FCAB2725E5520093BE62 /* BuildScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildScreenView.swift; sourceTree = "<group>"; };
 		3FD2FCAE272604C90093BE62 /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
 		3FD85D0D2721CAC200E894E8 /* SubmitButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitButtonStyle.swift; sourceTree = "<group>"; };
 		3FD85D102721CF6F00E894E8 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -205,6 +204,7 @@
 		9CAB0741D0AAF18F4D19503D /* libPods-BuildioTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BuildioTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1D2CC45787AF8F5E97DEF0C /* libPods-Buildio (macOS).a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Buildio (macOS).a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC54892925CE6C890BCE3504 /* Pods-ModelsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModelsTests.debug.xcconfig"; path = "Target Support Files/Pods-ModelsTests/Pods-ModelsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C65D08E42729649900075618 /* BuildScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildScreenView.swift; sourceTree = "<group>"; };
 		DF5FA61225CB4DC3D7756AF6 /* Pods-BuildioTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuildioTests.release.xcconfig"; path = "Target Support Files/Pods-BuildioTests/Pods-BuildioTests.release.xcconfig"; sourceTree = "<group>"; };
 		E0DBC4A9278672631678ECE2 /* Pods-ModelsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModelsTests.release.xcconfig"; path = "Target Support Files/Pods-ModelsTests/Pods-ModelsTests.release.xcconfig"; sourceTree = "<group>"; };
 		F0BF57EFECF9AFC820E70F9A /* libPods-Buildio (iOS).a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Buildio (iOS).a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -342,7 +342,7 @@
 		3FD2FCAA2725E5420093BE62 /* Build */ = {
 			isa = PBXGroup;
 			children = (
-				3FD2FCAB2725E5520093BE62 /* BuildScreenView.swift */,
+				C65D08E42729649900075618 /* BuildScreenView.swift */,
 			);
 			path = Build;
 			sourceTree = "<group>";
@@ -704,6 +704,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FE1097A27285EDB00B533EE /* JSONDataEncoding.swift in Sources */,
+				C65D08E52729649900075618 /* BuildScreenView.swift in Sources */,
 				3FCC45AD270767370001A9C2 /* MainCoordinatorView.swift in Sources */,
 				3FE1096C27285EDB00B533EE /* AppleApiCredentialsAPI.swift in Sources */,
 				3FE1097627285EDB00B533EE /* OpenISO8601DateFormatter.swift in Sources */,
@@ -715,7 +716,6 @@
 				3FE1094A27285EDB00B533EE /* APIHelper.swift in Sources */,
 				3FE1097427285EDB00B533EE /* APIs.swift in Sources */,
 				3FCC45B427078D250001A9C2 /* RootNavigationView.swift in Sources */,
-				3FD2FCAC2725E5520093BE62 /* BuildScreenView.swift in Sources */,
 				3FF276172721AB1700701113 /* TokenFigmaScreenView.swift in Sources */,
 				3FE1097C27285EDB00B533EE /* JSONEncodingHelper.swift in Sources */,
 				3FE1095E27285EDB00B533EE /* AppSetupAPI.swift in Sources */,
@@ -768,6 +768,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FE1097B27285EDB00B533EE /* JSONDataEncoding.swift in Sources */,
+				C65D08E62729649900075618 /* BuildScreenView.swift in Sources */,
 				3FCC45AE270767370001A9C2 /* MainCoordinatorView.swift in Sources */,
 				3FE1096D27285EDB00B533EE /* AppleApiCredentialsAPI.swift in Sources */,
 				3FE1097727285EDB00B533EE /* OpenISO8601DateFormatter.swift in Sources */,
@@ -779,7 +780,6 @@
 				3FE1094B27285EDB00B533EE /* APIHelper.swift in Sources */,
 				3FE1097527285EDB00B533EE /* APIs.swift in Sources */,
 				3F2BE9E3270CA0C00051C910 /* AccountsScreenView.swift in Sources */,
-				3FD2FCAD2725E5520093BE62 /* BuildScreenView.swift in Sources */,
 				3FF276182721AB1700701113 /* TokenFigmaScreenView.swift in Sources */,
 				3FE1097D27285EDB00B533EE /* JSONEncodingHelper.swift in Sources */,
 				3FE1095F27285EDB00B533EE /* AppSetupAPI.swift in Sources */,
