@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0CommitPaths: Codable, Hashable {
 
     public var added: [String]?
@@ -35,4 +34,3 @@ public struct V0CommitPaths: Codable, Hashable {
         try container.encodeIfPresent(removed, forKey: .removed)
     }
 }
-

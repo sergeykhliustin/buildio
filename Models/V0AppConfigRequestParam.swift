@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0AppConfigRequestParam: Codable, Hashable {
 
     public var appConfigDatastoreYaml: String
@@ -27,4 +26,3 @@ public struct V0AppConfigRequestParam: Codable, Hashable {
         try container.encode(appConfigDatastoreYaml, forKey: .appConfigDatastoreYaml)
     }
 }
-

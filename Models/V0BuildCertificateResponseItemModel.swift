@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0BuildCertificateResponseItemModel: Codable, Hashable {
 
     public var certificatePassword: String?
@@ -59,4 +58,3 @@ public struct V0BuildCertificateResponseItemModel: Codable, Hashable {
         try container.encodeIfPresent(uploadUrl, forKey: .uploadUrl)
     }
 }
-

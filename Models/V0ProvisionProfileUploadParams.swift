@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0ProvisionProfileUploadParams: Codable, Hashable {
 
     public var uploadFileName: String
@@ -31,4 +30,3 @@ public struct V0ProvisionProfileUploadParams: Codable, Hashable {
         try container.encode(uploadFileSize, forKey: .uploadFileSize)
     }
 }
-

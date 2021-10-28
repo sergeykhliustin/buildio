@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0ActivityEventResponseItemModel: Codable, Hashable {
 
     public var createdAt: String?
@@ -59,4 +58,3 @@ public struct V0ActivityEventResponseItemModel: Codable, Hashable {
         try container.encodeIfPresent(title, forKey: .title)
     }
 }
-

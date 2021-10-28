@@ -60,21 +60,22 @@ struct TokenFigmaScreenView: View {
                     }
                     .font(.callout)
                 }
+                
+                Button("Submit") {
+                    checkToken(tokenState)
+//                    token = tokenState
+                }.buttonStyle(SubmitButtonStyle()).disabled(tokenState.isEmpty || isError)
+                    .frame(alignment: .center)
             }
             .padding(.horizontal)
             .background(Color.white)
-            
-            Button("Submit") {
-                token = tokenState
-            }.buttonStyle(SubmitButtonStyle()).disabled(tokenState.isEmpty)
-                .frame(alignment: .center)
             
         }
 //        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(16)
         .alert(isPresented: $isError) {
             Alert(title: Text("Error"),
-                  message: Text(error?.localizedDescription ?? "Unknown error"), dismissButton: .cancel() {
+                  message: Text(error?.localizedDescription ?? "Unknown error"), dismissButton: .cancel {
                 error = nil
                 isError = false
             })
@@ -83,13 +84,15 @@ struct TokenFigmaScreenView: View {
     
     private func checkToken(_ token: String) {
         isLoading = true
-        OpenAPIClientAPI.customHeaders["Authorization"] = token
-        UserAPI.userProfile()
+        var checker: Any?
+        checker = UserAPI(apiToken: token).userProfile()
             .sink { subscribersCompletion in
                 if case .failure(let error) = subscribersCompletion {
                     self.error = error
                     self.isError = true
                 }
+                isLoading = false
+                checker = nil
             } receiveValue: { model in
                 if let email = model.data.email {
                     TokenManager.shared.token = Token(token: token, email: email)

@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0AppResponseItemModel: Codable, Hashable {
     public var avatarUrl: String?
     public var isDisabled: Bool
@@ -63,4 +62,3 @@ public struct V0AppResponseItemModel: Codable, Hashable {
                                       title: "title")
     }
 }
-

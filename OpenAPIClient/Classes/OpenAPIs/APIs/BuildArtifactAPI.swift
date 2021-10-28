@@ -11,7 +11,7 @@ import Combine
 #endif
 import Models
 
-open class BuildArtifactAPI {
+public final class BuildArtifactAPI: BaseAPI {
 
     /**
      Delete a build artifact
@@ -24,9 +24,9 @@ open class BuildArtifactAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func artifactDelete(appSlug: String, buildSlug: String, artifactSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ArtifactDeleteResponseModel, Error> {
-        return Future<V0ArtifactDeleteResponseModel, Error> { promise in
-            artifactDeleteWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug, artifactSlug: artifactSlug).execute(apiResponseQueue) { result in
+    public func artifactDelete(appSlug: String, buildSlug: String, artifactSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ArtifactDeleteResponseModel, Error> {
+        return Future<V0ArtifactDeleteResponseModel, Error> { [weak self] promise in
+            self?.artifactDeleteWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug, artifactSlug: artifactSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -50,7 +50,7 @@ open class BuildArtifactAPI {
      - parameter artifactSlug: (path) Artifact slug 
      - returns: RequestBuilder<V0ArtifactDeleteResponseModel> 
      */
-    open class func artifactDeleteWithRequestBuilder(appSlug: String, buildSlug: String, artifactSlug: String) -> RequestBuilder<V0ArtifactDeleteResponseModel> {
+    private func artifactDeleteWithRequestBuilder(appSlug: String, buildSlug: String, artifactSlug: String) -> RequestBuilder<V0ArtifactDeleteResponseModel> {
         var localVariablePath = "/apps/{app-slug}/builds/{build-slug}/artifacts/{artifact-slug}"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -66,9 +66,7 @@ open class BuildArtifactAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -89,9 +87,9 @@ open class BuildArtifactAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func artifactList(appSlug: String, buildSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ArtifactListResponseModel, Error> {
-        return Future<V0ArtifactListResponseModel, Error> { promise in
-            artifactListWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
+    public func artifactList(appSlug: String, buildSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ArtifactListResponseModel, Error> {
+        return Future<V0ArtifactListResponseModel, Error> { [weak self] promise in
+            self?.artifactListWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -119,7 +117,7 @@ open class BuildArtifactAPI {
      - parameter limit: (query) Max number of build artifacts per page is 50. (optional)
      - returns: RequestBuilder<V0ArtifactListResponseModel> 
      */
-    open class func artifactListWithRequestBuilder(appSlug: String, buildSlug: String, next: String? = nil, limit: Int? = nil) -> RequestBuilder<V0ArtifactListResponseModel> {
+    private func artifactListWithRequestBuilder(appSlug: String, buildSlug: String, next: String? = nil, limit: Int? = nil) -> RequestBuilder<V0ArtifactListResponseModel> {
         var localVariablePath = "/apps/{app-slug}/builds/{build-slug}/artifacts"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -133,12 +131,10 @@ open class BuildArtifactAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "next": next?.encodeToJSON(),
-            "limit": limit?.encodeToJSON(),
+            "limit": limit?.encodeToJSON()
         ])
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -159,9 +155,9 @@ open class BuildArtifactAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func artifactShow(appSlug: String, buildSlug: String, artifactSlug: String, download: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ArtifactShowResponseModel, Error> {
-        return Future<V0ArtifactShowResponseModel, Error> { promise in
-            artifactShowWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug, artifactSlug: artifactSlug, download: download).execute(apiResponseQueue) { result in
+    public func artifactShow(appSlug: String, buildSlug: String, artifactSlug: String, download: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ArtifactShowResponseModel, Error> {
+        return Future<V0ArtifactShowResponseModel, Error> { [weak self] promise in
+            self?.artifactShowWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug, artifactSlug: artifactSlug, download: download).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -189,7 +185,7 @@ open class BuildArtifactAPI {
      - parameter download: (query) Setting this will result in a redirect to the artifact download location (optional)
      - returns: RequestBuilder<V0ArtifactShowResponseModel> 
      */
-    open class func artifactShowWithRequestBuilder(appSlug: String, buildSlug: String, artifactSlug: String, download: Int? = nil) -> RequestBuilder<V0ArtifactShowResponseModel> {
+    private func artifactShowWithRequestBuilder(appSlug: String, buildSlug: String, artifactSlug: String, download: Int? = nil) -> RequestBuilder<V0ArtifactShowResponseModel> {
         var localVariablePath = "/apps/{app-slug}/builds/{build-slug}/artifacts/{artifact-slug}"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -205,12 +201,10 @@ open class BuildArtifactAPI {
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "download": download?.encodeToJSON(),
+            "download": download?.encodeToJSON()
         ])
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -231,9 +225,9 @@ open class BuildArtifactAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func artifactUpdate(appSlug: String, buildSlug: String, artifactSlug: String, artifactParams: V0ArtifactUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ArtifactShowResponseModel, Error> {
-        return Future<V0ArtifactShowResponseModel, Error> { promise in
-            artifactUpdateWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug, artifactSlug: artifactSlug, artifactParams: artifactParams).execute(apiResponseQueue) { result in
+    public func artifactUpdate(appSlug: String, buildSlug: String, artifactSlug: String, artifactParams: V0ArtifactUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ArtifactShowResponseModel, Error> {
+        return Future<V0ArtifactShowResponseModel, Error> { [weak self] promise in
+            self?.artifactUpdateWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug, artifactSlug: artifactSlug, artifactParams: artifactParams).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -258,7 +252,7 @@ open class BuildArtifactAPI {
      - parameter artifactParams: (body) Artifact parameters 
      - returns: RequestBuilder<V0ArtifactShowResponseModel> 
      */
-    open class func artifactUpdateWithRequestBuilder(appSlug: String, buildSlug: String, artifactSlug: String, artifactParams: V0ArtifactUpdateParams) -> RequestBuilder<V0ArtifactShowResponseModel> {
+    private func artifactUpdateWithRequestBuilder(appSlug: String, buildSlug: String, artifactSlug: String, artifactParams: V0ArtifactUpdateParams) -> RequestBuilder<V0ArtifactShowResponseModel> {
         var localVariablePath = "/apps/{app-slug}/builds/{build-slug}/artifacts/{artifact-slug}"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -274,9 +268,7 @@ open class BuildArtifactAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

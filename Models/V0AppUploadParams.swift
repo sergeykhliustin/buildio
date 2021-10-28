@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0AppUploadParams: Codable, Hashable {
 
     /** The slug of the owner of the repository at the git provider */
@@ -53,4 +52,3 @@ public struct V0AppUploadParams: Codable, Hashable {
         try container.encode(type, forKey: .type)
     }
 }
-

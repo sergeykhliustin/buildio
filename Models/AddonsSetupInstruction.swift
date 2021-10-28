@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct AddonsSetupInstruction: Codable, Hashable {
 
     public var cardContent: String?
@@ -35,4 +34,3 @@ public struct AddonsSetupInstruction: Codable, Hashable {
         try container.encodeIfPresent(type, forKey: .type)
     }
 }
-

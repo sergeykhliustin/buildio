@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0AvatarPromoteParams: Codable, Hashable {
 
     public var isPromoted: Bool
@@ -27,4 +26,3 @@ public struct V0AvatarPromoteParams: Codable, Hashable {
         try container.encode(isPromoted, forKey: .isPromoted)
     }
 }
-

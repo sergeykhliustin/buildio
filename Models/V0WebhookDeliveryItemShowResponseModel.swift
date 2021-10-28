@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0WebhookDeliveryItemShowResponseModel: Codable, Hashable {
 
     public var data: V0WebhookDeliveryItemResponseModel?
@@ -27,4 +26,3 @@ public struct V0WebhookDeliveryItemShowResponseModel: Codable, Hashable {
         try container.encodeIfPresent(data, forKey: .data)
     }
 }
-

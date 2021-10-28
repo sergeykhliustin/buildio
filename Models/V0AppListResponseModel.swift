@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0AppListResponseModel: Codable, Hashable {
 
     public var data: [V0AppResponseItemModel]?
@@ -31,4 +30,3 @@ public struct V0AppListResponseModel: Codable, Hashable {
         try container.encodeIfPresent(paging, forKey: .paging)
     }
 }
-

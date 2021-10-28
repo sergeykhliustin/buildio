@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0AppleAPICredentialResponseItem: Codable, Hashable {
 
     public var createdAt: String?
@@ -47,4 +46,3 @@ public struct V0AppleAPICredentialResponseItem: Codable, Hashable {
         try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
     }
 }
-

@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0UserProfileDataModel: Codable, Hashable {
 
     public var avatarUrl: String?
@@ -59,4 +58,3 @@ public struct V0UserProfileDataModel: Codable, Hashable {
         try container.encodeIfPresent(username, forKey: .username)
     }
 }
-

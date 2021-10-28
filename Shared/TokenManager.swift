@@ -40,14 +40,7 @@ class TokenManager: ObservableObject {
         }
     }
     
-    @Published var token: Token? = nil {
-        willSet {
-            if let token = newValue?.token {
-                OpenAPIClientAPI.customHeaders = ["Authorization": token]
-            } else {
-                OpenAPIClientAPI.customHeaders = [:]
-            }
-        }
+    @Published var token: Token? {
         didSet {
             guard let newValue = token else { return }
             
@@ -71,9 +64,13 @@ class TokenManager: ObservableObject {
     private init() {
         self.tokens = TokenManager.getTokens()
         self.token = self.tokens.first(where: { $0.current })
-        
-        if let currentToken = self.token?.token {
-            OpenAPIClientAPI.customHeaders = ["Authorization": currentToken]
+    }
+    
+    func remove(_ token: Token) {
+        guard let index = tokens.firstIndex(of: token) else { return }
+        tokens.remove(at: index)
+        if token.current {
+            self.token = tokens.first
         }
     }
     
@@ -103,8 +100,7 @@ class TokenManager: ObservableObject {
             }
             do {
                try keychain.set(token.token, key: token.email)
-            }
-            catch {
+            } catch {
                 logger.error(error)
             }
         }

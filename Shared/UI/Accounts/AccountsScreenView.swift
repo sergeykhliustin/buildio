@@ -25,6 +25,12 @@ struct AccountsScreenView: View {
                             if token.current {
                                 Image(systemName: "checkmark")
                             }
+                            Button {
+                                logger.debug("trash")
+                                tokenManager.remove(token)
+                            } label: {
+                                Image(systemName: "trash")
+                            }
                         }
                         .padding(16)
                         .border(Color.b_BorderLight, width: 1)

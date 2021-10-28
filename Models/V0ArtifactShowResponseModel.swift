@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0ArtifactShowResponseModel: Codable, Hashable {
 
     public var data: V0ArtifactResponseItemModel?
@@ -27,4 +26,3 @@ public struct V0ArtifactShowResponseModel: Codable, Hashable {
         try container.encodeIfPresent(data, forKey: .data)
     }
 }
-

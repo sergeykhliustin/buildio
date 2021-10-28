@@ -11,7 +11,7 @@ import Combine
 #endif
 import Models
 
-open class OutgoingWebhookAPI {
+public final class OutgoingWebhookAPI: BaseAPI {
 
     /**
      Create an outgoing webhook for an app
@@ -23,9 +23,9 @@ open class OutgoingWebhookAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func outgoingWebhookCreate(appSlug: String, appWebhookCreateParams: V0AppWebhookCreateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppWebhookCreatedResponseModel, Error> {
-        return Future<V0AppWebhookCreatedResponseModel, Error> { promise in
-            outgoingWebhookCreateWithRequestBuilder(appSlug: appSlug, appWebhookCreateParams: appWebhookCreateParams).execute(apiResponseQueue) { result in
+    public func outgoingWebhookCreate(appSlug: String, appWebhookCreateParams: V0AppWebhookCreateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppWebhookCreatedResponseModel, Error> {
+        return Future<V0AppWebhookCreatedResponseModel, Error> { [weak self] promise in
+            self?.outgoingWebhookCreateWithRequestBuilder(appSlug: appSlug, appWebhookCreateParams: appWebhookCreateParams).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -51,7 +51,7 @@ open class OutgoingWebhookAPI {
      - parameter appWebhookCreateParams: (body) App webhook creation params 
      - returns: RequestBuilder<V0AppWebhookCreatedResponseModel> 
      */
-    open class func outgoingWebhookCreateWithRequestBuilder(appSlug: String, appWebhookCreateParams: V0AppWebhookCreateParams) -> RequestBuilder<V0AppWebhookCreatedResponseModel> {
+    private func outgoingWebhookCreateWithRequestBuilder(appSlug: String, appWebhookCreateParams: V0AppWebhookCreateParams) -> RequestBuilder<V0AppWebhookCreatedResponseModel> {
         var localVariablePath = "/apps/{app-slug}/outgoing-webhooks"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -61,9 +61,7 @@ open class OutgoingWebhookAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -82,9 +80,9 @@ open class OutgoingWebhookAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func outgoingWebhookDelete(appSlug: String, appWebhookSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppWebhookDeletedResponseModel, Error> {
-        return Future<V0AppWebhookDeletedResponseModel, Error> { promise in
-            outgoingWebhookDeleteWithRequestBuilder(appSlug: appSlug, appWebhookSlug: appWebhookSlug).execute(apiResponseQueue) { result in
+    public func outgoingWebhookDelete(appSlug: String, appWebhookSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppWebhookDeletedResponseModel, Error> {
+        return Future<V0AppWebhookDeletedResponseModel, Error> { [weak self] promise in
+            self?.outgoingWebhookDeleteWithRequestBuilder(appSlug: appSlug, appWebhookSlug: appWebhookSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -107,7 +105,7 @@ open class OutgoingWebhookAPI {
      - parameter appWebhookSlug: (path) App webhook slug 
      - returns: RequestBuilder<V0AppWebhookDeletedResponseModel> 
      */
-    open class func outgoingWebhookDeleteWithRequestBuilder(appSlug: String, appWebhookSlug: String) -> RequestBuilder<V0AppWebhookDeletedResponseModel> {
+    private func outgoingWebhookDeleteWithRequestBuilder(appSlug: String, appWebhookSlug: String) -> RequestBuilder<V0AppWebhookDeletedResponseModel> {
         var localVariablePath = "/apps/{app-slug}/outgoing-webhooks/{app-webhook-slug}"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -120,9 +118,7 @@ open class OutgoingWebhookAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -142,9 +138,9 @@ open class OutgoingWebhookAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func outgoingWebhookList(appSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppWebhookListResponseModel, Error> {
-        return Future<V0AppWebhookListResponseModel, Error> { promise in
-            outgoingWebhookListWithRequestBuilder(appSlug: appSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
+    public func outgoingWebhookList(appSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppWebhookListResponseModel, Error> {
+        return Future<V0AppWebhookListResponseModel, Error> { [weak self] promise in
+            self?.outgoingWebhookListWithRequestBuilder(appSlug: appSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -171,7 +167,7 @@ open class OutgoingWebhookAPI {
      - parameter limit: (query) Max number of elements per page (default: 50) (optional)
      - returns: RequestBuilder<V0AppWebhookListResponseModel> 
      */
-    open class func outgoingWebhookListWithRequestBuilder(appSlug: String, next: String? = nil, limit: Int? = nil) -> RequestBuilder<V0AppWebhookListResponseModel> {
+    private func outgoingWebhookListWithRequestBuilder(appSlug: String, next: String? = nil, limit: Int? = nil) -> RequestBuilder<V0AppWebhookListResponseModel> {
         var localVariablePath = "/apps/{app-slug}/outgoing-webhooks"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -182,12 +178,10 @@ open class OutgoingWebhookAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "next": next?.encodeToJSON(),
-            "limit": limit?.encodeToJSON(),
+            "limit": limit?.encodeToJSON()
         ])
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -207,9 +201,9 @@ open class OutgoingWebhookAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func outgoingWebhookUpdate(appSlug: String, appWebhookSlug: String, appWebhookUpdateParams: V0AppWebhookUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppWebhookResponseModel, Error> {
-        return Future<V0AppWebhookResponseModel, Error> { promise in
-            outgoingWebhookUpdateWithRequestBuilder(appSlug: appSlug, appWebhookSlug: appWebhookSlug, appWebhookUpdateParams: appWebhookUpdateParams).execute(apiResponseQueue) { result in
+    public func outgoingWebhookUpdate(appSlug: String, appWebhookSlug: String, appWebhookUpdateParams: V0AppWebhookUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppWebhookResponseModel, Error> {
+        return Future<V0AppWebhookResponseModel, Error> { [weak self] promise in
+            self?.outgoingWebhookUpdateWithRequestBuilder(appSlug: appSlug, appWebhookSlug: appWebhookSlug, appWebhookUpdateParams: appWebhookUpdateParams).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -233,7 +227,7 @@ open class OutgoingWebhookAPI {
      - parameter appWebhookUpdateParams: (body) App webhook update params 
      - returns: RequestBuilder<V0AppWebhookResponseModel> 
      */
-    open class func outgoingWebhookUpdateWithRequestBuilder(appSlug: String, appWebhookSlug: String, appWebhookUpdateParams: V0AppWebhookUpdateParams) -> RequestBuilder<V0AppWebhookResponseModel> {
+    private func outgoingWebhookUpdateWithRequestBuilder(appSlug: String, appWebhookSlug: String, appWebhookUpdateParams: V0AppWebhookUpdateParams) -> RequestBuilder<V0AppWebhookResponseModel> {
         var localVariablePath = "/apps/{app-slug}/outgoing-webhooks/{app-webhook-slug}"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -246,9 +240,7 @@ open class OutgoingWebhookAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

@@ -49,7 +49,7 @@ struct BuildRowView: View {
                                 .padding(8)
                                 .border(Color.b_BorderLight, width: 2)
                                 .cornerRadius(4)
-                        ),
+                        )
                     ]
                     })
                         .font(.subheadline)

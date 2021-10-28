@@ -21,7 +21,7 @@ class ModelsTests: XCTestCase {
                     let data = try Data(contentsOf: url)
                     dataArr.append(data)
                 } catch {
-                    print(error)
+                    logger.error(error)
                 }
                 result[key] = dataArr
             }

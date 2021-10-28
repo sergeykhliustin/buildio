@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0ProvProfileDocumentUpdateParams: Codable, Hashable {
 
     public var isExpose: Bool?
@@ -35,4 +34,3 @@ public struct V0ProvProfileDocumentUpdateParams: Codable, Hashable {
         try container.encodeIfPresent(processed, forKey: .processed)
     }
 }
-

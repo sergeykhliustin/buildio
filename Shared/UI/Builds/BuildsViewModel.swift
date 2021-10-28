@@ -11,7 +11,7 @@ import Combine
 
 class BuildsViewModel: PagingViewModel {
     
-    @Published var state: BaseViewModelState<Array<V0BuildListAllResponseItemModel>> = .idle
+    @Published var state: BaseViewModelState<[V0BuildListAllResponseItemModel]> = .idle
     @Published var pagingState: PagingState = .idle {
         didSet {
             if case .last = pagingState {
@@ -22,22 +22,20 @@ class BuildsViewModel: PagingViewModel {
     
     var tokenRefresher: AnyCancellable?
     
-    
-    
     private let fetchLimit: Int = 10
     
     init() {
         refresh()
     }
     
-    func fetch() -> AnyPublisher<Array<V0BuildListAllResponseItemModel>, Error> {
-        BuildsAPI.buildListAll(limit: fetchLimit)
+    func fetch() -> AnyPublisher<[V0BuildListAllResponseItemModel], Error> {
+        BuildsAPI().buildListAll(limit: fetchLimit)
             .map({ $0.data })
             .eraseToAnyPublisher()
     }
     
-    func fetchNextPage() -> AnyPublisher<Array<V0BuildListAllResponseItemModel>, Error> {
-        BuildsAPI.buildListAll(next: self.value?.last?.slug, limit: fetchLimit)
+    func fetchNextPage() -> AnyPublisher<[V0BuildListAllResponseItemModel], Error> {
+        BuildsAPI().buildListAll(next: self.value?.last?.slug, limit: fetchLimit)
             .map({ $0.data })
             .eraseToAnyPublisher()
     }

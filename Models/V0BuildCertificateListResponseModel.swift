@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0BuildCertificateListResponseModel: Codable, Hashable {
 
     public var data: [V0BuildCertificateResponseItemModel]?
@@ -31,4 +30,3 @@ public struct V0BuildCertificateListResponseModel: Codable, Hashable {
         try container.encodeIfPresent(paging, forKey: .paging)
     }
 }
-

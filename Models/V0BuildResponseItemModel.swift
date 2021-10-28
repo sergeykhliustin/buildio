@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0BuildResponseItemModel: Codable, Hashable {
 
     public var abortReason: String?
@@ -123,4 +122,3 @@ public struct V0BuildResponseItemModel: Codable, Hashable {
         try container.encodeIfPresent(triggeredWorkflow, forKey: .triggeredWorkflow)
     }
 }
-

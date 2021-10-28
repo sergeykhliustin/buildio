@@ -15,7 +15,7 @@ enum PagingState {
     case idle
     
     fileprivate var canLoadNext: Bool {
-        if case .loading(_) = self {
+        if case .loading = self {
             return false
         } else if case .last = self {
             return false
@@ -33,7 +33,7 @@ protocol PagingViewModel: BaseViewModel {
 
 extension PagingViewModel {
     var isLoadingPage: Bool {
-        if case .loading(_) = pagingState {
+        if case .loading = pagingState {
             return true
         }
         return false
@@ -44,7 +44,7 @@ extension PagingViewModel {
     }
     
     func nextPage() {
-        guard case .value(_) = state else { return }
+        guard case .value = state else { return }
         guard pagingState.canLoadNext else { return }
         
         let fetcher = fetchNextPage()

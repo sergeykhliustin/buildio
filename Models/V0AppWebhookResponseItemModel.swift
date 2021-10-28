@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0AppWebhookResponseItemModel: Codable, Hashable {
 
     public var createdAt: String?
@@ -51,4 +50,3 @@ public struct V0AppWebhookResponseItemModel: Codable, Hashable {
         try container.encodeIfPresent(url, forKey: .url)
     }
 }
-

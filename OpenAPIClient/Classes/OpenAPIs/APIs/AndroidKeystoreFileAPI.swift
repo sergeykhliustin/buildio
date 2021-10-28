@@ -11,7 +11,7 @@ import Combine
 #endif
 import Models
 
-open class AndroidKeystoreFileAPI {
+public final class AndroidKeystoreFileAPI: BaseAPI {
 
     /**
      Create an Android keystore file
@@ -23,9 +23,9 @@ open class AndroidKeystoreFileAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func androidKeystoreFileCreate(appSlug: String, androidKeystoreFile: V0AndroidKeystoreFileUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageResponseModel, Error> {
-        return Future<V0ProjectFileStorageResponseModel, Error> { promise in
-            androidKeystoreFileCreateWithRequestBuilder(appSlug: appSlug, androidKeystoreFile: androidKeystoreFile).execute(apiResponseQueue) { result in
+    public func androidKeystoreFileCreate(appSlug: String, androidKeystoreFile: V0AndroidKeystoreFileUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageResponseModel, Error> {
+        return Future<V0ProjectFileStorageResponseModel, Error> { [weak self] promise in
+            self?.androidKeystoreFileCreateWithRequestBuilder(appSlug: appSlug, androidKeystoreFile: androidKeystoreFile).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -48,7 +48,7 @@ open class AndroidKeystoreFileAPI {
      - parameter androidKeystoreFile: (body) Android keystore file parameters 
      - returns: RequestBuilder<V0ProjectFileStorageResponseModel> 
      */
-    open class func androidKeystoreFileCreateWithRequestBuilder(appSlug: String, androidKeystoreFile: V0AndroidKeystoreFileUploadParams) -> RequestBuilder<V0ProjectFileStorageResponseModel> {
+    private func androidKeystoreFileCreateWithRequestBuilder(appSlug: String, androidKeystoreFile: V0AndroidKeystoreFileUploadParams) -> RequestBuilder<V0ProjectFileStorageResponseModel> {
         var localVariablePath = "/apps/{app-slug}/android-keystore-files"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -58,9 +58,7 @@ open class AndroidKeystoreFileAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -80,9 +78,9 @@ open class AndroidKeystoreFileAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func androidKeystoreFileList(appSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageListResponseModel, Error> {
-        return Future<V0ProjectFileStorageListResponseModel, Error> { promise in
-            androidKeystoreFileListWithRequestBuilder(appSlug: appSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
+    public func androidKeystoreFileList(appSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageListResponseModel, Error> {
+        return Future<V0ProjectFileStorageListResponseModel, Error> { [weak self] promise in
+            self?.androidKeystoreFileListWithRequestBuilder(appSlug: appSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -109,7 +107,7 @@ open class AndroidKeystoreFileAPI {
      - parameter limit: (query) Max number of build certificates per page is 50. (optional)
      - returns: RequestBuilder<V0ProjectFileStorageListResponseModel> 
      */
-    open class func androidKeystoreFileListWithRequestBuilder(appSlug: String, next: String? = nil, limit: Int? = nil) -> RequestBuilder<V0ProjectFileStorageListResponseModel> {
+    private func androidKeystoreFileListWithRequestBuilder(appSlug: String, next: String? = nil, limit: Int? = nil) -> RequestBuilder<V0ProjectFileStorageListResponseModel> {
         var localVariablePath = "/apps/{app-slug}/android-keystore-files"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -120,12 +118,10 @@ open class AndroidKeystoreFileAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "next": next?.encodeToJSON(),
-            "limit": limit?.encodeToJSON(),
+            "limit": limit?.encodeToJSON()
         ])
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

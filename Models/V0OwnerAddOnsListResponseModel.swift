@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0OwnerAddOnsListResponseModel: Codable, Hashable {
 
     public var data: [V0OwnerAddOnResponseItemModel]?
@@ -27,4 +26,3 @@ public struct V0OwnerAddOnsListResponseModel: Codable, Hashable {
         try container.encodeIfPresent(data, forKey: .data)
     }
 }
-

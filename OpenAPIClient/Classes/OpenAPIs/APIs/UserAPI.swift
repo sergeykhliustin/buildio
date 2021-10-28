@@ -11,7 +11,7 @@ import Combine
 #endif
 import Models
 
-open class UserAPI {
+public final class UserAPI: BaseAPI {
 
     /**
      The active addon tokens of the user
@@ -21,9 +21,9 @@ open class UserAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func userAddonTokens(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<[String], Error> {
-        return Future<[String], Error> { promise in
-            userAddonTokensWithRequestBuilder().execute(apiResponseQueue) { result in
+    public func userAddonTokens(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<[String], Error> {
+        return Future<[String], Error> { [weak self] promise in
+            self?.userAddonTokensWithRequestBuilder().execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -44,16 +44,14 @@ open class UserAPI {
        - name: PersonalAccessToken
      - returns: RequestBuilder<[String]> 
      */
-    open class func userAddonTokensWithRequestBuilder() -> RequestBuilder<[String]> {
+    private func userAddonTokensWithRequestBuilder() -> RequestBuilder<[String]> {
         let localVariablePath = "/me/addon-tokens"
         let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -70,9 +68,9 @@ open class UserAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func userAddonTokensDelete(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error> { promise in
-            userAddonTokensDeleteWithRequestBuilder().execute(apiResponseQueue) { result in
+    public func userAddonTokensDelete(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<Void, Error> {
+        return Future<Void, Error> { [weak self] promise in
+            self?.userAddonTokensDeleteWithRequestBuilder().execute(apiResponseQueue) { result in
                 switch result {
                 case .success:
                     promise(.success(()))
@@ -93,16 +91,14 @@ open class UserAPI {
        - name: PersonalAccessToken
      - returns: RequestBuilder<Void> 
      */
-    open class func userAddonTokensDeleteWithRequestBuilder() -> RequestBuilder<Void> {
+    private func userAddonTokensDeleteWithRequestBuilder() -> RequestBuilder<Void> {
         let localVariablePath = "/me/addon-tokens/{addon-id}"
         let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -119,9 +115,9 @@ open class UserAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func userPlan(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0UserPlanRespModel, Error> {
-        return Future<V0UserPlanRespModel, Error> { promise in
-            userPlanWithRequestBuilder().execute(apiResponseQueue) { result in
+    public func userPlan(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0UserPlanRespModel, Error> {
+        return Future<V0UserPlanRespModel, Error> { [weak self] promise in
+            self?.userPlanWithRequestBuilder().execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -142,16 +138,14 @@ open class UserAPI {
        - name: PersonalAccessToken
      - returns: RequestBuilder<V0UserPlanRespModel> 
      */
-    open class func userPlanWithRequestBuilder() -> RequestBuilder<V0UserPlanRespModel> {
+    private func userPlanWithRequestBuilder() -> RequestBuilder<V0UserPlanRespModel> {
         let localVariablePath = "/me/plan"
         let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -168,9 +162,9 @@ open class UserAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func userProfile(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0UserProfileRespModel, Error> {
-        return Future<V0UserProfileRespModel, Error> { promise in
-            userProfileWithRequestBuilder().execute(apiResponseQueue) { result in
+    public func userProfile(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0UserProfileRespModel, Error> {
+        return Future<V0UserProfileRespModel, Error> { [weak self] promise in
+            self?.userProfileWithRequestBuilder().execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -191,16 +185,14 @@ open class UserAPI {
        - name: PersonalAccessToken
      - returns: RequestBuilder<V0UserProfileRespModel> 
      */
-    open class func userProfileWithRequestBuilder() -> RequestBuilder<V0UserProfileRespModel> {
+    private func userProfileWithRequestBuilder() -> RequestBuilder<V0UserProfileRespModel> {
         let localVariablePath = "/me"
         let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -218,9 +210,9 @@ open class UserAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func userShow(userSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0UserProfileRespModel, Error> {
-        return Future<V0UserProfileRespModel, Error> { promise in
-            userShowWithRequestBuilder(userSlug: userSlug).execute(apiResponseQueue) { result in
+    public func userShow(userSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0UserProfileRespModel, Error> {
+        return Future<V0UserProfileRespModel, Error> { [weak self] promise in
+            self?.userShowWithRequestBuilder(userSlug: userSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -242,7 +234,7 @@ open class UserAPI {
      - parameter userSlug: (path) User slug 
      - returns: RequestBuilder<V0UserProfileRespModel> 
      */
-    open class func userShowWithRequestBuilder(userSlug: String) -> RequestBuilder<V0UserProfileRespModel> {
+    private func userShowWithRequestBuilder(userSlug: String) -> RequestBuilder<V0UserProfileRespModel> {
         var localVariablePath = "/users/{user-slug}"
         let userSlugPreEscape = "\(APIHelper.mapValueToPathItem(userSlug))"
         let userSlugPostEscape = userSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -252,9 +244,7 @@ open class UserAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0BuildAbortParams: Codable, Hashable {
 
     public var abortReason: String
@@ -35,4 +34,3 @@ public struct V0BuildAbortParams: Codable, Hashable {
         try container.encode(skipNotifications, forKey: .skipNotifications)
     }
 }
-

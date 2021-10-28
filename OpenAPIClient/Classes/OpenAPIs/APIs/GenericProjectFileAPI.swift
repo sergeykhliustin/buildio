@@ -11,7 +11,7 @@ import Combine
 #endif
 import Models
 
-open class GenericProjectFileAPI {
+public final class GenericProjectFileAPI: BaseAPI {
 
     /**
      Confirm a generic project file upload
@@ -23,9 +23,9 @@ open class GenericProjectFileAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func genericProjectFileConfirm(appSlug: String, genericProjectFileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageResponseModel, Error> {
-        return Future<V0ProjectFileStorageResponseModel, Error> { promise in
-            genericProjectFileConfirmWithRequestBuilder(appSlug: appSlug, genericProjectFileSlug: genericProjectFileSlug).execute(apiResponseQueue) { result in
+    public func genericProjectFileConfirm(appSlug: String, genericProjectFileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageResponseModel, Error> {
+        return Future<V0ProjectFileStorageResponseModel, Error> { [weak self] promise in
+            self?.genericProjectFileConfirmWithRequestBuilder(appSlug: appSlug, genericProjectFileSlug: genericProjectFileSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -48,7 +48,7 @@ open class GenericProjectFileAPI {
      - parameter genericProjectFileSlug: (path) Generic project file slug 
      - returns: RequestBuilder<V0ProjectFileStorageResponseModel> 
      */
-    open class func genericProjectFileConfirmWithRequestBuilder(appSlug: String, genericProjectFileSlug: String) -> RequestBuilder<V0ProjectFileStorageResponseModel> {
+    private func genericProjectFileConfirmWithRequestBuilder(appSlug: String, genericProjectFileSlug: String) -> RequestBuilder<V0ProjectFileStorageResponseModel> {
         var localVariablePath = "/apps/{app-slug}/generic-project-files/{generic-project-file-slug}/uploaded"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -61,9 +61,7 @@ open class GenericProjectFileAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -82,9 +80,9 @@ open class GenericProjectFileAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func genericProjectFileDelete(appSlug: String, genericProjectFileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageResponseModel, Error> {
-        return Future<V0ProjectFileStorageResponseModel, Error> { promise in
-            genericProjectFileDeleteWithRequestBuilder(appSlug: appSlug, genericProjectFileSlug: genericProjectFileSlug).execute(apiResponseQueue) { result in
+    public func genericProjectFileDelete(appSlug: String, genericProjectFileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageResponseModel, Error> {
+        return Future<V0ProjectFileStorageResponseModel, Error> { [weak self] promise in
+            self?.genericProjectFileDeleteWithRequestBuilder(appSlug: appSlug, genericProjectFileSlug: genericProjectFileSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -107,7 +105,7 @@ open class GenericProjectFileAPI {
      - parameter genericProjectFileSlug: (path) Generic project file slug 
      - returns: RequestBuilder<V0ProjectFileStorageResponseModel> 
      */
-    open class func genericProjectFileDeleteWithRequestBuilder(appSlug: String, genericProjectFileSlug: String) -> RequestBuilder<V0ProjectFileStorageResponseModel> {
+    private func genericProjectFileDeleteWithRequestBuilder(appSlug: String, genericProjectFileSlug: String) -> RequestBuilder<V0ProjectFileStorageResponseModel> {
         var localVariablePath = "/apps/{app-slug}/generic-project-files/{generic-project-file-slug}"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -120,9 +118,7 @@ open class GenericProjectFileAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -142,9 +138,9 @@ open class GenericProjectFileAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func genericProjectFileList(appSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageListResponseModel, Error> {
-        return Future<V0ProjectFileStorageListResponseModel, Error> { promise in
-            genericProjectFileListWithRequestBuilder(appSlug: appSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
+    public func genericProjectFileList(appSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageListResponseModel, Error> {
+        return Future<V0ProjectFileStorageListResponseModel, Error> { [weak self] promise in
+            self?.genericProjectFileListWithRequestBuilder(appSlug: appSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -171,7 +167,7 @@ open class GenericProjectFileAPI {
      - parameter limit: (query) Max number of build certificates per page is 50. (optional)
      - returns: RequestBuilder<V0ProjectFileStorageListResponseModel> 
      */
-    open class func genericProjectFileListWithRequestBuilder(appSlug: String, next: String? = nil, limit: Int? = nil) -> RequestBuilder<V0ProjectFileStorageListResponseModel> {
+    private func genericProjectFileListWithRequestBuilder(appSlug: String, next: String? = nil, limit: Int? = nil) -> RequestBuilder<V0ProjectFileStorageListResponseModel> {
         var localVariablePath = "/apps/{app-slug}/generic-project-files"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -182,12 +178,10 @@ open class GenericProjectFileAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "next": next?.encodeToJSON(),
-            "limit": limit?.encodeToJSON(),
+            "limit": limit?.encodeToJSON()
         ])
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -206,9 +200,9 @@ open class GenericProjectFileAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func genericProjectFileShow(appSlug: String, genericProjectFileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageResponseModel, Error> {
-        return Future<V0ProjectFileStorageResponseModel, Error> { promise in
-            genericProjectFileShowWithRequestBuilder(appSlug: appSlug, genericProjectFileSlug: genericProjectFileSlug).execute(apiResponseQueue) { result in
+    public func genericProjectFileShow(appSlug: String, genericProjectFileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageResponseModel, Error> {
+        return Future<V0ProjectFileStorageResponseModel, Error> { [weak self] promise in
+            self?.genericProjectFileShowWithRequestBuilder(appSlug: appSlug, genericProjectFileSlug: genericProjectFileSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -231,7 +225,7 @@ open class GenericProjectFileAPI {
      - parameter genericProjectFileSlug: (path) Generic project file slug 
      - returns: RequestBuilder<V0ProjectFileStorageResponseModel> 
      */
-    open class func genericProjectFileShowWithRequestBuilder(appSlug: String, genericProjectFileSlug: String) -> RequestBuilder<V0ProjectFileStorageResponseModel> {
+    private func genericProjectFileShowWithRequestBuilder(appSlug: String, genericProjectFileSlug: String) -> RequestBuilder<V0ProjectFileStorageResponseModel> {
         var localVariablePath = "/apps/{app-slug}/generic-project-files/{generic-project-file-slug}"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -244,9 +238,7 @@ open class GenericProjectFileAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -266,9 +258,9 @@ open class GenericProjectFileAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func genericProjectFileUpdate(appSlug: String, genericProjectFileSlug: String, genericProjectFile: V0ProjectFileStorageDocumentUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageResponseModel, Error> {
-        return Future<V0ProjectFileStorageResponseModel, Error> { promise in
-            genericProjectFileUpdateWithRequestBuilder(appSlug: appSlug, genericProjectFileSlug: genericProjectFileSlug, genericProjectFile: genericProjectFile).execute(apiResponseQueue) { result in
+    public func genericProjectFileUpdate(appSlug: String, genericProjectFileSlug: String, genericProjectFile: V0ProjectFileStorageDocumentUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageResponseModel, Error> {
+        return Future<V0ProjectFileStorageResponseModel, Error> { [weak self] promise in
+            self?.genericProjectFileUpdateWithRequestBuilder(appSlug: appSlug, genericProjectFileSlug: genericProjectFileSlug, genericProjectFile: genericProjectFile).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -292,7 +284,7 @@ open class GenericProjectFileAPI {
      - parameter genericProjectFile: (body) Generic project file parameters 
      - returns: RequestBuilder<V0ProjectFileStorageResponseModel> 
      */
-    open class func genericProjectFileUpdateWithRequestBuilder(appSlug: String, genericProjectFileSlug: String, genericProjectFile: V0ProjectFileStorageDocumentUpdateParams) -> RequestBuilder<V0ProjectFileStorageResponseModel> {
+    private func genericProjectFileUpdateWithRequestBuilder(appSlug: String, genericProjectFileSlug: String, genericProjectFile: V0ProjectFileStorageDocumentUpdateParams) -> RequestBuilder<V0ProjectFileStorageResponseModel> {
         var localVariablePath = "/apps/{app-slug}/generic-project-files/{generic-project-file-slug}"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -305,9 +297,7 @@ open class GenericProjectFileAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -326,9 +316,9 @@ open class GenericProjectFileAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func genericProjectFilesCreate(appSlug: String, genericProjectFile: V0ProjectFileStorageUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageResponseModel, Error> {
-        return Future<V0ProjectFileStorageResponseModel, Error> { promise in
-            genericProjectFilesCreateWithRequestBuilder(appSlug: appSlug, genericProjectFile: genericProjectFile).execute(apiResponseQueue) { result in
+    public func genericProjectFilesCreate(appSlug: String, genericProjectFile: V0ProjectFileStorageUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageResponseModel, Error> {
+        return Future<V0ProjectFileStorageResponseModel, Error> { [weak self] promise in
+            self?.genericProjectFilesCreateWithRequestBuilder(appSlug: appSlug, genericProjectFile: genericProjectFile).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -351,7 +341,7 @@ open class GenericProjectFileAPI {
      - parameter genericProjectFile: (body) Generic project file parameters 
      - returns: RequestBuilder<V0ProjectFileStorageResponseModel> 
      */
-    open class func genericProjectFilesCreateWithRequestBuilder(appSlug: String, genericProjectFile: V0ProjectFileStorageUploadParams) -> RequestBuilder<V0ProjectFileStorageResponseModel> {
+    private func genericProjectFilesCreateWithRequestBuilder(appSlug: String, genericProjectFile: V0ProjectFileStorageUploadParams) -> RequestBuilder<V0ProjectFileStorageResponseModel> {
         var localVariablePath = "/apps/{app-slug}/generic-project-files"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -361,9 +351,7 @@ open class GenericProjectFileAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

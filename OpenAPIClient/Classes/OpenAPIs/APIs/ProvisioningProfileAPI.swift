@@ -11,7 +11,7 @@ import Combine
 #endif
 import Models
 
-open class ProvisioningProfileAPI {
+public final class ProvisioningProfileAPI: BaseAPI {
 
     /**
      Confirm a provisioning profile upload
@@ -23,9 +23,9 @@ open class ProvisioningProfileAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func provisioningProfileConfirm(appSlug: String, provisioningProfileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileResponseModel, Error> {
-        return Future<V0ProvisionProfileResponseModel, Error> { promise in
-            provisioningProfileConfirmWithRequestBuilder(appSlug: appSlug, provisioningProfileSlug: provisioningProfileSlug).execute(apiResponseQueue) { result in
+    public func provisioningProfileConfirm(appSlug: String, provisioningProfileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileResponseModel, Error> {
+        return Future<V0ProvisionProfileResponseModel, Error> { [weak self] promise in
+            self?.provisioningProfileConfirmWithRequestBuilder(appSlug: appSlug, provisioningProfileSlug: provisioningProfileSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -48,7 +48,7 @@ open class ProvisioningProfileAPI {
      - parameter provisioningProfileSlug: (path) Provisioning profile slug 
      - returns: RequestBuilder<V0ProvisionProfileResponseModel> 
      */
-    open class func provisioningProfileConfirmWithRequestBuilder(appSlug: String, provisioningProfileSlug: String) -> RequestBuilder<V0ProvisionProfileResponseModel> {
+    private func provisioningProfileConfirmWithRequestBuilder(appSlug: String, provisioningProfileSlug: String) -> RequestBuilder<V0ProvisionProfileResponseModel> {
         var localVariablePath = "/apps/{app-slug}/provisioning-profiles/{provisioning-profile-slug}/uploaded"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -61,9 +61,7 @@ open class ProvisioningProfileAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -82,9 +80,9 @@ open class ProvisioningProfileAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func provisioningProfileCreate(appSlug: String, provisioningProfile: V0ProvisionProfileUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileResponseModel, Error> {
-        return Future<V0ProvisionProfileResponseModel, Error> { promise in
-            provisioningProfileCreateWithRequestBuilder(appSlug: appSlug, provisioningProfile: provisioningProfile).execute(apiResponseQueue) { result in
+    public func provisioningProfileCreate(appSlug: String, provisioningProfile: V0ProvisionProfileUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileResponseModel, Error> {
+        return Future<V0ProvisionProfileResponseModel, Error> { [weak self] promise in
+            self?.provisioningProfileCreateWithRequestBuilder(appSlug: appSlug, provisioningProfile: provisioningProfile).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -107,7 +105,7 @@ open class ProvisioningProfileAPI {
      - parameter provisioningProfile: (body) Provisioning profile parameters such as file name and file size 
      - returns: RequestBuilder<V0ProvisionProfileResponseModel> 
      */
-    open class func provisioningProfileCreateWithRequestBuilder(appSlug: String, provisioningProfile: V0ProvisionProfileUploadParams) -> RequestBuilder<V0ProvisionProfileResponseModel> {
+    private func provisioningProfileCreateWithRequestBuilder(appSlug: String, provisioningProfile: V0ProvisionProfileUploadParams) -> RequestBuilder<V0ProvisionProfileResponseModel> {
         var localVariablePath = "/apps/{app-slug}/provisioning-profiles"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -117,9 +115,7 @@ open class ProvisioningProfileAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -138,9 +134,9 @@ open class ProvisioningProfileAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func provisioningProfileDelete(appSlug: String, provisioningProfileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileResponseModel, Error> {
-        return Future<V0ProvisionProfileResponseModel, Error> { promise in
-            provisioningProfileDeleteWithRequestBuilder(appSlug: appSlug, provisioningProfileSlug: provisioningProfileSlug).execute(apiResponseQueue) { result in
+    public func provisioningProfileDelete(appSlug: String, provisioningProfileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileResponseModel, Error> {
+        return Future<V0ProvisionProfileResponseModel, Error> { [weak self] promise in
+            self?.provisioningProfileDeleteWithRequestBuilder(appSlug: appSlug, provisioningProfileSlug: provisioningProfileSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -163,7 +159,7 @@ open class ProvisioningProfileAPI {
      - parameter provisioningProfileSlug: (path) Provisioning profile slug 
      - returns: RequestBuilder<V0ProvisionProfileResponseModel> 
      */
-    open class func provisioningProfileDeleteWithRequestBuilder(appSlug: String, provisioningProfileSlug: String) -> RequestBuilder<V0ProvisionProfileResponseModel> {
+    private func provisioningProfileDeleteWithRequestBuilder(appSlug: String, provisioningProfileSlug: String) -> RequestBuilder<V0ProvisionProfileResponseModel> {
         var localVariablePath = "/apps/{app-slug}/provisioning-profiles/{provisioning-profile-slug}"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -176,9 +172,7 @@ open class ProvisioningProfileAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -198,9 +192,9 @@ open class ProvisioningProfileAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func provisioningProfileList(appSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileListResponseModel, Error> {
-        return Future<V0ProvisionProfileListResponseModel, Error> { promise in
-            provisioningProfileListWithRequestBuilder(appSlug: appSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
+    public func provisioningProfileList(appSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileListResponseModel, Error> {
+        return Future<V0ProvisionProfileListResponseModel, Error> { [weak self] promise in
+            self?.provisioningProfileListWithRequestBuilder(appSlug: appSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -227,7 +221,7 @@ open class ProvisioningProfileAPI {
      - parameter limit: (query) Max number of elements per page (default: 50) (optional)
      - returns: RequestBuilder<V0ProvisionProfileListResponseModel> 
      */
-    open class func provisioningProfileListWithRequestBuilder(appSlug: String, next: String? = nil, limit: Int? = nil) -> RequestBuilder<V0ProvisionProfileListResponseModel> {
+    private func provisioningProfileListWithRequestBuilder(appSlug: String, next: String? = nil, limit: Int? = nil) -> RequestBuilder<V0ProvisionProfileListResponseModel> {
         var localVariablePath = "/apps/{app-slug}/provisioning-profiles"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -238,12 +232,10 @@ open class ProvisioningProfileAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "next": next?.encodeToJSON(),
-            "limit": limit?.encodeToJSON(),
+            "limit": limit?.encodeToJSON()
         ])
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -262,9 +254,9 @@ open class ProvisioningProfileAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func provisioningProfileShow(appSlug: String, provisioningProfileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileResponseModel, Error> {
-        return Future<V0ProvisionProfileResponseModel, Error> { promise in
-            provisioningProfileShowWithRequestBuilder(appSlug: appSlug, provisioningProfileSlug: provisioningProfileSlug).execute(apiResponseQueue) { result in
+    public func provisioningProfileShow(appSlug: String, provisioningProfileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileResponseModel, Error> {
+        return Future<V0ProvisionProfileResponseModel, Error> { [weak self] promise in
+            self?.provisioningProfileShowWithRequestBuilder(appSlug: appSlug, provisioningProfileSlug: provisioningProfileSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -287,7 +279,7 @@ open class ProvisioningProfileAPI {
      - parameter provisioningProfileSlug: (path) Provisioning profile slug 
      - returns: RequestBuilder<V0ProvisionProfileResponseModel> 
      */
-    open class func provisioningProfileShowWithRequestBuilder(appSlug: String, provisioningProfileSlug: String) -> RequestBuilder<V0ProvisionProfileResponseModel> {
+    private func provisioningProfileShowWithRequestBuilder(appSlug: String, provisioningProfileSlug: String) -> RequestBuilder<V0ProvisionProfileResponseModel> {
         var localVariablePath = "/apps/{app-slug}/provisioning-profiles/{provisioning-profile-slug}"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -300,9 +292,7 @@ open class ProvisioningProfileAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -322,9 +312,9 @@ open class ProvisioningProfileAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func provisioningProfileUpdate(appSlug: String, provisioningProfileSlug: String, provisioningProfile: V0ProvProfileDocumentUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileResponseModel, Error> {
-        return Future<V0ProvisionProfileResponseModel, Error> { promise in
-            provisioningProfileUpdateWithRequestBuilder(appSlug: appSlug, provisioningProfileSlug: provisioningProfileSlug, provisioningProfile: provisioningProfile).execute(apiResponseQueue) { result in
+    public func provisioningProfileUpdate(appSlug: String, provisioningProfileSlug: String, provisioningProfile: V0ProvProfileDocumentUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileResponseModel, Error> {
+        return Future<V0ProvisionProfileResponseModel, Error> { [weak self] promise in
+            self?.provisioningProfileUpdateWithRequestBuilder(appSlug: appSlug, provisioningProfileSlug: provisioningProfileSlug, provisioningProfile: provisioningProfile).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -348,7 +338,7 @@ open class ProvisioningProfileAPI {
      - parameter provisioningProfile: (body) Provisioning profile parameters 
      - returns: RequestBuilder<V0ProvisionProfileResponseModel> 
      */
-    open class func provisioningProfileUpdateWithRequestBuilder(appSlug: String, provisioningProfileSlug: String, provisioningProfile: V0ProvProfileDocumentUpdateParams) -> RequestBuilder<V0ProvisionProfileResponseModel> {
+    private func provisioningProfileUpdateWithRequestBuilder(appSlug: String, provisioningProfileSlug: String, provisioningProfile: V0ProvProfileDocumentUpdateParams) -> RequestBuilder<V0ProvisionProfileResponseModel> {
         var localVariablePath = "/apps/{app-slug}/provisioning-profiles/{provisioning-profile-slug}"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -361,9 +351,7 @@ open class ProvisioningProfileAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

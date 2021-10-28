@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0BuildTriggerRespModel: Codable, Hashable {
 
     public var buildNumber: Int?
@@ -55,4 +54,3 @@ public struct V0BuildTriggerRespModel: Codable, Hashable {
         try container.encodeIfPresent(triggeredWorkflow, forKey: .triggeredWorkflow)
     }
 }
-

@@ -30,7 +30,7 @@ protocol BaseViewModel: ObservableObject {
 
 extension BaseViewModel {
     var isLoading: Bool {
-        if case .loading(_) = state {
+        if case .loading = state {
             return true
         }
         return false
@@ -64,7 +64,9 @@ extension BaseViewModel {
             tokenRefresher = TokenManager.shared.$token
                 .dropFirst()
                 .sink { [weak self] value in
-                    self?.refresh()
+                    DispatchQueue.main.async {
+                        self?.refresh()
+                    }
                 }
         }
     }

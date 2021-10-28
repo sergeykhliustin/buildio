@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0ProjectFileStorageResponseItemModel: Codable, Hashable {
 
     public var downloadUrl: String?
@@ -63,4 +62,3 @@ public struct V0ProjectFileStorageResponseItemModel: Codable, Hashable {
         try container.encodeIfPresent(userEnvKey, forKey: .userEnvKey)
     }
 }
-

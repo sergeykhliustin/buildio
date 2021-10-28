@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0SSHKeyRespModel: Codable, Hashable {
 
     public var status: String?
@@ -27,4 +26,3 @@ public struct V0SSHKeyRespModel: Codable, Hashable {
         try container.encodeIfPresent(status, forKey: .status)
     }
 }
-

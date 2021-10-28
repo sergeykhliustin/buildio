@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct AddonsPlan: Codable, Hashable {
 
     public var features: [AddonsFeature]?
@@ -39,4 +38,3 @@ public struct AddonsPlan: Codable, Hashable {
         try container.encodeIfPresent(price, forKey: .price)
     }
 }
-

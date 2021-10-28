@@ -11,7 +11,7 @@ import Combine
 #endif
 import Models
 
-open class OrganizationsAPI {
+public final class OrganizationsAPI: BaseAPI {
 
     /**
      List the organizations that the user is part of
@@ -21,9 +21,9 @@ open class OrganizationsAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func orgList(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0OrganizationListRespModel, Error> {
-        return Future<V0OrganizationListRespModel, Error> { promise in
-            orgListWithRequestBuilder().execute(apiResponseQueue) { result in
+    public func orgList(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0OrganizationListRespModel, Error> {
+        return Future<V0OrganizationListRespModel, Error> { [weak self] promise in
+            self?.orgListWithRequestBuilder().execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -44,16 +44,14 @@ open class OrganizationsAPI {
        - name: PersonalAccessToken
      - returns: RequestBuilder<V0OrganizationListRespModel> 
      */
-    open class func orgListWithRequestBuilder() -> RequestBuilder<V0OrganizationListRespModel> {
+    private func orgListWithRequestBuilder() -> RequestBuilder<V0OrganizationListRespModel> {
         let localVariablePath = "/organizations"
         let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -71,9 +69,9 @@ open class OrganizationsAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func orgShow(orgSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0OrganizationRespModel, Error> {
-        return Future<V0OrganizationRespModel, Error> { promise in
-            orgShowWithRequestBuilder(orgSlug: orgSlug).execute(apiResponseQueue) { result in
+    public func orgShow(orgSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0OrganizationRespModel, Error> {
+        return Future<V0OrganizationRespModel, Error> { [weak self] promise in
+            self?.orgShowWithRequestBuilder(orgSlug: orgSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -95,7 +93,7 @@ open class OrganizationsAPI {
      - parameter orgSlug: (path) The organization slug 
      - returns: RequestBuilder<V0OrganizationRespModel> 
      */
-    open class func orgShowWithRequestBuilder(orgSlug: String) -> RequestBuilder<V0OrganizationRespModel> {
+    private func orgShowWithRequestBuilder(orgSlug: String) -> RequestBuilder<V0OrganizationRespModel> {
         var localVariablePath = "/organizations/{org-slug}"
         let orgSlugPreEscape = "\(APIHelper.mapValueToPathItem(orgSlug))"
         let orgSlugPostEscape = orgSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -105,9 +103,7 @@ open class OrganizationsAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

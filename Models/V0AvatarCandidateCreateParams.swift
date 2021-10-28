@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0AvatarCandidateCreateParams: Codable, Hashable {
 
     public var filename: String
@@ -31,4 +30,3 @@ public struct V0AvatarCandidateCreateParams: Codable, Hashable {
         try container.encode(filesize, forKey: .filesize)
     }
 }
-

@@ -11,7 +11,7 @@ import Combine
 #endif
 import Models
 
-open class AvatarCandidateAPI {
+public final class AvatarCandidateAPI: BaseAPI {
 
     /**
      Create avatar candidates
@@ -23,9 +23,9 @@ open class AvatarCandidateAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func avatarCandidateCreate(appSlug: String, avatarCandidate: [V0AvatarCandidateCreateParams], apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<[V0AvatarCandidateCreateResponseItem], Error> {
-        return Future<[V0AvatarCandidateCreateResponseItem], Error> { promise in
-            avatarCandidateCreateWithRequestBuilder(appSlug: appSlug, avatarCandidate: avatarCandidate).execute(apiResponseQueue) { result in
+    public func avatarCandidateCreate(appSlug: String, avatarCandidate: [V0AvatarCandidateCreateParams], apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<[V0AvatarCandidateCreateResponseItem], Error> {
+        return Future<[V0AvatarCandidateCreateResponseItem], Error> { [weak self] promise in
+            self?.avatarCandidateCreateWithRequestBuilder(appSlug: appSlug, avatarCandidate: avatarCandidate).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -48,7 +48,7 @@ open class AvatarCandidateAPI {
      - parameter avatarCandidate: (body) Avatar candidate parameters 
      - returns: RequestBuilder<[V0AvatarCandidateCreateResponseItem]> 
      */
-    open class func avatarCandidateCreateWithRequestBuilder(appSlug: String, avatarCandidate: [V0AvatarCandidateCreateParams]) -> RequestBuilder<[V0AvatarCandidateCreateResponseItem]> {
+    private func avatarCandidateCreateWithRequestBuilder(appSlug: String, avatarCandidate: [V0AvatarCandidateCreateParams]) -> RequestBuilder<[V0AvatarCandidateCreateResponseItem]> {
         var localVariablePath = "/apps/{app-slug}/avatar-candidates"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -58,9 +58,7 @@ open class AvatarCandidateAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -78,9 +76,9 @@ open class AvatarCandidateAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func avatarCandidateList(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0FindAvatarCandidateResponse, Error> {
-        return Future<V0FindAvatarCandidateResponse, Error> { promise in
-            avatarCandidateListWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
+    public func avatarCandidateList(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0FindAvatarCandidateResponse, Error> {
+        return Future<V0FindAvatarCandidateResponse, Error> { [weak self] promise in
+            self?.avatarCandidateListWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -102,7 +100,7 @@ open class AvatarCandidateAPI {
      - parameter appSlug: (path) App slug 
      - returns: RequestBuilder<V0FindAvatarCandidateResponse> 
      */
-    open class func avatarCandidateListWithRequestBuilder(appSlug: String) -> RequestBuilder<V0FindAvatarCandidateResponse> {
+    private func avatarCandidateListWithRequestBuilder(appSlug: String) -> RequestBuilder<V0FindAvatarCandidateResponse> {
         var localVariablePath = "/v0.1/apps/{app-slug}/avatar-candidates"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -112,9 +110,7 @@ open class AvatarCandidateAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -134,9 +130,9 @@ open class AvatarCandidateAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func avatarCandidatePromote(appSlug: String, avatarSlug: String, avatarPromoteParams: V0AvatarPromoteParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AvatarPromoteResponseModel, Error> {
-        return Future<V0AvatarPromoteResponseModel, Error> { promise in
-            avatarCandidatePromoteWithRequestBuilder(appSlug: appSlug, avatarSlug: avatarSlug, avatarPromoteParams: avatarPromoteParams).execute(apiResponseQueue) { result in
+    public func avatarCandidatePromote(appSlug: String, avatarSlug: String, avatarPromoteParams: V0AvatarPromoteParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AvatarPromoteResponseModel, Error> {
+        return Future<V0AvatarPromoteResponseModel, Error> { [weak self] promise in
+            self?.avatarCandidatePromoteWithRequestBuilder(appSlug: appSlug, avatarSlug: avatarSlug, avatarPromoteParams: avatarPromoteParams).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -160,7 +156,7 @@ open class AvatarCandidateAPI {
      - parameter avatarPromoteParams: (body) Avatar promote parameters 
      - returns: RequestBuilder<V0AvatarPromoteResponseModel> 
      */
-    open class func avatarCandidatePromoteWithRequestBuilder(appSlug: String, avatarSlug: String, avatarPromoteParams: V0AvatarPromoteParams) -> RequestBuilder<V0AvatarPromoteResponseModel> {
+    private func avatarCandidatePromoteWithRequestBuilder(appSlug: String, avatarSlug: String, avatarPromoteParams: V0AvatarPromoteParams) -> RequestBuilder<V0AvatarPromoteResponseModel> {
         var localVariablePath = "/apps/{app-slug}/avatar-candidates/{avatar-slug}"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -173,9 +169,7 @@ open class AvatarCandidateAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

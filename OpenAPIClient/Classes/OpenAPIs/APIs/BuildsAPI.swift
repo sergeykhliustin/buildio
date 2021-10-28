@@ -11,7 +11,7 @@ import Combine
 #endif
 import Models
 
-open class BuildsAPI {
+public final class BuildsAPI: BaseAPI {
 
     /**
      Abort a specific build
@@ -24,9 +24,9 @@ open class BuildsAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildAbort(appSlug: String, buildSlug: String, buildAbortParams: V0BuildAbortParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildAbortResponseModel, Error> {
-        return Future<V0BuildAbortResponseModel, Error> { promise in
-            buildAbortWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug, buildAbortParams: buildAbortParams).execute(apiResponseQueue) { result in
+    public func buildAbort(appSlug: String, buildSlug: String, buildAbortParams: V0BuildAbortParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildAbortResponseModel, Error> {
+        return Future<V0BuildAbortResponseModel, Error> { [weak self] promise in
+            self?.buildAbortWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug, buildAbortParams: buildAbortParams).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -53,7 +53,7 @@ open class BuildsAPI {
      - parameter buildAbortParams: (body) Build abort parameters 
      - returns: RequestBuilder<V0BuildAbortResponseModel> 
      */
-    open class func buildAbortWithRequestBuilder(appSlug: String, buildSlug: String, buildAbortParams: V0BuildAbortParams) -> RequestBuilder<V0BuildAbortResponseModel> {
+    private func buildAbortWithRequestBuilder(appSlug: String, buildSlug: String, buildAbortParams: V0BuildAbortParams) -> RequestBuilder<V0BuildAbortResponseModel> {
         var localVariablePath = "/apps/{app-slug}/builds/{build-slug}/abort"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -66,9 +66,7 @@ open class BuildsAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -87,9 +85,9 @@ open class BuildsAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildBitriseYmlShow(appSlug: String, buildSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<String, Error> {
-        return Future<String, Error> { promise in
-            buildBitriseYmlShowWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug).execute(apiResponseQueue) { result in
+    public func buildBitriseYmlShow(appSlug: String, buildSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<String, Error> {
+        return Future<String, Error> { [weak self] promise in
+            self?.buildBitriseYmlShowWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -115,7 +113,7 @@ open class BuildsAPI {
      - parameter buildSlug: (path) Build slug 
      - returns: RequestBuilder<String> 
      */
-    open class func buildBitriseYmlShowWithRequestBuilder(appSlug: String, buildSlug: String) -> RequestBuilder<String> {
+    private func buildBitriseYmlShowWithRequestBuilder(appSlug: String, buildSlug: String) -> RequestBuilder<String> {
         var localVariablePath = "/apps/{app-slug}/builds/{build-slug}/bitrise.yml"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -128,9 +126,7 @@ open class BuildsAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -168,9 +164,9 @@ open class BuildsAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildList(appSlug: String, sortBy: SortBy_buildList? = nil, branch: String? = nil, workflow: String? = nil, commitMessage: String? = nil, triggerEventType: String? = nil, pullRequestId: Int? = nil, buildNumber: Int? = nil, after: Int? = nil, before: Int? = nil, status: Int? = nil, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildListResponseModel, Error> {
-        return Future<V0BuildListResponseModel, Error> { promise in
-            buildListWithRequestBuilder(appSlug: appSlug, sortBy: sortBy, branch: branch, workflow: workflow, commitMessage: commitMessage, triggerEventType: triggerEventType, pullRequestId: pullRequestId, buildNumber: buildNumber, after: after, before: before, status: status, next: next, limit: limit).execute(apiResponseQueue) { result in
+    public func buildList(appSlug: String, sortBy: SortBy_buildList? = nil, branch: String? = nil, workflow: String? = nil, commitMessage: String? = nil, triggerEventType: String? = nil, pullRequestId: Int? = nil, buildNumber: Int? = nil, after: Int? = nil, before: Int? = nil, status: Int? = nil, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildListResponseModel, Error> {
+        return Future<V0BuildListResponseModel, Error> { [weak self] promise in
+            self?.buildListWithRequestBuilder(appSlug: appSlug, sortBy: sortBy, branch: branch, workflow: workflow, commitMessage: commitMessage, triggerEventType: triggerEventType, pullRequestId: pullRequestId, buildNumber: buildNumber, after: after, before: before, status: status, next: next, limit: limit).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -207,7 +203,7 @@ open class BuildsAPI {
      - parameter limit: (query) Max number of elements per page (default: 50) (optional)
      - returns: RequestBuilder<V0BuildListResponseModel> 
      */
-    open class func buildListWithRequestBuilder(appSlug: String, sortBy: SortBy_buildList? = nil, branch: String? = nil, workflow: String? = nil, commitMessage: String? = nil, triggerEventType: String? = nil, pullRequestId: Int? = nil, buildNumber: Int? = nil, after: Int? = nil, before: Int? = nil, status: Int? = nil, next: String? = nil, limit: Int? = nil) -> RequestBuilder<V0BuildListResponseModel> {
+    private func buildListWithRequestBuilder(appSlug: String, sortBy: SortBy_buildList? = nil, branch: String? = nil, workflow: String? = nil, commitMessage: String? = nil, triggerEventType: String? = nil, pullRequestId: Int? = nil, buildNumber: Int? = nil, after: Int? = nil, before: Int? = nil, status: Int? = nil, next: String? = nil, limit: Int? = nil) -> RequestBuilder<V0BuildListResponseModel> {
         var localVariablePath = "/apps/{app-slug}/builds"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -228,12 +224,10 @@ open class BuildsAPI {
             "before": before?.encodeToJSON(),
             "status": status?.encodeToJSON(),
             "next": next?.encodeToJSON(),
-            "limit": limit?.encodeToJSON(),
+            "limit": limit?.encodeToJSON()
         ])
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -255,9 +249,9 @@ open class BuildsAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildListAll(ownerSlug: String? = nil, isOnHold: Bool? = nil, status: Int? = nil, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildListAllResponseModel, Error> {
-        return Future<V0BuildListAllResponseModel, Error> { promise in
-            buildListAllWithRequestBuilder(ownerSlug: ownerSlug, isOnHold: isOnHold, status: status, next: next, limit: limit).execute(apiResponseQueue) { result in
+    public func buildListAll(ownerSlug: String? = nil, isOnHold: Bool? = nil, status: Int? = nil, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildListAllResponseModel, Error> {
+        return Future<V0BuildListAllResponseModel, Error> { [weak self] promise in
+            self?.buildListAllWithRequestBuilder(ownerSlug: ownerSlug, isOnHold: isOnHold, status: status, next: next, limit: limit).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -283,7 +277,7 @@ open class BuildsAPI {
      - parameter limit: (query) Max number of elements per page (default: 50) (optional)
      - returns: RequestBuilder<V0BuildListAllResponseModel> 
      */
-    open class func buildListAllWithRequestBuilder(ownerSlug: String? = nil, isOnHold: Bool? = nil, status: Int? = nil, next: String? = nil, limit: Int? = nil) -> RequestBuilder<V0BuildListAllResponseModel> {
+    private func buildListAllWithRequestBuilder(ownerSlug: String? = nil, isOnHold: Bool? = nil, status: Int? = nil, next: String? = nil, limit: Int? = nil) -> RequestBuilder<V0BuildListAllResponseModel> {
         let localVariablePath = "/builds"
         let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -294,12 +288,10 @@ open class BuildsAPI {
             "is_on_hold": isOnHold?.encodeToJSON(),
             "status": status?.encodeToJSON(),
             "next": next?.encodeToJSON(),
-            "limit": limit?.encodeToJSON(),
+            "limit": limit?.encodeToJSON()
         ])
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -318,9 +310,9 @@ open class BuildsAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildLog(appSlug: String, buildSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error> { promise in
-            buildLogWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug).execute(apiResponseQueue) { result in
+    public func buildLog(appSlug: String, buildSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<Void, Error> {
+        return Future<Void, Error> { [weak self] promise in
+            self?.buildLogWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case .success:
                     promise(.success(()))
@@ -346,7 +338,7 @@ open class BuildsAPI {
      - parameter buildSlug: (path) Build slug 
      - returns: RequestBuilder<Void> 
      */
-    open class func buildLogWithRequestBuilder(appSlug: String, buildSlug: String) -> RequestBuilder<Void> {
+    private func buildLogWithRequestBuilder(appSlug: String, buildSlug: String) -> RequestBuilder<Void> {
         var localVariablePath = "/apps/{app-slug}/builds/{build-slug}/log"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -359,9 +351,7 @@ open class BuildsAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -380,9 +370,9 @@ open class BuildsAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildShow(appSlug: String, buildSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildShowResponseModel, Error> {
-        return Future<V0BuildShowResponseModel, Error> { promise in
-            buildShowWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug).execute(apiResponseQueue) { result in
+    public func buildShow(appSlug: String, buildSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildShowResponseModel, Error> {
+        return Future<V0BuildShowResponseModel, Error> { [weak self] promise in
+            self?.buildShowWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -408,7 +398,7 @@ open class BuildsAPI {
      - parameter buildSlug: (path) Build slug 
      - returns: RequestBuilder<V0BuildShowResponseModel> 
      */
-    open class func buildShowWithRequestBuilder(appSlug: String, buildSlug: String) -> RequestBuilder<V0BuildShowResponseModel> {
+    private func buildShowWithRequestBuilder(appSlug: String, buildSlug: String) -> RequestBuilder<V0BuildShowResponseModel> {
         var localVariablePath = "/apps/{app-slug}/builds/{build-slug}"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -421,9 +411,7 @@ open class BuildsAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -442,9 +430,9 @@ open class BuildsAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildTrigger(appSlug: String, buildParams: V0BuildTriggerParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildTriggerRespModel, Error> {
-        return Future<V0BuildTriggerRespModel, Error> { promise in
-            buildTriggerWithRequestBuilder(appSlug: appSlug, buildParams: buildParams).execute(apiResponseQueue) { result in
+    public func buildTrigger(appSlug: String, buildParams: V0BuildTriggerParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildTriggerRespModel, Error> {
+        return Future<V0BuildTriggerRespModel, Error> { [weak self] promise in
+            self?.buildTriggerWithRequestBuilder(appSlug: appSlug, buildParams: buildParams).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -470,7 +458,7 @@ open class BuildsAPI {
      - parameter buildParams: (body) Build trigger parameters 
      - returns: RequestBuilder<V0BuildTriggerRespModel> 
      */
-    open class func buildTriggerWithRequestBuilder(appSlug: String, buildParams: V0BuildTriggerParams) -> RequestBuilder<V0BuildTriggerRespModel> {
+    private func buildTriggerWithRequestBuilder(appSlug: String, buildParams: V0BuildTriggerParams) -> RequestBuilder<V0BuildTriggerRespModel> {
         var localVariablePath = "/apps/{app-slug}/builds"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -480,9 +468,7 @@ open class BuildsAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -500,9 +486,9 @@ open class BuildsAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildWorkflowList(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildWorkflowListResponseModel, Error> {
-        return Future<V0BuildWorkflowListResponseModel, Error> { promise in
-            buildWorkflowListWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
+    public func buildWorkflowList(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildWorkflowListResponseModel, Error> {
+        return Future<V0BuildWorkflowListResponseModel, Error> { [weak self] promise in
+            self?.buildWorkflowListWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -527,7 +513,7 @@ open class BuildsAPI {
      - parameter appSlug: (path) App slug 
      - returns: RequestBuilder<V0BuildWorkflowListResponseModel> 
      */
-    open class func buildWorkflowListWithRequestBuilder(appSlug: String) -> RequestBuilder<V0BuildWorkflowListResponseModel> {
+    private func buildWorkflowListWithRequestBuilder(appSlug: String) -> RequestBuilder<V0BuildWorkflowListResponseModel> {
         var localVariablePath = "/apps/{app-slug}/build-workflows"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -537,9 +523,7 @@ open class BuildsAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

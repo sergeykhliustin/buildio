@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct ServiceStandardErrorRespModel: Codable, Hashable {
 
     public var message: String?
@@ -27,4 +26,3 @@ public struct ServiceStandardErrorRespModel: Codable, Hashable {
         try container.encodeIfPresent(message, forKey: .message)
     }
 }
-

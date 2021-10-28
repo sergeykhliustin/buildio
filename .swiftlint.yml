@@ -1,0 +1,36 @@
+excluded:
+- Pods
+disabled_rules:
+- trailing_whitespace
+- mark
+- nesting
+- line_length
+- force_cast
+- identifier_name
+- large_tuple
+- type_body_length
+- implicit_getter
+- cyclomatic_complexity
+- function_body_length
+- closure_parameter_position
+- shorthand_operator
+- file_length
+- function_parameter_count
+- valid_ibinspectable
+- computed_accessors_order
+- no_fallthrough_only
+- type_name
+- comment_spacing
+- unused_closure_parameter
+opt_in_rules:
+- operator_usage_whitespace
+
+force_try:
+  severity: warning
+
+custom_rules:
+  no_print:
+      included: ".*.swift"
+      regex: '((\n|\t| |\r|^)print\()'
+      name: "No print"
+      message: "Use logger.debug (info|verbose) instead"

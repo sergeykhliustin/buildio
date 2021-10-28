@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct AddonsFeature: Codable, Hashable {
 
     public var available: Bool?
@@ -35,4 +34,3 @@ public struct AddonsFeature: Codable, Hashable {
         try container.encodeIfPresent(quantity, forKey: .quantity)
     }
 }
-

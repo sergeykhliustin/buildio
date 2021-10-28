@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0UserPlanDataModel: Codable, Hashable {
 
     public var currentPlan: V0PlanDataModel?
@@ -35,4 +34,3 @@ public struct V0UserPlanDataModel: Codable, Hashable {
         try container.encodeIfPresent(trialExpiresAt, forKey: .trialExpiresAt)
     }
 }
-

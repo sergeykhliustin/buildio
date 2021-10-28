@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0BuildWorkflowListResponseModel: Codable, Hashable {
 
     public var data: [String]?
@@ -27,4 +26,3 @@ public struct V0BuildWorkflowListResponseModel: Codable, Hashable {
         try container.encodeIfPresent(data, forKey: .data)
     }
 }
-

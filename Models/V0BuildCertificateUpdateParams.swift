@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0BuildCertificateUpdateParams: Codable, Hashable {
 
     public var certificatePassword: String?
@@ -39,4 +38,3 @@ public struct V0BuildCertificateUpdateParams: Codable, Hashable {
         try container.encodeIfPresent(processed, forKey: .processed)
     }
 }
-

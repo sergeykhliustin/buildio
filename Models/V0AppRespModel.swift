@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0AppRespModel: Codable, Hashable {
 
     public var slug: String?
@@ -31,4 +30,3 @@ public struct V0AppRespModel: Codable, Hashable {
         try container.encodeIfPresent(status, forKey: .status)
     }
 }
-

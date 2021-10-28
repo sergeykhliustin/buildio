@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0BuildTriggerParamsBuildParams: Codable, Hashable {
 
     public var baseRepositoryUrl: String?
@@ -103,4 +102,3 @@ public struct V0BuildTriggerParamsBuildParams: Codable, Hashable {
         try container.encodeIfPresent(workflowId, forKey: .workflowId)
     }
 }
-

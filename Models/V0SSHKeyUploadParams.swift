@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0SSHKeyUploadParams: Codable, Hashable {
 
     /** The private part of the SSH key you would like to use */
@@ -38,4 +37,3 @@ public struct V0SSHKeyUploadParams: Codable, Hashable {
         try container.encodeIfPresent(isRegisterKeyIntoProviderService, forKey: .isRegisterKeyIntoProviderService)
     }
 }
-

@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct AddonsDeveloperLink: Codable, Hashable {
 
     public var title: String?
@@ -31,4 +30,3 @@ public struct AddonsDeveloperLink: Codable, Hashable {
         try container.encodeIfPresent(url, forKey: .url)
     }
 }
-

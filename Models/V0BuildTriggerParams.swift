@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0BuildTriggerParams: Codable, Hashable {
 
     public var buildParams: V0BuildTriggerParamsBuildParams?
@@ -31,4 +30,3 @@ public struct V0BuildTriggerParams: Codable, Hashable {
         try container.encodeIfPresent(hookInfo, forKey: .hookInfo)
     }
 }
-

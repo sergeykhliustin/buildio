@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0BuildParamsEnvironment: Codable, Hashable {
 
     public var isExpand: Bool?
@@ -35,4 +34,3 @@ public struct V0BuildParamsEnvironment: Codable, Hashable {
         try container.encodeIfPresent(value, forKey: .value)
     }
 }
-

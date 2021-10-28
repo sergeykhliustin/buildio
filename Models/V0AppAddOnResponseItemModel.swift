@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0AppAddOnResponseItemModel: Codable, Hashable {
 
     public var description: String?
@@ -79,4 +78,3 @@ public struct V0AppAddOnResponseItemModel: Codable, Hashable {
         try container.encodeIfPresent(title, forKey: .title)
     }
 }
-

@@ -11,7 +11,7 @@ import Combine
 #endif
 import Models
 
-open class AddonsAPI {
+public final class AddonsAPI: BaseAPI {
 
     /**
      Get list of the addons for apps
@@ -22,9 +22,9 @@ open class AddonsAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func addonListByApp(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppAddOnsListResponseModel, Error> {
-        return Future<V0AppAddOnsListResponseModel, Error> { promise in
-            addonListByAppWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
+    public func addonListByApp(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppAddOnsListResponseModel, Error> {
+        return Future<V0AppAddOnsListResponseModel, Error> { [weak self] promise in
+            self?.addonListByAppWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -49,7 +49,7 @@ open class AddonsAPI {
      - parameter appSlug: (path) App slug 
      - returns: RequestBuilder<V0AppAddOnsListResponseModel> 
      */
-    open class func addonListByAppWithRequestBuilder(appSlug: String) -> RequestBuilder<V0AppAddOnsListResponseModel> {
+    private func addonListByAppWithRequestBuilder(appSlug: String) -> RequestBuilder<V0AppAddOnsListResponseModel> {
         var localVariablePath = "/apps/{app-slug}/addons"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -59,9 +59,7 @@ open class AddonsAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -79,9 +77,9 @@ open class AddonsAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func addonListByOrganization(organizationSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0OwnerAddOnsListResponseModel, Error> {
-        return Future<V0OwnerAddOnsListResponseModel, Error> { promise in
-            addonListByOrganizationWithRequestBuilder(organizationSlug: organizationSlug).execute(apiResponseQueue) { result in
+    public func addonListByOrganization(organizationSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0OwnerAddOnsListResponseModel, Error> {
+        return Future<V0OwnerAddOnsListResponseModel, Error> { [weak self] promise in
+            self?.addonListByOrganizationWithRequestBuilder(organizationSlug: organizationSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -103,7 +101,7 @@ open class AddonsAPI {
      - parameter organizationSlug: (path) Organization slug 
      - returns: RequestBuilder<V0OwnerAddOnsListResponseModel> 
      */
-    open class func addonListByOrganizationWithRequestBuilder(organizationSlug: String) -> RequestBuilder<V0OwnerAddOnsListResponseModel> {
+    private func addonListByOrganizationWithRequestBuilder(organizationSlug: String) -> RequestBuilder<V0OwnerAddOnsListResponseModel> {
         var localVariablePath = "/organizations/{organization-slug}/addons"
         let organizationSlugPreEscape = "\(APIHelper.mapValueToPathItem(organizationSlug))"
         let organizationSlugPostEscape = organizationSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -113,9 +111,7 @@ open class AddonsAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -133,9 +129,9 @@ open class AddonsAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func addonListByUser(userSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0OwnerAddOnsListResponseModel, Error> {
-        return Future<V0OwnerAddOnsListResponseModel, Error> { promise in
-            addonListByUserWithRequestBuilder(userSlug: userSlug).execute(apiResponseQueue) { result in
+    public func addonListByUser(userSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0OwnerAddOnsListResponseModel, Error> {
+        return Future<V0OwnerAddOnsListResponseModel, Error> { [weak self] promise in
+            self?.addonListByUserWithRequestBuilder(userSlug: userSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -157,7 +153,7 @@ open class AddonsAPI {
      - parameter userSlug: (path) User slug 
      - returns: RequestBuilder<V0OwnerAddOnsListResponseModel> 
      */
-    open class func addonListByUserWithRequestBuilder(userSlug: String) -> RequestBuilder<V0OwnerAddOnsListResponseModel> {
+    private func addonListByUserWithRequestBuilder(userSlug: String) -> RequestBuilder<V0OwnerAddOnsListResponseModel> {
         var localVariablePath = "/users/{user-slug}/addons"
         let userSlugPreEscape = "\(APIHelper.mapValueToPathItem(userSlug))"
         let userSlugPostEscape = userSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -167,9 +163,7 @@ open class AddonsAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -186,9 +180,9 @@ open class AddonsAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func addonsList(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AddonsListResponseModel, Error> {
-        return Future<V0AddonsListResponseModel, Error> { promise in
-            addonsListWithRequestBuilder().execute(apiResponseQueue) { result in
+    public func addonsList(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AddonsListResponseModel, Error> {
+        return Future<V0AddonsListResponseModel, Error> { [weak self] promise in
+            self?.addonsListWithRequestBuilder().execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -209,16 +203,14 @@ open class AddonsAPI {
        - name: PersonalAccessToken
      - returns: RequestBuilder<V0AddonsListResponseModel> 
      */
-    open class func addonsListWithRequestBuilder() -> RequestBuilder<V0AddonsListResponseModel> {
+    private func addonsListWithRequestBuilder() -> RequestBuilder<V0AddonsListResponseModel> {
         let localVariablePath = "/addons"
         let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -236,9 +228,9 @@ open class AddonsAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func addonsShow(addonId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AddonsShowResponseModel, Error> {
-        return Future<V0AddonsShowResponseModel, Error> { promise in
-            addonsShowWithRequestBuilder(addonId: addonId).execute(apiResponseQueue) { result in
+    public func addonsShow(addonId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AddonsShowResponseModel, Error> {
+        return Future<V0AddonsShowResponseModel, Error> { [weak self] promise in
+            self?.addonsShowWithRequestBuilder(addonId: addonId).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -260,7 +252,7 @@ open class AddonsAPI {
      - parameter addonId: (path) Addon ID 
      - returns: RequestBuilder<V0AddonsShowResponseModel> 
      */
-    open class func addonsShowWithRequestBuilder(addonId: String) -> RequestBuilder<V0AddonsShowResponseModel> {
+    private func addonsShowWithRequestBuilder(addonId: String) -> RequestBuilder<V0AddonsShowResponseModel> {
         var localVariablePath = "/addons/{addon-id}"
         let addonIdPreEscape = "\(APIHelper.mapValueToPathItem(addonId))"
         let addonIdPostEscape = addonIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -270,9 +262,7 @@ open class AddonsAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

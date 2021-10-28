@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0TestDeviceResponseItemModel: Codable, Hashable {
 
     public var deviceId: String?
@@ -35,4 +34,3 @@ public struct V0TestDeviceResponseItemModel: Codable, Hashable {
         try container.encodeIfPresent(owner, forKey: .owner)
     }
 }
-

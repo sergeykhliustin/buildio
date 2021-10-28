@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0OwnerAccountResponseModel: Codable, Hashable {
     public var accountType: String
     public var name: String
@@ -23,4 +22,3 @@ public struct V0OwnerAccountResponseModel: Codable, Hashable {
         return V0OwnerAccountResponseModel(accountType: "accountType", name: "name", slug: "slug")
     }
 }
-

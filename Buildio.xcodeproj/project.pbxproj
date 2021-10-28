@@ -12,6 +12,7 @@
 		3F2BE9E3270CA0C00051C910 /* AccountsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2BE9E1270CA0C00051C910 /* AccountsScreenView.swift */; };
 		3F2BE9E5270CA5E00051C910 /* TabsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2BE9E4270CA5E00051C910 /* TabsScreenView.swift */; };
 		3F2BE9E6270CA5E00051C910 /* TabsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2BE9E4270CA5E00051C910 /* TabsScreenView.swift */; };
+		3F509BEB272B0CF200C051A0 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5136D270B9D6900A5B881 /* Logger.swift */; };
 		3F677F152729CE5900B9265B /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F677F142729CE5900B9265B /* BaseAPI.swift */; };
 		3F677F162729CE5900B9265B /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F677F142729CE5900B9265B /* BaseAPI.swift */; };
 		3F70EBBB2714E43600A4841E /* BTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F70EBBA2714E43600A4841E /* BTextField.swift */; };
@@ -527,6 +528,7 @@
 				3FE7B54727072C1E00A6D8E1 /* Sources */,
 				3FE7B54827072C1E00A6D8E1 /* Frameworks */,
 				3FE7B54927072C1E00A6D8E1 /* Resources */,
+				3F509BEA272B0A6400C051A0 /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -668,6 +670,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		3F509BEA272B0A6400C051A0 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 		9DF9C2BE7A78595F0658A6DD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -698,6 +718,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FE1099D272876DD00B533EE /* ModelsTests.swift in Sources */,
+				3F509BEB272B0CF200C051A0 /* Logger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

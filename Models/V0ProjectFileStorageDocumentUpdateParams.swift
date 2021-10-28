@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0ProjectFileStorageDocumentUpdateParams: Codable, Hashable {
 
     public var exposedMetaDatastore: [Int]?
@@ -43,4 +42,3 @@ public struct V0ProjectFileStorageDocumentUpdateParams: Codable, Hashable {
         try container.encodeIfPresent(userEnvKey, forKey: .userEnvKey)
     }
 }
-

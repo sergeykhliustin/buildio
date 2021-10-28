@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0WebhookDeliveryItemResponseModel: Codable, Hashable {
 
     public var createdAt: String?
@@ -63,4 +62,3 @@ public struct V0WebhookDeliveryItemResponseModel: Codable, Hashable {
         try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
     }
 }
-

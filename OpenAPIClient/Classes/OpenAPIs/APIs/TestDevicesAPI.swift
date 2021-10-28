@@ -11,7 +11,7 @@ import Combine
 #endif
 import Models
 
-open class TestDevicesAPI {
+public final class TestDevicesAPI: BaseAPI {
 
     /**
      List the test devices for an app
@@ -22,9 +22,9 @@ open class TestDevicesAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func testDeviceList(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0TestDeviceListResponseModel, Error> {
-        return Future<V0TestDeviceListResponseModel, Error> { promise in
-            testDeviceListWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
+    public func testDeviceList(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0TestDeviceListResponseModel, Error> {
+        return Future<V0TestDeviceListResponseModel, Error> { [weak self] promise in
+            self?.testDeviceListWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -49,7 +49,7 @@ open class TestDevicesAPI {
      - parameter appSlug: (path) App slug 
      - returns: RequestBuilder<V0TestDeviceListResponseModel> 
      */
-    open class func testDeviceListWithRequestBuilder(appSlug: String) -> RequestBuilder<V0TestDeviceListResponseModel> {
+    private func testDeviceListWithRequestBuilder(appSlug: String) -> RequestBuilder<V0TestDeviceListResponseModel> {
         var localVariablePath = "/apps/{app-slug}/test-devices"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -59,9 +59,7 @@ open class TestDevicesAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

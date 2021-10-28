@@ -11,7 +11,7 @@ import Combine
 #endif
 import Models
 
-open class AppleApiCredentialsAPI {
+public final class AppleApiCredentialsAPI: BaseAPI {
 
     /**
      List Apple API credentials for a specific user
@@ -22,9 +22,9 @@ open class AppleApiCredentialsAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appleApiCredentialList(userSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppleAPICredentialsListResponse, Error> {
-        return Future<V0AppleAPICredentialsListResponse, Error> { promise in
-            appleApiCredentialListWithRequestBuilder(userSlug: userSlug).execute(apiResponseQueue) { result in
+    public func appleApiCredentialList(userSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppleAPICredentialsListResponse, Error> {
+        return Future<V0AppleAPICredentialsListResponse, Error> { [weak self] promise in
+            self?.appleApiCredentialListWithRequestBuilder(userSlug: userSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -46,7 +46,7 @@ open class AppleApiCredentialsAPI {
      - parameter userSlug: (path) User slug 
      - returns: RequestBuilder<V0AppleAPICredentialsListResponse> 
      */
-    open class func appleApiCredentialListWithRequestBuilder(userSlug: String) -> RequestBuilder<V0AppleAPICredentialsListResponse> {
+    private func appleApiCredentialListWithRequestBuilder(userSlug: String) -> RequestBuilder<V0AppleAPICredentialsListResponse> {
         var localVariablePath = "/users/{user-slug}/apple-api-credentials"
         let userSlugPreEscape = "\(APIHelper.mapValueToPathItem(userSlug))"
         let userSlugPostEscape = userSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -56,9 +56,7 @@ open class AppleApiCredentialsAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

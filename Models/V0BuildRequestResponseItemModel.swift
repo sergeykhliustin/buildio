@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0BuildRequestResponseItemModel: Codable, Hashable {
 
     public var buildParams: [Int]?
@@ -39,4 +38,3 @@ public struct V0BuildRequestResponseItemModel: Codable, Hashable {
         try container.encodeIfPresent(slug, forKey: .slug)
     }
 }
-

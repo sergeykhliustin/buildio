@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0OrganizationRespModel: Codable, Hashable {
 
     public var data: V0OrganizationDataModel?
@@ -27,4 +26,3 @@ public struct V0OrganizationRespModel: Codable, Hashable {
         try container.encodeIfPresent(data, forKey: .data)
     }
 }
-

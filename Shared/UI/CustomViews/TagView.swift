@@ -10,7 +10,6 @@ import SwiftUI
 struct TagView: View {
     var spacing: CGFloat = 4
     let content: () -> [AnyView]
-    
 
     @State private var totalHeight
           = CGFloat.zero       // << variant for ScrollView/List
@@ -36,8 +35,7 @@ struct TagView: View {
                 content[index]
                     .padding([.horizontal], spacing)
                     .alignmentGuide(.leading, computeValue: { d in
-                        if (abs(width - d.width) > g.size.width)
-                        {
+                        if abs(width - d.width) > g.size.width {
                             width = 0
                             height -= d.height
                         }

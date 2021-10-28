@@ -23,7 +23,7 @@ class ProfileViewModel: BaseViewModel {
     }
     
     func fetch() -> AnyPublisher<V0UserProfileDataModel, Error> {
-        UserAPI.userProfile()
+        UserAPI().userProfile()
             .map({ $0.data })
             .eraseToAnyPublisher()
     }

@@ -11,7 +11,7 @@ import Combine
 #endif
 import Models
 
-open class BuildCertificateAPI {
+public final class BuildCertificateAPI: BaseAPI {
 
     /**
      Confirm a build certificate upload
@@ -23,9 +23,9 @@ open class BuildCertificateAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildCertificateConfirm(appSlug: String, buildCertificateSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildCertificateResponseModel, Error> {
-        return Future<V0BuildCertificateResponseModel, Error> { promise in
-            buildCertificateConfirmWithRequestBuilder(appSlug: appSlug, buildCertificateSlug: buildCertificateSlug).execute(apiResponseQueue) { result in
+    public func buildCertificateConfirm(appSlug: String, buildCertificateSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildCertificateResponseModel, Error> {
+        return Future<V0BuildCertificateResponseModel, Error> { [weak self] promise in
+            self?.buildCertificateConfirmWithRequestBuilder(appSlug: appSlug, buildCertificateSlug: buildCertificateSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -48,7 +48,7 @@ open class BuildCertificateAPI {
      - parameter buildCertificateSlug: (path) Build certificate slug 
      - returns: RequestBuilder<V0BuildCertificateResponseModel> 
      */
-    open class func buildCertificateConfirmWithRequestBuilder(appSlug: String, buildCertificateSlug: String) -> RequestBuilder<V0BuildCertificateResponseModel> {
+    private func buildCertificateConfirmWithRequestBuilder(appSlug: String, buildCertificateSlug: String) -> RequestBuilder<V0BuildCertificateResponseModel> {
         var localVariablePath = "/apps/{app-slug}/build-certificates/{build-certificate-slug}/uploaded"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -61,9 +61,7 @@ open class BuildCertificateAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -82,9 +80,9 @@ open class BuildCertificateAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildCertificateCreate(appSlug: String, buildCertificate: V0BuildCertificateUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildCertificateResponseModel, Error> {
-        return Future<V0BuildCertificateResponseModel, Error> { promise in
-            buildCertificateCreateWithRequestBuilder(appSlug: appSlug, buildCertificate: buildCertificate).execute(apiResponseQueue) { result in
+    public func buildCertificateCreate(appSlug: String, buildCertificate: V0BuildCertificateUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildCertificateResponseModel, Error> {
+        return Future<V0BuildCertificateResponseModel, Error> { [weak self] promise in
+            self?.buildCertificateCreateWithRequestBuilder(appSlug: appSlug, buildCertificate: buildCertificate).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -107,7 +105,7 @@ open class BuildCertificateAPI {
      - parameter buildCertificate: (body) Build certificate parameters such as file name and its file size 
      - returns: RequestBuilder<V0BuildCertificateResponseModel> 
      */
-    open class func buildCertificateCreateWithRequestBuilder(appSlug: String, buildCertificate: V0BuildCertificateUploadParams) -> RequestBuilder<V0BuildCertificateResponseModel> {
+    private func buildCertificateCreateWithRequestBuilder(appSlug: String, buildCertificate: V0BuildCertificateUploadParams) -> RequestBuilder<V0BuildCertificateResponseModel> {
         var localVariablePath = "/apps/{app-slug}/build-certificates"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -117,9 +115,7 @@ open class BuildCertificateAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -138,9 +134,9 @@ open class BuildCertificateAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildCertificateDelete(appSlug: String, buildCertificateSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildCertificateResponseModel, Error> {
-        return Future<V0BuildCertificateResponseModel, Error> { promise in
-            buildCertificateDeleteWithRequestBuilder(appSlug: appSlug, buildCertificateSlug: buildCertificateSlug).execute(apiResponseQueue) { result in
+    public func buildCertificateDelete(appSlug: String, buildCertificateSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildCertificateResponseModel, Error> {
+        return Future<V0BuildCertificateResponseModel, Error> { [weak self] promise in
+            self?.buildCertificateDeleteWithRequestBuilder(appSlug: appSlug, buildCertificateSlug: buildCertificateSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -163,7 +159,7 @@ open class BuildCertificateAPI {
      - parameter buildCertificateSlug: (path) Build certificate slug 
      - returns: RequestBuilder<V0BuildCertificateResponseModel> 
      */
-    open class func buildCertificateDeleteWithRequestBuilder(appSlug: String, buildCertificateSlug: String) -> RequestBuilder<V0BuildCertificateResponseModel> {
+    private func buildCertificateDeleteWithRequestBuilder(appSlug: String, buildCertificateSlug: String) -> RequestBuilder<V0BuildCertificateResponseModel> {
         var localVariablePath = "/apps/{app-slug}/build-certificates/{build-certificate-slug}"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -176,9 +172,7 @@ open class BuildCertificateAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -198,9 +192,9 @@ open class BuildCertificateAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildCertificateList(appSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildCertificateListResponseModel, Error> {
-        return Future<V0BuildCertificateListResponseModel, Error> { promise in
-            buildCertificateListWithRequestBuilder(appSlug: appSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
+    public func buildCertificateList(appSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildCertificateListResponseModel, Error> {
+        return Future<V0BuildCertificateListResponseModel, Error> { [weak self] promise in
+            self?.buildCertificateListWithRequestBuilder(appSlug: appSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -227,7 +221,7 @@ open class BuildCertificateAPI {
      - parameter limit: (query) Max number of build certificates per page is 50. (optional)
      - returns: RequestBuilder<V0BuildCertificateListResponseModel> 
      */
-    open class func buildCertificateListWithRequestBuilder(appSlug: String, next: String? = nil, limit: Int? = nil) -> RequestBuilder<V0BuildCertificateListResponseModel> {
+    private func buildCertificateListWithRequestBuilder(appSlug: String, next: String? = nil, limit: Int? = nil) -> RequestBuilder<V0BuildCertificateListResponseModel> {
         var localVariablePath = "/apps/{app-slug}/build-certificates"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -238,12 +232,10 @@ open class BuildCertificateAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "next": next?.encodeToJSON(),
-            "limit": limit?.encodeToJSON(),
+            "limit": limit?.encodeToJSON()
         ])
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -262,9 +254,9 @@ open class BuildCertificateAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildCertificateShow(appSlug: String, buildCertificateSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildCertificateResponseModel, Error> {
-        return Future<V0BuildCertificateResponseModel, Error> { promise in
-            buildCertificateShowWithRequestBuilder(appSlug: appSlug, buildCertificateSlug: buildCertificateSlug).execute(apiResponseQueue) { result in
+    public func buildCertificateShow(appSlug: String, buildCertificateSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildCertificateResponseModel, Error> {
+        return Future<V0BuildCertificateResponseModel, Error> { [weak self] promise in
+            self?.buildCertificateShowWithRequestBuilder(appSlug: appSlug, buildCertificateSlug: buildCertificateSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -287,7 +279,7 @@ open class BuildCertificateAPI {
      - parameter buildCertificateSlug: (path) Build certificate slug 
      - returns: RequestBuilder<V0BuildCertificateResponseModel> 
      */
-    open class func buildCertificateShowWithRequestBuilder(appSlug: String, buildCertificateSlug: String) -> RequestBuilder<V0BuildCertificateResponseModel> {
+    private func buildCertificateShowWithRequestBuilder(appSlug: String, buildCertificateSlug: String) -> RequestBuilder<V0BuildCertificateResponseModel> {
         var localVariablePath = "/apps/{app-slug}/build-certificates/{build-certificate-slug}"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -300,9 +292,7 @@ open class BuildCertificateAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -322,9 +312,9 @@ open class BuildCertificateAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildCertificateUpdate(appSlug: String, buildCertificateSlug: String, buildCertificate: V0BuildCertificateUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildCertificateResponseModel, Error> {
-        return Future<V0BuildCertificateResponseModel, Error> { promise in
-            buildCertificateUpdateWithRequestBuilder(appSlug: appSlug, buildCertificateSlug: buildCertificateSlug, buildCertificate: buildCertificate).execute(apiResponseQueue) { result in
+    public func buildCertificateUpdate(appSlug: String, buildCertificateSlug: String, buildCertificate: V0BuildCertificateUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildCertificateResponseModel, Error> {
+        return Future<V0BuildCertificateResponseModel, Error> { [weak self] promise in
+            self?.buildCertificateUpdateWithRequestBuilder(appSlug: appSlug, buildCertificateSlug: buildCertificateSlug, buildCertificate: buildCertificate).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -348,7 +338,7 @@ open class BuildCertificateAPI {
      - parameter buildCertificate: (body) Build certificate parameters 
      - returns: RequestBuilder<V0BuildCertificateResponseModel> 
      */
-    open class func buildCertificateUpdateWithRequestBuilder(appSlug: String, buildCertificateSlug: String, buildCertificate: V0BuildCertificateUpdateParams) -> RequestBuilder<V0BuildCertificateResponseModel> {
+    private func buildCertificateUpdateWithRequestBuilder(appSlug: String, buildCertificateSlug: String, buildCertificate: V0BuildCertificateUpdateParams) -> RequestBuilder<V0BuildCertificateResponseModel> {
         var localVariablePath = "/apps/{app-slug}/build-certificates/{build-certificate-slug}"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -361,9 +351,7 @@ open class BuildCertificateAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

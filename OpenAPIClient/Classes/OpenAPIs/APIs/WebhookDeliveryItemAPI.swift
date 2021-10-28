@@ -11,7 +11,7 @@ import Combine
 #endif
 import Models
 
-open class WebhookDeliveryItemAPI {
+public final class WebhookDeliveryItemAPI: BaseAPI {
 
     /**
      List the webhook delivery items of an app
@@ -25,9 +25,9 @@ open class WebhookDeliveryItemAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func webhookDeliveryItemList(appSlug: String, appWebhookSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0WebhookDeliveryItemShowResponseModel, Error> {
-        return Future<V0WebhookDeliveryItemShowResponseModel, Error> { promise in
-            webhookDeliveryItemListWithRequestBuilder(appSlug: appSlug, appWebhookSlug: appWebhookSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
+    public func webhookDeliveryItemList(appSlug: String, appWebhookSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0WebhookDeliveryItemShowResponseModel, Error> {
+        return Future<V0WebhookDeliveryItemShowResponseModel, Error> { [weak self] promise in
+            self?.webhookDeliveryItemListWithRequestBuilder(appSlug: appSlug, appWebhookSlug: appWebhookSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -52,7 +52,7 @@ open class WebhookDeliveryItemAPI {
      - parameter limit: (query) Max number of elements per page (default: 50) (optional)
      - returns: RequestBuilder<V0WebhookDeliveryItemShowResponseModel> 
      */
-    open class func webhookDeliveryItemListWithRequestBuilder(appSlug: String, appWebhookSlug: String, next: String? = nil, limit: Int? = nil) -> RequestBuilder<V0WebhookDeliveryItemShowResponseModel> {
+    private func webhookDeliveryItemListWithRequestBuilder(appSlug: String, appWebhookSlug: String, next: String? = nil, limit: Int? = nil) -> RequestBuilder<V0WebhookDeliveryItemShowResponseModel> {
         var localVariablePath = "/apps/{app-slug}/outgoing-webhooks/{app-webhook-slug}/delivery-items"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -66,12 +66,10 @@ open class WebhookDeliveryItemAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "next": next?.encodeToJSON(),
-            "limit": limit?.encodeToJSON(),
+            "limit": limit?.encodeToJSON()
         ])
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -91,9 +89,9 @@ open class WebhookDeliveryItemAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func webhookDeliveryItemRedeliver(appSlug: String, appWebhookSlug: String, webhookDeliveryItemSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<ServiceStandardErrorRespModel, Error> {
-        return Future<ServiceStandardErrorRespModel, Error> { promise in
-            webhookDeliveryItemRedeliverWithRequestBuilder(appSlug: appSlug, appWebhookSlug: appWebhookSlug, webhookDeliveryItemSlug: webhookDeliveryItemSlug).execute(apiResponseQueue) { result in
+    public func webhookDeliveryItemRedeliver(appSlug: String, appWebhookSlug: String, webhookDeliveryItemSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<ServiceStandardErrorRespModel, Error> {
+        return Future<ServiceStandardErrorRespModel, Error> { [weak self] promise in
+            self?.webhookDeliveryItemRedeliverWithRequestBuilder(appSlug: appSlug, appWebhookSlug: appWebhookSlug, webhookDeliveryItemSlug: webhookDeliveryItemSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -117,7 +115,7 @@ open class WebhookDeliveryItemAPI {
      - parameter webhookDeliveryItemSlug: (path) Webhook delivery item slug 
      - returns: RequestBuilder<ServiceStandardErrorRespModel> 
      */
-    open class func webhookDeliveryItemRedeliverWithRequestBuilder(appSlug: String, appWebhookSlug: String, webhookDeliveryItemSlug: String) -> RequestBuilder<ServiceStandardErrorRespModel> {
+    private func webhookDeliveryItemRedeliverWithRequestBuilder(appSlug: String, appWebhookSlug: String, webhookDeliveryItemSlug: String) -> RequestBuilder<ServiceStandardErrorRespModel> {
         var localVariablePath = "/apps/{app-slug}/outgoing-webhooks/{app-webhook-slug}/delivery-items/{webhook-delivery-item-slug}/redeliver"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -133,9 +131,7 @@ open class WebhookDeliveryItemAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -155,9 +151,9 @@ open class WebhookDeliveryItemAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func webhookDeliveryItemShow(appSlug: String, appWebhookSlug: String, webhookDeliveryItemSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0WebhookDeliveryItemResponseModel, Error> {
-        return Future<V0WebhookDeliveryItemResponseModel, Error> { promise in
-            webhookDeliveryItemShowWithRequestBuilder(appSlug: appSlug, appWebhookSlug: appWebhookSlug, webhookDeliveryItemSlug: webhookDeliveryItemSlug).execute(apiResponseQueue) { result in
+    public func webhookDeliveryItemShow(appSlug: String, appWebhookSlug: String, webhookDeliveryItemSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0WebhookDeliveryItemResponseModel, Error> {
+        return Future<V0WebhookDeliveryItemResponseModel, Error> { [weak self] promise in
+            self?.webhookDeliveryItemShowWithRequestBuilder(appSlug: appSlug, appWebhookSlug: appWebhookSlug, webhookDeliveryItemSlug: webhookDeliveryItemSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -181,7 +177,7 @@ open class WebhookDeliveryItemAPI {
      - parameter webhookDeliveryItemSlug: (path) Webhook delivery item slug 
      - returns: RequestBuilder<V0WebhookDeliveryItemResponseModel> 
      */
-    open class func webhookDeliveryItemShowWithRequestBuilder(appSlug: String, appWebhookSlug: String, webhookDeliveryItemSlug: String) -> RequestBuilder<V0WebhookDeliveryItemResponseModel> {
+    private func webhookDeliveryItemShowWithRequestBuilder(appSlug: String, appWebhookSlug: String, webhookDeliveryItemSlug: String) -> RequestBuilder<V0WebhookDeliveryItemResponseModel> {
         var localVariablePath = "/apps/{app-slug}/outgoing-webhooks/{app-webhook-slug}/delivery-items/{webhook-delivery-item-slug}"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -197,9 +193,7 @@ open class WebhookDeliveryItemAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

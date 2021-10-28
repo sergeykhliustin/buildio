@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0FindAvatarCandidateResponseItem: Codable, Hashable {
 
     public var downloadUrl: String?
@@ -35,4 +34,3 @@ public struct V0FindAvatarCandidateResponseItem: Codable, Hashable {
         try container.encodeIfPresent(slug, forKey: .slug)
     }
 }
-

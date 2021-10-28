@@ -11,7 +11,7 @@ import Combine
 #endif
 import Models
 
-open class AppSetupAPI {
+public final class AppSetupAPI: BaseAPI {
 
     /**
      Upload a new bitrise.yml for your application.
@@ -23,9 +23,9 @@ open class AppSetupAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appConfigCreate(appSlug: String, appConfig: V0AppConfigRequestParam, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<[String: String], Error> {
-        return Future<[String: String], Error> { promise in
-            appConfigCreateWithRequestBuilder(appSlug: appSlug, appConfig: appConfig).execute(apiResponseQueue) { result in
+    public func appConfigCreate(appSlug: String, appConfig: V0AppConfigRequestParam, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<[String: String], Error> {
+        return Future<[String: String], Error> { [weak self] promise in
+            self?.appConfigCreateWithRequestBuilder(appSlug: appSlug, appConfig: appConfig).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -48,7 +48,7 @@ open class AppSetupAPI {
      - parameter appConfig: (body) App config parameters 
      - returns: RequestBuilder<[String: String]> 
      */
-    open class func appConfigCreateWithRequestBuilder(appSlug: String, appConfig: V0AppConfigRequestParam) -> RequestBuilder<[String: String]> {
+    private func appConfigCreateWithRequestBuilder(appSlug: String, appConfig: V0AppConfigRequestParam) -> RequestBuilder<[String: String]> {
         var localVariablePath = "/apps/{app-slug}/bitrise.yml"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -58,9 +58,7 @@ open class AppSetupAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -78,9 +76,9 @@ open class AppSetupAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appCreate(app: V0AppUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppRespModel, Error> {
-        return Future<V0AppRespModel, Error> { promise in
-            appCreateWithRequestBuilder(app: app).execute(apiResponseQueue) { result in
+    public func appCreate(app: V0AppUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppRespModel, Error> {
+        return Future<V0AppRespModel, Error> { [weak self] promise in
+            self?.appCreateWithRequestBuilder(app: app).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -102,16 +100,14 @@ open class AppSetupAPI {
      - parameter app: (body) App parameters 
      - returns: RequestBuilder<V0AppRespModel> 
      */
-    open class func appCreateWithRequestBuilder(app: V0AppUploadParams) -> RequestBuilder<V0AppRespModel> {
+    private func appCreateWithRequestBuilder(app: V0AppUploadParams) -> RequestBuilder<V0AppRespModel> {
         let localVariablePath = "/apps/register"
         let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: app)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -130,9 +126,9 @@ open class AppSetupAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appFinish(appSlug: String, app: V0AppFinishParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppFinishRespModel, Error> {
-        return Future<V0AppFinishRespModel, Error> { promise in
-            appFinishWithRequestBuilder(appSlug: appSlug, app: app).execute(apiResponseQueue) { result in
+    public func appFinish(appSlug: String, app: V0AppFinishParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppFinishRespModel, Error> {
+        return Future<V0AppFinishRespModel, Error> { [weak self] promise in
+            self?.appFinishWithRequestBuilder(appSlug: appSlug, app: app).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -155,7 +151,7 @@ open class AppSetupAPI {
      - parameter app: (body) App finish parameters 
      - returns: RequestBuilder<V0AppFinishRespModel> 
      */
-    open class func appFinishWithRequestBuilder(appSlug: String, app: V0AppFinishParams) -> RequestBuilder<V0AppFinishRespModel> {
+    private func appFinishWithRequestBuilder(appSlug: String, app: V0AppFinishParams) -> RequestBuilder<V0AppFinishRespModel> {
         var localVariablePath = "/apps/{app-slug}/finish"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -165,9 +161,7 @@ open class AppSetupAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -185,9 +179,9 @@ open class AppSetupAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func appWebhookCreate(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0WebhookRespModel, Error> {
-        return Future<V0WebhookRespModel, Error> { promise in
-            appWebhookCreateWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
+    public func appWebhookCreate(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0WebhookRespModel, Error> {
+        return Future<V0WebhookRespModel, Error> { [weak self] promise in
+            self?.appWebhookCreateWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -209,7 +203,7 @@ open class AppSetupAPI {
      - parameter appSlug: (path) App slug 
      - returns: RequestBuilder<V0WebhookRespModel> 
      */
-    open class func appWebhookCreateWithRequestBuilder(appSlug: String) -> RequestBuilder<V0WebhookRespModel> {
+    private func appWebhookCreateWithRequestBuilder(appSlug: String) -> RequestBuilder<V0WebhookRespModel> {
         var localVariablePath = "/apps/{app-slug}/register-webhook"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -219,9 +213,7 @@ open class AppSetupAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -240,9 +232,9 @@ open class AppSetupAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func sshKeyCreate(appSlug: String, sshKey: V0SSHKeyUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0SSHKeyRespModel, Error> {
-        return Future<V0SSHKeyRespModel, Error> { promise in
-            sshKeyCreateWithRequestBuilder(appSlug: appSlug, sshKey: sshKey).execute(apiResponseQueue) { result in
+    public func sshKeyCreate(appSlug: String, sshKey: V0SSHKeyUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0SSHKeyRespModel, Error> {
+        return Future<V0SSHKeyRespModel, Error> { [weak self] promise in
+            self?.sshKeyCreateWithRequestBuilder(appSlug: appSlug, sshKey: sshKey).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -265,7 +257,7 @@ open class AppSetupAPI {
      - parameter sshKey: (body) SSH key parameters 
      - returns: RequestBuilder<V0SSHKeyRespModel> 
      */
-    open class func sshKeyCreateWithRequestBuilder(appSlug: String, sshKey: V0SSHKeyUploadParams) -> RequestBuilder<V0SSHKeyRespModel> {
+    private func sshKeyCreateWithRequestBuilder(appSlug: String, sshKey: V0SSHKeyUploadParams) -> RequestBuilder<V0SSHKeyRespModel> {
         var localVariablePath = "/apps/{app-slug}/register-ssh-key"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -275,9 +267,7 @@ open class AppSetupAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

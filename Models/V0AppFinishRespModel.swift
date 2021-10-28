@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0AppFinishRespModel: Codable, Hashable {
 
     public var branchName: String?
@@ -39,4 +38,3 @@ public struct V0AppFinishRespModel: Codable, Hashable {
         try container.encodeIfPresent(status, forKey: .status)
     }
 }
-

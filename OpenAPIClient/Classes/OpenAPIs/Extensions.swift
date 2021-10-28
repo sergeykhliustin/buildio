@@ -6,7 +6,6 @@
 
 import Foundation
 
-
 extension Bool: JSONEncodable {
     func encodeToJSON() -> Any { return self as Any }
 }

@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public enum JSONValue: Codable, Equatable, Hashable {
     case string(String)
     case int(Int)
@@ -26,7 +25,7 @@ public enum JSONValue: Codable, Equatable, Hashable {
         case .bool(let bool): try container.encode(bool)
         case .object(let object): try container.encode(object)
         case .array(let array): try container.encode(array)
-        case .null: try container.encode(Optional<String>.none)
+        case .null: try container.encode(String?.none)
         }
     }
     

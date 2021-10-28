@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0AvatarPromoteResponseItemModel: Codable, Hashable {
 
     public var isCandidate: Bool?
@@ -39,4 +38,3 @@ public struct V0AvatarPromoteResponseItemModel: Codable, Hashable {
         try container.encodeIfPresent(uploadFileSize, forKey: .uploadFileSize)
     }
 }
-

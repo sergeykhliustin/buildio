@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0BuildTriggerParamsHookInfo: Codable, Hashable {
 
     /** Should be \"bitrise\" */
@@ -28,4 +27,3 @@ public struct V0BuildTriggerParamsHookInfo: Codable, Hashable {
         try container.encodeIfPresent(type, forKey: .type)
     }
 }
-

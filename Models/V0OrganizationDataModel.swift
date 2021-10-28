@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0OrganizationDataModel: Codable, Hashable {
 
     public var avatarIconUrl: String?
@@ -43,4 +42,3 @@ public struct V0OrganizationDataModel: Codable, Hashable {
         try container.encodeIfPresent(slug, forKey: .slug)
     }
 }
-

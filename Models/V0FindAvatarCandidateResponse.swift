@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0FindAvatarCandidateResponse: Codable, Hashable {
 
     public var data: [V0FindAvatarCandidateResponseItem]?
@@ -27,4 +26,3 @@ public struct V0FindAvatarCandidateResponse: Codable, Hashable {
         try container.encodeIfPresent(data, forKey: .data)
     }
 }
-

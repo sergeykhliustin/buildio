@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0AddonsListResponseModel: Codable, Hashable {
 
     public var data: [AddonsAddon]?
@@ -27,4 +26,3 @@ public struct V0AddonsListResponseModel: Codable, Hashable {
         try container.encodeIfPresent(data, forKey: .data)
     }
 }
-

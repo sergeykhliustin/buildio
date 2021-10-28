@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct MainCoordinatorView: View {
-    @ObservedObject var tokenManager = TokenManager.shared
+    @StateObject var tokenManager = TokenManager.shared
     
     var body: some View {
         if tokenManager.token == nil {
             TokenFigmaScreenView()
+                .animation(.easeIn(duration: 0.5))
+                .transition(.move(edge: .bottom))
         } else {
             RootNavigationView()
         }

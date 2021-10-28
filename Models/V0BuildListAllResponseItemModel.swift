@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0BuildListAllResponseItemModel: Codable, Hashable {
 
     public var abortReason: String?
@@ -129,4 +128,3 @@ public struct V0BuildListAllResponseItemModel: Codable, Hashable {
             triggeredWorkflow: "triggeredWorkflow")
     }
 }
-

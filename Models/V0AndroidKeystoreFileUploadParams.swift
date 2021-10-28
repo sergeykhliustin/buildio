@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0AndroidKeystoreFileUploadParams: Codable, Hashable {
 
     public var alias: String
@@ -43,4 +42,3 @@ public struct V0AndroidKeystoreFileUploadParams: Codable, Hashable {
         try container.encode(uploadFileSize, forKey: .uploadFileSize)
     }
 }
-

@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0PlanDataModel: Codable, Hashable {
 
     public var containerCount: Int?
@@ -43,4 +42,3 @@ public struct V0PlanDataModel: Codable, Hashable {
         try container.encodeIfPresent(price, forKey: .price)
     }
 }
-

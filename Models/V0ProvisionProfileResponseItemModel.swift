@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0ProvisionProfileResponseItemModel: Codable, Hashable {
 
     public var downloadUrl: String?
@@ -55,4 +54,3 @@ public struct V0ProvisionProfileResponseItemModel: Codable, Hashable {
         try container.encodeIfPresent(uploadUrl, forKey: .uploadUrl)
     }
 }
-

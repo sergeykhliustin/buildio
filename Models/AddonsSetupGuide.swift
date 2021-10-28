@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct AddonsSetupGuide: Codable, Hashable {
 
     public var instructions: [AddonsSetupInstruction]?
@@ -31,4 +30,3 @@ public struct AddonsSetupGuide: Codable, Hashable {
         try container.encodeIfPresent(notification, forKey: .notification)
     }
 }
-

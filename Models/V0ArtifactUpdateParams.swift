@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0ArtifactUpdateParams: Codable, Hashable {
 
     public var isPublicPageEnabled: Bool
@@ -27,4 +26,3 @@ public struct V0ArtifactUpdateParams: Codable, Hashable {
         try container.encode(isPublicPageEnabled, forKey: .isPublicPageEnabled)
     }
 }
-

@@ -61,7 +61,6 @@ struct TabsScreenView: View {
                     Text("Profile")
                 }
             }
-            
 
         }
     }

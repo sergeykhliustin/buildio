@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0AvatarCandidateCreateResponseItem: Codable, Hashable {
 
     public var filename: String?
@@ -39,4 +38,3 @@ public struct V0AvatarCandidateCreateResponseItem: Codable, Hashable {
         try container.encodeIfPresent(uploadUrl, forKey: .uploadUrl)
     }
 }
-

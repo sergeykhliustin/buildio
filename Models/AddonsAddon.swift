@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct AddonsAddon: Codable, Hashable {
 
     public var bannerImage: String?
@@ -91,4 +90,3 @@ public struct AddonsAddon: Codable, Hashable {
         try container.encodeIfPresent(title, forKey: .title)
     }
 }
-

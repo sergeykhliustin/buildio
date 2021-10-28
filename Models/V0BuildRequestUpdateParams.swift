@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0BuildRequestUpdateParams: Codable, Hashable {
 
     public var isApproved: Bool
@@ -27,4 +26,3 @@ public struct V0BuildRequestUpdateParams: Codable, Hashable {
         try container.encode(isApproved, forKey: .isApproved)
     }
 }
-

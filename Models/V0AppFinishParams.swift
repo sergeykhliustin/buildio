@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0AppFinishParams: Codable, Hashable {
 
     /** Which config to use `default-android-config`, `default-cordova-config`, `default-fastlane-config`, `default-ionic-config`, `default-ios-config`,`default-macos-config`, `default-react-native-config`, `default-xamarin-config`, `other-config` (default if parameter is not speficied) */
@@ -53,4 +52,3 @@ public struct V0AppFinishParams: Codable, Hashable {
         try container.encode(stackId, forKey: .stackId)
     }
 }
-

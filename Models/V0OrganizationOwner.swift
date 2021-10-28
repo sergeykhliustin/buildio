@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0OrganizationOwner: Codable, Hashable {
 
     public var email: String?
@@ -35,4 +34,3 @@ public struct V0OrganizationOwner: Codable, Hashable {
         try container.encodeIfPresent(username, forKey: .username)
     }
 }
-

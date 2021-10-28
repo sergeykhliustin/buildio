@@ -11,7 +11,7 @@ import Combine
 #endif
 import Models
 
-open class BuildRequestAPI {
+public final class BuildRequestAPI: BaseAPI {
 
     /**
      List the open build requests for an app
@@ -22,9 +22,9 @@ open class BuildRequestAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildRequestList(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildRequestListResponseModel, Error> {
-        return Future<V0BuildRequestListResponseModel, Error> { promise in
-            buildRequestListWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
+    public func buildRequestList(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildRequestListResponseModel, Error> {
+        return Future<V0BuildRequestListResponseModel, Error> { [weak self] promise in
+            self?.buildRequestListWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -49,7 +49,7 @@ open class BuildRequestAPI {
      - parameter appSlug: (path) App slug 
      - returns: RequestBuilder<V0BuildRequestListResponseModel> 
      */
-    open class func buildRequestListWithRequestBuilder(appSlug: String) -> RequestBuilder<V0BuildRequestListResponseModel> {
+    private func buildRequestListWithRequestBuilder(appSlug: String) -> RequestBuilder<V0BuildRequestListResponseModel> {
         var localVariablePath = "/apps/{app-slug}/build-requests"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -59,9 +59,7 @@ open class BuildRequestAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -81,9 +79,9 @@ open class BuildRequestAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func buildRequestUpdate(appSlug: String, buildRequestSlug: String, buildRequest: V0BuildRequestUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildRequestUpdateResponseModel, Error> {
-        return Future<V0BuildRequestUpdateResponseModel, Error> { promise in
-            buildRequestUpdateWithRequestBuilder(appSlug: appSlug, buildRequestSlug: buildRequestSlug, buildRequest: buildRequest).execute(apiResponseQueue) { result in
+    public func buildRequestUpdate(appSlug: String, buildRequestSlug: String, buildRequest: V0BuildRequestUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildRequestUpdateResponseModel, Error> {
+        return Future<V0BuildRequestUpdateResponseModel, Error> { [weak self] promise in
+            self?.buildRequestUpdateWithRequestBuilder(appSlug: appSlug, buildRequestSlug: buildRequestSlug, buildRequest: buildRequest).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -107,7 +105,7 @@ open class BuildRequestAPI {
      - parameter buildRequest: (body) Build request parameters 
      - returns: RequestBuilder<V0BuildRequestUpdateResponseModel> 
      */
-    open class func buildRequestUpdateWithRequestBuilder(appSlug: String, buildRequestSlug: String, buildRequest: V0BuildRequestUpdateParams) -> RequestBuilder<V0BuildRequestUpdateResponseModel> {
+    private func buildRequestUpdateWithRequestBuilder(appSlug: String, buildRequestSlug: String, buildRequest: V0BuildRequestUpdateParams) -> RequestBuilder<V0BuildRequestUpdateResponseModel> {
         var localVariablePath = "/apps/{app-slug}/build-requests/{build-request-slug}"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -120,9 +118,7 @@ open class BuildRequestAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

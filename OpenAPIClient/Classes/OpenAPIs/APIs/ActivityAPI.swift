@@ -11,7 +11,7 @@ import Combine
 #endif
 import Models
 
-open class ActivityAPI {
+public final class ActivityAPI: BaseAPI {
 
     /**
      Get list of Bitrise activity events
@@ -23,9 +23,9 @@ open class ActivityAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func activityList(next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ActivityEventListResponseModel, Error> {
-        return Future<V0ActivityEventListResponseModel, Error> { promise in
-            activityListWithRequestBuilder(next: next, limit: limit).execute(apiResponseQueue) { result in
+    public func activityList(next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ActivityEventListResponseModel, Error> {
+        return Future<V0ActivityEventListResponseModel, Error> { [weak self] promise in
+            self?.activityListWithRequestBuilder(next: next, limit: limit).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -48,7 +48,7 @@ open class ActivityAPI {
      - parameter limit: (query) Max number of elements per page (default: 50) (optional)
      - returns: RequestBuilder<V0ActivityEventListResponseModel> 
      */
-    open class func activityListWithRequestBuilder(next: String? = nil, limit: Int? = nil) -> RequestBuilder<V0ActivityEventListResponseModel> {
+    private func activityListWithRequestBuilder(next: String? = nil, limit: Int? = nil) -> RequestBuilder<V0ActivityEventListResponseModel> {
         let localVariablePath = "/me/activities"
         let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -56,12 +56,10 @@ open class ActivityAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "next": next?.encodeToJSON(),
-            "limit": limit?.encodeToJSON(),
+            "limit": limit?.encodeToJSON()
         ])
 
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
+        let localVariableNillableHeaders: [String: Any?] = authorizationHeaders()
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

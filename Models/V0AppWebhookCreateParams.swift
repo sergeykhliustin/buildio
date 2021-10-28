@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct V0AppWebhookCreateParams: Codable, Hashable {
 
     public var events: [String]
@@ -39,4 +38,3 @@ public struct V0AppWebhookCreateParams: Codable, Hashable {
         try container.encode(url, forKey: .url)
     }
 }
-
