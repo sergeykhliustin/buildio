@@ -19,12 +19,12 @@ public final class AppSetupAPI: BaseAPI {
      - parameter appSlug: (path) App slug 
      - parameter appConfig: (body) App config parameters 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[String: String], Error>
+     - returns: AnyPublisher<[String: String], ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func appConfigCreate(appSlug: String, appConfig: V0AppConfigRequestParam, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<[String: String], Error> {
-        return Future<[String: String], Error> { [weak self] promise in
+    public func appConfigCreate(appSlug: String, appConfig: V0AppConfigRequestParam, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<[String: String], ErrorResponse> {
+        return Future<[String: String], ErrorResponse> { [weak self] promise in
             self?.appConfigCreateWithRequestBuilder(appSlug: appSlug, appConfig: appConfig).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -72,12 +72,12 @@ public final class AppSetupAPI: BaseAPI {
      
      - parameter app: (body) App parameters 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0AppRespModel, Error>
+     - returns: AnyPublisher<V0AppRespModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func appCreate(app: V0AppUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppRespModel, Error> {
-        return Future<V0AppRespModel, Error> { [weak self] promise in
+    public func appCreate(app: V0AppUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppRespModel, ErrorResponse> {
+        return Future<V0AppRespModel, ErrorResponse> { [weak self] promise in
             self?.appCreateWithRequestBuilder(app: app).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -122,12 +122,12 @@ public final class AppSetupAPI: BaseAPI {
      - parameter appSlug: (path) App slug 
      - parameter app: (body) App finish parameters 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0AppFinishRespModel, Error>
+     - returns: AnyPublisher<V0AppFinishRespModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func appFinish(appSlug: String, app: V0AppFinishParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppFinishRespModel, Error> {
-        return Future<V0AppFinishRespModel, Error> { [weak self] promise in
+    public func appFinish(appSlug: String, app: V0AppFinishParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppFinishRespModel, ErrorResponse> {
+        return Future<V0AppFinishRespModel, ErrorResponse> { [weak self] promise in
             self?.appFinishWithRequestBuilder(appSlug: appSlug, app: app).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -175,12 +175,12 @@ public final class AppSetupAPI: BaseAPI {
      
      - parameter appSlug: (path) App slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0WebhookRespModel, Error>
+     - returns: AnyPublisher<V0WebhookRespModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func appWebhookCreate(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0WebhookRespModel, Error> {
-        return Future<V0WebhookRespModel, Error> { [weak self] promise in
+    public func appWebhookCreate(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0WebhookRespModel, ErrorResponse> {
+        return Future<V0WebhookRespModel, ErrorResponse> { [weak self] promise in
             self?.appWebhookCreateWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -228,12 +228,12 @@ public final class AppSetupAPI: BaseAPI {
      - parameter appSlug: (path) App slug 
      - parameter sshKey: (body) SSH key parameters 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0SSHKeyRespModel, Error>
+     - returns: AnyPublisher<V0SSHKeyRespModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func sshKeyCreate(appSlug: String, sshKey: V0SSHKeyUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0SSHKeyRespModel, Error> {
-        return Future<V0SSHKeyRespModel, Error> { [weak self] promise in
+    public func sshKeyCreate(appSlug: String, sshKey: V0SSHKeyUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0SSHKeyRespModel, ErrorResponse> {
+        return Future<V0SSHKeyRespModel, ErrorResponse> { [weak self] promise in
             self?.sshKeyCreateWithRequestBuilder(appSlug: appSlug, sshKey: sshKey).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):

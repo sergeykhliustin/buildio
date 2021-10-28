@@ -28,13 +28,13 @@ class BuildsViewModel: PagingViewModel {
         refresh()
     }
     
-    func fetch() -> AnyPublisher<[V0BuildListAllResponseItemModel], Error> {
+    func fetch() -> AnyPublisher<[V0BuildListAllResponseItemModel], ErrorResponse> {
         BuildsAPI().buildListAll(limit: fetchLimit)
             .map({ $0.data })
             .eraseToAnyPublisher()
     }
     
-    func fetchNextPage() -> AnyPublisher<[V0BuildListAllResponseItemModel], Error> {
+    func fetchNextPage() -> AnyPublisher<[V0BuildListAllResponseItemModel], ErrorResponse> {
         BuildsAPI().buildListAll(next: self.value?.last?.slug, limit: fetchLimit)
             .map({ $0.data })
             .eraseToAnyPublisher()

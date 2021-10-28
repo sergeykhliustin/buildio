@@ -19,12 +19,12 @@ public final class ProvisioningProfileAPI: BaseAPI {
      - parameter appSlug: (path) App slug 
      - parameter provisioningProfileSlug: (path) Provisioning profile slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0ProvisionProfileResponseModel, Error>
+     - returns: AnyPublisher<V0ProvisionProfileResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func provisioningProfileConfirm(appSlug: String, provisioningProfileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileResponseModel, Error> {
-        return Future<V0ProvisionProfileResponseModel, Error> { [weak self] promise in
+    public func provisioningProfileConfirm(appSlug: String, provisioningProfileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileResponseModel, ErrorResponse> {
+        return Future<V0ProvisionProfileResponseModel, ErrorResponse> { [weak self] promise in
             self?.provisioningProfileConfirmWithRequestBuilder(appSlug: appSlug, provisioningProfileSlug: provisioningProfileSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -76,12 +76,12 @@ public final class ProvisioningProfileAPI: BaseAPI {
      - parameter appSlug: (path) App slug 
      - parameter provisioningProfile: (body) Provisioning profile parameters such as file name and file size 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0ProvisionProfileResponseModel, Error>
+     - returns: AnyPublisher<V0ProvisionProfileResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func provisioningProfileCreate(appSlug: String, provisioningProfile: V0ProvisionProfileUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileResponseModel, Error> {
-        return Future<V0ProvisionProfileResponseModel, Error> { [weak self] promise in
+    public func provisioningProfileCreate(appSlug: String, provisioningProfile: V0ProvisionProfileUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileResponseModel, ErrorResponse> {
+        return Future<V0ProvisionProfileResponseModel, ErrorResponse> { [weak self] promise in
             self?.provisioningProfileCreateWithRequestBuilder(appSlug: appSlug, provisioningProfile: provisioningProfile).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -130,12 +130,12 @@ public final class ProvisioningProfileAPI: BaseAPI {
      - parameter appSlug: (path) App slug 
      - parameter provisioningProfileSlug: (path) Provisioning profile slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0ProvisionProfileResponseModel, Error>
+     - returns: AnyPublisher<V0ProvisionProfileResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func provisioningProfileDelete(appSlug: String, provisioningProfileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileResponseModel, Error> {
-        return Future<V0ProvisionProfileResponseModel, Error> { [weak self] promise in
+    public func provisioningProfileDelete(appSlug: String, provisioningProfileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileResponseModel, ErrorResponse> {
+        return Future<V0ProvisionProfileResponseModel, ErrorResponse> { [weak self] promise in
             self?.provisioningProfileDeleteWithRequestBuilder(appSlug: appSlug, provisioningProfileSlug: provisioningProfileSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -188,12 +188,12 @@ public final class ProvisioningProfileAPI: BaseAPI {
      - parameter next: (query) Slug of the first provisioning profile in the response (optional)
      - parameter limit: (query) Max number of elements per page (default: 50) (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0ProvisionProfileListResponseModel, Error>
+     - returns: AnyPublisher<V0ProvisionProfileListResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func provisioningProfileList(appSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileListResponseModel, Error> {
-        return Future<V0ProvisionProfileListResponseModel, Error> { [weak self] promise in
+    public func provisioningProfileList(appSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileListResponseModel, ErrorResponse> {
+        return Future<V0ProvisionProfileListResponseModel, ErrorResponse> { [weak self] promise in
             self?.provisioningProfileListWithRequestBuilder(appSlug: appSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -250,12 +250,12 @@ public final class ProvisioningProfileAPI: BaseAPI {
      - parameter appSlug: (path) App slug 
      - parameter provisioningProfileSlug: (path) Provisioning profile slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0ProvisionProfileResponseModel, Error>
+     - returns: AnyPublisher<V0ProvisionProfileResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func provisioningProfileShow(appSlug: String, provisioningProfileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileResponseModel, Error> {
-        return Future<V0ProvisionProfileResponseModel, Error> { [weak self] promise in
+    public func provisioningProfileShow(appSlug: String, provisioningProfileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileResponseModel, ErrorResponse> {
+        return Future<V0ProvisionProfileResponseModel, ErrorResponse> { [weak self] promise in
             self?.provisioningProfileShowWithRequestBuilder(appSlug: appSlug, provisioningProfileSlug: provisioningProfileSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -308,12 +308,12 @@ public final class ProvisioningProfileAPI: BaseAPI {
      - parameter provisioningProfileSlug: (path) Provisioning profile slug 
      - parameter provisioningProfile: (body) Provisioning profile parameters 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0ProvisionProfileResponseModel, Error>
+     - returns: AnyPublisher<V0ProvisionProfileResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func provisioningProfileUpdate(appSlug: String, provisioningProfileSlug: String, provisioningProfile: V0ProvProfileDocumentUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileResponseModel, Error> {
-        return Future<V0ProvisionProfileResponseModel, Error> { [weak self] promise in
+    public func provisioningProfileUpdate(appSlug: String, provisioningProfileSlug: String, provisioningProfile: V0ProvProfileDocumentUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileResponseModel, ErrorResponse> {
+        return Future<V0ProvisionProfileResponseModel, ErrorResponse> { [weak self] promise in
             self?.provisioningProfileUpdateWithRequestBuilder(appSlug: appSlug, provisioningProfileSlug: provisioningProfileSlug, provisioningProfile: provisioningProfile).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):

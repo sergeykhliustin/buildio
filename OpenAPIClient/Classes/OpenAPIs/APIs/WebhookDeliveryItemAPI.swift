@@ -21,12 +21,12 @@ public final class WebhookDeliveryItemAPI: BaseAPI {
      - parameter next: (query) Slug of the first delivery item in the response (optional)
      - parameter limit: (query) Max number of elements per page (default: 50) (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0WebhookDeliveryItemShowResponseModel, Error>
+     - returns: AnyPublisher<V0WebhookDeliveryItemShowResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func webhookDeliveryItemList(appSlug: String, appWebhookSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0WebhookDeliveryItemShowResponseModel, Error> {
-        return Future<V0WebhookDeliveryItemShowResponseModel, Error> { [weak self] promise in
+    public func webhookDeliveryItemList(appSlug: String, appWebhookSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0WebhookDeliveryItemShowResponseModel, ErrorResponse> {
+        return Future<V0WebhookDeliveryItemShowResponseModel, ErrorResponse> { [weak self] promise in
             self?.webhookDeliveryItemListWithRequestBuilder(appSlug: appSlug, appWebhookSlug: appWebhookSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -85,12 +85,12 @@ public final class WebhookDeliveryItemAPI: BaseAPI {
      - parameter appWebhookSlug: (path) App webhook slug 
      - parameter webhookDeliveryItemSlug: (path) Webhook delivery item slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<ServiceStandardErrorRespModel, Error>
+     - returns: AnyPublisher<ServiceStandardErrorRespModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func webhookDeliveryItemRedeliver(appSlug: String, appWebhookSlug: String, webhookDeliveryItemSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<ServiceStandardErrorRespModel, Error> {
-        return Future<ServiceStandardErrorRespModel, Error> { [weak self] promise in
+    public func webhookDeliveryItemRedeliver(appSlug: String, appWebhookSlug: String, webhookDeliveryItemSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<ServiceStandardErrorRespModel, ErrorResponse> {
+        return Future<ServiceStandardErrorRespModel, ErrorResponse> { [weak self] promise in
             self?.webhookDeliveryItemRedeliverWithRequestBuilder(appSlug: appSlug, appWebhookSlug: appWebhookSlug, webhookDeliveryItemSlug: webhookDeliveryItemSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -147,12 +147,12 @@ public final class WebhookDeliveryItemAPI: BaseAPI {
      - parameter appWebhookSlug: (path) App webhook slug 
      - parameter webhookDeliveryItemSlug: (path) Webhook delivery item slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0WebhookDeliveryItemResponseModel, Error>
+     - returns: AnyPublisher<V0WebhookDeliveryItemResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func webhookDeliveryItemShow(appSlug: String, appWebhookSlug: String, webhookDeliveryItemSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0WebhookDeliveryItemResponseModel, Error> {
-        return Future<V0WebhookDeliveryItemResponseModel, Error> { [weak self] promise in
+    public func webhookDeliveryItemShow(appSlug: String, appWebhookSlug: String, webhookDeliveryItemSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0WebhookDeliveryItemResponseModel, ErrorResponse> {
+        return Future<V0WebhookDeliveryItemResponseModel, ErrorResponse> { [weak self] promise in
             self?.webhookDeliveryItemShowWithRequestBuilder(appSlug: appSlug, appWebhookSlug: appWebhookSlug, webhookDeliveryItemSlug: webhookDeliveryItemSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):

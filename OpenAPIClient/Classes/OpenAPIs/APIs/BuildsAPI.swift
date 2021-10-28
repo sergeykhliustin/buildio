@@ -20,12 +20,12 @@ public final class BuildsAPI: BaseAPI {
      - parameter buildSlug: (path) Build slug 
      - parameter buildAbortParams: (body) Build abort parameters 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0BuildAbortResponseModel, Error>
+     - returns: AnyPublisher<V0BuildAbortResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func buildAbort(appSlug: String, buildSlug: String, buildAbortParams: V0BuildAbortParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildAbortResponseModel, Error> {
-        return Future<V0BuildAbortResponseModel, Error> { [weak self] promise in
+    public func buildAbort(appSlug: String, buildSlug: String, buildAbortParams: V0BuildAbortParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildAbortResponseModel, ErrorResponse> {
+        return Future<V0BuildAbortResponseModel, ErrorResponse> { [weak self] promise in
             self?.buildAbortWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug, buildAbortParams: buildAbortParams).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -81,12 +81,12 @@ public final class BuildsAPI: BaseAPI {
      - parameter appSlug: (path) App slug 
      - parameter buildSlug: (path) Build slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<String, Error>
+     - returns: AnyPublisher<String, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func buildBitriseYmlShow(appSlug: String, buildSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<String, Error> {
-        return Future<String, Error> { [weak self] promise in
+    public func buildBitriseYmlShow(appSlug: String, buildSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<String, ErrorResponse> {
+        return Future<String, ErrorResponse> { [weak self] promise in
             self?.buildBitriseYmlShowWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -160,12 +160,12 @@ public final class BuildsAPI: BaseAPI {
      - parameter next: (query) Slug of the first build in the response (optional)
      - parameter limit: (query) Max number of elements per page (default: 50) (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0BuildListResponseModel, Error>
+     - returns: AnyPublisher<V0BuildListResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func buildList(appSlug: String, sortBy: SortBy_buildList? = nil, branch: String? = nil, workflow: String? = nil, commitMessage: String? = nil, triggerEventType: String? = nil, pullRequestId: Int? = nil, buildNumber: Int? = nil, after: Int? = nil, before: Int? = nil, status: Int? = nil, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildListResponseModel, Error> {
-        return Future<V0BuildListResponseModel, Error> { [weak self] promise in
+    public func buildList(appSlug: String, sortBy: SortBy_buildList? = nil, branch: String? = nil, workflow: String? = nil, commitMessage: String? = nil, triggerEventType: String? = nil, pullRequestId: Int? = nil, buildNumber: Int? = nil, after: Int? = nil, before: Int? = nil, status: Int? = nil, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildListResponseModel, ErrorResponse> {
+        return Future<V0BuildListResponseModel, ErrorResponse> { [weak self] promise in
             self?.buildListWithRequestBuilder(appSlug: appSlug, sortBy: sortBy, branch: branch, workflow: workflow, commitMessage: commitMessage, triggerEventType: triggerEventType, pullRequestId: pullRequestId, buildNumber: buildNumber, after: after, before: before, status: status, next: next, limit: limit).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -245,12 +245,12 @@ public final class BuildsAPI: BaseAPI {
      - parameter next: (query) Slug of the first build in the response (optional)
      - parameter limit: (query) Max number of elements per page (default: 50) (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0BuildListAllResponseModel, Error>
+     - returns: AnyPublisher<V0BuildListAllResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func buildListAll(ownerSlug: String? = nil, isOnHold: Bool? = nil, status: Int? = nil, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildListAllResponseModel, Error> {
-        return Future<V0BuildListAllResponseModel, Error> { [weak self] promise in
+    public func buildListAll(ownerSlug: String? = nil, isOnHold: Bool? = nil, status: Int? = nil, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildListAllResponseModel, ErrorResponse> {
+        return Future<V0BuildListAllResponseModel, ErrorResponse> { [weak self] promise in
             self?.buildListAllWithRequestBuilder(ownerSlug: ownerSlug, isOnHold: isOnHold, status: status, next: next, limit: limit).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -306,12 +306,12 @@ public final class BuildsAPI: BaseAPI {
      - parameter appSlug: (path) App slug 
      - parameter buildSlug: (path) Build slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: AnyPublisher<Void, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func buildLog(appSlug: String, buildSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error> { [weak self] promise in
+    public func buildLog(appSlug: String, buildSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<Void, ErrorResponse> {
+        return Future<Void, ErrorResponse> { [weak self] promise in
             self?.buildLogWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case .success:
@@ -366,12 +366,12 @@ public final class BuildsAPI: BaseAPI {
      - parameter appSlug: (path) App slug 
      - parameter buildSlug: (path) Build slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0BuildShowResponseModel, Error>
+     - returns: AnyPublisher<V0BuildShowResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func buildShow(appSlug: String, buildSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildShowResponseModel, Error> {
-        return Future<V0BuildShowResponseModel, Error> { [weak self] promise in
+    public func buildShow(appSlug: String, buildSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildShowResponseModel, ErrorResponse> {
+        return Future<V0BuildShowResponseModel, ErrorResponse> { [weak self] promise in
             self?.buildShowWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -426,12 +426,12 @@ public final class BuildsAPI: BaseAPI {
      - parameter appSlug: (path) App slug 
      - parameter buildParams: (body) Build trigger parameters 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0BuildTriggerRespModel, Error>
+     - returns: AnyPublisher<V0BuildTriggerRespModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func buildTrigger(appSlug: String, buildParams: V0BuildTriggerParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildTriggerRespModel, Error> {
-        return Future<V0BuildTriggerRespModel, Error> { [weak self] promise in
+    public func buildTrigger(appSlug: String, buildParams: V0BuildTriggerParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildTriggerRespModel, ErrorResponse> {
+        return Future<V0BuildTriggerRespModel, ErrorResponse> { [weak self] promise in
             self?.buildTriggerWithRequestBuilder(appSlug: appSlug, buildParams: buildParams).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -482,12 +482,12 @@ public final class BuildsAPI: BaseAPI {
      
      - parameter appSlug: (path) App slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0BuildWorkflowListResponseModel, Error>
+     - returns: AnyPublisher<V0BuildWorkflowListResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func buildWorkflowList(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildWorkflowListResponseModel, Error> {
-        return Future<V0BuildWorkflowListResponseModel, Error> { [weak self] promise in
+    public func buildWorkflowList(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildWorkflowListResponseModel, ErrorResponse> {
+        return Future<V0BuildWorkflowListResponseModel, ErrorResponse> { [weak self] promise in
             self?.buildWorkflowListWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):

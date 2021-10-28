@@ -18,12 +18,12 @@ public final class TestDevicesAPI: BaseAPI {
      
      - parameter appSlug: (path) App slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0TestDeviceListResponseModel, Error>
+     - returns: AnyPublisher<V0TestDeviceListResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func testDeviceList(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0TestDeviceListResponseModel, Error> {
-        return Future<V0TestDeviceListResponseModel, Error> { [weak self] promise in
+    public func testDeviceList(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0TestDeviceListResponseModel, ErrorResponse> {
+        return Future<V0TestDeviceListResponseModel, ErrorResponse> { [weak self] promise in
             self?.testDeviceListWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):

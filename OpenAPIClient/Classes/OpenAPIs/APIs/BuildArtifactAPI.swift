@@ -20,12 +20,12 @@ public final class BuildArtifactAPI: BaseAPI {
      - parameter buildSlug: (path) Build slug 
      - parameter artifactSlug: (path) Artifact slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0ArtifactDeleteResponseModel, Error>
+     - returns: AnyPublisher<V0ArtifactDeleteResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func artifactDelete(appSlug: String, buildSlug: String, artifactSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ArtifactDeleteResponseModel, Error> {
-        return Future<V0ArtifactDeleteResponseModel, Error> { [weak self] promise in
+    public func artifactDelete(appSlug: String, buildSlug: String, artifactSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ArtifactDeleteResponseModel, ErrorResponse> {
+        return Future<V0ArtifactDeleteResponseModel, ErrorResponse> { [weak self] promise in
             self?.artifactDeleteWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug, artifactSlug: artifactSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -83,12 +83,12 @@ public final class BuildArtifactAPI: BaseAPI {
      - parameter next: (query) Slug of the first build artifact in the response (optional)
      - parameter limit: (query) Max number of build artifacts per page is 50. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0ArtifactListResponseModel, Error>
+     - returns: AnyPublisher<V0ArtifactListResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func artifactList(appSlug: String, buildSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ArtifactListResponseModel, Error> {
-        return Future<V0ArtifactListResponseModel, Error> { [weak self] promise in
+    public func artifactList(appSlug: String, buildSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ArtifactListResponseModel, ErrorResponse> {
+        return Future<V0ArtifactListResponseModel, ErrorResponse> { [weak self] promise in
             self?.artifactListWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -151,12 +151,12 @@ public final class BuildArtifactAPI: BaseAPI {
      - parameter artifactSlug: (path) Artifact slug 
      - parameter download: (query) Setting this will result in a redirect to the artifact download location (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0ArtifactShowResponseModel, Error>
+     - returns: AnyPublisher<V0ArtifactShowResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func artifactShow(appSlug: String, buildSlug: String, artifactSlug: String, download: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ArtifactShowResponseModel, Error> {
-        return Future<V0ArtifactShowResponseModel, Error> { [weak self] promise in
+    public func artifactShow(appSlug: String, buildSlug: String, artifactSlug: String, download: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ArtifactShowResponseModel, ErrorResponse> {
+        return Future<V0ArtifactShowResponseModel, ErrorResponse> { [weak self] promise in
             self?.artifactShowWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug, artifactSlug: artifactSlug, download: download).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -221,12 +221,12 @@ public final class BuildArtifactAPI: BaseAPI {
      - parameter artifactSlug: (path) Artifact slug 
      - parameter artifactParams: (body) Artifact parameters 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0ArtifactShowResponseModel, Error>
+     - returns: AnyPublisher<V0ArtifactShowResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func artifactUpdate(appSlug: String, buildSlug: String, artifactSlug: String, artifactParams: V0ArtifactUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ArtifactShowResponseModel, Error> {
-        return Future<V0ArtifactShowResponseModel, Error> { [weak self] promise in
+    public func artifactUpdate(appSlug: String, buildSlug: String, artifactSlug: String, artifactParams: V0ArtifactUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ArtifactShowResponseModel, ErrorResponse> {
+        return Future<V0ArtifactShowResponseModel, ErrorResponse> { [weak self] promise in
             self?.artifactUpdateWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug, artifactSlug: artifactSlug, artifactParams: artifactParams).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):

@@ -19,12 +19,12 @@ public final class GenericProjectFileAPI: BaseAPI {
      - parameter appSlug: (path) App slug 
      - parameter genericProjectFileSlug: (path) Generic project file slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0ProjectFileStorageResponseModel, Error>
+     - returns: AnyPublisher<V0ProjectFileStorageResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func genericProjectFileConfirm(appSlug: String, genericProjectFileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageResponseModel, Error> {
-        return Future<V0ProjectFileStorageResponseModel, Error> { [weak self] promise in
+    public func genericProjectFileConfirm(appSlug: String, genericProjectFileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageResponseModel, ErrorResponse> {
+        return Future<V0ProjectFileStorageResponseModel, ErrorResponse> { [weak self] promise in
             self?.genericProjectFileConfirmWithRequestBuilder(appSlug: appSlug, genericProjectFileSlug: genericProjectFileSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -76,12 +76,12 @@ public final class GenericProjectFileAPI: BaseAPI {
      - parameter appSlug: (path) App slug 
      - parameter genericProjectFileSlug: (path) Generic project file slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0ProjectFileStorageResponseModel, Error>
+     - returns: AnyPublisher<V0ProjectFileStorageResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func genericProjectFileDelete(appSlug: String, genericProjectFileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageResponseModel, Error> {
-        return Future<V0ProjectFileStorageResponseModel, Error> { [weak self] promise in
+    public func genericProjectFileDelete(appSlug: String, genericProjectFileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageResponseModel, ErrorResponse> {
+        return Future<V0ProjectFileStorageResponseModel, ErrorResponse> { [weak self] promise in
             self?.genericProjectFileDeleteWithRequestBuilder(appSlug: appSlug, genericProjectFileSlug: genericProjectFileSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -134,12 +134,12 @@ public final class GenericProjectFileAPI: BaseAPI {
      - parameter next: (query) Slug of the first generic project file in the response (optional)
      - parameter limit: (query) Max number of build certificates per page is 50. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0ProjectFileStorageListResponseModel, Error>
+     - returns: AnyPublisher<V0ProjectFileStorageListResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func genericProjectFileList(appSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageListResponseModel, Error> {
-        return Future<V0ProjectFileStorageListResponseModel, Error> { [weak self] promise in
+    public func genericProjectFileList(appSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageListResponseModel, ErrorResponse> {
+        return Future<V0ProjectFileStorageListResponseModel, ErrorResponse> { [weak self] promise in
             self?.genericProjectFileListWithRequestBuilder(appSlug: appSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -196,12 +196,12 @@ public final class GenericProjectFileAPI: BaseAPI {
      - parameter appSlug: (path) App slug 
      - parameter genericProjectFileSlug: (path) Generic project file slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0ProjectFileStorageResponseModel, Error>
+     - returns: AnyPublisher<V0ProjectFileStorageResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func genericProjectFileShow(appSlug: String, genericProjectFileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageResponseModel, Error> {
-        return Future<V0ProjectFileStorageResponseModel, Error> { [weak self] promise in
+    public func genericProjectFileShow(appSlug: String, genericProjectFileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageResponseModel, ErrorResponse> {
+        return Future<V0ProjectFileStorageResponseModel, ErrorResponse> { [weak self] promise in
             self?.genericProjectFileShowWithRequestBuilder(appSlug: appSlug, genericProjectFileSlug: genericProjectFileSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -254,12 +254,12 @@ public final class GenericProjectFileAPI: BaseAPI {
      - parameter genericProjectFileSlug: (path) Generic project file slug 
      - parameter genericProjectFile: (body) Generic project file parameters 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0ProjectFileStorageResponseModel, Error>
+     - returns: AnyPublisher<V0ProjectFileStorageResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func genericProjectFileUpdate(appSlug: String, genericProjectFileSlug: String, genericProjectFile: V0ProjectFileStorageDocumentUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageResponseModel, Error> {
-        return Future<V0ProjectFileStorageResponseModel, Error> { [weak self] promise in
+    public func genericProjectFileUpdate(appSlug: String, genericProjectFileSlug: String, genericProjectFile: V0ProjectFileStorageDocumentUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageResponseModel, ErrorResponse> {
+        return Future<V0ProjectFileStorageResponseModel, ErrorResponse> { [weak self] promise in
             self?.genericProjectFileUpdateWithRequestBuilder(appSlug: appSlug, genericProjectFileSlug: genericProjectFileSlug, genericProjectFile: genericProjectFile).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -312,12 +312,12 @@ public final class GenericProjectFileAPI: BaseAPI {
      - parameter appSlug: (path) App slug 
      - parameter genericProjectFile: (body) Generic project file parameters 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0ProjectFileStorageResponseModel, Error>
+     - returns: AnyPublisher<V0ProjectFileStorageResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func genericProjectFilesCreate(appSlug: String, genericProjectFile: V0ProjectFileStorageUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageResponseModel, Error> {
-        return Future<V0ProjectFileStorageResponseModel, Error> { [weak self] promise in
+    public func genericProjectFilesCreate(appSlug: String, genericProjectFile: V0ProjectFileStorageUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageResponseModel, ErrorResponse> {
+        return Future<V0ProjectFileStorageResponseModel, ErrorResponse> { [weak self] promise in
             self?.genericProjectFilesCreateWithRequestBuilder(appSlug: appSlug, genericProjectFile: genericProjectFile).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):

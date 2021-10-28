@@ -19,12 +19,12 @@ public final class BuildCertificateAPI: BaseAPI {
      - parameter appSlug: (path) App slug 
      - parameter buildCertificateSlug: (path) Build certificate slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0BuildCertificateResponseModel, Error>
+     - returns: AnyPublisher<V0BuildCertificateResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func buildCertificateConfirm(appSlug: String, buildCertificateSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildCertificateResponseModel, Error> {
-        return Future<V0BuildCertificateResponseModel, Error> { [weak self] promise in
+    public func buildCertificateConfirm(appSlug: String, buildCertificateSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildCertificateResponseModel, ErrorResponse> {
+        return Future<V0BuildCertificateResponseModel, ErrorResponse> { [weak self] promise in
             self?.buildCertificateConfirmWithRequestBuilder(appSlug: appSlug, buildCertificateSlug: buildCertificateSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -76,12 +76,12 @@ public final class BuildCertificateAPI: BaseAPI {
      - parameter appSlug: (path) App slug 
      - parameter buildCertificate: (body) Build certificate parameters such as file name and its file size 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0BuildCertificateResponseModel, Error>
+     - returns: AnyPublisher<V0BuildCertificateResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func buildCertificateCreate(appSlug: String, buildCertificate: V0BuildCertificateUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildCertificateResponseModel, Error> {
-        return Future<V0BuildCertificateResponseModel, Error> { [weak self] promise in
+    public func buildCertificateCreate(appSlug: String, buildCertificate: V0BuildCertificateUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildCertificateResponseModel, ErrorResponse> {
+        return Future<V0BuildCertificateResponseModel, ErrorResponse> { [weak self] promise in
             self?.buildCertificateCreateWithRequestBuilder(appSlug: appSlug, buildCertificate: buildCertificate).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -130,12 +130,12 @@ public final class BuildCertificateAPI: BaseAPI {
      - parameter appSlug: (path) App slug 
      - parameter buildCertificateSlug: (path) Build certificate slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0BuildCertificateResponseModel, Error>
+     - returns: AnyPublisher<V0BuildCertificateResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func buildCertificateDelete(appSlug: String, buildCertificateSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildCertificateResponseModel, Error> {
-        return Future<V0BuildCertificateResponseModel, Error> { [weak self] promise in
+    public func buildCertificateDelete(appSlug: String, buildCertificateSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildCertificateResponseModel, ErrorResponse> {
+        return Future<V0BuildCertificateResponseModel, ErrorResponse> { [weak self] promise in
             self?.buildCertificateDeleteWithRequestBuilder(appSlug: appSlug, buildCertificateSlug: buildCertificateSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -188,12 +188,12 @@ public final class BuildCertificateAPI: BaseAPI {
      - parameter next: (query) Slug of the first build certificate in the response (optional)
      - parameter limit: (query) Max number of build certificates per page is 50. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0BuildCertificateListResponseModel, Error>
+     - returns: AnyPublisher<V0BuildCertificateListResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func buildCertificateList(appSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildCertificateListResponseModel, Error> {
-        return Future<V0BuildCertificateListResponseModel, Error> { [weak self] promise in
+    public func buildCertificateList(appSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildCertificateListResponseModel, ErrorResponse> {
+        return Future<V0BuildCertificateListResponseModel, ErrorResponse> { [weak self] promise in
             self?.buildCertificateListWithRequestBuilder(appSlug: appSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -250,12 +250,12 @@ public final class BuildCertificateAPI: BaseAPI {
      - parameter appSlug: (path) App slug 
      - parameter buildCertificateSlug: (path) Build certificate slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0BuildCertificateResponseModel, Error>
+     - returns: AnyPublisher<V0BuildCertificateResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func buildCertificateShow(appSlug: String, buildCertificateSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildCertificateResponseModel, Error> {
-        return Future<V0BuildCertificateResponseModel, Error> { [weak self] promise in
+    public func buildCertificateShow(appSlug: String, buildCertificateSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildCertificateResponseModel, ErrorResponse> {
+        return Future<V0BuildCertificateResponseModel, ErrorResponse> { [weak self] promise in
             self?.buildCertificateShowWithRequestBuilder(appSlug: appSlug, buildCertificateSlug: buildCertificateSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -308,12 +308,12 @@ public final class BuildCertificateAPI: BaseAPI {
      - parameter buildCertificateSlug: (path) Build certificate slug 
      - parameter buildCertificate: (body) Build certificate parameters 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0BuildCertificateResponseModel, Error>
+     - returns: AnyPublisher<V0BuildCertificateResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func buildCertificateUpdate(appSlug: String, buildCertificateSlug: String, buildCertificate: V0BuildCertificateUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildCertificateResponseModel, Error> {
-        return Future<V0BuildCertificateResponseModel, Error> { [weak self] promise in
+    public func buildCertificateUpdate(appSlug: String, buildCertificateSlug: String, buildCertificate: V0BuildCertificateUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildCertificateResponseModel, ErrorResponse> {
+        return Future<V0BuildCertificateResponseModel, ErrorResponse> { [weak self] promise in
             self?.buildCertificateUpdateWithRequestBuilder(appSlug: appSlug, buildCertificateSlug: buildCertificateSlug, buildCertificate: buildCertificate).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):

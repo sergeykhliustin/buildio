@@ -12,6 +12,12 @@ protocol JSONEncodable {
 
 public enum ErrorResponse: Error {
     case error(Int, Data?, URLResponse?, Error)
+    var rawError: Error! {
+        if case let .error(_, _, _, rawError) = self {
+            return rawError
+        }
+        return nil
+    }
 }
 
 public enum DownloadException: Error {

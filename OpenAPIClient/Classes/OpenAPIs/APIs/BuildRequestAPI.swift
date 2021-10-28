@@ -18,12 +18,12 @@ public final class BuildRequestAPI: BaseAPI {
      
      - parameter appSlug: (path) App slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0BuildRequestListResponseModel, Error>
+     - returns: AnyPublisher<V0BuildRequestListResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func buildRequestList(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildRequestListResponseModel, Error> {
-        return Future<V0BuildRequestListResponseModel, Error> { [weak self] promise in
+    public func buildRequestList(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildRequestListResponseModel, ErrorResponse> {
+        return Future<V0BuildRequestListResponseModel, ErrorResponse> { [weak self] promise in
             self?.buildRequestListWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -75,12 +75,12 @@ public final class BuildRequestAPI: BaseAPI {
      - parameter buildRequestSlug: (path) Build request slug 
      - parameter buildRequest: (body) Build request parameters 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0BuildRequestUpdateResponseModel, Error>
+     - returns: AnyPublisher<V0BuildRequestUpdateResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func buildRequestUpdate(appSlug: String, buildRequestSlug: String, buildRequest: V0BuildRequestUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildRequestUpdateResponseModel, Error> {
-        return Future<V0BuildRequestUpdateResponseModel, Error> { [weak self] promise in
+    public func buildRequestUpdate(appSlug: String, buildRequestSlug: String, buildRequest: V0BuildRequestUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildRequestUpdateResponseModel, ErrorResponse> {
+        return Future<V0BuildRequestUpdateResponseModel, ErrorResponse> { [weak self] promise in
             self?.buildRequestUpdateWithRequestBuilder(appSlug: appSlug, buildRequestSlug: buildRequestSlug, buildRequest: buildRequest).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):

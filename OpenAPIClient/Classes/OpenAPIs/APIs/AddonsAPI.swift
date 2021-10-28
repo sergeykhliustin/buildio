@@ -18,12 +18,12 @@ public final class AddonsAPI: BaseAPI {
      
      - parameter appSlug: (path) App slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0AppAddOnsListResponseModel, Error>
+     - returns: AnyPublisher<V0AppAddOnsListResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func addonListByApp(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppAddOnsListResponseModel, Error> {
-        return Future<V0AppAddOnsListResponseModel, Error> { [weak self] promise in
+    public func addonListByApp(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppAddOnsListResponseModel, ErrorResponse> {
+        return Future<V0AppAddOnsListResponseModel, ErrorResponse> { [weak self] promise in
             self?.addonListByAppWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -73,12 +73,12 @@ public final class AddonsAPI: BaseAPI {
      
      - parameter organizationSlug: (path) Organization slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0OwnerAddOnsListResponseModel, Error>
+     - returns: AnyPublisher<V0OwnerAddOnsListResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func addonListByOrganization(organizationSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0OwnerAddOnsListResponseModel, Error> {
-        return Future<V0OwnerAddOnsListResponseModel, Error> { [weak self] promise in
+    public func addonListByOrganization(organizationSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0OwnerAddOnsListResponseModel, ErrorResponse> {
+        return Future<V0OwnerAddOnsListResponseModel, ErrorResponse> { [weak self] promise in
             self?.addonListByOrganizationWithRequestBuilder(organizationSlug: organizationSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -125,12 +125,12 @@ public final class AddonsAPI: BaseAPI {
      
      - parameter userSlug: (path) User slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0OwnerAddOnsListResponseModel, Error>
+     - returns: AnyPublisher<V0OwnerAddOnsListResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func addonListByUser(userSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0OwnerAddOnsListResponseModel, Error> {
-        return Future<V0OwnerAddOnsListResponseModel, Error> { [weak self] promise in
+    public func addonListByUser(userSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0OwnerAddOnsListResponseModel, ErrorResponse> {
+        return Future<V0OwnerAddOnsListResponseModel, ErrorResponse> { [weak self] promise in
             self?.addonListByUserWithRequestBuilder(userSlug: userSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -176,12 +176,12 @@ public final class AddonsAPI: BaseAPI {
      Get list of available Bitrise addons
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0AddonsListResponseModel, Error>
+     - returns: AnyPublisher<V0AddonsListResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func addonsList(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AddonsListResponseModel, Error> {
-        return Future<V0AddonsListResponseModel, Error> { [weak self] promise in
+    public func addonsList(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AddonsListResponseModel, ErrorResponse> {
+        return Future<V0AddonsListResponseModel, ErrorResponse> { [weak self] promise in
             self?.addonsListWithRequestBuilder().execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -224,12 +224,12 @@ public final class AddonsAPI: BaseAPI {
      
      - parameter addonId: (path) Addon ID 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0AddonsShowResponseModel, Error>
+     - returns: AnyPublisher<V0AddonsShowResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func addonsShow(addonId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AddonsShowResponseModel, Error> {
-        return Future<V0AddonsShowResponseModel, Error> { [weak self] promise in
+    public func addonsShow(addonId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AddonsShowResponseModel, ErrorResponse> {
+        return Future<V0AddonsShowResponseModel, ErrorResponse> { [weak self] promise in
             self?.addonsShowWithRequestBuilder(addonId: addonId).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):

@@ -19,12 +19,12 @@ public final class ActivityAPI: BaseAPI {
      - parameter next: (query) Slug of the first activity event in the response (optional)
      - parameter limit: (query) Max number of elements per page (default: 50) (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0ActivityEventListResponseModel, Error>
+     - returns: AnyPublisher<V0ActivityEventListResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func activityList(next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ActivityEventListResponseModel, Error> {
-        return Future<V0ActivityEventListResponseModel, Error> { [weak self] promise in
+    public func activityList(next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ActivityEventListResponseModel, ErrorResponse> {
+        return Future<V0ActivityEventListResponseModel, ErrorResponse> { [weak self] promise in
             self?.activityListWithRequestBuilder(next: next, limit: limit).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):

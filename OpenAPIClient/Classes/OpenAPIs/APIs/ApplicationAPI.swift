@@ -18,12 +18,12 @@ public final class ApplicationAPI: BaseAPI {
      
      - parameter appSlug: (path) App slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<String, Error>
+     - returns: AnyPublisher<String, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func appConfigDatastoreShow(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<String, Error> {
-        return Future<String, Error> { [weak self] promise in
+    public func appConfigDatastoreShow(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<String, ErrorResponse> {
+        return Future<String, ErrorResponse> { [weak self] promise in
             self?.appConfigDatastoreShowWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -83,12 +83,12 @@ public final class ApplicationAPI: BaseAPI {
      - parameter next: (query) Slug of the first app in the response (optional)
      - parameter limit: (query) Max number of elements per page (default: 50) (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0AppListResponseModel, Error>
+     - returns: AnyPublisher<V0AppListResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func appList(sortBy: SortBy_appList? = nil, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppListResponseModel, Error> {
-        return Future<V0AppListResponseModel, Error> { [weak self] promise in
+    public func appList(sortBy: SortBy_appList? = nil, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppListResponseModel, ErrorResponse> {
+        return Future<V0AppListResponseModel, ErrorResponse> { [weak self] promise in
             self?.appListWithRequestBuilder(sortBy: sortBy, next: next, limit: limit).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -150,12 +150,12 @@ public final class ApplicationAPI: BaseAPI {
      - parameter next: (query) Slug of the first app in the response (optional)
      - parameter limit: (query) Max number of elements per page (default: 50) (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0AppListResponseModel, Error>
+     - returns: AnyPublisher<V0AppListResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func appListByOrganization(orgSlug: String, sortBy: SortBy_appListByOrganization? = nil, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppListResponseModel, Error> {
-        return Future<V0AppListResponseModel, Error> { [weak self] promise in
+    public func appListByOrganization(orgSlug: String, sortBy: SortBy_appListByOrganization? = nil, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppListResponseModel, ErrorResponse> {
+        return Future<V0AppListResponseModel, ErrorResponse> { [weak self] promise in
             self?.appListByOrganizationWithRequestBuilder(orgSlug: orgSlug, sortBy: sortBy, next: next, limit: limit).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -221,12 +221,12 @@ public final class ApplicationAPI: BaseAPI {
      - parameter next: (query) Slug of the first app in the response (optional)
      - parameter limit: (query) Max number of elements per page (default: 50) (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0AppListResponseModel, Error>
+     - returns: AnyPublisher<V0AppListResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func appListByUser(userSlug: String, sortBy: SortBy_appListByUser? = nil, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppListResponseModel, Error> {
-        return Future<V0AppListResponseModel, Error> { [weak self] promise in
+    public func appListByUser(userSlug: String, sortBy: SortBy_appListByUser? = nil, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppListResponseModel, ErrorResponse> {
+        return Future<V0AppListResponseModel, ErrorResponse> { [weak self] promise in
             self?.appListByUserWithRequestBuilder(userSlug: userSlug, sortBy: sortBy, next: next, limit: limit).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -281,12 +281,12 @@ public final class ApplicationAPI: BaseAPI {
      
      - parameter appSlug: (path) App slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0AppShowResponseModel, Error>
+     - returns: AnyPublisher<V0AppShowResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func appShow(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppShowResponseModel, Error> {
-        return Future<V0AppShowResponseModel, Error> { [weak self] promise in
+    public func appShow(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppShowResponseModel, ErrorResponse> {
+        return Future<V0AppShowResponseModel, ErrorResponse> { [weak self] promise in
             self?.appShowWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -336,12 +336,12 @@ public final class ApplicationAPI: BaseAPI {
      
      - parameter appSlug: (path) App slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0BranchListResponseModel, Error>
+     - returns: AnyPublisher<V0BranchListResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func branchList(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BranchListResponseModel, Error> {
-        return Future<V0BranchListResponseModel, Error> { [weak self] promise in
+    public func branchList(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BranchListResponseModel, ErrorResponse> {
+        return Future<V0BranchListResponseModel, ErrorResponse> { [weak self] promise in
             self?.branchListWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):

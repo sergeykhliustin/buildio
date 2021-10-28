@@ -19,12 +19,12 @@ public final class OutgoingWebhookAPI: BaseAPI {
      - parameter appSlug: (path) App slug 
      - parameter appWebhookCreateParams: (body) App webhook creation params 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0AppWebhookCreatedResponseModel, Error>
+     - returns: AnyPublisher<V0AppWebhookCreatedResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func outgoingWebhookCreate(appSlug: String, appWebhookCreateParams: V0AppWebhookCreateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppWebhookCreatedResponseModel, Error> {
-        return Future<V0AppWebhookCreatedResponseModel, Error> { [weak self] promise in
+    public func outgoingWebhookCreate(appSlug: String, appWebhookCreateParams: V0AppWebhookCreateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppWebhookCreatedResponseModel, ErrorResponse> {
+        return Future<V0AppWebhookCreatedResponseModel, ErrorResponse> { [weak self] promise in
             self?.outgoingWebhookCreateWithRequestBuilder(appSlug: appSlug, appWebhookCreateParams: appWebhookCreateParams).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -76,12 +76,12 @@ public final class OutgoingWebhookAPI: BaseAPI {
      - parameter appSlug: (path) App slug 
      - parameter appWebhookSlug: (path) App webhook slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0AppWebhookDeletedResponseModel, Error>
+     - returns: AnyPublisher<V0AppWebhookDeletedResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func outgoingWebhookDelete(appSlug: String, appWebhookSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppWebhookDeletedResponseModel, Error> {
-        return Future<V0AppWebhookDeletedResponseModel, Error> { [weak self] promise in
+    public func outgoingWebhookDelete(appSlug: String, appWebhookSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppWebhookDeletedResponseModel, ErrorResponse> {
+        return Future<V0AppWebhookDeletedResponseModel, ErrorResponse> { [weak self] promise in
             self?.outgoingWebhookDeleteWithRequestBuilder(appSlug: appSlug, appWebhookSlug: appWebhookSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -134,12 +134,12 @@ public final class OutgoingWebhookAPI: BaseAPI {
      - parameter next: (query) Slug of the first webhook in the response (optional)
      - parameter limit: (query) Max number of elements per page (default: 50) (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0AppWebhookListResponseModel, Error>
+     - returns: AnyPublisher<V0AppWebhookListResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func outgoingWebhookList(appSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppWebhookListResponseModel, Error> {
-        return Future<V0AppWebhookListResponseModel, Error> { [weak self] promise in
+    public func outgoingWebhookList(appSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppWebhookListResponseModel, ErrorResponse> {
+        return Future<V0AppWebhookListResponseModel, ErrorResponse> { [weak self] promise in
             self?.outgoingWebhookListWithRequestBuilder(appSlug: appSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -197,12 +197,12 @@ public final class OutgoingWebhookAPI: BaseAPI {
      - parameter appWebhookSlug: (path) App webhook slug 
      - parameter appWebhookUpdateParams: (body) App webhook update params 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0AppWebhookResponseModel, Error>
+     - returns: AnyPublisher<V0AppWebhookResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func outgoingWebhookUpdate(appSlug: String, appWebhookSlug: String, appWebhookUpdateParams: V0AppWebhookUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppWebhookResponseModel, Error> {
-        return Future<V0AppWebhookResponseModel, Error> { [weak self] promise in
+    public func outgoingWebhookUpdate(appSlug: String, appWebhookSlug: String, appWebhookUpdateParams: V0AppWebhookUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppWebhookResponseModel, ErrorResponse> {
+        return Future<V0AppWebhookResponseModel, ErrorResponse> { [weak self] promise in
             self?.outgoingWebhookUpdateWithRequestBuilder(appSlug: appSlug, appWebhookSlug: appWebhookSlug, appWebhookUpdateParams: appWebhookUpdateParams).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):

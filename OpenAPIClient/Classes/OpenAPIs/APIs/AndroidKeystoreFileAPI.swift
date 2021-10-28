@@ -19,12 +19,12 @@ public final class AndroidKeystoreFileAPI: BaseAPI {
      - parameter appSlug: (path) App slug 
      - parameter androidKeystoreFile: (body) Android keystore file parameters 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0ProjectFileStorageResponseModel, Error>
+     - returns: AnyPublisher<V0ProjectFileStorageResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func androidKeystoreFileCreate(appSlug: String, androidKeystoreFile: V0AndroidKeystoreFileUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageResponseModel, Error> {
-        return Future<V0ProjectFileStorageResponseModel, Error> { [weak self] promise in
+    public func androidKeystoreFileCreate(appSlug: String, androidKeystoreFile: V0AndroidKeystoreFileUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageResponseModel, ErrorResponse> {
+        return Future<V0ProjectFileStorageResponseModel, ErrorResponse> { [weak self] promise in
             self?.androidKeystoreFileCreateWithRequestBuilder(appSlug: appSlug, androidKeystoreFile: androidKeystoreFile).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -74,12 +74,12 @@ public final class AndroidKeystoreFileAPI: BaseAPI {
      - parameter next: (query) Slug of the first android keystore file in the response (optional)
      - parameter limit: (query) Max number of build certificates per page is 50. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0ProjectFileStorageListResponseModel, Error>
+     - returns: AnyPublisher<V0ProjectFileStorageListResponseModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func androidKeystoreFileList(appSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageListResponseModel, Error> {
-        return Future<V0ProjectFileStorageListResponseModel, Error> { [weak self] promise in
+    public func androidKeystoreFileList(appSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageListResponseModel, ErrorResponse> {
+        return Future<V0ProjectFileStorageListResponseModel, ErrorResponse> { [weak self] promise in
             self?.androidKeystoreFileListWithRequestBuilder(appSlug: appSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):

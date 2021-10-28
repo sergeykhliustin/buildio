@@ -10,7 +10,7 @@ import Combine
 
 enum PagingState {
     case loading(AnyCancellable)
-    case error(Error)
+    case error(ErrorResponse)
     case last
     case idle
     
@@ -28,7 +28,7 @@ enum PagingState {
 protocol PagingViewModel: BaseViewModel {
     var pagingState: PagingState { get set }
     func merge(value: VALUE?, newValue: VALUE) -> (VALUE, Bool)
-    func fetchNextPage() -> AnyPublisher<VALUE, Error>
+    func fetchNextPage() -> AnyPublisher<VALUE, ErrorResponse>
 }
 
 extension PagingViewModel {

@@ -17,12 +17,12 @@ public final class OrganizationsAPI: BaseAPI {
      List the organizations that the user is part of
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0OrganizationListRespModel, Error>
+     - returns: AnyPublisher<V0OrganizationListRespModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func orgList(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0OrganizationListRespModel, Error> {
-        return Future<V0OrganizationListRespModel, Error> { [weak self] promise in
+    public func orgList(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0OrganizationListRespModel, ErrorResponse> {
+        return Future<V0OrganizationListRespModel, ErrorResponse> { [weak self] promise in
             self?.orgListWithRequestBuilder().execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -65,12 +65,12 @@ public final class OrganizationsAPI: BaseAPI {
      
      - parameter orgSlug: (path) The organization slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0OrganizationRespModel, Error>
+     - returns: AnyPublisher<V0OrganizationRespModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func orgShow(orgSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0OrganizationRespModel, Error> {
-        return Future<V0OrganizationRespModel, Error> { [weak self] promise in
+    public func orgShow(orgSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0OrganizationRespModel, ErrorResponse> {
+        return Future<V0OrganizationRespModel, ErrorResponse> { [weak self] promise in
             self?.orgShowWithRequestBuilder(orgSlug: orgSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):

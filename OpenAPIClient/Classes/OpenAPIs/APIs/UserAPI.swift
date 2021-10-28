@@ -17,12 +17,12 @@ public final class UserAPI: BaseAPI {
      The active addon tokens of the user
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[String], Error>
+     - returns: AnyPublisher<[String], ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func userAddonTokens(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<[String], Error> {
-        return Future<[String], Error> { [weak self] promise in
+    public func userAddonTokens(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<[String], ErrorResponse> {
+        return Future<[String], ErrorResponse> { [weak self] promise in
             self?.userAddonTokensWithRequestBuilder().execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -64,12 +64,12 @@ public final class UserAPI: BaseAPI {
      Removes an active addon token of the user
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, Error>
+     - returns: AnyPublisher<Void, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func userAddonTokensDelete(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error> { [weak self] promise in
+    public func userAddonTokensDelete(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<Void, ErrorResponse> {
+        return Future<Void, ErrorResponse> { [weak self] promise in
             self?.userAddonTokensDeleteWithRequestBuilder().execute(apiResponseQueue) { result in
                 switch result {
                 case .success:
@@ -111,12 +111,12 @@ public final class UserAPI: BaseAPI {
      The subscription plan of the user
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0UserPlanRespModel, Error>
+     - returns: AnyPublisher<V0UserPlanRespModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func userPlan(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0UserPlanRespModel, Error> {
-        return Future<V0UserPlanRespModel, Error> { [weak self] promise in
+    public func userPlan(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0UserPlanRespModel, ErrorResponse> {
+        return Future<V0UserPlanRespModel, ErrorResponse> { [weak self] promise in
             self?.userPlanWithRequestBuilder().execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -158,12 +158,12 @@ public final class UserAPI: BaseAPI {
      Get your profile data
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0UserProfileRespModel, Error>
+     - returns: AnyPublisher<V0UserProfileRespModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func userProfile(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0UserProfileRespModel, Error> {
-        return Future<V0UserProfileRespModel, Error> { [weak self] promise in
+    public func userProfile(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0UserProfileRespModel, ErrorResponse> {
+        return Future<V0UserProfileRespModel, ErrorResponse> { [weak self] promise in
             self?.userProfileWithRequestBuilder().execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
@@ -206,12 +206,12 @@ public final class UserAPI: BaseAPI {
      
      - parameter userSlug: (path) User slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0UserProfileRespModel, Error>
+     - returns: AnyPublisher<V0UserProfileRespModel, ErrorResponse>
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func userShow(userSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0UserProfileRespModel, Error> {
-        return Future<V0UserProfileRespModel, Error> { [weak self] promise in
+    public func userShow(userSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0UserProfileRespModel, ErrorResponse> {
+        return Future<V0UserProfileRespModel, ErrorResponse> { [weak self] promise in
             self?.userShowWithRequestBuilder(userSlug: userSlug).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):

@@ -12,7 +12,7 @@ enum BaseViewModelState<T> {
     case idle
     case loading(AnyCancellable)
     case value(T)
-    case error(Error?)
+    case error(ErrorResponse)
 }
 
 protocol BaseViewModel: ObservableObject {
@@ -21,7 +21,7 @@ protocol BaseViewModel: ObservableObject {
     var state: BaseViewModelState<VALUE> { get set }
     var tokenRefresher: AnyCancellable? { get set }
     
-    func fetch() -> AnyPublisher<VALUE, Error>
+    func fetch() -> AnyPublisher<VALUE, ErrorResponse>
     
     func refresh()
     
