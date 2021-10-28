@@ -50,10 +50,10 @@ struct BuildsScreenView: View, BaseView {
                                 }
                             }
                             .padding(8)
-//                            .onTapGesture {
-//                                logger.debug(item.slug)
-//                                selected = item
-//                            }
+                            //                            .onTapGesture {
+                            //                                logger.debug(item.slug)
+                            //                                selected = item
+                            //                            }
                         }
                         .isDetailLink(true)
                         .buttonStylePlain()
@@ -63,6 +63,14 @@ struct BuildsScreenView: View, BaseView {
                     ProgressView()
                 }
             }
+        }
+        .toolbar {
+            Button {
+                model.refresh()
+            } label: {
+                Image(systemName: "arrow.counterclockwise")
+            }
+            .frame(width: 44, height: 44, alignment: .center)
         }
     }
 }

@@ -24,18 +24,6 @@ struct TabsScreenView: View {
                 NavigationView {
                     BuildsScreenView()
                         .navigationTitle("Builds")
-                        
-                        .toolbar {
-                            Button {
-                                withAnimation {
-                                    showSideMenu = true
-                                }
-                            } label: {
-                                Image(systemName: "line.horizontal.3")
-                                    .imageScale(.large)
-                            }
-                            .frame(width: 44, height: 44, alignment: .center)
-                        }
                 }
                 .onTapGesture {
                     selectedTab = 0
