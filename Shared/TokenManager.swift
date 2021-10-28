@@ -90,8 +90,14 @@ class TokenManager: ObservableObject {
     }
     
     private func saveTokens() {
-        var keychain = TokenManager.keychain
+        let keychain = TokenManager.keychain
+        do {
+            try keychain.removeAll()
+        } catch {
+            logger.error(error)
+        }
         tokens.forEach { token in
+            var keychain = keychain
             if token.current {
                 keychain = keychain.label("current")
             }
