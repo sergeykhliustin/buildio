@@ -6,6 +6,9 @@
 //
 
 import Foundation
+#if canImport(Combine)
+import Combine
+#endif
 import Models
 
 open class TestDevicesAPI {
@@ -15,18 +18,23 @@ open class TestDevicesAPI {
      
      - parameter appSlug: (path) App slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0TestDeviceListResponseModel, Error>
      */
-    open class func testDeviceList(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0TestDeviceListResponseModel?, _ error: Error?) -> Void)) {
-        testDeviceListWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func testDeviceList(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0TestDeviceListResponseModel, Error> {
+        return Future<V0TestDeviceListResponseModel, Error> { promise in
+            testDeviceListWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      List the test devices for an app

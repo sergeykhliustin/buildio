@@ -10,10 +10,10 @@ import Foundation
 
 public struct V0BuildListAllResponseModel: Codable, Hashable {
 
-    public var data: [V0BuildListAllResponseItemModel]?
+    public var data: [V0BuildListAllResponseItemModel]
     public var paging: V0PagingResponseModel?
 
-    public init(data: [V0BuildListAllResponseItemModel]? = nil, paging: V0PagingResponseModel? = nil) {
+    public init(data: [V0BuildListAllResponseItemModel] = [], paging: V0PagingResponseModel? = nil) {
         self.data = data
         self.paging = paging
     }

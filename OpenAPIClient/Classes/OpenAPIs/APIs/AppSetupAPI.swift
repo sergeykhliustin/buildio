@@ -6,6 +6,9 @@
 //
 
 import Foundation
+#if canImport(Combine)
+import Combine
+#endif
 import Models
 
 open class AppSetupAPI {
@@ -16,18 +19,23 @@ open class AppSetupAPI {
      - parameter appSlug: (path) App slug 
      - parameter appConfig: (body) App config parameters 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<[String: String], Error>
      */
-    open class func appConfigCreate(appSlug: String, appConfig: V0AppConfigRequestParam, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: [String: String]?, _ error: Error?) -> Void)) {
-        appConfigCreateWithRequestBuilder(appSlug: appSlug, appConfig: appConfig).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func appConfigCreate(appSlug: String, appConfig: V0AppConfigRequestParam, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<[String: String], Error> {
+        return Future<[String: String], Error> { promise in
+            appConfigCreateWithRequestBuilder(appSlug: appSlug, appConfig: appConfig).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Upload a new bitrise.yml for your application.
@@ -66,18 +74,23 @@ open class AppSetupAPI {
      
      - parameter app: (body) App parameters 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0AppRespModel, Error>
      */
-    open class func appCreate(app: V0AppUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0AppRespModel?, _ error: Error?) -> Void)) {
-        appCreateWithRequestBuilder(app: app).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func appCreate(app: V0AppUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppRespModel, Error> {
+        return Future<V0AppRespModel, Error> { promise in
+            appCreateWithRequestBuilder(app: app).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Add a new app
@@ -113,18 +126,23 @@ open class AppSetupAPI {
      - parameter appSlug: (path) App slug 
      - parameter app: (body) App finish parameters 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0AppFinishRespModel, Error>
      */
-    open class func appFinish(appSlug: String, app: V0AppFinishParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0AppFinishRespModel?, _ error: Error?) -> Void)) {
-        appFinishWithRequestBuilder(appSlug: appSlug, app: app).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func appFinish(appSlug: String, app: V0AppFinishParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppFinishRespModel, Error> {
+        return Future<V0AppFinishRespModel, Error> { promise in
+            appFinishWithRequestBuilder(appSlug: appSlug, app: app).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Save the application at the end of the app registration process
@@ -163,18 +181,23 @@ open class AppSetupAPI {
      
      - parameter appSlug: (path) App slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0WebhookRespModel, Error>
      */
-    open class func appWebhookCreate(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0WebhookRespModel?, _ error: Error?) -> Void)) {
-        appWebhookCreateWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func appWebhookCreate(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0WebhookRespModel, Error> {
+        return Future<V0WebhookRespModel, Error> { promise in
+            appWebhookCreateWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Register an incoming webhook for a specific application
@@ -213,18 +236,23 @@ open class AppSetupAPI {
      - parameter appSlug: (path) App slug 
      - parameter sshKey: (body) SSH key parameters 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0SSHKeyRespModel, Error>
      */
-    open class func sshKeyCreate(appSlug: String, sshKey: V0SSHKeyUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0SSHKeyRespModel?, _ error: Error?) -> Void)) {
-        sshKeyCreateWithRequestBuilder(appSlug: appSlug, sshKey: sshKey).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func sshKeyCreate(appSlug: String, sshKey: V0SSHKeyUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0SSHKeyRespModel, Error> {
+        return Future<V0SSHKeyRespModel, Error> { promise in
+            sshKeyCreateWithRequestBuilder(appSlug: appSlug, sshKey: sshKey).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Add an SSH-key to a specific app

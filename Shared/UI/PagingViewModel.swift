@@ -6,31 +6,66 @@
 //
 
 import Foundation
+import Combine
+
+enum PagingState {
+    case loading(AnyCancellable)
+    case error(Error)
+    case last
+    case idle
+    
+    fileprivate var canLoadNext: Bool {
+        if case .loading(_) = self {
+            return false
+        } else if case .last = self {
+            return false
+        } else {
+             return true
+        }
+    }
+}
 
 protocol PagingViewModel: BaseViewModel {
-    var isLoadingPage: Bool { get set }
-    var errorLoadingPage: Error? { get set }
-    var lastPage: Bool { get set }
-    
-    func merge(value: VALUE?, newValue: VALUE?) -> VALUE?
-    
-    func fetchNext(_ completion: @escaping ((VALUE?, Error?) -> Void))
+    var pagingState: PagingState { get set }
+    func merge(value: VALUE?, newValue: VALUE) -> (VALUE, Bool)
+    func fetchNextPage() -> AnyPublisher<VALUE, Error>
 }
 
 extension PagingViewModel {
-    func loadNextPage() {
-        guard !isLoadingPage && !lastPage else { return }
-        isLoadingPage = true
-        errorLoadingPage = nil
-        fetchNext { [weak self] newValue, error in
-            guard let self = self else { return }
-            
-            if let value = self.merge(value: self.value, newValue: newValue) {
-                self.state = .value(value)
-            }
-            
-            self.errorLoadingPage = error
-            self.isLoadingPage = false
+    var isLoadingPage: Bool {
+        if case .loading(_) = pagingState {
+            return true
         }
+        return false
+    }
+    
+    func beforeRefresh() {
+        pagingState = .idle
+    }
+    
+    func nextPage() {
+        guard case .value(_) = state else { return }
+        guard pagingState.canLoadNext else { return }
+        
+        let fetcher = fetchNextPage()
+            .sink { [weak self] subscribersCompletion in
+                guard let self = self else { return }
+                if case .failure(let error) = subscribersCompletion {
+                    self.pagingState = .error(error)
+                } else if case .last = self.pagingState {
+                    
+                } else {
+                    self.pagingState = .idle
+                }
+            } receiveValue: { [weak self] value in
+                guard let self = self else { return }
+                let (value, hasChanges) = self.merge(value: self.value, newValue: value)
+                self.state = .value(value)
+                if !hasChanges {
+                    self.pagingState = .last
+                }
+            }
+        pagingState = .loading(fetcher)
+        
     }
 }

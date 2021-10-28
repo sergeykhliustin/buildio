@@ -6,6 +6,9 @@
 //
 
 import Foundation
+#if canImport(Combine)
+import Combine
+#endif
 import Models
 
 open class GenericProjectFileAPI {
@@ -16,18 +19,23 @@ open class GenericProjectFileAPI {
      - parameter appSlug: (path) App slug 
      - parameter genericProjectFileSlug: (path) Generic project file slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0ProjectFileStorageResponseModel, Error>
      */
-    open class func genericProjectFileConfirm(appSlug: String, genericProjectFileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0ProjectFileStorageResponseModel?, _ error: Error?) -> Void)) {
-        genericProjectFileConfirmWithRequestBuilder(appSlug: appSlug, genericProjectFileSlug: genericProjectFileSlug).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func genericProjectFileConfirm(appSlug: String, genericProjectFileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageResponseModel, Error> {
+        return Future<V0ProjectFileStorageResponseModel, Error> { promise in
+            genericProjectFileConfirmWithRequestBuilder(appSlug: appSlug, genericProjectFileSlug: genericProjectFileSlug).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Confirm a generic project file upload
@@ -70,18 +78,23 @@ open class GenericProjectFileAPI {
      - parameter appSlug: (path) App slug 
      - parameter genericProjectFileSlug: (path) Generic project file slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0ProjectFileStorageResponseModel, Error>
      */
-    open class func genericProjectFileDelete(appSlug: String, genericProjectFileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0ProjectFileStorageResponseModel?, _ error: Error?) -> Void)) {
-        genericProjectFileDeleteWithRequestBuilder(appSlug: appSlug, genericProjectFileSlug: genericProjectFileSlug).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func genericProjectFileDelete(appSlug: String, genericProjectFileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageResponseModel, Error> {
+        return Future<V0ProjectFileStorageResponseModel, Error> { promise in
+            genericProjectFileDeleteWithRequestBuilder(appSlug: appSlug, genericProjectFileSlug: genericProjectFileSlug).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Delete a generic project file
@@ -125,18 +138,23 @@ open class GenericProjectFileAPI {
      - parameter next: (query) Slug of the first generic project file in the response (optional)
      - parameter limit: (query) Max number of build certificates per page is 50. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0ProjectFileStorageListResponseModel, Error>
      */
-    open class func genericProjectFileList(appSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0ProjectFileStorageListResponseModel?, _ error: Error?) -> Void)) {
-        genericProjectFileListWithRequestBuilder(appSlug: appSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func genericProjectFileList(appSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageListResponseModel, Error> {
+        return Future<V0ProjectFileStorageListResponseModel, Error> { promise in
+            genericProjectFileListWithRequestBuilder(appSlug: appSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Get a list of the generic project files
@@ -184,18 +202,23 @@ open class GenericProjectFileAPI {
      - parameter appSlug: (path) App slug 
      - parameter genericProjectFileSlug: (path) Generic project file slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0ProjectFileStorageResponseModel, Error>
      */
-    open class func genericProjectFileShow(appSlug: String, genericProjectFileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0ProjectFileStorageResponseModel?, _ error: Error?) -> Void)) {
-        genericProjectFileShowWithRequestBuilder(appSlug: appSlug, genericProjectFileSlug: genericProjectFileSlug).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func genericProjectFileShow(appSlug: String, genericProjectFileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageResponseModel, Error> {
+        return Future<V0ProjectFileStorageResponseModel, Error> { promise in
+            genericProjectFileShowWithRequestBuilder(appSlug: appSlug, genericProjectFileSlug: genericProjectFileSlug).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Get a specific generic project file
@@ -239,18 +262,23 @@ open class GenericProjectFileAPI {
      - parameter genericProjectFileSlug: (path) Generic project file slug 
      - parameter genericProjectFile: (body) Generic project file parameters 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0ProjectFileStorageResponseModel, Error>
      */
-    open class func genericProjectFileUpdate(appSlug: String, genericProjectFileSlug: String, genericProjectFile: V0ProjectFileStorageDocumentUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0ProjectFileStorageResponseModel?, _ error: Error?) -> Void)) {
-        genericProjectFileUpdateWithRequestBuilder(appSlug: appSlug, genericProjectFileSlug: genericProjectFileSlug, genericProjectFile: genericProjectFile).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func genericProjectFileUpdate(appSlug: String, genericProjectFileSlug: String, genericProjectFile: V0ProjectFileStorageDocumentUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageResponseModel, Error> {
+        return Future<V0ProjectFileStorageResponseModel, Error> { promise in
+            genericProjectFileUpdateWithRequestBuilder(appSlug: appSlug, genericProjectFileSlug: genericProjectFileSlug, genericProjectFile: genericProjectFile).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Update a generic project file
@@ -294,18 +322,23 @@ open class GenericProjectFileAPI {
      - parameter appSlug: (path) App slug 
      - parameter genericProjectFile: (body) Generic project file parameters 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0ProjectFileStorageResponseModel, Error>
      */
-    open class func genericProjectFilesCreate(appSlug: String, genericProjectFile: V0ProjectFileStorageUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0ProjectFileStorageResponseModel?, _ error: Error?) -> Void)) {
-        genericProjectFilesCreateWithRequestBuilder(appSlug: appSlug, genericProjectFile: genericProjectFile).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func genericProjectFilesCreate(appSlug: String, genericProjectFile: V0ProjectFileStorageUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageResponseModel, Error> {
+        return Future<V0ProjectFileStorageResponseModel, Error> { promise in
+            genericProjectFilesCreateWithRequestBuilder(appSlug: appSlug, genericProjectFile: genericProjectFile).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Create a generic project file

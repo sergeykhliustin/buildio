@@ -6,6 +6,9 @@
 //
 
 import Foundation
+#if canImport(Combine)
+import Combine
+#endif
 import Models
 
 open class BuildCertificateAPI {
@@ -16,18 +19,23 @@ open class BuildCertificateAPI {
      - parameter appSlug: (path) App slug 
      - parameter buildCertificateSlug: (path) Build certificate slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0BuildCertificateResponseModel, Error>
      */
-    open class func buildCertificateConfirm(appSlug: String, buildCertificateSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0BuildCertificateResponseModel?, _ error: Error?) -> Void)) {
-        buildCertificateConfirmWithRequestBuilder(appSlug: appSlug, buildCertificateSlug: buildCertificateSlug).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func buildCertificateConfirm(appSlug: String, buildCertificateSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildCertificateResponseModel, Error> {
+        return Future<V0BuildCertificateResponseModel, Error> { promise in
+            buildCertificateConfirmWithRequestBuilder(appSlug: appSlug, buildCertificateSlug: buildCertificateSlug).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Confirm a build certificate upload
@@ -70,18 +78,23 @@ open class BuildCertificateAPI {
      - parameter appSlug: (path) App slug 
      - parameter buildCertificate: (body) Build certificate parameters such as file name and its file size 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0BuildCertificateResponseModel, Error>
      */
-    open class func buildCertificateCreate(appSlug: String, buildCertificate: V0BuildCertificateUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0BuildCertificateResponseModel?, _ error: Error?) -> Void)) {
-        buildCertificateCreateWithRequestBuilder(appSlug: appSlug, buildCertificate: buildCertificate).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func buildCertificateCreate(appSlug: String, buildCertificate: V0BuildCertificateUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildCertificateResponseModel, Error> {
+        return Future<V0BuildCertificateResponseModel, Error> { promise in
+            buildCertificateCreateWithRequestBuilder(appSlug: appSlug, buildCertificate: buildCertificate).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Create a build certificate
@@ -121,18 +134,23 @@ open class BuildCertificateAPI {
      - parameter appSlug: (path) App slug 
      - parameter buildCertificateSlug: (path) Build certificate slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0BuildCertificateResponseModel, Error>
      */
-    open class func buildCertificateDelete(appSlug: String, buildCertificateSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0BuildCertificateResponseModel?, _ error: Error?) -> Void)) {
-        buildCertificateDeleteWithRequestBuilder(appSlug: appSlug, buildCertificateSlug: buildCertificateSlug).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func buildCertificateDelete(appSlug: String, buildCertificateSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildCertificateResponseModel, Error> {
+        return Future<V0BuildCertificateResponseModel, Error> { promise in
+            buildCertificateDeleteWithRequestBuilder(appSlug: appSlug, buildCertificateSlug: buildCertificateSlug).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Delete a build certificate
@@ -176,18 +194,23 @@ open class BuildCertificateAPI {
      - parameter next: (query) Slug of the first build certificate in the response (optional)
      - parameter limit: (query) Max number of build certificates per page is 50. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0BuildCertificateListResponseModel, Error>
      */
-    open class func buildCertificateList(appSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0BuildCertificateListResponseModel?, _ error: Error?) -> Void)) {
-        buildCertificateListWithRequestBuilder(appSlug: appSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func buildCertificateList(appSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildCertificateListResponseModel, Error> {
+        return Future<V0BuildCertificateListResponseModel, Error> { promise in
+            buildCertificateListWithRequestBuilder(appSlug: appSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Get a list of the build certificates
@@ -235,18 +258,23 @@ open class BuildCertificateAPI {
      - parameter appSlug: (path) App slug 
      - parameter buildCertificateSlug: (path) Build certificate slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0BuildCertificateResponseModel, Error>
      */
-    open class func buildCertificateShow(appSlug: String, buildCertificateSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0BuildCertificateResponseModel?, _ error: Error?) -> Void)) {
-        buildCertificateShowWithRequestBuilder(appSlug: appSlug, buildCertificateSlug: buildCertificateSlug).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func buildCertificateShow(appSlug: String, buildCertificateSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildCertificateResponseModel, Error> {
+        return Future<V0BuildCertificateResponseModel, Error> { promise in
+            buildCertificateShowWithRequestBuilder(appSlug: appSlug, buildCertificateSlug: buildCertificateSlug).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Get a specific build certificate
@@ -290,18 +318,23 @@ open class BuildCertificateAPI {
      - parameter buildCertificateSlug: (path) Build certificate slug 
      - parameter buildCertificate: (body) Build certificate parameters 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0BuildCertificateResponseModel, Error>
      */
-    open class func buildCertificateUpdate(appSlug: String, buildCertificateSlug: String, buildCertificate: V0BuildCertificateUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0BuildCertificateResponseModel?, _ error: Error?) -> Void)) {
-        buildCertificateUpdateWithRequestBuilder(appSlug: appSlug, buildCertificateSlug: buildCertificateSlug, buildCertificate: buildCertificate).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func buildCertificateUpdate(appSlug: String, buildCertificateSlug: String, buildCertificate: V0BuildCertificateUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildCertificateResponseModel, Error> {
+        return Future<V0BuildCertificateResponseModel, Error> { promise in
+            buildCertificateUpdateWithRequestBuilder(appSlug: appSlug, buildCertificateSlug: buildCertificateSlug, buildCertificate: buildCertificate).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Update a build certificate

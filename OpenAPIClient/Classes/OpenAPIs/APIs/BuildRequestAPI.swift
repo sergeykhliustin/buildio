@@ -6,6 +6,9 @@
 //
 
 import Foundation
+#if canImport(Combine)
+import Combine
+#endif
 import Models
 
 open class BuildRequestAPI {
@@ -15,18 +18,23 @@ open class BuildRequestAPI {
      
      - parameter appSlug: (path) App slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0BuildRequestListResponseModel, Error>
      */
-    open class func buildRequestList(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0BuildRequestListResponseModel?, _ error: Error?) -> Void)) {
-        buildRequestListWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func buildRequestList(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildRequestListResponseModel, Error> {
+        return Future<V0BuildRequestListResponseModel, Error> { promise in
+            buildRequestListWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      List the open build requests for an app
@@ -69,18 +77,23 @@ open class BuildRequestAPI {
      - parameter buildRequestSlug: (path) Build request slug 
      - parameter buildRequest: (body) Build request parameters 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0BuildRequestUpdateResponseModel, Error>
      */
-    open class func buildRequestUpdate(appSlug: String, buildRequestSlug: String, buildRequest: V0BuildRequestUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0BuildRequestUpdateResponseModel?, _ error: Error?) -> Void)) {
-        buildRequestUpdateWithRequestBuilder(appSlug: appSlug, buildRequestSlug: buildRequestSlug, buildRequest: buildRequest).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func buildRequestUpdate(appSlug: String, buildRequestSlug: String, buildRequest: V0BuildRequestUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildRequestUpdateResponseModel, Error> {
+        return Future<V0BuildRequestUpdateResponseModel, Error> { promise in
+            buildRequestUpdateWithRequestBuilder(appSlug: appSlug, buildRequestSlug: buildRequestSlug, buildRequest: buildRequest).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Update a build request

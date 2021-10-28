@@ -84,17 +84,20 @@ struct TokenFigmaScreenView: View {
     private func checkToken(_ token: String) {
         isLoading = true
         OpenAPIClientAPI.customHeaders["Authorization"] = token
-        UserAPI.userProfile { data, error in
-            isLoading = false
-            OpenAPIClientAPI.customHeaders["Authorization"] = token
-            if let email = data?.data?.email {
-                TokenManager.shared.token = Token(token: token, email: email)
-                onCompletion?()
-            } else {
-                self.error = error
-                self.isError = true
+        UserAPI.userProfile()
+            .sink { subscribersCompletion in
+                if case .failure(let error) = subscribersCompletion {
+                    self.error = error
+                    self.isError = true
+                }
+            } receiveValue: { model in
+                if let email = model.data.email {
+                    TokenManager.shared.token = Token(token: token, email: email)
+                    onCompletion?()
+                } else {
+                    self.isError = true
+                }
             }
-        }
     }
 }
 

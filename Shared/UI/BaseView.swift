@@ -32,7 +32,7 @@ extension BaseView {
     @ViewBuilder
     func buildBody() -> some View {
         switch model.state {
-        case .loading:
+        case .loading, .idle:
             buildLoadingView()
         case .value(let value):
             buildValueView(value)

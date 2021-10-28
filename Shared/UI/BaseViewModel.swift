@@ -9,7 +9,8 @@ import Foundation
 import Combine
 
 enum BaseViewModelState<T> {
-    case loading
+    case idle
+    case loading(AnyCancellable)
     case value(T)
     case error(Error?)
 }
@@ -20,7 +21,7 @@ protocol BaseViewModel: ObservableObject {
     var state: BaseViewModelState<VALUE> { get set }
     var tokenRefresher: AnyCancellable? { get set }
     
-    func fetch(_ completion: @escaping ((VALUE?, Error?) -> Void))
+    func fetch() -> AnyPublisher<VALUE, Error>
     
     func refresh()
     
@@ -28,6 +29,12 @@ protocol BaseViewModel: ObservableObject {
 }
 
 extension BaseViewModel {
+    var isLoading: Bool {
+        if case .loading(_) = state {
+            return true
+        }
+        return false
+    }
     var value: VALUE? {
         if case .value(let value) = state {
             return value
@@ -37,16 +44,21 @@ extension BaseViewModel {
     
     func refresh() {
         beforeRefresh()
-        state = .loading
-        
-        fetch { [weak self] value, error in
-            guard let self = self else { return }
-            if let value = value {
-                self.state = .value(value)
-            } else {
-                self.state = .error(error)
-            }
+        if case .loading(let fetcher) = state {
+            fetcher.cancel()
         }
+        
+        let fetcher = fetch()
+            .sink(receiveCompletion: { [weak self] subscriberCompletion in
+                guard let self = self else { return }
+                if case .failure(let error) = subscriberCompletion {
+                    self.state = .error(error)
+                }
+            }, receiveValue: { [weak self] value in
+                guard let self = self else { return }
+                self.state = .value(value)
+            })
+        state = .loading(fetcher)
         
         if tokenRefresher == nil {
             tokenRefresher = TokenManager.shared.$token

@@ -46,7 +46,7 @@ struct BuildsScreenView: View, BaseView {
                             BuildRowView(model: item).onAppear {
                                 if item == value.last {
                                     logger.warning("load more item")
-                                    model.loadNextPage()
+                                    model.nextPage()
                                 }
                             }
                             .padding(8)

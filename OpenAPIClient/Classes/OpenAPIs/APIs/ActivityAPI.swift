@@ -6,6 +6,9 @@
 //
 
 import Foundation
+#if canImport(Combine)
+import Combine
+#endif
 import Models
 
 open class ActivityAPI {
@@ -16,18 +19,23 @@ open class ActivityAPI {
      - parameter next: (query) Slug of the first activity event in the response (optional)
      - parameter limit: (query) Max number of elements per page (default: 50) (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0ActivityEventListResponseModel, Error>
      */
-    open class func activityList(next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0ActivityEventListResponseModel?, _ error: Error?) -> Void)) {
-        activityListWithRequestBuilder(next: next, limit: limit).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func activityList(next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ActivityEventListResponseModel, Error> {
+        return Future<V0ActivityEventListResponseModel, Error> { promise in
+            activityListWithRequestBuilder(next: next, limit: limit).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Get list of Bitrise activity events

@@ -6,6 +6,9 @@
 //
 
 import Foundation
+#if canImport(Combine)
+import Combine
+#endif
 import Models
 
 open class WebhookDeliveryItemAPI {
@@ -18,18 +21,23 @@ open class WebhookDeliveryItemAPI {
      - parameter next: (query) Slug of the first delivery item in the response (optional)
      - parameter limit: (query) Max number of elements per page (default: 50) (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0WebhookDeliveryItemShowResponseModel, Error>
      */
-    open class func webhookDeliveryItemList(appSlug: String, appWebhookSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0WebhookDeliveryItemShowResponseModel?, _ error: Error?) -> Void)) {
-        webhookDeliveryItemListWithRequestBuilder(appSlug: appSlug, appWebhookSlug: appWebhookSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func webhookDeliveryItemList(appSlug: String, appWebhookSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0WebhookDeliveryItemShowResponseModel, Error> {
+        return Future<V0WebhookDeliveryItemShowResponseModel, Error> { promise in
+            webhookDeliveryItemListWithRequestBuilder(appSlug: appSlug, appWebhookSlug: appWebhookSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      List the webhook delivery items of an app
@@ -79,18 +87,23 @@ open class WebhookDeliveryItemAPI {
      - parameter appWebhookSlug: (path) App webhook slug 
      - parameter webhookDeliveryItemSlug: (path) Webhook delivery item slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<ServiceStandardErrorRespModel, Error>
      */
-    open class func webhookDeliveryItemRedeliver(appSlug: String, appWebhookSlug: String, webhookDeliveryItemSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: ServiceStandardErrorRespModel?, _ error: Error?) -> Void)) {
-        webhookDeliveryItemRedeliverWithRequestBuilder(appSlug: appSlug, appWebhookSlug: appWebhookSlug, webhookDeliveryItemSlug: webhookDeliveryItemSlug).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func webhookDeliveryItemRedeliver(appSlug: String, appWebhookSlug: String, webhookDeliveryItemSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<ServiceStandardErrorRespModel, Error> {
+        return Future<ServiceStandardErrorRespModel, Error> { promise in
+            webhookDeliveryItemRedeliverWithRequestBuilder(appSlug: appSlug, appWebhookSlug: appWebhookSlug, webhookDeliveryItemSlug: webhookDeliveryItemSlug).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Re-deliver the webhook delivery items of an app
@@ -138,18 +151,23 @@ open class WebhookDeliveryItemAPI {
      - parameter appWebhookSlug: (path) App webhook slug 
      - parameter webhookDeliveryItemSlug: (path) Webhook delivery item slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0WebhookDeliveryItemResponseModel, Error>
      */
-    open class func webhookDeliveryItemShow(appSlug: String, appWebhookSlug: String, webhookDeliveryItemSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0WebhookDeliveryItemResponseModel?, _ error: Error?) -> Void)) {
-        webhookDeliveryItemShowWithRequestBuilder(appSlug: appSlug, appWebhookSlug: appWebhookSlug, webhookDeliveryItemSlug: webhookDeliveryItemSlug).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func webhookDeliveryItemShow(appSlug: String, appWebhookSlug: String, webhookDeliveryItemSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0WebhookDeliveryItemResponseModel, Error> {
+        return Future<V0WebhookDeliveryItemResponseModel, Error> { promise in
+            webhookDeliveryItemShowWithRequestBuilder(appSlug: appSlug, appWebhookSlug: appWebhookSlug, webhookDeliveryItemSlug: webhookDeliveryItemSlug).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Get a specific delivery item of a webhook

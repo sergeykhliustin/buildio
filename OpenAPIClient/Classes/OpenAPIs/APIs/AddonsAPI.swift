@@ -6,6 +6,9 @@
 //
 
 import Foundation
+#if canImport(Combine)
+import Combine
+#endif
 import Models
 
 open class AddonsAPI {
@@ -15,18 +18,23 @@ open class AddonsAPI {
      
      - parameter appSlug: (path) App slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0AppAddOnsListResponseModel, Error>
      */
-    open class func addonListByApp(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0AppAddOnsListResponseModel?, _ error: Error?) -> Void)) {
-        addonListByAppWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func addonListByApp(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppAddOnsListResponseModel, Error> {
+        return Future<V0AppAddOnsListResponseModel, Error> { promise in
+            addonListByAppWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Get list of the addons for apps
@@ -67,18 +75,23 @@ open class AddonsAPI {
      
      - parameter organizationSlug: (path) Organization slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0OwnerAddOnsListResponseModel, Error>
      */
-    open class func addonListByOrganization(organizationSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0OwnerAddOnsListResponseModel?, _ error: Error?) -> Void)) {
-        addonListByOrganizationWithRequestBuilder(organizationSlug: organizationSlug).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func addonListByOrganization(organizationSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0OwnerAddOnsListResponseModel, Error> {
+        return Future<V0OwnerAddOnsListResponseModel, Error> { promise in
+            addonListByOrganizationWithRequestBuilder(organizationSlug: organizationSlug).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Get list of the addons for organization
@@ -116,18 +129,23 @@ open class AddonsAPI {
      
      - parameter userSlug: (path) User slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0OwnerAddOnsListResponseModel, Error>
      */
-    open class func addonListByUser(userSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0OwnerAddOnsListResponseModel?, _ error: Error?) -> Void)) {
-        addonListByUserWithRequestBuilder(userSlug: userSlug).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func addonListByUser(userSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0OwnerAddOnsListResponseModel, Error> {
+        return Future<V0OwnerAddOnsListResponseModel, Error> { promise in
+            addonListByUserWithRequestBuilder(userSlug: userSlug).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Get list of the addons for user
@@ -164,18 +182,23 @@ open class AddonsAPI {
      Get list of available Bitrise addons
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0AddonsListResponseModel, Error>
      */
-    open class func addonsList(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0AddonsListResponseModel?, _ error: Error?) -> Void)) {
-        addonsListWithRequestBuilder().execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func addonsList(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AddonsListResponseModel, Error> {
+        return Future<V0AddonsListResponseModel, Error> { promise in
+            addonsListWithRequestBuilder().execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Get list of available Bitrise addons
@@ -209,18 +232,23 @@ open class AddonsAPI {
      
      - parameter addonId: (path) Addon ID 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0AddonsShowResponseModel, Error>
      */
-    open class func addonsShow(addonId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0AddonsShowResponseModel?, _ error: Error?) -> Void)) {
-        addonsShowWithRequestBuilder(addonId: addonId).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func addonsShow(addonId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AddonsShowResponseModel, Error> {
+        return Future<V0AddonsShowResponseModel, Error> { promise in
+            addonsShowWithRequestBuilder(addonId: addonId).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Get a specific Bitrise addon

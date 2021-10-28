@@ -6,6 +6,9 @@
 //
 
 import Foundation
+#if canImport(Combine)
+import Combine
+#endif
 import Models
 
 open class BuildArtifactAPI {
@@ -17,18 +20,23 @@ open class BuildArtifactAPI {
      - parameter buildSlug: (path) Build slug 
      - parameter artifactSlug: (path) Artifact slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0ArtifactDeleteResponseModel, Error>
      */
-    open class func artifactDelete(appSlug: String, buildSlug: String, artifactSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0ArtifactDeleteResponseModel?, _ error: Error?) -> Void)) {
-        artifactDeleteWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug, artifactSlug: artifactSlug).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func artifactDelete(appSlug: String, buildSlug: String, artifactSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ArtifactDeleteResponseModel, Error> {
+        return Future<V0ArtifactDeleteResponseModel, Error> { promise in
+            artifactDeleteWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug, artifactSlug: artifactSlug).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Delete a build artifact
@@ -77,18 +85,23 @@ open class BuildArtifactAPI {
      - parameter next: (query) Slug of the first build artifact in the response (optional)
      - parameter limit: (query) Max number of build artifacts per page is 50. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0ArtifactListResponseModel, Error>
      */
-    open class func artifactList(appSlug: String, buildSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0ArtifactListResponseModel?, _ error: Error?) -> Void)) {
-        artifactListWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func artifactList(appSlug: String, buildSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ArtifactListResponseModel, Error> {
+        return Future<V0ArtifactListResponseModel, Error> { promise in
+            artifactListWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Get a list of all build artifacts
@@ -142,18 +155,23 @@ open class BuildArtifactAPI {
      - parameter artifactSlug: (path) Artifact slug 
      - parameter download: (query) Setting this will result in a redirect to the artifact download location (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0ArtifactShowResponseModel, Error>
      */
-    open class func artifactShow(appSlug: String, buildSlug: String, artifactSlug: String, download: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0ArtifactShowResponseModel?, _ error: Error?) -> Void)) {
-        artifactShowWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug, artifactSlug: artifactSlug, download: download).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func artifactShow(appSlug: String, buildSlug: String, artifactSlug: String, download: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ArtifactShowResponseModel, Error> {
+        return Future<V0ArtifactShowResponseModel, Error> { promise in
+            artifactShowWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug, artifactSlug: artifactSlug, download: download).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Get a specific build artifact
@@ -209,18 +227,23 @@ open class BuildArtifactAPI {
      - parameter artifactSlug: (path) Artifact slug 
      - parameter artifactParams: (body) Artifact parameters 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0ArtifactShowResponseModel, Error>
      */
-    open class func artifactUpdate(appSlug: String, buildSlug: String, artifactSlug: String, artifactParams: V0ArtifactUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0ArtifactShowResponseModel?, _ error: Error?) -> Void)) {
-        artifactUpdateWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug, artifactSlug: artifactSlug, artifactParams: artifactParams).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func artifactUpdate(appSlug: String, buildSlug: String, artifactSlug: String, artifactParams: V0ArtifactUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ArtifactShowResponseModel, Error> {
+        return Future<V0ArtifactShowResponseModel, Error> { promise in
+            artifactUpdateWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug, artifactSlug: artifactSlug, artifactParams: artifactParams).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Update a build artifact

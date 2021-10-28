@@ -6,6 +6,9 @@
 //
 
 import Foundation
+#if canImport(Combine)
+import Combine
+#endif
 import Models
 
 open class ProvisioningProfileAPI {
@@ -16,18 +19,23 @@ open class ProvisioningProfileAPI {
      - parameter appSlug: (path) App slug 
      - parameter provisioningProfileSlug: (path) Provisioning profile slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0ProvisionProfileResponseModel, Error>
      */
-    open class func provisioningProfileConfirm(appSlug: String, provisioningProfileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0ProvisionProfileResponseModel?, _ error: Error?) -> Void)) {
-        provisioningProfileConfirmWithRequestBuilder(appSlug: appSlug, provisioningProfileSlug: provisioningProfileSlug).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func provisioningProfileConfirm(appSlug: String, provisioningProfileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileResponseModel, Error> {
+        return Future<V0ProvisionProfileResponseModel, Error> { promise in
+            provisioningProfileConfirmWithRequestBuilder(appSlug: appSlug, provisioningProfileSlug: provisioningProfileSlug).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Confirm a provisioning profile upload
@@ -70,18 +78,23 @@ open class ProvisioningProfileAPI {
      - parameter appSlug: (path) App slug 
      - parameter provisioningProfile: (body) Provisioning profile parameters such as file name and file size 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0ProvisionProfileResponseModel, Error>
      */
-    open class func provisioningProfileCreate(appSlug: String, provisioningProfile: V0ProvisionProfileUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0ProvisionProfileResponseModel?, _ error: Error?) -> Void)) {
-        provisioningProfileCreateWithRequestBuilder(appSlug: appSlug, provisioningProfile: provisioningProfile).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func provisioningProfileCreate(appSlug: String, provisioningProfile: V0ProvisionProfileUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileResponseModel, Error> {
+        return Future<V0ProvisionProfileResponseModel, Error> { promise in
+            provisioningProfileCreateWithRequestBuilder(appSlug: appSlug, provisioningProfile: provisioningProfile).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Create a provisioning profile
@@ -121,18 +134,23 @@ open class ProvisioningProfileAPI {
      - parameter appSlug: (path) App slug 
      - parameter provisioningProfileSlug: (path) Provisioning profile slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0ProvisionProfileResponseModel, Error>
      */
-    open class func provisioningProfileDelete(appSlug: String, provisioningProfileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0ProvisionProfileResponseModel?, _ error: Error?) -> Void)) {
-        provisioningProfileDeleteWithRequestBuilder(appSlug: appSlug, provisioningProfileSlug: provisioningProfileSlug).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func provisioningProfileDelete(appSlug: String, provisioningProfileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileResponseModel, Error> {
+        return Future<V0ProvisionProfileResponseModel, Error> { promise in
+            provisioningProfileDeleteWithRequestBuilder(appSlug: appSlug, provisioningProfileSlug: provisioningProfileSlug).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Delete a provisioning profile
@@ -176,18 +194,23 @@ open class ProvisioningProfileAPI {
      - parameter next: (query) Slug of the first provisioning profile in the response (optional)
      - parameter limit: (query) Max number of elements per page (default: 50) (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0ProvisionProfileListResponseModel, Error>
      */
-    open class func provisioningProfileList(appSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0ProvisionProfileListResponseModel?, _ error: Error?) -> Void)) {
-        provisioningProfileListWithRequestBuilder(appSlug: appSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func provisioningProfileList(appSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileListResponseModel, Error> {
+        return Future<V0ProvisionProfileListResponseModel, Error> { promise in
+            provisioningProfileListWithRequestBuilder(appSlug: appSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Get a list of the provisioning profiles
@@ -235,18 +258,23 @@ open class ProvisioningProfileAPI {
      - parameter appSlug: (path) App slug 
      - parameter provisioningProfileSlug: (path) Provisioning profile slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0ProvisionProfileResponseModel, Error>
      */
-    open class func provisioningProfileShow(appSlug: String, provisioningProfileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0ProvisionProfileResponseModel?, _ error: Error?) -> Void)) {
-        provisioningProfileShowWithRequestBuilder(appSlug: appSlug, provisioningProfileSlug: provisioningProfileSlug).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func provisioningProfileShow(appSlug: String, provisioningProfileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileResponseModel, Error> {
+        return Future<V0ProvisionProfileResponseModel, Error> { promise in
+            provisioningProfileShowWithRequestBuilder(appSlug: appSlug, provisioningProfileSlug: provisioningProfileSlug).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Get a specific provisioning profile
@@ -290,18 +318,23 @@ open class ProvisioningProfileAPI {
      - parameter provisioningProfileSlug: (path) Provisioning profile slug 
      - parameter provisioningProfile: (body) Provisioning profile parameters 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0ProvisionProfileResponseModel, Error>
      */
-    open class func provisioningProfileUpdate(appSlug: String, provisioningProfileSlug: String, provisioningProfile: V0ProvProfileDocumentUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0ProvisionProfileResponseModel?, _ error: Error?) -> Void)) {
-        provisioningProfileUpdateWithRequestBuilder(appSlug: appSlug, provisioningProfileSlug: provisioningProfileSlug, provisioningProfile: provisioningProfile).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func provisioningProfileUpdate(appSlug: String, provisioningProfileSlug: String, provisioningProfile: V0ProvProfileDocumentUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileResponseModel, Error> {
+        return Future<V0ProvisionProfileResponseModel, Error> { promise in
+            provisioningProfileUpdateWithRequestBuilder(appSlug: appSlug, provisioningProfileSlug: provisioningProfileSlug, provisioningProfile: provisioningProfile).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Update a provisioning profile

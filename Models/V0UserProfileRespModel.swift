@@ -10,9 +10,9 @@ import Foundation
 
 public struct V0UserProfileRespModel: Codable, Hashable {
 
-    public var data: V0UserProfileDataModel?
+    public var data: V0UserProfileDataModel
 
-    public init(data: V0UserProfileDataModel? = nil) {
+    public init(data: V0UserProfileDataModel) {
         self.data = data
     }
 

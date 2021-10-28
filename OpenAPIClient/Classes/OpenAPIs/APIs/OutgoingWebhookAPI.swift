@@ -6,6 +6,9 @@
 //
 
 import Foundation
+#if canImport(Combine)
+import Combine
+#endif
 import Models
 
 open class OutgoingWebhookAPI {
@@ -16,18 +19,23 @@ open class OutgoingWebhookAPI {
      - parameter appSlug: (path) App slug 
      - parameter appWebhookCreateParams: (body) App webhook creation params 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0AppWebhookCreatedResponseModel, Error>
      */
-    open class func outgoingWebhookCreate(appSlug: String, appWebhookCreateParams: V0AppWebhookCreateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0AppWebhookCreatedResponseModel?, _ error: Error?) -> Void)) {
-        outgoingWebhookCreateWithRequestBuilder(appSlug: appSlug, appWebhookCreateParams: appWebhookCreateParams).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func outgoingWebhookCreate(appSlug: String, appWebhookCreateParams: V0AppWebhookCreateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppWebhookCreatedResponseModel, Error> {
+        return Future<V0AppWebhookCreatedResponseModel, Error> { promise in
+            outgoingWebhookCreateWithRequestBuilder(appSlug: appSlug, appWebhookCreateParams: appWebhookCreateParams).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Create an outgoing webhook for an app
@@ -70,18 +78,23 @@ open class OutgoingWebhookAPI {
      - parameter appSlug: (path) App slug 
      - parameter appWebhookSlug: (path) App webhook slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0AppWebhookDeletedResponseModel, Error>
      */
-    open class func outgoingWebhookDelete(appSlug: String, appWebhookSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0AppWebhookDeletedResponseModel?, _ error: Error?) -> Void)) {
-        outgoingWebhookDeleteWithRequestBuilder(appSlug: appSlug, appWebhookSlug: appWebhookSlug).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func outgoingWebhookDelete(appSlug: String, appWebhookSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppWebhookDeletedResponseModel, Error> {
+        return Future<V0AppWebhookDeletedResponseModel, Error> { promise in
+            outgoingWebhookDeleteWithRequestBuilder(appSlug: appSlug, appWebhookSlug: appWebhookSlug).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Delete an outgoing webhook of an app
@@ -125,18 +138,23 @@ open class OutgoingWebhookAPI {
      - parameter next: (query) Slug of the first webhook in the response (optional)
      - parameter limit: (query) Max number of elements per page (default: 50) (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0AppWebhookListResponseModel, Error>
      */
-    open class func outgoingWebhookList(appSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0AppWebhookListResponseModel?, _ error: Error?) -> Void)) {
-        outgoingWebhookListWithRequestBuilder(appSlug: appSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func outgoingWebhookList(appSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppWebhookListResponseModel, Error> {
+        return Future<V0AppWebhookListResponseModel, Error> { promise in
+            outgoingWebhookListWithRequestBuilder(appSlug: appSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      List the outgoing webhooks of an app
@@ -185,18 +203,23 @@ open class OutgoingWebhookAPI {
      - parameter appWebhookSlug: (path) App webhook slug 
      - parameter appWebhookUpdateParams: (body) App webhook update params 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0AppWebhookResponseModel, Error>
      */
-    open class func outgoingWebhookUpdate(appSlug: String, appWebhookSlug: String, appWebhookUpdateParams: V0AppWebhookUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0AppWebhookResponseModel?, _ error: Error?) -> Void)) {
-        outgoingWebhookUpdateWithRequestBuilder(appSlug: appSlug, appWebhookSlug: appWebhookSlug, appWebhookUpdateParams: appWebhookUpdateParams).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func outgoingWebhookUpdate(appSlug: String, appWebhookSlug: String, appWebhookUpdateParams: V0AppWebhookUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppWebhookResponseModel, Error> {
+        return Future<V0AppWebhookResponseModel, Error> { promise in
+            outgoingWebhookUpdateWithRequestBuilder(appSlug: appSlug, appWebhookSlug: appWebhookSlug, appWebhookUpdateParams: appWebhookUpdateParams).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Update an outgoing webhook of an app

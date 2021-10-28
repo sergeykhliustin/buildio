@@ -12,6 +12,8 @@
 		3F2BE9E3270CA0C00051C910 /* AccountsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2BE9E1270CA0C00051C910 /* AccountsScreenView.swift */; };
 		3F2BE9E5270CA5E00051C910 /* TabsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2BE9E4270CA5E00051C910 /* TabsScreenView.swift */; };
 		3F2BE9E6270CA5E00051C910 /* TabsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2BE9E4270CA5E00051C910 /* TabsScreenView.swift */; };
+		3F677F152729CE5900B9265B /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F677F142729CE5900B9265B /* BaseAPI.swift */; };
+		3F677F162729CE5900B9265B /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F677F142729CE5900B9265B /* BaseAPI.swift */; };
 		3F70EBBB2714E43600A4841E /* BTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F70EBBA2714E43600A4841E /* BTextField.swift */; };
 		3F70EBBC2714E43600A4841E /* BTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F70EBBA2714E43600A4841E /* BTextField.swift */; };
 		3F70EBBF2714EAAE00A4841E /* Color+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F70EBBE2714EAAE00A4841E /* Color+Additions.swift */; };
@@ -136,6 +138,7 @@
 		3979E25783E3B069CC563A15 /* libPods-ModelsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ModelsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F2BE9E1270CA0C00051C910 /* AccountsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsScreenView.swift; sourceTree = "<group>"; };
 		3F2BE9E4270CA5E00051C910 /* TabsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsScreenView.swift; sourceTree = "<group>"; };
+		3F677F142729CE5900B9265B /* BaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
 		3F70EBBA2714E43600A4841E /* BTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTextField.swift; sourceTree = "<group>"; };
 		3F70EBBE2714EAAE00A4841E /* Color+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Additions.swift"; sourceTree = "<group>"; };
 		3FA5136D270B9D6900A5B881 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -382,6 +385,7 @@
 		3FE1092E27285EDB00B533EE /* APIs */ = {
 			isa = PBXGroup;
 			children = (
+				3F677F142729CE5900B9265B /* BaseAPI.swift */,
 				3FE1092F27285EDB00B533EE /* UserAPI.swift */,
 				3FE1093027285EDB00B533EE /* AvatarCandidateAPI.swift */,
 				3FE1093127285EDB00B533EE /* ProvisioningProfileAPI.swift */,
@@ -712,6 +716,7 @@
 				3F2BE9E2270CA0C00051C910 /* AccountsScreenView.swift in Sources */,
 				3FE1094C27285EDB00B533EE /* URLSessionImplementations.swift in Sources */,
 				3FE1094A27285EDB00B533EE /* APIHelper.swift in Sources */,
+				3F677F152729CE5900B9265B /* BaseAPI.swift in Sources */,
 				3FE1097427285EDB00B533EE /* APIs.swift in Sources */,
 				3FCC45B427078D250001A9C2 /* RootNavigationView.swift in Sources */,
 				3FF276172721AB1700701113 /* TokenFigmaScreenView.swift in Sources */,
@@ -776,6 +781,7 @@
 				3FD2FCB0272604C90093BE62 /* TokenManager.swift in Sources */,
 				3FE1094D27285EDB00B533EE /* URLSessionImplementations.swift in Sources */,
 				3FE1094B27285EDB00B533EE /* APIHelper.swift in Sources */,
+				3F677F162729CE5900B9265B /* BaseAPI.swift in Sources */,
 				3FE1097527285EDB00B533EE /* APIs.swift in Sources */,
 				3F2BE9E3270CA0C00051C910 /* AccountsScreenView.swift in Sources */,
 				3FF276182721AB1700701113 /* TokenFigmaScreenView.swift in Sources */,

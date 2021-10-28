@@ -6,6 +6,9 @@
 //
 
 import Foundation
+#if canImport(Combine)
+import Combine
+#endif
 import Models
 
 open class AppleApiCredentialsAPI {
@@ -15,18 +18,23 @@ open class AppleApiCredentialsAPI {
      
      - parameter userSlug: (path) User slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0AppleAPICredentialsListResponse, Error>
      */
-    open class func appleApiCredentialList(userSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0AppleAPICredentialsListResponse?, _ error: Error?) -> Void)) {
-        appleApiCredentialListWithRequestBuilder(userSlug: userSlug).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func appleApiCredentialList(userSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppleAPICredentialsListResponse, Error> {
+        return Future<V0AppleAPICredentialsListResponse, Error> { promise in
+            appleApiCredentialListWithRequestBuilder(userSlug: userSlug).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      List Apple API credentials for a specific user

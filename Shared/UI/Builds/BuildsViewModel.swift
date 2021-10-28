@@ -10,12 +10,19 @@ import Models
 import Combine
 
 class BuildsViewModel: PagingViewModel {
+    
+    @Published var state: BaseViewModelState<Array<V0BuildListAllResponseItemModel>> = .idle
+    @Published var pagingState: PagingState = .idle {
+        didSet {
+            if case .last = pagingState {
+                logger.debug("last page")
+            }
+        }
+    }
+    
     var tokenRefresher: AnyCancellable?
     
-    @Published var isLoadingPage: Bool = false
-    @Published var errorLoadingPage: Error? = nil
-    @Published var state: BaseViewModelState<Array<V0BuildListAllResponseItemModel>> = .loading
-    @Published var lastPage: Bool = false
+    
     
     private let fetchLimit: Int = 10
     
@@ -23,30 +30,25 @@ class BuildsViewModel: PagingViewModel {
         refresh()
     }
     
-    func beforeRefresh() {
-        lastPage = false
+    func fetch() -> AnyPublisher<Array<V0BuildListAllResponseItemModel>, Error> {
+        BuildsAPI.buildListAll(limit: fetchLimit)
+            .map({ $0.data })
+            .eraseToAnyPublisher()
     }
     
-    func fetch(_ completion: @escaping (([V0BuildListAllResponseItemModel]?, Error?) -> Void)) {
-        BuildsAPI.buildListAll(limit: fetchLimit) { data, error in
-            completion(data?.data, error)
-        }
+    func fetchNextPage() -> AnyPublisher<Array<V0BuildListAllResponseItemModel>, Error> {
+        BuildsAPI.buildListAll(next: self.value?.last?.slug, limit: fetchLimit)
+            .map({ $0.data })
+            .eraseToAnyPublisher()
     }
     
-    func fetchNext(_ completion: @escaping (([V0BuildListAllResponseItemModel]?, Error?) -> Void)) {
-        BuildsAPI.buildListAll(next: self.value?.last?.slug, limit: fetchLimit) { data, error in
-            completion(data?.data, error)
-        }
-    }
-    
-    func merge(value: [V0BuildListAllResponseItemModel]?, newValue: [V0BuildListAllResponseItemModel]?) -> [V0BuildListAllResponseItemModel]? {
+    func merge(value: [V0BuildListAllResponseItemModel]?, newValue: [V0BuildListAllResponseItemModel]) -> ([V0BuildListAllResponseItemModel], Bool) {
         guard let value = value else {
-            return newValue
-        }
-        guard let newValue = newValue else {
-            return value
+            return (newValue, true)
         }
         
-        return value + newValue.dropFirst()
+        let result = value + newValue.dropFirst()
+        
+        return (result, newValue.count != 1)
     }
 }

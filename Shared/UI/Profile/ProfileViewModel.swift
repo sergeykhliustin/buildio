@@ -12,7 +12,7 @@ import Combine
 class ProfileViewModel: BaseViewModel {
     var tokenRefresher: AnyCancellable?
     
-    @Published var state: BaseViewModelState<V0UserProfileDataModel> = .loading
+    @Published var state: BaseViewModelState<V0UserProfileDataModel> = .idle
     
     init() {
         refresh()
@@ -22,14 +22,9 @@ class ProfileViewModel: BaseViewModel {
         
     }
     
-    func fetch(_ completion: @escaping ((V0UserProfileDataModel?, Error?) -> Void)) {
-        
-        UserAPI.userProfile { data, error in
-            DispatchQueue.global().asyncAfter(deadline: .now() + 5) {
-                DispatchQueue.main.async {
-                    completion(data?.data, error)
-                }
-            }
-        }
+    func fetch() -> AnyPublisher<V0UserProfileDataModel, Error> {
+        UserAPI.userProfile()
+            .map({ $0.data })
+            .eraseToAnyPublisher()
     }
 }

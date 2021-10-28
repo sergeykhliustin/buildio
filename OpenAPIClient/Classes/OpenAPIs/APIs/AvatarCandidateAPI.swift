@@ -6,6 +6,9 @@
 //
 
 import Foundation
+#if canImport(Combine)
+import Combine
+#endif
 import Models
 
 open class AvatarCandidateAPI {
@@ -16,18 +19,23 @@ open class AvatarCandidateAPI {
      - parameter appSlug: (path) App slug 
      - parameter avatarCandidate: (body) Avatar candidate parameters 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<[V0AvatarCandidateCreateResponseItem], Error>
      */
-    open class func avatarCandidateCreate(appSlug: String, avatarCandidate: [V0AvatarCandidateCreateParams], apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: [V0AvatarCandidateCreateResponseItem]?, _ error: Error?) -> Void)) {
-        avatarCandidateCreateWithRequestBuilder(appSlug: appSlug, avatarCandidate: avatarCandidate).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func avatarCandidateCreate(appSlug: String, avatarCandidate: [V0AvatarCandidateCreateParams], apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<[V0AvatarCandidateCreateResponseItem], Error> {
+        return Future<[V0AvatarCandidateCreateResponseItem], Error> { promise in
+            avatarCandidateCreateWithRequestBuilder(appSlug: appSlug, avatarCandidate: avatarCandidate).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Create avatar candidates
@@ -66,18 +74,23 @@ open class AvatarCandidateAPI {
      
      - parameter appSlug: (path) App slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0FindAvatarCandidateResponse, Error>
      */
-    open class func avatarCandidateList(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0FindAvatarCandidateResponse?, _ error: Error?) -> Void)) {
-        avatarCandidateListWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func avatarCandidateList(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0FindAvatarCandidateResponse, Error> {
+        return Future<V0FindAvatarCandidateResponse, Error> { promise in
+            avatarCandidateListWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Get list of the avatar candidates
@@ -117,18 +130,23 @@ open class AvatarCandidateAPI {
      - parameter avatarSlug: (path) Avatar candidate slug 
      - parameter avatarPromoteParams: (body) Avatar promote parameters 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the data and the error objects
+     - returns: AnyPublisher<V0AvatarPromoteResponseModel, Error>
      */
-    open class func avatarCandidatePromote(appSlug: String, avatarSlug: String, avatarPromoteParams: V0AvatarPromoteParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: V0AvatarPromoteResponseModel?, _ error: Error?) -> Void)) {
-        avatarCandidatePromoteWithRequestBuilder(appSlug: appSlug, avatarSlug: avatarSlug, avatarPromoteParams: avatarPromoteParams).execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(response.body, nil)
-            case let .failure(error):
-                completion(nil, error)
+    #if canImport(Combine)
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func avatarCandidatePromote(appSlug: String, avatarSlug: String, avatarPromoteParams: V0AvatarPromoteParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AvatarPromoteResponseModel, Error> {
+        return Future<V0AvatarPromoteResponseModel, Error> { promise in
+            avatarCandidatePromoteWithRequestBuilder(appSlug: appSlug, avatarSlug: avatarSlug, avatarPromoteParams: avatarPromoteParams).execute(apiResponseQueue) { result in
+                switch result {
+                case let .success(response):
+                    promise(.success(response.body!))
+                case let .failure(error):
+                    promise(.failure(error))
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
+    #endif
 
     /**
      Promote an avatar candidate
