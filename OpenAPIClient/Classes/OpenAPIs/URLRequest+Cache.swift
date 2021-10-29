@@ -10,8 +10,7 @@ import Foundation
 extension URLRequest {
     var cacheURL: URL {
         let cachePath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!
-        let key = self.url!.absoluteString.MD5() + (self.httpBody?.MD5() ?? "") + (self.allHTTPHeaderFields?.MD5() ?? "")
-        return URL(fileURLWithPath: (cachePath as NSString).appendingPathComponent("\(key).urlrequestcache"))
+        return URL(fileURLWithPath: (cachePath as NSString).appendingPathComponent("\(sha256).urlrequestcache"))
     }
     
     func getCache() -> (data: Data?, response: URLResponse?, error: Error?)? {
@@ -21,7 +20,7 @@ extension URLRequest {
                 let response = HTTPURLResponse(url: url!, statusCode: 200, httpVersion: nil, headerFields: nil)
                 return (data, response, nil)
             } catch {
-                logger.error(error)
+                logger.debug(error)
             }
         }
         return nil
@@ -43,7 +42,7 @@ extension URLRequest {
         do {
             try data.write(to: cacheURL)
         } catch {
-            logger.error(error)
+            logger.debug(error)
         }
     }
 }

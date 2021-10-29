@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3F00B118272C160F00C4A2FB /* MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F00B117272C160F00C4A2FB /* MD5.swift */; };
-		3F00B119272C160F00C4A2FB /* MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F00B117272C160F00C4A2FB /* MD5.swift */; };
 		3F00B11B272C175000C4A2FB /* URLRequest+Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F00B11A272C175000C4A2FB /* URLRequest+Cache.swift */; };
 		3F00B11C272C175000C4A2FB /* URLRequest+Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F00B11A272C175000C4A2FB /* URLRequest+Cache.swift */; };
+		3F00B11E272C210700C4A2FB /* SHA256.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F00B11D272C210700C4A2FB /* SHA256.swift */; };
+		3F00B11F272C210700C4A2FB /* SHA256.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F00B11D272C210700C4A2FB /* SHA256.swift */; };
 		3F030286272C0A08005B5F2A /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = 3F030285272C0A08005B5F2A /* Models */; };
 		3F030288272C0A0D005B5F2A /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = 3F030287272C0A0D005B5F2A /* Models */; };
 		3F03028A272C0A10005B5F2A /* SwiftyBeaver in Frameworks */ = {isa = PBXBuildFile; productRef = 3F030289272C0A10005B5F2A /* SwiftyBeaver */; };
@@ -140,8 +140,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3F00B117272C160F00C4A2FB /* MD5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MD5.swift; sourceTree = "<group>"; };
 		3F00B11A272C175000C4A2FB /* URLRequest+Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Cache.swift"; sourceTree = "<group>"; };
+		3F00B11D272C210700C4A2FB /* SHA256.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHA256.swift; sourceTree = "<group>"; };
 		3F030283272C09FE005B5F2A /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Models; sourceTree = "<group>"; };
 		3F2BE9E1270CA0C00051C910 /* AccountsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsScreenView.swift; sourceTree = "<group>"; };
 		3F2BE9E4270CA5E00051C910 /* TabsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsScreenView.swift; sourceTree = "<group>"; };
@@ -396,8 +396,8 @@
 				3FE1094627285EDB00B533EE /* JSONEncodingHelper.swift */,
 				3FE1094727285EDB00B533EE /* Models.swift */,
 				3FE1094827285EDB00B533EE /* SynchronizedDictionary.swift */,
-				3F00B117272C160F00C4A2FB /* MD5.swift */,
 				3F00B11A272C175000C4A2FB /* URLRequest+Cache.swift */,
+				3F00B11D272C210700C4A2FB /* SHA256.swift */,
 			);
 			path = OpenAPIs;
 			sourceTree = "<group>";
@@ -627,6 +627,7 @@
 				3F2BE9E2270CA0C00051C910 /* AccountsScreenView.swift in Sources */,
 				3FE1094C27285EDB00B533EE /* URLSessionImplementations.swift in Sources */,
 				3FE1094A27285EDB00B533EE /* APIHelper.swift in Sources */,
+				3F00B11E272C210700C4A2FB /* SHA256.swift in Sources */,
 				3F677F152729CE5900B9265B /* BaseAPI.swift in Sources */,
 				3FE1097427285EDB00B533EE /* APIs.swift in Sources */,
 				3FCC45B427078D250001A9C2 /* RootNavigationView.swift in Sources */,
@@ -642,7 +643,6 @@
 				3FE1095827285EDB00B533EE /* AndroidKeystoreFileAPI.swift in Sources */,
 				3FE1095C27285EDB00B533EE /* BuildsAPI.swift in Sources */,
 				3FCC45B827078E040001A9C2 /* ProfileScreenView.swift in Sources */,
-				3F00B118272C160F00C4A2FB /* MD5.swift in Sources */,
 				3FE109A42728801800B533EE /* Date+Additions.swift in Sources */,
 				3FE1096E27285EDB00B533EE /* AddonsAPI.swift in Sources */,
 				3FE1095427285EDB00B533EE /* BuildCertificateAPI.swift in Sources */,
@@ -695,6 +695,7 @@
 				3FD2FCB0272604C90093BE62 /* TokenManager.swift in Sources */,
 				3FE1094D27285EDB00B533EE /* URLSessionImplementations.swift in Sources */,
 				3FE1094B27285EDB00B533EE /* APIHelper.swift in Sources */,
+				3F00B11F272C210700C4A2FB /* SHA256.swift in Sources */,
 				3F677F162729CE5900B9265B /* BaseAPI.swift in Sources */,
 				3FE1097527285EDB00B533EE /* APIs.swift in Sources */,
 				3F2BE9E3270CA0C00051C910 /* AccountsScreenView.swift in Sources */,
@@ -710,7 +711,6 @@
 				3FE1095D27285EDB00B533EE /* BuildsAPI.swift in Sources */,
 				3FCC45C62707930E0001A9C2 /* BaseViewModel.swift in Sources */,
 				3FE109A52728801800B533EE /* Date+Additions.swift in Sources */,
-				3F00B119272C160F00C4A2FB /* MD5.swift in Sources */,
 				3FE1096F27285EDB00B533EE /* AddonsAPI.swift in Sources */,
 				3FE1095527285EDB00B533EE /* BuildCertificateAPI.swift in Sources */,
 				3FCC45B927078E040001A9C2 /* ProfileScreenView.swift in Sources */,
