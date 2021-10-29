@@ -130,46 +130,55 @@ open class URLSessionRequestBuilder<T>: RequestBuilder<T> {
 
         do {
             let request = try createURLRequest(urlSession: urlSession, method: xMethod, encoding: encoding, headers: headers)
+            
+            let dataTaskBlock: (URLRequest) -> Void = { request in
+                let dataTask = urlSession.dataTask(with: request) { data, response, error in
+                    if let taskCompletionShouldRetry = self.taskCompletionShouldRetry {
 
-            let dataTask = urlSession.dataTask(with: request) { data, response, error in
+                        taskCompletionShouldRetry(data, response, error) { shouldRetry in
 
-                if let taskCompletionShouldRetry = self.taskCompletionShouldRetry {
-
-                    taskCompletionShouldRetry(data, response, error) { shouldRetry in
-
-                        if shouldRetry {
-                            cleanupRequest()
-                            self.execute(apiResponseQueue, completion)
-                        } else {
-                            apiResponseQueue.async {
-                                self.processRequestResponse(urlRequest: request, data: data, response: response, error: error, completion: completion)
+                            if shouldRetry {
                                 cleanupRequest()
+                                self.execute(apiResponseQueue, completion)
+                            } else {
+                                apiResponseQueue.async {
+                                    self.processRequestResponse(urlRequest: request, data: data, response: response, error: error, completion: completion)
+                                    cleanupRequest()
+                                }
                             }
                         }
-                    }
-                } else {
-                    apiResponseQueue.async {
-                        let requestUrl = request.url?.absoluteString ?? ""
-                        let wrappedCompletion: (_ result: Swift.Result<Response<T>, ErrorResponse>) -> Void = { result in
-                            completion(result)
-                            logger.info("Request: \(T.self), \(requestUrl)")
-                            if case .failure(let error) = result {
-                                logger.error(error)
+                    } else {
+                        apiResponseQueue.async {
+                            let requestUrl = request.url?.absoluteString ?? ""
+                            let wrappedCompletion: (_ result: Swift.Result<Response<T>, ErrorResponse>) -> Void = { result in
+                                completion(result)
+                                logger.info("Request: \(T.self), \(requestUrl)")
+                                if case .failure(let error) = result {
+                                    logger.error(error)
+                                }
                             }
-                        }
 
-                        self.processRequestResponse(urlRequest: request, data: data, response: response, error: error, completion: wrappedCompletion)
-                        cleanupRequest()
+                            self.processRequestResponse(urlRequest: request, data: data, response: response, error: error, completion: wrappedCompletion)
+                            cleanupRequest()
+                        }
                     }
                 }
+
+                if #available(iOS 11.0, macOS 10.13, macCatalyst 13.0, tvOS 11.0, watchOS 4.0, *) {
+                    self.onProgressReady?(dataTask.progress)
+                }
+
+                dataTask.resume()
             }
-
-            if #available(iOS 11.0, macOS 10.13, macCatalyst 13.0, tvOS 11.0, watchOS 4.0, *) {
-                onProgressReady?(dataTask.progress)
+            
+            if let (data, response, error) = request.getCache() {
+                apiResponseQueue.async {
+                    self.processRequestResponse(urlRequest: request, data: data, response: response, error: error, completion: completion)
+                    cleanupRequest()
+                }
+            } else {
+                dataTaskBlock(request)
             }
-
-            dataTask.resume()
-
         } catch {
             apiResponseQueue.async {
                 cleanupRequest()
@@ -193,6 +202,10 @@ open class URLSessionRequestBuilder<T>: RequestBuilder<T> {
         guard httpResponse.isStatusCodeSuccessful else {
             completion(.failure(ErrorResponse.error(httpResponse.statusCode, data, response, DecodableRequestBuilderError.unsuccessfulHTTPStatusCode)))
             return
+        }
+        
+        if let data = data {
+            urlRequest.saveCache(data: data)
         }
 
         switch T.self {
@@ -334,6 +347,10 @@ open class URLSessionDecodableRequestBuilder<T: Decodable>: URLSessionRequestBui
         guard httpResponse.isStatusCodeSuccessful else {
             completion(.failure(ErrorResponse.error(httpResponse.statusCode, data, response, DecodableRequestBuilderError.unsuccessfulHTTPStatusCode)))
             return
+        }
+        
+        if let data = data {
+            urlRequest.saveCache(data: data)
         }
 
         switch T.self {
