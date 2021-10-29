@@ -92,3 +92,4 @@ Pods
 Podfile.lock
 ModelsTests/TestResources/TestJSONs
 Models/.swiftpm/xcode/package.xcworkspace/xcshareddata
+Models/Tests/ModelsTests/TestResources/TestJSONs
