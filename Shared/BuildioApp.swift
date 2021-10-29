@@ -14,6 +14,7 @@ struct BuildioApp: App {
         WindowGroup {
             MainCoordinatorView()
                 .frame(minWidth: 400, idealWidth: 800, minHeight: 400, idealHeight: 800)
+                .background(Color.white)
         }
     }
 }

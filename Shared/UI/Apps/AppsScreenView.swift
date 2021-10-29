@@ -15,18 +15,18 @@ struct AppsScreenView: View, PaginatedView {
     func buildValueView(_ value: [V0AppResponseItemModel]) -> some View {
         VStack {
             if let selected = selected {
-                NavigationLink("", tag: selected, selection: $selected) {
-                
-                }
-                .frame(width: 0, height: 0)
+                NavigationLink(multiplatformDestination: {
+                    
+                }, tag: selected, selection: $selected)
+                    .frame(width: 0, height: 0)
             }
             
             ScrollView {
                 LazyVStack(spacing: 0) {
                     ForEach(value, id: \.slug) { item in
-                        NavigationLink {
+                        NavigationLink(multiplatformDestination: {
                             
-                        } label: {
+                        }, label: {
                             AppRowView(model: item)
                                 .onAppear {
                                     if item == value.last {
@@ -35,9 +35,8 @@ struct AppsScreenView: View, PaginatedView {
                                     }
                                 }
                                 .padding(8)
-                        }
-                        .isDetailLink(true)
-                        .buttonStylePlain()
+                        })
+                        .multiplatformButtonStylePlain()
                     }
                 }
                 if model.isLoadingPage {

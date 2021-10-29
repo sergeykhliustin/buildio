@@ -14,7 +14,7 @@ private struct BTextFieldStyle: TextFieldStyle {
         configuration
             .cornerRadius(4)
             .font(.callout)
-            .padding()
+            .frame(height: 44)
             .foregroundColor(.init(hex: 0x351d48))
             .background(
                 RoundedRectangle(cornerRadius: 4)
@@ -48,12 +48,6 @@ struct BTextField: View {
                 self.onEditingChanged(editing)
             }, onCommit: self.onCommit)
                 .textFieldStyle(BTextFieldStyle(focused: $focused))
-//            Button {
-//                
-//            } label: {
-//                Image(systemName: "doc.on.clipboard.fill").foregroundColor(Color.b_ButtonPrimaryLight)
-//            }
-//            .frame(width: 44, height: 44, alignment: .center)
         }
     }
 }

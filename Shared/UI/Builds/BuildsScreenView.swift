@@ -8,16 +8,6 @@
 import SwiftUI
 import Models
 
-extension View {
-    func buttonStylePlain() -> some View {
-        #if os(iOS)
-        return self.buttonStyle(.plain)
-        #else
-        return self
-        #endif
-    }
-}
-
 struct BuildsScreenView: View, BaseView {
     @StateObject var model = BuildsViewModel()
     @State private var selected: V0BuildListAllResponseItemModel?
@@ -31,18 +21,18 @@ struct BuildsScreenView: View, BaseView {
             //                }
             
             if let selected = selected {
-                NavigationLink("", tag: selected, selection: $selected) {
+                NavigationLink(multiplatformDestination: {
                     BuildScreenView(model: selected)
-                }
-                .frame(width: 0, height: 0)
+                }, tag: selected, selection: $selected)
+                    .frame(width: 0, height: 0)
             }
             
             ScrollView {
                 LazyVStack(spacing: 0) {
                     ForEach(value, id: \.self) { item in
-                        NavigationLink {
+                        NavigationLink(multiplatformDestination: {
                             BuildScreenView(model: item)
-                        } label: {
+                        }, label: {
                             BuildRowView(model: item).onAppear {
                                 if item == value.last {
                                     logger.warning("load more item")
@@ -50,13 +40,8 @@ struct BuildsScreenView: View, BaseView {
                                 }
                             }
                             .padding(8)
-                            //                            .onTapGesture {
-                            //                                logger.debug(item.slug)
-                            //                                selected = item
-                            //                            }
-                        }
-                        .isDetailLink(true)
-                        .buttonStylePlain()
+                        })
+                        .multiplatformButtonStylePlain()
                     }
                 }
                 if model.isLoadingPage {

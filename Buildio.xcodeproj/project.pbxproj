@@ -11,6 +11,10 @@
 		3F00B11C272C175000C4A2FB /* URLRequest+Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F00B11A272C175000C4A2FB /* URLRequest+Cache.swift */; };
 		3F00B11E272C210700C4A2FB /* SHA256.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F00B11D272C210700C4A2FB /* SHA256.swift */; };
 		3F00B11F272C210700C4A2FB /* SHA256.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F00B11D272C210700C4A2FB /* SHA256.swift */; };
+		3F00B126272C4EB600C4A2FB /* View+Multiplatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F00B125272C4EB600C4A2FB /* View+Multiplatform.swift */; };
+		3F00B127272C4EB600C4A2FB /* View+Multiplatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F00B125272C4EB600C4A2FB /* View+Multiplatform.swift */; };
+		3F00B129272C4ECF00C4A2FB /* NavigationLink+Multiplatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F00B128272C4ECF00C4A2FB /* NavigationLink+Multiplatform.swift */; };
+		3F00B12A272C4ECF00C4A2FB /* NavigationLink+Multiplatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F00B128272C4ECF00C4A2FB /* NavigationLink+Multiplatform.swift */; };
 		3F030286272C0A08005B5F2A /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = 3F030285272C0A08005B5F2A /* Models */; };
 		3F030288272C0A0D005B5F2A /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = 3F030287272C0A0D005B5F2A /* Models */; };
 		3F03028A272C0A10005B5F2A /* SwiftyBeaver in Frameworks */ = {isa = PBXBuildFile; productRef = 3F030289272C0A10005B5F2A /* SwiftyBeaver */; };
@@ -142,6 +146,8 @@
 /* Begin PBXFileReference section */
 		3F00B11A272C175000C4A2FB /* URLRequest+Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Cache.swift"; sourceTree = "<group>"; };
 		3F00B11D272C210700C4A2FB /* SHA256.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHA256.swift; sourceTree = "<group>"; };
+		3F00B125272C4EB600C4A2FB /* View+Multiplatform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+Multiplatform.swift"; sourceTree = "<group>"; };
+		3F00B128272C4ECF00C4A2FB /* NavigationLink+Multiplatform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationLink+Multiplatform.swift"; sourceTree = "<group>"; };
 		3F030283272C09FE005B5F2A /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Models; sourceTree = "<group>"; };
 		3F2BE9E1270CA0C00051C910 /* AccountsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsScreenView.swift; sourceTree = "<group>"; };
 		3F2BE9E4270CA5E00051C910 /* TabsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsScreenView.swift; sourceTree = "<group>"; };
@@ -232,6 +238,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F00B124272C4EB600C4A2FB /* Multiplatform */ = {
+			isa = PBXGroup;
+			children = (
+				3F00B125272C4EB600C4A2FB /* View+Multiplatform.swift */,
+				3F00B128272C4ECF00C4A2FB /* NavigationLink+Multiplatform.swift */,
+			);
+			path = Multiplatform;
+			sourceTree = "<group>";
+		};
 		3F030284272C0A08005B5F2A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -297,6 +312,7 @@
 		3FCC4597270759880001A9C2 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				3F00B124272C4EB600C4A2FB /* Multiplatform */,
 				3F70EBBD2714EA9C00A4841E /* Additions */,
 				3F70EBB92714E41700A4841E /* CustomViews */,
 				3FCC45C42707930E0001A9C2 /* BaseViewModel.swift */,
@@ -634,6 +650,7 @@
 				3FF276172721AB1700701113 /* TokenFigmaScreenView.swift in Sources */,
 				3FE1097C27285EDB00B533EE /* JSONEncodingHelper.swift in Sources */,
 				3FE1095E27285EDB00B533EE /* AppSetupAPI.swift in Sources */,
+				3F00B129272C4ECF00C4A2FB /* NavigationLink+Multiplatform.swift in Sources */,
 				3FE1096027285EDB00B533EE /* WebhookDeliveryItemAPI.swift in Sources */,
 				3FE1096627285EDB00B533EE /* OrganizationsAPI.swift in Sources */,
 				3FE1096227285EDB00B533EE /* BuildArtifactAPI.swift in Sources */,
@@ -658,6 +675,7 @@
 				3F70EBBB2714E43600A4841E /* BTextField.swift in Sources */,
 				3F70EBBF2714EAAE00A4841E /* Color+Additions.swift in Sources */,
 				3FE1095A27285EDB00B533EE /* BuildRequestAPI.swift in Sources */,
+				3F00B126272C4EB600C4A2FB /* View+Multiplatform.swift in Sources */,
 				3FD85D1A27221A3C00E894E8 /* BuildRowView.swift in Sources */,
 				3FD2FCA82724C7520093BE62 /* PagingViewModel.swift in Sources */,
 				3FE1096427285EDB00B533EE /* GenericProjectFileAPI.swift in Sources */,
@@ -702,6 +720,7 @@
 				3FF276182721AB1700701113 /* TokenFigmaScreenView.swift in Sources */,
 				3FE1097D27285EDB00B533EE /* JSONEncodingHelper.swift in Sources */,
 				3FE1095F27285EDB00B533EE /* AppSetupAPI.swift in Sources */,
+				3F00B12A272C4ECF00C4A2FB /* NavigationLink+Multiplatform.swift in Sources */,
 				3FE1096127285EDB00B533EE /* WebhookDeliveryItemAPI.swift in Sources */,
 				3FE1096727285EDB00B533EE /* OrganizationsAPI.swift in Sources */,
 				3FE1096327285EDB00B533EE /* BuildArtifactAPI.swift in Sources */,
@@ -726,6 +745,7 @@
 				3FD85D1B27221A3C00E894E8 /* BuildRowView.swift in Sources */,
 				3FD2FCA92724C7520093BE62 /* PagingViewModel.swift in Sources */,
 				3FE1095B27285EDB00B533EE /* BuildRequestAPI.swift in Sources */,
+				3F00B127272C4EB600C4A2FB /* View+Multiplatform.swift in Sources */,
 				3FD85D152721D53600E894E8 /* ClearButton.swift in Sources */,
 				3FCC45B527078D250001A9C2 /* RootNavigationView.swift in Sources */,
 				3FE1096527285EDB00B533EE /* GenericProjectFileAPI.swift in Sources */,
@@ -952,6 +972,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -981,6 +1002,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",

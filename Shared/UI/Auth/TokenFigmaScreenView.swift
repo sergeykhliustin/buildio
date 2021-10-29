@@ -73,6 +73,7 @@ struct TokenFigmaScreenView: View {
         }
 //        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(16)
+        .background(Color.white)
         .alert(isPresented: $isError) {
             Alert(title: Text("Error"),
                   message: Text(error?.localizedDescription ?? "Unknown error"), dismissButton: .cancel {

@@ -37,7 +37,7 @@ struct AccountsScreenView: View {
                         .cornerRadius(4)
                     }
                     .frame(alignment: .leading)
-                    .buttonStyle(.plain)
+                    .multiplatformButtonStylePlain()
                     
                 }
             }

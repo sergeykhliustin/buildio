@@ -33,7 +33,7 @@ struct SubmitButtonStyle: ButtonStyle {
                 .font(Font.body.bold())
                 .background(
                     LinearGradient(
-                        colors: colors,
+                        gradient: Gradient(colors: colors),
                         startPoint: .top,
                         endPoint: .bottom
                     ).cornerRadius(4)
