@@ -30,6 +30,7 @@ class ModelsTests: XCTestCase {
     }()
 
     func testModels() throws {
+        XCTAssertFalse(jsons.isEmpty)
         let models = [
             V0BuildListAllResponseModel.self
         ]
