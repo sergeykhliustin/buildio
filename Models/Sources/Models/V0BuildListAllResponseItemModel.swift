@@ -25,7 +25,7 @@ public struct V0BuildListAllResponseItemModel: Codable, Hashable {
     public var pullRequestId: Int?
     public var pullRequestTargetBranch: String?
     public var pullRequestViewUrl: String?
-    public var repository: V0AppResponseItemModel
+    public var repository: V0AppResponseItemModel?
     public var slug: String
     public var stackIdentifier: String
     public var startedOnWorkerAt: Date

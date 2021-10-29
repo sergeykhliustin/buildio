@@ -8,11 +8,9 @@
 import SwiftUI
 
 struct TabsScreenView: View {
-    @Binding var showSideMenu: Bool
     @State private var selectedTab = 0
     
-    init(showSideMenu: Binding<Bool>) {
-        self._showSideMenu = showSideMenu
+    init() {
         #if os(iOS)
         UITabBar.appearance().backgroundColor = .white
         #endif
@@ -25,7 +23,7 @@ struct TabsScreenView: View {
                     BuildsScreenView()
                         .navigationTitle("Builds")
                 }
-                .onTapGesture {
+                .onAppear {
                     selectedTab = 0
                 }
                 .tag(0)
@@ -38,7 +36,7 @@ struct TabsScreenView: View {
                     AppsScreenView()
                         .navigationTitle("Apps")
                 }
-                .onTapGesture {
+                .onAppear {
                     selectedTab = 1
                 }
                 .tag(1)
@@ -52,7 +50,7 @@ struct TabsScreenView: View {
                         .navigationTitle("Accounts")
                         
                 }
-                .onTapGesture {
+                .onAppear {
                     selectedTab = 2
                 }
                 .tag(2)
@@ -65,7 +63,7 @@ struct TabsScreenView: View {
                     ProfileScreenView()
                         .navigationTitle("Profile")
                 }
-                .onTapGesture {
+                .onAppear {
                     selectedTab = 3
                 }
                 .tag(3)
@@ -81,6 +79,6 @@ struct TabsScreenView: View {
 
 struct TabsScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        TabsScreenView(showSideMenu: .constant(false))
+        TabsScreenView()
     }
 }

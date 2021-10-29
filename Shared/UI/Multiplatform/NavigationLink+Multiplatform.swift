@@ -11,6 +11,7 @@ import SwiftUI
 extension NavigationLink where Label == Text, Destination: View {
     init<V: Hashable>(@ViewBuilder multiplatformDestination: () -> Destination, tag: V, selection: Binding<V?>) {
         #if os(iOS)
+//        self.init(tag: tag, selection: selection, destination: multiplatformDestination, label: { EmptyView() })
         self.init("", tag: tag, selection: selection, destination: multiplatformDestination)
         #elseif os(macOS)
         self.init("", destination: multiplatformDestination(), tag: tag, selection: selection)

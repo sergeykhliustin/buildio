@@ -9,28 +9,27 @@ import SwiftUI
 import Models
 
 struct BuildsScreenView: View, BaseView {
-    @StateObject var model = BuildsViewModel()
+    @StateObject var model: BuildsViewModel
     @State private var selected: V0BuildListAllResponseItemModel?
+    @State private var isActive: Bool = false
+    
+    init(app: V0AppResponseItemModel? = nil, model: BuildsViewModel? = nil) {
+        if let model = model {
+            self._model = StateObject(wrappedValue: model)
+        }
+        if let app = app {
+            self._model = StateObject(wrappedValue: BuildsViewModel(app: app))
+        } else {
+            self._model = StateObject(wrappedValue: BuildsViewModel())
+        }
+    }
     
     func buildValueView(_ value: [V0BuildListAllResponseItemModel]) -> some View {
-        
         VStack {
-            //                HStack {
-            //                    Spacer()
-            //                    Button("Refresh", action: model.refresh)
-            //                }
-            
-            if let selected = selected {
-                NavigationLink(multiplatformDestination: {
-                    BuildScreenView(model: selected)
-                }, tag: selected, selection: $selected)
-                    .frame(width: 0, height: 0)
-            }
-            
             ScrollView {
-                LazyVStack(spacing: 0) {
+                LazyVStack(spacing: 16) {
                     ForEach(value, id: \.self) { item in
-                        NavigationLink(multiplatformDestination: {
+                        NavigationLink(tag: item, selection: $selected, destination: {
                             BuildScreenView(model: item)
                         }, label: {
                             BuildRowView(model: item).onAppear {
@@ -39,9 +38,9 @@ struct BuildsScreenView: View, BaseView {
                                     model.nextPage()
                                 }
                             }
-                            .padding(8)
+                            .multiplatformButtonStylePlain()
                         })
-                        .multiplatformButtonStylePlain()
+                        
                     }
                 }
                 if model.isLoadingPage {
@@ -62,6 +61,8 @@ struct BuildsScreenView: View, BaseView {
 
 struct BuildsView_Previews: PreviewProvider {
     static var previews: some View {
-        BuildsScreenView()
+        let model = BuildsViewModel()
+        model.state = .value([V0BuildListAllResponseItemModel.preview()])
+        return BuildsScreenView(model: model)
     }
 }

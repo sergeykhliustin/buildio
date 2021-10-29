@@ -12,8 +12,8 @@ struct BuildScreenView: View {
     
     @State var model: V0BuildListAllResponseItemModel
     var body: some View {
-        BuildRowView(expanded: true, model: model)
-            .navigationTitle(model.slug)
+        BuildRowView(model: model)
+            .navigationTitle("Build #\(model.buildNumber)")
     }
 }
 

@@ -63,6 +63,7 @@ struct AppRowView: View {
                     .frame(height: 1)
             }
         }
+        .padding([.leading, .trailing], 16)
         .font(.body)
         .foregroundColor(Color(red: 0.67, green: 0.67, blue: 0.67))
         .background(Color.white)

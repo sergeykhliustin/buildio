@@ -23,19 +23,35 @@ class BuildsViewModel: PagingViewModel {
     var tokenRefresher: AnyCancellable?
     
     private let fetchLimit: Int = 10
+    private var app: V0AppResponseItemModel?
     
     init() {
         refresh()
     }
     
+    init(app: V0AppResponseItemModel?) {
+        self.app = app
+        refresh()
+    }
+    
     func fetch() -> AnyPublisher<[V0BuildListAllResponseItemModel], ErrorResponse> {
-        BuildsAPI().buildListAll(limit: fetchLimit)
+        if let app = app {
+            return BuildsAPI().buildList(appSlug: app.slug, limit: fetchLimit)
+                .map({ $0.data })
+                .eraseToAnyPublisher()
+        }
+        return BuildsAPI().buildListAll(limit: fetchLimit)
             .map({ $0.data })
             .eraseToAnyPublisher()
     }
     
     func fetchNextPage() -> AnyPublisher<[V0BuildListAllResponseItemModel], ErrorResponse> {
-        BuildsAPI().buildListAll(next: self.value?.last?.slug, limit: fetchLimit)
+        if let app = app {
+            return BuildsAPI().buildList(appSlug: app.slug, limit: fetchLimit)
+                .map({ $0.data })
+                .eraseToAnyPublisher()
+        }
+        return BuildsAPI().buildListAll(next: self.value?.last?.slug, limit: fetchLimit)
             .map({ $0.data })
             .eraseToAnyPublisher()
     }
