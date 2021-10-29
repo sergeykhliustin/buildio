@@ -486,6 +486,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3F030295272C0F21005B5F2A /* PBXTargetDependency */,
 			);
 			name = "Buildio (iOS)";
 			packageProductDependencies = (
@@ -508,6 +509,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3F030297272C0F27005B5F2A /* PBXTargetDependency */,
 			);
 			name = "Buildio (macOS)";
 			packageProductDependencies = (
@@ -734,6 +736,17 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3F030295272C0F21005B5F2A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 3F030294272C0F21005B5F2A /* Models */;
+		};
+		3F030297272C0F27005B5F2A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 3F030296272C0F27005B5F2A /* Models */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		3FE7B55A27072C1E00A6D8E1 /* Debug */ = {
@@ -1044,6 +1057,14 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3F03028B272C0A68005B5F2A /* XCRemoteSwiftPackageReference "KeychainAccess" */;
 			productName = KeychainAccess;
+		};
+		3F030294272C0F21005B5F2A /* Models */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Models;
+		};
+		3F030296272C0F27005B5F2A /* Models */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Models;
 		};
 		3F19ABA1272C055D0070DFE3 /* SwiftyBeaver */ = {
 			isa = XCSwiftPackageProductDependency;
