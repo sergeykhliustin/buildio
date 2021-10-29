@@ -8,7 +8,7 @@
 import SwiftUI
 import Models
 
-private extension View {
+extension View {
     func buttonStylePlain() -> some View {
         #if os(iOS)
         return self.buttonStyle(.plain)

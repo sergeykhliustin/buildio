@@ -13,6 +13,12 @@
 		3F2BE9E5270CA5E00051C910 /* TabsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2BE9E4270CA5E00051C910 /* TabsScreenView.swift */; };
 		3F2BE9E6270CA5E00051C910 /* TabsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2BE9E4270CA5E00051C910 /* TabsScreenView.swift */; };
 		3F509BEB272B0CF200C051A0 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5136D270B9D6900A5B881 /* Logger.swift */; };
+		3F509BEE272B3F1E00C051A0 /* AppsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F509BED272B3F1E00C051A0 /* AppsViewModel.swift */; };
+		3F509BEF272B3F1E00C051A0 /* AppsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F509BED272B3F1E00C051A0 /* AppsViewModel.swift */; };
+		3F509BF1272B41BF00C051A0 /* AppsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F509BF0272B41BF00C051A0 /* AppsScreenView.swift */; };
+		3F509BF2272B41BF00C051A0 /* AppsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F509BF0272B41BF00C051A0 /* AppsScreenView.swift */; };
+		3F509BF4272B42A100C051A0 /* AppRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F509BF3272B42A100C051A0 /* AppRowView.swift */; };
+		3F509BF5272B42A100C051A0 /* AppRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F509BF3272B42A100C051A0 /* AppRowView.swift */; };
 		3F677F152729CE5900B9265B /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F677F142729CE5900B9265B /* BaseAPI.swift */; };
 		3F677F162729CE5900B9265B /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F677F142729CE5900B9265B /* BaseAPI.swift */; };
 		3F70EBBB2714E43600A4841E /* BTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F70EBBA2714E43600A4841E /* BTextField.swift */; };
@@ -135,6 +141,9 @@
 		3979E25783E3B069CC563A15 /* libPods-ModelsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ModelsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F2BE9E1270CA0C00051C910 /* AccountsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsScreenView.swift; sourceTree = "<group>"; };
 		3F2BE9E4270CA5E00051C910 /* TabsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsScreenView.swift; sourceTree = "<group>"; };
+		3F509BED272B3F1E00C051A0 /* AppsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsViewModel.swift; sourceTree = "<group>"; };
+		3F509BF0272B41BF00C051A0 /* AppsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsScreenView.swift; sourceTree = "<group>"; };
+		3F509BF3272B42A100C051A0 /* AppRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRowView.swift; sourceTree = "<group>"; };
 		3F677F142729CE5900B9265B /* BaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
 		3F70EBBA2714E43600A4841E /* BTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTextField.swift; sourceTree = "<group>"; };
 		3F70EBBE2714EAAE00A4841E /* Color+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Additions.swift"; sourceTree = "<group>"; };
@@ -243,6 +252,16 @@
 			path = Accounts;
 			sourceTree = "<group>";
 		};
+		3F509BEC272B3F0C00C051A0 /* Apps */ = {
+			isa = PBXGroup;
+			children = (
+				3F509BED272B3F1E00C051A0 /* AppsViewModel.swift */,
+				3F509BF0272B41BF00C051A0 /* AppsScreenView.swift */,
+				3F509BF3272B42A100C051A0 /* AppRowView.swift */,
+			);
+			path = Apps;
+			sourceTree = "<group>";
+		};
 		3F70EBB92714E41700A4841E /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -280,6 +299,7 @@
 				3FCC45C42707930E0001A9C2 /* BaseViewModel.swift */,
 				3FD2FCA72724C7510093BE62 /* PagingViewModel.swift */,
 				3FCC45C7270797E30001A9C2 /* BaseView.swift */,
+				3F509BEC272B3F0C00C051A0 /* Apps */,
 				3FF276152721AAD400701113 /* Auth */,
 				3F2BE9E0270CA0AD0051C910 /* Accounts */,
 				3FD2FCAA2725E5420093BE62 /* Build */,
@@ -740,6 +760,7 @@
 				3FE1096227285EDB00B533EE /* BuildArtifactAPI.swift in Sources */,
 				3FE1095027285EDB00B533EE /* AvatarCandidateAPI.swift in Sources */,
 				3FCC45C8270797E30001A9C2 /* BaseView.swift in Sources */,
+				3F509BF1272B41BF00C051A0 /* AppsScreenView.swift in Sources */,
 				3FE1095827285EDB00B533EE /* AndroidKeystoreFileAPI.swift in Sources */,
 				3FE1095C27285EDB00B533EE /* BuildsAPI.swift in Sources */,
 				3FCC45B827078E040001A9C2 /* ProfileScreenView.swift in Sources */,
@@ -771,8 +792,10 @@
 				3FE1094E27285EDB00B533EE /* UserAPI.swift in Sources */,
 				3FD85D112721CF6F00E894E8 /* Color.swift in Sources */,
 				3FE1097827285EDB00B533EE /* Extensions.swift in Sources */,
+				3F509BF4272B42A100C051A0 /* AppRowView.swift in Sources */,
 				3FA5136E270B9D6900A5B881 /* Logger.swift in Sources */,
 				3FD85D172721D84F00E894E8 /* PasteButton.swift in Sources */,
+				3F509BEE272B3F1E00C051A0 /* AppsViewModel.swift in Sources */,
 				3FCC45A927075F690001A9C2 /* FullscreenLoadingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -803,6 +826,7 @@
 				3FE1096327285EDB00B533EE /* BuildArtifactAPI.swift in Sources */,
 				3FE1095127285EDB00B533EE /* AvatarCandidateAPI.swift in Sources */,
 				3FE1095927285EDB00B533EE /* AndroidKeystoreFileAPI.swift in Sources */,
+				3F509BF2272B41BF00C051A0 /* AppsScreenView.swift in Sources */,
 				3FE1095D27285EDB00B533EE /* BuildsAPI.swift in Sources */,
 				3FCC45C62707930E0001A9C2 /* BaseViewModel.swift in Sources */,
 				3FE109A52728801800B533EE /* Date+Additions.swift in Sources */,
@@ -834,8 +858,10 @@
 				3FE1094F27285EDB00B533EE /* UserAPI.swift in Sources */,
 				3FCC45BC27078EB40001A9C2 /* ProfileViewModel.swift in Sources */,
 				3FE1097927285EDB00B533EE /* Extensions.swift in Sources */,
+				3F509BF5272B42A100C051A0 /* AppRowView.swift in Sources */,
 				3FCC45C9270797E30001A9C2 /* BaseView.swift in Sources */,
 				3FCC45AA27075F690001A9C2 /* FullscreenLoadingView.swift in Sources */,
+				3F509BEF272B3F1E00C051A0 /* AppsViewModel.swift in Sources */,
 				3FD85D182721D84F00E894E8 /* PasteButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

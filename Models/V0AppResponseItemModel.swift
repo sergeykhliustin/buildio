@@ -18,7 +18,7 @@ public struct V0AppResponseItemModel: Codable, Hashable {
     public var repoSlug: String
     public var repoUrl: String
     public var slug: String
-    public var status: Int
+    public var status: Status
     public var title: String
     
     public init(avatarUrl: String? = nil,
@@ -31,7 +31,7 @@ public struct V0AppResponseItemModel: Codable, Hashable {
                 repoSlug: String,
                 repoUrl: String,
                 slug: String,
-                status: Int,
+                status: Status,
                 title: String) {
         self.avatarUrl = avatarUrl
         self.isDisabled = isDisabled
@@ -47,6 +47,13 @@ public struct V0AppResponseItemModel: Codable, Hashable {
         self.title = title
     }
     
+    @frozen public enum Status: Int, Codable {
+        case running = 0
+        case success = 1
+        case error = 2
+        case aborted = 3
+    }
+    
     public static func preview() -> Self {
         return V0AppResponseItemModel(avatarUrl: nil,
                                       isDisabled: false,
@@ -58,7 +65,7 @@ public struct V0AppResponseItemModel: Codable, Hashable {
                                       repoSlug: "repoSlug",
                                       repoUrl: "repoUrl",
                                       slug: "slug",
-                                      status: 1,
+                                      status: .running,
                                       title: "title")
     }
 }

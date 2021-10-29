@@ -35,14 +35,27 @@ struct TabsScreenView: View {
                 }
                 
                 NavigationView {
-                    AccountsScreenView()
-                        .navigationTitle("Accounts")
-                        
+                    AppsScreenView()
+                        .navigationTitle("Apps")
                 }
                 .onTapGesture {
                     selectedTab = 1
                 }
                 .tag(1)
+                .tabItem {
+                    Image(systemName: "apps.iphone")
+                    Text("Apps")
+                }
+                
+                NavigationView {
+                    AccountsScreenView()
+                        .navigationTitle("Accounts")
+                        
+                }
+                .onTapGesture {
+                    selectedTab = 2
+                }
+                .tag(2)
                 .tabItem {
                     Image(systemName: "ellipsis.rectangle")
                     Text("Accounts")
@@ -53,9 +66,9 @@ struct TabsScreenView: View {
                         .navigationTitle("Profile")
                 }
                 .onTapGesture {
-                    selectedTab = 2
+                    selectedTab = 3
                 }
-                .tag(2)
+                .tag(3)
                 .tabItem {
                     Image(systemName: "person.crop.circle.fill")
                     Text("Profile")
