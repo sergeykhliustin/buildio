@@ -8,10 +8,9 @@
 import SwiftUI
 import Models
 
-struct BuildsScreenView: View, BaseView {
+struct BuildsScreenView: View, PagingView {
     @StateObject var model: BuildsViewModel
-    @State private var selected: V0BuildListAllResponseItemModel?
-    @State private var isActive: Bool = false
+    @State var selected: V0BuildResponseItemModel?
     
     init(app: V0AppResponseItemModel? = nil, model: BuildsViewModel? = nil) {
         if let model = model {
@@ -24,45 +23,26 @@ struct BuildsScreenView: View, BaseView {
         }
     }
     
-    func buildValueView(_ value: [V0BuildListAllResponseItemModel]) -> some View {
-        VStack {
-            ScrollView {
-                LazyVStack(spacing: 16) {
-                    ForEach(value, id: \.self) { item in
-                        NavigationLink(tag: item, selection: $selected, destination: {
-                            BuildScreenView(model: item)
-                        }, label: {
-                            BuildRowView(model: item).onAppear {
-                                if item == value.last {
-                                    logger.warning("load more item")
-                                    model.nextPage()
-                                }
-                            }
-                            .multiplatformButtonStylePlain()
-                        })
-                        
-                    }
-                }
-                if model.isLoadingPage {
-                    ProgressView()
+    func buildItemView(_ item: V0BuildResponseItemModel) -> some View {
+        NavigationLink(tag: item, selection: $selected, destination: {
+            BuildScreenView(model: item)
+        }, label: {
+            BuildRowView(model: item).onAppear {
+                if item == model.items.last {
+                    logger.warning("load more item")
+                    model.nextPage()
                 }
             }
-        }
-        .toolbar {
-            Button {
-                model.refresh()
-            } label: {
-                Image(systemName: "arrow.counterclockwise")
-            }
-            .frame(width: 44, height: 44, alignment: .center)
-        }
+            .multiplatformButtonStylePlain()
+        })
     }
 }
 
 struct BuildsView_Previews: PreviewProvider {
     static var previews: some View {
         let model = BuildsViewModel()
-        model.state = .value([V0BuildListAllResponseItemModel.preview()])
+        model.items = [V0BuildResponseItemModel.preview()]
+        model.state = .value
         return BuildsScreenView(model: model)
     }
 }

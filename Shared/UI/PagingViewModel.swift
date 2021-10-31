@@ -7,9 +7,10 @@
 
 import Foundation
 import Combine
+import Models
 
 enum PagingState {
-    case loading(AnyCancellable)
+    case loading
     case error(ErrorResponse)
     case last
     case idle
@@ -25,13 +26,20 @@ enum PagingState {
     }
 }
 
-protocol PagingViewModel: BaseViewModel {
+protocol PagingViewModelProtocol: BaseViewModelProtocol where ValueType: PagingResponseModel {
     var pagingState: PagingState { get set }
-    func merge(value: VALUE?, newValue: VALUE) -> (VALUE, Bool)
-    func fetchNextPage() -> AnyPublisher<VALUE, ErrorResponse>
+    var items: [ValueType.ItemType] { get set }
+    
+    func merge(value: [ValueType.ItemType]?, newValue: [ValueType.ItemType]) -> ([ValueType.ItemType], Bool)
+    func fetchNextPage() -> AnyPublisher<ValueType, ErrorResponse>
 }
 
-extension PagingViewModel {
+class PagingViewModel<VALUE: PagingResponseModel>: BaseViewModel<VALUE>, PagingViewModelProtocol {
+    
+    @Published var pagingState: PagingState = .idle
+    @Published var items: [ValueType.ItemType] = []
+    private var pageFetcher: AnyCancellable?
+    
     var isLoadingPage: Bool {
         if case .loading = pagingState {
             return true
@@ -39,15 +47,16 @@ extension PagingViewModel {
         return false
     }
     
-    func beforeRefresh() {
+    override func beforeRefresh() {
         pagingState = .idle
     }
     
     func nextPage() {
         guard case .value = state else { return }
         guard pagingState.canLoadNext else { return }
+        pagingState = .loading
         
-        let fetcher = fetchNextPage()
+        pageFetcher = fetchNextPage()
             .sink { [weak self] subscribersCompletion in
                 guard let self = self else { return }
                 if case .failure(let error) = subscribersCompletion {
@@ -59,13 +68,20 @@ extension PagingViewModel {
                 }
             } receiveValue: { [weak self] value in
                 guard let self = self else { return }
-                let (value, hasChanges) = self.merge(value: self.value, newValue: value)
-                self.state = .value(value)
+                let (items, hasChanges) = self.merge(value: self.value?.data, newValue: value.data)
+                self.items = items
+                self.value = value
                 if !hasChanges {
                     self.pagingState = .last
                 }
             }
-        pagingState = .loading(fetcher)
-        
+    }
+    
+    func merge(value: [ValueType.ItemType]?, newValue: [ValueType.ItemType]) -> ([ValueType.ItemType], Bool) {
+        fatalError("Should be overridden")
+    }
+    
+    func fetchNextPage() -> AnyPublisher<VALUE, ErrorResponse> {
+        fatalError("Should be overridden")
     }
 }

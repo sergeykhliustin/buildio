@@ -8,43 +8,24 @@
 import SwiftUI
 import Models
 
-struct AppsScreenView: View, PaginatedView {
+struct AppsScreenView: View, PagingView {
     @StateObject var model = AppsViewModel()
-    @State private var selected: V0AppResponseItemModel?
+    @State var selected: V0AppResponseItemModel?
     
-    func buildValueView(_ value: [V0AppResponseItemModel]) -> some View {
-        VStack {
-            ScrollView {
-                LazyVStack(spacing: 16) {
-                    ForEach(value, id: \.slug) { item in
-                        NavigationLink(tag: item, selection: $selected, destination: {
-                            BuildsScreenView(app: item)
-                                .navigationTitle(item.title)
-                        }, label: {
-                            AppRowView(model: item)
-                                .onAppear {
-                                    if item == value.last {
-                                        logger.warning("load more item")
-                                        model.nextPage()
-                                    }
-                                }
-                                .multiplatformButtonStylePlain()
-                        })
+    func buildItemView(_ item: V0AppResponseItemModel) -> some View {
+        NavigationLink(tag: item, selection: $selected, destination: {
+            BuildsScreenView(app: item)
+                .navigationTitle(item.title)
+        }, label: {
+            AppRowView(model: item)
+                .onAppear {
+                    if item == model.items.last {
+                        logger.warning("load more item")
+                        model.nextPage()
                     }
                 }
-                if model.isLoadingPage {
-                    ProgressView()
-                }
-            }
-        }
-        .toolbar {
-            Button {
-                model.refresh()
-            } label: {
-                Image(systemName: "arrow.counterclockwise")
-            }
-            .frame(width: 44, height: 44, alignment: .center)
-        }
+                .multiplatformButtonStylePlain()
+        })
     }
 }
 

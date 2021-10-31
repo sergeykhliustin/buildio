@@ -7,12 +7,18 @@
 
 import Foundation
 
-public struct V0BuildListResponseModel: Codable, Hashable {
+public protocol PagingResponseModel {
+    associatedtype ItemType
+    var data: [ItemType] { get set }
+    var paging: V0PagingResponseModel { get set }
+}
 
-    public var data: [V0BuildResponseItemModel]?
-    public var paging: V0PagingResponseModel?
+public struct V0BuildListResponseModel: Codable, Hashable, PagingResponseModel {
 
-    public init(data: [V0BuildResponseItemModel]? = nil, paging: V0PagingResponseModel? = nil) {
+    public var data: [V0BuildResponseItemModel]
+    public var paging: V0PagingResponseModel
+
+    public init(data: [V0BuildResponseItemModel] = [], paging: V0PagingResponseModel) {
         self.data = data
         self.paging = paging
     }

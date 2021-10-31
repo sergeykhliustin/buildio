@@ -12,7 +12,7 @@ struct ProfileScreenView: View, BaseView {
     
     @StateObject var model = ProfileViewModel()
     
-    func buildValueView(_ value: V0UserProfileDataModel) -> some View {
+    var body: some View {
         VStack {
             HStack {
                 Spacer()
@@ -20,7 +20,7 @@ struct ProfileScreenView: View, BaseView {
             }
             
             Spacer()
-            Text(value.email ?? "")
+            Text(model.value?.email ?? "")
             Spacer()
         }
     }

@@ -24,7 +24,7 @@ extension Color {
     static let b_ShadowLight = Color(red: 0, green: 0, blue: 0, opacity: 0.10)
 }
 
-extension V0BuildListAllResponseItemModel.Status {
+extension V0BuildResponseItemModel.Status {
     var color: Color {
         switch self {
         case .running:

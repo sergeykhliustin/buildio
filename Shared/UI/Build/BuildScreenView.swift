@@ -10,7 +10,7 @@ import Models
 
 struct BuildScreenView: View {
     
-    @State var model: V0BuildListAllResponseItemModel
+    @State var model: V0BuildResponseItemModel
     var body: some View {
         BuildRowView(model: model)
             .navigationTitle("Build #\(model.buildNumber)")
@@ -19,6 +19,6 @@ struct BuildScreenView: View {
 
 struct BuildScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        BuildScreenView(model: V0BuildListAllResponseItemModel.preview())
+        BuildScreenView(model: V0BuildResponseItemModel.preview())
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 import Models
 
 struct BuildRowView: View {
-    @State var model: V0BuildListAllResponseItemModel
+    @State var model: V0BuildResponseItemModel
     
     var body: some View {
         HStack(alignment: .top) {
@@ -171,7 +171,7 @@ struct BuildRowView: View {
 
 struct BuildRowView_Previews: PreviewProvider {
     static var previews: some View {
-        BuildRowView(model: V0BuildListAllResponseItemModel.preview())
+        BuildRowView(model: V0BuildResponseItemModel.preview())
             .preferredColorScheme(.light)
             
     }

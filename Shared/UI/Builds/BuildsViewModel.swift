@@ -9,54 +9,34 @@ import Foundation
 import Models
 import Combine
 
-class BuildsViewModel: PagingViewModel {
-    
-    @Published var state: BaseViewModelState<[V0BuildListAllResponseItemModel]> = .idle
-    @Published var pagingState: PagingState = .idle {
-        didSet {
-            if case .last = pagingState {
-                logger.debug("last page")
-            }
-        }
-    }
-    
-    var tokenRefresher: AnyCancellable?
-    
+class BuildsViewModel: PagingViewModel<V0BuildListResponseModel> {
     private let fetchLimit: Int = 10
     private var app: V0AppResponseItemModel?
     
-    init() {
-        refresh()
-    }
-    
-    init(app: V0AppResponseItemModel?) {
+    init(app: V0AppResponseItemModel? = nil) {
         self.app = app
-        refresh()
+        super.init()
     }
     
-    func fetch() -> AnyPublisher<[V0BuildListAllResponseItemModel], ErrorResponse> {
+    override func fetch() -> AnyPublisher<V0BuildListResponseModel, ErrorResponse> {
         if let app = app {
             return BuildsAPI().buildList(appSlug: app.slug, limit: fetchLimit)
-                .map({ $0.data })
                 .eraseToAnyPublisher()
         }
         return BuildsAPI().buildListAll(limit: fetchLimit)
-            .map({ $0.data })
             .eraseToAnyPublisher()
     }
     
-    func fetchNextPage() -> AnyPublisher<[V0BuildListAllResponseItemModel], ErrorResponse> {
+    override func fetchNextPage() -> AnyPublisher<V0BuildListResponseModel, ErrorResponse> {
         if let app = app {
             return BuildsAPI().buildList(appSlug: app.slug, limit: fetchLimit)
-                .map({ $0.data })
                 .eraseToAnyPublisher()
         }
-        return BuildsAPI().buildListAll(next: self.value?.last?.slug, limit: fetchLimit)
-            .map({ $0.data })
+        return BuildsAPI().buildListAll(next: self.items.last?.slug, limit: fetchLimit)
             .eraseToAnyPublisher()
     }
     
-    func merge(value: [V0BuildListAllResponseItemModel]?, newValue: [V0BuildListAllResponseItemModel]) -> ([V0BuildListAllResponseItemModel], Bool) {
+    override func merge(value: [V0BuildResponseItemModel]?, newValue: [V0BuildResponseItemModel]) -> ([V0BuildResponseItemModel], Bool) {
         guard let value = value else {
             return (newValue, true)
         }

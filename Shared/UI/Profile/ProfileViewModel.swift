@@ -9,20 +9,8 @@ import Foundation
 import Models
 import Combine
 
-class ProfileViewModel: BaseViewModel {
-    var tokenRefresher: AnyCancellable?
-    
-    @Published var state: BaseViewModelState<V0UserProfileDataModel> = .idle
-    
-    init() {
-        refresh()
-    }
-    
-    func beforeRefresh() {
-        
-    }
-    
-    func fetch() -> AnyPublisher<V0UserProfileDataModel, ErrorResponse> {
+class ProfileViewModel: BaseViewModel<V0UserProfileDataModel> {
+    override func fetch() -> AnyPublisher<V0UserProfileDataModel, ErrorResponse> {
         UserAPI().userProfile()
             .map({ $0.data })
             .eraseToAnyPublisher()

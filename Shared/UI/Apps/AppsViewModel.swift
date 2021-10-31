@@ -9,31 +9,22 @@ import Foundation
 import Models
 import Combine
 
-final class AppsViewModel: PagingViewModel {
-    @Published var state: BaseViewModelState<[V0AppResponseItemModel]> = .idle
-    @Published var pagingState: PagingState = .idle
-    var tokenRefresher: AnyCancellable?
+final class AppsViewModel: PagingViewModel<V0AppListResponseModel> {
     private let fetchLimit: Int = 10
     
-    init() {
-        refresh()
-    }
-    
-    func fetch() -> AnyPublisher<[V0AppResponseItemModel], ErrorResponse> {
+    override func fetch() -> AnyPublisher<V0AppListResponseModel, ErrorResponse> {
         ApplicationAPI()
             .appList(limit: fetchLimit)
-            .map({ $0.data })
             .eraseToAnyPublisher()
     }
     
-    func fetchNextPage() -> AnyPublisher<[V0AppResponseItemModel], ErrorResponse> {
+    override func fetchNextPage() -> AnyPublisher<V0AppListResponseModel, ErrorResponse> {
         ApplicationAPI()
-            .appList(next: self.value?.last?.slug, limit: fetchLimit)
-            .map({ $0.data })
+            .appList(next: self.items.last?.slug, limit: fetchLimit)
             .eraseToAnyPublisher()
     }
     
-    func merge(value: [V0AppResponseItemModel]?, newValue: [V0AppResponseItemModel]) -> ([V0AppResponseItemModel], Bool) {
+    override func merge(value: [V0AppResponseItemModel]?, newValue: [V0AppResponseItemModel]) -> ([V0AppResponseItemModel], Bool) {
         guard let value = value else {
             return (newValue, true)
         }

@@ -8,47 +8,48 @@
 import Foundation
 import Combine
 
-enum BaseViewModelState<T> {
+public enum BaseViewModelState {
     case idle
-    case loading(AnyCancellable)
-    case value(T)
+    case loading
+    case value
     case error(ErrorResponse)
 }
 
-protocol BaseViewModel: ObservableObject {
-    associatedtype VALUE
-    
-    var state: BaseViewModelState<VALUE> { get set }
-    var tokenRefresher: AnyCancellable? { get set }
-    
-    func fetch() -> AnyPublisher<VALUE, ErrorResponse>
-    
+protocol BaseViewModelProtocol: ObservableObject {
+    associatedtype ValueType
+    var value: ValueType? { get }
+    var state: BaseViewModelState { get }
+    func fetch() -> AnyPublisher<ValueType, ErrorResponse>
     func refresh()
-    
     func beforeRefresh()
 }
 
-extension BaseViewModel {
-    var isLoading: Bool {
-        if case .loading = state {
-            return true
-        }
-        return false
+class BaseViewModel<ValueType>: BaseViewModelProtocol {
+    @Published var value: ValueType?
+    @Published var state: BaseViewModelState = .idle
+    
+    var fetcher: AnyCancellable?
+    var tokenRefresher: AnyCancellable?
+    
+    init() {
+        refresh()
     }
-    var value: VALUE? {
-        if case .value(let value) = state {
-            return value
-        }
-        return nil
+    
+    func fetch() -> AnyPublisher<ValueType, ErrorResponse> {
+        fatalError("Should override")
+    }
+    
+    func beforeRefresh() {
+        
     }
     
     func refresh() {
         beforeRefresh()
-        if case .loading(let fetcher) = state {
-            fetcher.cancel()
-        }
+        fetcher?.cancel()
         
-        let fetcher = fetch()
+        state = .loading
+        
+        fetcher = fetch()
             .sink(receiveCompletion: { [weak self] subscriberCompletion in
                 guard let self = self else { return }
                 if case .failure(let error) = subscriberCompletion {
@@ -56,9 +57,9 @@ extension BaseViewModel {
                 }
             }, receiveValue: { [weak self] value in
                 guard let self = self else { return }
-                self.state = .value(value)
+                self.value = value
+                self.state = .value
             })
-        state = .loading(fetcher)
         
         if tokenRefresher == nil {
             tokenRefresher = TokenManager.shared.$token

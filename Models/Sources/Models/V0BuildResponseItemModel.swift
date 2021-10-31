@@ -10,32 +10,58 @@ import Foundation
 public struct V0BuildResponseItemModel: Codable, Hashable {
 
     public var abortReason: String?
-    public var branch: String?
-    public var buildNumber: Int?
+    public var branch: String
+    public var buildNumber: Int
     public var commitHash: String?
     public var commitMessage: String?
     public var commitViewUrl: String?
     public var creditCost: Int?
-    public var environmentPrepareFinishedAt: String?
-    public var finishedAt: String?
-    public var isOnHold: Bool?
-    public var isProcessed: Bool?
-    public var machineTypeId: String?
-    public var originalBuildParams: [Int]?
+    public var environmentPrepareFinishedAt: Date
+    public var finishedAt: Date?
+    public var isOnHold: Bool
+    public var isProcessed: Bool
+    public var machineTypeId: String
+    public var originalBuildParams: [String: JSONValue]
     public var pullRequestId: Int?
     public var pullRequestTargetBranch: String?
     public var pullRequestViewUrl: String?
-    public var slug: String?
-    public var stackIdentifier: String?
-    public var startedOnWorkerAt: String?
-    public var status: Int?
-    public var statusText: String?
+    public var repository: V0AppResponseItemModel?
+    public var slug: String
+    public var stackIdentifier: String
+    public var startedOnWorkerAt: Date
+    public var status: Status
+    public var statusText: String
     public var tag: String?
-    public var triggeredAt: String?
+    public var triggeredAt: Date
     public var triggeredBy: String?
-    public var triggeredWorkflow: String?
-
-    public init(abortReason: String? = nil, branch: String? = nil, buildNumber: Int? = nil, commitHash: String? = nil, commitMessage: String? = nil, commitViewUrl: String? = nil, creditCost: Int? = nil, environmentPrepareFinishedAt: String? = nil, finishedAt: String? = nil, isOnHold: Bool? = nil, isProcessed: Bool? = nil, machineTypeId: String? = nil, originalBuildParams: [Int]? = nil, pullRequestId: Int? = nil, pullRequestTargetBranch: String? = nil, pullRequestViewUrl: String? = nil, slug: String? = nil, stackIdentifier: String? = nil, startedOnWorkerAt: String? = nil, status: Int? = nil, statusText: String? = nil, tag: String? = nil, triggeredAt: String? = nil, triggeredBy: String? = nil, triggeredWorkflow: String? = nil) {
+    public var triggeredWorkflow: String
+    
+    public init(abortReason: String? = nil,
+                branch: String,
+                buildNumber: Int,
+                commitHash: String? = nil,
+                commitMessage: String? = nil,
+                commitViewUrl: String? = nil,
+                creditCost: Int? = nil,
+                environmentPrepareFinishedAt: Date,
+                finishedAt: Date? = nil,
+                isOnHold: Bool,
+                isProcessed: Bool,
+                machineTypeId: String,
+                originalBuildParams: [String: JSONValue],
+                pullRequestId: Int? = nil,
+                pullRequestTargetBranch: String? = nil,
+                pullRequestViewUrl: String? = nil,
+                repository: V0AppResponseItemModel,
+                slug: String,
+                stackIdentifier: String,
+                startedOnWorkerAt: Date,
+                status: Status,
+                statusText: String,
+                tag: String? = nil,
+                triggeredAt: Date,
+                triggeredBy: String? = nil,
+                triggeredWorkflow: String) {
         self.abortReason = abortReason
         self.branch = branch
         self.buildNumber = buildNumber
@@ -52,6 +78,7 @@ public struct V0BuildResponseItemModel: Codable, Hashable {
         self.pullRequestId = pullRequestId
         self.pullRequestTargetBranch = pullRequestTargetBranch
         self.pullRequestViewUrl = pullRequestViewUrl
+        self.repository = repository
         self.slug = slug
         self.stackIdentifier = stackIdentifier
         self.startedOnWorkerAt = startedOnWorkerAt
@@ -62,63 +89,41 @@ public struct V0BuildResponseItemModel: Codable, Hashable {
         self.triggeredBy = triggeredBy
         self.triggeredWorkflow = triggeredWorkflow
     }
-
-    public enum CodingKeys: String, CodingKey, CaseIterable {
-        case abortReason = "abort_reason"
-        case branch
-        case buildNumber = "build_number"
-        case commitHash = "commit_hash"
-        case commitMessage = "commit_message"
-        case commitViewUrl = "commit_view_url"
-        case creditCost = "credit_cost"
-        case environmentPrepareFinishedAt = "environment_prepare_finished_at"
-        case finishedAt = "finished_at"
-        case isOnHold = "is_on_hold"
-        case isProcessed = "is_processed"
-        case machineTypeId = "machine_type_id"
-        case originalBuildParams = "original_build_params"
-        case pullRequestId = "pull_request_id"
-        case pullRequestTargetBranch = "pull_request_target_branch"
-        case pullRequestViewUrl = "pull_request_view_url"
-        case slug
-        case stackIdentifier = "stack_identifier"
-        case startedOnWorkerAt = "started_on_worker_at"
-        case status
-        case statusText = "status_text"
-        case tag
-        case triggeredAt = "triggered_at"
-        case triggeredBy = "triggered_by"
-        case triggeredWorkflow = "triggered_workflow"
+    
+    @frozen public enum Status: Int, Codable {
+        case running = 0
+        case success = 1
+        case error = 2
+        case aborted = 3
     }
-
-    // Encodable protocol methods
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(abortReason, forKey: .abortReason)
-        try container.encodeIfPresent(branch, forKey: .branch)
-        try container.encodeIfPresent(buildNumber, forKey: .buildNumber)
-        try container.encodeIfPresent(commitHash, forKey: .commitHash)
-        try container.encodeIfPresent(commitMessage, forKey: .commitMessage)
-        try container.encodeIfPresent(commitViewUrl, forKey: .commitViewUrl)
-        try container.encodeIfPresent(creditCost, forKey: .creditCost)
-        try container.encodeIfPresent(environmentPrepareFinishedAt, forKey: .environmentPrepareFinishedAt)
-        try container.encodeIfPresent(finishedAt, forKey: .finishedAt)
-        try container.encodeIfPresent(isOnHold, forKey: .isOnHold)
-        try container.encodeIfPresent(isProcessed, forKey: .isProcessed)
-        try container.encodeIfPresent(machineTypeId, forKey: .machineTypeId)
-        try container.encodeIfPresent(originalBuildParams, forKey: .originalBuildParams)
-        try container.encodeIfPresent(pullRequestId, forKey: .pullRequestId)
-        try container.encodeIfPresent(pullRequestTargetBranch, forKey: .pullRequestTargetBranch)
-        try container.encodeIfPresent(pullRequestViewUrl, forKey: .pullRequestViewUrl)
-        try container.encodeIfPresent(slug, forKey: .slug)
-        try container.encodeIfPresent(stackIdentifier, forKey: .stackIdentifier)
-        try container.encodeIfPresent(startedOnWorkerAt, forKey: .startedOnWorkerAt)
-        try container.encodeIfPresent(status, forKey: .status)
-        try container.encodeIfPresent(statusText, forKey: .statusText)
-        try container.encodeIfPresent(tag, forKey: .tag)
-        try container.encodeIfPresent(triggeredAt, forKey: .triggeredAt)
-        try container.encodeIfPresent(triggeredBy, forKey: .triggeredBy)
-        try container.encodeIfPresent(triggeredWorkflow, forKey: .triggeredWorkflow)
+    
+    public static func preview() -> Self {
+        return V0BuildResponseItemModel(
+            abortReason: nil,
+            branch: "branch",
+            buildNumber: 1,
+            commitHash: nil,
+            commitMessage: nil,
+            commitViewUrl: nil,
+            creditCost: nil,
+            environmentPrepareFinishedAt: Date(),
+            finishedAt: nil,
+            isOnHold: false,
+            isProcessed: true,
+            machineTypeId: "machineTypeId",
+            originalBuildParams: [:],
+            pullRequestId: nil,
+            pullRequestTargetBranch: nil,
+            pullRequestViewUrl: nil,
+            repository: V0AppResponseItemModel.preview(),
+            slug: "slug",
+            stackIdentifier: "stackIdentifier",
+            startedOnWorkerAt: Date(),
+            status: .success,
+            statusText: "success",
+            tag: nil,
+            triggeredAt: Date(),
+            triggeredBy: nil,
+            triggeredWorkflow: "triggeredWorkflow")
     }
 }

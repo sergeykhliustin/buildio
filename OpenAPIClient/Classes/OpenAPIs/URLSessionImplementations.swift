@@ -88,7 +88,8 @@ open class URLSessionRequestBuilder<T>: RequestBuilder<T> {
             originalRequest.setValue(value, forHTTPHeaderField: key)
         }
 
-        let modifiedRequest = try encoding.encode(originalRequest, with: parameters)
+        var modifiedRequest = try encoding.encode(originalRequest, with: parameters)
+        modifiedRequest.timeoutInterval = 30
 
         return modifiedRequest
     }
