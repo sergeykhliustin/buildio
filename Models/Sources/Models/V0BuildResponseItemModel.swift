@@ -15,7 +15,7 @@ public struct V0BuildResponseItemModel: Codable, Hashable {
     public var commitMessage: String?
     public var commitViewUrl: String?
     public var creditCost: Int?
-    public var environmentPrepareFinishedAt: Date
+    public var environmentPrepareFinishedAt: Date?
     public var finishedAt: Date?
     public var isOnHold: Bool
     public var isProcessed: Bool
@@ -27,7 +27,7 @@ public struct V0BuildResponseItemModel: Codable, Hashable {
     public var repository: V0AppResponseItemModel!
     public var slug: String
     public var stackIdentifier: String
-    public var startedOnWorkerAt: Date
+    public var startedOnWorkerAt: Date?
     public var status: Status
     public var statusText: String
     public var tag: String?

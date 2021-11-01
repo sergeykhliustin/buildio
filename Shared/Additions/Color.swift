@@ -22,6 +22,8 @@ extension Color {
     static let b_ButtonPrimaryLight = Color(hex: 0x6c0eb2)
     static let b_BorderLight = Color(red: 0.87, green: 0.87, blue: 0.87)
     static let b_ShadowLight = Color(red: 0, green: 0, blue: 0, opacity: 0.10)
+    static let b_LogsBackground = Color(hex: 0x2c3e50)
+    static let b_LogsDefault = Color(hex: 0xececec)
 }
 
 extension V0BuildResponseItemModel.Status {
