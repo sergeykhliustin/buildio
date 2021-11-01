@@ -141,6 +141,10 @@
 		3FF276182721AB1700701113 /* TokenFigmaScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF276162721AB1700701113 /* TokenFigmaScreenView.swift */; };
 		3FFEB43F272F093B008E5A82 /* PagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFEB43E272F093B008E5A82 /* PagingView.swift */; };
 		3FFEB440272F093B008E5A82 /* PagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFEB43E272F093B008E5A82 /* PagingView.swift */; };
+		3FFEB443272FF341008E5A82 /* LogsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFEB442272FF341008E5A82 /* LogsViewModel.swift */; };
+		3FFEB444272FF341008E5A82 /* LogsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFEB442272FF341008E5A82 /* LogsViewModel.swift */; };
+		3FFEB446272FF8C8008E5A82 /* LogsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFEB445272FF8C7008E5A82 /* LogsScreenView.swift */; };
+		3FFEB447272FF8C8008E5A82 /* LogsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFEB445272FF8C7008E5A82 /* LogsScreenView.swift */; };
 		C65D08E52729649900075618 /* BuildScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65D08E42729649900075618 /* BuildScreenView.swift */; };
 		C65D08E62729649900075618 /* BuildScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65D08E42729649900075618 /* BuildScreenView.swift */; };
 /* End PBXBuildFile section */
@@ -214,6 +218,8 @@
 		3FE7B55327072C1E00A6D8E1 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		3FF276162721AB1700701113 /* TokenFigmaScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenFigmaScreenView.swift; sourceTree = "<group>"; };
 		3FFEB43E272F093B008E5A82 /* PagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingView.swift; sourceTree = "<group>"; };
+		3FFEB442272FF341008E5A82 /* LogsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsViewModel.swift; sourceTree = "<group>"; };
+		3FFEB445272FF8C7008E5A82 /* LogsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsScreenView.swift; sourceTree = "<group>"; };
 		C65D08E42729649900075618 /* BuildScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildScreenView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -325,6 +331,7 @@
 				3F509BEC272B3F0C00C051A0 /* Apps */,
 				3FF276152721AAD400701113 /* Auth */,
 				3F2BE9E0270CA0AD0051C910 /* Accounts */,
+				3FFEB441272FF333008E5A82 /* Logs */,
 				3FD2FCAA2725E5420093BE62 /* Build */,
 				3FCC45BD270791F80001A9C2 /* Builds */,
 				3FCC45B627078DFA0001A9C2 /* Profile */,
@@ -499,6 +506,15 @@
 			path = Auth;
 			sourceTree = "<group>";
 		};
+		3FFEB441272FF333008E5A82 /* Logs */ = {
+			isa = PBXGroup;
+			children = (
+				3FFEB442272FF341008E5A82 /* LogsViewModel.swift */,
+				3FFEB445272FF8C7008E5A82 /* LogsScreenView.swift */,
+			);
+			path = Logs;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -662,6 +678,7 @@
 				3FCC45C8270797E30001A9C2 /* BaseView.swift in Sources */,
 				3F509BF1272B41BF00C051A0 /* AppsScreenView.swift in Sources */,
 				3FE1095827285EDB00B533EE /* AndroidKeystoreFileAPI.swift in Sources */,
+				3FFEB446272FF8C8008E5A82 /* LogsScreenView.swift in Sources */,
 				3FE1095C27285EDB00B533EE /* BuildsAPI.swift in Sources */,
 				3FFEB43F272F093B008E5A82 /* PagingView.swift in Sources */,
 				3FCC45B827078E040001A9C2 /* ProfileScreenView.swift in Sources */,
@@ -681,6 +698,7 @@
 				3F70EBBF2714EAAE00A4841E /* Color+Additions.swift in Sources */,
 				3FE1095A27285EDB00B533EE /* BuildRequestAPI.swift in Sources */,
 				3F00B126272C4EB600C4A2FB /* View+Multiplatform.swift in Sources */,
+				3FFEB443272FF341008E5A82 /* LogsViewModel.swift in Sources */,
 				3FD85D1A27221A3C00E894E8 /* BuildRowView.swift in Sources */,
 				3FD2FCA82724C7520093BE62 /* PagingViewModel.swift in Sources */,
 				3FE1096427285EDB00B533EE /* GenericProjectFileAPI.swift in Sources */,
@@ -733,6 +751,7 @@
 				3FE1095927285EDB00B533EE /* AndroidKeystoreFileAPI.swift in Sources */,
 				3F509BF2272B41BF00C051A0 /* AppsScreenView.swift in Sources */,
 				3FE1095D27285EDB00B533EE /* BuildsAPI.swift in Sources */,
+				3FFEB447272FF8C8008E5A82 /* LogsScreenView.swift in Sources */,
 				3FCC45C62707930E0001A9C2 /* BaseViewModel.swift in Sources */,
 				3FFEB440272F093B008E5A82 /* PagingView.swift in Sources */,
 				3FE109A52728801800B533EE /* Date+Additions.swift in Sources */,
@@ -752,6 +771,7 @@
 				3FD2FCA92724C7520093BE62 /* PagingViewModel.swift in Sources */,
 				3FE1095B27285EDB00B533EE /* BuildRequestAPI.swift in Sources */,
 				3F00B127272C4EB600C4A2FB /* View+Multiplatform.swift in Sources */,
+				3FFEB444272FF341008E5A82 /* LogsViewModel.swift in Sources */,
 				3FD85D152721D53600E894E8 /* ClearButton.swift in Sources */,
 				3FCC45B527078D250001A9C2 /* RootNavigationView.swift in Sources */,
 				3FE1096527285EDB00B533EE /* GenericProjectFileAPI.swift in Sources */,

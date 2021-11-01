@@ -8,7 +8,6 @@
 import Foundation
 
 public struct V0BuildResponseItemModel: Codable, Hashable {
-
     public var abortReason: String?
     public var branch: String
     public var buildNumber: Int
@@ -25,7 +24,7 @@ public struct V0BuildResponseItemModel: Codable, Hashable {
     public var pullRequestId: Int?
     public var pullRequestTargetBranch: String?
     public var pullRequestViewUrl: String?
-    public var repository: V0AppResponseItemModel?
+    public var repository: V0AppResponseItemModel!
     public var slug: String
     public var stackIdentifier: String
     public var startedOnWorkerAt: Date
@@ -125,5 +124,33 @@ public struct V0BuildResponseItemModel: Codable, Hashable {
             triggeredAt: Date(),
             triggeredBy: nil,
             triggeredWorkflow: "triggeredWorkflow")
+    }
+}
+
+extension V0BuildResponseItemModel {
+    public var originalBuildParamsString: String {
+        let params = originalBuildParams
+        return JSONValue.object(params).jsonString
+    }
+}
+
+extension JSONValue {
+    var jsonString: String {
+        switch self {
+        case .string(let string):
+            return string
+        case .int(let int):
+            return "\(int)"
+        case .double(let double):
+            return "\(double)"
+        case .bool(let bool):
+            return "\(bool)"
+        case .null:
+            return "null"
+        case .array(let array):
+            return #"[\#(array.map({ "\($0.jsonString)" }).joined(separator: ", "))]"#
+        case .object(let object):
+            return #"{\#(object.map({ "\($0.key): \($0.value.jsonString)" }).joined(separator: ", "))}"#
+        }
     }
 }

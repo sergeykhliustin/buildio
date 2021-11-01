@@ -20,29 +20,36 @@ class BuildsViewModel: PagingViewModel<V0BuildListResponseModel> {
     
     override func fetch() -> AnyPublisher<V0BuildListResponseModel, ErrorResponse> {
         if let app = app {
+            let enrich = self.enrich
             return BuildsAPI().buildList(appSlug: app.slug, limit: fetchLimit)
+                .map({ enrich($0, app) })
                 .eraseToAnyPublisher()
         }
         return BuildsAPI().buildListAll(limit: fetchLimit)
             .eraseToAnyPublisher()
     }
     
-    override func fetchNextPage() -> AnyPublisher<V0BuildListResponseModel, ErrorResponse> {
+    override func fetchPage(next: String?) -> AnyPublisher<PagingViewModel<V0BuildListResponseModel>.ValueType, ErrorResponse> {
         if let app = app {
-            return BuildsAPI().buildList(appSlug: app.slug, limit: fetchLimit)
+            let enrich = self.enrich
+            return BuildsAPI().buildList(appSlug: app.slug, next: next, limit: fetchLimit)
+                .map({ enrich($0, app) })
                 .eraseToAnyPublisher()
         }
-        return BuildsAPI().buildListAll(next: self.items.last?.slug, limit: fetchLimit)
+        return BuildsAPI().buildListAll(next: next, limit: fetchLimit)
             .eraseToAnyPublisher()
     }
     
-    override func merge(value: [V0BuildResponseItemModel]?, newValue: [V0BuildResponseItemModel]) -> ([V0BuildResponseItemModel], Bool) {
-        guard let value = value else {
-            return (newValue, true)
+    private func enrich(_ model: V0BuildListResponseModel, app: V0AppResponseItemModel) -> V0BuildListResponseModel {
+        var model = model
+        let data = model.data.reduce([V0BuildResponseItemModel]()) { partialResult, item in
+            var partialResult = partialResult
+            var item = item
+            item.repository = app
+            partialResult.append(item)
+            return partialResult
         }
-        
-        let result = value + newValue.dropFirst()
-        
-        return (result, newValue.count != 1)
+        model.data = data
+        return model
     }
 }

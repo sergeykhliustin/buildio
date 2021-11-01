@@ -9,11 +9,23 @@ import SwiftUI
 import Models
 
 struct BuildScreenView: View {
-    
     @State var model: V0BuildResponseItemModel
+    @State private var isLogsActive: Bool = false
+    
     var body: some View {
-        BuildRowView(model: model)
-            .navigationTitle("Build #\(model.buildNumber)")
+        ScrollView {
+            NavigationLink(isActive: $isLogsActive) {
+                LogsScreenView(build: model)
+            } label: {
+                Group {
+                    Image(systemName: "note.text")
+                    Text("Logs")
+                }
+                .padding(8)
+            }
+            BuildRowView(model: model)
+        }
+        .navigationTitle("Build #\(model.buildNumber)")
     }
 }
 

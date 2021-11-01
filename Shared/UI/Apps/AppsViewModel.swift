@@ -18,17 +18,9 @@ final class AppsViewModel: PagingViewModel<V0AppListResponseModel> {
             .eraseToAnyPublisher()
     }
     
-    override func fetchNextPage() -> AnyPublisher<V0AppListResponseModel, ErrorResponse> {
+    override func fetchPage(next: String?) -> AnyPublisher<PagingViewModel<V0AppListResponseModel>.ValueType, ErrorResponse> {
         ApplicationAPI()
-            .appList(next: self.items.last?.slug, limit: fetchLimit)
+            .appList(next: next, limit: fetchLimit)
             .eraseToAnyPublisher()
-    }
-    
-    override func merge(value: [V0AppResponseItemModel]?, newValue: [V0AppResponseItemModel]) -> ([V0AppResponseItemModel], Bool) {
-        guard let value = value else {
-            return (newValue, true)
-        }
-        let result = value + newValue.dropFirst()
-        return (result, newValue.count != 1)
     }
 }

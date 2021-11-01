@@ -310,12 +310,12 @@ public final class BuildsAPI: BaseAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func buildLog(appSlug: String, buildSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<Void, ErrorResponse> {
-        return Future<Void, ErrorResponse> { [weak self] promise in
+    public func buildLog(appSlug: String, buildSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<BuildLogResponseModel, ErrorResponse> {
+        return Future<BuildLogResponseModel, ErrorResponse> { [weak self] promise in
             self?.buildLogWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug).execute(apiResponseQueue) { result in
                 switch result {
-                case .success:
-                    promise(.success(()))
+                case let .success(response):
+                    promise(.success(response.body!))
                 case let .failure(error):
                     promise(.failure(error))
                 }
@@ -338,7 +338,7 @@ public final class BuildsAPI: BaseAPI {
      - parameter buildSlug: (path) Build slug 
      - returns: RequestBuilder<Void> 
      */
-    private func buildLogWithRequestBuilder(appSlug: String, buildSlug: String) -> RequestBuilder<Void> {
+    private func buildLogWithRequestBuilder(appSlug: String, buildSlug: String) -> RequestBuilder<BuildLogResponseModel> {
         var localVariablePath = "/apps/{app-slug}/builds/{build-slug}/log"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -355,7 +355,7 @@ public final class BuildsAPI: BaseAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = OpenAPIClientAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BuildLogResponseModel>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters)
     }

@@ -22,6 +22,7 @@ protocol BaseViewModelProtocol: ObservableObject {
     func fetch() -> AnyPublisher<ValueType, ErrorResponse>
     func refresh()
     func beforeRefresh()
+    func afterRefresh()
 }
 
 class BaseViewModel<ValueType>: BaseViewModelProtocol {
@@ -55,6 +56,7 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
                 if case .failure(let error) = subscriberCompletion {
                     self.state = .error(error)
                 }
+                self.afterRefresh()
             }, receiveValue: { [weak self] value in
                 guard let self = self else { return }
                 self.value = value
@@ -70,5 +72,9 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
                     }
                 }
         }
+    }
+    
+    func afterRefresh() {
+        
     }
 }

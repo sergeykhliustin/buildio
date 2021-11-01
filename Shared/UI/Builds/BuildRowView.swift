@@ -137,13 +137,12 @@ struct BuildRowView: View {
                     }
                 }
                 
-                if let params = model.originalBuildParams {
+                if let params = model.originalBuildParamsString {
                     Group {
-                        let text = "{" + params.map({ ["\"\($0.key)\"", "\"\($0.value)\""].joined(separator: ":") }).joined(separator: ",") + "}"
                         Text("Build parameters:")
                         
                         Group {
-                            Text(text)
+                            Text(params)
                                 .lineLimit(nil)
                                 .font(.subheadline)
                                 .foregroundColor(Color.b_Primary)
@@ -164,6 +163,7 @@ struct BuildRowView: View {
         .cornerRadius(8)
         .padding([.leading, .trailing], 16)
         .font(.body)
+        .multilineTextAlignment(.leading)
         .foregroundColor(Color(red: 0.67, green: 0.67, blue: 0.67))
         .background(Color.white)
     }
