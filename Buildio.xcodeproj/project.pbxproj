@@ -145,6 +145,10 @@
 		3FFEB444272FF341008E5A82 /* LogsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFEB442272FF341008E5A82 /* LogsViewModel.swift */; };
 		3FFEB446272FF8C8008E5A82 /* LogsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFEB445272FF8C7008E5A82 /* LogsScreenView.swift */; };
 		3FFEB447272FF8C8008E5A82 /* LogsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFEB445272FF8C7008E5A82 /* LogsScreenView.swift */; };
+		3FFEB44D27304463008E5A82 /* Rainbow in Frameworks */ = {isa = PBXBuildFile; productRef = 3FFEB44C27304463008E5A82 /* Rainbow */; };
+		3FFEB44F27304470008E5A82 /* Rainbow in Frameworks */ = {isa = PBXBuildFile; productRef = 3FFEB44E27304470008E5A82 /* Rainbow */; };
+		3FFEB451273048D4008E5A82 /* Color+Rainbow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFEB450273048D4008E5A82 /* Color+Rainbow.swift */; };
+		3FFEB452273048D4008E5A82 /* Color+Rainbow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFEB450273048D4008E5A82 /* Color+Rainbow.swift */; };
 		C65D08E52729649900075618 /* BuildScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65D08E42729649900075618 /* BuildScreenView.swift */; };
 		C65D08E62729649900075618 /* BuildScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65D08E42729649900075618 /* BuildScreenView.swift */; };
 /* End PBXBuildFile section */
@@ -220,6 +224,8 @@
 		3FFEB43E272F093B008E5A82 /* PagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingView.swift; sourceTree = "<group>"; };
 		3FFEB442272FF341008E5A82 /* LogsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsViewModel.swift; sourceTree = "<group>"; };
 		3FFEB445272FF8C7008E5A82 /* LogsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsScreenView.swift; sourceTree = "<group>"; };
+		3FFEB450273048D4008E5A82 /* Color+Rainbow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Rainbow.swift"; sourceTree = "<group>"; };
+		3FFEB45327305461008E5A82 /* UIColor+Rainbow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Rainbow.swift"; sourceTree = "<group>"; };
 		C65D08E42729649900075618 /* BuildScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildScreenView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -229,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F030286272C0A08005B5F2A /* Models in Frameworks */,
+				3FFEB44D27304463008E5A82 /* Rainbow in Frameworks */,
 				3F19ABA2272C055D0070DFE3 /* SwiftyBeaver in Frameworks */,
 				3F03028D272C0A68005B5F2A /* KeychainAccess in Frameworks */,
 			);
@@ -239,6 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F030288272C0A0D005B5F2A /* Models in Frameworks */,
+				3FFEB44F27304470008E5A82 /* Rainbow in Frameworks */,
 				3F03028A272C0A10005B5F2A /* SwiftyBeaver in Frameworks */,
 				3F03028F272C0A82005B5F2A /* KeychainAccess in Frameworks */,
 			);
@@ -304,8 +312,10 @@
 		3F70EBBD2714EA9C00A4841E /* Additions */ = {
 			isa = PBXGroup;
 			children = (
+				3FFEB45327305461008E5A82 /* UIColor+Rainbow.swift */,
 				3F70EBBE2714EAAE00A4841E /* Color+Additions.swift */,
 				3FE109A32728801800B533EE /* Date+Additions.swift */,
+				3FFEB450273048D4008E5A82 /* Color+Rainbow.swift */,
 			);
 			path = Additions;
 			sourceTree = "<group>";
@@ -537,6 +547,7 @@
 				3F19ABA1272C055D0070DFE3 /* SwiftyBeaver */,
 				3F030285272C0A08005B5F2A /* Models */,
 				3F03028C272C0A68005B5F2A /* KeychainAccess */,
+				3FFEB44C27304463008E5A82 /* Rainbow */,
 			);
 			productName = "Buildio (iOS)";
 			productReference = 3FE7B54B27072C1E00A6D8E1 /* Buildio.app */;
@@ -560,6 +571,7 @@
 				3F030287272C0A0D005B5F2A /* Models */,
 				3F030289272C0A10005B5F2A /* SwiftyBeaver */,
 				3F03028E272C0A82005B5F2A /* KeychainAccess */,
+				3FFEB44E27304470008E5A82 /* Rainbow */,
 			);
 			productName = "Buildio (macOS)";
 			productReference = 3FE7B55127072C1E00A6D8E1 /* Buildio.app */;
@@ -595,6 +607,7 @@
 			packageReferences = (
 				3F19ABA0272C055D0070DFE3 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */,
 				3F03028B272C0A68005B5F2A /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+				3FFEB44B27304463008E5A82 /* XCRemoteSwiftPackageReference "Rainbow" */,
 			);
 			productRefGroup = 3FE7B54C27072C1E00A6D8E1 /* Products */;
 			projectDirPath = "";
@@ -677,6 +690,7 @@
 				3FE1095027285EDB00B533EE /* AvatarCandidateAPI.swift in Sources */,
 				3FCC45C8270797E30001A9C2 /* BaseView.swift in Sources */,
 				3F509BF1272B41BF00C051A0 /* AppsScreenView.swift in Sources */,
+				3FFEB451273048D4008E5A82 /* Color+Rainbow.swift in Sources */,
 				3FE1095827285EDB00B533EE /* AndroidKeystoreFileAPI.swift in Sources */,
 				3FFEB446272FF8C8008E5A82 /* LogsScreenView.swift in Sources */,
 				3FE1095C27285EDB00B533EE /* BuildsAPI.swift in Sources */,
@@ -750,6 +764,7 @@
 				3FE1095127285EDB00B533EE /* AvatarCandidateAPI.swift in Sources */,
 				3FE1095927285EDB00B533EE /* AndroidKeystoreFileAPI.swift in Sources */,
 				3F509BF2272B41BF00C051A0 /* AppsScreenView.swift in Sources */,
+				3FFEB452273048D4008E5A82 /* Color+Rainbow.swift in Sources */,
 				3FE1095D27285EDB00B533EE /* BuildsAPI.swift in Sources */,
 				3FFEB447272FF8C8008E5A82 /* LogsScreenView.swift in Sources */,
 				3FCC45C62707930E0001A9C2 /* BaseViewModel.swift in Sources */,
@@ -1092,6 +1107,14 @@
 				minimumVersion = 1.9.0;
 			};
 		};
+		3FFEB44B27304463008E5A82 /* XCRemoteSwiftPackageReference "Rainbow" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Rainbow";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1130,6 +1153,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3F19ABA0272C055D0070DFE3 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */;
 			productName = SwiftyBeaver;
+		};
+		3FFEB44C27304463008E5A82 /* Rainbow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3FFEB44B27304463008E5A82 /* XCRemoteSwiftPackageReference "Rainbow" */;
+			productName = Rainbow;
+		};
+		3FFEB44E27304470008E5A82 /* Rainbow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3FFEB44B27304463008E5A82 /* XCRemoteSwiftPackageReference "Rainbow" */;
+			productName = Rainbow;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
