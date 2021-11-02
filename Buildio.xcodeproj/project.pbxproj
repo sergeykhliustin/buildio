@@ -71,8 +71,6 @@
 		3FD85D152721D53600E894E8 /* ClearButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD85D132721D53600E894E8 /* ClearButton.swift */; };
 		3FD85D172721D84F00E894E8 /* PasteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD85D162721D84F00E894E8 /* PasteButton.swift */; };
 		3FD85D182721D84F00E894E8 /* PasteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD85D162721D84F00E894E8 /* PasteButton.swift */; };
-		3FD85D1A27221A3C00E894E8 /* BuildRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD85D1927221A3C00E894E8 /* BuildRowView.swift */; };
-		3FD85D1B27221A3C00E894E8 /* BuildRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD85D1927221A3C00E894E8 /* BuildRowView.swift */; };
 		3FD8FDA927305E6F0060BDF4 /* LogsTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8FDA827305E6F0060BDF4 /* LogsTextView.swift */; };
 		3FD8FDAA27305E6F0060BDF4 /* LogsTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8FDA827305E6F0060BDF4 /* LogsTextView.swift */; };
 		3FD8FDAD273089000060BDF4 /* NewBuildScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8FDAC273089000060BDF4 /* NewBuildScreenView.swift */; };
@@ -745,7 +743,6 @@
 				3FE1095A27285EDB00B533EE /* BuildRequestAPI.swift in Sources */,
 				3F00B126272C4EB600C4A2FB /* View+Multiplatform.swift in Sources */,
 				3FFEB443272FF341008E5A82 /* LogsViewModel.swift in Sources */,
-				3FD85D1A27221A3C00E894E8 /* BuildRowView.swift in Sources */,
 				3FD2FCA82724C7520093BE62 /* PagingViewModel.swift in Sources */,
 				3FE1096427285EDB00B533EE /* GenericProjectFileAPI.swift in Sources */,
 				3FD85D142721D53600E894E8 /* ClearButton.swift in Sources */,
@@ -816,7 +813,6 @@
 				3FE1096927285EDB00B533EE /* ApplicationAPI.swift in Sources */,
 				3FE1097327285EDB00B533EE /* CodableHelper.swift in Sources */,
 				3F70EBC02714EAAE00A4841E /* Color+Additions.swift in Sources */,
-				3FD85D1B27221A3C00E894E8 /* BuildRowView.swift in Sources */,
 				3FD8FDAA27305E6F0060BDF4 /* LogsTextView.swift in Sources */,
 				3FD2FCA92724C7520093BE62 /* PagingViewModel.swift in Sources */,
 				3FE1095B27285EDB00B533EE /* BuildRequestAPI.swift in Sources */,

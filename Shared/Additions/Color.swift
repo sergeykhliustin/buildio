@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Models
 
 extension Color {
     static let b_BuildFailed = Color(hex: 0xff2158)
