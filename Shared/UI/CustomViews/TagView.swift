@@ -11,9 +11,7 @@ struct TagView: View {
     var spacing: CGFloat = 4
     let content: () -> [AnyView]
 
-    @State private var totalHeight
-          = CGFloat.zero       // << variant for ScrollView/List
-    //    = CGFloat.infinity   // << variant for VStack
+    @State private var totalHeight = CGFloat.zero
 
     var body: some View {
         VStack {
@@ -21,11 +19,10 @@ struct TagView: View {
                 self.generateContent(in: geometry)
             }
         }
-        .frame(height: totalHeight)// << variant for ScrollView/List
-        //.frame(maxHeight: totalHeight) // << variant for VStack
+        .frame(height: totalHeight)
     }
 
-    private func generateContent(in g: GeometryProxy) -> some View {
+    private func generateContent(in geometry: GeometryProxy) -> some View {
         var width = CGFloat.zero
         var height = CGFloat.zero
         let content = content()
@@ -34,20 +31,20 @@ struct TagView: View {
             ForEach((0..<content.count)) { index in
                 content[index]
                     .padding([.horizontal], spacing)
-                    .alignmentGuide(.leading, computeValue: { d in
-                        if abs(width - d.width) > g.size.width {
+                    .alignmentGuide(.leading, computeValue: { dimensions in
+                        if abs(width - dimensions.width) > geometry.size.width {
                             width = 0
-                            height -= d.height
+                            height -= dimensions.height
                         }
                         let result = width
                         if index == content.count - 1 {
-                            width = 0 //last item
+                            width = 0
                         } else {
-                            width -= d.width
+                            width -= dimensions.width
                         }
                         return result
                     })
-                    .alignmentGuide(.top, computeValue: {d in
+                    .alignmentGuide(.top, computeValue: { dimensions in
                         let result = height
                         if index == content.count - 1 {
                             height = 0 // last item

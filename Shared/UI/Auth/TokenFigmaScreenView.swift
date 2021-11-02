@@ -19,12 +19,6 @@ struct TokenFigmaScreenView: View {
     
     var body: some View {
         VStack {
-//            Rectangle()
-//                .fill(Color.b_Primary)
-////                .padding(.bottom, 20)
-//                .frame(maxWidth: .infinity, idealHeight: 64, maxHeight: 64, alignment: .top)
-////                .ignoresSafeArea()
-            
             VStack(alignment: .leading, spacing: 25.53) {
                 
                 Text("Log in to Bitrise")
@@ -36,12 +30,11 @@ struct TokenFigmaScreenView: View {
                     .frame(width: 137, alignment: .topLeading)
                     .lineSpacing(24)
                 
-                
                 BTextField("*******************", text: $tokenState)
                     .modifier(ClearButton(text: $tokenState))
                     .modifier(PasteButton(text: $tokenState))
             }
-//            .padding(.horizontal, 16)
+            .padding(.horizontal, 16)
             .background(Color.white)
             
             VStack(alignment: .center, spacing: 25) {

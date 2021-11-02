@@ -22,7 +22,6 @@ extension SwiftUI.Color {
             return Color(red: Int(rGB.0), green: Int(rGB.1), blue: Int(rGB.2))
         case .bit8(let uInt8):
             logger.warning("Found bit8 color for Rainbow")
-            break
         }
         return nil
     }
@@ -37,7 +36,7 @@ extension SwiftUI.Color {
             .magenta: .init(hex: 0xb200b2),
             .cyan: .init(hex: 0x00a6b2),
             .white: .white,
-            .`default`: .init(hex: 0xb200b2), //the same like magenta
+            .`default`: .init(hex: 0xb200b2), // the same like magenta
             .lightBlack: .gray,
             .lightRed: .init(hex: 0xFF7F7F),
             .lightGreen: .init(hex: 0xAED9B2),

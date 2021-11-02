@@ -36,7 +36,7 @@ extension UIColor {
             .magenta: .init(hex: 0xFF00FF),
             .cyan: .init(hex: 0x00FFFF),
             .white: .white,
-            .`default`: .white, //TODO: check default color
+            .`default`: .white, // TODO: check default color
             .lightBlack: .gray,
             .lightRed: .init(hex: 0xFF7F7F),
             .lightGreen: .init(hex: 0xAED9B2),
