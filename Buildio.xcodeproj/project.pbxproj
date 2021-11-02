@@ -77,6 +77,8 @@
 		3FD8FDAA27305E6F0060BDF4 /* LogsTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8FDA827305E6F0060BDF4 /* LogsTextView.swift */; };
 		3FD8FDAD273089000060BDF4 /* NewBuildScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8FDAC273089000060BDF4 /* NewBuildScreenView.swift */; };
 		3FD8FDAE273089000060BDF4 /* NewBuildScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8FDAC273089000060BDF4 /* NewBuildScreenView.swift */; };
+		3FD8FDB72731C48D0060BDF4 /* BuildRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8FDB62731C48D0060BDF4 /* BuildRowView.swift */; };
+		3FD8FDB82731C48D0060BDF4 /* BuildRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8FDB62731C48D0060BDF4 /* BuildRowView.swift */; };
 		3FE10799272839A900B533EE /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE10798272839A900B533EE /* TagView.swift */; };
 		3FE1079A272839A900B533EE /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE10798272839A900B533EE /* TagView.swift */; };
 		3FE1094A27285EDB00B533EE /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE1092C27285EDB00B533EE /* APIHelper.swift */; };
@@ -191,6 +193,7 @@
 		3FD85D1927221A3C00E894E8 /* BuildRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildRowView.swift; sourceTree = "<group>"; };
 		3FD8FDA827305E6F0060BDF4 /* LogsTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsTextView.swift; sourceTree = "<group>"; };
 		3FD8FDAC273089000060BDF4 /* NewBuildScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBuildScreenView.swift; sourceTree = "<group>"; };
+		3FD8FDB62731C48D0060BDF4 /* BuildRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildRowView.swift; sourceTree = "<group>"; };
 		3FE10798272839A900B533EE /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		3FE1092C27285EDB00B533EE /* APIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
 		3FE1092D27285EDB00B533EE /* URLSessionImplementations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionImplementations.swift; sourceTree = "<group>"; };
@@ -397,6 +400,7 @@
 		3FCC45BD270791F80001A9C2 /* Builds */ = {
 			isa = PBXGroup;
 			children = (
+				3FD8FDB62731C48D0060BDF4 /* BuildRowView.swift */,
 				3FCC45BE2707923F0001A9C2 /* BuildsScreenView.swift */,
 				3FCC45C12707924D0001A9C2 /* BuildsViewModel.swift */,
 			);
@@ -417,6 +421,14 @@
 				3FD8FDAC273089000060BDF4 /* NewBuildScreenView.swift */,
 			);
 			path = NewBuild;
+			sourceTree = "<group>";
+		};
+		3FD8FDB52731C44F0060BDF4 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				3FD85D1927221A3C00E894E8 /* BuildRowView.swift */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		3FE1092927285EDB00B533EE /* OpenAPIClient */ = {
@@ -490,6 +502,7 @@
 				3FE7B55227072C1E00A6D8E1 /* macOS */,
 				3FE7B54C27072C1E00A6D8E1 /* Products */,
 				3F030284272C0A08005B5F2A /* Frameworks */,
+				3FD8FDB52731C44F0060BDF4 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -720,6 +733,7 @@
 				3FE1095627285EDB00B533EE /* ActivityAPI.swift in Sources */,
 				3FE1097027285EDB00B533EE /* OutgoingWebhookAPI.swift in Sources */,
 				3FE1098027285EDB00B533EE /* SynchronizedDictionary.swift in Sources */,
+				3FD8FDB72731C48D0060BDF4 /* BuildRowView.swift in Sources */,
 				3FCC45A227075D170001A9C2 /* Coordinator.swift in Sources */,
 				3FD85D0E2721CAC200E894E8 /* SubmitButtonStyle.swift in Sources */,
 				3FE1096827285EDB00B533EE /* ApplicationAPI.swift in Sources */,
@@ -796,6 +810,7 @@
 				3FE1097127285EDB00B533EE /* OutgoingWebhookAPI.swift in Sources */,
 				3FE1098127285EDB00B533EE /* SynchronizedDictionary.swift in Sources */,
 				3FD85D0F2721CAC200E894E8 /* SubmitButtonStyle.swift in Sources */,
+				3FD8FDB82731C48D0060BDF4 /* BuildRowView.swift in Sources */,
 				3FCC45A327075D170001A9C2 /* Coordinator.swift in Sources */,
 				3F70EBBC2714E43600A4841E /* BTextField.swift in Sources */,
 				3FE1096927285EDB00B533EE /* ApplicationAPI.swift in Sources */,
