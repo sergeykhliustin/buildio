@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol PagingResponseModel {
-    associatedtype ItemType
+    associatedtype ItemType: Identifiable
     var data: [ItemType] { get set }
     var paging: V0PagingResponseModel { get set }
 }

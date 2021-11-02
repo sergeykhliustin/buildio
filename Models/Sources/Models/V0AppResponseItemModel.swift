@@ -7,7 +7,10 @@
 
 import Foundation
 
-public struct V0AppResponseItemModel: Codable, Hashable {
+public struct V0AppResponseItemModel: Codable, Hashable, Identifiable {
+    public var id: String {
+        slug
+    }
     public var avatarUrl: String?
     public var isDisabled: Bool
     public var isPublic: Bool

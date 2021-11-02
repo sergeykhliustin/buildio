@@ -75,6 +75,8 @@
 		3FD85D1B27221A3C00E894E8 /* BuildRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD85D1927221A3C00E894E8 /* BuildRowView.swift */; };
 		3FD8FDA927305E6F0060BDF4 /* LogsTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8FDA827305E6F0060BDF4 /* LogsTextView.swift */; };
 		3FD8FDAA27305E6F0060BDF4 /* LogsTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8FDA827305E6F0060BDF4 /* LogsTextView.swift */; };
+		3FD8FDAD273089000060BDF4 /* NewBuildScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8FDAC273089000060BDF4 /* NewBuildScreenView.swift */; };
+		3FD8FDAE273089000060BDF4 /* NewBuildScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8FDAC273089000060BDF4 /* NewBuildScreenView.swift */; };
 		3FE10799272839A900B533EE /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE10798272839A900B533EE /* TagView.swift */; };
 		3FE1079A272839A900B533EE /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE10798272839A900B533EE /* TagView.swift */; };
 		3FE1094A27285EDB00B533EE /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE1092C27285EDB00B533EE /* APIHelper.swift */; };
@@ -188,6 +190,7 @@
 		3FD85D162721D84F00E894E8 /* PasteButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasteButton.swift; sourceTree = "<group>"; };
 		3FD85D1927221A3C00E894E8 /* BuildRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildRowView.swift; sourceTree = "<group>"; };
 		3FD8FDA827305E6F0060BDF4 /* LogsTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsTextView.swift; sourceTree = "<group>"; };
+		3FD8FDAC273089000060BDF4 /* NewBuildScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBuildScreenView.swift; sourceTree = "<group>"; };
 		3FE10798272839A900B533EE /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		3FE1092C27285EDB00B533EE /* APIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
 		3FE1092D27285EDB00B533EE /* URLSessionImplementations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionImplementations.swift; sourceTree = "<group>"; };
@@ -346,6 +349,7 @@
 				3FF276152721AAD400701113 /* Auth */,
 				3F2BE9E0270CA0AD0051C910 /* Accounts */,
 				3FFEB441272FF333008E5A82 /* Logs */,
+				3FD8FDAB273088EF0060BDF4 /* NewBuild */,
 				3FD2FCAA2725E5420093BE62 /* Build */,
 				3FCC45BD270791F80001A9C2 /* Builds */,
 				3FCC45B627078DFA0001A9C2 /* Profile */,
@@ -405,6 +409,14 @@
 				C65D08E42729649900075618 /* BuildScreenView.swift */,
 			);
 			path = Build;
+			sourceTree = "<group>";
+		};
+		3FD8FDAB273088EF0060BDF4 /* NewBuild */ = {
+			isa = PBXGroup;
+			children = (
+				3FD8FDAC273089000060BDF4 /* NewBuildScreenView.swift */,
+			);
+			path = NewBuild;
 			sourceTree = "<group>";
 		};
 		3FE1092927285EDB00B533EE /* OpenAPIClient */ = {
@@ -695,6 +707,7 @@
 				3FCC45C8270797E30001A9C2 /* BaseView.swift in Sources */,
 				3F509BF1272B41BF00C051A0 /* AppsScreenView.swift in Sources */,
 				3FFEB451273048D4008E5A82 /* Color+Rainbow.swift in Sources */,
+				3FD8FDAD273089000060BDF4 /* NewBuildScreenView.swift in Sources */,
 				3FE1095827285EDB00B533EE /* AndroidKeystoreFileAPI.swift in Sources */,
 				3FFEB446272FF8C8008E5A82 /* LogsScreenView.swift in Sources */,
 				3FE1095C27285EDB00B533EE /* BuildsAPI.swift in Sources */,
@@ -770,6 +783,7 @@
 				3FE1095927285EDB00B533EE /* AndroidKeystoreFileAPI.swift in Sources */,
 				3F509BF2272B41BF00C051A0 /* AppsScreenView.swift in Sources */,
 				3FFEB452273048D4008E5A82 /* Color+Rainbow.swift in Sources */,
+				3FD8FDAE273089000060BDF4 /* NewBuildScreenView.swift in Sources */,
 				3FE1095D27285EDB00B533EE /* BuildsAPI.swift in Sources */,
 				3FFEB447272FF8C8008E5A82 /* LogsScreenView.swift in Sources */,
 				3FCC45C62707930E0001A9C2 /* BaseViewModel.swift in Sources */,

@@ -31,13 +31,13 @@ extension SwiftUI.Color {
         let namedColorMap: [NamedColor: SwiftUI.Color] = [
             .black: .black,
             .red: .red,
-            .green: .green,
-            .yellow: .yellow,
-            .blue: .blue,
-            .magenta: .init(hex: 0xFF00FF),
-            .cyan: .init(hex: 0x00FFFF),
+            .green: .init(hex: 0x2ecc71),
+            .yellow: .init(hex: 0x999900),
+            .blue: .init(hex: 0x3498db),
+            .magenta: .init(hex: 0xb200b2),
+            .cyan: .init(hex: 0x00a6b2),
             .white: .white,
-            .`default`: .white, //TODO: check default color
+            .`default`: .init(hex: 0xb200b2), //the same like magenta
             .lightBlack: .gray,
             .lightRed: .init(hex: 0xFF7F7F),
             .lightGreen: .init(hex: 0xAED9B2),

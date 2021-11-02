@@ -19,8 +19,8 @@ struct LogsScreenView: BaseView {
     
     var body: some View {
         VStack(alignment: .leading) {
-            if let value = model.value {
-                LogsTextView(logChunks: value.logChunks.map({ $0.chunk }))
+            if let value = model.attributedLogs {
+                LogsTextView(attributed: value)
                     .padding(.horizontal, 8)
             } else {
                 if case .loading = model.state {

@@ -48,6 +48,9 @@ class PagingViewModel<VALUE: PagingResponseModel>: BaseViewModel<VALUE>, PagingV
     override func afterRefresh() {
         super.afterRefresh()
         items = value?.data ?? []
+        if value?.paging.next == nil {
+            pagingState = .last
+        }
     }
     
     func nextPage() {

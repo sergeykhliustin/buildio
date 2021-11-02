@@ -10,10 +10,14 @@ import SwiftUI
 
 protocol PagingView: BaseView where ModelType: PagingViewModelProtocol, ModelType.ValueType.ItemType: Hashable {
     associatedtype ValueBody: View
+    associatedtype ToolbarBody: View
     var selected: ModelType.ValueType.ItemType? { get }
     
     @ViewBuilder
     func buildItemView(_ item: ModelType.ValueType.ItemType) -> ValueBody
+    
+    @ViewBuilder
+    func additionalToolbarItems() -> ToolbarBody
 }
 
 extension PagingView {
@@ -28,7 +32,7 @@ extension PagingView {
                     buildErrorView(error)
                 }
                 LazyVStack(spacing: 16) {
-                    ForEach(model.items, id: \.self) { item in
+                    ForEach(model.items) { item in
                         buildItemView(item)
                     }
                 }
@@ -41,12 +45,15 @@ extension PagingView {
             }
         }
         .toolbar {
-            Button {
-                model.refresh()
-            } label: {
-                Image(systemName: "arrow.counterclockwise")
+            HStack(alignment: .center) {
+                Button {
+                    model.refresh()
+                } label: {
+                    Image(systemName: "arrow.counterclockwise")
+                }
+                .frame(width: 44, height: 44, alignment: .center)
+                additionalToolbarItems()
             }
-            .frame(width: 44, height: 44, alignment: .center)
         }
     }
     
@@ -54,5 +61,10 @@ extension PagingView {
     func buildErrorView(_ error: ErrorResponse) -> some View {
         Text(error.rawError.localizedDescription)
             .padding(16)
+    }
+    
+    @ViewBuilder
+    func additionalToolbarItems() -> some View {
+        
     }
 }

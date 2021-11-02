@@ -27,6 +27,11 @@ struct AppsScreenView: View, PagingView {
                 .multiplatformButtonStylePlain()
         })
     }
+    
+    @ViewBuilder
+    func additionalToolbarItems() -> some View {
+        
+    }
 }
 
 struct AppsScreenView_Previews: PreviewProvider {

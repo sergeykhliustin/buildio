@@ -7,7 +7,11 @@
 
 import Foundation
 
-public struct V0BuildResponseItemModel: Codable, Hashable {
+public struct V0BuildResponseItemModel: Codable, Hashable, Identifiable {
+    public var id: String {
+        return slug
+    }
+    
     public var abortReason: String?
     public var branch: String
     public var buildNumber: Int

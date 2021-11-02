@@ -11,6 +11,7 @@ import Models
 struct BuildsScreenView: View, PagingView {
     @StateObject var model: BuildsViewModel
     @State var selected: V0BuildResponseItemModel?
+    @State private var showNewBuild: Bool = false
     
     init(app: V0AppResponseItemModel? = nil, model: BuildsViewModel? = nil) {
         if let model = model {
@@ -35,6 +36,22 @@ struct BuildsScreenView: View, PagingView {
             }
             .multiplatformButtonStylePlain()
         })
+    }
+    
+    @ViewBuilder
+    func additionalToolbarItems() -> some View {
+        Button {
+            showNewBuild.toggle()
+        } label: {
+            Image(systemName: "plus.app")
+        }
+        .frame(width: 44, height: 44, alignment: .center)
+        .sheet(isPresented: $showNewBuild) {
+            model.refresh()
+        } content: {
+            NewBuildScreenView()
+        }
+
     }
 }
 
