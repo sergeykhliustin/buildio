@@ -2,7 +2,7 @@
 //  NavigationLink+Multiplatform.swift
 //  Buildio
 //
-//  Created by severehed on 29.10.2021.
+//  Created by Sergey Khliustin on 29.10.2021.
 //
 
 import Foundation

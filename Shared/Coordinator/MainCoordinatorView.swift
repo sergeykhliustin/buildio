@@ -2,7 +2,7 @@
 //  MainCoordinatorView.swift
 //  Buildio
 //
-//  Created by severehed on 01.10.2021.
+//  Created by Sergey Khliustin on 01.10.2021.
 //
 
 import SwiftUI

@@ -2,7 +2,7 @@
 //  TokenFigmaScreenView.swift
 //  Buildio
 //
-//  Created by severehed on 21.10.2021.
+//  Created by Sergey Khliustin on 21.10.2021.
 //
 
 import SwiftUI

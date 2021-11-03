@@ -2,7 +2,7 @@
 //  AccountsScreenView.swift
 //  Buildio
 //
-//  Created by severehed on 05.10.2021.
+//  Created by Sergey Khliustin on 05.10.2021.
 //
 
 import SwiftUI

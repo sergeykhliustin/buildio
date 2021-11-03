@@ -2,20 +2,26 @@
 //  BuildScreenView.swift
 //  Buildio
 //
-//  Created by severehed on 24.10.2021.
+//  Created by Sergey Khliustin on 24.10.2021.
 //
 
 import SwiftUI
 import Models
 
-struct BuildScreenView: View {
-    @State var model: V0BuildResponseItemModel
+struct BuildScreenView: BaseView {
+    @StateObject var model: BuildViewModel
     @State private var isLogsActive: Bool = false
+    
+    init(build: V0BuildResponseItemModel) {
+        self._model = StateObject(wrappedValue: BuildViewModel(build: build))
+    }
     
     var body: some View {
         ScrollView {
             NavigationLink(isActive: $isLogsActive) {
-                LogsScreenView(build: model)
+                if let value = model.value {
+                    LogsScreenView(build: value)
+                }
             } label: {
                 Group {
                     Image(systemName: "note.text")
@@ -23,14 +29,25 @@ struct BuildScreenView: View {
                 }
                 .padding(8)
             }
-            BuildRowView(model: model)
+            if let value = Binding($model.value) {
+                BuildRowView(model: value)
+            }
+            
+//            if let value = model.value {
+//                BuildRowView(model: value)
+//            }
         }
-        .navigationTitle("Build #\(model.buildNumber)")
+        .navigationTitle("Build #\(model.value!.buildNumber)")
+        .toolbar {
+            if case .loading = model.state {
+                ProgressView()
+            }
+        }
     }
 }
 
 struct BuildScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        BuildScreenView(model: V0BuildResponseItemModel.preview())
+        BuildScreenView(build: V0BuildResponseItemModel.preview())
     }
 }

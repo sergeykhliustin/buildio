@@ -2,7 +2,7 @@
 //  AppsViewModel.swift
 //  Buildio
 //
-//  Created by severehed on 28.10.2021.
+//  Created by Sergey Khliustin on 28.10.2021.
 //
 
 import Foundation

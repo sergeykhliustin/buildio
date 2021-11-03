@@ -2,7 +2,7 @@
 //  BaseViewModel.swift
 //  Buildio
 //
-//  Created by severehed on 01.10.2021.
+//  Created by Sergey Khliustin on 01.10.2021.
 //
 
 import Foundation
@@ -32,8 +32,14 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
     var fetcher: AnyCancellable?
     var tokenRefresher: AnyCancellable?
     
+    class var shouldRefreshOnInit: Bool {
+        return true
+    }
+    
     init() {
-        refresh()
+        if Self.shouldRefreshOnInit {
+            refresh()
+        }
     }
     
     func fetch() -> AnyPublisher<ValueType, ErrorResponse> {

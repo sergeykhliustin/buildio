@@ -2,7 +2,7 @@
 //  BuildsScreenView.swift
 //  Buildio
 //
-//  Created by severehed on 01.10.2021.
+//  Created by Sergey Khliustin on 01.10.2021.
 //
 
 import SwiftUI
@@ -26,9 +26,9 @@ struct BuildsScreenView: View, PagingView {
     
     func buildItemView(_ item: V0BuildResponseItemModel) -> some View {
         NavigationLink(tag: item, selection: $selected, destination: {
-            BuildScreenView(model: item)
+            BuildScreenView(build: item)
         }, label: {
-            BuildRowView(model: item).onAppear {
+            BuildRowView(model: .constant(item)).onAppear {
                 if item == model.items.last {
                     logger.warning("load more item")
                     model.nextPage()

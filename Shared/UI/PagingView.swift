@@ -2,7 +2,7 @@
 //  PagingView.swift
 //  Buildio
 //
-//  Created by severehed on 31.10.2021.
+//  Created by Sergey Khliustin on 31.10.2021.
 //
 
 import Foundation
@@ -25,10 +25,7 @@ extension PagingView {
     var body: some View {
         VStack {
             ScrollView {
-                if case .loading = model.state {
-                    ProgressView()
-                        .padding(16)
-                } else if case .error(let error) = model.state {
+                if case .error(let error) = model.state {
                     buildErrorView(error)
                 }
                 LazyVStack(spacing: 16) {
@@ -45,7 +42,10 @@ extension PagingView {
             }
         }
         .toolbar {
-            HStack(alignment: .center) {
+            HStack(alignment: .center, spacing: 0) {
+                if case .loading = model.state {
+                    ProgressView().frame(width: 44, height: 44, alignment: .center)
+                }
                 Button {
                     model.refresh()
                 } label: {

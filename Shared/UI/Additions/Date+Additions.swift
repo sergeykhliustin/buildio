@@ -2,7 +2,7 @@
 //  Date+Additions.swift
 //  Buildio
 //
-//  Created by severehed on 26.10.2021.
+//  Created by Sergey Khliustin on 26.10.2021.
 //
 
 import Foundation

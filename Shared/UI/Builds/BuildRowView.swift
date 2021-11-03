@@ -2,18 +2,19 @@
 //  BuildRowView.swift
 //  Buildio
 //
-//  Created by severehed on 21.10.2021.
+//  Created by Sergey Khliustin on 21.10.2021.
 //
 
 import SwiftUI
 import Models
 
 struct BuildRowView: View {
-    @State var model: V0BuildResponseItemModel
+    @Binding var model: V0BuildResponseItemModel
     
     var body: some View {
         HStack(alignment: .top) {
             let statusColor = model.status.color
+            let statusText = model.environmentPrepareFinishedAt == nil ? "Waiting for worker" : model.statusText.capitalized
             ZStack(alignment: .trailing) {
                 Rectangle()
                     .fill(statusColor)
@@ -24,7 +25,7 @@ struct BuildRowView: View {
                 Group {
                     TagView(spacing: 4, content: { [
                         AnyView(
-                            Text(model.statusText.capitalized)
+                            Text(statusText)
                                 .foregroundColor(statusColor)
                                 .padding(8)
                         ),
@@ -171,7 +172,7 @@ struct BuildRowView: View {
 
 struct BuildRowView_Previews: PreviewProvider {
     static var previews: some View {
-        BuildRowView(model: V0BuildResponseItemModel.preview())
+        BuildRowView(model: .constant(V0BuildResponseItemModel.preview()))
             .preferredColorScheme(.light)
             
     }

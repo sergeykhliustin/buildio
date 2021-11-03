@@ -2,14 +2,20 @@
 //  NewBuildScreenView.swift
 //  Buildio
 //
-//  Created by severehed on 01.11.2021.
+//  Created by Sergey Khliustin on 01.11.2021.
 //
 
 import SwiftUI
 
 struct NewBuildScreenView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            ScrollView {
+                VStack {
+                    
+                }
+            }
+        }
     }
 }
 

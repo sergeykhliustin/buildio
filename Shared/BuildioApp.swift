@@ -2,13 +2,14 @@
 //  BuildioApp.swift
 //  Shared
 //
-//  Created by severehed on 01.10.2021.
+//  Created by Sergey Khliustin on 01.10.2021.
 //
 
 import SwiftUI
 
 @main
 struct BuildioApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     var body: some Scene {
         WindowGroup {

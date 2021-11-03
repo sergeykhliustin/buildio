@@ -8,8 +8,8 @@
 import Foundation
 
 public struct V0BuildResponseItemModel: Codable, Hashable, Identifiable {
-    public var id: String {
-        return slug
+    public var id: Int {
+        return hashValue
     }
     
     public var abortReason: String?
