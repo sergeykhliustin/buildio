@@ -15,10 +15,10 @@ public protocol PagingResponseModel {
 
 public struct V0BuildListResponseModel: Codable, Hashable, PagingResponseModel {
 
-    public var data: [V0BuildResponseItemModel]
+    public var data: [BuildResponseItemModel]
     public var paging: V0PagingResponseModel
 
-    public init(data: [V0BuildResponseItemModel] = [], paging: V0PagingResponseModel) {
+    public init(data: [BuildResponseItemModel] = [], paging: V0PagingResponseModel) {
         self.data = data
         self.paging = paging
     }

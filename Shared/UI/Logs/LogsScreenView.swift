@@ -13,7 +13,7 @@ struct LogsScreenView: BaseView {
     @StateObject var model: LogsViewModel
     @Namespace var bottomID
     
-    init(build: V0BuildResponseItemModel) {
+    init(build: BuildResponseItemModel) {
         self._model = StateObject(wrappedValue: LogsViewModel(build: build))
     }
     
@@ -39,6 +39,6 @@ struct LogsScreenView: BaseView {
 
 struct LogsScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        LogsScreenView(build: V0BuildResponseItemModel.preview())
+        LogsScreenView(build: BuildResponseItemModel.preview())
     }
 }

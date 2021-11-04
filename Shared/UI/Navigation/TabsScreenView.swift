@@ -71,8 +71,20 @@ struct TabsScreenView: View {
                     Image(systemName: "person.crop.circle.fill")
                     Text("Profile")
                 }
+                
+                NavigationView {
+                    ActivitiesScreenView()
+                        .navigationTitle("Activities")
+                }
+                .onAppear {
+                    selectedTab = 4
+                }
+                .tag(4)
+                .tabItem {
+                    Image(systemName: "bell")
+                    Text("Activities")
+                }
             }
-
         }
     }
 }

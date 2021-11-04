@@ -32,7 +32,7 @@ class BuildsViewModel: PagingViewModel<V0BuildListResponseModel> {
     override func fetchPage(next: String?) -> AnyPublisher<PagingViewModel<V0BuildListResponseModel>.ValueType, ErrorResponse> {
         if let app = app {
             let enrich = self.enrich
-            return BuildsAPI().buildList(appSlug: app.slug, next: next, limit: fetchLimit)
+            return BuildsAPI().buildList(appSlug: app.slug, sortBy: .runningFirst, next: next, limit: fetchLimit)
                 .map({ enrich($0, app) })
                 .eraseToAnyPublisher()
         }
@@ -42,7 +42,7 @@ class BuildsViewModel: PagingViewModel<V0BuildListResponseModel> {
     
     private func enrich(_ model: V0BuildListResponseModel, app: V0AppResponseItemModel) -> V0BuildListResponseModel {
         var model = model
-        let data = model.data.reduce([V0BuildResponseItemModel]()) { partialResult, item in
+        let data = model.data.reduce([BuildResponseItemModel]()) { partialResult, item in
             var partialResult = partialResult
             var item = item
             item.repository = app

@@ -7,12 +7,12 @@
 
 import Foundation
 
-public struct V0ActivityEventListResponseModel: Codable, Hashable {
+public struct V0ActivityEventListResponseModel: Codable, Hashable, PagingResponseModel {
 
-    public var data: [V0ActivityEventResponseItemModel]?
-    public var paging: V0PagingResponseModel?
+    public var data: [V0ActivityEventResponseItemModel]
+    public var paging: V0PagingResponseModel
 
-    public init(data: [V0ActivityEventResponseItemModel]? = nil, paging: V0PagingResponseModel? = nil) {
+    public init(data: [V0ActivityEventResponseItemModel], paging: V0PagingResponseModel) {
         self.data = data
         self.paging = paging
     }

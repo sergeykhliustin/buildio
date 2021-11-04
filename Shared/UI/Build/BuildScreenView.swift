@@ -12,7 +12,7 @@ struct BuildScreenView: BaseView {
     @StateObject var model: BuildViewModel
     @State private var isLogsActive: Bool = false
     
-    init(build: V0BuildResponseItemModel) {
+    init(build: BuildResponseItemModel) {
         self._model = StateObject(wrappedValue: BuildViewModel(build: build))
     }
     
@@ -30,7 +30,7 @@ struct BuildScreenView: BaseView {
                 .padding(8)
             }
             if let value = Binding($model.value) {
-                BuildRowView(model: value)
+                BuildView(model: value)
             }
             
 //            if let value = model.value {
@@ -48,6 +48,6 @@ struct BuildScreenView: BaseView {
 
 struct BuildScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        BuildScreenView(build: V0BuildResponseItemModel.preview())
+        BuildScreenView(build: BuildResponseItemModel.preview())
     }
 }

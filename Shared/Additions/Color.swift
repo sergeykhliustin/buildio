@@ -9,6 +9,7 @@ import SwiftUI
 import Models
 
 extension Color {
+    static let b_TextBlack = Color(hex: 0x351d48)
     static let b_BuildFailed = Color(hex: 0xff2158)
     static let b_BuildFailedLight = b_BuildFailed.opacity(0.16)
     static let b_BuildAborted = Color(hex: 0xffc500)
@@ -27,7 +28,7 @@ extension Color {
     static let b_LogsDefault = Color(hex: 0xececec)
 }
 
-extension V0BuildResponseItemModel.Status {
+extension BuildResponseItemModel.Status {
     var color: Color {
         switch self {
         case .running:
@@ -38,6 +39,18 @@ extension V0BuildResponseItemModel.Status {
             return Color.b_BuildFailed
         case .aborted:
             return Color.b_BuildAborted
+        }
+    }
+    var colorLight: Color {
+        switch self {
+        case .running:
+            return Color.b_BuildRunningLight
+        case .success:
+            return Color.b_BuildSuccessLight
+        case .error:
+            return Color.b_BuildFailedLight
+        case .aborted:
+            return Color.b_BuildAbortedLight
         }
     }
 }

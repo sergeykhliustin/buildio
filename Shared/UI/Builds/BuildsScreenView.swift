@@ -10,7 +10,7 @@ import Models
 
 struct BuildsScreenView: View, PagingView {
     @StateObject var model: BuildsViewModel
-    @State var selected: V0BuildResponseItemModel?
+    @State var selected: BuildResponseItemModel?
     @State private var showNewBuild: Bool = false
     
     init(app: V0AppResponseItemModel? = nil, model: BuildsViewModel? = nil) {
@@ -24,16 +24,17 @@ struct BuildsScreenView: View, PagingView {
         }
     }
     
-    func buildItemView(_ item: V0BuildResponseItemModel) -> some View {
+    func buildItemView(_ item: BuildResponseItemModel) -> some View {
         NavigationLink(tag: item, selection: $selected, destination: {
             BuildScreenView(build: item)
         }, label: {
             BuildRowView(model: .constant(item)).onAppear {
                 if item == model.items.last {
-                    logger.warning("load more item")
+                    logger.debug("UI load more builds")
                     model.nextPage()
                 }
             }
+            .padding(.horizontal, 16)
             .multiplatformButtonStylePlain()
         })
     }
@@ -58,7 +59,7 @@ struct BuildsScreenView: View, PagingView {
 struct BuildsView_Previews: PreviewProvider {
     static var previews: some View {
         let model = BuildsViewModel()
-        model.items = [V0BuildResponseItemModel.preview()]
+        model.items = [BuildResponseItemModel.preview()]
         model.state = .value
         return BuildsScreenView(model: model)
     }

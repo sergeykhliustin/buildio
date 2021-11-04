@@ -10,14 +10,14 @@ import Models
 import SwiftUI
 import Combine
 
-final class BuildViewModel: BaseViewModel<V0BuildResponseItemModel> {
+final class BuildViewModel: BaseViewModel<BuildResponseItemModel> {
     private var timer: Timer?
     
     override class var shouldRefreshOnInit: Bool {
         return false
     }
     
-    init(build: V0BuildResponseItemModel) {
+    init(build: BuildResponseItemModel) {
         super.init()
         self.value = build
         if build.status == .running {
@@ -25,7 +25,7 @@ final class BuildViewModel: BaseViewModel<V0BuildResponseItemModel> {
         }
     }
     
-    override func fetch() -> AnyPublisher<V0BuildResponseItemModel, ErrorResponse> {
+    override func fetch() -> AnyPublisher<BuildResponseItemModel, ErrorResponse> {
         BuildsAPI().buildShow(appSlug: value!.repository.slug, buildSlug: value!.slug)
             .map({
                 if let repository = self.value?.repository {

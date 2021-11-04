@@ -26,10 +26,12 @@ struct LogsTextView: UIViewRepresentable {
     }
     
     private func scrollToBottom(textView: UITextView) {
-        if textView.text.count > 0 {
-            let location = textView.text.count - 1
+        if textView.attributedText.length > 0 {
+            let location = textView.attributedText.length - 1
             let bottom = NSRange(location: location, length: 1)
-            textView.scrollRangeToVisible(bottom)
+            UIView.animate(withDuration: 0.2) {
+                textView.scrollRangeToVisible(bottom)
+            }
         }
     }
 }

@@ -30,6 +30,12 @@ extension String: SHA256Convertable {
     }
 }
 
+extension URL: SHA256Convertable {
+    var sha256: String {
+        return absoluteString.sha256
+    }
+}
+
 extension Dictionary: SHA256Convertable where Key == String, Value == String {
     var sha256: String {
         var data: [String] = keys.sorted()
@@ -41,6 +47,6 @@ extension Dictionary: SHA256Convertable where Key == String, Value == String {
 extension URLRequest: SHA256Convertable {
     var sha256: String {
         
-        return [url?.absoluteString.sha256, self.httpBody?.sha256, self.allHTTPHeaderFields?.sha256].compactMap({ $0 }).joined().sha256
+        return [url?.sha256, self.httpBody?.sha256, self.allHTTPHeaderFields?.sha256].compactMap({ $0 }).joined().sha256
     }
 }

@@ -7,43 +7,20 @@
 
 import Foundation
 
-public struct V0ActivityEventResponseItemModel: Codable, Hashable {
+public struct V0ActivityEventResponseItemModel: Codable, Hashable, Identifiable {
+    public var id: Int {
+        return hashValue
+    }
 
-    public var createdAt: String?
+    public var createdAt: Date
     public var description: String?
     public var eventIcon: String?
     public var eventStype: String?
     public var repositoryAvatarIconUrl: String?
     public var repositoryTitle: String?
-    public var slug: String?
+    public var slug: String
     public var targetPathString: String?
     public var title: String?
-
-    public init(createdAt: String? = nil, description: String? = nil, eventIcon: String? = nil, eventStype: String? = nil, repositoryAvatarIconUrl: String? = nil, repositoryTitle: String? = nil, slug: String? = nil, targetPathString: String? = nil, title: String? = nil) {
-        self.createdAt = createdAt
-        self.description = description
-        self.eventIcon = eventIcon
-        self.eventStype = eventStype
-        self.repositoryAvatarIconUrl = repositoryAvatarIconUrl
-        self.repositoryTitle = repositoryTitle
-        self.slug = slug
-        self.targetPathString = targetPathString
-        self.title = title
-    }
-
-    public enum CodingKeys: String, CodingKey, CaseIterable {
-        case createdAt = "created_at"
-        case description
-        case eventIcon = "event_icon"
-        case eventStype = "event_stype"
-        case repositoryAvatarIconUrl = "repository_avatar_icon_url"
-        case repositoryTitle = "repository_title"
-        case slug
-        case targetPathString = "target_path_string"
-        case title
-    }
-
-    // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -56,5 +33,9 @@ public struct V0ActivityEventResponseItemModel: Codable, Hashable {
         try container.encodeIfPresent(slug, forKey: .slug)
         try container.encodeIfPresent(targetPathString, forKey: .targetPathString)
         try container.encodeIfPresent(title, forKey: .title)
+    }
+    
+    public static func preview() -> Self {
+        return V0ActivityEventResponseItemModel(createdAt: Date(), description: "description", eventIcon: "icon", eventStype: "type", repositoryAvatarIconUrl: "icon", repositoryTitle: "repoTitle", slug: "slug", targetPathString: "targetPath", title: "title")
     }
 }

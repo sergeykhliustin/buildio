@@ -13,11 +13,11 @@ import UIKit
 import SwiftUI
 
 class LogsViewModel: BaseViewModel<BuildLogResponseModel> {
-    let build: V0BuildResponseItemModel
+    let build: BuildResponseItemModel
     private var timer: Timer?
     @Published var attributedLogs: NSAttributedString?
     
-    init(build: V0BuildResponseItemModel) {
+    init(build: BuildResponseItemModel) {
         self.build = build
         super.init()
     }

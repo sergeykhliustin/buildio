@@ -9,9 +9,9 @@ import Foundation
 
 public struct V0BuildShowResponseModel: Codable {
 
-    public var data: V0BuildResponseItemModel
+    public var data: BuildResponseItemModel
 
-    public init(data: V0BuildResponseItemModel) {
+    public init(data: BuildResponseItemModel) {
         self.data = data
     }
 }
