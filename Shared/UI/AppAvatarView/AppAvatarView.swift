@@ -16,29 +16,23 @@ struct AppAvatarView: BaseView {
     }
     
     var body: some View {
-        VStack(spacing: 0) {
-            Spacer(minLength: 0)
-            HStack(spacing: 0) {
-                Spacer(minLength: 0)
-                switch model.state {
-                case .value:
-                    if let value = model.value {
-                        Image(uiImage: value)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                    } else {
-                        EmptyView()
-                    }
-                    
-                case .loading:
-                    ProgressView()
-                case .error, .idle:
-                    Text(model.name)
-                        .foregroundColor(.white)
+        SpacerWrapper {
+            switch model.state {
+            case .value:
+                if let value = model.value {
+                    Image(uiImage: value)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                } else {
+                    EmptyView()
                 }
-                Spacer(minLength: 0)
+                
+            case .loading:
+                ProgressView()
+            case .error, .idle:
+                Text(model.name)
+                    .foregroundColor(.white)
             }
-            Spacer(minLength: 0)
         }
         .background(model.backgroundColor)
         
