@@ -15,11 +15,11 @@ extension TimeInterval {
         let hours = (time / 3600)
         
         if hours > 0 {
-            return String(format: "%0.2dh %0.2dm %0.2ds", hours, minutes, seconds)
+            return String(format: "%dh %dm %ds", hours, minutes, seconds)
         } else if minutes > 0 {
-            return String(format: "%0.2dm %0.2ds", minutes, seconds)
+            return String(format: "%dm %ds", minutes, seconds)
         } else {
-            return String(format: "%0.2ds", seconds)
+            return String(format: "%ds", seconds)
         }
     }
 }

@@ -22,10 +22,19 @@ struct BuildRowView: View {
                 HStack(alignment: .center) {
                     AppAvatarView(app: model.repository)
                         .frame(width: 40, height: 40)
+                        .cornerRadius(8)
+                        .font(.title2)
                     
                     VStack(alignment: .leading) {
                         Text(model.repository.title)
-                        Text(model.commitMessage ?? "No commit message")
+                        HStack(spacing: 0) {
+                            Text(model.commitMessage ?? "No commit message")
+                            if let tag = model.tag {
+                                Text(tag)
+                                    .padding(2)
+                                    .background(Color.b_BorderLight)
+                            }
+                        }
                     }
                     Spacer()
                     if let duration = model.durationString {
@@ -41,11 +50,14 @@ struct BuildRowView: View {
                         .padding(8)
                         .foregroundColor(model.status.color)
                         .background(model.status.colorLight)
-                    if let pullRequestId = model.pullRequestId {
+                    if let pullRequestId = model.pullRequestId, pullRequestId != 0 {
                         Text(String(pullRequestId))
                             .padding(8)
+                    } else if let commitHash = model.commitHash {
+                        Text(String(commitHash.suffix(7)))
+                            .padding(8)
                     }
-                    Spacer()
+                    Spacer(minLength: 0)
                     if let cost = model.creditCost {
                         Text(String(cost))
                             .padding(8)
@@ -59,7 +71,7 @@ struct BuildRowView: View {
             
         }
         .cornerRadius(8)
-        .font(.callout)
+        .font(.footnote)
         .multilineTextAlignment(.leading)
         .foregroundColor(.b_TextBlack)
         .background(

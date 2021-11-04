@@ -26,6 +26,9 @@ extension Color {
     static let b_ShadowLight = Color(red: 0, green: 0, blue: 0, opacity: 0.10)
     static let b_LogsBackground = Color(hex: 0x2c3e50)
     static let b_LogsDefault = Color(hex: 0xececec)
+    
+    static let b_AvatarColors = [0x68442c, 0x86d641, 0xa775db, 0xdf5ac3, 0x46bee8, 0x63c99a, 0x19937c, 0xed544c, 0xff931e, 0x107ec1, 0x48e1ed, 0x743da5, 0xf9d128, 0xff931e, 0x9e4b39, 0xb51c98, 0xb20202, 0xbf8a66, 0x2c3f50, 0x441f62, 0x0c5b4c, 0x391401, 0x27ae61, 0xef7bef]
+        .map({ Color(hex: $0) })
 }
 
 extension BuildResponseItemModel.Status {
