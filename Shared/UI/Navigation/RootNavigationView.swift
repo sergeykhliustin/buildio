@@ -10,7 +10,6 @@ import SwiftUI
 struct RootNavigationView: View {
     var body: some View {
         TabsScreenView()
-            .navigationViewStyle(.stack)
     }
 }
 

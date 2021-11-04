@@ -20,7 +20,7 @@ struct TabsScreenView: View {
         ZStack(alignment: .topLeading) {
             TabView(selection: $selectedTab) {
                 NavigationView {
-                    BuildsScreenView()
+                    BuildsScreenView(router: AppRouter())
                         .navigationTitle("Builds")
                 }
                 .onAppear {

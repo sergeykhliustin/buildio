@@ -20,7 +20,7 @@ struct AppAvatarView: BaseView {
             switch model.state {
             case .value:
                 if let value = model.value {
-                    Image(uiImage: value)
+                    Image(value)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                 } else {

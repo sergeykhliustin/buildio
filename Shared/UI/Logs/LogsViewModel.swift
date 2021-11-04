@@ -9,8 +9,8 @@ import Foundation
 import Models
 import Combine
 import Rainbow
-import UIKit
 import SwiftUI
+
 
 class LogsViewModel: BaseViewModel<BuildLogResponseModel> {
     let build: BuildResponseItemModel

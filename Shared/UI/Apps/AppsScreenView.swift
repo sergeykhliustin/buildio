@@ -8,15 +8,21 @@
 import SwiftUI
 import Models
 
-struct AppsScreenView: View, PagingView {
+struct AppsScreenView: View, PagingView, AppMultiRouteView {
+    let router: AppRouter
+    @State var activeRoute: AppRoute?
+    
+    init(router: AppRouter = AppRouter()) {
+        self.router = router
+    }
+    
     @StateObject var model = AppsViewModel()
     @State var selected: V0AppResponseItemModel?
     
     func buildItemView(_ item: V0AppResponseItemModel) -> some View {
-        NavigationLink(tag: item, selection: $selected, destination: {
-            BuildsScreenView(app: item)
-                .navigationTitle(item.title)
-        }, label: {
+        Button {
+            activeRoute = .buildsScreen(item)
+        } label: {
             AppRowView(model: item)
                 .onAppear {
                     if item == model.items.last {
@@ -25,7 +31,9 @@ struct AppsScreenView: View, PagingView {
                     }
                 }
                 .multiplatformButtonStylePlain()
-        })
+        }
+        
+        router.navigationLink(route: .buildsScreen(item), selection: $activeRoute)
     }
     
     @ViewBuilder

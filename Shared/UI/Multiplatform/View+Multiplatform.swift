@@ -13,7 +13,7 @@ extension View {
         #if os(iOS)
         return self.buttonStyle(.plain)
         #else
-        return self
+        return self.buttonStyle(.plain)
         #endif
     }
 }

@@ -8,12 +8,16 @@
 import SwiftUI
 import Models
 
-struct BuildsScreenView: View, PagingView {
+struct BuildsScreenView: View, PagingView, AppMultiRouteView {
+    let router: AppRouter
+    @State var activeRoute: AppRoute?
+    
     @StateObject var model: BuildsViewModel
     @State var selected: BuildResponseItemModel?
     @State private var showNewBuild: Bool = false
     
-    init(app: V0AppResponseItemModel? = nil, model: BuildsViewModel? = nil) {
+    init(router: AppRouter = AppRouter(), app: V0AppResponseItemModel? = nil, model: BuildsViewModel? = nil) {
+        self.router = router
         if let model = model {
             self._model = StateObject(wrappedValue: model)
         }
@@ -25,18 +29,24 @@ struct BuildsScreenView: View, PagingView {
     }
     
     func buildItemView(_ item: BuildResponseItemModel) -> some View {
-        NavigationLink(tag: item, selection: $selected, destination: {
-            BuildScreenView(build: item)
-        }, label: {
-            BuildRowView(model: .constant(item)).onAppear {
-                if item == model.items.last {
-                    logger.debug("UI load more builds")
-                    model.nextPage()
+        ZStack {
+            router.navigationLink(route: .buildScreen(item), selection: $activeRoute)
+            
+            ListItemWrapper { highlighted in
+                BuildRowView(model: .constant(item)).onAppear {
+                    if item == model.items.last {
+                        logger.debug("UI load more builds")
+                        model.nextPage()
+                    }
                 }
+                .multiplatformButtonStylePlain()
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .border(highlighted ? Color.b_ButtonPrimary : Color.clear)
+            } action: {
+                activeRoute = .buildScreen(item)
             }
             .padding(.horizontal, 16)
-            .multiplatformButtonStylePlain()
-        })
+        }
     }
     
     @ViewBuilder
@@ -61,6 +71,6 @@ struct BuildsView_Previews: PreviewProvider {
         let model = BuildsViewModel()
         model.items = [BuildResponseItemModel.preview()]
         model.state = .value
-        return BuildsScreenView(model: model)
+        return BuildsScreenView(router: AppRouter(), model: model)
     }
 }

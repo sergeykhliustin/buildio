@@ -21,7 +21,7 @@ struct LogsScreenView: BaseView {
         VStack(alignment: .leading) {
             if let value = model.attributedLogs {
                 LogsTextView(attributed: value)
-                    .padding(.horizontal, 8)
+//                    .padding(.horizontal, 8)
             } else {
                 if case .loading = model.state {
                     ProgressView().padding(16)

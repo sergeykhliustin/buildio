@@ -8,36 +8,38 @@
 import SwiftUI
 import Models
 
-struct BuildScreenView: BaseView {
+struct BuildScreenView: BaseView, AppOneRouteView {
+    let router: AppRouter
+    @State var isActiveRoute: Bool = false
+    
     @StateObject var model: BuildViewModel
     @State private var isLogsActive: Bool = false
     
-    init(build: BuildResponseItemModel) {
+    init(router: AppRouter = AppRouter(), build: BuildResponseItemModel) {
+        self.router = router
         self._model = StateObject(wrappedValue: BuildViewModel(build: build))
     }
     
     var body: some View {
         ScrollView {
-            NavigationLink(isActive: $isLogsActive) {
-                if let value = model.value {
-                    LogsScreenView(build: value)
+            if let value = model.value {
+                router.navigationLink(route: .logsScreen(value), isActive: $isActiveRoute)
+
+                Button {
+                    isActiveRoute.toggle()
+                } label: {
+                    Group {
+                        Image(systemName: "note.text")
+                        Text("Logs")
+                    }
+                    .padding(8)
                 }
-            } label: {
-                Group {
-                    Image(systemName: "note.text")
-                    Text("Logs")
-                }
-                .padding(8)
             }
             if let value = Binding($model.value) {
                 BuildView(model: value)
             }
-            
-//            if let value = model.value {
-//                BuildRowView(model: value)
-//            }
         }
-        .navigationTitle("Build #\(model.value!.buildNumber)")
+        .navigationTitle("Build #\(String(model.value!.buildNumber))")
         .toolbar {
             if case .loading = model.state {
                 ProgressView()

@@ -9,7 +9,9 @@ import SwiftUI
 
 @main
 struct BuildioApp: App {
+    #if os(iOS)
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    #endif
     
     var body: some Scene {
         WindowGroup {
