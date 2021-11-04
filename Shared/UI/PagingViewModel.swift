@@ -70,7 +70,7 @@ class PagingViewModel<VALUE: PagingResponseModel>: BaseViewModel<VALUE>, PagingV
                 }
             } receiveValue: { [weak self] value in
                 guard let self = self else { return }
-                let items = self.merge(value: self.value?.data, newValue: value.data)
+                let items = self.merge(value: self.items, newValue: value.data)
                 self.items = items
                 self.value = value
                 if value.paging.next == nil {
