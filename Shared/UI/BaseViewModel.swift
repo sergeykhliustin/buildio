@@ -32,6 +32,14 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
     var fetcher: AnyCancellable?
     var tokenRefresher: AnyCancellable?
     
+    var error: String? {
+        if case .error(let error) = state {
+            return error.rawErrorString
+        } else {
+            return nil
+        }
+    }
+    
     class var shouldRefreshOnInit: Bool {
         return true
     }

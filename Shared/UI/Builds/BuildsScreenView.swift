@@ -30,14 +30,11 @@ struct BuildsScreenView: View, PagingView, AppMultiRouteView {
     }
     
     func buildItemView(_ item: BuildResponseItemModel) -> some View {
-        ListItemWrapper(cornerRadius: 8,
-                        action: {
+        ListItemWrapper(action: {
             activeRoute = .buildScreen(item)
         }, content: {
             BuildRowView(model: .constant(item))
-//                .frame(maxWidth: .infinity, maxHeight: .infinity)
         })
-            .padding(.horizontal, 16)
     }
     
     @ViewBuilder

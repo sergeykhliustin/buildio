@@ -18,6 +18,15 @@ public enum ErrorResponse: Error {
         }
         return nil
     }
+    var rawErrorString: String? {
+        if case let .error(code, data, response, rawError) = self {
+            if code == 401 {
+                return "Token expired or invalid"
+            }
+            return rawError.localizedDescription
+        }
+        return nil
+    }
 }
 
 public enum DownloadException: Error {

@@ -20,13 +20,14 @@ struct BuildRowView: View {
             
             VStack(alignment: .leading, spacing: 0) {
                 HStack(alignment: .center) {
-                    AppAvatarView(app: model.repository)
+                    AvatarView(app: model.repository)
                         .frame(width: 40, height: 40)
                         .cornerRadius(8)
                         .font(.title2)
                     
                     VStack(alignment: .leading) {
                         Text(model.repository.title)
+                            .font(.footnote.bold())
                         HStack(spacing: 0) {
                             Text(model.commitMessage ?? "No commit message")
                             if let tag = model.tag {
@@ -70,15 +71,9 @@ struct BuildRowView: View {
             }
             
         }
-        .cornerRadius(8)
         .font(.footnote)
         .multilineTextAlignment(.leading)
         .foregroundColor(.b_TextBlack)
-        .background(
-            RoundedRectangle(cornerRadius: 8)
-                .fill(Color.white)
-                .shadow(radius: 5)
-        )
         
     }
 }

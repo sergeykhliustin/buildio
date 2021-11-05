@@ -25,9 +25,14 @@ struct AppsScreenView: View, PagingView, AppMultiRouteView {
         }, content: {
             AppRowView(model: item)
         })
-            .padding(.horizontal, 16)
-        
-        router.navigationLink(route: .buildsScreen(item), selection: $activeRoute)
+    }
+    
+    @ViewBuilder
+    func navigationLinks() -> some View {
+        ForEach(model.items) { item in
+            router.navigationLink(route: .buildsScreen(item), selection: $activeRoute)
+                .hidden()
+        }
     }
     
     @ViewBuilder

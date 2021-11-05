@@ -88,12 +88,9 @@ struct TokenFigmaScreenView: View {
                 isLoading = false
                 checker = nil
             } receiveValue: { model in
-                if let email = model.data.email {
-                    TokenManager.shared.token = Token(token: token, email: email)
-                    onCompletion?()
-                } else {
-                    self.isError = true
-                }
+                let email = model.data.email
+                TokenManager.shared.token = Token(token: token, email: email)
+                onCompletion?()
             }
     }
 }

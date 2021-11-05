@@ -16,8 +16,15 @@ private struct CustomListWrapperButtonStyle: ButtonStyle {
         configuration
             .label
             .contentShape(Rectangle())
+            .cornerRadius(cornerRadius)
+            .background(
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(Color.white)
+                    .shadow(radius: 5)
+            )
             .background(
                 RoundedRectangle(cornerRadius: cornerRadius).stroke(highlighted ? Color.b_Primary : .clear, lineWidth: 2)
+                    
             )
             .onHover { hover in
                 self.hover = hover
@@ -30,8 +37,15 @@ struct ListItemWrapper<Content>: View where Content: View {
     let action: (() -> Void)
     @ViewBuilder var content: () -> Content
     
+    init(cornerRadius: CGFloat = 8, action: @escaping () -> Void, content: @escaping () -> Content) {
+        self.cornerRadius = cornerRadius
+        self.action = action
+        self.content = content
+    }
+    
     var body: some View {
         Button(action: action, label: content)
             .buttonStyle(CustomListWrapperButtonStyle(cornerRadius: cornerRadius))
+            .padding(.horizontal, 16)
     }
 }

@@ -16,29 +16,14 @@ struct AccountsScreenView: View {
         ScrollView {
             LazyVStack {
                 ForEach(tokenManager.tokens, id: \.token) { token in
-                    ListItemWrapper(cornerRadius: 4) {
+                    ListItemWrapper {
                         tokenManager.token = token
                     } content: {
-                        HStack {
-                            Text(token.email)
-                            Spacer()
-                            if token.current {
-                                Image(systemName: "checkmark")
-                            }
-                            Button {
-                                logger.debug("trash")
-                                tokenManager.remove(token)
-                            } label: {
-                                Image(systemName: "trash")
-                            }
-                        }
-                        .padding(16)
-                        .border(Color.b_BorderLight, width: 1)
-                        .cornerRadius(4)
+                        AccountRowView(token)
                     }
                 }
             }
-            .padding(.horizontal, 16)
+//            .padding(.horizontal, 16)
         }
         .toolbar {
             Button {

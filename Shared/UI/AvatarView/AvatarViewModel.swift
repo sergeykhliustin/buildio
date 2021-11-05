@@ -1,5 +1,5 @@
 //
-//  AppAvatarViewModel.swift
+//  AvatarViewModel.swift
 //  Buildio
 //
 //  Created by Sergey Khliustin on 04.11.2021.
@@ -7,7 +7,6 @@
 
 import Foundation
 import Combine
-import Models
 import SwiftUI
 
 private extension URL {
@@ -20,11 +19,17 @@ private extension URL {
     }
 }
 
-final class AppAvatarViewModel: BaseViewModel<UIImage> {
-    var app: V0AppResponseItemModel
+final class AvatarViewModel: BaseViewModel<UIImage> {
+    let title: String
+    let url: String?
+    
+    init(title: String, url: String?) {
+        self.title = title
+        self.url = url
+    }
     
     lazy var name: String = {
-        var title = app.title.uppercased()
+        var title = title.uppercased()
         return "\(title.first ?? "N")\(title.last ?? "A")"
     }()
     
@@ -43,12 +48,7 @@ final class AppAvatarViewModel: BaseViewModel<UIImage> {
         return color
     }
     
-    init(app: V0AppResponseItemModel) {
-        self.app = app
-        super.init()
-    }
-    
     override func fetch() -> AnyPublisher<UIImage, ErrorResponse> {
-        ImageLoader().image(URL(str: app.avatarUrl))
+        ImageLoader().image(URL(str: url))
     }
 }
