@@ -7,12 +7,7 @@
 
 import Foundation
 import Combine
-#if os(iOS)
 import UIKit
-#elseif os(macOS)
-import AppKit
-typealias UIImage = NSImage
-#endif
 
 final class ImageLoader {
     private static let cacheURL: URL? = {

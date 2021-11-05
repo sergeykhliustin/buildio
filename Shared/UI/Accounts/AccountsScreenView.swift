@@ -16,9 +16,9 @@ struct AccountsScreenView: View {
         ScrollView {
             LazyVStack {
                 ForEach(tokenManager.tokens, id: \.token) { token in
-                    Button {
+                    ListItemWrapper(cornerRadius: 4) {
                         tokenManager.token = token
-                    } label: {
+                    } content: {
                         HStack {
                             Text(token.email)
                             Spacer()
@@ -36,9 +36,6 @@ struct AccountsScreenView: View {
                         .border(Color.b_BorderLight, width: 1)
                         .cornerRadius(4)
                     }
-                    .frame(alignment: .leading)
-                    .multiplatformButtonStylePlain()
-                    
                 }
             }
             .padding(.horizontal, 16)

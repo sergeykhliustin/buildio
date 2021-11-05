@@ -42,16 +42,10 @@ struct BuildsScreenView: View, PagingView, AppMultiRouteView {
     
     @ViewBuilder
     func navigationLinks() -> some View {
-        #if os(iOS)
         ForEach(model.items) { item in
             router.navigationLink(route: .buildScreen(item), selection: $activeRoute)
                 .hidden()
         }
-        #elseif os(macOS)
-        if let activeRoute = activeRoute {
-            router.navigationLink(route: activeRoute, selection: $activeRoute)
-        }
-        #endif
     }
     
     @ViewBuilder

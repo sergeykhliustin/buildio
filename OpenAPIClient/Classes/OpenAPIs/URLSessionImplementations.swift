@@ -5,9 +5,7 @@
 //
 
 import Foundation
-#if !os(macOS)
-import MobileCoreServices
-#endif
+import CoreServices
 
 class URLSessionRequestBuilderFactory: RequestBuilderFactory {
     func getNonDecodableBuilder<T>() -> RequestBuilder<T>.Type {

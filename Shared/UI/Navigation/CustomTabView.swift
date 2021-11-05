@@ -17,8 +17,16 @@ struct CustomTabView: View {
     var content: (Int) -> RootScreen
     @State private var selected: Int = 0
     
-    #if os(iOS)
     var body: some View {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            buildIphone()
+        } else {
+            buildIpad()
+        }
+    }
+    
+    @ViewBuilder
+    private func buildIphone() -> some View {
         VStack(spacing: 0) {
             TabView(selection: $selected) {
                 ForEach(0..<count) { index in
@@ -37,14 +45,14 @@ struct CustomTabView: View {
             
         }
     }
-    #elseif os(macOS)
-    var body: some View {
+    
+    @ViewBuilder
+    private func buildIpad() -> some View {
         NavigationView {
             VStack(spacing: 0) {
                 TabView(selection: $selected) {
                     ForEach(0..<count) { index in
                         content(index).screen()
-                            .navigationTitle(content(index).name)
                     }
                 }
                 CustomTabBar(count: count, selected: $selected, content: { index in
@@ -53,8 +61,9 @@ struct CustomTabView: View {
                         .font(.footnote)
                 })
             }
+            .navigationTitle(content(selected).name)
+            .navigationBarTitleDisplayMode(.inline)
             .background(Color.white)
         }
     }
-    #endif
 }

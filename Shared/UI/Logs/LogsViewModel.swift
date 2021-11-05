@@ -11,8 +11,7 @@ import Combine
 import Rainbow
 import SwiftUI
 
-
-class LogsViewModel: BaseViewModel<BuildLogResponseModel> {
+final class LogsViewModel: BaseViewModel<BuildLogResponseModel> {
     let build: BuildResponseItemModel
     private var timer: Timer?
     @Published var attributedLogs: NSAttributedString?
