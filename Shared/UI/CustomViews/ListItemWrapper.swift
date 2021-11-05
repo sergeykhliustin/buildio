@@ -7,20 +7,31 @@
 
 import SwiftUI
 
-struct ListItemWrapper<Content>: View where Content: View {
-    @ViewBuilder var content: (Bool) -> Content
-    @State private var isHighLighted: Bool = false
-    var action: (() -> Void)?
+private struct CustomListWrapperButtonStyle: ButtonStyle {
+    let cornerRadius: CGFloat
+    @State private var hover: Bool = false
     
-    init(_ content: @escaping (_ highlighted: Bool) -> Content, action: (() -> Void)?) {
-        self.content = content
-        self.action = action
+    func makeBody(configuration: ButtonStyle.Configuration) -> some View {
+        let highlighted = configuration.isPressed || hover
+        configuration
+            .label
+            .contentShape(Rectangle())
+            .background(
+                RoundedRectangle(cornerRadius: cornerRadius).stroke(highlighted ? Color.b_Primary : .clear, lineWidth: 2)
+            )
+            .onHover { hover in
+                self.hover = hover
+            }
     }
+}
+
+struct ListItemWrapper<Content>: View where Content: View {
+    let cornerRadius: CGFloat
+    let action: (() -> Void)
+    @ViewBuilder var content: () -> Content
     
     var body: some View {
-        content(isHighLighted)
-            .onTapGesture {
-                action?()
-            }
+        Button(action: action, label: content)
+            .buttonStyle(CustomListWrapperButtonStyle(cornerRadius: cornerRadius))
     }
 }

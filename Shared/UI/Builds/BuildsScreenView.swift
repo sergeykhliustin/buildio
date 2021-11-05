@@ -11,6 +11,7 @@ import Models
 struct BuildsScreenView: View, PagingView, AppMultiRouteView {
     let router: AppRouter
     @State var activeRoute: AppRoute?
+    @State var isRouteActive: Bool = false
     
     @StateObject var model: BuildsViewModel
     @State var selected: BuildResponseItemModel?
@@ -29,24 +30,28 @@ struct BuildsScreenView: View, PagingView, AppMultiRouteView {
     }
     
     func buildItemView(_ item: BuildResponseItemModel) -> some View {
-        ZStack {
-            router.navigationLink(route: .buildScreen(item), selection: $activeRoute)
-            
-            ListItemWrapper { highlighted in
-                BuildRowView(model: .constant(item)).onAppear {
-                    if item == model.items.last {
-                        logger.debug("UI load more builds")
-                        model.nextPage()
-                    }
-                }
-                .multiplatformButtonStylePlain()
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .border(highlighted ? Color.b_ButtonPrimary : Color.clear)
-            } action: {
-                activeRoute = .buildScreen(item)
-            }
+        ListItemWrapper(cornerRadius: 8,
+                        action: {
+            activeRoute = .buildScreen(item)
+        }, content: {
+            BuildRowView(model: .constant(item))
+//                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        })
             .padding(.horizontal, 16)
+    }
+    
+    @ViewBuilder
+    func navigationLinks() -> some View {
+        #if os(iOS)
+        ForEach(model.items) { item in
+            router.navigationLink(route: .buildScreen(item), selection: $activeRoute)
+                .hidden()
         }
+        #elseif os(macOS)
+        if let activeRoute = activeRoute {
+            router.navigationLink(route: activeRoute, selection: $activeRoute)
+        }
+        #endif
     }
     
     @ViewBuilder
@@ -62,7 +67,6 @@ struct BuildsScreenView: View, PagingView, AppMultiRouteView {
         } content: {
             NewBuildScreenView()
         }
-
     }
 }
 

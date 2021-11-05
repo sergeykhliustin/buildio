@@ -17,7 +17,7 @@ struct TabsScreenView: View {
     }
     
     var body: some View {
-        ZStack(alignment: .topLeading) {
+        
             TabView(selection: $selectedTab) {
                 NavigationView {
                     BuildsScreenView(router: AppRouter())
@@ -85,7 +85,7 @@ struct TabsScreenView: View {
                     Text("Activities")
                 }
             }
-        }
+        
     }
 }
 

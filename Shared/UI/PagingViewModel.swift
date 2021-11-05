@@ -30,6 +30,7 @@ protocol PagingViewModelProtocol: BaseViewModelProtocol where ValueType: PagingR
     var pagingState: PagingState { get set }
     var items: [ValueType.ItemType] { get set }
     
+    func nextPage()
     func merge(value: [ValueType.ItemType]?, newValue: [ValueType.ItemType]) -> [ValueType.ItemType]
     func fetchPage(next: String?) -> AnyPublisher<ValueType, ErrorResponse>
 }

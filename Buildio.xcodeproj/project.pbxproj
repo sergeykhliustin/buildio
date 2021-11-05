@@ -172,6 +172,12 @@
 		3FF276182721AB1700701113 /* TokenFigmaScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF276162721AB1700701113 /* TokenFigmaScreenView.swift */; };
 		3FF385D327348E8F009A4479 /* ListItemWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF385D227348E8F009A4479 /* ListItemWrapper.swift */; };
 		3FF385D427348E8F009A4479 /* ListItemWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF385D227348E8F009A4479 /* ListItemWrapper.swift */; };
+		3FF385D627349E76009A4479 /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF385D527349E76009A4479 /* CustomTabView.swift */; };
+		3FF385D727349E76009A4479 /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF385D527349E76009A4479 /* CustomTabView.swift */; };
+		3FF385D927349EF2009A4479 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF385D827349EF2009A4479 /* CustomTabBar.swift */; };
+		3FF385DA27349EF2009A4479 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF385D827349EF2009A4479 /* CustomTabBar.swift */; };
+		3FF385DC2734AF5E009A4479 /* CustomTabsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF385DB2734AF5E009A4479 /* CustomTabsScreenView.swift */; };
+		3FF385DD2734AF5E009A4479 /* CustomTabsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF385DB2734AF5E009A4479 /* CustomTabsScreenView.swift */; };
 		3FFEB43F272F093B008E5A82 /* PagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFEB43E272F093B008E5A82 /* PagingView.swift */; };
 		3FFEB440272F093B008E5A82 /* PagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFEB43E272F093B008E5A82 /* PagingView.swift */; };
 		3FFEB443272FF341008E5A82 /* LogsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFEB442272FF341008E5A82 /* LogsViewModel.swift */; };
@@ -195,6 +201,7 @@
 		3F0ECA5E273482840054A4AE /* Image+Multiplatform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Multiplatform.swift"; sourceTree = "<group>"; };
 		3F2BE9E1270CA0C00051C910 /* AccountsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsScreenView.swift; sourceTree = "<group>"; };
 		3F2BE9E4270CA5E00051C910 /* TabsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsScreenView.swift; sourceTree = "<group>"; };
+		3F3295842735A623001994B0 /* Buildio (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Buildio (iOS).entitlements"; sourceTree = "<group>"; };
 		3F509BED272B3F1E00C051A0 /* AppsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsViewModel.swift; sourceTree = "<group>"; };
 		3F509BF0272B41BF00C051A0 /* AppsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsScreenView.swift; sourceTree = "<group>"; };
 		3F509BF3272B42A100C051A0 /* AppRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRowView.swift; sourceTree = "<group>"; };
@@ -275,6 +282,9 @@
 		3FE7B55327072C1E00A6D8E1 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		3FF276162721AB1700701113 /* TokenFigmaScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenFigmaScreenView.swift; sourceTree = "<group>"; };
 		3FF385D227348E8F009A4479 /* ListItemWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemWrapper.swift; sourceTree = "<group>"; };
+		3FF385D527349E76009A4479 /* CustomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
+		3FF385D827349EF2009A4479 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		3FF385DB2734AF5E009A4479 /* CustomTabsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabsScreenView.swift; sourceTree = "<group>"; };
 		3FFEB43E272F093B008E5A82 /* PagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingView.swift; sourceTree = "<group>"; };
 		3FFEB442272FF341008E5A82 /* LogsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsViewModel.swift; sourceTree = "<group>"; };
 		3FFEB445272FF8C7008E5A82 /* LogsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsScreenView.swift; sourceTree = "<group>"; };
@@ -463,6 +473,9 @@
 			children = (
 				3FCC45B327078D250001A9C2 /* RootNavigationView.swift */,
 				3F2BE9E4270CA5E00051C910 /* TabsScreenView.swift */,
+				3FF385D527349E76009A4479 /* CustomTabView.swift */,
+				3FF385D827349EF2009A4479 /* CustomTabBar.swift */,
+				3FF385DB2734AF5E009A4479 /* CustomTabsScreenView.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -588,6 +601,7 @@
 		3FE7B53E27072C1B00A6D8E1 = {
 			isa = PBXGroup;
 			children = (
+				3F3295842735A623001994B0 /* Buildio (iOS).entitlements */,
 				3FD8FDBF2731F78C0060BDF4 /* Buildio--iOS--Info.plist */,
 				3F19ABAB272C092D0070DFE3 /* Packages */,
 				3FE1092927285EDB00B533EE /* OpenAPIClient */,
@@ -815,11 +829,13 @@
 				3FE1096627285EDB00B533EE /* OrganizationsAPI.swift in Sources */,
 				3FE1096227285EDB00B533EE /* BuildArtifactAPI.swift in Sources */,
 				3FE1095027285EDB00B533EE /* AvatarCandidateAPI.swift in Sources */,
+				3FF385D627349E76009A4479 /* CustomTabView.swift in Sources */,
 				3FF385D327348E8F009A4479 /* ListItemWrapper.swift in Sources */,
 				3FCC45C8270797E30001A9C2 /* BaseView.swift in Sources */,
 				3F509BF1272B41BF00C051A0 /* AppsScreenView.swift in Sources */,
 				3FFEB451273048D4008E5A82 /* Color+Rainbow.swift in Sources */,
 				3FD8FDAD273089000060BDF4 /* NewBuildScreenView.swift in Sources */,
+				3FF385DC2734AF5E009A4479 /* CustomTabsScreenView.swift in Sources */,
 				3FE1095827285EDB00B533EE /* AndroidKeystoreFileAPI.swift in Sources */,
 				3FFEB446272FF8C8008E5A82 /* LogsScreenView.swift in Sources */,
 				3FE1095C27285EDB00B533EE /* BuildsAPI.swift in Sources */,
@@ -863,6 +879,7 @@
 				3FE1094E27285EDB00B533EE /* UserAPI.swift in Sources */,
 				3FD85D112721CF6F00E894E8 /* Color.swift in Sources */,
 				3FE1097827285EDB00B533EE /* Extensions.swift in Sources */,
+				3FF385D927349EF2009A4479 /* CustomTabBar.swift in Sources */,
 				3FB99F1F27340023008F9A96 /* AppAvatarViewModel.swift in Sources */,
 				3F509BF4272B42A100C051A0 /* AppRowView.swift in Sources */,
 				3FB99F2927344643008F9A96 /* Routing.swift in Sources */,
@@ -915,6 +932,8 @@
 				3FCC45C62707930E0001A9C2 /* BaseViewModel.swift in Sources */,
 				3FFEB440272F093B008E5A82 /* PagingView.swift in Sources */,
 				3FE109A52728801800B533EE /* Date+Additions.swift in Sources */,
+				3FF385D727349E76009A4479 /* CustomTabView.swift in Sources */,
+				3FF385DA27349EF2009A4479 /* CustomTabBar.swift in Sources */,
 				3FE1096F27285EDB00B533EE /* AddonsAPI.swift in Sources */,
 				3FE1095527285EDB00B533EE /* BuildCertificateAPI.swift in Sources */,
 				3FCC45B927078E040001A9C2 /* ProfileScreenView.swift in Sources */,
@@ -923,6 +942,7 @@
 				3FE1097127285EDB00B533EE /* OutgoingWebhookAPI.swift in Sources */,
 				3F0ECA60273482840054A4AE /* Image+Multiplatform.swift in Sources */,
 				3FB99F162733F61D008F9A96 /* TimeInterval+Additions.swift in Sources */,
+				3FF385DD2734AF5E009A4479 /* CustomTabsScreenView.swift in Sources */,
 				3FE1098127285EDB00B533EE /* SynchronizedDictionary.swift in Sources */,
 				3FD85D0F2721CAC200E894E8 /* SubmitButtonStyle.swift in Sources */,
 				3FD8FDB82731C48D0060BDF4 /* BuildView.swift in Sources */,
@@ -1099,6 +1119,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Buildio (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6C4646EB2U;
@@ -1119,6 +1140,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.home1.Buildio;
 				PRODUCT_NAME = Buildio;
 				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1130,6 +1152,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Buildio (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6C4646EB2U;
@@ -1150,6 +1173,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.home1.Buildio;
 				PRODUCT_NAME = Buildio;
 				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

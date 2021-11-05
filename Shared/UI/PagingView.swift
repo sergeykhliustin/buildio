@@ -11,6 +11,7 @@ import SwiftUI
 protocol PagingView: BaseView where ModelType: PagingViewModelProtocol, ModelType.ValueType.ItemType: Hashable {
     associatedtype ValueBody: View
     associatedtype ToolbarBody: View
+    associatedtype NavigationLinksBody: View
     var selected: ModelType.ValueType.ItemType? { get }
     
     @ViewBuilder
@@ -18,41 +19,53 @@ protocol PagingView: BaseView where ModelType: PagingViewModelProtocol, ModelTyp
     
     @ViewBuilder
     func additionalToolbarItems() -> ToolbarBody
+    
+    @ViewBuilder
+    func navigationLinks() -> NavigationLinksBody
 }
 
 extension PagingView {
     @ViewBuilder
     var body: some View {
-        VStack {
-            ScrollView {
-                if case .error(let error) = model.state {
-                    buildErrorView(error)
-                }
-                LazyVStack(spacing: 16) {
-                    ForEach(model.items) { item in
-                        buildItemView(item)
+        ZStack {
+            navigationLinks()
+            VStack {
+                ScrollView {
+                    if case .error(let error) = model.state {
+                        buildErrorView(error)
+                    }
+                    LazyVStack(spacing: 16) {
+                        ForEach(model.items) { item in
+                            buildItemView(item)
+                                .onAppear {
+                                    if item == model.items.last {
+                                        logger.debug("UI load more builds")
+                                        model.nextPage()
+                                    }
+                                }
+                        }
+                    }
+                    if case .loading = model.pagingState {
+                        ProgressView()
+                            .padding(16)
+                    } else if case .error(let error) = model.pagingState {
+                        buildErrorView(error)
                     }
                 }
-                if case .loading = model.pagingState {
-                    ProgressView()
-                        .padding(16)
-                } else if case .error(let error) = model.pagingState {
-                    buildErrorView(error)
-                }
             }
-        }
-        .toolbar {
-            HStack(alignment: .center, spacing: 0) {
-                if case .loading = model.state {
-                    ProgressView().frame(width: 44, height: 44, alignment: .center)
+            .toolbar {
+                HStack(alignment: .center, spacing: 0) {
+                    if case .loading = model.state {
+                        ProgressView().frame(width: 44, height: 44, alignment: .center)
+                    }
+                    Button {
+                        model.refresh()
+                    } label: {
+                        Image(systemName: "arrow.counterclockwise")
+                    }
+                    .frame(width: 44, height: 44, alignment: .center)
+                    additionalToolbarItems()
                 }
-                Button {
-                    model.refresh()
-                } label: {
-                    Image(systemName: "arrow.counterclockwise")
-                }
-                .frame(width: 44, height: 44, alignment: .center)
-                additionalToolbarItems()
             }
         }
     }
@@ -61,6 +74,11 @@ extension PagingView {
     func buildErrorView(_ error: ErrorResponse) -> some View {
         Text(error.rawError.localizedDescription)
             .padding(16)
+    }
+    
+    @ViewBuilder
+    func navigationLinks() -> some View {
+        
     }
     
     @ViewBuilder

@@ -20,18 +20,12 @@ struct AppsScreenView: View, PagingView, AppMultiRouteView {
     @State var selected: V0AppResponseItemModel?
     
     func buildItemView(_ item: V0AppResponseItemModel) -> some View {
-        Button {
+        ListItemWrapper(cornerRadius: 8, action: {
             activeRoute = .buildsScreen(item)
-        } label: {
+        }, content: {
             AppRowView(model: item)
-                .onAppear {
-                    if item == model.items.last {
-                        logger.warning("load more item")
-                        model.nextPage()
-                    }
-                }
-                .multiplatformButtonStylePlain()
-        }
+        })
+            .padding(.horizontal, 16)
         
         router.navigationLink(route: .buildsScreen(item), selection: $activeRoute)
     }

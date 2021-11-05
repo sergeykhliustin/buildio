@@ -15,7 +15,7 @@ struct AppRowView: View {
         HStack(alignment: .top) {
             let statusColor = model.status.color
             ZStack(alignment: .trailing) {
-                RoundedRectangle(cornerRadius: 5)
+                RoundedRectangle(cornerRadius: 8)
                     .fill(statusColor)
                     .frame(width: 10)
                 Rectangle()
@@ -63,7 +63,6 @@ struct AppRowView: View {
                     .frame(height: 1)
             }
         }
-        .padding([.leading, .trailing], 16)
         .font(.body)
         .foregroundColor(Color(red: 0.67, green: 0.67, blue: 0.67))
         .background(Color.white)

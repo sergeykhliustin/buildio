@@ -8,8 +8,14 @@
 import SwiftUI
 
 struct RootNavigationView: View {
+    init() {
+        #if os(iOS)
+        UITabBar.appearance().isHidden = true
+        #endif
+    }
     var body: some View {
-        TabsScreenView()
+//        TabsScreenView()
+        CustomTabsScreenView()
     }
 }
 
