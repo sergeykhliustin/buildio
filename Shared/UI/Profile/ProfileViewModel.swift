@@ -10,7 +10,7 @@ import Models
 import Combine
 
 class ProfileViewModel: BaseViewModel<V0UserProfileDataModel> {
-    override func fetch() -> AnyPublisher<V0UserProfileDataModel, ErrorResponse> {
+    override func fetch(params: Any?) -> AnyPublisher<V0UserProfileDataModel, ErrorResponse> {
         UserAPI().userProfile()
             .map({ $0.data })
             .eraseToAnyPublisher()

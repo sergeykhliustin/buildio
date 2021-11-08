@@ -14,6 +14,7 @@ struct TokenFigmaScreenView: View {
     @State private var isLoading: Bool = false
     @State private var isError: Bool = false
     @State private var error: Error?
+    @State private var focused: Bool = false
     
     var onCompletion: (() -> Void)?
     
@@ -30,9 +31,17 @@ struct TokenFigmaScreenView: View {
                     .frame(width: 137, alignment: .topLeading)
                     .lineSpacing(24)
                 
-                BTextField("*******************", text: $tokenState)
+                TextField("*******************",
+                          text: $tokenState,
+                          onEditingChanged: { editing in
+                    self.focused = editing
+                })
+                    .font(.callout)
+                    .foregroundColor(.b_TextBlack)
                     .modifier(ClearButton(text: $tokenState))
                     .modifier(PasteButton(text: $tokenState))
+                    .modifier(RoundedBorderShadowModifier(borderColor: focused ? .b_Primary : .b_BorderLight, horizontalPadding: 8))
+                    .frame(height: 44)
             }
             .padding(.horizontal, 16)
             .background(Color.white)
@@ -97,7 +106,7 @@ struct TokenFigmaScreenView: View {
 
 struct TokenFigmaScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        TokenFigmaScreenView()
+        TokenFigmaScreenView(tokenState: "askdfakjshdkfjhakjsdhfkjashdjk fhaksdhfkj ahsdkf haksdh fkahsdkf")
             .previewDevice("iPhone 8")
     }
 }

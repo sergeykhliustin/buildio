@@ -22,6 +22,11 @@
 		3F677F152729CE5900B9265B /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F677F142729CE5900B9265B /* BaseAPI.swift */; };
 		3F70EBBB2714E43600A4841E /* BTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F70EBBA2714E43600A4841E /* BTextField.swift */; };
 		3F70EBBF2714EAAE00A4841E /* Color+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F70EBBE2714EAAE00A4841E /* Color+Additions.swift */; };
+		3F75C0942739BB1B00BF246A /* NewBuildViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F75C0932739BB1B00BF246A /* NewBuildViewModel.swift */; };
+		3F75C0972739C7B700BF246A /* BranchesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F75C0962739C7B700BF246A /* BranchesView.swift */; };
+		3F75C0992739C90000BF246A /* RoundedBorderShadowModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F75C0982739C90000BF246A /* RoundedBorderShadowModifier.swift */; };
+		3F75C09B2739D53100BF246A /* WorkflowsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F75C09A2739D53100BF246A /* WorkflowsView.swift */; };
+		3F75C09D2739D66C00BF246A /* MenuStringsButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F75C09C2739D66C00BF246A /* MenuStringsButtonModifier.swift */; };
 		3FA5136E270B9D6900A5B881 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5136D270B9D6900A5B881 /* Logger.swift */; };
 		3FB99F122733F2BD008F9A96 /* BuildRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB99F112733F2BC008F9A96 /* BuildRowView.swift */; };
 		3FB99F152733F61D008F9A96 /* TimeInterval+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB99F142733F61D008F9A96 /* TimeInterval+Additions.swift */; };
@@ -115,6 +120,11 @@
 		3F677F142729CE5900B9265B /* BaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
 		3F70EBBA2714E43600A4841E /* BTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTextField.swift; sourceTree = "<group>"; };
 		3F70EBBE2714EAAE00A4841E /* Color+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Additions.swift"; sourceTree = "<group>"; };
+		3F75C0932739BB1B00BF246A /* NewBuildViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBuildViewModel.swift; sourceTree = "<group>"; };
+		3F75C0962739C7B700BF246A /* BranchesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchesView.swift; sourceTree = "<group>"; };
+		3F75C0982739C90000BF246A /* RoundedBorderShadowModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedBorderShadowModifier.swift; sourceTree = "<group>"; };
+		3F75C09A2739D53100BF246A /* WorkflowsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkflowsView.swift; sourceTree = "<group>"; };
+		3F75C09C2739D66C00BF246A /* MenuStringsButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuStringsButtonModifier.swift; sourceTree = "<group>"; };
 		3FA5136D270B9D6900A5B881 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		3FB99F112733F2BC008F9A96 /* BuildRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildRowView.swift; sourceTree = "<group>"; };
 		3FB99F142733F61D008F9A96 /* TimeInterval+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Additions.swift"; sourceTree = "<group>"; };
@@ -258,6 +268,8 @@
 				3FB99F24273435D4008F9A96 /* SpacerWrapper.swift */,
 				3FF385D227348E8F009A4479 /* ListItemWrapper.swift */,
 				3FF21F812735C65A00AA8565 /* PlatformIcon.swift */,
+				3F75C0982739C90000BF246A /* RoundedBorderShadowModifier.swift */,
+				3F75C09C2739D66C00BF246A /* MenuStringsButtonModifier.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -273,6 +285,15 @@
 				3FB99F172733F780008F9A96 /* BuildResponseItemModel+Additions.swift */,
 			);
 			path = Additions;
+			sourceTree = "<group>";
+		};
+		3F75C0952739C7A600BF246A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3F75C0962739C7B700BF246A /* BranchesView.swift */,
+				3F75C09A2739D53100BF246A /* WorkflowsView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		3FA5136C270B9D5100A5B881 /* Logger */ = {
@@ -396,7 +417,9 @@
 		3FD8FDAB273088EF0060BDF4 /* NewBuild */ = {
 			isa = PBXGroup;
 			children = (
+				3F75C0952739C7A600BF246A /* Views */,
 				3FD8FDAC273089000060BDF4 /* NewBuildScreenView.swift */,
+				3F75C0932739BB1B00BF246A /* NewBuildViewModel.swift */,
 			);
 			path = NewBuild;
 			sourceTree = "<group>";
@@ -678,7 +701,9 @@
 				3FE1096227285EDB00B533EE /* BuildArtifactAPI.swift in Sources */,
 				3FE1095027285EDB00B533EE /* AvatarCandidateAPI.swift in Sources */,
 				3FF385D627349E76009A4479 /* CustomTabView.swift in Sources */,
+				3F75C09D2739D66C00BF246A /* MenuStringsButtonModifier.swift in Sources */,
 				3FF385D327348E8F009A4479 /* ListItemWrapper.swift in Sources */,
+				3F75C0972739C7B700BF246A /* BranchesView.swift in Sources */,
 				3FCC45C8270797E30001A9C2 /* BaseView.swift in Sources */,
 				3F509BF1272B41BF00C051A0 /* AppsScreenView.swift in Sources */,
 				3FFEB451273048D4008E5A82 /* Color+Rainbow.swift in Sources */,
@@ -694,6 +719,7 @@
 				3FE1096E27285EDB00B533EE /* AddonsAPI.swift in Sources */,
 				3FE1095427285EDB00B533EE /* BuildCertificateAPI.swift in Sources */,
 				3F579EDE27329C5E00B9EECF /* ActivitiesScreenView.swift in Sources */,
+				3F75C0992739C90000BF246A /* RoundedBorderShadowModifier.swift in Sources */,
 				3FCC45C22707924D0001A9C2 /* BuildsViewModel.swift in Sources */,
 				3FE1095627285EDB00B533EE /* ActivityAPI.swift in Sources */,
 				3FB99F152733F61D008F9A96 /* TimeInterval+Additions.swift in Sources */,
@@ -702,6 +728,7 @@
 				3FD8FDB72731C48D0060BDF4 /* BuildView.swift in Sources */,
 				3F579EE127329FFF00B9EECF /* ActivityRowView.swift in Sources */,
 				3FD8FDC427327BD70060BDF4 /* AppDelegate+iOS.swift in Sources */,
+				3F75C09B2739D53100BF246A /* WorkflowsView.swift in Sources */,
 				3FCC45A227075D170001A9C2 /* Coordinator.swift in Sources */,
 				3FD85D0E2721CAC200E894E8 /* SubmitButtonStyle.swift in Sources */,
 				3FE1096827285EDB00B533EE /* ApplicationAPI.swift in Sources */,
@@ -716,6 +743,7 @@
 				3FD2FCA82724C7520093BE62 /* PagingViewModel.swift in Sources */,
 				3FE1096427285EDB00B533EE /* GenericProjectFileAPI.swift in Sources */,
 				3FD85D142721D53600E894E8 /* ClearButton.swift in Sources */,
+				3F75C0942739BB1B00BF246A /* NewBuildViewModel.swift in Sources */,
 				3FE7B55427072C1E00A6D8E1 /* BuildioApp.swift in Sources */,
 				3FE1096A27285EDB00B533EE /* TestDevicesAPI.swift in Sources */,
 				3FE1097E27285EDB00B533EE /* Models.swift in Sources */,

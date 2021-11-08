@@ -56,7 +56,10 @@ struct BuildsScreenView: View, PagingView, AppMultiRouteView {
         .sheet(isPresented: $showNewBuild) {
             model.refresh()
         } content: {
-            NewBuildScreenView()
+            NavigationView {
+                NewBuildScreenView()
+                    .navigationTitle("Start a build")
+            }
         }
     }
 }

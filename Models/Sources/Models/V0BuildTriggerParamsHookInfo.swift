@@ -12,7 +12,7 @@ public struct V0BuildTriggerParamsHookInfo: Codable, Hashable {
     /** Should be \"bitrise\" */
     public var type: String?
 
-    public init(type: String? = nil) {
+    public init(type: String = "bitrise") {
         self.type = type
     }
 

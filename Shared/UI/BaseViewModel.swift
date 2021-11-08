@@ -19,7 +19,8 @@ protocol BaseViewModelProtocol: ObservableObject {
     associatedtype ValueType
     var value: ValueType? { get }
     var state: BaseViewModelState { get }
-    func fetch() -> AnyPublisher<ValueType, ErrorResponse>
+    func fetch(params: Any?) -> AnyPublisher<ValueType, ErrorResponse>
+    func refresh(params: Any?)
     func refresh()
     func beforeRefresh()
     func afterRefresh()
@@ -50,7 +51,7 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
         }
     }
     
-    func fetch() -> AnyPublisher<ValueType, ErrorResponse> {
+    func fetch(params: Any?) -> AnyPublisher<ValueType, ErrorResponse> {
         fatalError("Should override")
     }
     
@@ -59,12 +60,16 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
     }
     
     func refresh() {
+        refresh(params: nil)
+    }
+    
+    func refresh(params: Any?) {
         beforeRefresh()
         fetcher?.cancel()
         
         state = .loading
         
-        fetcher = fetch()
+        fetcher = fetch(params: params)
             .sink(receiveCompletion: { [weak self] subscriberCompletion in
                 guard let self = self else { return }
                 if case .failure(let error) = subscriberCompletion {

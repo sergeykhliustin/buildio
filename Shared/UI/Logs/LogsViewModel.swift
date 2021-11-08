@@ -21,7 +21,7 @@ final class LogsViewModel: BaseViewModel<BuildLogResponseModel> {
         super.init()
     }
     
-    override func fetch() -> AnyPublisher<BuildLogResponseModel, ErrorResponse> {
+    override func fetch(params: Any?) -> AnyPublisher<BuildLogResponseModel, ErrorResponse> {
         BuildsAPI().buildLog(appSlug: build.repository.slug, buildSlug: build.slug)
             .eraseToAnyPublisher()
     }

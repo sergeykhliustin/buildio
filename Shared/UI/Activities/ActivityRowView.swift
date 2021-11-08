@@ -13,38 +13,37 @@ struct ActivityRowView: View {
     
     var body: some View {
         HStack(alignment: .top) {
+            AvatarView(title: nil, url: model.eventIcon ?? model.repositoryAvatarIconUrl)
+                .frame(width: 40, height: 40)
+                .cornerRadius(8)
+            
             VStack(alignment: .leading) {
-                Group {
-                    Text("Created @ \(model.createdAt.full)")
-                    
-                    if let title = model.title {
-                        Text(title)
-                    }
-                    
-                    if let description = model.description {
-                        Text(description)
-                    }
-                    
-                    if let repoTitle = model.repositoryTitle {
-                        Text(repoTitle)
-                    }
-                    
-                    if let eventStype = model.eventStype {
-                        Text(eventStype)
-                    }
-                    
+                
+                Text("Created @ \(model.createdAt.full)")
+                
+                if let title = model.title {
+                    Text(title)
                 }
-                Rectangle()
-                    .fill(Color(red: 0.80, green: 0.80, blue: 0.80))
-                    .frame(height: 1)
+                
+                if let description = model.description {
+                    Text(description)
+                }
+                
+                if let repoTitle = model.repositoryTitle {
+                    Text(repoTitle)
+                }
+                
+                if let eventStype = model.eventStype {
+                    Text(eventStype)
+                }
             }
+            .padding(8)
+            Spacer()
         }
-        .border(Color.b_BorderLight, width: 1)
-        .cornerRadius(8)
-        .padding([.leading, .trailing], 16)
-        .font(.body)
+        .padding([.leading, .trailing], 8)
+        .font(.footnote)
         .multilineTextAlignment(.leading)
-        .foregroundColor(Color(red: 0.67, green: 0.67, blue: 0.67))
+        .foregroundColor(Color.b_TextBlack)
         .background(Color.white)
     }
 }

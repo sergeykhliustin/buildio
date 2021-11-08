@@ -12,7 +12,7 @@ struct ClearButton: ViewModifier {
     @Binding var text: String
     
     func body(content: Content) -> some View {
-        ZStack(alignment: .trailing) {
+        HStack(alignment: .center, spacing: 2) {
             content
             
             if !text.isEmpty {
@@ -23,7 +23,6 @@ struct ClearButton: ViewModifier {
                         .foregroundColor(Color.b_ButtonPrimaryLight)
                 }
                 .background(Color.white)
-                .padding(.trailing, 8)
             }
         }
     }

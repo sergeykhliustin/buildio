@@ -13,13 +13,11 @@ struct ActivitiesScreenView: PagingView {
     @State var selected: V0ActivityEventResponseItemModel?
     
     func buildItemView(_ item: V0ActivityEventResponseItemModel) -> some View {
-        ActivityRowView(model: item)
-            .onAppear {
-                if item == model.items.last {
-                    logger.debug("UI load more activities")
-                    model.nextPage()
-                }
-            }
+        ListItemWrapper(action: {
+            
+        }, content: {
+            ActivityRowView(model: item)
+        })
     }
     
     func additionalToolbarItems() -> some View {

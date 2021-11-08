@@ -38,7 +38,7 @@ class BuildsViewModel: PagingViewModel<V0BuildListResponseModel> {
         }
     }
     
-    override func fetch() -> AnyPublisher<V0BuildListResponseModel, ErrorResponse> {
+    override func fetch(params: Any?) -> AnyPublisher<V0BuildListResponseModel, ErrorResponse> {
         if let app = app {
             let enrich = self.enrich
             return BuildsAPI().buildList(appSlug: app.slug, limit: fetchLimit)

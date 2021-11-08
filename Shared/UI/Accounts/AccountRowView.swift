@@ -17,7 +17,7 @@ private final class AccountRowViewModel: BaseViewModel<V0UserProfileDataModel> {
         super.init()
     }
     
-    override func fetch() -> AnyPublisher<V0UserProfileDataModel, ErrorResponse> {
+    override func fetch(params: Any?) -> AnyPublisher<V0UserProfileDataModel, ErrorResponse> {
         UserAPI(apiToken: token)
             .userProfile().map({ $0.data })
             .eraseToAnyPublisher()
@@ -52,7 +52,7 @@ struct AccountRowView: View {
                         ProgressView()
                             .frame(width: 40, height: 40)
                     } else {
-                        AvatarView(string: token.token)
+                        AvatarView(title: token.token)
                             .frame(width: 40, height: 40)
                             .cornerRadius(8)
                     }

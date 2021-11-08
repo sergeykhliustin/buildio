@@ -29,6 +29,28 @@ public struct V0BuildTriggerParamsBuildParams: Codable, Hashable {
     public var skipGitStatusReport: Bool?
     public var tag: String?
     public var workflowId: String?
+    
+    public init(build: BuildResponseItemModel) {
+        if let tag = build.tag {
+            self.init(tag: tag, workflow: build.triggeredWorkflow)
+        } else if let commit = build.commitHash {
+            self.init(commitHash: commit, workflow: build.triggeredWorkflow)
+        } else {
+            self.init(branch: build.branch, workflow: build.triggeredWorkflow)
+        }
+    }
+    
+    public init(tag: String, workflow: String) {
+        self.init(tag: tag, workflowId: workflow)
+    }
+    
+    public init(branch: String, workflow: String) {
+        self.init(branch: branch, workflowId: workflow)
+    }
+    
+    public init(commitHash: String, workflow: String) {
+        self.init(commitHash: commitHash, workflowId: workflow)
+    }
 
     public init(baseRepositoryUrl: String? = nil, branch: String? = nil, branchDest: String? = nil, branchDestRepoOwner: String? = nil, branchRepoOwner: String? = nil, buildRequestSlug: String? = nil, commitHash: String? = nil, commitMessage: String? = nil, commitPaths: [V0CommitPaths]? = nil, diffUrl: String? = nil, environments: [V0BuildParamsEnvironment]? = nil, headRepositoryUrl: String? = nil, pullRequestAuthor: String? = nil, pullRequestHeadBranch: String? = nil, pullRequestId: JSONValue? = nil, pullRequestMergeBranch: String? = nil, pullRequestRepositoryUrl: String? = nil, skipGitStatusReport: Bool? = nil, tag: String? = nil, workflowId: String? = nil) {
         self.baseRepositoryUrl = baseRepositoryUrl

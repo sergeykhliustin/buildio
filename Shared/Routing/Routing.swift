@@ -47,6 +47,7 @@ enum AppRoute: RouteType {
     case buildScreen(BuildResponseItemModel)
     case logsScreen(BuildResponseItemModel)
     case buildsScreen(V0AppResponseItemModel?)
+    case appsScreen
 }
 
 struct AppRouter: Routing {
@@ -65,7 +66,8 @@ struct AppRouter: Routing {
             } else {
                 BuildsScreenView(app: model)
             }
-            
+        case .appsScreen:
+            AppsScreenView()
         }
     }
 }

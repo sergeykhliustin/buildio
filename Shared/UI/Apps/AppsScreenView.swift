@@ -12,8 +12,11 @@ struct AppsScreenView: View, PagingView, AppMultiRouteView {
     let router: AppRouter
     @State var activeRoute: AppRoute?
     
-    init(router: AppRouter = AppRouter()) {
+    private var completion: ((V0AppResponseItemModel) -> Void)?
+    
+    init(router: AppRouter = AppRouter(), completion: ((V0AppResponseItemModel) -> Void)? = nil) {
         self.router = router
+        self.completion = completion
     }
     
     @StateObject var model = AppsViewModel()
@@ -21,7 +24,11 @@ struct AppsScreenView: View, PagingView, AppMultiRouteView {
     
     func buildItemView(_ item: V0AppResponseItemModel) -> some View {
         ListItemWrapper(cornerRadius: 8, action: {
-            activeRoute = .buildsScreen(item)
+            if let completion = completion {
+                completion(item)
+            } else {
+                activeRoute = .buildsScreen(item)
+            }
         }, content: {
             AppRowView(model: item)
         })
@@ -29,9 +36,11 @@ struct AppsScreenView: View, PagingView, AppMultiRouteView {
     
     @ViewBuilder
     func navigationLinks() -> some View {
-        ForEach(model.items) { item in
-            router.navigationLink(route: .buildsScreen(item), selection: $activeRoute)
-                .hidden()
+        if completion == nil {
+            ForEach(model.items) { item in
+                router.navigationLink(route: .buildsScreen(item), selection: $activeRoute)
+                    .hidden()
+            }
         }
     }
     

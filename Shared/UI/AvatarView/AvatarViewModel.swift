@@ -20,21 +20,24 @@ private extension URL {
 }
 
 final class AvatarViewModel: BaseViewModel<UIImage> {
-    let title: String
+    let title: String?
     let url: String?
     
-    init(title: String, url: String?) {
+    init(title: String?, url: String?) {
         self.title = title
         self.url = url
     }
     
-    lazy var name: String = {
-        var title = title.uppercased()
-        return "\(title.first ?? "N")\(title.last ?? "A")"
+    lazy var name: String? = {
+        if let title = title {
+            var title = title.uppercased()
+            return "\(title.first ?? "N")\(title.last ?? "A")"
+        }
+        return nil
     }()
     
     private lazy var color: Color = {
-        let seed = [name.first, name.last].compactMap({ $0?.unicodeScalars.first?.value }).map({ Int($0) }).reduce(0, +)
+        let seed = [name!.first, name!.last].compactMap({ $0?.unicodeScalars.first?.value }).map({ Int($0) }).reduce(0, +)
         if seed > 0 {
             return Color.b_AvatarColors[seed % Color.b_AvatarColors.count]
         }
@@ -45,10 +48,13 @@ final class AvatarViewModel: BaseViewModel<UIImage> {
         if case .loading = state {
             return .white
         }
+        if name == nil {
+            return .white
+        }
         return color
     }
     
-    override func fetch() -> AnyPublisher<UIImage, ErrorResponse> {
+    override func fetch(params: Any?) -> AnyPublisher<UIImage, ErrorResponse> {
         ImageLoader().image(URL(str: url))
     }
 }

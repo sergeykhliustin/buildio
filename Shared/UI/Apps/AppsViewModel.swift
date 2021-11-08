@@ -12,7 +12,7 @@ import Combine
 final class AppsViewModel: PagingViewModel<V0AppListResponseModel> {
     private let fetchLimit: Int = 10
     
-    override func fetch() -> AnyPublisher<V0AppListResponseModel, ErrorResponse> {
+    override func fetch(params: Any?) -> AnyPublisher<V0AppListResponseModel, ErrorResponse> {
         ApplicationAPI()
             .appList(limit: fetchLimit)
             .eraseToAnyPublisher()

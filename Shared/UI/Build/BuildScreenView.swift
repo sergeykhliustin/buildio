@@ -9,6 +9,7 @@ import SwiftUI
 import Models
 
 struct BuildScreenView: BaseView, AppOneRouteView {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     let router: AppRouter
     @State var isActiveRoute: Bool = false
     
@@ -24,15 +25,26 @@ struct BuildScreenView: BaseView, AppOneRouteView {
         ScrollView {
             if let value = model.value {
                 router.navigationLink(route: .logsScreen(value), isActive: $isActiveRoute)
-
-                Button {
-                    isActiveRoute.toggle()
-                } label: {
-                    Group {
+                HStack {
+                    Button {
+                        isActiveRoute.toggle()
+                    } label: {
                         Image(systemName: "note.text")
                         Text("Logs")
                     }
-                    .padding(8)
+                    .padding(16)
+                    if value.status != .running {
+                        Button {
+                            model.rebuild { error in
+                                if error == nil {
+                                    presentationMode.wrappedValue.dismiss()
+                                }
+                            }
+                        } label: {
+                            Text("Rebuild")
+                        }
+                        .buttonStyle(SubmitButtonStyle())
+                    }
                 }
             }
             if let value = Binding($model.value) {

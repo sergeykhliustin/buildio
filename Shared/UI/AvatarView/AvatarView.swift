@@ -19,8 +19,8 @@ struct AvatarView: BaseView {
         self._model = StateObject(wrappedValue: AvatarViewModel(title: user.username ?? user.email, url: user.avatarUrl))
     }
     
-    init(string: String) {
-        self._model = StateObject(wrappedValue: AvatarViewModel(title: string, url: nil))
+    init(title: String? = nil, url: String? = nil) {
+        self._model = StateObject(wrappedValue: AvatarViewModel(title: title, url: url))
     }
     
     var body: some View {
@@ -38,8 +38,10 @@ struct AvatarView: BaseView {
             case .loading:
                 ProgressView()
             case .error, .idle:
-                Text(model.name)
-                    .foregroundColor(.white)
+                if let name = model.name {
+                    Text(name)
+                        .foregroundColor(.white)
+                }
             }
         }
         .background(model.backgroundColor)

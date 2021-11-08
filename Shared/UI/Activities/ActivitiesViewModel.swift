@@ -12,7 +12,7 @@ import Combine
 final class ActivitiesViewModel: PagingViewModel<V0ActivityEventListResponseModel> {
     private let fetchLimit: Int = 10
     
-    override func fetch() -> AnyPublisher<V0ActivityEventListResponseModel, ErrorResponse> {
+    override func fetch(params: Any?) -> AnyPublisher<V0ActivityEventListResponseModel, ErrorResponse> {
         ActivityAPI().activityList(limit: fetchLimit)
             .eraseToAnyPublisher()
     }

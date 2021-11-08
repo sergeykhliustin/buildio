@@ -7,24 +7,6 @@
 
 import SwiftUI
 
-private struct BTextFieldStyle: TextFieldStyle {
-    @Binding var focused: Bool
-
-    func _body(configuration: TextField<Self._Label>) -> some View {
-        configuration
-            .cornerRadius(4)
-            .font(.callout)
-            .frame(height: 44)
-            .foregroundColor(.init(hex: 0x351d48))
-            .background(
-                RoundedRectangle(cornerRadius: 4)
-                    .fill(Color.white)
-                    .overlay(RoundedRectangle(cornerRadius: 4).stroke(focused ? Color.b_ButtonPrimaryLight : Color.b_BorderLight, lineWidth: 1))
-                    .shadow(color: .b_ShadowLight, radius: 3, y: 2)
-            )
-    }
-}
-
 struct BTextField: View {
     private let title: String
     private let text: Binding<String>
@@ -41,14 +23,24 @@ struct BTextField: View {
     
     var body: some View {
         ZStack(alignment: .trailing) {
+            RoundedRectangle(cornerRadius: 4)
+                .fill(Color.white)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 4)
+                        .stroke(focused ? Color.b_ButtonPrimaryLight : Color.b_BorderLight, lineWidth: 1)
+                )
+                .shadow(color: .b_ShadowLight, radius: 3, y: 2)
             TextField(title,
                       text: text,
                       onEditingChanged: { editing in
                 self.focused = editing
                 self.onEditingChanged(editing)
             }, onCommit: self.onCommit)
-                .textFieldStyle(BTextFieldStyle(focused: $focused))
+                .contentShape(Rectangle())
+                .cornerRadius(4)
+                .padding(.horizontal, 16)
         }
+        .frame(height: 44)
     }
 }
 
