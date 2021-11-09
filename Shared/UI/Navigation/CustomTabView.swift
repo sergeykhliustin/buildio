@@ -34,6 +34,7 @@ struct CustomTabView: View {
                         content(index).screen()
                             .navigationTitle(content(index).name)
                     }
+                    .accentColor(.b_TextBlack)
                 }
             }
             

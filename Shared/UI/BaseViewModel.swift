@@ -12,30 +12,94 @@ public enum BaseViewModelState {
     case idle
     case loading
     case value
-    case error(ErrorResponse)
+    case error
 }
 
 protocol BaseViewModelProtocol: ObservableObject {
     associatedtype ValueType
+    associatedtype ParamsType
     var value: ValueType? { get }
     var state: BaseViewModelState { get }
-    func fetch(params: Any?) -> AnyPublisher<ValueType, ErrorResponse>
-    func refresh(params: Any?)
-    func refresh()
+    var error: ErrorResponse? { get }
+    func fetch(params: ParamsType) -> AnyPublisher<ValueType, ErrorResponse>
+    func refresh(params: ParamsType)
     func beforeRefresh()
     func afterRefresh()
 }
 
-class BaseViewModel<ValueType>: BaseViewModelProtocol {
+class ParamsBaseViewModel<ValueType, ParamsType>: BaseViewModelProtocol {
     @Published var value: ValueType?
     @Published var state: BaseViewModelState = .idle
+    @Published var error: ErrorResponse?
     
     var fetcher: AnyCancellable?
     var tokenRefresher: AnyCancellable?
     
-    var error: String? {
-        if case .error(let error) = state {
-            return error.rawErrorString
+    var errorString: String? {
+        if case .error = state {
+            return error?.rawErrorString
+        } else {
+            return nil
+        }
+    }
+    
+    func fetch(params: ParamsType) -> AnyPublisher<ValueType, ErrorResponse> {
+        fatalError("Should override")
+    }
+    
+    func beforeRefresh() {
+        
+    }
+    
+    func refresh(params: ParamsType) {
+        beforeRefresh()
+        fetcher?.cancel()
+        
+        state = .loading
+        
+        fetcher = fetch(params: params)
+            .sink(receiveCompletion: { [weak self] subscriberCompletion in
+                guard let self = self else { return }
+                if case .failure(let error) = subscriberCompletion {
+                    self.error = error
+                    self.state = .error
+                }
+                self.afterRefresh()
+            }, receiveValue: { [weak self] value in
+                guard let self = self else { return }
+                self.value = value
+                self.state = .value
+            })
+        
+        if tokenRefresher == nil {
+            tokenRefresher = TokenManager.shared.$token
+                .dropFirst()
+                .sink { [weak self] value in
+                    DispatchQueue.main.async {
+                        self?.refresh(params: params)
+                    }
+                }
+        }
+    }
+    
+    func afterRefresh() {
+        
+    }
+}
+
+class BaseViewModel<ValueType>: BaseViewModelProtocol {
+    typealias ParamsType = Any?
+    
+    @Published var value: ValueType?
+    @Published var state: BaseViewModelState = .idle
+    @Published var error: ErrorResponse?
+    
+    var fetcher: AnyCancellable?
+    var tokenRefresher: AnyCancellable?
+    
+    var errorString: String? {
+        if case .error = state {
+            return error?.rawErrorString
         } else {
             return nil
         }
@@ -51,7 +115,7 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
         }
     }
     
-    func fetch(params: Any?) -> AnyPublisher<ValueType, ErrorResponse> {
+    func fetch(params: ParamsType) -> AnyPublisher<ValueType, ErrorResponse> {
         fatalError("Should override")
     }
     
@@ -63,7 +127,7 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
         refresh(params: nil)
     }
     
-    func refresh(params: Any?) {
+    func refresh(params: ParamsType) {
         beforeRefresh()
         fetcher?.cancel()
         
@@ -73,7 +137,8 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
             .sink(receiveCompletion: { [weak self] subscriberCompletion in
                 guard let self = self else { return }
                 if case .failure(let error) = subscriberCompletion {
-                    self.state = .error(error)
+                    self.error = error
+                    self.state = .error
                 }
                 self.afterRefresh()
             }, receiveValue: { [weak self] value in

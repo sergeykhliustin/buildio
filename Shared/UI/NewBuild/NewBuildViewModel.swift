@@ -9,13 +9,17 @@ import Foundation
 import Models
 import Combine
 
-final class NewBuildViewModel: BaseViewModel<[String]> {
-    @Published var app: V0AppResponseItemModel?
+struct NewBuildViewModelParams {
+    var appSlug: String
+    var branch: String
+    var workflow: String
+    var message: String
+}
+
+final class NewBuildViewModel: ParamsBaseViewModel<V0BuildTriggerRespModel, NewBuildViewModelParams> {
     
-    override func fetch(params: Any?) -> AnyPublisher<[String], ErrorResponse> {
-        ApplicationAPI()
-            .branchList(appSlug: app?.slug ?? "")
-            .map( { $0.data ?? [] } )
-            .eraseToAnyPublisher()
+    override func fetch(params: NewBuildViewModelParams) -> AnyPublisher<V0BuildTriggerRespModel, ErrorResponse> {
+        let buildParams = V0BuildTriggerParams(buildParams: V0BuildTriggerParamsBuildParams(branch: params.branch, workflow: params.workflow, message: params.message.isEmpty ? nil : params.message), hookInfo: V0BuildTriggerParamsHookInfo())
+        return BuildsAPI().buildTrigger(appSlug: params.appSlug, buildParams: buildParams)
     }
 }

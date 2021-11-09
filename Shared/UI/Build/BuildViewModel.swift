@@ -39,7 +39,8 @@ final class BuildViewModel: BaseViewModel<BuildResponseItemModel> {
                 .sink(receiveCompletion: { [weak self] result in
                     guard let self = self else { return }
                     if case .failure(let error) = result {
-                        self.state = .error(error)
+                        self.error = error
+                        self.state = .error
                         completion(error)
                     } else {
                         self.state = .value

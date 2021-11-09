@@ -59,7 +59,7 @@ struct AccountRowView: View {
                     
                     VStack(alignment: .leading) {
                         Text(token.email)
-                        if let error = model.error {
+                        if let error = model.errorString {
                             Text(error)
                                 .font(.footnote.bold())
                                 .foregroundColor(.red)

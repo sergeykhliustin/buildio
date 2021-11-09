@@ -10,6 +10,10 @@ protocol JSONEncodable {
     func encodeToJSON() -> Any
 }
 
+private struct BitriseError: Decodable {
+    let message: String
+}
+
 public enum ErrorResponse: Error {
     case error(Int, Data?, URLResponse?, Error)
     var rawError: Error! {
@@ -22,6 +26,8 @@ public enum ErrorResponse: Error {
         if case let .error(code, data, response, rawError) = self {
             if code == 401 {
                 return "Token expired or invalid"
+            } else if let data = data, let string = try? JSONDecoder().decode(BitriseError.self, from: data).message {
+                return "Error: " + string
             }
             return rawError.localizedDescription
         }

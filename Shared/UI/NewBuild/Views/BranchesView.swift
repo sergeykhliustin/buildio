@@ -10,10 +10,10 @@ import Models
 import Combine
 
 final class BranchesViewModel: BaseViewModel<[String]> {
-    let app: V0AppResponseItemModel
+    @Binding var app: V0AppResponseItemModel
     
-    init(app: V0AppResponseItemModel) {
-        self.app = app
+    init(app: Binding<V0AppResponseItemModel>) {
+        self._app = app
     }
     
     override func fetch(params: Any?) -> AnyPublisher<[String], ErrorResponse> {
@@ -24,30 +24,50 @@ final class BranchesViewModel: BaseViewModel<[String]> {
     }
 }
 
-struct BranchesView: BaseView {
+struct BranchesView: BaseView, OneRouteView {
+    let router: AppRouter
+    @State var isActiveRoute: Bool = false
+    
     @StateObject var model: BranchesViewModel
     @Binding var branch: String
+    @Binding var app: V0AppResponseItemModel
     
-    init(app: V0AppResponseItemModel, branch: Binding<String>) {
+    init(router: AppRouter = AppRouter(), app: Binding<V0AppResponseItemModel>, branch: Binding<String>) {
+        self.router = router
+        self._app = app
         _model = StateObject(wrappedValue: BranchesViewModel(app: app))
         _branch = branch
     }
     
     var body: some View {
         BTextField("Select branch", text: $branch)
-            .modifier(MenuStringsButtonModifier(icon: "arrow.triangle.branch", strings: $model.value, onSelect: { branch in
-                self.branch = branch
+            .modifier(RightButtonModifier(icon: "chevron.right", loading: model.value == nil, action: {
+                isActiveRoute.toggle()
             }))
             .onReceive(model.$value) { branches in
                 if branch.isEmpty {
                     branch = branches?.first ?? ""
                 }
             }
+            .onChange(of: app) { newValue in
+                branch = ""
+                model.refresh()
+            }
+        
+        NavigationLink(isActive: $isActiveRoute) {
+            SelectStringScreenView(model.value ?? []) { branch in
+                self.branch = branch
+            }
+            .navigationTitle("Select branch:")
+        } label: {
+            EmptyView()
+        }
+        .hidden()
     }
 }
 
 struct BranchesView_Previews: PreviewProvider {
     static var previews: some View {
-        BranchesView(app: V0AppResponseItemModel.preview(), branch: .constant("branch"))
+        BranchesView(app: .constant(V0AppResponseItemModel.preview()), branch: .constant("branch"))
     }
 }

@@ -7,8 +7,10 @@
 
 import SwiftUI
 import Models
+import Combine
 
-struct NewBuildScreenView: BaseView, OneRouteView {
+struct NewBuildScreenView: View, OneRouteView {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @StateObject var model: NewBuildViewModel = NewBuildViewModel()
     
     @State var isActiveRoute: Bool = false
@@ -25,15 +27,18 @@ struct NewBuildScreenView: BaseView, OneRouteView {
     
     var body: some View {
         ScrollView {
-            NavigationLink("", isActive: $isActiveRoute) {
+            NavigationLink(isActive: $isActiveRoute) {
                 AppsScreenView(completion: { app in
                     self.app = app
                     self.isActiveRoute = false
                 })
                     .navigationTitle("Select the app")
+            } label: {
+                EmptyView()
             }
             .hidden()
-            VStack(alignment: .leading) {
+
+            VStack(alignment: .leading, spacing: 8) {
                 Text("App:")
                 Button {
                     isActiveRoute.toggle()
@@ -48,20 +53,51 @@ struct NewBuildScreenView: BaseView, OneRouteView {
                     }
                     .modifier(RoundedBorderShadowModifier())
                 }
-                if let app = app {
+                if let app = Binding($app) {
                     Text("Branch:")
                     BranchesView(app: app, branch: $branch)
-                    Text("Message:")
-                    BTextField("e.g. triggered by Buildio", text: $message)
                     Text("Workflow:")
                     WorkflowsView(app: app, workflow: $workflow)
+                    Text("Message:")
+                    BTextField("e.g. triggered by Buildio", text: $message)
+                    
+                    HStack(alignment: .center) {
+                        Spacer()
+                        Button("Start") {
+                            model.refresh(params: NewBuildViewModelParams(appSlug: app.wrappedValue.slug, branch: branch, workflow: workflow, message: message))
+                        }
+                        .buttonStyle(SubmitButtonStyle())
+                        .disabled(!validator)
+                        .frame(alignment: .center)
+                        Spacer()
+                    }
+                }
+                if model.state == .loading {
+                    HStack {
+                        Spacer()
+                        ProgressView().padding(8)
+                        Spacer()
+                    }
+                }
+                if let error = model.errorString {
+                    Text(error).padding()
                 }
                 
             }
+            .onReceive(model.$state, perform: { state in
+                if state == .value {
+                    presentationMode.wrappedValue.dismiss()
+                }
+            })
             .padding(.horizontal, 16)
+            .disabled(model.state == .loading)
         }
         .font(.footnote)
         .foregroundColor(Color.b_TextBlack)
+    }
+    
+    private var validator: Bool {
+        return app != nil && !branch.isEmpty && !workflow.isEmpty && model.state != .loading
     }
 }
 

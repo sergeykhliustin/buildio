@@ -44,8 +44,8 @@ public struct V0BuildTriggerParamsBuildParams: Codable, Hashable {
         self.init(tag: tag, workflowId: workflow)
     }
     
-    public init(branch: String, workflow: String) {
-        self.init(branch: branch, workflowId: workflow)
+    public init(branch: String, workflow: String, message: String? = nil) {
+        self.init(branch: branch, commitMessage: message, workflowId: workflow)
     }
     
     public init(commitHash: String, workflow: String) {

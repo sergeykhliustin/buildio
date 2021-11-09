@@ -20,7 +20,7 @@ private struct CustomListWrapperButtonStyle: ButtonStyle {
             .background(
                 RoundedRectangle(cornerRadius: 8)
                     .fill(Color.white)
-                    .shadow(radius: 5)
+                    .shadow(color: .b_ShadowLight, radius: 3, y: 2)
             )
             .background(
                 RoundedRectangle(cornerRadius: cornerRadius).stroke(highlighted ? Color.b_Primary : .clear, lineWidth: 2)

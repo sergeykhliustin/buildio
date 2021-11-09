@@ -60,6 +60,7 @@ struct BuildsScreenView: View, PagingView, AppMultiRouteView {
                 NewBuildScreenView()
                     .navigationTitle("Start a build")
             }
+            .accentColor(.b_TextBlack)
         }
     }
 }

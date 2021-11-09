@@ -12,6 +12,8 @@
 		3F030286272C0A08005B5F2A /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = 3F030285272C0A08005B5F2A /* Models */; };
 		3F03028D272C0A68005B5F2A /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 3F03028C272C0A68005B5F2A /* KeychainAccess */; };
 		3F19ABA2272C055D0070DFE3 /* SwiftyBeaver in Frameworks */ = {isa = PBXBuildFile; productRef = 3F19ABA1272C055D0070DFE3 /* SwiftyBeaver */; };
+		3F2B139C273AF64100F7A092 /* RightButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2B139B273AF64100F7A092 /* RightButtonModifier.swift */; };
+		3F2B139E273AF86F00F7A092 /* SelectStringScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2B139D273AF86F00F7A092 /* SelectStringScreenView.swift */; };
 		3F2BE9E2270CA0C00051C910 /* AccountsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2BE9E1270CA0C00051C910 /* AccountsScreenView.swift */; };
 		3F2BE9E5270CA5E00051C910 /* TabsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2BE9E4270CA5E00051C910 /* TabsScreenView.swift */; };
 		3F509BEE272B3F1E00C051A0 /* AppsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F509BED272B3F1E00C051A0 /* AppsViewModel.swift */; };
@@ -109,6 +111,8 @@
 		3F00B11A272C175000C4A2FB /* URLRequest+Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Cache.swift"; sourceTree = "<group>"; };
 		3F00B11D272C210700C4A2FB /* SHA256.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHA256.swift; sourceTree = "<group>"; };
 		3F030283272C09FE005B5F2A /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Models; sourceTree = "<group>"; };
+		3F2B139B273AF64100F7A092 /* RightButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightButtonModifier.swift; sourceTree = "<group>"; };
+		3F2B139D273AF86F00F7A092 /* SelectStringScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStringScreenView.swift; sourceTree = "<group>"; };
 		3F2BE9E1270CA0C00051C910 /* AccountsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsScreenView.swift; sourceTree = "<group>"; };
 		3F2BE9E4270CA5E00051C910 /* TabsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsScreenView.swift; sourceTree = "<group>"; };
 		3F3295842735A623001994B0 /* Buildio (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Buildio (iOS).entitlements"; sourceTree = "<group>"; };
@@ -292,6 +296,7 @@
 			children = (
 				3F75C0962739C7B700BF246A /* BranchesView.swift */,
 				3F75C09A2739D53100BF246A /* WorkflowsView.swift */,
+				3F2B139B273AF64100F7A092 /* RightButtonModifier.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -420,6 +425,7 @@
 				3F75C0952739C7A600BF246A /* Views */,
 				3FD8FDAC273089000060BDF4 /* NewBuildScreenView.swift */,
 				3F75C0932739BB1B00BF246A /* NewBuildViewModel.swift */,
+				3F2B139D273AF86F00F7A092 /* SelectStringScreenView.swift */,
 			);
 			path = NewBuild;
 			sourceTree = "<group>";
@@ -713,6 +719,7 @@
 				3FFEB446272FF8C8008E5A82 /* LogsScreenView.swift in Sources */,
 				3FF21F842735CD4E00AA8565 /* AccountRowView.swift in Sources */,
 				3FE1095C27285EDB00B533EE /* BuildsAPI.swift in Sources */,
+				3F2B139E273AF86F00F7A092 /* SelectStringScreenView.swift in Sources */,
 				3FFEB43F272F093B008E5A82 /* PagingView.swift in Sources */,
 				3FCC45B827078E040001A9C2 /* ProfileScreenView.swift in Sources */,
 				3FE109A42728801800B533EE /* Date+Additions.swift in Sources */,
@@ -752,6 +759,7 @@
 				3FE10799272839A900B533EE /* TagView.swift in Sources */,
 				3FCC45BF2707923F0001A9C2 /* BuildsScreenView.swift in Sources */,
 				3FE1094E27285EDB00B533EE /* UserAPI.swift in Sources */,
+				3F2B139C273AF64100F7A092 /* RightButtonModifier.swift in Sources */,
 				3FD85D112721CF6F00E894E8 /* Color.swift in Sources */,
 				3FE1097827285EDB00B533EE /* Extensions.swift in Sources */,
 				3FF385D927349EF2009A4479 /* CustomTabBar.swift in Sources */,

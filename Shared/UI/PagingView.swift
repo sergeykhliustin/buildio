@@ -31,7 +31,7 @@ extension PagingView {
             navigationLinks()
             VStack {
                 ScrollView {
-                    if case .error(let error) = model.state {
+                    if let error = model.error, model.state == .error {
                         buildErrorView(error)
                     }
                     LazyVStack(spacing: 16) {
@@ -59,7 +59,7 @@ extension PagingView {
                         ProgressView().frame(width: 44, height: 44, alignment: .center)
                     }
                     Button {
-                        model.refresh()
+                        model.refresh(params: nil)
                     } label: {
                         Image(systemName: "arrow.counterclockwise")
                     }
