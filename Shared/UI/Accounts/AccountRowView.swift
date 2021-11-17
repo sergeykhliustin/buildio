@@ -12,6 +12,10 @@ import Combine
 private final class AccountRowViewModel: BaseViewModel<V0UserProfileDataModel> {
     let token: String
     
+    override class var shouldHandleTokenUpdates: Bool {
+        return false
+    }
+    
     init(token: String) {
         self.token = token
         super.init()
@@ -26,6 +30,7 @@ private final class AccountRowViewModel: BaseViewModel<V0UserProfileDataModel> {
 
 struct AccountRowView: View {
     @StateObject private var model: AccountRowViewModel
+    @StateObject private var tokenManager = TokenManager.shared
     let token: Token
     
     init(_ token: Token) {
@@ -67,12 +72,12 @@ struct AccountRowView: View {
                     }
                 }
                 Spacer()
-                if token.current {
+                if token == tokenManager.token {
                     Image(systemName: "checkmark")
                 }
                 Button {
                     logger.debug("trash")
-                    TokenManager.shared.remove(token)
+                    tokenManager.remove(token)
                 } label: {
                     Image(systemName: "trash")
                 }

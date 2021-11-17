@@ -16,7 +16,7 @@ struct Token: Equatable {
     
     let token: String
     let email: String
-    var current: Bool
+    fileprivate var current: Bool
     
     init(token: String, email: String) {
         self.token = token

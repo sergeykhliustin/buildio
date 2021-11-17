@@ -102,19 +102,25 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
         return true
     }
     
+    class var shouldHandleTokenUpdates: Bool {
+        return true
+    }
+    
     init() {
         if Self.shouldRefreshOnInit {
             refresh()
         }
         
-        tokenRefresher = TokenManager.shared.$token
-            .dropFirst()
-            .sink { [weak self] value in
-                DispatchQueue.main.async {
-                    self?.tokenUpdated = true
-                    self?.refresh()
+        if Self.shouldHandleTokenUpdates {            
+            tokenRefresher = TokenManager.shared.$token
+                .dropFirst()
+                .sink { [weak self] value in
+                    DispatchQueue.main.async {
+                        self?.tokenUpdated = true
+                        self?.refresh()
+                    }
                 }
-            }
+        }
     }
     
     func fetch(params: ParamsType) -> AnyPublisher<ValueType, ErrorResponse> {
