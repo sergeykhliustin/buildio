@@ -23,7 +23,7 @@ protocol BaseViewModelProtocol: ObservableObject {
     var error: ErrorResponse? { get }
     func fetch(params: ParamsType) -> AnyPublisher<ValueType, ErrorResponse>
     func refresh(params: ParamsType)
-    func beforeRefresh()
+    func beforeRefresh(_ tokenUpdated: Bool)
     func afterRefresh()
 }
 
@@ -33,7 +33,6 @@ class ParamsBaseViewModel<ValueType, ParamsType>: BaseViewModelProtocol {
     @Published var error: ErrorResponse?
     
     var fetcher: AnyCancellable?
-    var tokenRefresher: AnyCancellable?
     
     var errorString: String? {
         if case .error = state {
@@ -47,12 +46,14 @@ class ParamsBaseViewModel<ValueType, ParamsType>: BaseViewModelProtocol {
         fatalError("Should override")
     }
     
-    func beforeRefresh() {
-        
+    func beforeRefresh(_ tokenUpdated: Bool) {
+        if tokenUpdated {
+            self.value = nil
+        }
     }
     
     func refresh(params: ParamsType) {
-        beforeRefresh()
+        beforeRefresh(false)
         fetcher?.cancel()
         
         state = .loading
@@ -70,16 +71,6 @@ class ParamsBaseViewModel<ValueType, ParamsType>: BaseViewModelProtocol {
                 self.value = value
                 self.state = .value
             })
-        
-        if tokenRefresher == nil {
-            tokenRefresher = TokenManager.shared.$token
-                .dropFirst()
-                .sink { [weak self] value in
-                    DispatchQueue.main.async {
-                        self?.refresh(params: params)
-                    }
-                }
-        }
     }
     
     func afterRefresh() {
@@ -97,6 +88,8 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
     var fetcher: AnyCancellable?
     var tokenRefresher: AnyCancellable?
     
+    private var tokenUpdated: Bool = false
+    
     var errorString: String? {
         if case .error = state {
             return error?.rawErrorString
@@ -113,14 +106,25 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
         if Self.shouldRefreshOnInit {
             refresh()
         }
+        
+        tokenRefresher = TokenManager.shared.$token
+            .dropFirst()
+            .sink { [weak self] value in
+                DispatchQueue.main.async {
+                    self?.tokenUpdated = true
+                    self?.refresh()
+                }
+            }
     }
     
     func fetch(params: ParamsType) -> AnyPublisher<ValueType, ErrorResponse> {
         fatalError("Should override")
     }
     
-    func beforeRefresh() {
-        
+    func beforeRefresh(_ tokenUpdated: Bool) {
+        if tokenUpdated {
+            self.value = nil
+        }
     }
     
     func refresh() {
@@ -128,7 +132,8 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
     }
     
     func refresh(params: ParamsType) {
-        beforeRefresh()
+        beforeRefresh(tokenUpdated)
+        tokenUpdated = false
         fetcher?.cancel()
         
         state = .loading
@@ -146,16 +151,6 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
                 self.value = value
                 self.state = .value
             })
-        
-        if tokenRefresher == nil {
-            tokenRefresher = TokenManager.shared.$token
-                .dropFirst()
-                .sink { [weak self] value in
-                    DispatchQueue.main.async {
-                        self?.refresh()
-                    }
-                }
-        }
     }
     
     func afterRefresh() {

@@ -36,11 +36,10 @@ struct CustomTabsScreenView: View {
         RootScreens.builds,
         RootScreens.apps,
         RootScreens.accounts,
-        RootScreens.profile,
         RootScreens.activities
     ]
     var body: some View {
-        CustomTabView(count: 5) { index in
+        CustomTabView(count: screens.count) { index in
             screens[index]
         }
     }

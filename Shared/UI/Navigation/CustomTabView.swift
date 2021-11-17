@@ -43,8 +43,8 @@ struct CustomTabView: View {
                 Text(content(index).name)
                     .font(.footnote)
             })
-            
         }
+        .background(Color.white)
     }
     
     @ViewBuilder

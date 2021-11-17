@@ -16,10 +16,10 @@ private struct CustomTabBarButtonStyle: ButtonStyle {
         configuration
             .label
             .contentShape(Rectangle())
-            .foregroundColor(highlighted ? Color.b_Primary : Color.b_TextBlack)
-            .background(
-                RoundedRectangle(cornerRadius: 4).stroke(highlighted ? Color.b_Primary : .clear, lineWidth: 1)
-            )
+            .foregroundColor(highlighted ? Color.b_Primary : Color.b_PrimaryLight)
+//            .background(
+//                RoundedRectangle(cornerRadius: 4).stroke(highlighted ? Color.b_Primary : .clear, lineWidth: 1)
+//            )
             .onHover { hover in
                 self.hover = hover
             }
@@ -57,12 +57,13 @@ struct CustomTabBar<Content>: View where Content: View {
             }
         }
         .frame(height: 48)
+        .background(Color.white.shadow(color: .b_ShadowLight, radius: 3, y: -5))
     }
 }
 
 struct CustomTabBar_Previews: PreviewProvider {
     static var previews: some View {
-        CustomTabBar(count: 1, selected: .constant(0)) { _ in
+        CustomTabBar(count: 2, selected: .constant(0)) { _ in
             Image(systemName: "hammer.fill")
                 .frame(maxWidth: .infinity)
             Text("Builds")

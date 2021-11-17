@@ -10,6 +10,7 @@ import Models
 
 extension Color {
     static let b_TextBlack = Color(hex: 0x351d48)
+    static let b_TextBlackLight = Color(hex: 0x351d48).opacity(0.16)
     static let b_BuildFailed = Color(hex: 0xff2158)
     static let b_BuildFailedLight = b_BuildFailed.opacity(0.16)
     static let b_BuildAborted = Color(hex: 0xffc500)
@@ -20,6 +21,7 @@ extension Color {
     static let b_BuildRunningLight = b_BuildRunning.opacity(0.16)
     
     static let b_Primary = Color(red: 0.29, green: 0.18, blue: 0.36)
+    static let b_PrimaryLight = Color(red: 0.29, green: 0.18, blue: 0.36).opacity(0.6)
     static let b_ButtonPrimary = Color(hex: 0x450674)
     static let b_ButtonPrimaryLight = Color(hex: 0x6c0eb2)
     static let b_BorderLight = Color(red: 0.87, green: 0.87, blue: 0.87)

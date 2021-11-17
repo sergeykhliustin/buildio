@@ -42,8 +42,11 @@ class PagingViewModel<VALUE: PagingResponseModel>: BaseViewModel<VALUE>, PagingV
     @Published var items: [ValueType.ItemType] = []
     private var pageFetcher: AnyCancellable?
     
-    override func beforeRefresh() {
-        super.beforeRefresh()
+    override func beforeRefresh(_ tokenUpdated: Bool) {
+        super.beforeRefresh(tokenUpdated)
+        if tokenUpdated {
+            items = []
+        }
         pagingState = .idle
     }
     

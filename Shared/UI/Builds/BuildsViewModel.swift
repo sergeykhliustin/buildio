@@ -9,7 +9,7 @@ import Foundation
 import Models
 import Combine
 
-class BuildsViewModel: PagingViewModel<V0BuildListResponseModel> {
+final class BuildsViewModel: PagingViewModel<V0BuildListResponseModel> {
     @Published var updater: Bool = false
     private let fetchLimit: Int = 10
     private var app: V0AppResponseItemModel?
@@ -18,10 +18,6 @@ class BuildsViewModel: PagingViewModel<V0BuildListResponseModel> {
     init(app: V0AppResponseItemModel? = nil) {
         self.app = app
         super.init()
-    }
-    
-    override func beforeRefresh() {
-        super.beforeRefresh()
     }
     
     override func afterRefresh() {
