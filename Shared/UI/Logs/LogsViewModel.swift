@@ -22,7 +22,7 @@ final class LogsViewModel: BaseViewModel<BuildLogResponseModel> {
     }
     
     override func fetch(params: Any?) -> AnyPublisher<BuildLogResponseModel, ErrorResponse> {
-        BuildsAPI().buildLog(appSlug: build.repository.slug, buildSlug: build.slug)
+        BuildsAPI().buildLog(appSlug: build.repository.slug, buildSlug: build.slug, timestamp: value?.nextAfterTimestamp)
             .eraseToAnyPublisher()
     }
     

@@ -22,12 +22,12 @@ struct BuildScreenView: BaseView, AppOneRouteView {
     }
     
     var body: some View {
+        router.navigationLink(route: .logsScreen, isActive: $isActiveRoute, params: model.value).hidden()
         ScrollView {
             if let value = model.value {
-                router.navigationLink(route: .logsScreen(value), isActive: $isActiveRoute)
                 HStack {
                     Button {
-                        isActiveRoute.toggle()
+                        isActiveRoute = true
                     } label: {
                         Image(systemName: "note.text")
                         Text("Logs")

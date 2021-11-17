@@ -8,10 +8,9 @@
 import SwiftUI
 import Models
 
-struct BuildsScreenView: View, PagingView, AppMultiRouteView {
+struct BuildsScreenView: View, PagingView, OneRouteView {
     let router: AppRouter
-    @State var activeRoute: AppRoute?
-    @State var isRouteActive: Bool = false
+    @State var isActiveRoute: Bool = false
     
     @StateObject var model: BuildsViewModel
     @State var selected: BuildResponseItemModel?
@@ -31,7 +30,8 @@ struct BuildsScreenView: View, PagingView, AppMultiRouteView {
     
     func buildItemView(_ item: BuildResponseItemModel) -> some View {
         ListItemWrapper(action: {
-            activeRoute = .buildScreen(item)
+            selected = item
+            isActiveRoute = true
         }, content: {
             BuildRowView(model: .constant(item))
         })
@@ -39,10 +39,7 @@ struct BuildsScreenView: View, PagingView, AppMultiRouteView {
     
     @ViewBuilder
     func navigationLinks() -> some View {
-        ForEach(model.items) { item in
-            router.navigationLink(route: .buildScreen(item), selection: $activeRoute)
-                .hidden()
-        }
+        router.navigationLink(route: .buildScreen, isActive: $isActiveRoute, params: selected).hidden()
     }
     
     @ViewBuilder

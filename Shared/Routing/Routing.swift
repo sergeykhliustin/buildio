@@ -16,16 +16,16 @@ protocol Routing {
     associatedtype Route
     associatedtype View: SwiftUI.View
     
-    @ViewBuilder func view(for route: Route) -> Self.View
+    @ViewBuilder func view(for route: Route, params: Any?) -> Self.View
 }
 
 extension Routing {
-    func navigationLink<R: RouteType>(route: R, selection: Binding<R?>) -> NavigationLink<EmptyView, Self.View> where R == Self.Route {
-        NavigationLink(route: route, selection: selection, router: self)
+    func navigationLink<R: RouteType>(route: R, selection: Binding<R?>, params: Any? = nil) -> NavigationLink<EmptyView, Self.View> where R == Self.Route {
+        NavigationLink(route: route, selection: selection, router: self, params: params)
     }
     
-    func navigationLink<R: RouteType>(route: R, isActive: Binding<Bool>) -> NavigationLink<EmptyView, Self.View> where R == Self.Route {
-        NavigationLink(route: route, isActive: isActive, router: self)
+    func navigationLink<R: RouteType>(route: R, isActive: Binding<Bool>, params: Any? = nil) -> NavigationLink<EmptyView, Self.View> where R == Self.Route {
+        NavigationLink(route: route, isActive: isActive, router: self, params: params)
     }
 }
 
@@ -44,20 +44,24 @@ protocol OneRouteView: View {
 }
 
 enum AppRoute: RouteType {
-    case buildScreen(BuildResponseItemModel)
-    case logsScreen(BuildResponseItemModel)
+    case buildScreen
+    case logsScreen
     case buildsScreen(V0AppResponseItemModel?)
     case appsScreen
 }
 
 struct AppRouter: Routing {
     @ViewBuilder
-    func view(for route: AppRoute) -> some View {
+    func view(for route: AppRoute, params: Any? = nil) -> some View {
         switch route {
-        case .buildScreen(let model):
-            BuildScreenView(build: model)
-        case .logsScreen(let model):
-            LogsScreenView(build: model)
+        case .buildScreen:
+            if let model = params as? BuildResponseItemModel {
+                BuildScreenView(build: model)
+            }
+        case .logsScreen:
+            if let params = params as? BuildResponseItemModel {
+                LogsScreenView(build: params)
+            }
             
         case .buildsScreen(let model):
             if let model = model {
@@ -81,17 +85,17 @@ protocol AppOneRouteView: OneRouteView where Router == AppRouter {
 }
 
 extension NavigationLink where Destination: View, Label == EmptyView {
-    init<R: RouteType, T: Routing>(route: R, selection: Binding<R?>, router: T) where T.Route == R, Destination == T.View {
+    init<R: RouteType, T: Routing>(route: R, selection: Binding<R?>, router: T, params: Any? = nil) where T.Route == R, Destination == T.View {
         self.init(tag: route, selection: selection, destination: {
-            router.view(for: route)
+            router.view(for: route, params: params)
         }, label: {
             EmptyView()
         })
     }
     
-    init<R: RouteType, T: Routing>(route: R, isActive: Binding<Bool>, router: T) where T.Route == R, Destination == T.View {
+    init<R: RouteType, T: Routing>(route: R, isActive: Binding<Bool>, router: T, params: Any? = nil) where T.Route == R, Destination == T.View {
         self.init(isActive: isActive, destination: {
-            router.view(for: route)
+            router.view(for: route, params: params)
         }, label: {
             EmptyView()
         })

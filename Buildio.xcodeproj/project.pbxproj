@@ -38,7 +38,7 @@
 		3FB99F22273400B6008F9A96 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB99F21273400B6008F9A96 /* ImageLoader.swift */; };
 		3FB99F25273435D4008F9A96 /* SpacerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB99F24273435D4008F9A96 /* SpacerWrapper.swift */; };
 		3FB99F2927344643008F9A96 /* Routing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB99F2827344643008F9A96 /* Routing.swift */; };
-		3FB99F3F2734801C008F9A96 /* LogsTextView+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB99F3C2734801C008F9A96 /* LogsTextView+iOS.swift */; };
+		3FB99F3F2734801C008F9A96 /* LogsTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB99F3C2734801C008F9A96 /* LogsTextView.swift */; };
 		3FCC45A227075D170001A9C2 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45A127075D170001A9C2 /* Coordinator.swift */; };
 		3FCC45A927075F690001A9C2 /* FullscreenLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45A827075F690001A9C2 /* FullscreenLoadingView.swift */; };
 		3FCC45AD270767370001A9C2 /* MainCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCC45AC270767370001A9C2 /* MainCoordinatorView.swift */; };
@@ -138,8 +138,7 @@
 		3FB99F21273400B6008F9A96 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		3FB99F24273435D4008F9A96 /* SpacerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacerWrapper.swift; sourceTree = "<group>"; };
 		3FB99F2827344643008F9A96 /* Routing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routing.swift; sourceTree = "<group>"; };
-		3FB99F3B2734801C008F9A96 /* LogsTextView+macOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LogsTextView+macOS.swift"; sourceTree = "<group>"; };
-		3FB99F3C2734801C008F9A96 /* LogsTextView+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LogsTextView+iOS.swift"; sourceTree = "<group>"; };
+		3FB99F3C2734801C008F9A96 /* LogsTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsTextView.swift; sourceTree = "<group>"; };
 		3FCC45A127075D170001A9C2 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		3FCC45A827075F690001A9C2 /* FullscreenLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullscreenLoadingView.swift; sourceTree = "<group>"; };
 		3FCC45AC270767370001A9C2 /* MainCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorView.swift; sourceTree = "<group>"; };
@@ -329,8 +328,7 @@
 		3FB99F3A2734801C008F9A96 /* LogsTextView */ = {
 			isa = PBXGroup;
 			children = (
-				3FB99F3B2734801C008F9A96 /* LogsTextView+macOS.swift */,
-				3FB99F3C2734801C008F9A96 /* LogsTextView+iOS.swift */,
+				3FB99F3C2734801C008F9A96 /* LogsTextView.swift */,
 			);
 			path = LogsTextView;
 			sourceTree = "<group>";
@@ -755,7 +753,7 @@
 				3FE1096A27285EDB00B533EE /* TestDevicesAPI.swift in Sources */,
 				3FE1097E27285EDB00B533EE /* Models.swift in Sources */,
 				3FCC45C52707930E0001A9C2 /* BaseViewModel.swift in Sources */,
-				3FB99F3F2734801C008F9A96 /* LogsTextView+iOS.swift in Sources */,
+				3FB99F3F2734801C008F9A96 /* LogsTextView.swift in Sources */,
 				3FE10799272839A900B533EE /* TagView.swift in Sources */,
 				3FCC45BF2707923F0001A9C2 /* BuildsScreenView.swift in Sources */,
 				3FE1094E27285EDB00B533EE /* UserAPI.swift in Sources */,
