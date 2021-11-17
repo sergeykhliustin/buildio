@@ -8,16 +8,12 @@
 import SwiftUI
 import Models
 
-struct BuildsScreenView: View, PagingView, OneRouteView {
-    let router: AppRouter
-    @State var isActiveRoute: Bool = false
-    
+struct BuildsScreenView: View, PagingView, RoutingView {
     @StateObject var model: BuildsViewModel
-    @State var selected: BuildResponseItemModel?
+    @State var selected: String?
     @State private var showNewBuild: Bool = false
     
-    init(router: AppRouter = AppRouter(), app: V0AppResponseItemModel? = nil, model: BuildsViewModel? = nil) {
-        self.router = router
+    init(app: V0AppResponseItemModel? = nil, model: BuildsViewModel? = nil) {
         if let model = model {
             self._model = StateObject(wrappedValue: model)
         }
@@ -30,8 +26,7 @@ struct BuildsScreenView: View, PagingView, OneRouteView {
     
     func buildItemView(_ item: BuildResponseItemModel) -> some View {
         ListItemWrapper(action: {
-            selected = item
-            isActiveRoute = true
+            selected = item.slug
         }, content: {
             BuildRowView(model: .constant(item))
         })
@@ -39,7 +34,10 @@ struct BuildsScreenView: View, PagingView, OneRouteView {
     
     @ViewBuilder
     func navigationLinks() -> some View {
-        router.navigationLink(route: .buildScreen, isActive: $isActiveRoute, params: selected).hidden()
+        ForEach(model.items) { item in
+            navigationBuild(build: item, selection: $selected)
+            
+        }
     }
     
     @ViewBuilder
@@ -67,6 +65,6 @@ struct BuildsView_Previews: PreviewProvider {
         let model = BuildsViewModel()
         model.items = [BuildResponseItemModel.preview()]
         model.state = .value
-        return BuildsScreenView(router: AppRouter(), model: model)
+        return BuildsScreenView(model: model)
     }
 }

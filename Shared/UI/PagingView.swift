@@ -12,7 +12,7 @@ protocol PagingView: BaseView where ModelType: PagingViewModelProtocol, ModelTyp
     associatedtype ValueBody: View
     associatedtype ToolbarBody: View
     associatedtype NavigationLinksBody: View
-    var selected: ModelType.ValueType.ItemType? { get }
+//    var selected: ModelType.ValueType.ItemType? { get }
     
     @ViewBuilder
     func buildItemView(_ item: ModelType.ValueType.ItemType) -> ValueBody

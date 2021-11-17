@@ -24,19 +24,17 @@ final class WorkflowsViewModel: BaseViewModel<[String]> {
     }
 }
 
-struct WorkflowsView: BaseView, OneRouteView {
-    let router: AppRouter
+struct WorkflowsView: BaseView {
     @State var isActiveRoute: Bool = false
     
     @StateObject var model: WorkflowsViewModel
     @Binding var workflow: String
     @Binding var app: V0AppResponseItemModel
     
-    init(router: AppRouter = AppRouter(), app: Binding<V0AppResponseItemModel>, workflow: Binding<String>) {
+    init(app: Binding<V0AppResponseItemModel>, workflow: Binding<String>) {
         _app = app
         _model = StateObject(wrappedValue: WorkflowsViewModel(app: app))
         _workflow = workflow
-        self.router = router
     }
     
     var body: some View {

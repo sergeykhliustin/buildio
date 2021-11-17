@@ -9,16 +9,11 @@ import SwiftUI
 import Models
 import Combine
 
-struct NewBuildScreenView: View, OneRouteView {
+struct NewBuildScreenView: View, RoutingView {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @StateObject var model: NewBuildViewModel = NewBuildViewModel()
     
     @State var isActiveRoute: Bool = false
-    let router: AppRouter
-    
-    init(router: AppRouter = AppRouter()) {
-        self.router = router
-    }
     
     @State private var app: V0AppResponseItemModel?
     @State private var branch: String = ""

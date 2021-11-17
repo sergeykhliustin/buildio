@@ -8,26 +8,24 @@
 import SwiftUI
 import Models
 
-struct BuildScreenView: BaseView, AppOneRouteView {
+struct BuildScreenView: BaseView, RoutingView {
+    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    let router: AppRouter
-    @State var isActiveRoute: Bool = false
     
     @StateObject var model: BuildViewModel
     @State private var isLogsActive: Bool = false
     
-    init(router: AppRouter = AppRouter(), build: BuildResponseItemModel) {
-        self.router = router
+    init(build: BuildResponseItemModel) {
         self._model = StateObject(wrappedValue: BuildViewModel(build: build))
     }
     
     var body: some View {
-        router.navigationLink(route: .logsScreen, isActive: $isActiveRoute, params: model.value).hidden()
         ScrollView {
             if let value = model.value {
                 HStack {
+                    navigationBuildLogs(build: value, isActive: $isLogsActive)
                     Button {
-                        isActiveRoute = true
+                        isLogsActive = true
                     } label: {
                         Image(systemName: "note.text")
                         Text("Logs")

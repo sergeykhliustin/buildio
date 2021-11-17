@@ -20,7 +20,7 @@ struct TabsScreenView: View {
         
             TabView(selection: $selectedTab) {
                 NavigationView {
-                    BuildsScreenView(router: AppRouter())
+                    BuildsScreenView()
                         .navigationTitle("Builds")
                 }
                 .onAppear {

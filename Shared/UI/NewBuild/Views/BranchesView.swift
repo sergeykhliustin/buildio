@@ -24,16 +24,14 @@ final class BranchesViewModel: BaseViewModel<[String]> {
     }
 }
 
-struct BranchesView: BaseView, OneRouteView {
-    let router: AppRouter
+struct BranchesView: BaseView {
     @State var isActiveRoute: Bool = false
     
     @StateObject var model: BranchesViewModel
     @Binding var branch: String
     @Binding var app: V0AppResponseItemModel
     
-    init(router: AppRouter = AppRouter(), app: Binding<V0AppResponseItemModel>, branch: Binding<String>) {
-        self.router = router
+    init(app: Binding<V0AppResponseItemModel>, branch: Binding<String>) {
         self._app = app
         _model = StateObject(wrappedValue: BranchesViewModel(app: app))
         _branch = branch
