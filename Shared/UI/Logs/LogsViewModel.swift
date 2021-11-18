@@ -33,7 +33,7 @@ final class LogsViewModel: BaseViewModel<BuildLogResponseModel> {
         DispatchQueue.global().async { [weak self] in
             guard let self = self else { return }
             let attributed = logChunks.reduce(NSMutableAttributedString()) { partialResult, chunk in
-                partialResult.append(self.chunkToAttributed(chunk.chunk))
+                partialResult.append(Rainbow.chunkToAttributed(chunk.chunk))
                 return partialResult
             }
             DispatchQueue.main.sync {
@@ -54,14 +54,6 @@ final class LogsViewModel: BaseViewModel<BuildLogResponseModel> {
         }
     }
     
-    private func chunkToAttributed(_ chunk: String) -> NSAttributedString {
-        let entry = Rainbow.extractEntry(for: chunk)
-        return entry.segments.reduce(NSMutableAttributedString()) { partialResult, segment in
-            partialResult.append(segment.attributedString)
-            return partialResult
-        }
-    }
-    
     private func scheduleNextUpdate() {
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false, block: { [weak self] timer in
@@ -71,34 +63,5 @@ final class LogsViewModel: BaseViewModel<BuildLogResponseModel> {
             }
             self.refresh()
         })
-    }
-}
-
-private extension Rainbow.Segment {
-    var attributedString: NSAttributedString {
-        var attributes: [NSAttributedString.Key: Any] = [:]
-        if let background = self.backgroundColor, let color = Color.color(for: background) {
-            attributes[.backgroundColor] = UIColor(color)
-        }
-        if let foreground = self.color, let color = Color.color(for: foreground) {
-            attributes[.foregroundColor] = UIColor(color)
-        } else {
-            attributes[.foregroundColor] = UIColor(Color.b_LogsDefault)
-        }
-        for style in styles ?? [] {
-            switch style {
-            case .bold:
-                attributes[.font] = UIFont.boldSystemFont(ofSize: 13)
-            case .italic:
-                attributes[.font] = UIFont.italicSystemFont(ofSize: 13)
-            case .underline:
-                attributes[.underlineStyle] = NSUnderlineStyle.single
-            case .strikethrough:
-                attributes[.strikethroughStyle] = NSUnderlineStyle.single
-            default:
-                break
-            }
-        }
-        return NSAttributedString(string: text, attributes: attributes)
     }
 }

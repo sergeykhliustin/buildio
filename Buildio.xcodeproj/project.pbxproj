@@ -12,6 +12,8 @@
 		3F030286272C0A08005B5F2A /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = 3F030285272C0A08005B5F2A /* Models */; };
 		3F03028D272C0A68005B5F2A /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 3F03028C272C0A68005B5F2A /* KeychainAccess */; };
 		3F1941912746C7A600A79F35 /* ViewModelResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1941902746C7A600A79F35 /* ViewModelResolver.swift */; };
+		3F1941942746CF6C00A79F35 /* DebugLogsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1941932746CF6C00A79F35 /* DebugLogsScreenView.swift */; };
+		3F1941982746D1D100A79F35 /* RainbowLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1941972746D1D100A79F35 /* RainbowLogs.swift */; };
 		3F19ABA2272C055D0070DFE3 /* SwiftyBeaver in Frameworks */ = {isa = PBXBuildFile; productRef = 3F19ABA1272C055D0070DFE3 /* SwiftyBeaver */; };
 		3F2B139C273AF64100F7A092 /* RightButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2B139B273AF64100F7A092 /* RightButtonModifier.swift */; };
 		3F2B139E273AF86F00F7A092 /* SelectStringScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2B139D273AF86F00F7A092 /* SelectStringScreenView.swift */; };
@@ -114,6 +116,8 @@
 		3F00B11D272C210700C4A2FB /* SHA256.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHA256.swift; sourceTree = "<group>"; };
 		3F030283272C09FE005B5F2A /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Models; sourceTree = "<group>"; };
 		3F1941902746C7A600A79F35 /* ViewModelResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelResolver.swift; sourceTree = "<group>"; };
+		3F1941932746CF6C00A79F35 /* DebugLogsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugLogsScreenView.swift; sourceTree = "<group>"; };
+		3F1941972746D1D100A79F35 /* RainbowLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RainbowLogs.swift; sourceTree = "<group>"; };
 		3F2B139B273AF64100F7A092 /* RightButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightButtonModifier.swift; sourceTree = "<group>"; };
 		3F2B139D273AF86F00F7A092 /* SelectStringScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStringScreenView.swift; sourceTree = "<group>"; };
 		3F2BE9E1270CA0C00051C910 /* AccountsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsScreenView.swift; sourceTree = "<group>"; };
@@ -245,6 +249,14 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		3F1941922746CEEE00A79F35 /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				3F1941932746CF6C00A79F35 /* DebugLogsScreenView.swift */,
+			);
+			path = Debug;
+			sourceTree = "<group>";
+		};
 		3F19ABAB272C092D0070DFE3 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
@@ -298,6 +310,7 @@
 				3FFEB450273048D4008E5A82 /* Color+Rainbow.swift */,
 				3FB99F142733F61D008F9A96 /* TimeInterval+Additions.swift */,
 				3FB99F172733F780008F9A96 /* BuildResponseItemModel+Additions.swift */,
+				3F1941972746D1D100A79F35 /* RainbowLogs.swift */,
 			);
 			path = Additions;
 			sourceTree = "<group>";
@@ -348,6 +361,7 @@
 		3FCC4597270759880001A9C2 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				3F1941922746CEEE00A79F35 /* Debug */,
 				3F70EBBD2714EA9C00A4841E /* Additions */,
 				3F70EBB92714E41700A4841E /* CustomViews */,
 				3FCC45C42707930E0001A9C2 /* BaseViewModel.swift */,
@@ -733,6 +747,7 @@
 				3FF21F842735CD4E00AA8565 /* AccountRowView.swift in Sources */,
 				3FE1095C27285EDB00B533EE /* BuildsAPI.swift in Sources */,
 				3F2B139E273AF86F00F7A092 /* SelectStringScreenView.swift in Sources */,
+				3F1941942746CF6C00A79F35 /* DebugLogsScreenView.swift in Sources */,
 				3FFEB43F272F093B008E5A82 /* PagingView.swift in Sources */,
 				3FCC45B827078E040001A9C2 /* ProfileScreenView.swift in Sources */,
 				3FE109A42728801800B533EE /* Date+Additions.swift in Sources */,
@@ -769,6 +784,7 @@
 				3FE1096A27285EDB00B533EE /* TestDevicesAPI.swift in Sources */,
 				3FE1097E27285EDB00B533EE /* Models.swift in Sources */,
 				3FCC45C52707930E0001A9C2 /* BaseViewModel.swift in Sources */,
+				3F1941982746D1D100A79F35 /* RainbowLogs.swift in Sources */,
 				3FB99F3F2734801C008F9A96 /* LogsTextView.swift in Sources */,
 				3FE10799272839A900B533EE /* TagView.swift in Sources */,
 				3FCC45BF2707923F0001A9C2 /* BuildsScreenView.swift in Sources */,

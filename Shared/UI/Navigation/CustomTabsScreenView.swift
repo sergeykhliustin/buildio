@@ -29,15 +29,30 @@ private struct RootScreens {
     static let activities = RootScreen(name: "Activities", iconName: "bell") {
         AnyView(ActivitiesScreenView())
     }
+    #if DEBUG
+    static let debug = RootScreen(name: "Debug", iconName: "pencil.slash") {
+        AnyView(DebugLogsScreenView())
+    }
+    #endif
 }
 
 struct CustomTabsScreenView: View {
+    #if DEBUG
+    let screens = [
+        RootScreens.builds,
+        RootScreens.apps,
+        RootScreens.accounts,
+        RootScreens.activities,
+        RootScreens.debug
+    ]
+    #else
     let screens = [
         RootScreens.builds,
         RootScreens.apps,
         RootScreens.accounts,
         RootScreens.activities
     ]
+    #endif
     var body: some View {
         CustomTabView(count: screens.count) { index in
             screens[index]

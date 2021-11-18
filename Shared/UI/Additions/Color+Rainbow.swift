@@ -21,9 +21,8 @@ extension SwiftUI.Color {
         case .bit24(let rGB):
             return Color(red: Int(rGB.0), green: Int(rGB.1), blue: Int(rGB.2))
         case .bit8(let uInt8):
-            logger.warning("Found bit8 color for Rainbow")
+            return Color(red: Double(((uInt8 & 0xE0) >> 5)) / 7.0, green: Double(((uInt8 & 0xC1) >> 2)) / 7.0, blue: Double((uInt8 & 0x03)) / 3.0)
         }
-        return nil
     }
     
     static func color(for namedColor: NamedColor) -> SwiftUI.Color {

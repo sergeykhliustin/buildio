@@ -11,7 +11,6 @@ import UIKit
 
 struct LogsTextView: UIViewRepresentable {
     var attributed: NSAttributedString?
-    @State var follow = false
     
     func makeUIView(context: Context) -> UITextView {
         let view = UITextView()

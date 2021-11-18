@@ -109,7 +109,13 @@ let logger: SwiftyBeaver.Type = {
         #endif
         
         SwiftyBeaver.addDestination(console)
+        
+        #if DEBUG
+        let file = FileDestination()
+        file.colored = true
+        file.asynchronously = false
+        SwiftyBeaver.addDestination(file)
+        #endif
     }
     return SwiftyBeaver.self
 }()
-
