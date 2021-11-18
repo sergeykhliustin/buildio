@@ -36,7 +36,6 @@ struct BuildsScreenView: View, PagingView, RoutingView {
     func navigationLinks() -> some View {
         ForEach(model.items) { item in
             navigationBuild(build: item, selection: $selected)
-            
         }
     }
     

@@ -91,6 +91,7 @@
 		3FE109A42728801800B533EE /* Date+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE109A32728801800B533EE /* Date+Additions.swift */; };
 		3FE1FAAD2745A5C200B65F4C /* BuildScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65D08E42729649900075618 /* BuildScreenView.swift */; };
 		3FE1FAAF2745A8E700B65F4C /* RoutingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE1FAAA2745A4AD00B65F4C /* RoutingView.swift */; };
+		3FE1FAB127466C7900B65F4C /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE1FAB027466C7900B65F4C /* UserDefaults.swift */; };
 		3FE7B55427072C1E00A6D8E1 /* BuildioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B54427072C1C00A6D8E1 /* BuildioApp.swift */; };
 		3FE7B55827072C1E00A6D8E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FE7B54627072C1D00A6D8E1 /* Assets.xcassets */; };
 		3FF21F822735C65A00AA8565 /* PlatformIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF21F812735C65A00AA8565 /* PlatformIcon.swift */; };
@@ -137,7 +138,6 @@
 		3FB99F1E27340023008F9A96 /* AvatarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarViewModel.swift; sourceTree = "<group>"; };
 		3FB99F21273400B6008F9A96 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		3FB99F24273435D4008F9A96 /* SpacerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacerWrapper.swift; sourceTree = "<group>"; };
-		3FB99F2827344643008F9A96 /* Routing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routing.swift; sourceTree = "<group>"; };
 		3FB99F3C2734801C008F9A96 /* LogsTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsTextView.swift; sourceTree = "<group>"; };
 		3FCC45A127075D170001A9C2 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		3FCC45A827075F690001A9C2 /* FullscreenLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullscreenLoadingView.swift; sourceTree = "<group>"; };
@@ -193,6 +193,7 @@
 		3FE1094827285EDB00B533EE /* SynchronizedDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynchronizedDictionary.swift; sourceTree = "<group>"; };
 		3FE109A32728801800B533EE /* Date+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Additions.swift"; sourceTree = "<group>"; };
 		3FE1FAAA2745A4AD00B65F4C /* RoutingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingView.swift; sourceTree = "<group>"; };
+		3FE1FAB027466C7900B65F4C /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		3FE7B54427072C1C00A6D8E1 /* BuildioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildioApp.swift; sourceTree = "<group>"; };
 		3FE7B54627072C1D00A6D8E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3FE7B54B27072C1E00A6D8E1 /* Buildio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Buildio.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -321,7 +322,6 @@
 		3FB99F272734462A008F9A96 /* Routing */ = {
 			isa = PBXGroup;
 			children = (
-				3FB99F2827344643008F9A96 /* Routing.swift */,
 				3FE1FAAA2745A4AD00B65F4C /* RoutingView.swift */,
 			);
 			path = Routing;
@@ -366,6 +366,7 @@
 			isa = PBXGroup;
 			children = (
 				3FD85D102721CF6F00E894E8 /* Color.swift */,
+				3FE1FAB027466C7900B65F4C /* UserDefaults.swift */,
 			);
 			path = Additions;
 			sourceTree = "<group>";
@@ -714,6 +715,7 @@
 				3FFEB451273048D4008E5A82 /* Color+Rainbow.swift in Sources */,
 				3FD8FDAD273089000060BDF4 /* NewBuildScreenView.swift in Sources */,
 				3FF385DC2734AF5E009A4479 /* CustomTabsScreenView.swift in Sources */,
+				3FE1FAB127466C7900B65F4C /* UserDefaults.swift in Sources */,
 				3FE1095827285EDB00B533EE /* AndroidKeystoreFileAPI.swift in Sources */,
 				3FFEB446272FF8C8008E5A82 /* LogsScreenView.swift in Sources */,
 				3FF21F842735CD4E00AA8565 /* AccountRowView.swift in Sources */,
@@ -911,7 +913,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Buildio--iOS--Info.plist";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = NO;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -944,7 +946,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Buildio--iOS--Info.plist";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = NO;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

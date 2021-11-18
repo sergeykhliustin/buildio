@@ -9,18 +9,10 @@ import Foundation
 
 public struct BuildLogResponseModel: Codable {
     public let logChunks: [LogChunk]
-    public let nextBeforeTimestamp: Date
-    public let nextAfterTimestamp: Date
+    public let nextBeforeTimestamp: String
+    public let nextAfterTimestamp: String
     public let isArchived: Bool
     public let expiringRawLogUrl: String?
-
-    public init(logChunks: [LogChunk], nextBeforeTimestamp: Date, nextAfterTimestamp: Date, isArchived: Bool, expiringRawLogUrl: String?) {
-        self.logChunks = logChunks
-        self.nextBeforeTimestamp = nextBeforeTimestamp
-        self.nextAfterTimestamp = nextAfterTimestamp
-        self.isArchived = isArchived
-        self.expiringRawLogUrl = expiringRawLogUrl
-    }
     
     public struct LogChunk: Codable {
         public let chunk: String

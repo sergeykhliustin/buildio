@@ -12,10 +12,11 @@ struct ActivityRowView: View {
     var model: V0ActivityEventResponseItemModel
     
     var body: some View {
-        HStack(alignment: .top) {
-            AvatarView(title: nil, url: model.eventIcon ?? model.repositoryAvatarIconUrl)
+        HStack(alignment: .top, spacing: 0) {
+            AvatarView(title: model.repositoryTitle, url: model.eventIcon ?? model.repositoryAvatarIconUrl)
                 .frame(width: 40, height: 40)
                 .cornerRadius(8)
+                .padding(.top, 8)
             
             VStack(alignment: .leading) {
                 

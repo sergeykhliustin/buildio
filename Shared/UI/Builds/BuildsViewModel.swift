@@ -10,28 +10,12 @@ import Models
 import Combine
 
 final class BuildsViewModel: PagingViewModel<V0BuildListResponseModel> {
-    @Published var updater: Bool = false
     private let fetchLimit: Int = 10
     private var app: V0AppResponseItemModel?
-    private var timer: Timer?
     
     init(app: V0AppResponseItemModel? = nil) {
         self.app = app
         super.init()
-    }
-    
-    override func afterRefresh() {
-        super.afterRefresh()
-        timer?.invalidate()
-        if items.contains(where: { $0.status == .running }) {
-            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] timer in
-                guard let self = self else {
-                    timer.invalidate()
-                    return
-                }
-                self.updater.toggle()
-            })
-        }
     }
     
     override func fetch(params: Any?) -> AnyPublisher<V0BuildListResponseModel, ErrorResponse> {

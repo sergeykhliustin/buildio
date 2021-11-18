@@ -9,11 +9,10 @@ import SwiftUI
 import Models
 
 struct BuildScreenView: BaseView, RoutingView {
-    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @StateObject var model: BuildViewModel
-    @State private var isLogsActive: Bool = false
+    @State private var selection: String?
     
     init(build: BuildResponseItemModel) {
         self._model = StateObject(wrappedValue: BuildViewModel(build: build))
@@ -23,9 +22,9 @@ struct BuildScreenView: BaseView, RoutingView {
         ScrollView {
             if let value = model.value {
                 HStack {
-                    navigationBuildLogs(build: value, isActive: $isLogsActive)
+                    navigationBuildLogs(build: value, selection: $selection)
                     Button {
-                        isLogsActive = true
+                        selection = value.slug
                     } label: {
                         Image(systemName: "note.text")
                         Text("Logs")
@@ -44,12 +43,12 @@ struct BuildScreenView: BaseView, RoutingView {
                         .buttonStyle(SubmitButtonStyle())
                     }
                 }
+                .navigationTitle("Build #\(String(value.buildNumber))")
             }
             if let value = Binding($model.value) {
                 BuildView(model: value)
             }
         }
-        .navigationTitle("Build #\(String(model.value!.buildNumber))")
         .toolbar {
             if case .loading = model.state {
                 ProgressView()

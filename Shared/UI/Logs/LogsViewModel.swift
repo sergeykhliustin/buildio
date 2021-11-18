@@ -37,7 +37,13 @@ final class LogsViewModel: BaseViewModel<BuildLogResponseModel> {
                 return partialResult
             }
             DispatchQueue.main.sync {
-                self.attributedLogs = attributed
+                if let prevLogs = self.attributedLogs {
+                    let mutable = NSMutableAttributedString(attributedString: prevLogs)
+                    mutable.append(attributed)
+                    self.attributedLogs = mutable
+                } else {
+                    self.attributedLogs = attributed
+                }
                 if !value.isArchived {
                     self.scheduleNextUpdate()
                 } else {

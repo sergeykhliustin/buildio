@@ -310,7 +310,7 @@ public final class BuildsAPI: BaseAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func buildLog(appSlug: String, buildSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, timestamp: Date? = nil) -> AnyPublisher<BuildLogResponseModel, ErrorResponse> {
+    public func buildLog(appSlug: String, buildSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, timestamp: String? = nil) -> AnyPublisher<BuildLogResponseModel, ErrorResponse> {
         return Future<BuildLogResponseModel, ErrorResponse> { [weak self] promise in
             self?.buildLogWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug, timestamp: timestamp).execute(apiResponseQueue) { result in
                 switch result {
@@ -338,10 +338,10 @@ public final class BuildsAPI: BaseAPI {
      - parameter buildSlug: (path) Build slug 
      - returns: RequestBuilder<Void> 
      */
-    private func buildLogWithRequestBuilder(appSlug: String, buildSlug: String, timestamp: Date? = nil) -> RequestBuilder<BuildLogResponseModel> {
+    private func buildLogWithRequestBuilder(appSlug: String, buildSlug: String, timestamp: String? = nil) -> RequestBuilder<BuildLogResponseModel> {
         var localVariablePath = "/apps/{app-slug}/builds/{build-slug}/log"
         if let timestamp = timestamp {
-            localVariablePath.append("?timestamp=\(timestamp.timeIntervalSince1970 * 1000)")
+            localVariablePath.append("?after_timestamp=\(timestamp)&timestamp=\(timestamp)")
         }
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""

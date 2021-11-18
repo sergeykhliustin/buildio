@@ -52,8 +52,8 @@ final class BuildViewModel: BaseViewModel<BuildResponseItemModel> {
     }
     
     override func fetch(params: Any?) -> AnyPublisher<BuildResponseItemModel, ErrorResponse> {
-        let appSlug = value!.repository.slug
-        var buildSlug = value!.slug
+        let appSlug = value?.repository.slug ?? ""
+        var buildSlug = value?.slug ?? ""
         if let params = params as? V0BuildTriggerRespModel, let slug = params.slug {
             buildSlug = slug
         }

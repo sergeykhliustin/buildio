@@ -14,6 +14,7 @@ struct LogsTextView: UIViewRepresentable {
     
     func makeUIView(context: Context) -> UITextView {
         let view = UITextView()
+        view.indicatorStyle = .white
         view.autocorrectionType = .no
 //        view.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 4, bottom: 0, right: 0)
         view.backgroundColor = UIColor(Color.b_LogsBackground)

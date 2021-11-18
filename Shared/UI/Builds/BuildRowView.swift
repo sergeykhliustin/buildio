@@ -7,9 +7,20 @@
 
 import SwiftUI
 import Models
+import Combine
 
 struct BuildRowView: View {
     @Binding var model: BuildResponseItemModel
+    var timer: Publishers.Autoconnect<Timer.TimerPublisher>!
+    @State private var durationString: String?
+    
+    init(model: Binding<BuildResponseItemModel>) {
+        _model = model
+        if model.wrappedValue.status == .running {
+            timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+        }
+        _durationString = State(initialValue: model.wrappedValue.durationString)
+    }
     
     var body: some View {
         HStack(alignment: .top, spacing: 0) {
@@ -38,9 +49,20 @@ struct BuildRowView: View {
                         }
                     }
                     Spacer()
-                    if let duration = model.durationString {
-                        Text(duration)
+                    if model.status == .running {
+                        Text(durationString ?? "")
+                            .onReceive(timer) { _ in
+                                durationString = model.durationString
+                            }
+                    } else {
+                        Text(durationString ?? "")
                     }
+//                    if let duration = model.durationString {
+//                        Text(duration)
+//                            .onReceive(timer) { _ in
+//                                
+//                            }
+//                    }
                 }
                 .lineLimit(1)
                 .padding(8)
