@@ -11,9 +11,11 @@ import UIKit
 
 struct LogsTextView: UIViewRepresentable {
     var attributed: NSAttributedString?
+    @State var follow = false
     
     func makeUIView(context: Context) -> UITextView {
         let view = UITextView()
+        view.isEditable = false
         view.indicatorStyle = .white
         view.autocorrectionType = .no
 //        view.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 4, bottom: 0, right: 0)

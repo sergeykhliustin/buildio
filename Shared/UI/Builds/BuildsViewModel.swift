@@ -9,9 +9,13 @@ import Foundation
 import Models
 import Combine
 
-final class BuildsViewModel: PagingViewModel<V0BuildListResponseModel> {
+final class BuildsViewModel: PagingViewModel<V0BuildListResponseModel>, ResolvableViewModel {
     private let fetchLimit: Int = 10
     private var app: V0AppResponseItemModel?
+    
+    override init() {
+        super.init()
+    }
     
     init(app: V0AppResponseItemModel? = nil) {
         self.app = app

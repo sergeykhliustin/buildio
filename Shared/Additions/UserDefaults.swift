@@ -14,6 +14,7 @@ extension UserDefaults {
         }
         set {
             self.set(newValue, forKey: "last_activity_slug")
+            self.synchronize()
         }
     }
 }

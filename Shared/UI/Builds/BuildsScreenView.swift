@@ -20,7 +20,7 @@ struct BuildsScreenView: View, PagingView, RoutingView {
         if let app = app {
             self._model = StateObject(wrappedValue: BuildsViewModel(app: app))
         } else {
-            self._model = StateObject(wrappedValue: BuildsViewModel())
+            self._model = StateObject(wrappedValue: ViewModelResolver.resolve(BuildsViewModel.self))
         }
     }
     

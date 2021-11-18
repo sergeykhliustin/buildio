@@ -18,7 +18,7 @@ struct AppsScreenView: View, PagingView, RoutingView {
         self.completion = completion
     }
     
-    @StateObject var model = AppsViewModel()
+    @StateObject var model = ViewModelResolver.resolve(AppsViewModel.self)
     @State var selected: String?
     @State var isActive: Bool = false
     

@@ -15,6 +15,10 @@ public enum BaseViewModelState {
     case error
 }
 
+protocol ResolvableViewModel {
+    init()
+}
+
 protocol BaseViewModelProtocol: ObservableObject {
     associatedtype ValueType
     associatedtype ParamsType

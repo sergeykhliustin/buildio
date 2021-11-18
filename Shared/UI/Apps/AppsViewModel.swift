@@ -9,7 +9,7 @@ import Foundation
 import Models
 import Combine
 
-final class AppsViewModel: PagingViewModel<V0AppListResponseModel> {
+final class AppsViewModel: PagingViewModel<V0AppListResponseModel>, ResolvableViewModel {
     private let fetchLimit: Int = 10
     
     override func fetch(params: Any?) -> AnyPublisher<V0AppListResponseModel, ErrorResponse> {

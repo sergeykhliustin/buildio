@@ -16,6 +16,8 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
     private var notificationCenterPubliser: AnyCancellable?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
+        ViewModelResolver.start()
+        
         NotificationManager.checkPermissionGranted { granted in
             if !granted {
                 NotificationManager.requestAuthorization { _ in
@@ -36,12 +38,14 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
                     task.setTaskCompleted(success: true)
                     self?.scheduleAppRefresh()
                 } receiveValue: { value in
-                    UserDefaults.standard.lastActivitySlug = value.data.first?.slug
+                    let lastActivitySlug = UserDefaults.standard.lastActivitySlug
                     if let activity = value.data.first,
                        activity.eventStype == "build",
                        let title = activity.title,
-                        let subtitle = activity.description {
+                       let subtitle = activity.description,
+                       lastActivitySlug != activity.slug {
                         DispatchQueue.main.async {
+                            UserDefaults.standard.lastActivitySlug = activity.slug
                             NotificationManager.runNotification(with: title, subtitle: subtitle, id: activity.slug) { error in
                                 if let error = error {
                                     logger.error("[BGTASK] \(error)")
