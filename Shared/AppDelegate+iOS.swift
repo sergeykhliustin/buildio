@@ -11,7 +11,7 @@ import Combine
 import BackgroundTasks
 
 final class AppDelegate: NSObject, UIApplicationDelegate {
-    static let refreshTaskId = "refreshTaskId"
+    static let refreshTaskId = "buildio.refreshActivities"
     private var fetcher: AnyCancellable?
     private var notificationCenterPubliser: AnyCancellable?
     
@@ -48,7 +48,14 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
                                 }
                             }
                         }
-                        
+                    } else {
+                        DispatchQueue.main.async {
+                            NotificationManager.runNotification(with: "[BGTASK]", subtitle: "no updates", id: "[BGTASK]") { error in
+                                if let error = error {
+                                    logger.error("[BGTASK] \(error)")
+                                }
+                            }
+                        }
                     }
                 }
             task.expirationHandler = { [weak self] in
@@ -73,6 +80,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
     func scheduleAppRefresh() {
         logger.debug("[BGTASK] scheduling app refresh")
         let request = BGAppRefreshTaskRequest(identifier: AppDelegate.refreshTaskId)
+        
         request.earliestBeginDate = Date(timeIntervalSinceNow: 10)
         
         do {

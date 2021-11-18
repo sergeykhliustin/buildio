@@ -4,7 +4,7 @@
 <dict>
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
-		<string>refreshTaskId</string>
+		<string>buildio.refreshActivities</string>
 	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
