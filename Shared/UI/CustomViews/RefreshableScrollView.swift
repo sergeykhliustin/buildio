@@ -107,7 +107,7 @@ struct RefreshableScrollView<Content: View>: View {
                 if self.loading { // If loading, show the activity control
                     VStack {
                         Spacer()
-                        ActivityRep()
+                        CustomProgressView()
                         Spacer()
                     }.frame(height: height).fixedSize()
                         .offset(y: -height + (self.loading && self.frozen ? height : 0.0))

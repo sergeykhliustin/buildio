@@ -56,9 +56,10 @@ extension PagingView {
                             .frame(height: 44)
                     }
                 }
+                .padding(.bottom, 16)
                 if case .loading = model.pagingState {
-                    ProgressView()
-                        .padding(16)
+                    CustomProgressView()
+                        .padding(.bottom, 16)
                 } else if case .error(let error) = model.pagingState {
                     buildErrorView(error)
                 }

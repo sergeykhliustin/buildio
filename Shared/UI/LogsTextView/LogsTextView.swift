@@ -23,6 +23,7 @@ struct LogsTextView: UIViewRepresentable {
         textView.autocorrectionType = .no
         textView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -8.5)
         textView.backgroundColor = UIColor(Color.b_LogsBackground)
+        textView.textColor = UIColor.white
         
         view.addSubview(textView)
         NSLayoutConstraint.activate([

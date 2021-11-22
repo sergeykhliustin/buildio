@@ -17,19 +17,18 @@ struct LogsScreenView: BaseView {
     }
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .center) {
             if let value = model.attributedLogs {
                 LogsTextView(attributed: value)
             } else {
-                if case .loading = model.state {
-                    ProgressView().padding(16)
-                }
+                LogsTextView(attributed: NSAttributedString(string: "Loading logs...", attributes: [.foregroundColor: UIColor.white]))
             }
         }
+        .frame(maxHeight: .infinity)
         .navigationTitle("Build #\(String(model.build.buildNumber)) logs")
         .toolbar {
             if case .loading = model.state {
-                ProgressView().padding(16)
+                CustomProgressView()
             }
         }
     }
