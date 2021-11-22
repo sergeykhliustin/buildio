@@ -87,9 +87,9 @@ public final class ApplicationAPI: BaseAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func appList(sortBy: SortBy_appList? = nil, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppListResponseModel, ErrorResponse> {
+    public func appList(title: String = "", sortBy: SortBy_appList? = nil, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppListResponseModel, ErrorResponse> {
         return Future<V0AppListResponseModel, ErrorResponse> { [weak self] promise in
-            self?.appListWithRequestBuilder(sortBy: sortBy, next: next, limit: limit).execute(apiResponseQueue) { result in
+            self?.appListWithRequestBuilder(title: title, sortBy: sortBy, next: next, limit: limit).execute(apiResponseQueue) { result in
                 switch result {
                 case let .success(response):
                     promise(.success(response.body!))
@@ -113,13 +113,14 @@ public final class ApplicationAPI: BaseAPI {
      - parameter limit: (query) Max number of elements per page (default: 50) (optional)
      - returns: RequestBuilder<V0AppListResponseModel> 
      */
-    private func appListWithRequestBuilder(sortBy: SortBy_appList? = nil, next: String? = nil, limit: Int? = nil) -> RequestBuilder<V0AppListResponseModel> {
+    private func appListWithRequestBuilder(title: String, sortBy: SortBy_appList? = nil, next: String? = nil, limit: Int? = nil) -> RequestBuilder<V0AppListResponseModel> {
         let localVariablePath = "/apps"
         let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "title": title.encodeToJSON(),
             "sort_by": sortBy?.encodeToJSON(),
             "next": next?.encodeToJSON(),
             "limit": limit?.encodeToJSON()

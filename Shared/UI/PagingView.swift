@@ -33,10 +33,13 @@ extension PagingView {
     var body: some View {
         ZStack {
             navigationLinks()
-            VStack {
+            VStack(spacing: 0) {
                 ScrollView {
                     if let error = model.error, model.state == .error {
                         buildErrorView(error)
+                    } else {
+                        headerBody()
+                            .padding(.bottom, 8)
                     }
                     LazyVStack(spacing: 16) {
                         ForEach(model.items) { item in

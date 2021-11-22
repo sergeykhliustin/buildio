@@ -17,8 +17,26 @@ struct AppsScreenView: View, PagingView, RoutingView {
     }
     
     @StateObject var model = ViewModelResolver.resolve(AppsViewModel.self)
-    @State var selected: String?
+    @State private var selected: String?
+    @State private var searchFocused: Bool = false
     
+    @ViewBuilder
+    func headerBody() -> some View {
+        let text = Binding(get: { model.searchText }, set: { model.searchText = $0 })
+        TextField("Search",
+                  text: text,
+                  onEditingChanged: { editing in
+            self.searchFocused = editing
+        })
+            .font(.callout)
+            .foregroundColor(.b_TextBlack)
+            .frame(height: 44)
+            .modifier(ClearButton(text: text))
+            .modifier(RoundedBorderShadowModifier(borderColor: searchFocused ? .b_Primary : .b_BorderLight, horizontalPadding: 8))
+            .padding(.horizontal, 16)
+    }
+    
+    @ViewBuilder
     func buildItemView(_ item: V0AppResponseItemModel) -> some View {
         ListItemWrapper(cornerRadius: 8, action: {
             if let completion = completion {
