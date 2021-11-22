@@ -19,6 +19,7 @@
 		3F2B139E273AF86F00F7A092 /* SelectStringScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2B139D273AF86F00F7A092 /* SelectStringScreenView.swift */; };
 		3F2BE9E2270CA0C00051C910 /* AccountsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2BE9E1270CA0C00051C910 /* AccountsScreenView.swift */; };
 		3F2BE9E5270CA5E00051C910 /* TabsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2BE9E4270CA5E00051C910 /* TabsScreenView.swift */; };
+		3F49AAB8274C264800C82999 /* RefreshableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F49AAB7274C264800C82999 /* RefreshableScrollView.swift */; };
 		3F509BEE272B3F1E00C051A0 /* AppsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F509BED272B3F1E00C051A0 /* AppsViewModel.swift */; };
 		3F509BF1272B41BF00C051A0 /* AppsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F509BF0272B41BF00C051A0 /* AppsScreenView.swift */; };
 		3F509BF4272B42A100C051A0 /* AppRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F509BF3272B42A100C051A0 /* AppRowView.swift */; };
@@ -123,6 +124,7 @@
 		3F2BE9E1270CA0C00051C910 /* AccountsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsScreenView.swift; sourceTree = "<group>"; };
 		3F2BE9E4270CA5E00051C910 /* TabsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsScreenView.swift; sourceTree = "<group>"; };
 		3F3295842735A623001994B0 /* Buildio (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Buildio (iOS).entitlements"; sourceTree = "<group>"; };
+		3F49AAB7274C264800C82999 /* RefreshableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshableScrollView.swift; sourceTree = "<group>"; };
 		3F509BED272B3F1E00C051A0 /* AppsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsViewModel.swift; sourceTree = "<group>"; };
 		3F509BF0272B41BF00C051A0 /* AppsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsScreenView.swift; sourceTree = "<group>"; };
 		3F509BF3272B42A100C051A0 /* AppRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRowView.swift; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 				3FF21F812735C65A00AA8565 /* PlatformIcon.swift */,
 				3F75C0982739C90000BF246A /* RoundedBorderShadowModifier.swift */,
 				3F75C09C2739D66C00BF246A /* MenuStringsButtonModifier.swift */,
+				3F49AAB7274C264800C82999 /* RefreshableScrollView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -723,6 +726,7 @@
 				3FE1097427285EDB00B533EE /* APIs.swift in Sources */,
 				3FCC45B427078D250001A9C2 /* RootNavigationView.swift in Sources */,
 				3FF276172721AB1700701113 /* TokenFigmaScreenView.swift in Sources */,
+				3F49AAB8274C264800C82999 /* RefreshableScrollView.swift in Sources */,
 				3FE1097C27285EDB00B533EE /* JSONEncodingHelper.swift in Sources */,
 				3FE1095E27285EDB00B533EE /* AppSetupAPI.swift in Sources */,
 				3FB99F22273400B6008F9A96 /* ImageLoader.swift in Sources */,

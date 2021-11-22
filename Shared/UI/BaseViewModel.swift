@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 public enum BaseViewModelState {
     case idle
@@ -29,6 +30,7 @@ protocol BaseViewModelProtocol: ObservableObject {
     var value: ValueType? { get }
     var state: BaseViewModelState { get }
     var error: ErrorResponse? { get }
+    var isRefreshing: Binding<Bool> { get }
     func fetch(params: ParamsType) -> AnyPublisher<ValueType, ErrorResponse>
     func refresh(params: ParamsType)
     func beforeRefresh(_ tokenUpdated: Bool)
@@ -41,6 +43,9 @@ class ParamsBaseViewModel<ValueType, ParamsType>: BaseViewModelProtocol {
     @Published var error: ErrorResponse?
     
     var fetcher: AnyCancellable?
+    var isRefreshing: Binding<Bool> {
+        return Binding(get: { self.state == .loading }, set: { _ in })
+    }
     
     var errorString: String? {
         if case .error = state {
@@ -97,6 +102,10 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
     var tokenRefresher: AnyCancellable?
     
     private var tokenUpdated: Bool = false
+    
+    var isRefreshing: Binding<Bool> {
+        return Binding(get: { self.state == .loading }, set: { _ in self.refresh() })
+    }
     
     var errorString: String? {
         if case .error = state {

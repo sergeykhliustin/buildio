@@ -76,10 +76,10 @@ private extension OSLogDestination {
         case .info:
             logType = .info
         case .warning:
-            //We use "error" here because of 🔶 indicator in the Console
+            // We use "error" here because of 🔶 indicator in the Console
             logType = .error
         case .error:
-            //We use "fault" here because of 🔴 indicator in the Console
+            // We use "fault" here because of 🔴 indicator in the Console
             logType = .fault
         }
         

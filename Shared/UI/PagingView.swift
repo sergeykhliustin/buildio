@@ -31,17 +31,16 @@ protocol PagingView: BaseView where ModelType: PagingViewModelProtocol, ModelTyp
 extension PagingView {
     @ViewBuilder
     var body: some View {
-        ZStack {
+        VStack(spacing: 0) {
             navigationLinks()
-            VStack(spacing: 0) {
-                ScrollView {
-                    if let error = model.error, model.state == .error {
-                        buildErrorView(error)
-                    } else {
-                        headerBody()
-                            .padding(.bottom, 8)
-                    }
-                    LazyVStack(spacing: 16) {
+            RefreshableScrollView(refreshing: model.isRefreshing) {
+                if let error = model.error, model.state == .error {
+                    buildErrorView(error)
+                } else {
+                    
+                }
+                LazyVStack(spacing: 16, pinnedViews: [.sectionHeaders]) {
+                    Section {
                         ForEach(model.items) { item in
                             buildItemView(item)
                                 .onAppear {
@@ -51,28 +50,23 @@ extension PagingView {
                                     }
                                 }
                         }
+                    } header: {
+                        headerBody()
+                            .padding(.top, 8)
+                            .frame(height: 44)
                     }
-                    if case .loading = model.pagingState {
-                        ProgressView()
-                            .padding(16)
-                    } else if case .error(let error) = model.pagingState {
-                        buildErrorView(error)
-                    }
+                }
+                if case .loading = model.pagingState {
+                    ProgressView()
+                        .padding(16)
+                } else if case .error(let error) = model.pagingState {
+                    buildErrorView(error)
                 }
             }
-            .toolbar {
-                HStack(alignment: .center, spacing: 0) {
-                    if case .loading = model.state {
-                        ProgressView().frame(width: 44, height: 44, alignment: .center)
-                    }
-                    Button {
-                        model.refresh(params: nil)
-                    } label: {
-                        Image(systemName: "arrow.counterclockwise")
-                    }
-                    .frame(width: 44, height: 44, alignment: .center)
-                    additionalToolbarItems()
-                }
+        }
+        .toolbar {
+            HStack(alignment: .center, spacing: 0) {
+                additionalToolbarItems()
             }
         }
     }
