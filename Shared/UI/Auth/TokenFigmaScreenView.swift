@@ -13,7 +13,7 @@ struct TokenFigmaScreenView: View {
     
     @State private var isLoading: Bool = false
     @State private var isError: Bool = false
-    @State private var error: Error?
+    @State private var error: ErrorResponse?
     @State private var focused: Bool = false
     
     var onCompletion: (() -> Void)?
@@ -78,7 +78,7 @@ struct TokenFigmaScreenView: View {
         .background(Color.white)
         .alert(isPresented: $isError) {
             Alert(title: Text("Error"),
-                  message: Text(error?.localizedDescription ?? "Unknown error"), dismissButton: .cancel {
+                  message: Text(error?.rawErrorString ?? "Unknown error"), dismissButton: .cancel {
                 error = nil
                 isError = false
             })

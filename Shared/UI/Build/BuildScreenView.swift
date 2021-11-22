@@ -13,6 +13,7 @@ struct BuildScreenView: BaseView, RoutingView {
     
     @StateObject var model: BuildViewModel
     @State private var selection: String?
+    @State private var isActiveLogs = false
     
     init(build: BuildResponseItemModel) {
         self._model = StateObject(wrappedValue: BuildViewModel(build: build))
@@ -22,9 +23,11 @@ struct BuildScreenView: BaseView, RoutingView {
         ScrollView {
             if let value = model.value {
                 HStack {
-                    navigationBuildLogs(build: value, selection: $selection)
+                    navigationBuildLogs(build: value, isActive: $isActiveLogs)
+//                    navigationBuildLogs(build: value, selection: $selection)
                     Button {
-                        selection = value.slug
+//                        selection = value.slug
+                        isActiveLogs.toggle()
                     } label: {
                         Image(systemName: "note.text")
                         Text("Logs")

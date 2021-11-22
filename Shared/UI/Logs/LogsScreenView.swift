@@ -11,7 +11,6 @@ import Rainbow
 
 struct LogsScreenView: BaseView {
     @StateObject var model: LogsViewModel
-    @Namespace var bottomID
     
     init(build: BuildResponseItemModel) {
         self._model = StateObject(wrappedValue: LogsViewModel(build: build))

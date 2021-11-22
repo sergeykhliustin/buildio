@@ -34,7 +34,6 @@ struct BuildRowView: View {
                     AvatarView(app: model.repository)
                         .frame(width: 40, height: 40)
                         .cornerRadius(8)
-                        .font(.title2)
                     
                     VStack(alignment: .leading) {
                         Text(model.repository.title)

@@ -16,14 +16,9 @@ private struct BitriseError: Decodable {
 
 public enum ErrorResponse: Error {
     case error(Int, Data?, URLResponse?, Error)
-    var rawError: Error! {
-        if case let .error(_, _, _, rawError) = self {
-            return rawError
-        }
-        return nil
-    }
-    var rawErrorString: String? {
-        if case let .error(code, data, response, rawError) = self {
+    
+    var rawErrorString: String {
+        if case let .error(code, data, _, rawError) = self {
             if code == 401 {
                 return "Token expired or invalid"
             } else if let data = data, let string = try? JSONDecoder().decode(BitriseError.self, from: data).message {
@@ -31,7 +26,7 @@ public enum ErrorResponse: Error {
             }
             return rawError.localizedDescription
         }
-        return nil
+        return self.localizedDescription
     }
 }
 

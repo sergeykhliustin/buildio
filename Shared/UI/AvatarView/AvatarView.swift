@@ -41,6 +41,7 @@ struct AvatarView: BaseView {
                 if let name = model.name {
                     Text(name)
                         .foregroundColor(.white)
+                        .font(.title2)
                 }
             }
         }

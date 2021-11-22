@@ -12,6 +12,7 @@ protocol PagingView: BaseView where ModelType: PagingViewModelProtocol, ModelTyp
     associatedtype ValueBody: View
     associatedtype ToolbarBody: View
     associatedtype NavigationLinksBody: View
+    associatedtype HeaderBody: View
 //    var selected: ModelType.ValueType.ItemType? { get }
     
     @ViewBuilder
@@ -22,6 +23,9 @@ protocol PagingView: BaseView where ModelType: PagingViewModelProtocol, ModelTyp
     
     @ViewBuilder
     func navigationLinks() -> NavigationLinksBody
+    
+    @ViewBuilder
+    func headerBody() -> HeaderBody
 }
 
 extension PagingView {
@@ -72,7 +76,7 @@ extension PagingView {
     
     @ViewBuilder
     func buildErrorView(_ error: ErrorResponse) -> some View {
-        Text(error.rawError.localizedDescription)
+        Text(error.rawErrorString)
             .padding(16)
     }
     
@@ -83,6 +87,11 @@ extension PagingView {
     
     @ViewBuilder
     func additionalToolbarItems() -> some View {
+        
+    }
+    
+    @ViewBuilder
+    func headerBody() -> some View {
         
     }
 }

@@ -22,7 +22,9 @@ extension Rainbow {
 
 private extension Rainbow.Segment {
     var attributedString: NSAttributedString {
+        let fontSize = 12.0
         var attributes: [NSAttributedString.Key: Any] = [:]
+        attributes[.font] = UIFont.monospacedSystemFont(ofSize: fontSize, weight: .regular)
         if let background = self.backgroundColor, let color = Color.color(for: background) {
             attributes[.backgroundColor] = UIColor(color)
         }
@@ -34,9 +36,9 @@ private extension Rainbow.Segment {
         for style in styles ?? [] {
             switch style {
             case .bold:
-                attributes[.font] = UIFont.boldSystemFont(ofSize: 13)
+                attributes[.font] = UIFont.monospacedSystemFont(ofSize: fontSize, weight: .bold)
             case .italic:
-                attributes[.font] = UIFont.italicSystemFont(ofSize: 13)
+                attributes[.font] = UIFont.italicSystemFont(ofSize: fontSize)
             case .underline:
                 attributes[.underlineStyle] = NSUnderlineStyle.single
             case .strikethrough:

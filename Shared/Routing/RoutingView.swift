@@ -15,7 +15,8 @@ protocol RoutingView: View {
     
     @ViewBuilder func navigationBuilds(app: V0AppResponseItemModel, selection: Binding<String?>) -> BuildsRouteBody
     @ViewBuilder func navigationBuild(build: BuildResponseItemModel, selection: Binding<String?>) -> BuildRouteBody
-    @ViewBuilder func navigationBuildLogs(build: BuildResponseItemModel, selection: Binding<String?>) -> LogsRouteBody
+    @ViewBuilder func navigationBuildLogs(build: BuildResponseItemModel, isActive: Binding<Bool>) -> LogsRouteBody
+//    @ViewBuilder func navigationBuildLogs(build: BuildResponseItemModel, selection: Binding<String?>) -> LogsRouteBody
 }
 
 extension RoutingView {
@@ -32,6 +33,15 @@ extension RoutingView {
     @ViewBuilder func navigationBuild(build: BuildResponseItemModel, selection: Binding<String?>) -> some View {
         NavigationLink(tag: build.slug, selection: selection, destination: {
             BuildScreenView(build: build)
+        }, label: {
+            EmptyView()
+        })
+            .hidden()
+    }
+    
+    @ViewBuilder func navigationBuildLogs(build: BuildResponseItemModel, isActive: Binding<Bool>) -> some View {
+        NavigationLink(isActive: isActive, destination: {
+            LogsScreenView(build: build)
         }, label: {
             EmptyView()
         })

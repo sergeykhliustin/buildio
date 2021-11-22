@@ -39,7 +39,10 @@ struct CustomTabView: View {
             }
             
             CustomTabBar(count: count, selected: $selected, content: { index in
-                Image(systemName: content(index).iconName)
+                Image(systemName: content(index).iconName + (selected == index ? ".fill" : ""))
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 20, height: 20)
                 Text(content(index).name)
                     .font(.footnote)
             })

@@ -14,16 +14,16 @@ struct RootScreen {
 }
 
 private struct RootScreens {
-    static let builds = RootScreen(name: "Builds", iconName: "hammer.fill") {
+    static let builds = RootScreen(name: "Builds", iconName: "hammer") {
         AnyView(BuildsScreenView())
     }
-    static let apps = RootScreen(name: "Apps", iconName: "apps.iphone") {
+    static let apps = RootScreen(name: "Apps", iconName: "line.3.horizontal.circle") {
         AnyView(AppsScreenView())
     }
     static let accounts = RootScreen(name: "Accounts", iconName: "ellipsis.rectangle") {
         AnyView(AccountsScreenView())
     }
-    static let profile = RootScreen(name: "Profile", iconName: "person.crop.circle.fill") {
+    static let profile = RootScreen(name: "Profile", iconName: "person.crop.circle") {
         AnyView(ProfileScreenView())
     }
     static let activities = RootScreen(name: "Activities", iconName: "bell") {

@@ -13,7 +13,7 @@ struct AppRowView: View {
     
     var body: some View {
         HStack(alignment: .top, spacing: 8) {
-            let statusColor = model.status.color
+            let statusColor = model.isDisabled ? Color.b_BorderLight : Color.clear
             Rectangle()
                 .fill(statusColor)
                 .frame(width: 5)

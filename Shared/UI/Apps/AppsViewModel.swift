@@ -14,13 +14,13 @@ final class AppsViewModel: PagingViewModel<V0AppListResponseModel>, ResolvableVi
     
     override func fetch(params: Any?) -> AnyPublisher<V0AppListResponseModel, ErrorResponse> {
         ApplicationAPI()
-            .appList(limit: fetchLimit)
+            .appList(sortBy: .lastBuildAt, limit: fetchLimit)
             .eraseToAnyPublisher()
     }
     
     override func fetchPage(next: String?) -> AnyPublisher<PagingViewModel<V0AppListResponseModel>.ValueType, ErrorResponse> {
         ApplicationAPI()
-            .appList(next: next, limit: fetchLimit)
+            .appList(sortBy: .lastBuildAt, next: next, limit: fetchLimit)
             .eraseToAnyPublisher()
     }
 }

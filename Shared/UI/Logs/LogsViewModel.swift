@@ -11,7 +11,12 @@ import Combine
 import Rainbow
 import SwiftUI
 
-final class LogsViewModel: BaseViewModel<BuildLogResponseModel> {
+final class LogsViewModel: BaseViewModel<BuildLogResponseModel>, CacheableViewModel {
+    init(_ param: BuildResponseItemModel) {
+        self.build = param
+        super.init()
+    }
+    
     let build: BuildResponseItemModel
     private var timer: Timer?
     @Published var attributedLogs: NSAttributedString?

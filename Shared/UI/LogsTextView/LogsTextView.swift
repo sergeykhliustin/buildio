@@ -12,19 +12,33 @@ import UIKit
 struct LogsTextView: UIViewRepresentable {
     var attributed: NSAttributedString?
     
-    func makeUIView(context: Context) -> UITextView {
-        let view = UITextView()
-        view.isEditable = false
-        view.indicatorStyle = .white
-        view.autocorrectionType = .no
-//        view.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 4, bottom: 0, right: 0)
-        view.backgroundColor = UIColor(Color.b_LogsBackground)
+    func makeUIView(context: Context) -> UIView {
+        let view = UIView()
+        let textView = UITextView()
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.isOpaque = false
+        textView.clipsToBounds = false
+        textView.isEditable = false
+        textView.indicatorStyle = .black
+        textView.autocorrectionType = .no
+        textView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -8.5)
+        textView.backgroundColor = UIColor(Color.b_LogsBackground)
+        
+        view.addSubview(textView)
+        NSLayoutConstraint.activate([
+            view.leftAnchor.constraint(equalTo: textView.leftAnchor, constant: -8),
+            view.rightAnchor.constraint(equalTo: textView.rightAnchor, constant: 8),
+            view.topAnchor.constraint(equalTo: textView.topAnchor),
+            view.bottomAnchor.constraint(equalTo: textView.bottomAnchor)
+        ])
+        
         return view
     }
     
-    func updateUIView(_ uiView: UITextView, context: Context) {
-        uiView.attributedText = attributed
-        scrollToBottom(textView: uiView)
+    func updateUIView(_ uiView: UIView, context: Context) {
+        guard let textView = uiView.subviews.first(where: { $0 is UITextView }) as? UITextView else { return }
+        textView.attributedText = attributed
+        scrollToBottom(textView: textView)
     }
     
     private func scrollToBottom(textView: UITextView) {

@@ -11,9 +11,53 @@ import Combine
 import BackgroundTasks
 
 final class AppDelegate: NSObject, UIApplicationDelegate {
-    static let refreshTaskId = "buildio.refreshActivities"
+    static let appRefreshTaskId = "buildio.appRefreshTask"
+    static let processingTasksIds = (0..<10).map({ "buildio.processingTask\($0)" })
     private var fetcher: AnyCancellable?
+    private var longFetcher: AnyCancellable?
     private var notificationCenterPubliser: AnyCancellable?
+    
+    private lazy var launchHandler: (BGTask) -> Void = { [weak self] task in
+        let identifier = task.identifier
+        logger.debug("[BGTASK] Perform bg fetch \(identifier)")
+        guard let self = self else {
+            logger.debug("[BGTASK] AppDelegate is nil")
+            return
+        }
+        self.fetcher?.cancel()
+        self.fetcher = ActivityAPI()
+            .activityList(next: nil, limit: 1)
+            .sink { [weak self] completion in
+                task.setTaskCompleted(success: true)
+                self?.scheduleAppRefresh()
+            } receiveValue: { value in
+                if let activity = value.data.first,
+                   activity.eventStype == "build",
+                   let title = activity.title,
+                   let subtitle = activity.description {
+                    DispatchQueue.main.async {
+                        UserDefaults.standard.lastActivitySlug = activity.slug
+                        NotificationManager.runNotification(with: identifier, subtitle: [title, subtitle].joined(separator: " "), id: UUID().uuidString) { error in
+                            if let error = error {
+                                logger.error("[BGTASK \(identifier)] \(error)")
+                            }
+                        }
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        NotificationManager.runNotification(with: identifier, subtitle: "no updates", id: UUID().uuidString) { error in
+                            if let error = error {
+                                logger.error("[BGTASK \(identifier)] \(error)")
+                            }
+                        }
+                    }
+                }
+            }
+        task.expirationHandler = { [weak self] in
+            logger.debug("[BGTASK \(identifier)] expired")
+            self?.fetcher?.cancel()
+        }
+    }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         ViewModelResolver.start()
@@ -25,50 +69,13 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
                 }
             }
         }
-        BGTaskScheduler.shared.register(forTaskWithIdentifier: AppDelegate.refreshTaskId, using: nil) { [weak self] task in
-            logger.debug("[BGTASK] Perform bg fetch \(AppDelegate.refreshTaskId)")
-            guard let self = self else {
-                logger.debug("[BGTASK] AppDelegate is nil")
-                return
-            }
-            self.fetcher?.cancel()
-            self.fetcher = ActivityAPI()
-                .activityList(next: UserDefaults.standard.lastActivitySlug, limit: 1)
-                .sink { [weak self] completion in
-                    task.setTaskCompleted(success: true)
-                    self?.scheduleAppRefresh()
-                } receiveValue: { value in
-                    let lastActivitySlug = UserDefaults.standard.lastActivitySlug
-                    if let activity = value.data.first,
-                       activity.eventStype == "build",
-                       let title = activity.title,
-                       let subtitle = activity.description,
-                       lastActivitySlug != activity.slug {
-                        DispatchQueue.main.async {
-                            UserDefaults.standard.lastActivitySlug = activity.slug
-                            NotificationManager.runNotification(with: title, subtitle: subtitle, id: activity.slug) { error in
-                                if let error = error {
-                                    logger.error("[BGTASK] \(error)")
-                                }
-                            }
-                        }
-                    } else {
-                        DispatchQueue.main.async {
-                            NotificationManager.runNotification(with: "[BGTASK]", subtitle: "no updates", id: "[BGTASK]") { error in
-                                if let error = error {
-                                    logger.error("[BGTASK] \(error)")
-                                }
-                            }
-                        }
-                    }
-                }
-            task.expirationHandler = { [weak self] in
-                logger.debug("[BGTASK] expired")
-                self?.fetcher?.cancel()
-            }
+        
+        ([AppDelegate.appRefreshTaskId] + AppDelegate.processingTasksIds).forEach { identifier in
+            BGTaskScheduler.shared.register(forTaskWithIdentifier: identifier, using: nil, launchHandler: launchHandler)
         }
+        
         notificationCenterPubliser =
-        NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification).sink { [weak self] _ in
+        NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification).sink { _ in
             
         } receiveValue: { [weak self] _ in
             self?.scheduleAppRefresh()
@@ -82,17 +89,36 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
     }
     
     func scheduleAppRefresh() {
-        logger.debug("[BGTASK] scheduling app refresh")
-        let request = BGAppRefreshTaskRequest(identifier: AppDelegate.refreshTaskId)
-        
-        request.earliestBeginDate = Date(timeIntervalSinceNow: 10)
-        
-        do {
-            try BGTaskScheduler.shared.submit(request)
-            logger.debug("[BGTASK] submitted")
-        } catch {
-            let error = error
-            logger.debug("Could not schedule app refresh task \(error.localizedDescription)")
+        BGTaskScheduler.shared.getPendingTaskRequests { tasks in
+            if !tasks.contains(where: { $0.identifier == AppDelegate.appRefreshTaskId }) {
+                logger.debug("[\(AppDelegate.appRefreshTaskId)] scheduling app refresh")
+                let request = BGAppRefreshTaskRequest(identifier: AppDelegate.appRefreshTaskId)
+                request.earliestBeginDate = Date(timeIntervalSinceNow: 0)
+                
+                do {
+                    try BGTaskScheduler.shared.submit(request)
+                    logger.debug("[\(AppDelegate.appRefreshTaskId)] submitted")
+                } catch {
+                    let error = error
+                    logger.debug("Could not schedule \(AppDelegate.appRefreshTaskId) \(error)")
+                }
+            }
+            
+            AppDelegate.processingTasksIds.forEach { identifier in
+                if !tasks.contains(where: { $0.identifier == identifier }) {
+                    logger.debug("[\(identifier)] scheduling app refresh")
+                    let request = BGProcessingTaskRequest(identifier: identifier)
+                    request.earliestBeginDate = Date(timeIntervalSinceNow: 0)
+                    
+                    do {
+                        try BGTaskScheduler.shared.submit(request)
+                        logger.debug("[\(identifier)] submitted")
+                    } catch {
+                        let error = error
+                        logger.debug("Could not schedule \(identifier) \(error)")
+                    }
+                }
+            }
         }
     }
 }

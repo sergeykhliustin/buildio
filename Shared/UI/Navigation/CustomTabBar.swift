@@ -56,7 +56,8 @@ struct CustomTabBar<Content>: View where Content: View {
                 Spacer()
             }
         }
-        .frame(height: 48)
+        .padding(.top, 4)
+        .frame(maxHeight: 48)
         .background(Color.white.shadow(color: .b_ShadowLight, radius: 3, y: -5))
     }
 }

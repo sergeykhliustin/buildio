@@ -4,7 +4,17 @@
 <dict>
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
-		<string>buildio.refreshActivities</string>
+		<string>buildio.appRefreshTask</string>
+		<string>buildio.processingTask0</string>
+		<string>buildio.processingTask1</string>
+		<string>buildio.processingTask2</string>
+		<string>buildio.processingTask3</string>
+		<string>buildio.processingTask4</string>
+		<string>buildio.processingTask5</string>
+		<string>buildio.processingTask6</string>
+		<string>buildio.processingTask7</string>
+		<string>buildio.processingTask8</string>
+		<string>buildio.processingTask9</string>
 	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>

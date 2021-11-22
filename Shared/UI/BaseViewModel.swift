@@ -19,6 +19,10 @@ protocol ResolvableViewModel {
     init()
 }
 
+protocol CacheableViewModel {
+
+}
+
 protocol BaseViewModelProtocol: ObservableObject {
     associatedtype ValueType
     associatedtype ParamsType

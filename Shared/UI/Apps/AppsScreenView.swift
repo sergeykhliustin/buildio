@@ -10,8 +10,6 @@ import Models
 
 struct AppsScreenView: View, PagingView, RoutingView {
     
-//    var selected: V0AppResponseItemModel?
-    
     private var completion: ((V0AppResponseItemModel) -> Void)?
     
     init(completion: ((V0AppResponseItemModel) -> Void)? = nil) {
@@ -20,16 +18,13 @@ struct AppsScreenView: View, PagingView, RoutingView {
     
     @StateObject var model = ViewModelResolver.resolve(AppsViewModel.self)
     @State var selected: String?
-    @State var isActive: Bool = false
     
     func buildItemView(_ item: V0AppResponseItemModel) -> some View {
         ListItemWrapper(cornerRadius: 8, action: {
             if let completion = completion {
                 completion(item)
             } else {
-                //                activeRoute = .buildsScreen(item)
                 selected = item.slug
-                isActive = true
             }
         }, content: {
             AppRowView(model: item)
