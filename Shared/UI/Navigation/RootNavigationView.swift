@@ -15,7 +15,6 @@ struct RootNavigationView: View {
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(Color.b_Primary)]
     }
     var body: some View {
-//        TabsScreenView()
         CustomTabsScreenView()
     }
 }
