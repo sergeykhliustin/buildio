@@ -54,7 +54,7 @@ struct AccountRowView: View {
                     }
                 } else {
                     if case .loading = model.state {
-                        CustomProgressView()
+                        ProgressView()
                             .frame(width: 40, height: 40)
                     } else {
                         AvatarView(title: token.token)

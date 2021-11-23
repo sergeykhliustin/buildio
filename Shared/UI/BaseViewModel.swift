@@ -172,7 +172,9 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
             }, receiveValue: { [weak self] value in
                 guard let self = self else { return }
                 self.value = value
-                self.state = .value
+                withAnimation {
+                    self.state = .value
+                }
             })
     }
     

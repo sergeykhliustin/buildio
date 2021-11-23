@@ -24,7 +24,7 @@ struct RightButtonModifier: ViewModifier {
             content
             
             if loading {
-                CustomProgressView()
+                ProgressView()
                     .padding(.trailing, 16)
             } else {
                 Button(action: action, label: {

@@ -10,30 +10,29 @@ import SwiftUI
 struct RefreshableScrollView<Content: View>: View {
     @State private var previousScrollOffset: CGFloat = 0
     @State private var scrollOffset: CGFloat = 0
-    @State private var frozen: Bool = false
     @State private var rotation: Angle = .degrees(0)
     @State private var opacity: CGFloat = 0
     
     var threshold: CGFloat = 40
     @Binding var refreshing: Bool
-    let content: Content
+    @ViewBuilder let content: () -> Content
 
-    init(height: CGFloat = 60, refreshing: Binding<Bool>, @ViewBuilder content: () -> Content) {
+    init(height: CGFloat = 60, refreshing: Binding<Bool>, @ViewBuilder content: @escaping () -> Content) {
         self.threshold = height
         self._refreshing = refreshing
-        self.content = content()
+        self.content = content
 
     }
     
     var body: some View {
-        return VStack {
+        return VStack(spacing: 0) {
             ScrollView {
                 ZStack(alignment: .top) {
                     MovingView()
-                    
-                    VStack { self.content }.alignmentGuide(.top, computeValue: { d in (self.refreshing && self.frozen) ? -self.threshold : 0.0 })
-                    
-                    SymbolView(height: self.threshold, loading: self.refreshing, frozen: self.frozen, rotation: self.rotation, opacity: self.opacity)
+                    VStack(spacing: 0) {
+                        SymbolView(threshold: self.threshold, height: self.scrollOffset > 0 ? self.scrollOffset : 0.0, loading: self.refreshing, rotation: self.rotation, opacity: self.opacity)
+                        self.content()
+                    }
                 }
             }
             .background(FixedView())
@@ -43,7 +42,7 @@ struct RefreshableScrollView<Content: View>: View {
         }
     }
     
-    func refreshLogic(values: [RefreshableKeyTypes.PrefData]) {
+    private func refreshLogic(values: [RefreshableKeyTypes.PrefData]) {
         DispatchQueue.main.async {
             // Calculate scroll offset
             let movingBounds = values.first { $0.vType == .movingView }?.bounds ?? .zero
@@ -56,19 +55,9 @@ struct RefreshableScrollView<Content: View>: View {
             
             // Crossing the threshold on the way down, we start the refresh process
             if !self.refreshing && (self.scrollOffset > self.threshold && self.previousScrollOffset <= self.threshold) {
-                self.refreshing = true
-            }
-            
-            if self.refreshing {
-                // Crossing the threshold on the way up, we add a space at the top of the scrollview
-                if self.previousScrollOffset > self.threshold && self.scrollOffset <= self.threshold {
-                    withAnimation {
-                        self.frozen = true
-                    }
+                withAnimation {
+                    self.refreshing = true
                 }
-            } else {
-                // remove the sapce at the top of the scroll view
-                self.frozen = false
             }
             
             // Update last scroll offset
@@ -96,9 +85,9 @@ struct RefreshableScrollView<Content: View>: View {
     }
     
     struct SymbolView: View {
+        var threshold: CGFloat
         var height: CGFloat
         var loading: Bool
-        var frozen: Bool
         var rotation: Angle
         var opacity: CGFloat
         
@@ -107,10 +96,9 @@ struct RefreshableScrollView<Content: View>: View {
                 if self.loading { // If loading, show the activity control
                     VStack {
                         Spacer()
-                        CustomProgressView()
+                        ProgressView().progressViewStyle(CustomProgressViewStyle())
                         Spacer()
-                    }.frame(height: height).fixedSize()
-                        .offset(y: -height + (self.loading && self.frozen ? height : 0.0))
+                    }.frame(height: threshold).fixedSize()
                 } else {
                     Image(systemName: "arrow.down") // If not loading, show the arrow
                         .resizable()
@@ -119,13 +107,12 @@ struct RefreshableScrollView<Content: View>: View {
                         .padding(height * 0.375)
                         .rotationEffect(rotation)
                         .opacity(opacity)
-                        .offset(y: -height + (loading && frozen ? +height : 0.0))
                 }
             }
         }
     }
     
-    struct MovingView: View {
+    private struct MovingView: View {
         var body: some View {
             GeometryReader { proxy in
                 Color.clear.preference(key: RefreshableKeyTypes.PrefKey.self, value: [RefreshableKeyTypes.PrefData(vType: .movingView, bounds: proxy.frame(in: .global))])
@@ -133,7 +120,7 @@ struct RefreshableScrollView<Content: View>: View {
         }
     }
     
-    struct FixedView: View {
+    private struct FixedView: View {
         var body: some View {
             GeometryReader { proxy in
                 Color.clear.preference(key: RefreshableKeyTypes.PrefKey.self, value: [RefreshableKeyTypes.PrefData(vType: .fixedView, bounds: proxy.frame(in: .global))])
@@ -142,7 +129,7 @@ struct RefreshableScrollView<Content: View>: View {
     }
 }
 
-struct RefreshableKeyTypes {
+private struct RefreshableKeyTypes {
     enum ViewType: Int {
         case movingView
         case fixedView
@@ -161,15 +148,5 @@ struct RefreshableKeyTypes {
         }
 
         typealias Value = [PrefData]
-    }
-}
-
-struct ActivityRep: UIViewRepresentable {
-    func makeUIView(context: UIViewRepresentableContext<ActivityRep>) -> UIActivityIndicatorView {
-        return UIActivityIndicatorView()
-    }
-    
-    func updateUIView(_ uiView: UIActivityIndicatorView, context: UIViewRepresentableContext<ActivityRep>) {
-        uiView.startAnimating()
     }
 }

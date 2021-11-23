@@ -36,7 +36,7 @@ struct AvatarView: BaseView {
                 }
                 
             case .loading:
-                CustomProgressView()
+                ProgressView()
             case .error, .idle:
                 if let name = model.name {
                     Text(name)

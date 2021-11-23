@@ -28,7 +28,7 @@ struct LogsScreenView: BaseView {
         .navigationTitle("Build #\(String(model.build.buildNumber)) logs")
         .toolbar {
             if case .loading = model.state {
-                CustomProgressView()
+                ProgressView()
             }
         }
     }

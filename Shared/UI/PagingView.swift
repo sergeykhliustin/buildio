@@ -32,7 +32,10 @@ extension PagingView {
     @ViewBuilder
     var body: some View {
         VStack(spacing: 0) {
-            navigationLinks()
+            ZStack {
+                navigationLinks()
+            }
+            .frame(width: 0, height: 0)
             RefreshableScrollView(refreshing: model.isRefreshing) {
                 if let error = model.error, model.state == .error {
                     buildErrorView(error)
@@ -58,7 +61,7 @@ extension PagingView {
                 }
                 .padding(.bottom, 16)
                 if case .loading = model.pagingState {
-                    CustomProgressView()
+                    ProgressView()
                         .padding(.bottom, 16)
                 } else if case .error(let error) = model.pagingState {
                     buildErrorView(error)

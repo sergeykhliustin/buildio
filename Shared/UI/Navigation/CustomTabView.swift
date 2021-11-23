@@ -48,6 +48,7 @@ struct CustomTabView: View {
             })
         }
         .background(Color.white)
+        .progressViewStyle(CustomProgressViewStyle())
     }
     
     @ViewBuilder
@@ -68,6 +69,7 @@ struct CustomTabView: View {
             .navigationTitle(content(selected).name)
             .navigationBarTitleDisplayMode(.inline)
             .background(Color.white)
+            .accentColor(.b_TextBlack)
         }
     }
 }
