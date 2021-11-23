@@ -36,13 +36,15 @@ struct CustomTabBar<Content>: View where Content: View {
     private let count: Int
     private let spacing: CGFloat
     private let style: Style
+    private let onSecondTap: (() -> Void)?
 
-    init(style: Style = .horizontal, spacing: CGFloat = 4, count: Int, selected: Binding<Int>, @ViewBuilder content: @escaping (Int) -> Content) {
+    init(style: Style = .horizontal, spacing: CGFloat = 4, count: Int, selected: Binding<Int>, onSecondTap: (() -> Void)? = nil, @ViewBuilder content: @escaping (Int) -> Content) {
         self.spacing = spacing
         self.count = count
         self._selected = selected
         self.content = content
         self.style = style
+        self.onSecondTap = onSecondTap
     }
     
     var body: some View {
@@ -52,7 +54,12 @@ struct CustomTabBar<Content>: View where Content: View {
                 ForEach(0..<count) { index in
                     
                     Button(action: {
-                        selected = index
+                        if selected == index {
+                            logger.debug("UI on second tap")
+                            onSecondTap?()
+                        } else {
+                            selected = index
+                        }
                     }, label: {
                         VStack(alignment: .center, spacing: 6) {
                             content(index)

@@ -15,10 +15,8 @@ struct MainCoordinatorView: View {
             TokenFigmaScreenView()
                 .animation(.easeIn(duration: 0.5))
                 .transition(.move(edge: .bottom))
-                .frame(maxWidth: 480)
         } else {
             RootNavigationView()
-                .frame(minWidth: 400, idealWidth: 800, minHeight: 600, idealHeight: 800)
                 .background(Color.white)
         }
     }

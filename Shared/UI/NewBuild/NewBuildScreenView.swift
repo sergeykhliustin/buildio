@@ -89,6 +89,14 @@ struct NewBuildScreenView: View, RoutingView {
         }
         .font(.footnote)
         .foregroundColor(Color.b_TextBlack)
+        .toolbar {
+            Button {
+                presentationMode.wrappedValue.dismiss()
+            } label: {
+                Image(systemName: "xmark")
+            }
+
+        }
     }
     
     private var validator: Bool {

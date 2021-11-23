@@ -42,6 +42,7 @@ struct CustomTabView: View {
                             content(index).screen()
                                 .navigationTitle(content(index).name)
                         }
+                        .navigationViewStyle(.stack)
                     } else {
                         content(index).screen()
                     }
@@ -56,6 +57,7 @@ struct CustomTabView: View {
                 Text(content(index).name)
                     .font(.footnote)
             })
+                .edgesIgnoringSafeArea(.horizontal)
         }
     }
     
