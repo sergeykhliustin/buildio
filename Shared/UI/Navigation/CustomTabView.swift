@@ -18,6 +18,13 @@ struct CustomTabView: View {
     @State private var selected: Int = 0
     
     var body: some View {
+        buildBody()
+            .accentColor(.b_TextBlack)
+            .progressViewStyle(CustomProgressViewStyle())
+    }
+    
+    @ViewBuilder
+    private func buildBody() -> some View {
         if UIDevice.current.userInterfaceIdiom == .phone {
             buildIphone()
         } else {
@@ -30,11 +37,14 @@ struct CustomTabView: View {
         VStack(spacing: 0) {
             TabView(selection: $selected) {
                 ForEach(0..<count) { index in
-                    NavigationView {
+                    if content(index).requiresNavigation {
+                        NavigationView {
+                            content(index).screen()
+                                .navigationTitle(content(index).name)
+                        }
+                    } else {
                         content(index).screen()
-                            .navigationTitle(content(index).name)
                     }
-                    .accentColor(.b_TextBlack)
                 }
             }
             
@@ -47,29 +57,34 @@ struct CustomTabView: View {
                     .font(.footnote)
             })
         }
-        .background(Color.white)
-        .progressViewStyle(CustomProgressViewStyle())
     }
     
     @ViewBuilder
     private func buildIpad() -> some View {
-        NavigationView {
-            VStack(spacing: 0) {
-                TabView(selection: $selected) {
-                    ForEach(0..<count) { index in
+        HStack(spacing: 0) {
+            CustomTabBar(style: .vertical, count: count, selected: $selected, content: { index in
+                Image(systemName: content(index).iconName + (selected == index ? ".fill" : ""))
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 20, height: 20)
+                Text(content(index).name)
+                    .font(.footnote)
+            })
+                .zIndex(1)
+            
+            TabView(selection: $selected) {
+                ForEach(0..<count) { index in
+                    if content(index).requiresNavigation {
+                        NavigationView {
+                            content(index).screen()
+                                .background(Color.white)
+                                .navigationTitle(content(index).name)
+                        }
+                    } else {
                         content(index).screen()
                     }
                 }
-                CustomTabBar(count: count, selected: $selected, content: { index in
-                    Image(systemName: content(index).iconName)
-                    Text(content(index).name)
-                        .font(.footnote)
-                })
             }
-            .navigationTitle(content(selected).name)
-            .navigationBarTitleDisplayMode(.inline)
-            .background(Color.white)
-            .accentColor(.b_TextBlack)
         }
     }
 }

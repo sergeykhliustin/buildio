@@ -96,7 +96,7 @@ struct RefreshableScrollView<Content: View>: View {
                 if self.loading { // If loading, show the activity control
                     VStack {
                         Spacer()
-                        ProgressView().progressViewStyle(CustomProgressViewStyle())
+                        ProgressView()
                         Spacer()
                     }.frame(height: threshold).fixedSize()
                 } else {

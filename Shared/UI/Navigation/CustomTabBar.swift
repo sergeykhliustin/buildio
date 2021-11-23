@@ -27,44 +27,86 @@ private struct CustomTabBarButtonStyle: ButtonStyle {
 }
 
 struct CustomTabBar<Content>: View where Content: View {
+    enum Style {
+        case horizontal
+        case vertical
+    }
     @Binding var selected: Int
     @ViewBuilder var content: (Int) -> Content
     private let count: Int
     private let spacing: CGFloat
+    private let style: Style
 
-    init(spacing: CGFloat = 4, count: Int, selected: Binding<Int>, @ViewBuilder content: @escaping (Int) -> Content) {
+    init(style: Style = .horizontal, spacing: CGFloat = 4, count: Int, selected: Binding<Int>, @ViewBuilder content: @escaping (Int) -> Content) {
         self.spacing = spacing
         self.count = count
         self._selected = selected
         self.content = content
+        self.style = style
     }
     
     var body: some View {
-        HStack(spacing: 0) {
-            Spacer()
-            ForEach(0..<count) { index in
-                
-                Button(action: {
-                    selected = index
-                }, label: {
-                    VStack(spacing: 0) {
-                        content(index)
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    }
-                })
-                    .buttonStyle(CustomTabBarButtonStyle(selected: selected == index))
+        stack(style: style) {
+            Group {
                 Spacer()
+                ForEach(0..<count) { index in
+                    
+                    Button(action: {
+                        selected = index
+                    }, label: {
+                        VStack(alignment: .center, spacing: 6) {
+                            content(index)
+                        }
+                        .frame(maxWidth: .infinity)
+                    })
+                        .buttonStyle(CustomTabBarButtonStyle(selected: selected == index))
+                    Spacer()
+                }
             }
+        }
+    }
+    
+    @ViewBuilder
+    private func stack<Content: View>(style: CustomTabBar.Style, content: () -> Content) -> some View {
+        switch style {
+        case .horizontal:
+            horizontal(content)
+        case .vertical:
+            vertical(content)
+        }
+    }
+    
+    @ViewBuilder
+    private func horizontal<Content: View>(_ content: () -> Content) -> some View {
+        HStack(spacing: 0) {
+            content()
         }
         .padding(.top, 4)
         .frame(maxHeight: 48)
         .background(Color.white.shadow(color: .b_ShadowLight, radius: 3, y: -5))
     }
+    
+    @ViewBuilder
+    private func vertical<Content: View>(_ content: () -> Content) -> some View {
+        VStack(spacing: 0) {
+            content()
+        }
+        .padding(.trailing, 4)
+        .frame(maxWidth: 64)
+        .background(Color.white.shadow(color: .b_ShadowLight, radius: 3, x: 5))
+    }
 }
 
 struct CustomTabBar_Previews: PreviewProvider {
     static var previews: some View {
-        CustomTabBar(count: 2, selected: .constant(0)) { _ in
+        CustomTabBar(style: .vertical, count: 1, selected: .constant(0)) { _ in
+            Image(systemName: "hammer.fill")
+                .frame(maxWidth: .infinity)
+            Text("Builds")
+                .frame(maxWidth: .infinity)
+        }
+        
+        CustomTabBar(style: .horizontal, count: 1, selected: .constant(0)) { _ in
             Image(systemName: "hammer.fill")
                 .frame(maxWidth: .infinity)
             Text("Builds")

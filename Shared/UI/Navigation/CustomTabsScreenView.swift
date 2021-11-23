@@ -10,6 +10,7 @@ import SwiftUI
 struct RootScreen {
     let name: String
     let iconName: String
+    var requiresNavigation = true
     let screen: () -> AnyView
 }
 
@@ -30,7 +31,7 @@ private struct RootScreens {
         AnyView(ActivitiesScreenView())
     }
     #if DEBUG
-    static let debug = RootScreen(name: "Debug", iconName: "pencil.slash") {
+    static let debug = RootScreen(name: "Debug", iconName: "pencil.slash", requiresNavigation: false) {
         AnyView(DebugLogsScreenView())
     }
     #endif

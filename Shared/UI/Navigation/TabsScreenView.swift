@@ -11,9 +11,7 @@ struct TabsScreenView: View {
     @State private var selectedTab = 0
     
     init() {
-        #if os(iOS)
         UITabBar.appearance().backgroundColor = .white
-        #endif
     }
     
     var body: some View {

@@ -9,9 +9,10 @@ import SwiftUI
 
 struct RootNavigationView: View {
     init() {
-        #if os(iOS)
         UITabBar.appearance().isHidden = true
-        #endif
+//        UINavigationBar.appearance().backgroundColor = .white
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(Color.b_Primary)]
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(Color.b_Primary)]
     }
     var body: some View {
 //        TabsScreenView()
