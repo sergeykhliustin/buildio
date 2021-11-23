@@ -36,7 +36,7 @@ extension PagingView {
                 navigationLinks()
             }
             .frame(width: 0, height: 0)
-            RefreshableScrollView(refreshing: model.isRefreshing) {
+            RefreshableScrollView(refreshing: model.isScrollViewRefreshing) {
                 if let error = model.error, model.state == .error {
                     buildErrorView(error)
                 } else {
@@ -70,6 +70,10 @@ extension PagingView {
         }
         .toolbar {
             HStack(alignment: .center, spacing: 0) {
+                if model.isTopIndicatorRefreshing.wrappedValue {
+                    ProgressView()
+//                        .frame(width: 20, height: 20, alignment: .center)
+                }
                 additionalToolbarItems()
             }
         }

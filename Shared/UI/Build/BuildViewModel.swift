@@ -70,6 +70,7 @@ final class BuildViewModel: BaseViewModel<BuildResponseItemModel> {
     }
     
     override func afterRefresh() {
+        super.afterRefresh()
         scheduleNextUpdate()
     }
     

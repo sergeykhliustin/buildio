@@ -56,12 +56,6 @@ struct BuildRowView: View {
                     } else {
                         Text(durationString ?? "")
                     }
-//                    if let duration = model.durationString {
-//                        Text(duration)
-//                            .onReceive(timer) { _ in
-//                                
-//                            }
-//                    }
                 }
                 .lineLimit(1)
                 .padding(8)
@@ -76,7 +70,7 @@ struct BuildRowView: View {
                         Text(String(pullRequestId))
                             .padding(8)
                     } else if let commitHash = model.commitHash {
-                        Text(String(commitHash.suffix(7)))
+                        Text(String(commitHash.prefix(7)))
                             .padding(8)
                     }
                     Spacer(minLength: 0)

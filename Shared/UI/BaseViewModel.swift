@@ -30,7 +30,8 @@ protocol BaseViewModelProtocol: ObservableObject {
     var value: ValueType? { get }
     var state: BaseViewModelState { get }
     var error: ErrorResponse? { get }
-    var isRefreshing: Binding<Bool> { get }
+    var isScrollViewRefreshing: Binding<Bool> { get }
+    var isTopIndicatorRefreshing: Binding<Bool> { get }
     func fetch(params: ParamsType) -> AnyPublisher<ValueType, ErrorResponse>
     func refresh(params: ParamsType)
     func beforeRefresh(_ tokenUpdated: Bool)
@@ -43,8 +44,12 @@ class ParamsBaseViewModel<ValueType, ParamsType>: BaseViewModelProtocol {
     @Published var error: ErrorResponse?
     
     var fetcher: AnyCancellable?
-    var isRefreshing: Binding<Bool> {
-        return Binding(get: { self.state == .loading }, set: { _ in })
+    var isScrollViewRefreshing: Binding<Bool> {
+        return Binding(get: { self.state == .loading && self.value == nil }, set: { _ in })
+    }
+    
+    var isTopIndicatorRefreshing: Binding<Bool> {
+        return Binding(get: { self.state == .loading && self.value != nil }, set: { _ in })
     }
     
     var errorString: String? {
@@ -103,8 +108,12 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
     
     private var tokenUpdated: Bool = false
     
-    var isRefreshing: Binding<Bool> {
-        return Binding(get: { self.state == .loading }, set: { _ in self.refresh() })
+    var isScrollViewRefreshing: Binding<Bool> {
+        return Binding(get: { self.state == .loading && self.value == nil }, set: { _ in self.refresh() })
+    }
+    
+    var isTopIndicatorRefreshing: Binding<Bool> {
+        return Binding(get: { self.state == .loading && self.value != nil }, set: { _ in })
     }
     
     var errorString: String? {
@@ -172,9 +181,7 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
             }, receiveValue: { [weak self] value in
                 guard let self = self else { return }
                 self.value = value
-                withAnimation {
-                    self.state = .value
-                }
+                self.state = .value
             })
     }
     

@@ -11,11 +11,27 @@ private class CustomTabViewModel {
     var cachedViews: [Int: AnyView] = [:]
 }
 
+private struct FullscreenEnvironmentKey: EnvironmentKey {
+    static var defaultValue: Binding<Bool> = .constant(false)
+}
+
+extension EnvironmentValues {
+    var fullscreen: Binding<Bool> {
+        get {
+            self[FullscreenEnvironmentKey.self]
+        }
+        set {
+            self[FullscreenEnvironmentKey.self] = newValue
+        }
+    }
+}
+
 struct CustomTabView: View {
     private let model = CustomTabViewModel()
     let count: Int
     var content: (Int) -> RootScreen
     @State private var selected: Int = 0
+    @State private var fullscreen: Bool = false
     
     var body: some View {
         buildBody()
@@ -49,16 +65,19 @@ struct CustomTabView: View {
                 }
             }
             
-            CustomTabBar(count: count, selected: $selected, content: { index in
-                Image(systemName: content(index).iconName + (selected == index ? ".fill" : ""))
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 20, height: 20)
-                Text(content(index).name)
-                    .font(.footnote)
-            })
-                .edgesIgnoringSafeArea(.horizontal)
+            if !fullscreen {
+                CustomTabBar(count: count, selected: $selected, content: { index in
+                    Image(systemName: content(index).iconName + (selected == index ? ".fill" : ""))
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 20, height: 20)
+                    Text(content(index).name)
+                        .font(.footnote)
+                })
+                    .edgesIgnoringSafeArea(.horizontal)
+            }
         }
+        .environment(\.fullscreen, $fullscreen)
     }
     
     @ViewBuilder

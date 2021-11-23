@@ -12,9 +12,25 @@ protocol JSONEncodable {
 
 private struct BitriseError: Decodable {
     let message: String
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let error_msg = try? container.decode(String.self, forKey: .error_msg) {
+            message = error_msg
+        } else {
+            message = try container.decode(String.self, forKey: .message)
+        }
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case message
+        case error_msg
+    }
 }
 
-public enum ErrorResponse: Error {
+public enum ErrorResponse: Error, Identifiable {
+    public var id: String { rawErrorString }
+    
     case error(Int, Data?, URLResponse?, Error)
     
     var rawErrorString: String {
@@ -22,7 +38,7 @@ public enum ErrorResponse: Error {
             if code == 401 {
                 return "Token expired or invalid"
             } else if let data = data, let string = try? JSONDecoder().decode(BitriseError.self, from: data).message {
-                return "Error: " + string
+                return string
             }
             return rawError.localizedDescription
         }

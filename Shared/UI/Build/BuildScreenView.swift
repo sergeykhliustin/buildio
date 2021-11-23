@@ -14,6 +14,7 @@ struct BuildScreenView: BaseView, RoutingView {
     @StateObject var model: BuildViewModel
     @State private var selection: String?
     @State private var isActiveLogs = false
+    @State private var error: ErrorResponse?
     
     init(build: BuildResponseItemModel) {
         self._model = StateObject(wrappedValue: BuildViewModel(build: build))
@@ -38,6 +39,8 @@ struct BuildScreenView: BaseView, RoutingView {
                             model.rebuild { error in
                                 if error == nil {
                                     presentationMode.wrappedValue.dismiss()
+                                } else {
+                                    self.error = error
                                 }
                             }
                         } label: {
@@ -46,6 +49,9 @@ struct BuildScreenView: BaseView, RoutingView {
                         .buttonStyle(SubmitButtonStyle())
                     }
                 }
+                .alert(item: $error, content: { error in
+                    Alert(title: Text("Error"), message: Text(error.rawErrorString), dismissButton: nil)
+                })
                 .navigationTitle("Build #\(String(value.buildNumber))")
             }
             if let value = Binding($model.value) {
@@ -57,6 +63,10 @@ struct BuildScreenView: BaseView, RoutingView {
                 ProgressView()
             }
         }
+    }
+    
+    func isError() -> Binding<Bool> {
+        return Binding(get: { error != nil }, set: { newValue in if newValue == nil { error = nil } })
     }
 }
 

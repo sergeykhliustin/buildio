@@ -12,6 +12,7 @@ import Combine
 final class BuildsViewModel: PagingViewModel<V0BuildListResponseModel>, ResolvableViewModel {
     private let fetchLimit: Int = 10
     private var app: V0AppResponseItemModel?
+    private var timer: Timer?
     
     override init() {
         super.init()
@@ -20,6 +21,22 @@ final class BuildsViewModel: PagingViewModel<V0BuildListResponseModel>, Resolvab
     init(app: V0AppResponseItemModel? = nil) {
         self.app = app
         super.init()
+    }
+    
+    override func afterRefresh() {
+        super.afterRefresh()
+        scheduleNextUpdate()
+    }
+    
+    private func scheduleNextUpdate() {
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: false, block: { [weak self] timer in
+            guard let self = self else {
+                timer.invalidate()
+                return
+            }
+            self.refresh()
+        })
     }
     
     override func fetch(params: Any?) -> AnyPublisher<V0BuildListResponseModel, ErrorResponse> {
