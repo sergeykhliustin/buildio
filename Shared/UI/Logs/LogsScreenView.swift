@@ -10,24 +10,78 @@ import Models
 import Rainbow
 
 private struct LogsControls: View {
+    private struct CustomTextFieldStyle: TextFieldStyle {
+        func _body(configuration: TextField<Self._Label>) -> some View {
+            configuration
+                .autocapitalization(.none)
+                .padding(.horizontal, 4)
+                .frame(height: 30)
+                .background(
+                    RoundedRectangle(cornerRadius: 4).stroke(Color.b_Primary, lineWidth: 1).background(Color.b_BorderLight.opacity(0.8))
+                )
+                .cornerRadius(4)
+                .font(.footnote)
+        }
+    }
+    
+    private struct CustomButtonStyle: ButtonStyle {
+        @State private var hover: Bool = false
+        @Binding var selected: Bool
+        
+        init(selected: Binding<Bool> = .constant(false)) {
+            _selected = selected
+        }
+        
+        func makeBody(configuration: ButtonStyle.Configuration) -> some View {
+            let highlighted = selected || configuration.isPressed || hover
+            configuration
+                .label
+                .frame(width: 30, height: 30, alignment: .center)
+                .contentShape(Rectangle())
+                .background(
+                    RoundedRectangle(cornerRadius: 4).stroke(highlighted ? Color.b_Primary : .clear, lineWidth: 1).background(Color.b_BorderLight.opacity(highlighted ? 0.8 : 0.5))
+                )
+                .cornerRadius(4)
+                .onHover { hover in
+                    self.hover = hover
+                }
+        }
+    }
+    
     @Binding var fullscreen: Bool
     @Binding var follow: Bool
+    @Binding var searchText: String
+    @State private var search: Bool = false
     
     var body: some View {
         HStack {
             Spacer()
-            VStack {
-                Button {
-                    withAnimation {
-                        fullscreen.toggle()
+            VStack(alignment: .trailing) {
+                HStack(spacing: 8) {
+                    if search {
+                        TextField("Search", text: $searchText)
+                            .textFieldStyle(CustomTextFieldStyle())
                     }
-                } label: {
-                    Image(systemName: fullscreen ? "arrow.down.right.and.arrow.up.left" : "arrow.up.left.and.arrow.down.right")
-                        .padding(8)
+                    Button {
+                        withAnimation {
+                            search.toggle()
+                            if !search {
+                                searchText = ""
+                            }
+                        }
+                    } label: {
+                        Image(systemName: "magnifyingglass")
+                    }
+                    .buttonStyle(CustomButtonStyle(selected: $search))
+                    
+                    Button {
+                        withAnimation {
+                            fullscreen.toggle()
+                        }
+                    } label: {
+                        Image(systemName: fullscreen ? "arrow.down.right.and.arrow.up.left" : "arrow.up.left.and.arrow.down.right")
+                    }
                 }
-                .background(RoundedRectangle(cornerRadius: 4).fill(Color.b_BorderLight).opacity(0.5))
-                .contentShape(Rectangle())
-                .padding(EdgeInsets(top: 8, leading: 0, bottom: 0, trailing: 16))
                 
                 Spacer()
                 
@@ -35,22 +89,20 @@ private struct LogsControls: View {
                     Button {
                         follow.toggle()
                     } label: {
-                        Text("Follow")
-                            .font(.footnote)
-                            .padding(8)
+                        Image(systemName: "chevron.down.square")
                     }
-                    .background(RoundedRectangle(cornerRadius: 4).fill(Color.b_BorderLight.opacity(0.5)))
-                    .contentShape(Rectangle())
-                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 16))
                 }
             }
         }
+        .buttonStyle(CustomButtonStyle())
+        .padding(8)
     }
 }
 
 struct LogsScreenView: BaseView {
     @StateObject var model: LogsViewModel
     @State private var follow: Bool = true
+    @State private var searchText: String = ""
     @Environment(\.fullscreen) private var fullscreen
     
     init(build: BuildResponseItemModel) {
@@ -60,10 +112,10 @@ struct LogsScreenView: BaseView {
     var body: some View {
         VStack(alignment: .center) {
             ZStack {
-                LogsTextView(follow: $follow, attributed: logs)
+                LogsTextView(follow: $follow, attributed: logs, search: $searchText)
                     .edgesIgnoringSafeArea(fullscreen.wrappedValue ? .all : [])
                 
-                LogsControls(fullscreen: fullscreen, follow: $follow)
+                LogsControls(fullscreen: fullscreen, follow: $follow, searchText: $searchText)
             }
         }
         .frame(maxHeight: .infinity)
@@ -75,6 +127,12 @@ struct LogsScreenView: BaseView {
         }
         .navigationBarHidden(fullscreen.wrappedValue)
         .statusBar(hidden: fullscreen.wrappedValue)
+        .onAppear {
+            fullscreen.wrappedValue = false
+        }
+        .onDisappear {
+            fullscreen.wrappedValue = false
+        }
     }
     
     private var logs: NSAttributedString {

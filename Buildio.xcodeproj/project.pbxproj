@@ -11,6 +11,7 @@
 		3F00B11E272C210700C4A2FB /* SHA256.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F00B11D272C210700C4A2FB /* SHA256.swift */; };
 		3F030286272C0A08005B5F2A /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = 3F030285272C0A08005B5F2A /* Models */; };
 		3F03028D272C0A68005B5F2A /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 3F03028C272C0A68005B5F2A /* KeychainAccess */; };
+		3F098C7F274D6CF8009108CA /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F098C7E274D6CF8009108CA /* KeyboardObserver.swift */; };
 		3F1941912746C7A600A79F35 /* ViewModelResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1941902746C7A600A79F35 /* ViewModelResolver.swift */; };
 		3F1941942746CF6C00A79F35 /* DebugLogsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1941932746CF6C00A79F35 /* DebugLogsScreenView.swift */; };
 		3F1941982746D1D100A79F35 /* RainbowLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1941972746D1D100A79F35 /* RainbowLogs.swift */; };
@@ -113,6 +114,7 @@
 		3F00B11A272C175000C4A2FB /* URLRequest+Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Cache.swift"; sourceTree = "<group>"; };
 		3F00B11D272C210700C4A2FB /* SHA256.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHA256.swift; sourceTree = "<group>"; };
 		3F030283272C09FE005B5F2A /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Models; sourceTree = "<group>"; };
+		3F098C7E274D6CF8009108CA /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
 		3F1941902746C7A600A79F35 /* ViewModelResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelResolver.swift; sourceTree = "<group>"; };
 		3F1941932746CF6C00A79F35 /* DebugLogsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugLogsScreenView.swift; sourceTree = "<group>"; };
 		3F1941972746D1D100A79F35 /* RainbowLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RainbowLogs.swift; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 				3FB99F142733F61D008F9A96 /* TimeInterval+Additions.swift */,
 				3FB99F172733F780008F9A96 /* BuildResponseItemModel+Additions.swift */,
 				3F1941972746D1D100A79F35 /* RainbowLogs.swift */,
+				3F098C7E274D6CF8009108CA /* KeyboardObserver.swift */,
 			);
 			path = Additions;
 			sourceTree = "<group>";
@@ -708,6 +711,7 @@
 				3FE1095227285EDB00B533EE /* ProvisioningProfileAPI.swift in Sources */,
 				3FD2FCAF272604C90093BE62 /* TokenManager.swift in Sources */,
 				3FD8FDBA2731D4C40060BDF4 /* BuildViewModel.swift in Sources */,
+				3F098C7F274D6CF8009108CA /* KeyboardObserver.swift in Sources */,
 				3F2BE9E2270CA0C00051C910 /* AccountsScreenView.swift in Sources */,
 				3FE1094C27285EDB00B533EE /* URLSessionImplementations.swift in Sources */,
 				3FE1094A27285EDB00B533EE /* APIHelper.swift in Sources */,

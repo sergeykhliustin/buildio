@@ -32,6 +32,12 @@ struct CustomTabView: View {
     var content: (Int) -> RootScreen
     @State private var selected: Int = 0
     @State private var fullscreen: Bool = false
+    @StateObject private var keyboard: KeyboardObserver = KeyboardObserver()
+    
+    init(count: Int, content: @escaping (Int) -> RootScreen) {
+        self.count = count
+        self.content = content
+    }
     
     var body: some View {
         buildBody()
@@ -65,7 +71,7 @@ struct CustomTabView: View {
                 }
             }
             
-            if !fullscreen {
+            if !fullscreen && !keyboard.isVisible {
                 CustomTabBar(count: count, selected: $selected, content: { index in
                     Image(systemName: content(index).iconName + (selected == index ? ".fill" : ""))
                         .resizable()
