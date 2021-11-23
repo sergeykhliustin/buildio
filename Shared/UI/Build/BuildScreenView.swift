@@ -33,6 +33,7 @@ struct BuildScreenView: BaseView, RoutingView {
                         Image(systemName: "note.text")
                         Text("Logs")
                     }
+                    .buttonStyle(.plain)
                     .padding(16)
                     if value.status != .running {
                         Button {
@@ -50,7 +51,7 @@ struct BuildScreenView: BaseView, RoutingView {
                     }
                 }
                 .alert(item: $error, content: { error in
-                    Alert(title: Text("Error"), message: Text(error.rawErrorString), dismissButton: nil)
+                    Alert(title: Text("Failed to start the Build"), message: Text(error.rawErrorString), dismissButton: nil)
                 })
                 .navigationTitle("Build #\(String(value.buildNumber))")
             }
@@ -66,7 +67,7 @@ struct BuildScreenView: BaseView, RoutingView {
     }
     
     func isError() -> Binding<Bool> {
-        return Binding(get: { error != nil }, set: { newValue in if newValue == nil { error = nil } })
+        return Binding(get: { error != nil }, set: { newValue in if !newValue { error = nil } })
     }
 }
 

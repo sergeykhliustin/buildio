@@ -433,7 +433,7 @@ public final class BuildsAPI: BaseAPI {
      */
     #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func buildTrigger(appSlug: String, buildParams: V0BuildTriggerParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildTriggerRespModel, ErrorResponse> {
+    public func buildTrigger(appSlug: String, buildParams: BuildTriggerParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildTriggerRespModel, ErrorResponse> {
         return Future<V0BuildTriggerRespModel, ErrorResponse> { [weak self] promise in
             self?.buildTriggerWithRequestBuilder(appSlug: appSlug, buildParams: buildParams).execute(apiResponseQueue) { result in
                 switch result {
@@ -461,7 +461,7 @@ public final class BuildsAPI: BaseAPI {
      - parameter buildParams: (body) Build trigger parameters 
      - returns: RequestBuilder<V0BuildTriggerRespModel> 
      */
-    private func buildTriggerWithRequestBuilder(appSlug: String, buildParams: V0BuildTriggerParams) -> RequestBuilder<V0BuildTriggerRespModel> {
+    private func buildTriggerWithRequestBuilder(appSlug: String, buildParams: BuildTriggerParams) -> RequestBuilder<V0BuildTriggerRespModel> {
         var localVariablePath = "/apps/{app-slug}/builds"
         let appSlugPreEscape = "\(APIHelper.mapValueToPathItem(appSlug))"
         let appSlugPostEscape = appSlugPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""

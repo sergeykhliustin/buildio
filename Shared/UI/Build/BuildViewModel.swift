@@ -32,10 +32,9 @@ final class BuildViewModel: BaseViewModel<BuildResponseItemModel> {
         }
         if let value = self.value, builder == nil {
             self.state = .loading
-            let params = V0BuildTriggerParamsBuildParams(build: value)
             
             builder = BuildsAPI()
-                .buildTrigger(appSlug: value.repository.slug, buildParams: V0BuildTriggerParams(buildParams: params, hookInfo: V0BuildTriggerParamsHookInfo()))
+                .buildTrigger(appSlug: value.repository.slug, buildParams: BuildTriggerParams(build: value))
                 .sink(receiveCompletion: { [weak self] result in
                     guard let self = self else { return }
                     if case .failure(let error) = result {

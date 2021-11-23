@@ -44,9 +44,8 @@ struct BuildsScreenView: View, PagingView, RoutingView {
         Button {
             showNewBuild.toggle()
         } label: {
-            Image(systemName: "plus.app")
+            Image(systemName: "plus")
         }
-        .frame(width: 44, height: 44, alignment: .center)
         .sheet(isPresented: $showNewBuild) {
             model.refresh()
         } content: {

@@ -14,7 +14,7 @@ struct AccountsScreenView: View {
     var body: some View {
         
         ScrollView {
-            LazyVStack {
+            LazyVStack(spacing: 16) {
                 ForEach(tokenManager.tokens, id: \.token) { token in
                     ListItemWrapper {
                         tokenManager.token = token
@@ -23,18 +23,15 @@ struct AccountsScreenView: View {
                     }
                 }
             }
-//            .padding(.horizontal, 16)
         }
         .toolbar {
             Button {
                 showingSheet.toggle()
             } label: {
-                Image(systemName: "plus.circle")
-                    .imageScale(.large)
+                Image(systemName: "plus")
             }
-            .padding()
             .sheet(isPresented: $showingSheet) {
-                TokenFigmaScreenView {
+                TokenFigmaScreenView(canClose: true) {
                     showingSheet = false
                 }
             }

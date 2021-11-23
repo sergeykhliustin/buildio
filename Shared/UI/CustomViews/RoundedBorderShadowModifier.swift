@@ -25,7 +25,7 @@ struct RoundedBorderShadowModifier: ViewModifier {
                     RoundedRectangle(cornerRadius: 4)
                         .stroke(borderColor, lineWidth: 1)
                 )
-                .shadow(color: .b_ShadowLight, radius: 3, y: 2)
+                .shadow(color: .b_ShadowLight, radius: 10, y: 0)
             content
                 .padding(.horizontal, horizontalPadding)
         }

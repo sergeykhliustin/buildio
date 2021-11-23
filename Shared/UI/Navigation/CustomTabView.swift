@@ -113,5 +113,6 @@ struct CustomTabView: View {
                 }
             }
         }
+        .environment(\.fullscreen, $fullscreen)
     }
 }

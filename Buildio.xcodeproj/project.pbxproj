@@ -12,6 +12,7 @@
 		3F030286272C0A08005B5F2A /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = 3F030285272C0A08005B5F2A /* Models */; };
 		3F03028D272C0A68005B5F2A /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 3F03028C272C0A68005B5F2A /* KeychainAccess */; };
 		3F098C7F274D6CF8009108CA /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F098C7E274D6CF8009108CA /* KeyboardObserver.swift */; };
+		3F098C81274D9EC9009108CA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F098C80274D9EC8009108CA /* SceneDelegate.swift */; };
 		3F1941912746C7A600A79F35 /* ViewModelResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1941902746C7A600A79F35 /* ViewModelResolver.swift */; };
 		3F1941942746CF6C00A79F35 /* DebugLogsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1941932746CF6C00A79F35 /* DebugLogsScreenView.swift */; };
 		3F1941982746D1D100A79F35 /* RainbowLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1941972746D1D100A79F35 /* RainbowLogs.swift */; };
@@ -115,6 +116,7 @@
 		3F00B11D272C210700C4A2FB /* SHA256.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHA256.swift; sourceTree = "<group>"; };
 		3F030283272C09FE005B5F2A /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Models; sourceTree = "<group>"; };
 		3F098C7E274D6CF8009108CA /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
+		3F098C80274D9EC8009108CA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		3F1941902746C7A600A79F35 /* ViewModelResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelResolver.swift; sourceTree = "<group>"; };
 		3F1941932746CF6C00A79F35 /* DebugLogsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugLogsScreenView.swift; sourceTree = "<group>"; };
 		3F1941972746D1D100A79F35 /* RainbowLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RainbowLogs.swift; sourceTree = "<group>"; };
@@ -561,6 +563,7 @@
 				3FE7B54427072C1C00A6D8E1 /* BuildioApp.swift */,
 				3FE7B54627072C1D00A6D8E1 /* Assets.xcassets */,
 				3FD8FDC327327BD70060BDF4 /* AppDelegate+iOS.swift */,
+				3F098C80274D9EC8009108CA /* SceneDelegate.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -791,6 +794,7 @@
 				3FE1097827285EDB00B533EE /* Extensions.swift in Sources */,
 				3FF385D927349EF2009A4479 /* CustomTabBar.swift in Sources */,
 				3FB99F1F27340023008F9A96 /* AvatarViewModel.swift in Sources */,
+				3F098C81274D9EC9009108CA /* SceneDelegate.swift in Sources */,
 				3F509BF4272B42A100C051A0 /* AppRowView.swift in Sources */,
 				3FE1FAAF2745A8E700B65F4C /* RoutingView.swift in Sources */,
 				3FA5136E270B9D6900A5B881 /* Logger.swift in Sources */,
@@ -937,7 +941,6 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Buildio--iOS--Info.plist";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -970,7 +973,6 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Buildio--iOS--Info.plist";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
