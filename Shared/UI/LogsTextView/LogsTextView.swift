@@ -11,17 +11,15 @@ import UIKit
 
 struct LogsTextView: UIViewRepresentable {
     @Binding var follow: Bool
-    @Binding var searchText: String
+    @Binding var selectedRange: NSRange?
+    @Binding var attributed: NSAttributedString?
     
-    @State private var selectedRange: NSRange?
-    
-    var attributed: NSAttributedString?
     private let scrollViewDelegate: ScrollViewDelegate
     
-    init(follow: Binding<Bool>, attributed: NSAttributedString?, search: Binding<String> = .constant("")) {
+    init(follow: Binding<Bool>, selectedRange: Binding<NSRange?>, attributed: Binding<NSAttributedString?>) {
         self._follow = follow
-        self.attributed = attributed
-        self._searchText = search
+        self._selectedRange = selectedRange
+        self._attributed = attributed
         scrollViewDelegate = ScrollViewDelegate(onScroll: {
             follow.wrappedValue = false
         })
@@ -36,7 +34,7 @@ struct LogsTextView: UIViewRepresentable {
         textView.isOpaque = false
         textView.clipsToBounds = false
         textView.isEditable = false
-        textView.indicatorStyle = .black
+        textView.indicatorStyle = .white
         textView.autocorrectionType = .no
         textView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -8.5)
         textView.backgroundColor = UIColor(Color.b_LogsBackground)
@@ -46,8 +44,8 @@ struct LogsTextView: UIViewRepresentable {
         NSLayoutConstraint.activate([
             view.safeAreaLayoutGuide.leftAnchor.constraint(equalTo: textView.leftAnchor, constant: -8),
             view.safeAreaLayoutGuide.rightAnchor.constraint(equalTo: textView.rightAnchor, constant: 8),
-            view.topAnchor.constraint(equalTo: textView.topAnchor),
-            view.bottomAnchor.constraint(equalTo: textView.bottomAnchor)
+            view.safeAreaLayoutGuide.topAnchor.constraint(equalTo: textView.topAnchor),
+            view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: textView.bottomAnchor, constant: 40)
         ])
         
         return view
@@ -56,35 +54,30 @@ struct LogsTextView: UIViewRepresentable {
     func updateUIView(_ uiView: UIView, context: Context) {
         guard let textView = uiView.subviews.first(where: { $0 is UITextView }) as? UITextView else { return }
         textView.delegate = scrollViewDelegate
-        textView.attributedText = attributed
+        textView.attributedText = attributed ?? NSAttributedString(string: "Loading logs...", attributes: [.foregroundColor: UIColor.white])
         scrollToBottom(textView: textView)
-        searchText(searchText, textView: textView)
+        selectRange(textView: textView)
     }
     
-    private func searchText(_ string: String, textView: UITextView) {
-        guard !string.isEmpty else { return }
+    private func selectRange(textView: UITextView) {
+        guard let range = selectedRange else { return }
         guard let attributed = textView.attributedText else { return }
-
-        let fullString = attributed.string
-        guard let range = fullString.range(of: string.lowercased()) else { return }
         
-        let location = Int(fullString.distance(from: fullString.startIndex, to: range.lowerBound))
-        let lenght = Int(fullString.distance(from: range.lowerBound, to: range.upperBound))
-        let nsRange = NSRange(location: location, length: lenght)
-        
-        if nsRange.length > 0 {
+        if range.length > 0 {
             let mutable = NSMutableAttributedString(attributedString: attributed)
-            mutable.addAttributes([.backgroundColor: UIColor.yellow], range: nsRange)
+            mutable.addAttributes([
+                .backgroundColor: UIColor.yellow,
+                .foregroundColor: UIColor.black
+            ], range: range)
             textView.attributedText = mutable
-            textView.scrollRangeToVisible(nsRange)
+            textView.scrollRangeToVisible(range)
         }
     }
     
     private func scrollToBottom(textView: UITextView) {
-        guard follow else { return }
-        guard searchText.isEmpty else { return }
+        guard follow && selectedRange == nil else { return }
+        
         DispatchQueue.main.async {
-            
             if textView.attributedText.length > 0 {
                 let location = textView.attributedText.length - 1
                 let bottom = NSRange(location: location, length: 1)

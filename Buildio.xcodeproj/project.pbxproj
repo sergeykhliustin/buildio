@@ -13,6 +13,7 @@
 		3F03028D272C0A68005B5F2A /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 3F03028C272C0A68005B5F2A /* KeychainAccess */; };
 		3F098C7F274D6CF8009108CA /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F098C7E274D6CF8009108CA /* KeyboardObserver.swift */; };
 		3F098C81274D9EC9009108CA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F098C80274D9EC8009108CA /* SceneDelegate.swift */; };
+		3F0CBB3D274E494C00357B68 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 3F0CBB3C274E494C00357B68 /* Introspect */; };
 		3F1941912746C7A600A79F35 /* ViewModelResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1941902746C7A600A79F35 /* ViewModelResolver.swift */; };
 		3F1941942746CF6C00A79F35 /* DebugLogsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1941932746CF6C00A79F35 /* DebugLogsScreenView.swift */; };
 		3F1941982746D1D100A79F35 /* RainbowLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1941972746D1D100A79F35 /* RainbowLogs.swift */; };
@@ -35,6 +36,8 @@
 		3F75C0992739C90000BF246A /* RoundedBorderShadowModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F75C0982739C90000BF246A /* RoundedBorderShadowModifier.swift */; };
 		3F75C09B2739D53100BF246A /* WorkflowsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F75C09A2739D53100BF246A /* WorkflowsView.swift */; };
 		3F969869274E265E002E43AC /* AuthScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F969868274E265E002E43AC /* AuthScreenView.swift */; };
+		3F96986B274E3766002E43AC /* LogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F96986A274E3766002E43AC /* LogsView.swift */; };
+		3F96986D274E4659002E43AC /* LogsControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F96986C274E4659002E43AC /* LogsControls.swift */; };
 		3FA5136E270B9D6900A5B881 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5136D270B9D6900A5B881 /* Logger.swift */; };
 		3FB99F122733F2BD008F9A96 /* BuildRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB99F112733F2BC008F9A96 /* BuildRowView.swift */; };
 		3FB99F152733F61D008F9A96 /* TimeInterval+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB99F142733F61D008F9A96 /* TimeInterval+Additions.swift */; };
@@ -140,6 +143,8 @@
 		3F75C0982739C90000BF246A /* RoundedBorderShadowModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedBorderShadowModifier.swift; sourceTree = "<group>"; };
 		3F75C09A2739D53100BF246A /* WorkflowsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkflowsView.swift; sourceTree = "<group>"; };
 		3F969868274E265E002E43AC /* AuthScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthScreenView.swift; sourceTree = "<group>"; };
+		3F96986A274E3766002E43AC /* LogsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsView.swift; sourceTree = "<group>"; };
+		3F96986C274E4659002E43AC /* LogsControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsControls.swift; sourceTree = "<group>"; };
 		3FA5136D270B9D6900A5B881 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		3FB99F112733F2BC008F9A96 /* BuildRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildRowView.swift; sourceTree = "<group>"; };
 		3FB99F142733F61D008F9A96 /* TimeInterval+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Additions.swift"; sourceTree = "<group>"; };
@@ -228,6 +233,7 @@
 			files = (
 				3F030286272C0A08005B5F2A /* Models in Frameworks */,
 				3FFEB44D27304463008E5A82 /* Rainbow in Frameworks */,
+				3F0CBB3D274E494C00357B68 /* Introspect in Frameworks */,
 				3F19ABA2272C055D0070DFE3 /* SwiftyBeaver in Frameworks */,
 				3F03028D272C0A68005B5F2A /* KeychainAccess in Frameworks */,
 			);
@@ -600,6 +606,8 @@
 			children = (
 				3FFEB442272FF341008E5A82 /* LogsViewModel.swift */,
 				3FFEB445272FF8C7008E5A82 /* LogsScreenView.swift */,
+				3F96986A274E3766002E43AC /* LogsView.swift */,
+				3F96986C274E4659002E43AC /* LogsControls.swift */,
 			);
 			path = Logs;
 			sourceTree = "<group>";
@@ -627,6 +635,7 @@
 				3F030285272C0A08005B5F2A /* Models */,
 				3F03028C272C0A68005B5F2A /* KeychainAccess */,
 				3FFEB44C27304463008E5A82 /* Rainbow */,
+				3F0CBB3C274E494C00357B68 /* Introspect */,
 			);
 			productName = "Buildio (iOS)";
 			productReference = 3FE7B54B27072C1E00A6D8E1 /* Buildio.app */;
@@ -660,6 +669,7 @@
 				3F19ABA0272C055D0070DFE3 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */,
 				3F03028B272C0A68005B5F2A /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				3FFEB44B27304463008E5A82 /* XCRemoteSwiftPackageReference "Rainbow" */,
+				3F0CBB3B274E494C00357B68 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = 3FE7B54C27072C1E00A6D8E1 /* Products */;
 			projectDirPath = "";
@@ -745,6 +755,7 @@
 				3FFEB451273048D4008E5A82 /* Color+Rainbow.swift in Sources */,
 				3FD8FDAD273089000060BDF4 /* NewBuildScreenView.swift in Sources */,
 				3FF385DC2734AF5E009A4479 /* CustomTabsScreenView.swift in Sources */,
+				3F96986D274E4659002E43AC /* LogsControls.swift in Sources */,
 				3FE1FAB127466C7900B65F4C /* UserDefaults.swift in Sources */,
 				3FE1095827285EDB00B533EE /* AndroidKeystoreFileAPI.swift in Sources */,
 				3FFEB446272FF8C8008E5A82 /* LogsScreenView.swift in Sources */,
@@ -759,6 +770,7 @@
 				3FE1096E27285EDB00B533EE /* AddonsAPI.swift in Sources */,
 				3FE1FAAD2745A5C200B65F4C /* BuildScreenView.swift in Sources */,
 				3FE1095427285EDB00B533EE /* BuildCertificateAPI.swift in Sources */,
+				3F96986B274E3766002E43AC /* LogsView.swift in Sources */,
 				3F579EDE27329C5E00B9EECF /* ActivitiesScreenView.swift in Sources */,
 				3F75C0992739C90000BF246A /* RoundedBorderShadowModifier.swift in Sources */,
 				3FCC45C22707924D0001A9C2 /* BuildsViewModel.swift in Sources */,
@@ -945,6 +957,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Buildio--iOS--Info.plist";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -977,6 +990,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Buildio--iOS--Info.plist";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1030,6 +1044,14 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		3F0CBB3B274E494C00357B68 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.3;
+			};
+		};
 		3F19ABA0272C055D0070DFE3 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyBeaver/SwiftyBeaver.git";
@@ -1061,6 +1083,11 @@
 		3F030294272C0F21005B5F2A /* Models */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Models;
+		};
+		3F0CBB3C274E494C00357B68 /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F0CBB3B274E494C00357B68 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
 		};
 		3F19ABA1272C055D0070DFE3 /* SwiftyBeaver */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -10,10 +10,10 @@ import SwiftyBeaver
 import Rainbow
 
 struct DebugLogsScreenView: View {
-    @State private var logs: NSAttributedString = NSAttributedString()
+    @State private var logs: NSAttributedString?
     
     var body: some View {
-        LogsTextView(follow: .constant(true), attributed: logs)
+        LogsView(logs: $logs)
             .onAppear {
                 updateLogs()
             }
