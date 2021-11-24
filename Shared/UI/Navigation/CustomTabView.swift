@@ -49,9 +49,11 @@ struct CustomTabView: View {
     var body: some View {
         #if os(iOS)
         if horizontalSizeClass == .compact {
-            buildTabBarNavigation() // For iPhone
+            // For iPhone
+            buildTabBarNavigation()
         } else {
-            buildSidebarNavigation() // For iPad
+            // For iPad
+            buildSidebarNavigation()
         }
         #else
         buildSidebarNavigation()()  // For mac
@@ -112,14 +114,19 @@ struct CustomTabView: View {
                     if content(index).requiresNavigation {
                         NavigationView {
                             content(index).screen()
-                                .background(Color.white)
                                 .navigationTitle(content(index).name)
                         }
-                        .navigationViewStyle(DoubleColumnNavigationViewStyle())
                         .introspectSplitViewController { splitViewController in
                             logger.debug(splitViewController)
-                            splitViewController.preferredDisplayMode = .oneOverSecondary
-                            if fullscreen {
+                            splitViewController.primaryBackgroundStyle = .none
+                            splitViewController.minimumPrimaryColumnWidth = 300
+                            splitViewController.maximumPrimaryColumnWidth = 600
+                            
+                            if !fullscreen {
+                                splitViewController.preferredDisplayMode = .oneOverSecondary
+                            }
+                            
+                            if fullscreen && splitViewController.displayMode != .secondaryOnly {
                                 splitViewController.hide(.primary)
                             }
                         }
@@ -129,6 +136,7 @@ struct CustomTabView: View {
                 }
             }
         }
+        .statusBar(hidden: fullscreen)
         .environment(\.fullscreen, $fullscreen)
     }
 }

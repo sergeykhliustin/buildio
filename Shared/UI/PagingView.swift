@@ -55,11 +55,10 @@ extension PagingView {
                         }
                     } header: {
                         headerBody()
-                            .padding(.top, 8)
                             .frame(height: 44)
                     }
                 }
-                .padding(.bottom, 16)
+                .padding(.vertical, 16)
                 if case .loading = model.pagingState {
                     ProgressView()
                         .padding(.bottom, 16)

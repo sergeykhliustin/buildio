@@ -22,7 +22,6 @@ struct ClearButton: ViewModifier {
                     Image(systemName: "delete.left")
                         .foregroundColor(Color.b_ButtonPrimaryLight)
                 }
-                .background(Color.white)
             }
         }
     }

@@ -47,7 +47,6 @@ struct TokenFigmaView: View {
                     .frame(height: 44)
             }
             .padding(.horizontal, 16)
-            .background(Color.white)
             
             VStack(alignment: .center, spacing: 25) {
                 HStack(spacing: 0) {
@@ -72,11 +71,9 @@ struct TokenFigmaView: View {
                     .frame(alignment: .center)
             }
             .padding(.horizontal)
-            .background(Color.white)
             
         }
         .padding(16)
-        .background(Color.white)
         .foregroundColor(.b_TextBlack)
         .alert(isPresented: $isError) {
             Alert(title: Text("Error"),

@@ -166,7 +166,6 @@ struct BuildView: View {
         .font(.body)
         .multilineTextAlignment(.leading)
         .foregroundColor(Color(red: 0.67, green: 0.67, blue: 0.67))
-        .background(Color.white)
     }
 }
 

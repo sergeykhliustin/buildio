@@ -53,7 +53,6 @@ struct BuildsScreenView: View, PagingView, RoutingView {
                 NewBuildScreenView()
                     .navigationTitle("Start a build")
             }
-            .accentColor(.b_TextBlack)
         }
     }
 }

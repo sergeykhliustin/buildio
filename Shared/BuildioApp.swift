@@ -14,19 +14,24 @@ struct BuildioApp: App {
     
     init() {
         UITabBar.appearance().isHidden = true
-        UINavigationBar.appearance().backgroundColor = .white
-//        UINavigationBar.appearance().isTranslucent = true
-//        UINavigationBar.appearance().isOpaque = true
-        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(Color.b_Primary)]
-        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(Color.b_Primary)]
-//        UINavigationBar.appearance().standardAppearance.configureWithTransparentBackground()
-//        UINavigationBar.appearance().compactAppearance = UINavigationBar.appearance().standardAppearance.copy()
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.configureWithTransparentBackground()
+        navigationBarAppearance.backgroundColor = .white
+        navigationBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor(Color.b_Primary)]
+        navigationBarAppearance.titleTextAttributes = [.foregroundColor: UIColor(Color.b_Primary)]
+        navigationBarAppearance.shadowColor = UIColor(Color.b_ShadowLight)
+        UINavigationBar.appearance().standardAppearance = navigationBarAppearance
+        UINavigationBar.appearance().compactAppearance = navigationBarAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
+        UINavigationBar.appearance().tintColor = UIColor(Color.b_Primary)
+        
     }
     
     var body: some Scene {
         WindowGroup("Buildio") {
             MainCoordinatorView()
-                .accentColor(.b_TextBlack)
+                .accentColor(.b_Primary)
+                .foregroundColor(.b_TextBlack)
                 .background(Color.white)
                 .progressViewStyle(CustomProgressViewStyle())
                 .configureWindow()
