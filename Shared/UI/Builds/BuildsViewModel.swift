@@ -11,7 +11,7 @@ import Combine
 
 final class BuildsViewModel: PagingViewModel<V0BuildListResponseModel>, ResolvableViewModel {
     private let fetchLimit: Int = 10
-    private var app: V0AppResponseItemModel?
+    private(set) var app: V0AppResponseItemModel?
     private var timer: Timer?
     
     override init() {

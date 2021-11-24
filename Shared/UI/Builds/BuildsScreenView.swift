@@ -50,7 +50,7 @@ struct BuildsScreenView: View, PagingView, RoutingView {
             model.refresh()
         } content: {
             NavigationView {
-                NewBuildScreenView()
+                NewBuildScreenView(app: model.app)
                     .navigationTitle("Start a build")
             }
         }

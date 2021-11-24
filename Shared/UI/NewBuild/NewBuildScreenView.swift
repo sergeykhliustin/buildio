@@ -20,6 +20,10 @@ struct NewBuildScreenView: View, RoutingView {
     @State private var message: String = ""
     @State private var workflow: String = ""
     
+    init(app: V0AppResponseItemModel? = nil) {
+        self._app = State(initialValue: app)
+    }
+    
     var body: some View {
         ScrollView {
             NavigationLink(isActive: $isActiveRoute) {
