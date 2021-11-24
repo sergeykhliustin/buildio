@@ -17,7 +17,8 @@ struct AppsScreenView: View, PagingView, RoutingView {
     }
     
     @StateObject var model = ViewModelResolver.resolve(AppsViewModel.self)
-    @State private var selected: String?
+    @SceneStorage("AppsScreenView.selected")
+    private var selected: String?
     @State private var searchFocused: Bool = false
     
     @ViewBuilder

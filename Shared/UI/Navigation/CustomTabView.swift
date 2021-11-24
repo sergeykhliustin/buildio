@@ -30,9 +30,15 @@ struct CustomTabView: View {
     private let model = CustomTabViewModel()
     let count: Int
     var content: (Int) -> RootScreen
-    @State private var selected: Int = 0
+    
+    @SceneStorage("tabview.selectedTab") private var selected: Int = 0
     @State private var fullscreen: Bool = false
     @StateObject private var keyboard: KeyboardObserver = KeyboardObserver()
+    
+#if os(iOS)
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
+#endif
     
     init(count: Int, content: @escaping (Int) -> RootScreen) {
         self.count = count
@@ -40,22 +46,22 @@ struct CustomTabView: View {
     }
     
     var body: some View {
-        buildBody()
-            .accentColor(.b_TextBlack)
-            .progressViewStyle(CustomProgressViewStyle())
-    }
-    
-    @ViewBuilder
-    private func buildBody() -> some View {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            buildIphone()
-        } else {
-            buildIpad()
+        #if os(iOS)
+        GeometryReader { geometry in
+            if horizontalSizeClass == .compact || verticalSizeClass == .compact || geometry.size.height > geometry.size.width - 50 {
+                buildTabBarNavigation() // For iPhone
+            } else {
+                buildSidebarNavigation() // For iPad
+            }
         }
+        #else
+        buildSidebarNavigation()()  // For mac
+            .frame(minWidth: 900, maxWidth: .infinity, minHeight: 500, maxHeight: .infinity)
+        #endif
     }
     
     @ViewBuilder
-    private func buildIphone() -> some View {
+    private func buildTabBarNavigation() -> some View {
         VStack(spacing: 0) {
             TabView(selection: $selected) {
                 ForEach(0..<count) { index in
@@ -87,7 +93,7 @@ struct CustomTabView: View {
     }
     
     @ViewBuilder
-    private func buildIpad() -> some View {
+    private func buildSidebarNavigation() -> some View {
         HStack(spacing: 0) {
             CustomTabBar(style: .vertical, count: count, selected: $selected, content: { index in
                 Image(systemName: content(index).iconName + (selected == index ? ".fill" : ""))
@@ -97,6 +103,7 @@ struct CustomTabView: View {
                 Text(content(index).name)
                     .font(.footnote)
             })
+                .edgesIgnoringSafeArea(.vertical)
                 .zIndex(1)
             
             TabView(selection: $selected) {
@@ -107,6 +114,8 @@ struct CustomTabView: View {
                                 .background(Color.white)
                                 .navigationTitle(content(index).name)
                         }
+                        .navigationViewStyle(DoubleColumnNavigationViewStyle())
+                        
                     } else {
                         content(index).screen()
                     }

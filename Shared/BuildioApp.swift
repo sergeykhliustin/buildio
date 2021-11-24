@@ -12,30 +12,45 @@ import UIKit
 struct BuildioApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
+    init() {
+        UITabBar.appearance().isHidden = true
+        UINavigationBar.appearance().backgroundColor = .white
+//        UINavigationBar.appearance().isTranslucent = true
+//        UINavigationBar.appearance().isOpaque = true
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(Color.b_Primary)]
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(Color.b_Primary)]
+//        UINavigationBar.appearance().standardAppearance.configureWithTransparentBackground()
+//        UINavigationBar.appearance().compactAppearance = UINavigationBar.appearance().standardAppearance.copy()
+    }
+    
     var body: some Scene {
         WindowGroup("Buildio") {
             MainCoordinatorView()
-                .withHostingWindow { window in
-                    window?.windowScene?.titlebar?.titleVisibility = .hidden
-                }
+                .accentColor(.b_TextBlack)
+                .background(Color.white)
+                .progressViewStyle(CustomProgressViewStyle())
+                .configureWindow()
         }
     }
 }
 
 private extension View {
-    func withHostingWindow(_ callback: @escaping (UIWindow?) -> Void) -> some View {
-        self.background(HostingWindowFinder(callback: callback))
+    func configureWindow() -> some View {
+        self.background(HostingWindowConfigurator())
     }
 }
 
-private struct HostingWindowFinder: UIViewRepresentable {
-    var callback: (UIWindow?) -> Void
-
+private struct HostingWindowConfigurator: UIViewRepresentable {
     func makeUIView(context: Context) -> UIView {
         let view = UIView()
-        DispatchQueue.main.async { [weak view] in
-            self.callback(view?.window)
+        #if targetEnvironment(macCatalyst)
+        DispatchQueue.main.async {
+            let window = view.window
+            window?.windowScene?.titlebar?.titleVisibility = .hidden
+            window?.windowScene?.titlebar?.toolbar?.isVisible = false
+            window?.windowScene?.titlebar?.separatorStyle = .none
         }
+        #endif
         return view
     }
 

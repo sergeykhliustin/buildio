@@ -31,7 +31,7 @@ struct AccountsScreenView: View {
                 Image(systemName: "plus")
             }
             .sheet(isPresented: $showingSheet) {
-                TokenFigmaScreenView(canClose: true) {
+                AuthScreenView(canClose: true) {
                     showingSheet = false
                 }
             }

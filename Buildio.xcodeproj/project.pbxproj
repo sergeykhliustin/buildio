@@ -34,6 +34,7 @@
 		3F75C0972739C7B700BF246A /* BranchesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F75C0962739C7B700BF246A /* BranchesView.swift */; };
 		3F75C0992739C90000BF246A /* RoundedBorderShadowModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F75C0982739C90000BF246A /* RoundedBorderShadowModifier.swift */; };
 		3F75C09B2739D53100BF246A /* WorkflowsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F75C09A2739D53100BF246A /* WorkflowsView.swift */; };
+		3F969869274E265E002E43AC /* AuthScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F969868274E265E002E43AC /* AuthScreenView.swift */; };
 		3FA5136E270B9D6900A5B881 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA5136D270B9D6900A5B881 /* Logger.swift */; };
 		3FB99F122733F2BD008F9A96 /* BuildRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB99F112733F2BC008F9A96 /* BuildRowView.swift */; };
 		3FB99F152733F61D008F9A96 /* TimeInterval+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB99F142733F61D008F9A96 /* TimeInterval+Additions.swift */; };
@@ -99,7 +100,7 @@
 		3FE7B55827072C1E00A6D8E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FE7B54627072C1D00A6D8E1 /* Assets.xcassets */; };
 		3FF21F822735C65A00AA8565 /* PlatformIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF21F812735C65A00AA8565 /* PlatformIcon.swift */; };
 		3FF21F842735CD4E00AA8565 /* AccountRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF21F832735CD4E00AA8565 /* AccountRowView.swift */; };
-		3FF276172721AB1700701113 /* TokenFigmaScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF276162721AB1700701113 /* TokenFigmaScreenView.swift */; };
+		3FF276172721AB1700701113 /* TokenFigmaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF276162721AB1700701113 /* TokenFigmaView.swift */; };
 		3FF385D327348E8F009A4479 /* ListItemWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF385D227348E8F009A4479 /* ListItemWrapper.swift */; };
 		3FF385D627349E76009A4479 /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF385D527349E76009A4479 /* CustomTabView.swift */; };
 		3FF385D927349EF2009A4479 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF385D827349EF2009A4479 /* CustomTabBar.swift */; };
@@ -138,6 +139,7 @@
 		3F75C0962739C7B700BF246A /* BranchesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchesView.swift; sourceTree = "<group>"; };
 		3F75C0982739C90000BF246A /* RoundedBorderShadowModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedBorderShadowModifier.swift; sourceTree = "<group>"; };
 		3F75C09A2739D53100BF246A /* WorkflowsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkflowsView.swift; sourceTree = "<group>"; };
+		3F969868274E265E002E43AC /* AuthScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthScreenView.swift; sourceTree = "<group>"; };
 		3FA5136D270B9D6900A5B881 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		3FB99F112733F2BC008F9A96 /* BuildRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildRowView.swift; sourceTree = "<group>"; };
 		3FB99F142733F61D008F9A96 /* TimeInterval+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Additions.swift"; sourceTree = "<group>"; };
@@ -206,7 +208,7 @@
 		3FE7B55327072C1E00A6D8E1 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		3FF21F812735C65A00AA8565 /* PlatformIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformIcon.swift; sourceTree = "<group>"; };
 		3FF21F832735CD4E00AA8565 /* AccountRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRowView.swift; sourceTree = "<group>"; };
-		3FF276162721AB1700701113 /* TokenFigmaScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenFigmaScreenView.swift; sourceTree = "<group>"; };
+		3FF276162721AB1700701113 /* TokenFigmaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenFigmaView.swift; sourceTree = "<group>"; };
 		3FF385D227348E8F009A4479 /* ListItemWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemWrapper.swift; sourceTree = "<group>"; };
 		3FF385D527349E76009A4479 /* CustomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
 		3FF385D827349EF2009A4479 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
@@ -587,7 +589,8 @@
 		3FF276152721AAD400701113 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				3FF276162721AB1700701113 /* TokenFigmaScreenView.swift */,
+				3FF276162721AB1700701113 /* TokenFigmaView.swift */,
+				3F969868274E265E002E43AC /* AuthScreenView.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -710,6 +713,7 @@
 				3F00B11B272C175000C4A2FB /* URLRequest+Cache.swift in Sources */,
 				3FCC45AD270767370001A9C2 /* MainCoordinatorView.swift in Sources */,
 				3FE1096C27285EDB00B533EE /* AppleApiCredentialsAPI.swift in Sources */,
+				3F969869274E265E002E43AC /* AuthScreenView.swift in Sources */,
 				3FE1097627285EDB00B533EE /* OpenISO8601DateFormatter.swift in Sources */,
 				3FE1095227285EDB00B533EE /* ProvisioningProfileAPI.swift in Sources */,
 				3FD2FCAF272604C90093BE62 /* TokenManager.swift in Sources */,
@@ -722,7 +726,7 @@
 				3F677F152729CE5900B9265B /* BaseAPI.swift in Sources */,
 				3FE1097427285EDB00B533EE /* APIs.swift in Sources */,
 				3FCC45B427078D250001A9C2 /* RootNavigationView.swift in Sources */,
-				3FF276172721AB1700701113 /* TokenFigmaScreenView.swift in Sources */,
+				3FF276172721AB1700701113 /* TokenFigmaView.swift in Sources */,
 				3F49AAB8274C264800C82999 /* RefreshableScrollView.swift in Sources */,
 				3FE1097C27285EDB00B533EE /* JSONEncodingHelper.swift in Sources */,
 				3FE1095E27285EDB00B533EE /* AppSetupAPI.swift in Sources */,
