@@ -56,7 +56,11 @@ struct BuildScreenView: BaseView, RoutingView {
                 .navigationTitle("Build #\(String(value.buildNumber))")
             }
             if let value = Binding($model.value) {
-                BuildView(model: value)
+                ListItemWrapper {
+                    
+                } content: {
+                    BuildView(model: value)
+                }
             }
         }
         .toolbar {

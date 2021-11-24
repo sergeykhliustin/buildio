@@ -38,6 +38,7 @@ public struct BuildResponseItemModel: Codable, Hashable, Identifiable {
     public var triggeredAt: Date
     public var triggeredBy: String?
     public var triggeredWorkflow: String
+    public var denTags: [String]?
     
     public init(abortReason: String? = nil,
                 branch: String,
@@ -98,6 +99,19 @@ public struct BuildResponseItemModel: Codable, Hashable, Identifiable {
         case success = 1
         case error = 2
         case aborted = 3
+        
+        public var text: String {
+            switch self {
+            case .running:
+                return "Running"
+            case .success:
+                return "Success"
+            case .error:
+                return "Failed"
+            case .aborted:
+                return "Aborted"
+            }
+        }
     }
     
     public static func preview() -> Self {
@@ -142,7 +156,7 @@ extension JSONValue {
     var jsonString: String {
         switch self {
         case .string(let string):
-            return string
+            return "\"" + string + "\""
         case .int(let int):
             return "\(int)"
         case .double(let double):
@@ -152,9 +166,9 @@ extension JSONValue {
         case .null:
             return "null"
         case .array(let array):
-            return #"[\#(array.map({ "\($0.jsonString)" }).joined(separator: ", "))]"#
+            return "[\n\(array.map({ "\t\($0.jsonString)" }).joined(separator: ", \n"))\n\t]"
         case .object(let object):
-            return #"{\#(object.map({ "\($0.key): \($0.value.jsonString)" }).joined(separator: ", "))}"#
+            return "{\n\(object.sorted(by: { $0.key < $1.key }).map({ "\t\($0.key): \t\($0.value.jsonString)" }).joined(separator: ", \n"))\n}"
         }
     }
 }

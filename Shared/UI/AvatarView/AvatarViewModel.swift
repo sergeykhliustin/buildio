@@ -37,11 +37,7 @@ final class AvatarViewModel: BaseViewModel<UIImage> {
     }()
     
     private lazy var color: Color = {
-        let seed = [name!.first, name!.last].compactMap({ $0?.unicodeScalars.first?.value }).map({ Int($0) }).reduce(0, +)
-        if seed > 0 {
-            return Color.b_AvatarColors[seed % Color.b_AvatarColors.count]
-        }
-        return .white
+        return Color.fromString(name!)
     }()
     
     var backgroundColor: Color {

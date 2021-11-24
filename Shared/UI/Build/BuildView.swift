@@ -8,18 +8,57 @@
 import SwiftUI
 import Models
 
+private struct PrimaryModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .foregroundColor(Color.b_TextBlack)
+            .font(.subheadline)
+    }
+}
+
+private struct SecondaryModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .foregroundColor(Color.b_TextBlackLight)
+            .font(.callout)
+    }
+}
+
+private extension View {
+    func primary() -> some View {
+        modifier(PrimaryModifier())
+    }
+    func secondary() -> some View {
+        modifier(SecondaryModifier())
+    }
+}
+
 struct BuildView: View {
+    private struct Item: View {
+        let imageName: String
+        let text: String?
+        
+        var body: some View {
+            if let text = text, !text.isEmpty {
+                HStack(spacing: 4) {
+                    Image(systemName: imageName)
+                    Text("\(text)")
+                }
+                .primary()
+            }
+        }
+    }
+    
     @Binding var model: BuildResponseItemModel
     
     var body: some View {
-        HStack(alignment: .top) {
+        HStack(alignment: .top, spacing: 0) {
             let statusColor = model.status.color
-            let statusText = model.environmentPrepareFinishedAt == nil ? "Waiting for worker" : model.statusText.capitalized
-            ZStack(alignment: .trailing) {
-                Rectangle()
-                    .fill(statusColor)
-                    .frame(width: 10)
-            }
+            Rectangle()
+                .fill(statusColor)
+                .frame(width: 5)
+
+            let statusText = model.environmentPrepareFinishedAt == nil ? "Waiting for worker" : model.status.text
             
             VStack(alignment: .leading) {
                 Group {
@@ -37,116 +76,91 @@ struct BuildView: View {
                                     .padding(8)
                                     .lineLimit(1)
                             }
-                                .background(Color(red: 0.27, green: 0.75, blue: 0.91))
+                                .background(Color.fromString(model.branch))
                                 .cornerRadius(4)
                         ),
                         
                         AnyView(
                             Text(model.triggeredWorkflow)
                                 .padding(8)
-                                .border(Color.b_BorderLight, width: 2)
-                                .cornerRadius(4)
+                                .background(RoundedRectangle(cornerRadius: 4).stroke(Color.b_BorderLight))
                         )
                     ]
                     })
                         .font(.subheadline)
                         .padding(.top, 4)
                     
-                    Rectangle()
-                        .fill(Color(red: 0.80, green: 0.80, blue: 0.80))
-                        .frame(height: 4)
+                    Rectangle().fill(Color.b_BorderLight).frame(height: 1)
                 }
                 
                 Group {
                     
-                    Text("Triggered on \(model.triggeredAt.full)")
-                    
-                    Text(model.triggeredAt.relativeToNow)
-                    
-                    if let buildNumber = model.buildNumber {
-                        Text("\(buildNumber)")
-                    }
-                    
-                    let machineText = [model.machineTypeId, model.stackIdentifier].compactMap({ $0 }).joined(separator: " ")
-                    
-                    if !machineText.isEmpty {
-                        Text(machineText)
-                    }
-                    
-                    if let triggeredBy = model.triggeredBy {
-                        Text(triggeredBy)
-                    }
-                    
-                    if let abortReason = model.abortReason {
-                        Text(abortReason)
-                    }
+                    Text("Triggered @ " + model.triggeredAt.full).primary()
+                    Item(imageName: "clock", text: model.durationString)
+                    Item(imageName: "coloncurrencysign.circle", text: model.creditCost?.description)
+                    Item(imageName: "number", text: String(model.buildNumber))
+                    Item(imageName: "square.stack.3d.up",
+                         text: [model.machineTypeId, model.stackIdentifier].compactMap({ $0 }).joined(separator: " "))
+                    Item(imageName: "bolt.fill", text: model.triggeredBy)
                     
                     Rectangle()
-                        .fill(Color(red: 0.80, green: 0.80, blue: 0.80))
+                        .fill(Color.b_BorderLight)
                         .frame(height: 1)
                 }
                 
                 Group {
-                    Rectangle()
-                        .fill(Color(red: 0.80, green: 0.80, blue: 0.80))
-                        .frame(height: 1)
-                    
-                    Text("Commit hash:")
-                    
-                    Text(model.commitHash ?? "No commit hash specified")
-                        .foregroundColor(Color(red: 0.38, green: 0.38, blue: 0.38))
-                    
-                    Rectangle()
-                        .fill(Color(red: 0.80, green: 0.80, blue: 0.80))
-                        .frame(height: 1)
+                    Text("Commit hash:").secondary()
+                    Text(model.commitHash ?? "No commit hash specified").primary()
+                    Rectangle().fill(Color.b_BorderLight).frame(height: 1)
                 }
                 
                 Group {
-                    Text("Commit message:")
-                    
-                    Text(model.commitMessage ?? "No commit message")
-                        .foregroundColor(Color(red: 0.38, green: 0.38, blue: 0.38))
-                    
-                    Rectangle()
-                        .fill(Color(red: 0.80, green: 0.80, blue: 0.80))
-                        .frame(height: 1)
+                    Text("Commit message:").secondary()
+                    Text(model.commitMessage ?? "No commit message").primary()
+                    Rectangle().fill(Color.b_BorderLight).frame(height: 1)
+                }
+                
+                if let abortReason = model.abortReason {
+                    Group {
+                        Text("Abort reason:").secondary()
+                        Text(abortReason).primary()
+                        Rectangle().fill(Color.b_BorderLight).frame(height: 1)
+                    }
+                }
+                
+                if let denTags = model.denTags, !denTags.isEmpty {
+                    Group {
+                        Text("Build tags:").secondary()
+                        Text(denTags.joined(separator: ", ")).primary()
+                        Rectangle().fill(Color.b_BorderLight).frame(height: 1)
+                    }
                 }
                 
                 if let startedOn = model.startedOnWorkerAt {
                     Group {
-                        Text("Started @")
-                        
-                        Text(startedOn.full)
-                            .foregroundColor(Color(red: 0.38, green: 0.38, blue: 0.38))
-                        
-                        Rectangle()
-                            .fill(Color(red: 0.80, green: 0.80, blue: 0.80))
-                            .frame(height: 1)
+                        Text("Started @").secondary()
+                        Text(startedOn.full).primary()
+                        Rectangle().fill(Color.b_BorderLight).frame(height: 1)
                     }
                 }
                 
                 if let finishedAt = model.finishedAt {
                     Group {
-                        Text("Finished @")
-                        
-                        Text(finishedAt.full)
-                            .foregroundColor(Color(red: 0.38, green: 0.38, blue: 0.38))
-                        
-                        Rectangle()
-                            .fill(Color(red: 0.80, green: 0.80, blue: 0.80))
-                            .frame(height: 1)
+                        Text("Finished @").secondary()
+                        Text(finishedAt.full).primary()
+                        Rectangle().fill(Color.b_BorderLight).frame(height: 1)
                     }
                 }
                 
                 if let params = model.originalBuildParamsString {
                     Group {
-                        Text("Build parameters:")
+                        Text("Build parameters:").secondary()
                         
                         Group {
                             Text(params)
+                                .primary()
+                                .font(.footnote)
                                 .lineLimit(nil)
-                                .font(.subheadline)
-                                .foregroundColor(Color.b_Primary)
                                 .padding(10)
                                 .layoutPriority(1)
                         }
@@ -155,17 +169,10 @@ struct BuildView: View {
                         .cornerRadius(4)
                     }
                 }
-                Rectangle()
-                    .fill(Color(red: 0.80, green: 0.80, blue: 0.80))
-                    .frame(height: 1)
             }
+            .padding(.horizontal, 8)
         }
-        .border(Color.b_BorderLight, width: 1)
-        .cornerRadius(8)
-        .padding([.leading, .trailing], 16)
-        .font(.body)
         .multilineTextAlignment(.leading)
-        .foregroundColor(Color(red: 0.67, green: 0.67, blue: 0.67))
     }
 }
 
