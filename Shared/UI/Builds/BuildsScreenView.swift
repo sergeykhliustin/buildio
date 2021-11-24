@@ -10,8 +10,8 @@ import Models
 
 struct BuildsScreenView: View, PagingView, RoutingView {
     @StateObject var model: BuildsViewModel
-    @State var selected: String?
     @State private var showNewBuild: Bool = false
+    @SceneStorage("BuildsScreenView.selected") private var selected: String?
     
     init(app: V0AppResponseItemModel? = nil, model: BuildsViewModel? = nil) {
         if let model = model {

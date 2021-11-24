@@ -49,10 +49,8 @@ struct CustomTabView: View {
     var body: some View {
         #if os(iOS)
         if horizontalSizeClass == .compact {
-            // For iPhone
             buildTabBarNavigation()
         } else {
-            // For iPad
             buildSidebarNavigation()
         }
         #else
@@ -114,10 +112,12 @@ struct CustomTabView: View {
                     if content(index).requiresNavigation {
                         NavigationView {
                             content(index).screen()
+                                .background(Color.white)
                                 .navigationTitle(content(index).name)
                         }
                         .introspectSplitViewController { splitViewController in
                             logger.debug(splitViewController)
+                            splitViewController.preferredSplitBehavior = .tile
                             splitViewController.primaryBackgroundStyle = .none
                             splitViewController.minimumPrimaryColumnWidth = 300
                             splitViewController.maximumPrimaryColumnWidth = 600

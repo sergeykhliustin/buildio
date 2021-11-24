@@ -100,7 +100,11 @@ struct CustomTabBar<Content>: View where Content: View {
         }
         .padding(.trailing, 4)
         .frame(maxWidth: 64)
+        #if targetEnvironment(macCatalyst)
+        .border(Color.b_ShadowLight, width: 1)
+        #else
         .background(Color.white.shadow(color: .b_ShadowLight, radius: 3, x: 5))
+        #endif
     }
 }
 

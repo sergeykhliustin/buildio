@@ -80,7 +80,7 @@ struct BuildRowView: View {
                     }
                     Text(model.triggeredWorkflow)
                         .padding(8)
-                    Text("# \(String(model.buildNumber))")
+                    Text("#\(String(model.buildNumber))")
                         .padding(8)
                 }
             }
