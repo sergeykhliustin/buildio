@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Introspect
 
 private class CustomTabViewModel {
     var cachedViews: [Int: AnyView] = [:]
@@ -47,12 +48,10 @@ struct CustomTabView: View {
     
     var body: some View {
         #if os(iOS)
-        GeometryReader { geometry in
-            if horizontalSizeClass == .compact || verticalSizeClass == .compact || geometry.size.height > geometry.size.width - 50 {
-                buildTabBarNavigation() // For iPhone
-            } else {
-                buildSidebarNavigation() // For iPad
-            }
+        if horizontalSizeClass == .compact {
+            buildTabBarNavigation() // For iPhone
+        } else {
+            buildSidebarNavigation() // For iPad
         }
         #else
         buildSidebarNavigation()()  // For mac
@@ -95,16 +94,18 @@ struct CustomTabView: View {
     @ViewBuilder
     private func buildSidebarNavigation() -> some View {
         HStack(spacing: 0) {
-            CustomTabBar(style: .vertical, count: count, selected: $selected, content: { index in
-                Image(systemName: content(index).iconName + (selected == index ? ".fill" : ""))
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 20, height: 20)
-                Text(content(index).name)
-                    .font(.footnote)
-            })
-                .edgesIgnoringSafeArea(.vertical)
-                .zIndex(1)
+            if !fullscreen {
+                CustomTabBar(style: .vertical, count: count, selected: $selected, content: { index in
+                    Image(systemName: content(index).iconName + (selected == index ? ".fill" : ""))
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 20, height: 20)
+                    Text(content(index).name)
+                        .font(.footnote)
+                })
+                    .edgesIgnoringSafeArea(.vertical)
+                    .zIndex(1)
+            }
             
             TabView(selection: $selected) {
                 ForEach(0..<count) { index in
@@ -115,7 +116,13 @@ struct CustomTabView: View {
                                 .navigationTitle(content(index).name)
                         }
                         .navigationViewStyle(DoubleColumnNavigationViewStyle())
-                        
+                        .introspectSplitViewController { splitViewController in
+                            logger.debug(splitViewController)
+                            splitViewController.preferredDisplayMode = .oneOverSecondary
+                            if fullscreen {
+                                splitViewController.hide(.primary)
+                            }
+                        }
                     } else {
                         content(index).screen()
                     }

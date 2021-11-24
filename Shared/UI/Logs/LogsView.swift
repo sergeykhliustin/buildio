@@ -88,7 +88,7 @@ struct LogsView: View {
         VStack(alignment: .center) {
             ZStack {
                 LogsTextView(follow: $follow, selectedRange: searchModel.selectedRange, attributed: $logs)
-                    .edgesIgnoringSafeArea(fullscreen.wrappedValue ? .all : [])
+                    .edgesIgnoringSafeArea(fullscreen.wrappedValue ? .all : [.bottom])
                 
                 LogsControls(fullscreen: fullscreen,
                              follow: $follow,

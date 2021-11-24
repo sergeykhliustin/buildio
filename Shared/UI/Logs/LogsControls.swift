@@ -86,17 +86,6 @@ struct LogsControls: View {
                                 textField.returnKeyType = .next
                             }
                             .textFieldStyle(LogsSearchTextFieldStyle())
-                            
-//                        if #available(iOS 15.0, *) {
-//
-//                                .submitLabel(.next)
-//                                .onSubmit {
-//                                    onSubmit?()
-//                                }
-//                        } else {
-//                            TextField("Search", text: $searchText)
-//                                .textFieldStyle(CustomTextFieldStyle())
-//                        }
                         Button {
                             onSubmit?()
                         } label: {
