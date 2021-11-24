@@ -35,6 +35,10 @@ struct CustomTabView: View {
     @SceneStorage("tabview.selectedTab") private var selected: Int = 0
     @State private var fullscreen: Bool = false
     @StateObject private var keyboard: KeyboardObserver = KeyboardObserver()
+    var interfaceOrientation: UIInterfaceOrientation {
+        guard let orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation else { return .portrait }
+        return orientation
+    }
     
 #if os(iOS)
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
@@ -103,7 +107,7 @@ struct CustomTabView: View {
                     Text(content(index).name)
                         .font(.footnote)
                 })
-                    .edgesIgnoringSafeArea(.vertical)
+                    .edgesIgnoringSafeArea(interfaceOrientation == .landscapeLeft ? [.vertical, .leading] : [.vertical])
                     .zIndex(1)
             }
             
@@ -136,6 +140,7 @@ struct CustomTabView: View {
                 }
             }
         }
+        .edgesIgnoringSafeArea(interfaceOrientation == .landscapeLeft ? [.leading] : [])
         .statusBar(hidden: fullscreen)
         .environment(\.fullscreen, $fullscreen)
     }
