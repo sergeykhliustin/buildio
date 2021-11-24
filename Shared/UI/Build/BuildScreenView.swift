@@ -8,12 +8,32 @@
 import SwiftUI
 import Models
 
+private struct Item: View {
+    let title: String
+    let icon: String
+    let action: () -> Void
+    var body: some View {
+        ListItemWrapper(action: action) {
+            HStack {
+                Image(systemName: icon)
+                Text(title)
+                Spacer()
+                Image(systemName: "chevron.right")
+            }
+            .frame(height: 44)
+            .padding(.horizontal, 16)
+        }
+    }
+}
+
 struct BuildScreenView: BaseView, RoutingView {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @StateObject var model: BuildViewModel
-    @State private var selection: String?
-    @State private var isActiveLogs = false
+    
+    @SceneStorage("isActiveLogs")
+    private var isActiveLogs = false
+    
     @State private var error: ErrorResponse?
     
     init(build: BuildResponseItemModel) {
@@ -21,48 +41,46 @@ struct BuildScreenView: BaseView, RoutingView {
     }
     
     var body: some View {
+        let value = model.value!
         ScrollView {
-            if let value = model.value {
-                HStack {
-                    navigationBuildLogs(build: value, isActive: $isActiveLogs)
-//                    navigationBuildLogs(build: value, selection: $selection)
-                    Button {
-//                        selection = value.slug
-                        isActiveLogs.toggle()
-                    } label: {
-                        Image(systemName: "note.text")
-                        Text("Logs")
-                    }
-                    .buttonStyle(.plain)
-                    .padding(16)
-                    if value.status != .running {
-                        Button {
-                            model.rebuild { error in
-                                if error == nil {
-                                    presentationMode.wrappedValue.dismiss()
-                                } else {
-                                    self.error = error
-                                }
-                            }
-                        } label: {
-                            Text("Rebuild")
+            navigationBuildLogs(build: value, isActive: $isActiveLogs).hidden()
+            if value.status != .running {
+                Button {
+                    model.rebuild { error in
+                        if error == nil {
+                            presentationMode.wrappedValue.dismiss()
+                        } else {
+                            self.error = error
                         }
-                        .buttonStyle(SubmitButtonStyle())
+                    }
+                } label: {
+                    HStack {
+                        Image(systemName: "tortoise")
+                        Text("Rebuild")
                     }
                 }
+                .buttonStyle(SubmitButtonStyle(edgeInsets: EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16)))
+                .cornerRadius(20)
                 .alert(item: $error, content: { error in
                     Alert(title: Text("Failed to start the Build"), message: Text(error.rawErrorString), dismissButton: nil)
                 })
-                .navigationTitle("Build #\(String(value.buildNumber))")
             }
-            if let value = Binding($model.value) {
-                ListItemWrapper {
+            Item(title: "Logs", icon: "note.text") {
+                isActiveLogs.toggle()
+            }
+            if value.status != .running {
+                Item(title: "Apps & Artifacts", icon: "archivebox") {
                     
-                } content: {
-                    BuildView(model: value)
                 }
             }
+            
+            ListItemWrapper {
+                
+            } content: {
+                BuildView(model: .constant(value))
+            }
         }
+        .navigationTitle("Build #\(String(value.buildNumber))")
         .toolbar {
             if case .loading = model.state {
                 ProgressView()

@@ -23,6 +23,7 @@ struct AccountsScreenView: View {
                     }
                 }
             }
+            .padding(.top, 16)
         }
         .toolbar {
             Button {

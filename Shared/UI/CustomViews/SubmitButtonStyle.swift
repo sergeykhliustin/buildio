@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct SubmitButtonStyle: ButtonStyle {
+    var edgeInsets = EdgeInsets(top: 16, leading: 30, bottom: 16, trailing: 30)
     
     func makeBody(configuration: Configuration) -> some View {
-        SButton(configuration: configuration)
+        SButton(configuration: configuration, edgeInsets: edgeInsets)
     }
     
     struct SButton: View {
         let configuration: ButtonStyle.Configuration
+        let edgeInsets: EdgeInsets
         @Environment(\.isEnabled) private var isEnabled: Bool
         
         var body: some View {
@@ -28,7 +30,7 @@ struct SubmitButtonStyle: ButtonStyle {
             }
             
             return configuration.label
-                .padding(EdgeInsets(top: 16, leading: 30, bottom: 16, trailing: 30))
+                .padding(edgeInsets)
                 .foregroundColor(.white)
                 .font(Font.body.bold())
                 .background(

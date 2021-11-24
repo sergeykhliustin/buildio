@@ -46,7 +46,9 @@ final class BuildViewModel: BaseViewModel<BuildResponseItemModel> {
                         completion(nil)
                     }
                     self.builder = nil
-                }, receiveValue: { _ in })
+                }, receiveValue: { value in
+                    logger.debug(value)
+                })
         }
     }
     
