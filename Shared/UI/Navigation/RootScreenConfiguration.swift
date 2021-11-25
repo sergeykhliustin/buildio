@@ -1,8 +1,8 @@
 //
-//  CustomTabsScreenView.swift
-//  Buildio
+//  RootScreenConfiguration.swift
+//  Buildio (iOS)
 //
-//  Created by Sergey Khliustin on 05.11.2021.
+//  Created by Sergey Khliustin on 25.11.2021.
 //
 
 import SwiftUI
@@ -12,6 +12,25 @@ struct RootScreen {
     let iconName: String
     var requiresNavigation = true
     let screen: () -> AnyView
+}
+
+struct RootScreenConfiguration {
+#if DEBUG
+    let screens = [
+        RootScreens.builds,
+        RootScreens.apps,
+        RootScreens.accounts,
+        RootScreens.activities,
+        RootScreens.debug
+    ]
+#else
+    let screens = [
+        RootScreens.builds,
+        RootScreens.apps,
+        RootScreens.accounts,
+        RootScreens.activities
+    ]
+#endif
 }
 
 private struct RootScreens {
@@ -31,38 +50,8 @@ private struct RootScreens {
         AnyView(ActivitiesScreenView())
     }
     #if DEBUG
-    static let debug = RootScreen(name: "Debug", iconName: "pencil.slash", requiresNavigation: false) {
+    static let debug = RootScreen(name: "Debug", iconName: "bolt.heart", requiresNavigation: false) {
         AnyView(DebugLogsScreenView())
     }
     #endif
-}
-
-struct CustomTabsScreenView: View {
-    #if DEBUG
-    let screens = [
-        RootScreens.builds,
-        RootScreens.apps,
-        RootScreens.accounts,
-        RootScreens.activities,
-        RootScreens.debug
-    ]
-    #else
-    let screens = [
-        RootScreens.builds,
-        RootScreens.apps,
-        RootScreens.accounts,
-        RootScreens.activities
-    ]
-    #endif
-    var body: some View {
-        CustomTabView(count: screens.count) { index in
-            screens[index]
-        }
-    }
-}
-
-struct CustomTabsScreenView_Previews: PreviewProvider {
-    static var previews: some View {
-        CustomTabsScreenView()
-    }
 }
