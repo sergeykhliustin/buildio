@@ -35,16 +35,16 @@ extension EnvironmentValues {
     }
 }
 
-struct EnvironmentConfiguratorView<Content: View>: View {
+public struct EnvironmentConfiguratorView<Content: View>: View {
     @State private var fullscreen: Bool = false
     @StateObject private var keyboard: KeyboardObserver = KeyboardObserver()
     @ViewBuilder let content: () -> Content
     
-    init(_ content: @escaping () -> Content) {
+    public init(_ content: @escaping () -> Content) {
         self.content = content
     }
     
-    var body: some View {
+    public var body: some View {
         content()
             .environment(\.fullscreen, $fullscreen)
             .environment(\.keyboard, keyboard.isVisible)

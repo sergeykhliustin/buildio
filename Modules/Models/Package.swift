@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "Models",
     platforms: [
-        .macOS(.v10_10),
+        .macOS(.v10_15),
         .iOS(.v13)
     ],
     products: [

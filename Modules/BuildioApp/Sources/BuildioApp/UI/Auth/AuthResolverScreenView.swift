@@ -7,10 +7,12 @@
 
 import SwiftUI
 
-struct AuthResolverScreenView: View {
+public struct AuthResolverScreenView: View {
     @StateObject var tokenManager = TokenManager.shared
     
-    var body: some View {
+    public init() { }
+    
+    public var body: some View {
         if tokenManager.token == nil {
             AuthScreenView(canClose: false)
         } else {
