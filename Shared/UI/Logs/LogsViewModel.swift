@@ -10,6 +10,7 @@ import Models
 import Combine
 import Rainbow
 import SwiftUI
+import BitriseAPIs
 
 final class LogsViewModel: BaseViewModel<BuildLogResponseModel>, CacheableViewModel {
     init(_ param: BuildResponseItemModel) {

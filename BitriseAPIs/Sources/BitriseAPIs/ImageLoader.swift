@@ -9,13 +9,15 @@ import Foundation
 import Combine
 import UIKit
 
-final class ImageLoader {
+public final class ImageLoader {
     private static let cacheURL: URL? = {
         let arrayPaths = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
         return arrayPaths.first
     }()
     
-    func image(_ url: URL?) -> AnyPublisher<UIImage, ErrorResponse> {
+    public init() { }
+    
+    public func image(_ url: URL?) -> AnyPublisher<UIImage, ErrorResponse> {
         return Future<UIImage, ErrorResponse> { promise in
             guard let url = url else {
                 return promise(.failure(ErrorResponse.error(0, nil, nil, DownloadException.requestMissingURL)))

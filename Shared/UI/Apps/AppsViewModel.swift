@@ -9,6 +9,7 @@ import Foundation
 import Models
 import Combine
 import SwiftUI
+import BitriseAPIs
 
 final class AppsViewModel: PagingViewModel<V0AppListResponseModel>, ResolvableViewModel {
     private let fetchLimit: Int = 10

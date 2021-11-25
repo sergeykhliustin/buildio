@@ -8,6 +8,7 @@
 import Foundation
 import Models
 import Combine
+import BitriseAPIs
 
 class ProfileViewModel: BaseViewModel<V0UserProfileDataModel> {
     override func fetch(params: Any?) -> AnyPublisher<V0UserProfileDataModel, ErrorResponse> {

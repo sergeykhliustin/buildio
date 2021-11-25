@@ -8,6 +8,7 @@
 import Foundation
 import Models
 import Combine
+import BitriseAPIs
 
 struct NewBuildViewModelParams {
     var appSlug: String

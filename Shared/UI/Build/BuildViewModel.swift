@@ -9,6 +9,7 @@ import Foundation
 import Models
 import SwiftUI
 import Combine
+import BitriseAPIs
 
 final class BuildViewModel: BaseViewModel<BuildResponseItemModel> {
     private var timer: Timer?

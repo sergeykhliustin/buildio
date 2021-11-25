@@ -33,7 +33,7 @@ public enum ErrorResponse: Error, Identifiable {
     
     case error(Int, Data?, URLResponse?, Error)
     
-    var rawErrorString: String {
+    public var rawErrorString: String {
         if case let .error(code, data, _, rawError) = self {
             if code == 401 {
                 return "Token expired or invalid"

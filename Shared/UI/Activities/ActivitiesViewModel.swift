@@ -8,6 +8,7 @@
 import Foundation
 import Models
 import Combine
+import BitriseAPIs
 
 final class ActivitiesViewModel: PagingViewModel<V0ActivityEventListResponseModel>, ResolvableViewModel {
     private let fetchLimit: Int = 10

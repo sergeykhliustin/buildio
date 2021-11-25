@@ -14,7 +14,7 @@ struct LogsTextView: UIViewRepresentable {
     @Binding var selectedRange: NSRange?
     @Binding var attributed: NSAttributedString?
     
-    private let scrollViewDelegate: ScrollViewDelegate
+    private var scrollViewDelegate: ScrollViewDelegate
     
     init(follow: Binding<Bool>, selectedRange: Binding<NSRange?>, attributed: Binding<NSAttributedString?>) {
         self._follow = follow

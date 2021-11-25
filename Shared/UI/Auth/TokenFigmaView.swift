@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import BitriseAPIs
 
 struct TokenFigmaView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>

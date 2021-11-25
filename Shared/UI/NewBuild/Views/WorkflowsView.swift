@@ -8,6 +8,7 @@
 import SwiftUI
 import Models
 import Combine
+import BitriseAPIs
 
 final class WorkflowsViewModel: BaseViewModel<[String]> {
     @Binding var app: V0AppResponseItemModel

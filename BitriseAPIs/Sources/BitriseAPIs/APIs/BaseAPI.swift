@@ -6,7 +6,7 @@
 //
 
 public class BaseAPI {
-    static var defaultApiToken: (() -> String?)!
+    public static var defaultApiToken: (() -> String?)!
     
     let apiToken: String?
     

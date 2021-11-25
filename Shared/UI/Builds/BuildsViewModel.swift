@@ -8,6 +8,7 @@
 import Foundation
 import Models
 import Combine
+import BitriseAPIs
 
 final class BuildsViewModel: PagingViewModel<V0BuildListResponseModel>, ResolvableViewModel {
     private let fetchLimit: Int = 10

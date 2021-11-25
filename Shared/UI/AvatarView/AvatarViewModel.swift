@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import SwiftUI
+import BitriseAPIs
 
 private extension URL {
     init?(str: String?) {

@@ -8,6 +8,7 @@
 import SwiftUI
 import Models
 import Combine
+import BitriseAPIs
 
 private final class AccountRowViewModel: BaseViewModel<V0UserProfileDataModel> {
     let token: String

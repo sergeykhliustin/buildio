@@ -26,7 +26,6 @@ struct MainSecondaryOptionalView<MainContent: View, SecondaryContent: View>: Vie
         self.secondary = secondary
     }
     
-    
     var body: some View {
         switch orientation {
         case .hMainSecondary:

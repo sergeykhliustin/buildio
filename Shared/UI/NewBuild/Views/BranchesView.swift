@@ -8,6 +8,7 @@
 import SwiftUI
 import Models
 import Combine
+import BitriseAPIs
 
 final class BranchesViewModel: BaseViewModel<[String]> {
     @Binding var app: V0AppResponseItemModel
