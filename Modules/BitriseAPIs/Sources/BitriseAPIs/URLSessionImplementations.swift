@@ -46,10 +46,7 @@ open class URLSessionRequestBuilder<T>: RequestBuilder<T> {
      configuration.
      */
     open func createURLSession() -> URLSession {
-        var configuration = URLSessionConfiguration.default
-//        if UIApplication.shared.applicationState == .background {
-//            configuration = .background(withIdentifier: UUID().uuidString)
-//        }
+        let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = buildHeaders()
         let sessionDelegate = SessionDelegate()
         sessionDelegate.credential = credential

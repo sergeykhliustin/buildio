@@ -89,7 +89,6 @@ fastlane/test_output
 iOSInjectionProject/
 Pods
 Podfile.lock
-ModelsTests/TestResources/TestJSONs
-Models/.swiftpm/xcode/package.xcworkspace/xcshareddata
-Models/Tests/ModelsTests/TestResources/TestJSONs
-BitriseAPIs/.swiftpm/xcode/package.xcworkspace/xcshareddata
+Modules/Models/.swiftpm/xcode/package.xcworkspace/xcshareddata
+Modules/Models/Tests/ModelsTests/TestResources/TestJSONs
+Modules/BitriseAPIs/.swiftpm/xcode/package.xcworkspace/xcshareddata

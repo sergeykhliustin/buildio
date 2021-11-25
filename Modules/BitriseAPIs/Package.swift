@@ -4,25 +4,23 @@
 import PackageDescription
 
 let package = Package(
-    name: "Models",
+    name: "BitriseAPIs",
     platforms: [
         .macOS(.v10_15),
         .iOS(.v13)
     ],
     products: [
         .library(
-            name: "Models",
-            targets: ["Models"])
+            name: "BitriseAPIs",
+            targets: ["BitriseAPIs"])
     ],
     dependencies: [
-        
+        .package(path: "../Models"),
+        .package(path: "../Logger")
     ],
     targets: [
         .target(
-            name: "Models",
-            dependencies: []),
-        .testTarget(
-            name: "ModelsTests",
-            dependencies: ["Models"])
+            name: "BitriseAPIs",
+            dependencies: ["Models", "Logger"])
     ]
 )

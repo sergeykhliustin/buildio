@@ -4,22 +4,18 @@
 import PackageDescription
 
 let package = Package(
-    name: "BitriseAPIs",
-    platforms: [
-        .macOS(.v10_15),
-        .iOS(.v13)
-    ],
+    name: "Logger",
     products: [
         .library(
-            name: "BitriseAPIs",
-            targets: ["BitriseAPIs"])
+            name: "Logger",
+            targets: ["Logger"])
     ],
     dependencies: [
-        .package(path: "../Models")
+        .package(name: "SwiftyBeaver", url: "https://github.com/SwiftyBeaver/SwiftyBeaver.git", from: "1.9.5")
     ],
     targets: [
         .target(
-            name: "BitriseAPIs",
-            dependencies: [])
+            name: "Logger",
+            dependencies: ["SwiftyBeaver"])
     ]
 )

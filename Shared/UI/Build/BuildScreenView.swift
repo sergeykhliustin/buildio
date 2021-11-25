@@ -40,8 +40,7 @@ struct BuildScreenView: BaseView, RoutingView {
     var body: some View {
         let value = model.value!
         ScrollView {
-//            navigationBuildLogs(build: value, isActive: $isActiveLogs).hidden()
-            navigationBuildLogs(build: value, selection: $selection).hidden()
+            navigationBuildLogs(build: value, selection: $selection)
             if value.status != .running {
                 Button {
                     model.rebuild { error in

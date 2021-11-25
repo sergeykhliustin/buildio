@@ -14,7 +14,6 @@
 		3F1941912746C7A600A79F35 /* ViewModelResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1941902746C7A600A79F35 /* ViewModelResolver.swift */; };
 		3F1941942746CF6C00A79F35 /* DebugLogsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1941932746CF6C00A79F35 /* DebugLogsScreenView.swift */; };
 		3F1941982746D1D100A79F35 /* RainbowLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1941972746D1D100A79F35 /* RainbowLogs.swift */; };
-		3F204986274FEDDF00DBDD17 /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = 3F204985274FEDDF00DBDD17 /* Models */; };
 		3F2B139C273AF64100F7A092 /* RightButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2B139B273AF64100F7A092 /* RightButtonModifier.swift */; };
 		3F2B139E273AF86F00F7A092 /* SelectStringScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2B139D273AF86F00F7A092 /* SelectStringScreenView.swift */; };
 		3F2BE9E2270CA0C00051C910 /* AccountsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2BE9E1270CA0C00051C910 /* AccountsScreenView.swift */; };
@@ -67,8 +66,6 @@
 		3FD8FDBA2731D4C40060BDF4 /* BuildViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8FDB92731D4C30060BDF4 /* BuildViewModel.swift */; };
 		3FD8FDC427327BD70060BDF4 /* AppDelegate+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8FDC327327BD70060BDF4 /* AppDelegate+iOS.swift */; };
 		3FD8FDC827329AC20060BDF4 /* ActivitiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8FDC727329AC20060BDF4 /* ActivitiesViewModel.swift */; };
-		3FDC242F274FEAFE00F03482 /* BitriseAPIs in Frameworks */ = {isa = PBXBuildFile; productRef = 3FDC242E274FEAFE00F03482 /* BitriseAPIs */; };
-		3FDC2439274FEC7B00F03482 /* SwiftyBeaver in Frameworks */ = {isa = PBXBuildFile; productRef = 3FDC2438274FEC7B00F03482 /* SwiftyBeaver */; };
 		3FE10799272839A900B533EE /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE10798272839A900B533EE /* TagView.swift */; };
 		3FE109A42728801800B533EE /* Date+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE109A32728801800B533EE /* Date+Additions.swift */; };
 		3FE1FAAD2745A5C200B65F4C /* BuildScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65D08E42729649900075618 /* BuildScreenView.swift */; };
@@ -76,6 +73,8 @@
 		3FE1FAB127466C7900B65F4C /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE1FAB027466C7900B65F4C /* UserDefaults.swift */; };
 		3FE7B55427072C1E00A6D8E1 /* BuildioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7B54427072C1C00A6D8E1 /* BuildioApp.swift */; };
 		3FE7B55827072C1E00A6D8E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FE7B54627072C1D00A6D8E1 /* Assets.xcassets */; };
+		3FEB0330275023F3007F7A93 /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = 3FEB032F275023F3007F7A93 /* Models */; };
+		3FEB0332275023F7007F7A93 /* BitriseAPIs in Frameworks */ = {isa = PBXBuildFile; productRef = 3FEB0331275023F7007F7A93 /* BitriseAPIs */; };
 		3FF21F822735C65A00AA8565 /* PlatformIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF21F812735C65A00AA8565 /* PlatformIcon.swift */; };
 		3FF21F842735CD4E00AA8565 /* AccountRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF21F832735CD4E00AA8565 /* AccountRowView.swift */; };
 		3FF276172721AB1700701113 /* TokenFigmaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF276162721AB1700701113 /* TokenFigmaView.swift */; };
@@ -149,8 +148,6 @@
 		3FD8FDBF2731F78C0060BDF4 /* Buildio--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Buildio--iOS--Info.plist"; sourceTree = "<group>"; };
 		3FD8FDC327327BD70060BDF4 /* AppDelegate+iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+iOS.swift"; sourceTree = "<group>"; };
 		3FD8FDC727329AC20060BDF4 /* ActivitiesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesViewModel.swift; sourceTree = "<group>"; };
-		3FDC242C274FEAB600F03482 /* Models */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Models; sourceTree = "<group>"; };
-		3FDC242D274FEAD700F03482 /* BitriseAPIs */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = BitriseAPIs; sourceTree = "<group>"; };
 		3FE10798272839A900B533EE /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		3FE109A32728801800B533EE /* Date+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Additions.swift"; sourceTree = "<group>"; };
 		3FE1FAAA2745A4AD00B65F4C /* RoutingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingView.swift; sourceTree = "<group>"; };
@@ -159,6 +156,9 @@
 		3FE7B54627072C1D00A6D8E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3FE7B54B27072C1E00A6D8E1 /* Buildio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Buildio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FE7B55327072C1E00A6D8E1 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		3FEB032C2750223C007F7A93 /* Logger */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Logger; path = Modules/Logger; sourceTree = "<group>"; };
+		3FEB032D27502273007F7A93 /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Models; path = Modules/Models; sourceTree = "<group>"; };
+		3FEB032E2750227E007F7A93 /* BitriseAPIs */ = {isa = PBXFileReference; lastKnownFileType = folder; name = BitriseAPIs; path = Modules/BitriseAPIs; sourceTree = "<group>"; };
 		3FF21F812735C65A00AA8565 /* PlatformIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformIcon.swift; sourceTree = "<group>"; };
 		3FF21F832735CD4E00AA8565 /* AccountRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRowView.swift; sourceTree = "<group>"; };
 		3FF276162721AB1700701113 /* TokenFigmaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenFigmaView.swift; sourceTree = "<group>"; };
@@ -177,11 +177,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FDC2439274FEC7B00F03482 /* SwiftyBeaver in Frameworks */,
 				3FFEB44D27304463008E5A82 /* Rainbow in Frameworks */,
+				3FEB0332275023F7007F7A93 /* BitriseAPIs in Frameworks */,
 				3F0CBB3D274E494C00357B68 /* Introspect in Frameworks */,
-				3FDC242F274FEAFE00F03482 /* BitriseAPIs in Frameworks */,
-				3F204986274FEDDF00DBDD17 /* Models in Frameworks */,
+				3FEB0330275023F3007F7A93 /* Models in Frameworks */,
 				3F03028D272C0A68005B5F2A /* KeychainAccess in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -215,8 +214,9 @@
 		3F19ABAB272C092D0070DFE3 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				3FDC242C274FEAB600F03482 /* Models */,
-				3FDC242D274FEAD700F03482 /* BitriseAPIs */,
+				3FEB032C2750223C007F7A93 /* Logger */,
+				3FEB032D27502273007F7A93 /* Models */,
+				3FEB032E2750227E007F7A93 /* BitriseAPIs */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -529,9 +529,8 @@
 				3F03028C272C0A68005B5F2A /* KeychainAccess */,
 				3FFEB44C27304463008E5A82 /* Rainbow */,
 				3F0CBB3C274E494C00357B68 /* Introspect */,
-				3FDC242E274FEAFE00F03482 /* BitriseAPIs */,
-				3FDC2438274FEC7B00F03482 /* SwiftyBeaver */,
-				3F204985274FEDDF00DBDD17 /* Models */,
+				3FEB032F275023F3007F7A93 /* Models */,
+				3FEB0331275023F7007F7A93 /* BitriseAPIs */,
 			);
 			productName = "Buildio (iOS)";
 			productReference = 3FE7B54B27072C1E00A6D8E1 /* Buildio.app */;
@@ -565,7 +564,6 @@
 				3F03028B272C0A68005B5F2A /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				3FFEB44B27304463008E5A82 /* XCRemoteSwiftPackageReference "Rainbow" */,
 				3F0CBB3B274E494C00357B68 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
-				3FDC2437274FEC7B00F03482 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */,
 			);
 			productRefGroup = 3FE7B54C27072C1E00A6D8E1 /* Products */;
 			projectDirPath = "";
@@ -913,14 +911,6 @@
 				kind = branch;
 			};
 		};
-		3FDC2437274FEC7B00F03482 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwiftyBeaver/SwiftyBeaver.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.9.5;
-			};
-		};
 		3FFEB44B27304463008E5A82 /* XCRemoteSwiftPackageReference "Rainbow" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Rainbow";
@@ -942,18 +932,13 @@
 			package = 3F0CBB3B274E494C00357B68 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
 			productName = Introspect;
 		};
-		3F204985274FEDDF00DBDD17 /* Models */ = {
+		3FEB032F275023F3007F7A93 /* Models */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Models;
 		};
-		3FDC242E274FEAFE00F03482 /* BitriseAPIs */ = {
+		3FEB0331275023F7007F7A93 /* BitriseAPIs */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = BitriseAPIs;
-		};
-		3FDC2438274FEC7B00F03482 /* SwiftyBeaver */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3FDC2437274FEC7B00F03482 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */;
-			productName = SwiftyBeaver;
 		};
 		3FFEB44C27304463008E5A82 /* Rainbow */ = {
 			isa = XCSwiftPackageProductDependency;
