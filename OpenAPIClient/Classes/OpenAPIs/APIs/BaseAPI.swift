@@ -6,10 +6,12 @@
 //
 
 public class BaseAPI {
+    static var defaultApiToken: (() -> String?)!
+    
     let apiToken: String?
     
     public init() {
-        self.apiToken = TokenManager.shared.token?.token
+        self.apiToken = BaseAPI.defaultApiToken()
     }
     
     public init(apiToken: String?) {
