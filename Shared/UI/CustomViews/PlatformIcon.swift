@@ -20,8 +20,10 @@ struct PlatformIcon: View {
     
     private let iconName: String
     
-    init(_ platform: String) {
-        if let platform = Platform(rawValue: platform), let iconName = Self.icons[platform] {
+    init(_ platformString: String?) {
+        if let platformString = platformString,
+           let platform = Platform(rawValue: platformString),
+           let iconName = Self.icons[platform] {
             self.iconName = iconName
         } else {
             self.iconName = Self.defaultIcon

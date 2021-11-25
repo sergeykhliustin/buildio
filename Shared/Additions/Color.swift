@@ -69,17 +69,3 @@ extension BuildResponseItemModel.Status {
     }
 }
 
-extension V0AppResponseItemModel.Status {
-    var color: Color {
-        switch self {
-        case .running:
-            return Color.b_BuildRunning
-        case .success:
-            return Color.b_BuildSuccess
-        case .error:
-            return Color.b_BuildFailed
-        case .aborted:
-            return Color.b_BuildAborted
-        }
-    }
-}

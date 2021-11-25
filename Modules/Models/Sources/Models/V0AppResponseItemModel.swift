@@ -15,13 +15,13 @@ public struct V0AppResponseItemModel: Codable, Hashable, Identifiable {
     public var isDisabled: Bool
     public var isPublic: Bool
     public var owner: V0OwnerAccountResponseModel
-    public var projectType: String
+    public var projectType: String?
     public var provider: String
     public var repoOwner: String
     public var repoSlug: String
     public var repoUrl: String
     public var slug: String
-    public var status: Status
+    public var status: Int
     public var title: String
     
     public init(avatarUrl: String? = nil,
@@ -34,7 +34,7 @@ public struct V0AppResponseItemModel: Codable, Hashable, Identifiable {
                 repoSlug: String,
                 repoUrl: String,
                 slug: String,
-                status: Status,
+                status: Int,
                 title: String) {
         self.avatarUrl = avatarUrl
         self.isDisabled = isDisabled
@@ -50,13 +50,6 @@ public struct V0AppResponseItemModel: Codable, Hashable, Identifiable {
         self.title = title
     }
     
-    @frozen public enum Status: Int, Codable {
-        case running = 0
-        case success = 1
-        case error = 2
-        case aborted = 3
-    }
-    
     public static func preview() -> Self {
         return V0AppResponseItemModel(avatarUrl: nil,
                                       isDisabled: false,
@@ -68,7 +61,7 @@ public struct V0AppResponseItemModel: Codable, Hashable, Identifiable {
                                       repoSlug: "repoSlug",
                                       repoUrl: "repoUrl",
                                       slug: "slug",
-                                      status: .running,
+                                      status: 1,
                                       title: "title")
     }
 }
