@@ -1,26 +1,26 @@
 //
-//  MainCoordinatorView.swift
-//  Buildio
+//  AuthResolverScreenView.swift
+//  Buildio (iOS)
 //
-//  Created by Sergey Khliustin on 01.10.2021.
+//  Created by Sergey Khliustin on 25.11.2021.
 //
 
 import SwiftUI
 
-struct MainCoordinatorView: View {
+struct AuthResolverScreenView: View {
     @StateObject var tokenManager = TokenManager.shared
     
     var body: some View {
         if tokenManager.token == nil {
             AuthScreenView(canClose: false)
         } else {
-            RootNavigationView()
+            RootScreenView()
         }
     }
 }
 
-struct MainCoordinatorView_Previews: PreviewProvider {
+struct AuthResolverScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        MainCoordinatorView()
+        AuthResolverScreenView()
     }
 }

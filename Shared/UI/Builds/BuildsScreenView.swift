@@ -11,7 +11,7 @@ import Models
 struct BuildsScreenView: View, PagingView, RoutingView {
     @StateObject var model: BuildsViewModel
     @State private var showNewBuild: Bool = false
-    @SceneStorage("BuildsScreenView.selected") private var selected: String?
+    @State private var selection: String?
     
     init(app: V0AppResponseItemModel? = nil, model: BuildsViewModel? = nil) {
         if let model = model {
@@ -26,7 +26,7 @@ struct BuildsScreenView: View, PagingView, RoutingView {
     
     func buildItemView(_ item: BuildResponseItemModel) -> some View {
         ListItemWrapper(action: {
-            selected = item.slug
+            selection = item.slug
         }, content: {
             BuildRowView(model: .constant(item))
         })
@@ -35,7 +35,7 @@ struct BuildsScreenView: View, PagingView, RoutingView {
     @ViewBuilder
     func navigationLinks() -> some View {
         ForEach(model.items) { item in
-            navigationBuild(build: item, selection: $selected)
+            navigationBuild(build: item, selection: $selection)
         }
     }
     

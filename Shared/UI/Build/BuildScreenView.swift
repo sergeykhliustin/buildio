@@ -30,10 +30,7 @@ struct BuildScreenView: BaseView, RoutingView {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @StateObject var model: BuildViewModel
-    
-    @SceneStorage("isActiveLogs")
-    private var isActiveLogs = false
-    
+    @State private var selection: String?
     @State private var error: ErrorResponse?
     
     init(build: BuildResponseItemModel) {
@@ -43,7 +40,8 @@ struct BuildScreenView: BaseView, RoutingView {
     var body: some View {
         let value = model.value!
         ScrollView {
-            navigationBuildLogs(build: value, isActive: $isActiveLogs).hidden()
+//            navigationBuildLogs(build: value, isActive: $isActiveLogs).hidden()
+            navigationBuildLogs(build: value, selection: $selection).hidden()
             if value.status != .running {
                 Button {
                     model.rebuild { error in
@@ -66,7 +64,7 @@ struct BuildScreenView: BaseView, RoutingView {
                 })
             }
             Item(title: "Logs", icon: "note.text") {
-                isActiveLogs.toggle()
+                selection = value.slug
             }
             if value.status != .running {
                 Item(title: "Apps & Artifacts", icon: "archivebox") {

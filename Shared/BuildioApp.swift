@@ -11,6 +11,7 @@ import UIKit
 @main
 struct BuildioApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @State var fullscreen: Bool = false
     
     init() {
         UITabBar.appearance().isHidden = true
@@ -29,12 +30,14 @@ struct BuildioApp: App {
     
     var body: some Scene {
         WindowGroup("Buildio") {
-            MainCoordinatorView()
-                .accentColor(.b_Primary)
-                .foregroundColor(.b_TextBlack)
-                .background(Color.white)
-                .progressViewStyle(CustomProgressViewStyle())
-                .configureWindow()
+            EnvironmentConfiguratorView {
+                AuthResolverScreenView()
+            }
+            .accentColor(.b_Primary)
+            .foregroundColor(.b_TextBlack)
+            .background(Color.white)
+            .progressViewStyle(CustomProgressViewStyle())
+            .configureWindow()
         }
     }
 }

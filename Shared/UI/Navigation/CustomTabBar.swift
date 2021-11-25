@@ -26,24 +26,31 @@ private struct CustomTabBarButtonStyle: ButtonStyle {
     }
 }
 
-struct CustomTabBar<Content>: View where Content: View {
+struct CustomTabBar: View {
+    struct Configuration {
+        struct Item {
+            let title: String
+            let icon: String
+        }
+        let items: [Item]
+        
+        static let `default` = Configuration(items: RootScreenItemType.default.map({ Item(title: $0.name, icon: $0.icon) }))
+    }
     enum Style {
         case horizontal
         case vertical
     }
     @Binding var selected: Int
-    @ViewBuilder var content: (Int) -> Content
-    private let count: Int
+    private let configuration: Configuration
     private let spacing: CGFloat
     private let style: Style
     private let onSecondTap: (() -> Void)?
 
-    init(style: Style = .horizontal, spacing: CGFloat = 4, count: Int, selected: Binding<Int>, onSecondTap: (() -> Void)? = nil, @ViewBuilder content: @escaping (Int) -> Content) {
+    init(style: Style = .horizontal, spacing: CGFloat = 4, selected: Binding<Int>, configuration: Configuration = .default, onSecondTap: (() -> Void)? = nil) {
         self.spacing = spacing
-        self.count = count
         self._selected = selected
-        self.content = content
         self.style = style
+        self.configuration = configuration
         self.onSecondTap = onSecondTap
     }
     
@@ -51,8 +58,8 @@ struct CustomTabBar<Content>: View where Content: View {
         stack(style: style) {
             Group {
                 Spacer()
-                ForEach(0..<count) { index in
-                    
+                ForEach(0..<configuration.items.count) { index in
+                    let item = configuration.items[index]
                     Button(action: {
                         if selected == index {
                             logger.debug("UI on second tap")
@@ -62,7 +69,12 @@ struct CustomTabBar<Content>: View where Content: View {
                         }
                     }, label: {
                         VStack(alignment: .center, spacing: 6) {
-                            content(index)
+                            Image(systemName: item.icon + (selected == index ? ".fill" : ""))
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 20, height: 20)
+                            Text(item.title)
+                                .font(.footnote)
                         }
                         .frame(maxWidth: .infinity)
                     })
@@ -107,18 +119,11 @@ struct CustomTabBar<Content>: View where Content: View {
 
 struct CustomTabBar_Previews: PreviewProvider {
     static var previews: some View {
-        CustomTabBar(style: .vertical, count: 1, selected: .constant(0)) { _ in
-            Image(systemName: "hammer.fill")
-                .frame(maxWidth: .infinity)
-            Text("Builds")
-                .frame(maxWidth: .infinity)
-        }
-        
-        CustomTabBar(style: .horizontal, count: 1, selected: .constant(0)) { _ in
-            Image(systemName: "hammer.fill")
-                .frame(maxWidth: .infinity)
-            Text("Builds")
-                .frame(maxWidth: .infinity)
-        }
+        let configuration = CustomTabBar.Configuration(items: [
+            CustomTabBar.Configuration.Item(title: "Builds", icon: "hammer"),
+            CustomTabBar.Configuration.Item(title: "Builds", icon: "hammer")
+        ])
+        CustomTabBar(style: .vertical, selected: .constant(0), configuration: configuration)
+        CustomTabBar(style: .horizontal, selected: .constant(0), configuration: configuration)
     }
 }

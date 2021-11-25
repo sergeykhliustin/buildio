@@ -17,8 +17,7 @@ struct AppsScreenView: View, PagingView, RoutingView {
     }
     
     @StateObject var model = ViewModelResolver.resolve(AppsViewModel.self)
-    @SceneStorage("AppsScreenView.selected")
-    private var selected: String?
+    @State private var selection: String?
     @State private var searchFocused: Bool = false
     
     @ViewBuilder
@@ -43,7 +42,7 @@ struct AppsScreenView: View, PagingView, RoutingView {
             if let completion = completion {
                 completion(item)
             } else {
-                selected = item.slug
+                selection = item.slug
             }
         }, content: {
             AppRowView(model: item)
@@ -54,7 +53,7 @@ struct AppsScreenView: View, PagingView, RoutingView {
     func navigationLinks() -> some View {
         if completion == nil {
             ForEach(model.items) { item in
-                navigationBuilds(app: item, selection: $selected)
+                navigationBuilds(app: item, selection: $selection)
             }
         }
     }
