@@ -10,7 +10,7 @@ import AppleProductTypes
 let package = Package(
     name: "Buildio",
     platforms: [
-        .iOS(.v14),
+        .iOS(.v14)
     ],
     products: [
         .iOSApplication(

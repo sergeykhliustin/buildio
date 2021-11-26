@@ -68,4 +68,3 @@ extension BuildResponseItemModel.Status {
         }
     }
 }
-

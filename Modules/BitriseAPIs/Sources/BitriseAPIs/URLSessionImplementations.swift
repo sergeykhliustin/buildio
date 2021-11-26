@@ -418,7 +418,7 @@ open class URLSessionDecodableRequestBuilder<T: Decodable>: URLSessionRequestBui
             case let .success(decodableObj):
                 completion(.success(Response(response: httpResponse, body: decodableObj)))
             case let .failure(error):
-                logger.debug(String(data: data, encoding: .utf8))
+                logger.debug(String(data: data, encoding: .utf8) ?? "")
                 completion(.failure(ErrorResponse.error(httpResponse.statusCode, data, response, error)))
             }
         }

@@ -11,7 +11,7 @@ let package = Package(
     products: [
         .library(
             name: "BuildioUI",
-            targets: ["BuildioUI"]),
+            targets: ["BuildioUI"])
     ],
     dependencies: [
         .package(name: "Models", path: "../Models"),
@@ -24,6 +24,6 @@ let package = Package(
     targets: [
         .target(
             name: "BuildioUI",
-            dependencies: ["KeychainAccess", "Rainbow", "Introspect", "Models", "BitriseAPIs"]),
+            dependencies: ["KeychainAccess", "Rainbow", "Introspect", "Models", "BitriseAPIs"])
     ]
 )
