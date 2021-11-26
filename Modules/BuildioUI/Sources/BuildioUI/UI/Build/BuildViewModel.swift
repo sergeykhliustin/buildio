@@ -19,8 +19,7 @@ final class BuildViewModel: BaseViewModel<BuildResponseItemModel> {
         return false
     }
     
-    init(build: BuildResponseItemModel) {
-        super.init()
+    func update(_ build: BuildResponseItemModel) {
         self.value = build
         if build.status == .running {
             self.scheduleNextUpdate()

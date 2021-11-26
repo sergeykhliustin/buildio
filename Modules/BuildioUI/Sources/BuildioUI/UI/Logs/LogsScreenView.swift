@@ -10,19 +10,19 @@ import Models
 import Rainbow
 
 struct LogsScreenView: BaseView {
-    @StateObject var model: LogsViewModel
-    
-    init(build: BuildResponseItemModel) {
-        self._model = StateObject(wrappedValue: LogsViewModel(build: build))
-    }
+    @StateObject var model: LogsViewModel = LogsViewModel()
+    @State var build: BuildResponseItemModel
     
     var body: some View {
         LogsView(logs: $model.attributedLogs)
-            .navigationTitle("Build #\(String(model.build.buildNumber)) logs")
+            .navigationTitle("Build #\(String(build.buildNumber)) logs")
             .toolbar {
                 if case .loading = model.state {
                     ProgressView()
                 }
+            }
+            .onAppear {
+                model.update(self.build)
             }
     }
 }

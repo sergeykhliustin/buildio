@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Models
+import Combine
 
 private struct Item: View {
     let title: String
@@ -29,18 +30,16 @@ private struct Item: View {
 struct BuildScreenView: BaseView, RoutingView {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    @StateObject var model: BuildViewModel
+    @StateObject var model: BuildViewModel = BuildViewModel()
     @State private var selection: String?
+    @State private var isActive: Bool = false
     @State private var error: ErrorResponse?
-    
-    init(build: BuildResponseItemModel) {
-        self._model = StateObject(wrappedValue: BuildViewModel(build: build))
-    }
+    @State var build: BuildResponseItemModel
     
     var body: some View {
-        let value = model.value!
+        let value = model.value ?? self.build
         ScrollView {
-            navigationBuildLogs(build: value, selection: $selection)
+            navigationBuildLogs(build: value, isActive: $isActive)
             if value.status != .running {
                 Button {
                     model.rebuild { error in
@@ -64,6 +63,7 @@ struct BuildScreenView: BaseView, RoutingView {
             }
             Item(title: "Logs", icon: "note.text") {
                 selection = value.slug
+                isActive = true
             }
             if value.status != .running {
                 Item(title: "Apps & Artifacts", icon: "archivebox") {
@@ -82,6 +82,9 @@ struct BuildScreenView: BaseView, RoutingView {
             if case .loading = model.state {
                 ProgressView()
             }
+        }
+        .onAppear {
+            model.update(build)
         }
     }
     

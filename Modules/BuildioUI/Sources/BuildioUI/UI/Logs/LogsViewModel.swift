@@ -12,19 +12,18 @@ import Rainbow
 import SwiftUI
 import BitriseAPIs
 
-final class LogsViewModel: BaseViewModel<BuildLogResponseModel>, CacheableViewModel {
-    init(_ param: BuildResponseItemModel) {
-        self.build = param
-        super.init()
-    }
-    
-    let build: BuildResponseItemModel
+final class LogsViewModel: BaseViewModel<BuildLogResponseModel> {
+    var build: BuildResponseItemModel!
     private var timer: Timer?
     @Published var attributedLogs: NSAttributedString?
     
-    init(build: BuildResponseItemModel) {
+    func update(_ build: BuildResponseItemModel) {
         self.build = build
-        super.init()
+        refresh()
+    }
+    
+    override class var shouldRefreshOnInit: Bool {
+        return false
     }
     
     override func fetch(params: Any?) -> AnyPublisher<BuildLogResponseModel, ErrorResponse> {
