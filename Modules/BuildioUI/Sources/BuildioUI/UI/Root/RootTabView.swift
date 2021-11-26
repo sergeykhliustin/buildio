@@ -8,8 +8,26 @@
 import SwiftUI
 import Introspect
 
+private extension View {
+    typealias ContentTransform<Content: View> = (Self) -> Content
+
+    @ViewBuilder
+    func conditionalModifier<TrueContent: View, FalseContent: View>(
+        _ condition: Bool,
+        ifTrue: ContentTransform<TrueContent>,
+        ifFalse: ContentTransform<FalseContent>
+    ) -> some View {
+        if condition {
+            ifTrue(self)
+        } else {
+            ifFalse(self)
+        }
+    }
+}
+
 struct RootTabView: View {
     @Environment(\.fullscreen) private var fullscreen
+    
     @Binding private var selection: Int
     private let configuration: [RootScreenItemType]
     
@@ -18,15 +36,26 @@ struct RootTabView: View {
         self.configuration = configuration
     }
     
+    private var isStack: Bool {
+        UIDevice.current.userInterfaceIdiom == .phone
+    }
+    
     var body: some View {
         TabView(selection: $selection) {
-            ForEach(configuration, id: \.rawValue) { item in
+            ForEach(0..<configuration.count) { index in
+                let item = configuration[index]
                 if item.navigation {
                     NavigationView {
                         RootScreenItemView(item)
                             .background(Color.white)
                             .navigationTitle(item.name)
                     }
+                    .conditionalModifier(
+                        isStack,
+                        ifTrue: { $0.navigationViewStyle(.stack) },
+                        ifFalse: { $0.navigationViewStyle(.automatic) }
+                    )
+                    .tag(index)
                     .introspectSplitViewController { splitViewController in
                         logger.debug(splitViewController)
                         splitViewController.preferredSplitBehavior = .tile
@@ -44,6 +73,7 @@ struct RootTabView: View {
                     }
                 } else {
                     RootScreenItemView(item)
+                        .tag(index)
                 }
             }
         }

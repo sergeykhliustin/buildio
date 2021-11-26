@@ -6,8 +6,7 @@
 //
 import SwiftUI
 
-enum RootScreenItemType: Int, Identifiable {
-    var id: Int { rawValue }
+enum RootScreenItemType {
     case builds
     case apps
     case accounts
@@ -37,9 +36,9 @@ enum RootScreenItemType: Int, Identifiable {
         case .builds:
             return "hammer"
         case .apps:
-            return "line.3.horizontal.circle"
+            return "tray.2"
         case .accounts:
-            return "ellipsis.rectangle"
+            return "key"
         case .profile:
             return "person.crop.circle"
         case .activities:
@@ -57,7 +56,6 @@ enum RootScreenItemType: Int, Identifiable {
         .builds,
         .apps,
         .accounts,
-        .profile,
         .activities,
         .debug
     ]

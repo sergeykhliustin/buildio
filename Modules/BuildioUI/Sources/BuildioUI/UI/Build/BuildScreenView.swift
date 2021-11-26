@@ -39,42 +39,44 @@ struct BuildScreenView: BaseView, RoutingView {
     var body: some View {
         let value = model.value ?? self.build
         ScrollView {
-            navigationBuildLogs(build: value, isActive: $isActive)
-            if value.status != .running {
-                Button {
-                    model.rebuild { error in
-                        if error == nil {
-                            presentationMode.wrappedValue.dismiss()
-                        } else {
-                            self.error = error
+            VStack(spacing: 8) {
+                navigationBuildLogs(build: value, isActive: $isActive)
+                if value.status != .running {
+                    Button {
+                        model.rebuild { error in
+                            if error == nil {
+                                presentationMode.wrappedValue.dismiss()
+                            } else {
+                                self.error = error
+                            }
+                        }
+                    } label: {
+                        HStack {
+                            Image(systemName: "tortoise")
+                            Text("Rebuild")
                         }
                     }
-                } label: {
-                    HStack {
-                        Image(systemName: "tortoise")
-                        Text("Rebuild")
+                    .buttonStyle(SubmitButtonStyle(edgeInsets: EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16)))
+                    .cornerRadius(20)
+                    .alert(item: $error, content: { error in
+                        Alert(title: Text("Failed to start the Build"), message: Text(error.rawErrorString), dismissButton: nil)
+                    })
+                }
+                Item(title: "Logs", icon: "note.text") {
+                    selection = value.slug
+                    isActive = true
+                }
+                if value.status != .running {
+                    Item(title: "Apps & Artifacts", icon: "archivebox") {
+                        
                     }
                 }
-                .buttonStyle(SubmitButtonStyle(edgeInsets: EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16)))
-                .cornerRadius(20)
-                .alert(item: $error, content: { error in
-                    Alert(title: Text("Failed to start the Build"), message: Text(error.rawErrorString), dismissButton: nil)
-                })
-            }
-            Item(title: "Logs", icon: "note.text") {
-                selection = value.slug
-                isActive = true
-            }
-            if value.status != .running {
-                Item(title: "Apps & Artifacts", icon: "archivebox") {
-                    
-                }
-            }
-            
-            ListItemWrapper {
                 
-            } content: {
-                BuildView(model: .constant(value))
+                ListItemWrapper {
+                    
+                } content: {
+                    BuildView(model: .constant(value))
+                }
             }
         }
         .navigationTitle("Build #\(String(value.buildNumber))")

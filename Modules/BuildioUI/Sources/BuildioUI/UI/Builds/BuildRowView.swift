@@ -30,16 +30,17 @@ struct BuildRowView: View {
                 .frame(width: 5)
             
             VStack(alignment: .leading, spacing: 0) {
-                HStack(alignment: .center) {
+                HStack(alignment: .center, spacing: 8) {
                     AvatarView(app: model.repository)
                         .frame(width: 40, height: 40)
                         .cornerRadius(8)
                     
-                    VStack(alignment: .leading) {
+                    VStack(alignment: .leading, spacing: 8) {
                         Text(model.repository.title)
                             .font(.footnote.bold())
                         HStack(spacing: 0) {
                             Text(model.commitMessage ?? "No commit message")
+                            Spacer(minLength: 4)
                             if let tag = model.tag {
                                 Text(tag)
                                     .padding(2)
@@ -47,7 +48,6 @@ struct BuildRowView: View {
                             }
                         }
                     }
-                    Spacer()
                     if model.status == .running {
                         Text(durationString ?? "")
                             .onReceive(timer) { _ in
