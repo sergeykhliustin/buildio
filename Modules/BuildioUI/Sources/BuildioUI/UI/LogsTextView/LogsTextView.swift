@@ -81,17 +81,14 @@ struct LogsTextView: UIViewRepresentable {
             if textView.attributedText.length > 0 {
                 let location = textView.attributedText.length - 1
                 let bottom = NSRange(location: location, length: 1)
-                UIView.animate(withDuration: 0.1, animations: {
-                    textView.scrollRangeToVisible(bottom)
-                }, completion: { success in
-                    if success {
-                        let contentSize = textView.contentSize
-                        let frameSize = textView.frame.size
-                        if contentSize.height > frameSize.height {
-                            textView.contentOffset = CGPoint(x: 0, y: contentSize.height - frameSize.height)
-                        }
-                    }
-                })
+
+                textView.scrollRangeToVisible(bottom)
+                
+                let contentSize = textView.contentSize
+                let frameSize = textView.frame.size
+                if contentSize.height > frameSize.height {
+                    textView.contentOffset = CGPoint(x: 0, y: contentSize.height - frameSize.height)
+                }
             }
         }
     }

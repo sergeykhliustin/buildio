@@ -71,7 +71,6 @@ extension PagingView {
             HStack(alignment: .center, spacing: 0) {
                 if model.isTopIndicatorRefreshing.wrappedValue {
                     ProgressView()
-//                        .frame(width: 20, height: 20, alignment: .center)
                 }
                 additionalToolbarItems()
             }
