@@ -4,15 +4,14 @@
 import PackageDescription
 
 let package = Package(
-    name: "BuildioApp",
+    name: "BuildioUI",
     platforms: [
-        .iOS(.v14),
-        .macCatalyst(.v15)
+        .iOS(.v14)
     ],
     products: [
         .library(
-            name: "BuildioApp",
-            targets: ["BuildioApp"]),
+            name: "BuildioUI",
+            targets: ["BuildioUI"]),
     ],
     dependencies: [
         .package(name: "Models", path: "../Models"),
@@ -24,7 +23,7 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "BuildioApp",
+            name: "BuildioUI",
             dependencies: ["KeychainAccess", "Rainbow", "Introspect", "Models", "BitriseAPIs"]),
     ]
 )

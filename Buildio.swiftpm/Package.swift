@@ -10,12 +10,12 @@ import AppleProductTypes
 let package = Package(
     name: "Buildio",
     platforms: [
-        .iOS("15.2")
+        .iOS(.v14),
     ],
     products: [
         .iOSApplication(
             name: "Buildio",
-            targets: ["AppModule"],
+            targets: ["Buildio"],
             bundleIdentifier: "com.home.TestSPMApp",
             teamIdentifier: "RUAYJDT8WF",
             displayVersion: "1.0",
@@ -35,13 +35,13 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(name: "BuildioApp", path: "../Modules/BuildioApp")
+        .package(name: "BuildioUI", path: "../Modules/BuildioUI")
     ],
     targets: [
         .executableTarget(
-            name: "AppModule",
-            dependencies: ["BuildioApp"],
-            path: "."
+            name: "Buildio",
+            dependencies: ["BuildioUI"],
+            path: "Shared"
         )
     ]
 )

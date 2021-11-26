@@ -11,7 +11,7 @@ import Combine
 import BackgroundTasks
 import BitriseAPIs
 
-final class AppDelegate: NSObject, UIApplicationDelegate {
+public final class BuildioUIAppDelegate: NSObject, UIApplicationDelegate {
     static let appRefreshTaskId = "buildio.appRefreshTask"
     static let processingTasksIds = (0..<10).map({ "buildio.processingTask\($0)" })
     private var fetcher: AnyCancellable?
@@ -60,7 +60,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
         }
     }
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
+    public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         BaseAPI.defaultApiToken = { TokenManager.shared.token?.token }
         ViewModelResolver.start()
         
@@ -72,7 +72,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
             }
         }
         
-        ([AppDelegate.appRefreshTaskId] + AppDelegate.processingTasksIds).forEach { identifier in
+        ([Self.appRefreshTaskId] + Self.processingTasksIds).forEach { identifier in
             BGTaskScheduler.shared.register(forTaskWithIdentifier: identifier, using: nil, launchHandler: launchHandler)
         }
         
@@ -86,27 +86,27 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
         return true
     }
     
-    func applicationDidEnterBackground(_ application: UIApplication) {
+    public func applicationDidEnterBackground(_ application: UIApplication) {
         scheduleAppRefresh()
     }
     
     func scheduleAppRefresh() {
         BGTaskScheduler.shared.getPendingTaskRequests { tasks in
-            if !tasks.contains(where: { $0.identifier == AppDelegate.appRefreshTaskId }) {
-                logger.debug("[\(AppDelegate.appRefreshTaskId)] scheduling app refresh")
-                let request = BGAppRefreshTaskRequest(identifier: AppDelegate.appRefreshTaskId)
+            if !tasks.contains(where: { $0.identifier == Self.appRefreshTaskId }) {
+                logger.debug("[\(Self.appRefreshTaskId)] scheduling app refresh")
+                let request = BGAppRefreshTaskRequest(identifier: Self.appRefreshTaskId)
                 request.earliestBeginDate = Date(timeIntervalSinceNow: 0)
                 
                 do {
                     try BGTaskScheduler.shared.submit(request)
-                    logger.debug("[\(AppDelegate.appRefreshTaskId)] submitted")
+                    logger.debug("[\(Self.appRefreshTaskId)] submitted")
                 } catch {
                     let error = error
-                    logger.debug("Could not schedule \(AppDelegate.appRefreshTaskId) \(error)")
+                    logger.debug("Could not schedule \(Self.appRefreshTaskId) \(error)")
                 }
             }
             
-            AppDelegate.processingTasksIds.forEach { identifier in
+            Self.processingTasksIds.forEach { identifier in
                 if !tasks.contains(where: { $0.identifier == identifier }) {
                     logger.debug("[\(identifier)] scheduling app refresh")
                     let request = BGProcessingTaskRequest(identifier: identifier)
