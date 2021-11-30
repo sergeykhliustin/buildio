@@ -52,6 +52,7 @@ enum RootScreenItemType {
         return self != .debug
     }
     
+    #if DEBUG
     static let `default`: [RootScreenItemType] = [
         .builds,
         .apps,
@@ -59,4 +60,12 @@ enum RootScreenItemType {
         .activities,
         .debug
     ]
+    #else
+    static let `default`: [RootScreenItemType] = [
+        .builds,
+        .apps,
+        .accounts,
+        .activities
+    ]
+    #endif
 }

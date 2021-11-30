@@ -4,7 +4,7 @@
 //
 //  Created by Sergey Khliustin on 18.11.2021.
 //
-#if DEBUG
+
 import SwiftUI
 import SwiftyBeaver
 import Rainbow
@@ -39,4 +39,4 @@ struct DebugLogsScreenView_Previews: PreviewProvider {
         DebugScreenView()
     }
 }
-#endif
+
