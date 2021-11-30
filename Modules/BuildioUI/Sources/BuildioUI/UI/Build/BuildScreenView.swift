@@ -34,7 +34,7 @@ struct BuildScreenView: BaseView, RoutingView {
     @State private var selection: String?
     @State private var isActiveLogs: Bool = false
     @State private var error: ErrorResponse?
-    @State var build: BuildResponseItemModel
+    let build: BuildResponseItemModel
     @State private var isActiveArtifacts: Bool = false
     
     var body: some View {
