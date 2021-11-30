@@ -4,7 +4,7 @@
 <dict>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>$(AppIdentifierPrefix)com.home1.Buildio</string>
+		<string>$(AppIdentifierPrefix)com.sergeyk.Buildio</string>
 	</array>
 </dict>
 </plist>
