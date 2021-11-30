@@ -1,5 +1,5 @@
 //
-//  DebugLogsScreenView.swift
+//  DebugScreenView.swift
 //  Buildio (iOS)
 //
 //  Created by Sergey Khliustin on 18.11.2021.
@@ -9,15 +9,21 @@ import SwiftUI
 import SwiftyBeaver
 import Rainbow
 
-struct DebugLogsScreenView: View {
+struct DebugScreenView: View {
     @State private var logs: NSAttributedString?
     
     var body: some View {
-        LogsView(logs: $logs)
-            .onAppear {
-                updateLogs()
-            }
-            .navigationTitle("Debug logs")
+        VStack(spacing: 8) {
+            LogsView(logs: $logs)
+                .onAppear {
+                    updateLogs()
+                }
+            ActionItem(title: "Reset UserDefaults", icon: "clear", action: {
+                UserDefaults.standard.reset()
+            })
+        }
+        .padding(.bottom, 8)
+        .navigationTitle("Debug")
     }
     
     private func updateLogs() {
@@ -30,7 +36,7 @@ struct DebugLogsScreenView: View {
 
 struct DebugLogsScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        DebugLogsScreenView()
+        DebugScreenView()
     }
 }
 #endif

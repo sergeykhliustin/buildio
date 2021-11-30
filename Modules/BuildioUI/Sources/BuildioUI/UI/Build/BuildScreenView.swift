@@ -9,7 +9,7 @@ import SwiftUI
 import Models
 import Combine
 
-private struct Item: View {
+struct ActionItem: View {
     let title: String
     let icon: String
     let action: () -> Void
@@ -62,12 +62,12 @@ struct BuildScreenView: BaseView, RoutingView {
                         Alert(title: Text("Failed to start the Build"), message: Text(error.rawErrorString), dismissButton: nil)
                     })
                 }
-                Item(title: "Logs", icon: "note.text") {
+                ActionItem(title: "Logs", icon: "note.text") {
                     selection = value.slug
                     isActive = true
                 }
                 if value.status != .running {
-                    Item(title: "Apps & Artifacts", icon: "archivebox") {
+                    ActionItem(title: "Apps & Artifacts", icon: "archivebox") {
                         
                     }
                 }

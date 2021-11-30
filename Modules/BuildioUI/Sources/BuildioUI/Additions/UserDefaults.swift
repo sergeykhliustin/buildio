@@ -8,13 +8,17 @@
 import Foundation
 
 extension UserDefaults {
-    var lastActivitySlug: String? {
+    var lastActivityDate: TimeInterval {
         get {
-            self.string(forKey: "last_activity_slug")
+            self.double(forKey: "last_activity_date")
         }
         set {
-            self.set(newValue, forKey: "last_activity_slug")
-            self.synchronize()
+            self.set(newValue, forKey: "last_activity_date")
+            synchronize()
         }
+    }
+    
+    func reset() {
+        lastActivityDate = 0
     }
 }

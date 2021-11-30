@@ -27,7 +27,7 @@ struct RootScreenItemView: View {
         case .activities:
             ActivitiesScreenView()
         case .debug:
-            DebugLogsScreenView()
+            DebugScreenView()
         }
     }
 }

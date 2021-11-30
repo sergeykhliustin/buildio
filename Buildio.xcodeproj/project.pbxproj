@@ -90,9 +90,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3FE7B54A27072C1E00A6D8E1 /* Buildio (iOS) */ = {
+		3FE7B54A27072C1E00A6D8E1 /* Buildio */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3FE7B55C27072C1E00A6D8E1 /* Build configuration list for PBXNativeTarget "Buildio (iOS)" */;
+			buildConfigurationList = 3FE7B55C27072C1E00A6D8E1 /* Build configuration list for PBXNativeTarget "Buildio" */;
 			buildPhases = (
 				3FE7B54727072C1E00A6D8E1 /* Sources */,
 				3FE7B54827072C1E00A6D8E1 /* Frameworks */,
@@ -103,7 +103,7 @@
 			);
 			dependencies = (
 			);
-			name = "Buildio (iOS)";
+			name = Buildio;
 			packageProductDependencies = (
 				3F5C13572751047A0002AF5B /* BuildioUI */,
 			);
@@ -141,7 +141,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3FE7B54A27072C1E00A6D8E1 /* Buildio (iOS) */,
+				3FE7B54A27072C1E00A6D8E1 /* Buildio */,
 			);
 		};
 /* End PBXProject section */
@@ -384,7 +384,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3FE7B55C27072C1E00A6D8E1 /* Build configuration list for PBXNativeTarget "Buildio (iOS)" */ = {
+		3FE7B55C27072C1E00A6D8E1 /* Build configuration list for PBXNativeTarget "Buildio" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3FE7B55D27072C1E00A6D8E1 /* Debug */,
