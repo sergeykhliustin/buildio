@@ -26,6 +26,8 @@ protocol PagingView: BaseView where ModelType: PagingViewModelProtocol, ModelTyp
     
     @ViewBuilder
     func headerBody() -> HeaderBody
+    
+    func onAppear()
 }
 
 extension PagingView {
@@ -67,6 +69,9 @@ extension PagingView {
                 }
             }
         }
+        .onAppear(perform: {
+            onAppear()
+        })
         .toolbar {
             HStack(alignment: .center, spacing: 0) {
                 if model.isTopIndicatorRefreshing.wrappedValue {
@@ -95,6 +100,10 @@ extension PagingView {
     
     @ViewBuilder
     func headerBody() -> some View {
+        
+    }
+    
+    func onAppear() {
         
     }
 }

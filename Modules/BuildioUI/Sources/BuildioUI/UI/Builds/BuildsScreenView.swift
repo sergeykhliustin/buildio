@@ -11,6 +11,7 @@ import Models
 struct BuildsScreenView: View, PagingView, RoutingView {
     @StateObject var model: BuildsViewModel
     @State private var showNewBuild: Bool = false
+    @State private var selectedBuild: BuildResponseItemModel?
     @State private var selection: String?
     
     init(app: V0AppResponseItemModel? = nil, model: BuildsViewModel? = nil) {
@@ -26,16 +27,27 @@ struct BuildsScreenView: View, PagingView, RoutingView {
     
     func buildItemView(_ item: BuildResponseItemModel) -> some View {
         ListItemWrapper(action: {
-            selection = item.slug
+            selectBuild(item)
         }, content: {
             BuildRowView(model: .constant(item))
         })
     }
     
+    func selectBuild(_ item: BuildResponseItemModel) {
+        selectedBuild = item
+        
+        // Temp fix for conditional NavigationLink animation
+        DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                selection = item.slug
+            }
+        }
+    }
+    
     @ViewBuilder
     func navigationLinks() -> some View {
-        ForEach(model.items) { item in
-            navigationBuild(build: item, selection: $selection)
+        if let selectedBuild = selectedBuild {
+            navigationBuild(build: selectedBuild, selection: $selection)
         }
     }
     

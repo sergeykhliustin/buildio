@@ -38,11 +38,11 @@ struct BuildScreenView: BaseView, RoutingView {
     @State private var isActiveArtifacts: Bool = false
     
     var body: some View {
+        navigationBuildLogs(build: self.build, isActive: $isActiveLogs)
+        navigationBuildArtifacts(build: self.build, isActive: $isActiveArtifacts)
         let value = model.value ?? self.build
         ScrollView {
             VStack(spacing: 8) {
-                navigationBuildLogs(build: value, isActive: $isActiveLogs)
-                navigationBuildArtifacts(build: value, isActive: $isActiveArtifacts)
                 if value.status != .running {
                     Button {
                         model.rebuild { error in

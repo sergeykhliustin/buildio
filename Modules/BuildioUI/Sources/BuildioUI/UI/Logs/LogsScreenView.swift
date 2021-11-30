@@ -11,7 +11,7 @@ import Rainbow
 
 struct LogsScreenView: BaseView {
     @StateObject var model: LogsViewModel = LogsViewModel()
-    @State var build: BuildResponseItemModel
+    let build: BuildResponseItemModel
     
     var body: some View {
         LogsView(logs: $model.attributedLogs)

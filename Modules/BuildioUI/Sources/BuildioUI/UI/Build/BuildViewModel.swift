@@ -15,6 +15,10 @@ final class BuildViewModel: BaseViewModel<BuildResponseItemModel> {
     private var timer: Timer?
     private var builder: AnyCancellable?
     
+    deinit {
+        logger.debug("")
+    }
+    
     override class var shouldRefreshOnInit: Bool {
         return false
     }
