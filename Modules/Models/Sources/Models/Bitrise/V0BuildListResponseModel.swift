@@ -7,12 +7,6 @@
 
 import Foundation
 
-public protocol PagingResponseModel {
-    associatedtype ItemType: Identifiable
-    var data: [ItemType] { get set }
-    var paging: V0PagingResponseModel { get set }
-}
-
 public struct V0BuildListResponseModel: Codable, Hashable, PagingResponseModel {
 
     public var data: [BuildResponseItemModel]

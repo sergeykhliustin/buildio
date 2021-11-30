@@ -7,7 +7,10 @@
 
 import Foundation
 
-public struct V0ArtifactListElementResponseModel: Codable, Hashable {
+public struct V0ArtifactListElementResponseModel: Codable, Hashable, Identifiable {
+    public var id: Int {
+        return hashValue
+    }
 
     public var artifactMeta: [Int]?
     public var artifactType: String?

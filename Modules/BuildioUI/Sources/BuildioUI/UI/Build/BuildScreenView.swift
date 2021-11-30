@@ -32,15 +32,17 @@ struct BuildScreenView: BaseView, RoutingView {
     
     @StateObject var model: BuildViewModel = BuildViewModel()
     @State private var selection: String?
-    @State private var isActive: Bool = false
+    @State private var isActiveLogs: Bool = false
     @State private var error: ErrorResponse?
     @State var build: BuildResponseItemModel
+    @State private var isActiveArtifacts: Bool = false
     
     var body: some View {
         let value = model.value ?? self.build
         ScrollView {
             VStack(spacing: 8) {
-                navigationBuildLogs(build: value, isActive: $isActive)
+                navigationBuildLogs(build: value, isActive: $isActiveLogs)
+                navigationBuildArtifacts(build: value, isActive: $isActiveArtifacts)
                 if value.status != .running {
                     Button {
                         model.rebuild { error in
@@ -64,11 +66,11 @@ struct BuildScreenView: BaseView, RoutingView {
                 }
                 ActionItem(title: "Logs", icon: "note.text") {
                     selection = value.slug
-                    isActive = true
+                    isActiveLogs = true
                 }
                 if value.status != .running {
                     ActionItem(title: "Apps & Artifacts", icon: "archivebox") {
-                        
+                        isActiveArtifacts = true
                     }
                 }
                 

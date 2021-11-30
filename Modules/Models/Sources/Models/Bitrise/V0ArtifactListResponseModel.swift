@@ -7,15 +7,10 @@
 
 import Foundation
 
-public struct V0ArtifactListResponseModel: Codable, Hashable {
+public struct V0ArtifactListResponseModel: Codable, Hashable, PagingResponseModel {
 
-    public var data: [V0ArtifactListElementResponseModel]?
-    public var paging: V0PagingResponseModel?
-
-    public init(data: [V0ArtifactListElementResponseModel]? = nil, paging: V0PagingResponseModel? = nil) {
-        self.data = data
-        self.paging = paging
-    }
+    public var data: [V0ArtifactListElementResponseModel]
+    public var paging: V0PagingResponseModel
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case data

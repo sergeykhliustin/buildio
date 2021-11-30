@@ -8,8 +8,8 @@
 import Foundation
 
 public struct V0AppResponseItemModel: Codable, Hashable, Identifiable {
-    public var id: String {
-        slug
+    public var id: Int {
+        hashValue
     }
     public var avatarUrl: String?
     public var isDisabled: Bool
