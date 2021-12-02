@@ -52,7 +52,7 @@ struct AppsScreenView: View, PagingView, RoutingView {
     
     @ViewBuilder
     func navigationLinks() -> some View {
-        navigationBuilds(route: $route)
+        navigationLinks(route: $route)
     }
     
     @ViewBuilder

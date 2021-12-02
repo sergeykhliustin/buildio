@@ -39,8 +39,7 @@ struct BuildScreenView: BaseView, RoutingView {
     var body: some View {
         let value = model.value ?? self.build
         ScrollView {
-            navigationBuildLogs(route: $route)
-            navigationBuildArtifacts(route: $route)
+            navigationLinks(route: $route)
             VStack(spacing: 8) {
                 if value.status != .running {
                     Button {
