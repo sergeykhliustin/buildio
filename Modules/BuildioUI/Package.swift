@@ -16,14 +16,21 @@ let package = Package(
     dependencies: [
         .package(name: "Models", path: "../Models"),
         .package(name: "BitriseAPIs", path: "../BitriseAPIs"),
-        
         .package(url: "https://github.com/kishikawakatsumi/KeychainAccess.git", from: "4.0.0"),
         .package(url: "https://github.com/onevcat/Rainbow", from: "4.0.1"),
-        .package(name: "Introspect", url: "https://github.com/siteline/SwiftUI-Introspect.git", branch: "master")
+        .package(name: "Introspect", url: "https://github.com/siteline/SwiftUI-Introspect.git", branch: "master"),
+        .package(url: "https://github.com/pointfreeco/swiftui-navigation", from: "0.1.0")
     ],
     targets: [
         .target(
             name: "BuildioUI",
-            dependencies: ["KeychainAccess", "Rainbow", "Introspect", "Models", "BitriseAPIs"])
+            dependencies: [
+                "KeychainAccess",
+                "Rainbow",
+                "Introspect",
+                "Models",
+                "BitriseAPIs",
+                .product(name: "SwiftUINavigation", package: "swiftui-navigation")
+            ])
     ]
 )

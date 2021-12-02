@@ -6,13 +6,17 @@
 //
 import SwiftUI
 
-enum RootScreenItemType {
+enum RootScreenItemType: CaseIterable {
     case builds
     case apps
     case accounts
     case profile
     case activities
     case debug
+    
+    var id: String {
+        return name
+    }
     
     var name: String {
         switch self {

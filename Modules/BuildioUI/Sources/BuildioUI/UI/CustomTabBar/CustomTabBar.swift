@@ -27,30 +27,21 @@ private struct CustomTabBarButtonStyle: ButtonStyle {
 }
 
 struct CustomTabBar: View {
-    struct Configuration {
-        struct Item {
-            let title: String
-            let icon: String
-        }
-        let items: [Item]
-        
-        static let `default` = Configuration(items: RootScreenItemType.default.map({ Item(title: $0.name, icon: $0.icon) }))
-    }
     enum Style {
         case horizontal
         case vertical
     }
     @Binding var selected: Int
-    private let configuration: Configuration
+    private let configuration = RootScreenItemType.default
     private let spacing: CGFloat
     private let style: Style
     private let onSecondTap: (() -> Void)?
+    @EnvironmentObject private var navigationHelper: NavigationHelper
 
-    init(style: Style = .horizontal, spacing: CGFloat = 4, selected: Binding<Int>, configuration: Configuration = .default, onSecondTap: (() -> Void)? = nil) {
+    init(style: Style = .horizontal, spacing: CGFloat = 4, selected: Binding<Int>, onSecondTap: (() -> Void)? = nil) {
         self.spacing = spacing
         self._selected = selected
         self.style = style
-        self.configuration = configuration
         self.onSecondTap = onSecondTap
     }
     
@@ -58,12 +49,13 @@ struct CustomTabBar: View {
         stack(style: style) {
             Group {
                 Spacer()
-                ForEach(0..<configuration.items.count) { index in
-                    let item = configuration.items[index]
+                ForEach(0..<configuration.count) { index in
+                    let item = configuration[index]
                     Button(action: {
                         if selected == index {
                             logger.debug("UI on second tap")
                             onSecondTap?()
+                            navigationHelper.popToRoot(type: item)
                         } else {
                             selected = index
                         }
@@ -73,7 +65,7 @@ struct CustomTabBar: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 20, height: 20)
-                            Text(item.title)
+                            Text(item.name)
                                 .font(.footnote)
                         }
                         .frame(maxWidth: .infinity)
@@ -119,11 +111,7 @@ struct CustomTabBar: View {
 
 struct CustomTabBar_Previews: PreviewProvider {
     static var previews: some View {
-        let configuration = CustomTabBar.Configuration(items: [
-            CustomTabBar.Configuration.Item(title: "Builds", icon: "hammer"),
-            CustomTabBar.Configuration.Item(title: "Builds", icon: "hammer")
-        ])
-        CustomTabBar(style: .vertical, selected: .constant(0), configuration: configuration)
-        CustomTabBar(style: .horizontal, selected: .constant(0), configuration: configuration)
+        CustomTabBar(style: .vertical, selected: .constant(0))
+        CustomTabBar(style: .horizontal, selected: .constant(0))
     }
 }

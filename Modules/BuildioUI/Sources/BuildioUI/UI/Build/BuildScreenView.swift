@@ -31,17 +31,16 @@ struct BuildScreenView: BaseView, RoutingView {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @StateObject var model: BuildViewModel = BuildViewModel()
-    @State private var selection: String?
-    @State private var isActiveLogs: Bool = false
     @State private var error: ErrorResponse?
-    let build: BuildResponseItemModel
-    @State private var isActiveArtifacts: Bool = false
+    @Binding var build: BuildResponseItemModel
+    
+    @State var route: Route?
     
     var body: some View {
-        navigationBuildLogs(build: self.build, isActive: $isActiveLogs)
-        navigationBuildArtifacts(build: self.build, isActive: $isActiveArtifacts)
         let value = model.value ?? self.build
         ScrollView {
+            navigationBuildLogs(route: $route)
+            navigationBuildArtifacts(route: $route)
             VStack(spacing: 8) {
                 if value.status != .running {
                     Button {
@@ -65,12 +64,11 @@ struct BuildScreenView: BaseView, RoutingView {
                     })
                 }
                 ActionItem(title: "Logs", icon: "note.text") {
-                    selection = value.slug
-                    isActiveLogs = true
+                    self.route = .logs(value)
                 }
                 if value.status != .running {
                     ActionItem(title: "Apps & Artifacts", icon: "archivebox") {
-                        isActiveArtifacts = true
+                        self.route = .artifacts(value)
                     }
                 }
                 
@@ -81,12 +79,14 @@ struct BuildScreenView: BaseView, RoutingView {
                 }
             }
         }
-        .navigationTitle("Build #\(String(value.buildNumber))")
         .toolbar {
             if case .loading = model.state {
                 ProgressView()
             }
         }
+        .onChange(of: build, perform: { newValue in
+            model.update(build)
+        })
         .onAppear {
             model.update(build)
         }
@@ -99,6 +99,6 @@ struct BuildScreenView: BaseView, RoutingView {
 
 struct BuildScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        BuildScreenView(build: BuildResponseItemModel.preview())
+        BuildScreenView(build: .constant(BuildResponseItemModel.preview()))
     }
 }

@@ -21,6 +21,7 @@ struct ArtifactsScreenView: PagingView {
                 .lineLimit(nil)
                 .multilineTextAlignment(.leading)
         })
+            .navigationTitle("Artifacts")
     }
     
     private func string(item: V0ArtifactListElementResponseModel) -> String {

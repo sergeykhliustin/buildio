@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AccountsScreenView: View {
+    @EnvironmentObject private var navigationHelper: NavigationHelper
     @State private var showingSheet = false
     @StateObject private var tokenManager = TokenManager.shared
     
@@ -17,6 +18,7 @@ struct AccountsScreenView: View {
             LazyVStack(spacing: 16) {
                 ForEach(tokenManager.tokens, id: \.token) { token in
                     ListItemWrapper {
+                        navigationHelper.popToRootAll()
                         tokenManager.token = token
                     } content: {
                         AccountRowView(token)

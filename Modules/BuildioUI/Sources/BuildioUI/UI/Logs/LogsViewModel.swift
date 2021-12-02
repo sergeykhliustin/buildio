@@ -17,9 +17,16 @@ final class LogsViewModel: BaseViewModel<BuildLogResponseModel> {
     private var timer: Timer?
     @Published var attributedLogs: NSAttributedString?
     
+    deinit {
+        logger.debug("")
+    }
+    
     func update(_ build: BuildResponseItemModel) {
-        self.build = build
-        refresh()
+        if self.build != build {
+            self.attributedLogs = nil
+            self.build = build
+            refresh()
+        }
     }
     
     override class var shouldRefreshOnInit: Bool {

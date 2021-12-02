@@ -17,7 +17,7 @@ struct AppsScreenView: View, PagingView, RoutingView {
     }
     
     @StateObject var model = ViewModelResolver.resolve(AppsViewModel.self)
-    @State private var selection: String?
+    @State private var selection: V0AppResponseItemModel?
     @State private var searchFocused: Bool = false
     
     @ViewBuilder
@@ -42,7 +42,7 @@ struct AppsScreenView: View, PagingView, RoutingView {
             if let completion = completion {
                 completion(item)
             } else {
-                selection = item.slug
+                selection = item
             }
         }, content: {
             AppRowView(model: item)
@@ -51,11 +51,7 @@ struct AppsScreenView: View, PagingView, RoutingView {
     
     @ViewBuilder
     func navigationLinks() -> some View {
-        if completion == nil {
-            ForEach(model.items) { item in
-                navigationBuilds(app: item, selection: $selection)
-            }
-        }
+        navigationBuilds(app: $selection)
     }
     
     @ViewBuilder

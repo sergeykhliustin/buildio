@@ -7,65 +7,88 @@
 
 import SwiftUI
 import Models
+import SwiftUINavigation
+
+enum Route {
+    case build(BuildResponseItemModel)
+    case logs(BuildResponseItemModel)
+    case artifacts(BuildResponseItemModel)
+}
 
 protocol RoutingView: View {
-    associatedtype BuildsRouteBody: View
-    associatedtype BuildRouteBody: View
-    associatedtype LogsRouteBody: View
-    associatedtype ArtifactsRouteBody: View
     
-    @ViewBuilder func navigationBuilds(app: V0AppResponseItemModel, selection: Binding<String?>) -> BuildsRouteBody
-    @ViewBuilder func navigationBuild(build: BuildResponseItemModel, selection: Binding<String?>) -> BuildRouteBody
-    @ViewBuilder func navigationBuildLogs(build: BuildResponseItemModel, isActive: Binding<Bool>) -> LogsRouteBody
-//    @ViewBuilder func navigationBuildLogs(build: BuildResponseItemModel, selection: Binding<String?>) -> LogsRouteBody
-    @ViewBuilder func navigationBuildArtifacts(build: BuildResponseItemModel, isActive: Binding<Bool>) -> ArtifactsRouteBody
 }
 
 extension RoutingView {
-    @ViewBuilder func navigationBuilds(app: V0AppResponseItemModel, selection: Binding<String?>) -> some View {
-        NavigationLink(tag: app.slug, selection: selection, destination: {
-            BuildsScreenView(app: app)
-                .navigationTitle(app.title)
-        }, label: {
+    
+    @ViewBuilder func navigationBuilds(app: Binding<V0AppResponseItemModel?>) -> some View {
+        NavigationLink(unwrapping: app) { app in
+            BuildsScreenView(app: app.wrappedValue)
+                .navigationTitle(app.wrappedValue.title)
+        } onNavigate: { isActive in
+            
+        } label: {
             EmptyView()
-        })
-            .hidden()
+        }
+        .hidden()
     }
     
-    @ViewBuilder func navigationBuild(build: BuildResponseItemModel, selection: Binding<String?>) -> some View {
-        NavigationLink(tag: build.slug, selection: selection, destination: {
+    @ViewBuilder func navigationBuild(build: Binding<BuildResponseItemModel?>) -> some View {
+        NavigationLink(unwrapping: build) { build in
             BuildScreenView(build: build)
-        }, label: {
+                .navigationTitle("Build #\(String(build.wrappedValue.buildNumber))")
+        } onNavigate: { isActive in
+            logger.debug("")
+        } label: {
             EmptyView()
-        })
-            .hidden()
+        }
+        .hidden()
     }
     
-    @ViewBuilder func navigationBuildLogs(build: BuildResponseItemModel, isActive: Binding<Bool>) -> some View {
-        NavigationLink(isActive: isActive, destination: {
-            LogsScreenView(build: build)
-        }, label: {
+    @ViewBuilder func navigationBuild(route: Binding<Route?>) -> some View {
+        NavigationLink(unwrapping: route, case: /Route.build) { build in
+            BuildScreenView(build: build)
+                .navigationTitle("Build #\(String(build.wrappedValue.buildNumber))")
+        } onNavigate: { isActive in
+            
+        } label: {
             EmptyView()
-        })
-            .hidden()
+        }
+        .hidden()
+
     }
     
-    @ViewBuilder func navigationBuildLogs(build: BuildResponseItemModel, selection: Binding<String?>) -> some View {
-        NavigationLink(tag: build.slug, selection: selection, destination: {
-            LogsScreenView(build: build)
-        }, label: {
+    @ViewBuilder func navigationBuildLogs(build: Binding<BuildResponseItemModel?>) -> some View {
+        NavigationLink(unwrapping: build) { build in
+            LogsScreenView(build: build.wrappedValue)
+        } onNavigate: { isActive in
+            
+        } label: {
             EmptyView()
-        })
-            .hidden()
+        }
+        .hidden()
     }
     
-    @ViewBuilder func navigationBuildArtifacts(build: BuildResponseItemModel, isActive: Binding<Bool>) -> some View {
-        NavigationLink(isActive: isActive,
-                       destination: {
-            ArtifactsScreenView(build: build)
-        }, label: {
+    @ViewBuilder func navigationBuildLogs(route: Binding<Route?>) -> some View {
+        NavigationLink(unwrapping: route, case: /Route.logs) { build in
+            LogsScreenView(build: build.wrappedValue)
+        } onNavigate: { _ in
+            
+        } label: {
             EmptyView()
-        })
-            .hidden()
+        }
+        .hidden()
+    }
+    
+    @ViewBuilder func navigationBuildArtifacts(route: Binding<Route?>) -> some View {
+        NavigationLink(unwrapping: route, case: /Route.artifacts) { build in
+            ArtifactsScreenView(build: build.wrappedValue)
+                .navigationTitle("Artifacts")
+        } onNavigate: { _ in
+            
+        } label: {
+            EmptyView()
+        }
+        .hidden()
     }
 }
