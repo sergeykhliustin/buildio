@@ -13,8 +13,10 @@ struct BuildRowView: View {
     @Binding var model: BuildResponseItemModel
     var timer: Publishers.Autoconnect<Timer.TimerPublisher>!
     @State private var durationString: String?
+    let logsAction: () -> Void
     
-    init(model: Binding<BuildResponseItemModel>) {
+    init(model: Binding<BuildResponseItemModel>, logsAction: @escaping () -> Void) {
+        self.logsAction = logsAction
         _model = model
         if model.wrappedValue.status == .running {
             timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -83,6 +85,17 @@ struct BuildRowView: View {
                     Text("#\(String(model.buildNumber))")
                         .padding(8)
                 }
+                
+                Rectangle().fill(Color.b_BorderLight)
+                    .frame(height: 1)
+                HStack(spacing: 8) {
+                    Spacer()
+                    Button(action: logsAction) {
+                        Image(systemName: "note.text")
+                        Text("Logs")
+                    }
+                    .padding(8)
+                }
             }
             
         }
@@ -95,7 +108,7 @@ struct BuildRowView: View {
 
 struct BuildRowView_Previews: PreviewProvider {
     static var previews: some View {
-        BuildRowView(model: .constant(BuildResponseItemModel.preview()))
+        BuildRowView(model: .constant(BuildResponseItemModel.preview()), logsAction: {})
             .preferredColorScheme(.light)
             .padding(8)
             

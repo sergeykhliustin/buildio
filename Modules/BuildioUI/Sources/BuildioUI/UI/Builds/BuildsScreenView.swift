@@ -29,13 +29,16 @@ struct BuildsScreenView: View, PagingView, RoutingView {
             route = .build(item)
             
         }, content: {
-            BuildRowView(model: .constant(item))
+            BuildRowView(model: .constant(item), logsAction: {
+                route = .logs(item)
+            })
         })
     }
     
     @ViewBuilder
     func navigationLinks() -> some View {
-        navigationBuild(route: $route)
+        navigationLinks(route: $route)
+//        navigationBuild(route: $route)
     }
     
     @ViewBuilder
