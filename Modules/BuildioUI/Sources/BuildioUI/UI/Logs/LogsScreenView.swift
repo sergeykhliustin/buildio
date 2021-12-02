@@ -15,7 +15,6 @@ struct LogsScreenView: BaseView {
     
     var body: some View {
         LogsView(logs: $model.attributedLogs)
-            .navigationTitle("Build #\(String(build.buildNumber)) logs")
             .toolbar {
                 if case .loading = model.state {
                     ProgressView()

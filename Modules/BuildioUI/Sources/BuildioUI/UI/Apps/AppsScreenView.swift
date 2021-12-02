@@ -19,6 +19,7 @@ struct AppsScreenView: View, PagingView, RoutingView {
     @StateObject var model = ViewModelResolver.resolve(AppsViewModel.self)
     @State private var selection: V0AppResponseItemModel?
     @State private var searchFocused: Bool = false
+    @State private var route: Route?
     
     @ViewBuilder
     func headerBody() -> some View {
@@ -42,7 +43,7 @@ struct AppsScreenView: View, PagingView, RoutingView {
             if let completion = completion {
                 completion(item)
             } else {
-                selection = item
+                route = .builds(item)
             }
         }, content: {
             AppRowView(model: item)
@@ -51,7 +52,7 @@ struct AppsScreenView: View, PagingView, RoutingView {
     
     @ViewBuilder
     func navigationLinks() -> some View {
-        navigationBuilds(app: $selection)
+        navigationBuilds(route: $route)
     }
     
     @ViewBuilder
