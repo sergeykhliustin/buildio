@@ -94,6 +94,7 @@ struct BuildRowView: View {
                         Image(systemName: "note.text")
                         Text("Logs")
                     }
+                    .buttonStyle(BorderButtonStyle())
                     .padding(8)
                 }
             }
