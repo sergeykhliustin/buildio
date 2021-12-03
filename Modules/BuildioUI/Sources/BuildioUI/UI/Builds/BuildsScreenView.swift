@@ -9,20 +9,10 @@ import SwiftUI
 import Models
 
 struct BuildsScreenView: View, PagingView, RoutingView {
-    @StateObject var model: BuildsViewModel
+    @EnvironmentObject var model: BuildsViewModel
+//    @StateObject var model: BuildsViewModel
     @State private var showNewBuild: Bool = false
     @State private var route: Route?
-    
-    init(app: V0AppResponseItemModel? = nil, model: BuildsViewModel? = nil) {
-        if let model = model {
-            self._model = StateObject(wrappedValue: model)
-        }
-        if let app = app {
-            self._model = StateObject(wrappedValue: BuildsViewModel(app: app))
-        } else {
-            self._model = StateObject(wrappedValue: ViewModelResolver.resolve(BuildsViewModel.self))
-        }
-    }
     
     func buildItemView(_ item: BuildResponseItemModel) -> some View {
         ListItemWrapper(action: {
@@ -53,14 +43,5 @@ struct BuildsScreenView: View, PagingView, RoutingView {
                     .navigationTitle("Start a build")
             }
         }
-    }
-}
-
-struct BuildsView_Previews: PreviewProvider {
-    static var previews: some View {
-        let model = BuildsViewModel()
-        model.items = [BuildResponseItemModel.preview()]
-        model.state = .value
-        return BuildsScreenView(model: model)
     }
 }

@@ -25,7 +25,8 @@ extension RoutingView {
     @ViewBuilder func navigationLinks(route: Binding<Route?>) -> some View {
         ZStack {
             NavigationLink(unwrapping: route, case: /Route.builds) { app in
-                BuildsScreenView(app: app.wrappedValue)
+                BuildsScreenView()
+                    .environmentObject(BuildsViewModel(app: app.wrappedValue))
                     .navigationTitle(app.wrappedValue.title)
             } onNavigate: { _ in
                 

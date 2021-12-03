@@ -18,6 +18,7 @@ struct RootScreenItemView: View, RoutingView {
         switch type {
         case .builds:
             BuildsScreenView()
+                .environmentObject(ViewModelResolver.resolve(BuildsViewModel.self))
             
         case .apps:
             AppsScreenView()
