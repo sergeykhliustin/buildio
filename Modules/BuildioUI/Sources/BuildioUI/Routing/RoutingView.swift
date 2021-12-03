@@ -23,44 +23,47 @@ protocol RoutingView: View {
 extension RoutingView {
     
     @ViewBuilder func navigationLinks(route: Binding<Route?>) -> some View {
-        NavigationLink(unwrapping: route, case: /Route.builds) { app in
-            BuildsScreenView(app: app.wrappedValue)
-                .navigationTitle(app.wrappedValue.title)
-        } onNavigate: { _ in
+        ZStack {
+            NavigationLink(unwrapping: route, case: /Route.builds) { app in
+                BuildsScreenView(app: app.wrappedValue)
+                    .navigationTitle(app.wrappedValue.title)
+            } onNavigate: { _ in
+                
+            } label: {
+                EmptyView()
+            }
+            .hidden()
             
-        } label: {
-            EmptyView()
-        }
-        .hidden()
-        
-        NavigationLink(unwrapping: route, case: /Route.build) { build in
-            BuildScreenView(build: build)
-                .navigationTitle("Build #\(String(build.wrappedValue.buildNumber))")
-        } onNavigate: { isActive in
+            NavigationLink(unwrapping: route, case: /Route.build) { build in
+                BuildScreenView(build: build)
+                    .navigationTitle("Build #\(String(build.wrappedValue.buildNumber))")
+            } onNavigate: { isActive in
+                
+            } label: {
+                EmptyView()
+            }
+            .hidden()
             
-        } label: {
-            EmptyView()
-        }
-        .hidden()
-        
-        NavigationLink(unwrapping: route, case: /Route.logs) { build in
-            LogsScreenView(build: build.wrappedValue)
-                .navigationTitle("Build #\(String(build.wrappedValue.buildNumber)) logs")
-        } onNavigate: { _ in
+            NavigationLink(unwrapping: route, case: /Route.logs) { build in
+                LogsScreenView(build: build.wrappedValue)
+                    .navigationTitle("Build #\(String(build.wrappedValue.buildNumber)) logs")
+            } onNavigate: { _ in
+                
+            } label: {
+                EmptyView()
+            }
+            .hidden()
             
-        } label: {
-            EmptyView()
+            NavigationLink(unwrapping: route, case: /Route.artifacts) { build in
+                ArtifactsScreenView(build: build.wrappedValue)
+                    .navigationTitle("Artifacts")
+            } onNavigate: { _ in
+                
+            } label: {
+                EmptyView()
+            }
+            .hidden()
         }
-        .hidden()
-        
-        NavigationLink(unwrapping: route, case: /Route.artifacts) { build in
-            ArtifactsScreenView(build: build.wrappedValue)
-                .navigationTitle("Artifacts")
-        } onNavigate: { _ in
-            
-        } label: {
-            EmptyView()
-        }
-        .hidden()
+        .frame(width: 0, height: 0)
     }
 }

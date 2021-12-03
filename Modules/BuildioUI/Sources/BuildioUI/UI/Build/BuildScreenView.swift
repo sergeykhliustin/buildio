@@ -77,6 +77,7 @@ struct BuildScreenView: BaseView, RoutingView {
                     BuildView(model: .constant(value))
                 }
             }
+            .padding(.vertical, 8)
         }
         .toolbar {
             if case .loading = model.state {

@@ -95,8 +95,8 @@ struct BuildRowView: View {
                         Text("Logs")
                     }
                     .buttonStyle(BorderButtonStyle())
-                    .padding(8)
                 }
+                .padding(.horizontal, 4)
             }
             
         }

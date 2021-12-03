@@ -20,6 +20,9 @@ struct LogsScreenView: BaseView {
                     ProgressView()
                 }
             }
+            .onChange(of: build, perform: { newValue in
+                model.update(newValue)
+            })
             .onAppear {
                 model.update(self.build)
             }
