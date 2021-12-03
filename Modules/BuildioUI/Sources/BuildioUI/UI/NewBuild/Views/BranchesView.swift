@@ -39,29 +39,31 @@ struct BranchesView: BaseView {
     }
     
     var body: some View {
-        BTextField("Select branch", text: $branch)
-            .modifier(RightButtonModifier(icon: "chevron.right", loading: model.value == nil, action: {
-                isActiveRoute.toggle()
-            }))
-            .onReceive(model.$value) { branches in
-                if branch.isEmpty {
-                    branch = branches?.first ?? ""
+        ZStack {
+            NavigationLink(isActive: $isActiveRoute) {
+                SelectStringScreenView(model.value ?? []) { branch in
+                    self.branch = branch
                 }
+                .navigationTitle("Select branch:")
+            } label: {
+                EmptyView()
             }
-            .onChange(of: app) { newValue in
-                branch = ""
-                model.refresh()
-            }
-        
-        NavigationLink(isActive: $isActiveRoute) {
-            SelectStringScreenView(model.value ?? []) { branch in
-                self.branch = branch
-            }
-            .navigationTitle("Select branch:")
-        } label: {
-            EmptyView()
+            .hidden()
+            
+            BTextField("Select branch", text: $branch)
+                .modifier(RightButtonModifier(icon: "chevron.right", loading: model.value == nil, action: {
+                    isActiveRoute.toggle()
+                }))
+                .onReceive(model.$value) { branches in
+                    if branch.isEmpty {
+                        branch = branches?.first ?? ""
+                    }
+                }
+                .onChange(of: app) { newValue in
+                    branch = ""
+                    model.refresh()
+                }
         }
-        .hidden()
     }
 }
 

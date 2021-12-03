@@ -39,29 +39,31 @@ struct WorkflowsView: BaseView {
     }
     
     var body: some View {
-        BTextField("Select workflow", text: $workflow)
-            .modifier(RightButtonModifier(icon: "chevron.right", loading: model.value == nil, action: {
-                isActiveRoute.toggle()
-            }))
-            .onReceive(model.$value) { workflows in
-                if workflow.isEmpty {
-                    workflow = workflows?.first ?? ""
+        ZStack {
+            NavigationLink(isActive: $isActiveRoute) {
+                SelectStringScreenView(model.value ?? []) { workflow in
+                    self.workflow = workflow
                 }
+                .navigationTitle("Select workflow:")
+            } label: {
+                EmptyView()
             }
-            .onChange(of: app) { newValue in
-                workflow = ""
-                model.refresh()
-            }
-        
-        NavigationLink(isActive: $isActiveRoute) {
-            SelectStringScreenView(model.value ?? []) { workflow in
-                self.workflow = workflow
-            }
-            .navigationTitle("Select workflow:")
-        } label: {
-            EmptyView()
+            .hidden()
+            
+            BTextField("Select workflow", text: $workflow)
+                .modifier(RightButtonModifier(icon: "chevron.right", loading: model.value == nil, action: {
+                    isActiveRoute.toggle()
+                }))
+                .onReceive(model.$value) { workflows in
+                    if workflow.isEmpty {
+                        workflow = workflows?.first ?? ""
+                    }
+                }
+                .onChange(of: app) { newValue in
+                    workflow = ""
+                    model.refresh()
+                }
         }
-        .hidden()        
     }
 }
 

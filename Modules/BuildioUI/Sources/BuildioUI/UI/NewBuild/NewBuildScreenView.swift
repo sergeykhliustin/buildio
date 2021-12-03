@@ -52,6 +52,7 @@ struct NewBuildScreenView: View, RoutingView {
                     }
                     .modifier(RoundedBorderShadowModifier())
                 }
+                .buttonStyle(.plain)
                 if let app = Binding($app) {
                     Text("Branch:")
                     BranchesView(app: app, branch: $branch)

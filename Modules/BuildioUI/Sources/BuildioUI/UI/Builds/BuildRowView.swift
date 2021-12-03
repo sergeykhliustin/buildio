@@ -13,10 +13,10 @@ struct BuildRowView: View {
     @Binding var model: BuildResponseItemModel
     var timer: Publishers.Autoconnect<Timer.TimerPublisher>!
     @State private var durationString: String?
-    let logsAction: () -> Void
+    @Binding private var route: Route?
     
-    init(model: Binding<BuildResponseItemModel>, logsAction: @escaping () -> Void) {
-        self.logsAction = logsAction
+    init(model: Binding<BuildResponseItemModel>, route: Binding<Route?>) {
+        _route = route
         _model = model
         if model.wrappedValue.status == .running {
             timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -26,7 +26,7 @@ struct BuildRowView: View {
     
     var body: some View {
         HStack(alignment: .top, spacing: 0) {
-            let statusColor = model.status.color
+            let statusColor = model.color
             Rectangle()
                 .fill(statusColor)
                 .frame(width: 5)
@@ -66,8 +66,8 @@ struct BuildRowView: View {
                 HStack(spacing: 0) {
                     Text(model.branchUIString)
                         .padding(8)
-                        .foregroundColor(model.status.color)
-                        .background(model.status.colorLight)
+                        .foregroundColor(model.color)
+                        .background(model.colorLight)
                     if let pullRequestId = model.pullRequestId, pullRequestId != 0 {
                         Text(String(pullRequestId))
                             .padding(8)
@@ -89,12 +89,23 @@ struct BuildRowView: View {
                 Rectangle().fill(Color.b_BorderLight)
                     .frame(height: 1)
                 HStack(spacing: 8) {
-                    Spacer()
-                    Button(action: logsAction) {
+                    Button(action: {
+                        route = .logs(model)
+                    }, label: {
                         Image(systemName: "note.text")
                         Text("Logs")
-                    }
+                    })
                     .buttonStyle(BorderButtonStyle())
+                    if model.finishedAt != nil {
+                        Spacer()
+                        Button(action: {
+                            route = .artifacts(model)
+                        }, label: {
+                            Image(systemName: "archivebox")
+                            Text("Apps & Artifacts")
+                        })
+                        .buttonStyle(BorderButtonStyle())
+                    }
                 }
                 .padding(.horizontal, 4)
             }
@@ -109,7 +120,7 @@ struct BuildRowView: View {
 
 struct BuildRowView_Previews: PreviewProvider {
     static var previews: some View {
-        BuildRowView(model: .constant(BuildResponseItemModel.preview()), logsAction: {})
+        BuildRowView(model: .constant(BuildResponseItemModel.preview()), route: .constant(nil))
             .preferredColorScheme(.light)
             .padding(8)
             

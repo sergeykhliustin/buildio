@@ -56,7 +56,7 @@ extension RoutingView {
             
             NavigationLink(unwrapping: route, case: /Route.artifacts) { build in
                 ArtifactsScreenView(build: build.wrappedValue)
-                    .navigationTitle("Artifacts")
+                    .navigationTitle("Build #\(String(build.wrappedValue.buildNumber)) artifacts")
             } onNavigate: { _ in
                 
             } label: {

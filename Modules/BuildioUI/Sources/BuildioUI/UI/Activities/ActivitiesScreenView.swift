@@ -10,7 +10,6 @@ import Models
 
 struct ActivitiesScreenView: PagingView {
     @StateObject var model: ActivitiesViewModel = ViewModelResolver.resolve(ActivitiesViewModel.self)
-    @State var selected: V0ActivityEventResponseItemModel?
     
     func buildItemView(_ item: V0ActivityEventResponseItemModel) -> some View {
         ListItemWrapper(action: {

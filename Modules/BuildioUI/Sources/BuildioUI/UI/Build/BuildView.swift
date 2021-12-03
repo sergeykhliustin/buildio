@@ -53,12 +53,12 @@ struct BuildView: View {
     
     var body: some View {
         HStack(alignment: .top, spacing: 0) {
-            let statusColor = model.status.color
+            let statusColor = model.color
             Rectangle()
                 .fill(statusColor)
                 .frame(width: 5)
 
-            let statusText = model.environmentPrepareFinishedAt == nil ? "Waiting for worker" : model.status.text
+            let statusText = model.isOnHold ? "On hold" : model.environmentPrepareFinishedAt == nil ? "Waiting for worker" : model.status.text
             
             VStack(alignment: .leading) {
                 Group {

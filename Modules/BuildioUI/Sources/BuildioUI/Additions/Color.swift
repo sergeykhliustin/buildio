@@ -11,6 +11,8 @@ import Models
 extension Color {
     static let b_TextBlack = Color(hex: 0x351d48)
     static let b_TextBlackLight = Color(hex: 0x351d48).opacity(0.6)
+    static let b_BuildOnHold = Color(hex: 0xACACAC)
+    static let b_BuildOnHoldLight = Color(hex: 0xACACAC).opacity(0.16)
     static let b_BuildFailed = Color(hex: 0xff2158)
     static let b_BuildFailedLight = b_BuildFailed.opacity(0.16)
     static let b_BuildAborted = Color(hex: 0xffc500)
@@ -42,7 +44,23 @@ extension Color {
     }
 }
 
-extension BuildResponseItemModel.Status {
+extension BuildResponseItemModel {
+    var color: Color {
+        if isOnHold {
+            return Color.b_BuildOnHold
+        }
+        return status.color
+    }
+    
+    var colorLight: Color {
+        if isOnHold {
+            return Color.b_BuildOnHoldLight
+        }
+        return status.colorLight
+    }
+}
+
+private extension BuildResponseItemModel.Status {
     var color: Color {
         switch self {
         case .running:

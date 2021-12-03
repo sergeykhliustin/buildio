@@ -27,11 +27,8 @@ struct BuildsScreenView: View, PagingView, RoutingView {
     func buildItemView(_ item: BuildResponseItemModel) -> some View {
         ListItemWrapper(action: {
             route = .build(item)
-            
         }, content: {
-            BuildRowView(model: .constant(item), logsAction: {
-                route = .logs(item)
-            })
+            BuildRowView(model: .constant(item), route: $route)
         })
     }
     
