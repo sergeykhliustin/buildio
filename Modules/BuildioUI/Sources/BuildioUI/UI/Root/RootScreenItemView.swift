@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RootScreenItemView: View, RoutingView {
+struct RootScreenItemView: ScreenBuilder {
     let type: RootScreenItemType
     
     init(_ type: RootScreenItemType) {
@@ -17,11 +17,9 @@ struct RootScreenItemView: View, RoutingView {
     var body: some View {
         switch type {
         case .builds:
-            BuildsScreenView()
-                .environmentObject(ViewModelResolver.resolve(BuildsViewModel.self))
-            
+            buildsScreen(app: nil)
         case .apps:
-            AppsScreenView()
+            appsScreen()
         case .accounts:
             AccountsScreenView()
         case .profile:

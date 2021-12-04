@@ -16,7 +16,7 @@ enum Route {
     case artifacts(BuildResponseItemModel)
 }
 
-protocol RoutingView: View {
+protocol RoutingView: ScreenBuilder {
     
 }
 
@@ -25,9 +25,7 @@ extension RoutingView {
     @ViewBuilder func navigationLinks(route: Binding<Route?>) -> some View {
         ZStack {
             NavigationLink(unwrapping: route, case: /Route.builds) { app in
-                BuildsScreenView()
-                    .environmentObject(BuildsViewModel(app: app.wrappedValue))
-                    .navigationTitle(app.wrappedValue.title)
+                buildsScreen(app: app.wrappedValue)
             } onNavigate: { _ in
                 
             } label: {

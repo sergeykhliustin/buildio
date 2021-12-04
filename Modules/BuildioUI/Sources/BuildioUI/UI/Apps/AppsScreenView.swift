@@ -9,15 +9,14 @@ import SwiftUI
 import Models
 
 struct AppsScreenView: View, PagingView, RoutingView {
+    @EnvironmentObject var model: AppsViewModel
     
     private var completion: ((V0AppResponseItemModel) -> Void)?
     
     init(completion: ((V0AppResponseItemModel) -> Void)? = nil) {
         self.completion = completion
     }
-    
-    @StateObject var model = ViewModelResolver.resolve(AppsViewModel.self)
-    @State private var selection: V0AppResponseItemModel?
+
     @State private var searchFocused: Bool = false
     @State private var route: Route?
     

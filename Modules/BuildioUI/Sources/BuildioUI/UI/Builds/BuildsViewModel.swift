@@ -15,6 +15,10 @@ final class BuildsViewModel: PagingViewModel<V0BuildListResponseModel>, Resolvab
     private(set) var app: V0AppResponseItemModel?
     private var timer: Timer?
     
+    deinit {
+        logger.debug("")
+    }
+    
     override init() {
         super.init()
     }
