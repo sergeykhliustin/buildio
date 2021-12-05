@@ -16,6 +16,8 @@
 		<string>buildio.processingTask8</string>
 		<string>buildio.processingTask9</string>
 	</array>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
