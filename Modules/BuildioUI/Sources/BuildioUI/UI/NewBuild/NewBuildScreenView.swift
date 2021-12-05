@@ -27,11 +27,10 @@ struct NewBuildScreenView: View, RoutingView {
     var body: some View {
         ScrollView {
             NavigationLink(isActive: $isActiveRoute) {
-                AppsScreenView(completion: { app in
+                appSelectScreen { app in
                     self.app = app
                     self.isActiveRoute = false
-                })
-                    .navigationTitle("Select the app")
+                }
             } label: {
                 EmptyView()
             }

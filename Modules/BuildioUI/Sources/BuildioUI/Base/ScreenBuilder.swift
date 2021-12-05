@@ -26,4 +26,11 @@ extension ScreenBuilder {
             .environmentObject(ViewModelResolver.resolve(AppsViewModel.self))
             .navigationTitle("Apps")
     }
+    
+    @ViewBuilder
+    func appSelectScreen(completion: @escaping ((V0AppResponseItemModel) -> Void)) -> some View {
+        AppsScreenView(completion: completion)
+            .environmentObject(ViewModelResolver.resolve(AppsViewModel.self))
+            .navigationTitle("Select the app")
+    }
 }
