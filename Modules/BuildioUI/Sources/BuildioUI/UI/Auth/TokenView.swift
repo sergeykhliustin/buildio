@@ -6,8 +6,6 @@
 //
 
 import SwiftUI
-import BitriseAPIs
-import SwiftUINavigation
 
 struct TokenView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>

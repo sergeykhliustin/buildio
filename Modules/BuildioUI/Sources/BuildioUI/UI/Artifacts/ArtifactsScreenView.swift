@@ -17,9 +17,7 @@ struct ArtifactsScreenView: PagingView {
     
     func buildItemView(_ item: V0ArtifactListElementResponseModel) -> some View {
         ListItemWrapper(action: {}, content: {
-            Text(string(item: item))
-                .lineLimit(nil)
-                .multilineTextAlignment(.leading)
+            ArtifactRowView(value: item)
         })
             .navigationTitle("Artifacts")
     }
