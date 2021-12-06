@@ -21,13 +21,11 @@ struct RootScreenItemView: ScreenBuilder {
         case .apps:
             appsScreen()
         case .accounts:
-            AccountsScreenView()
-        case .profile:
-            ProfileScreenView()
+            accountsScreen()
         case .activities:
-            ActivitiesScreenView()
+            activitiesScreen()
         case .debug:
-            DebugScreenView()
+            debugScreen()
         }
     }
 }

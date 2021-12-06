@@ -23,13 +23,9 @@ final class BuildViewModel: BaseViewModel<BuildResponseItemModel> {
         return false
     }
     
-    func update(_ build: BuildResponseItemModel) {
-        if self.value != build {
-            self.value = build
-            if build.status == .running {
-                self.scheduleNextUpdate()
-            }
-        }
+    init(build: BuildResponseItemModel) {
+        super.init()
+        self.value = build
     }
     
     func rebuild(completion: @escaping (ErrorResponse?) -> Void) {

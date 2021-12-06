@@ -13,7 +13,7 @@ import SwiftUI
 import BitriseAPIs
 
 final class LogsViewModel: BaseViewModel<BuildLogResponseModel> {
-    var build: BuildResponseItemModel!
+    let build: BuildResponseItemModel
     private var timer: Timer?
     @Published var attributedLogs: NSAttributedString?
     
@@ -21,12 +21,9 @@ final class LogsViewModel: BaseViewModel<BuildLogResponseModel> {
         logger.debug("")
     }
     
-    func update(_ build: BuildResponseItemModel) {
-        if self.build != build {
-            self.attributedLogs = nil
-            self.build = build
-            refresh()
-        }
+    init(build: BuildResponseItemModel) {
+        self.build = build
+        super.init()
     }
     
     override class var shouldRefreshOnInit: Bool {

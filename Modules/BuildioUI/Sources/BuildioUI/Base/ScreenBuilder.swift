@@ -16,8 +16,28 @@ extension ScreenBuilder {
     @ViewBuilder
     func buildsScreen(app: V0AppResponseItemModel? = nil) -> some View {
         BuildsScreenView()
-            .environmentObject(BuildsViewModel(app: app))
+            .environmentObject(app == nil ? ViewModelResolver.resolve(BuildsViewModel.self) : BuildsViewModel(app: app))
             .navigationTitle(app?.title ?? "Builds")
+    }
+    
+    @ViewBuilder
+    func buildScreen(build: BuildResponseItemModel) -> some View {
+        BuildScreenView()
+            .environmentObject(BuildViewModel(build: build))
+            .navigationTitle("Build #\(String(build.buildNumber))")
+    }
+    
+    @ViewBuilder
+    func logsScreen(build: BuildResponseItemModel) -> some View {
+        LogsScreenView()
+            .environmentObject(LogsViewModel(build: build))
+            .navigationTitle("Build #\(String(build.buildNumber)) logs")
+    }
+    
+    @ViewBuilder
+    func artifactsScreen(build: BuildResponseItemModel) -> some View {
+        ArtifactsScreenView(build: build)
+            .navigationTitle("Build #\(String(build.buildNumber)) artifacts")
     }
     
     @ViewBuilder
@@ -32,5 +52,23 @@ extension ScreenBuilder {
         AppsScreenView(completion: completion)
             .environmentObject(ViewModelResolver.resolve(AppsViewModel.self))
             .navigationTitle("Select the app")
+    }
+    
+    @ViewBuilder
+    func accountsScreen() -> some View {
+        AccountsScreenView()
+            .navigationTitle("Accounts")
+    }
+    
+    @ViewBuilder
+    func activitiesScreen() -> some View {
+        ActivitiesScreenView()
+            .navigationTitle("Activities")
+    }
+    
+    @ViewBuilder
+    func debugScreen() -> some View {
+        DebugScreenView()
+            .navigationTitle("Debug")
     }
 }

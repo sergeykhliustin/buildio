@@ -10,7 +10,6 @@ enum RootScreenItemType: CaseIterable {
     case builds
     case apps
     case accounts
-    case profile
     case activities
     case debug
     
@@ -26,8 +25,6 @@ enum RootScreenItemType: CaseIterable {
             return "Apps"
         case .accounts:
             return "Accounts"
-        case .profile:
-            return "Profile"
         case .activities:
             return "Activities"
         case .debug:
@@ -43,8 +40,6 @@ enum RootScreenItemType: CaseIterable {
             return "tray.2"
         case .accounts:
             return "key"
-        case .profile:
-            return "person.crop.circle"
         case .activities:
             return "bell"
         case .debug:

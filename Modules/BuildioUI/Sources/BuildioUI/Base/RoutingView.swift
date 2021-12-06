@@ -34,8 +34,7 @@ extension RoutingView {
             .hidden()
             
             NavigationLink(unwrapping: route, case: /Route.build) { build in
-                BuildScreenView(build: build)
-                    .navigationTitle("Build #\(String(build.wrappedValue.buildNumber))")
+                buildScreen(build: build.wrappedValue)
             } onNavigate: { isActive in
                 
             } label: {
@@ -44,8 +43,7 @@ extension RoutingView {
             .hidden()
             
             NavigationLink(unwrapping: route, case: /Route.logs) { build in
-                LogsScreenView(build: build.wrappedValue)
-                    .navigationTitle("Build #\(String(build.wrappedValue.buildNumber)) logs")
+                logsScreen(build: build.wrappedValue)
             } onNavigate: { _ in
                 
             } label: {
@@ -54,8 +52,7 @@ extension RoutingView {
             .hidden()
             
             NavigationLink(unwrapping: route, case: /Route.artifacts) { build in
-                ArtifactsScreenView(build: build.wrappedValue)
-                    .navigationTitle("Build #\(String(build.wrappedValue.buildNumber)) artifacts")
+                artifactsScreen(build: build.wrappedValue)
             } onNavigate: { _ in
                 
             } label: {

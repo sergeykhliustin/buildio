@@ -10,8 +10,7 @@ import Models
 import Rainbow
 
 struct LogsScreenView: BaseView {
-    @StateObject var model: LogsViewModel = LogsViewModel()
-    let build: BuildResponseItemModel
+    @EnvironmentObject var model: LogsViewModel
     
     var body: some View {
         LogsView(logs: $model.attributedLogs)
@@ -20,17 +19,12 @@ struct LogsScreenView: BaseView {
                     ProgressView()
                 }
             }
-            .onChange(of: build, perform: { newValue in
-                model.update(newValue)
-            })
-            .onAppear {
-                model.update(self.build)
-            }
     }
 }
 
 struct LogsScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        LogsScreenView(build: BuildResponseItemModel.preview())
+        LogsScreenView()
+            .environmentObject(LogsViewModel(build: BuildResponseItemModel.preview()))
     }
 }

@@ -29,15 +29,14 @@ struct ActionItem: View {
 
 struct BuildScreenView: BaseView, RoutingView {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @EnvironmentObject var model: BuildViewModel
     
-    @StateObject var model: BuildViewModel = BuildViewModel()
     @State private var error: ErrorResponse?
-    @Binding var build: BuildResponseItemModel
     
     @State var route: Route?
     
     var body: some View {
-        let value = model.value ?? self.build
+        let value = model.value!
         ScrollView {
             navigationLinks(route: $route)
             VStack(spacing: 8) {
@@ -84,12 +83,6 @@ struct BuildScreenView: BaseView, RoutingView {
                 ProgressView()
             }
         }
-        .onChange(of: build, perform: { newValue in
-            model.update(build)
-        })
-        .onAppear {
-            model.update(build)
-        }
     }
     
     func isError() -> Binding<Bool> {
@@ -99,6 +92,6 @@ struct BuildScreenView: BaseView, RoutingView {
 
 struct BuildScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        BuildScreenView(build: .constant(BuildResponseItemModel.preview()))
+        BuildScreenView()
     }
 }
