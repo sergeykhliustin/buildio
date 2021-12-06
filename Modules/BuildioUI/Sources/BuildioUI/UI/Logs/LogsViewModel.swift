@@ -27,7 +27,7 @@ final class LogsViewModel: BaseViewModel<BuildLogResponseModel> {
     }
     
     override class var shouldRefreshOnInit: Bool {
-        return false
+        return true
     }
     
     override func fetch(params: Any?) -> AnyPublisher<BuildLogResponseModel, ErrorResponse> {

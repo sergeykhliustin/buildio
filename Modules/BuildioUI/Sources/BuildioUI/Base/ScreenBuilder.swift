@@ -29,8 +29,7 @@ extension ScreenBuilder {
     
     @ViewBuilder
     func logsScreen(build: BuildResponseItemModel) -> some View {
-        LogsScreenView()
-            .environmentObject(LogsViewModel(build: build))
+        LogsScreenView(build: build)
             .navigationTitle("Build #\(String(build.buildNumber)) logs")
     }
     

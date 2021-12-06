@@ -30,30 +30,13 @@ public struct EntryPoint: View {
         .foregroundColor(.b_TextBlack)
         .background(Color.white)
         .progressViewStyle(CustomProgressViewStyle())
-        .configureWindow()
-    }
-}
-
-private extension View {
-    func configureWindow() -> some View {
-        self.background(HostingWindowConfigurator())
-    }
-}
-
-private struct HostingWindowConfigurator: UIViewRepresentable {
-    func makeUIView(context: Context) -> UIView {
-        let view = UIView()
-        #if targetEnvironment(macCatalyst)
-        DispatchQueue.main.async {
-            let window = view.window
+        .introspectViewController { controller in
+            #if targetEnvironment(macCatalyst)
+            let window = controller.viewIfLoaded?.window
             window?.windowScene?.titlebar?.titleVisibility = .hidden
             window?.windowScene?.titlebar?.toolbar?.isVisible = false
             window?.windowScene?.titlebar?.separatorStyle = .none
+            #endif
         }
-        #endif
-        return view
-    }
-
-    func updateUIView(_ uiView: UIView, context: Context) {
     }
 }

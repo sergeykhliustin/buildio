@@ -88,7 +88,7 @@ struct NewBuildScreenView: View, RoutingView {
                     presentationMode.wrappedValue.dismiss()
                 }
             })
-            .padding(.horizontal, 16)
+            .padding(16)
             .disabled(model.state == .loading)
         }
         .font(.footnote)

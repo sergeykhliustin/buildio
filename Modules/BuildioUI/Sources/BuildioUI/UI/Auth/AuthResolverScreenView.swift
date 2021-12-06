@@ -15,6 +15,11 @@ public struct AuthResolverScreenView: View {
     public var body: some View {
         if tokenManager.token == nil {
             AuthScreenView(canClose: false)
+                .introspectViewController { controller in
+                    #if targetEnvironment(macCatalyst)
+                    controller.viewIfLoaded?.window?.windowScene?.sizeRestrictions?.minimumSize = CGSize(width: 414, height: 600)
+                    #endif
+                }
         } else {
             RootScreenView()
         }

@@ -26,6 +26,7 @@ final class BuildViewModel: BaseViewModel<BuildResponseItemModel> {
     init(build: BuildResponseItemModel) {
         super.init()
         self.value = build
+        scheduleNextUpdate()
     }
     
     func rebuild(completion: @escaping (ErrorResponse?) -> Void) {

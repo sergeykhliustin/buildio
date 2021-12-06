@@ -17,7 +17,6 @@ public final class BuildioUIAppDelegate: NSObject, UIApplicationDelegate {
         BaseAPI.defaultApiToken = { TokenManager.shared.token?.token }
         BackgroundProcessing.shared.start()
         ViewModelResolver.start()
-
         return true
     }
 }

@@ -18,7 +18,7 @@ struct AuthScreenView: View {
     
     var body: some View {
         NavigationView {
-            TokenFigmaView(canClose: canClose, onCompletion: onCompletion)
+            TokenView(canClose: canClose, onCompletion: onCompletion)
         }
         .navigationViewStyle(.stack)
     }

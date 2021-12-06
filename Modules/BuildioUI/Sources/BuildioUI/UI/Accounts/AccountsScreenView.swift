@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUINavigation
 
 struct AccountsScreenView: View {
     @EnvironmentObject private var navigationHelper: NavigationHelper
@@ -33,10 +34,10 @@ struct AccountsScreenView: View {
             } label: {
                 Image(systemName: "plus")
             }
-            .sheet(isPresented: $showingSheet) {
-                AuthScreenView(canClose: true) {
-                    showingSheet = false
-                }
+        }
+        .sheet(isPresented: $showingSheet) {
+            AuthScreenView(canClose: true) {
+                showingSheet = false
             }
         }
         

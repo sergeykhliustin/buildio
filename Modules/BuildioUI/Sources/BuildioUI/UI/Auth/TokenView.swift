@@ -1,5 +1,5 @@
 //
-//  TokenFigmaView.swift
+//  TokenView.swift
 //  Buildio
 //
 //  Created by Sergey Khliustin on 21.10.2021.
@@ -8,7 +8,7 @@
 import SwiftUI
 import BitriseAPIs
 
-struct TokenFigmaView: View {
+struct TokenView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.openURL) private var openURL
     @State var tokenState: String = ""
@@ -27,13 +27,22 @@ struct TokenFigmaView: View {
     }
     
     var body: some View {
-        VStack {
-            VStack(alignment: .leading, spacing: 25) {
+        ScrollView {
+            VStack(spacing: 16) {
                 
-                Text("API Token")
-                    .font(.callout)
-                    .frame(width: 137, alignment: .topLeading)
-                    .lineSpacing(24)
+                Image(systemName: "key")
+                    .resizable()
+                    .aspectRatio(contentMode: SwiftUI.ContentMode.fit)
+                    .rotationEffect(Angle(degrees: 90))
+                    .frame(width: 200, height: 130, alignment: .center)
+                    .foregroundColor(.b_PrimaryLight)
+                
+                HStack {
+                    Text("API Token")
+                        .font(.callout)
+                        .lineSpacing(24)
+                    Spacer()
+                }
                 
                 TextField("*******************",
                           text: $tokenState,
@@ -46,10 +55,7 @@ struct TokenFigmaView: View {
                     .modifier(PasteButton(text: $tokenState))
                     .modifier(RoundedBorderShadowModifier(borderColor: focused ? .b_Primary : .b_BorderLight, horizontalPadding: 8))
                     .frame(height: 44)
-            }
-            .padding(.horizontal, 16)
-            
-            VStack(alignment: .center, spacing: 25) {
+                
                 HStack(spacing: 0) {
                     Text("Don't have one? ")
                         .font(.callout)
@@ -69,13 +75,11 @@ struct TokenFigmaView: View {
                 Button("Submit") {
                     checkToken(tokenState)
                 }.buttonStyle(SubmitButtonStyle()).disabled(tokenState.isEmpty || isError)
-                    .frame(alignment: .center)
             }
-            .padding(.horizontal)
-            
+            .frame(maxWidth: 414, alignment: .center)
+            .padding(16)
         }
-        .padding(16)
-        .foregroundColor(.b_TextBlack)
+        
         .alert(isPresented: $isError) {
             Alert(title: Text("Error"),
                   message: Text(error?.rawErrorString ?? "Unknown error"), dismissButton: .cancel {
@@ -116,7 +120,7 @@ struct TokenFigmaView: View {
 
 struct TokenFigmaScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        TokenFigmaView()
+        TokenView()
             .previewDevice("iPhone 8")
     }
 }
