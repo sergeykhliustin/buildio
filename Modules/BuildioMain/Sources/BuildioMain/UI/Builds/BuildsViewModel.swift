@@ -13,7 +13,9 @@ import BitriseAPIs
 final class BuildsViewModel: PagingViewModel<V0BuildListResponseModel>, ResolvableViewModel {
     private let fetchLimit: Int = 10
     private(set) var app: V0AppResponseItemModel?
-    private var timer: Timer?
+    
+    private var activityWatcher: AnyCancellable?
+    private var lastRefreshDate: Date?
     
     deinit {
         logger.debug("")
@@ -21,27 +23,24 @@ final class BuildsViewModel: PagingViewModel<V0BuildListResponseModel>, Resolvab
     
     override init() {
         super.init()
-    }
-    
-    init(app: V0AppResponseItemModel? = nil) {
-        self.app = app
-        super.init()
-    }
-    
-    override func afterRefresh() {
-        super.afterRefresh()
-        scheduleNextUpdate()
-    }
-    
-    private func scheduleNextUpdate() {
-        timer?.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: false, block: { [weak self] timer in
-            guard let self = self else {
-                timer.invalidate()
-                return
+        activityWatcher = ActivityWatcher.shared.$lastActivityDate.sink { [weak self] date in
+            guard let self = self else { return }
+            if self.state == .value {
+                if let lastRefreshDate = self.lastRefreshDate, lastRefreshDate < date {
+                    self.refresh()
+                }
             }
-            self.refresh()
-        })
+        }
+    }
+    
+    convenience init(app: V0AppResponseItemModel? = nil) {
+        self.init()
+        self.app = app
+    }
+    
+    override func beforeRefresh(_ tokenUpdated: Bool) {
+        super.beforeRefresh(tokenUpdated)
+        lastRefreshDate = Date()
     }
     
     override func fetch(params: Any?) -> AnyPublisher<V0BuildListResponseModel, ErrorResponse> {

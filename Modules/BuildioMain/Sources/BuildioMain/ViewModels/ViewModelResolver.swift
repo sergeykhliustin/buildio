@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Models
 
 final class ViewModelResolver {
     private typealias CacheValue = (Date, TimeInterval, CacheableViewModel)
@@ -27,6 +28,10 @@ final class ViewModelResolver {
             viewModels[key] = viewModel
             return viewModel
         }
+    }
+    
+    static func build(_ build: BuildResponseItemModel) -> BuildViewModel {
+        return cached(key: "BuildViewModel_\(build.slug)", ttl: Double.greatestFiniteMagnitude, model: BuildViewModel(build: build))
     }
     
     static func cached<T: CacheableViewModel>(key: String, ttl: TimeInterval, model: @autoclosure () -> T) -> T {

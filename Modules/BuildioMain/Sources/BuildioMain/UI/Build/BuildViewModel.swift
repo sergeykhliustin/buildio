@@ -11,7 +11,7 @@ import SwiftUI
 import Combine
 import BitriseAPIs
 
-final class BuildViewModel: BaseViewModel<BuildResponseItemModel> {
+final class BuildViewModel: BaseViewModel<BuildResponseItemModel>, CacheableViewModel {
     private var timer: Timer?
     private var builder: AnyCancellable?
     

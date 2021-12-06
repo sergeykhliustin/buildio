@@ -23,7 +23,7 @@ extension ScreenBuilder {
     @ViewBuilder
     func buildScreen(build: BuildResponseItemModel) -> some View {
         BuildScreenView()
-            .environmentObject(BuildViewModel(build: build))
+            .environmentObject(ViewModelResolver.build(build))
             .navigationTitle("Build #\(String(build.buildNumber))")
     }
     

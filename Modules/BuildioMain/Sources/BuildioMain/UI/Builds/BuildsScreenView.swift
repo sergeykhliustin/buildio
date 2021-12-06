@@ -18,14 +18,13 @@ struct BuildsScreenView: View, PagingView, RoutingView {
         ListItemWrapper(action: {
             route = .build(item)
         }, content: {
-            BuildRowView(model: .constant(item), route: $route)
+            BuildRowView(build: item, route: $route)
         })
     }
     
     @ViewBuilder
     func navigationLinks() -> some View {
         navigationLinks(route: $route)
-//        navigationBuild(route: $route)
     }
     
     @ViewBuilder

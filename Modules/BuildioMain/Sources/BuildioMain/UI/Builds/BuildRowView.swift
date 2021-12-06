@@ -10,21 +10,22 @@ import Models
 import Combine
 
 struct BuildRowView: View {
-    @Binding var model: BuildResponseItemModel
     var timer: Publishers.Autoconnect<Timer.TimerPublisher>!
     @State private var durationString: String?
     @Binding private var route: Route?
+    @StateObject private var viewModel: BuildViewModel
     
-    init(model: Binding<BuildResponseItemModel>, route: Binding<Route?>) {
+    init(build: BuildResponseItemModel, route: Binding<Route?>) {
         _route = route
-        _model = model
-        if model.wrappedValue.status == .running {
+        if build.status == .running {
             timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
         }
-        _durationString = State(initialValue: model.wrappedValue.durationString)
+        _durationString = State(initialValue: build.durationString)
+        _viewModel = StateObject(wrappedValue: ViewModelResolver.build(build))
     }
     
     var body: some View {
+        let model = viewModel.value!
         HStack(alignment: .top, spacing: 0) {
             let statusColor = model.color
             Rectangle()
@@ -120,7 +121,7 @@ struct BuildRowView: View {
 
 struct BuildRowView_Previews: PreviewProvider {
     static var previews: some View {
-        BuildRowView(model: .constant(BuildResponseItemModel.preview()), route: .constant(nil))
+        BuildRowView(build: BuildResponseItemModel.preview(), route: .constant(nil))
             .preferredColorScheme(.light)
             .padding(8)
             
