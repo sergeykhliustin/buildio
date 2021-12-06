@@ -18,7 +18,7 @@ struct ActivityNotification {
     
     init?(_ item: V0ActivityEventResponseItemModel, email: String) {
         guard let title = item.description else { return nil }
-        guard item.createdAt.timeIntervalSince1970 > UserDefaults.standard.lastActivityDate else { return nil }
+        guard item.createdAt.timeIntervalSince1970 > UserDefaults.standard.lastActivityDate(email: email) else { return nil }
         self.title = title
         self.email = email
         self.date = item.createdAt
@@ -82,8 +82,8 @@ final class BackgroundProcessing {
             } receiveValue: { result in
                 DispatchQueue.main.async {
                     result.forEach { activity in
-                        if activity.date.timeIntervalSince1970 > UserDefaults.standard.lastActivityDate {
-                            UserDefaults.standard.lastActivityDate = activity.date.timeIntervalSince1970
+                        if activity.date.timeIntervalSince1970 > UserDefaults.standard.lastActivityDate(email: activity.email) {
+                            UserDefaults.standard.setLastActivityDate(activity.date.timeIntervalSince1970, email: activity.email)
                         }
                         NotificationManager.runNotification(with: activity.email, subtitle: activity.title, id: UUID().uuidString) { error in
                             if let error = error {

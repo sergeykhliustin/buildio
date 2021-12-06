@@ -8,17 +8,28 @@
 import Foundation
 
 extension UserDefaults {
-    var lastActivityDate: TimeInterval {
+    func lastActivityDate(email: String) -> TimeInterval {
+        if let double = dictionary(forKey: "last_activity_dates")?[email] as? Double {
+            return double
+        }
+        return 0
+    }
+    
+    func setLastActivityDate(_ date: TimeInterval, email: String) {
+        lastActivityDates[email] = date
+    }
+    
+    private var lastActivityDates: [String: Double] {
         get {
-            self.double(forKey: "last_activity_date")
+            dictionary(forKey: "last_activity_dates") as? [String: Double] ?? [:]
         }
         set {
-            self.set(newValue, forKey: "last_activity_date")
+            set(newValue, forKey: "last_activity_dates")
             synchronize()
         }
     }
     
     func reset() {
-        lastActivityDate = 0
+        lastActivityDates = [:]
     }
 }
