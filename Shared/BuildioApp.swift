@@ -7,7 +7,7 @@
 
 import SwiftUI
 import UIKit
-import BuildioUI
+import BuildioMain
 
 @main
 struct BuildioApp: App {

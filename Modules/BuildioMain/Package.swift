@@ -4,14 +4,14 @@
 import PackageDescription
 
 let package = Package(
-    name: "BuildioUI",
+    name: "BuildioMain",
     platforms: [
         .iOS(.v14)
     ],
     products: [
         .library(
-            name: "BuildioUI",
-            targets: ["BuildioUI"])
+            name: "BuildioMain",
+            targets: ["BuildioMain"])
     ],
     dependencies: [
         .package(name: "Models", path: "../Models"),
@@ -23,7 +23,7 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "BuildioUI",
+            name: "BuildioMain",
             dependencies: [
                 "KeychainAccess",
                 "Rainbow",

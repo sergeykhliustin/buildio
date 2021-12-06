@@ -39,4 +39,3 @@ struct DebugLogsScreenView_Previews: PreviewProvider {
         DebugScreenView()
     }
 }
-

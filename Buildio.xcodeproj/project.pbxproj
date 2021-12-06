@@ -7,18 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3F5C13582751047A0002AF5B /* BuildioUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3F5C13572751047A0002AF5B /* BuildioUI */; };
 		3F7063252750F6130028150F /* BuildioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7063242750F6130028150F /* BuildioApp.swift */; };
 		3FC502202750FF6C005BC8F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FC5021F2750FF6C005BC8F3 /* Assets.xcassets */; };
+		3FF23B44275EAE2800AFE0F1 /* BuildioMain in Frameworks */ = {isa = PBXBuildFile; productRef = 3FF23B43275EAE2800AFE0F1 /* BuildioMain */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3F3295842735A623001994B0 /* Buildio (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Buildio (iOS).entitlements"; sourceTree = "<group>"; };
-		3F5C1356275103740002AF5B /* BuildioUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = BuildioUI; path = Modules/BuildioUI; sourceTree = "<group>"; };
 		3F7063242750F6130028150F /* BuildioApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildioApp.swift; sourceTree = "<group>"; };
 		3FC5021F2750FF6C005BC8F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3FD8FDBF2731F78C0060BDF4 /* Buildio.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Buildio.plist; sourceTree = "<group>"; };
 		3FE7B54B27072C1E00A6D8E1 /* Buildio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Buildio.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FF23B42275EAE1000AFE0F1 /* BuildioMain */ = {isa = PBXFileReference; lastKnownFileType = folder; name = BuildioMain; path = Modules/BuildioMain; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,7 +26,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F5C13582751047A0002AF5B /* BuildioUI in Frameworks */,
+				3FF23B44275EAE2800AFE0F1 /* BuildioMain in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,7 +43,7 @@
 		3F19ABAB272C092D0070DFE3 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				3F5C1356275103740002AF5B /* BuildioUI */,
+				3FF23B42275EAE1000AFE0F1 /* BuildioMain */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -103,7 +103,7 @@
 			);
 			name = Buildio;
 			packageProductDependencies = (
-				3F5C13572751047A0002AF5B /* BuildioUI */,
+				3FF23B43275EAE2800AFE0F1 /* BuildioMain */,
 			);
 			productName = "Buildio (iOS)";
 			productReference = 3FE7B54B27072C1E00A6D8E1 /* Buildio.app */;
@@ -498,9 +498,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		3F5C13572751047A0002AF5B /* BuildioUI */ = {
+		3FF23B43275EAE2800AFE0F1 /* BuildioMain */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = BuildioUI;
+			productName = BuildioMain;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
