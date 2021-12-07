@@ -12,8 +12,10 @@ import Combine
 struct BuildRowView: View {
     @Binding private var route: Route?
     @StateObject private var viewModel: BuildViewModel
+    let showBottomControls: Bool
     
-    init(build: BuildResponseItemModel, route: Binding<Route?>) {
+    init(build: BuildResponseItemModel, route: Binding<Route?>, showBottomControls: Bool = true) {
+        self.showBottomControls = showBottomControls
         _route = route
         _viewModel = StateObject(wrappedValue: ViewModelResolver.build(build))
     }
@@ -81,26 +83,28 @@ struct BuildRowView: View {
                 
                 Rectangle().fill(Color.b_BorderLight)
                     .frame(height: 1)
-                HStack(spacing: 8) {
-                    Button(action: {
-                        route = .logs(model)
-                    }, label: {
-                        Image(systemName: "note.text")
-                        Text("Logs")
-                    })
-                    .buttonStyle(BorderButtonStyle())
-                    if model.finishedAt != nil {
-                        Spacer()
+                if showBottomControls {
+                    HStack(spacing: 8) {
                         Button(action: {
-                            route = .artifacts(model)
+                            route = .logs(model)
                         }, label: {
-                            Image(systemName: "archivebox")
-                            Text("Apps & Artifacts")
+                            Image(systemName: "note.text")
+                            Text("Logs")
                         })
-                        .buttonStyle(BorderButtonStyle())
+                            .buttonStyle(BorderButtonStyle())
+                        if model.finishedAt != nil {
+                            Spacer()
+                            Button(action: {
+                                route = .artifacts(model)
+                            }, label: {
+                                Image(systemName: "archivebox")
+                                Text("Apps & Artifacts")
+                            })
+                                .buttonStyle(BorderButtonStyle(padding: 2))
+                        }
                     }
+                    .padding(2)
                 }
-                .padding(.horizontal, 4)
             }
             
         }

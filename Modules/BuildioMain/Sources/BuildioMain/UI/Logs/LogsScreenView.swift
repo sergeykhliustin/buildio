@@ -10,19 +10,24 @@ import Models
 import Rainbow
 
 struct LogsScreenView: BaseView {
+    @Environment(\.fullscreen) private var fullscreen
     @StateObject var model: LogsViewModel
+    let build: BuildResponseItemModel
     
     init(build: BuildResponseItemModel) {
+        self.build = build
         self._model = StateObject(wrappedValue: LogsViewModel(build: build))
     }
     
     var body: some View {
-        LogsView(logs: $model.attributedLogs)
-            .toolbar {
-                if case .loading = model.state {
-                    ProgressView()
+        VStack(spacing: 0) {   
+            LogsView(logs: $model.attributedLogs)
+                .toolbar {
+                    if case .loading = model.state {
+                        ProgressView()
+                    }
                 }
-            }
+        }
     }
 }
 

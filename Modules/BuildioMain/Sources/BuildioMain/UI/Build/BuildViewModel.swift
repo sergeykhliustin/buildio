@@ -14,7 +14,7 @@ import BitriseAPIs
 final class BuildViewModel: BaseViewModel<BuildResponseItemModel>, CacheableViewModel {
     @Published var updater = false
     
-    private var builder: AnyCancellable?
+    private var actionCancellable: AnyCancellable?
     private var estimatorFetcher: AnyCancellable?
     private var updaterTimer: Timer?
     private var statusTimer: Timer?
@@ -64,10 +64,10 @@ final class BuildViewModel: BaseViewModel<BuildResponseItemModel>, CacheableView
         if case .loading = state {
             return
         }
-        if let value = self.value, builder == nil {
+        if let value = self.value, actionCancellable == nil {
             self.state = .loading
             
-            builder = BuildsAPI()
+            actionCancellable = BuildsAPI()
                 .buildTrigger(appSlug: value.repository.slug, buildParams: BuildTriggerParams(build: value))
                 .sink(receiveCompletion: { [weak self] result in
                     guard let self = self else { return }
@@ -79,7 +79,35 @@ final class BuildViewModel: BaseViewModel<BuildResponseItemModel>, CacheableView
                         self.state = .value
                         completion(nil)
                     }
-                    self.builder = nil
+                    self.actionCancellable = nil
+                }, receiveValue: { value in
+                    logger.debug(value)
+                })
+        }
+    }
+    
+    func abort(reason: String?, completion: @escaping (ErrorResponse?) -> Void) {
+        if case .loading = state {
+            return
+        }
+        if let value = self.value, actionCancellable == nil {
+            self.state = .loading
+            
+            actionCancellable = BuildsAPI()
+                .buildAbort(appSlug: value.repository.slug,
+                            buildSlug: value.slug,
+                            buildAbortParams: V0BuildAbortParams(abortReason: reason ?? "", abortWithSuccess: false, skipNotifications: false))
+                .sink(receiveCompletion: { [weak self] result in
+                    guard let self = self else { return }
+                    if case .failure(let error) = result {
+                        self.error = error
+                        self.state = .error
+                        completion(error)
+                    } else {
+                        self.state = .value
+                        completion(nil)
+                    }
+                    self.actionCancellable = nil
                 }, receiveValue: { value in
                     logger.debug(value)
                 })

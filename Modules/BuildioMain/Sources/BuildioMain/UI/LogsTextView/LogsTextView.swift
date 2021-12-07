@@ -27,6 +27,7 @@ struct LogsTextView: UIViewRepresentable {
     
     func makeUIView(context: Context) -> UIView {
         let view = UIView()
+        view.clipsToBounds = true
         view.backgroundColor = UIColor(Color.b_LogsBackground)
         let textView = UITextView()
         textView.delegate = scrollViewHandler

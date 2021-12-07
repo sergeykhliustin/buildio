@@ -103,12 +103,14 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
     @Published var state: BaseViewModelState = .idle
     @Published var error: ErrorResponse?
     
-    var fetcher: AnyCancellable?
-    var tokenRefresher: AnyCancellable?
+    private var fetcher: AnyCancellable?
+    private var tokenRefresher: AnyCancellable?
     
     private var tokenUpdated: Bool = false
     
     private var activityWatcher: AnyCancellable?
+    
+    private var refreshStarted: Date?
     private var lastRefreshDate: Date?
     
     var isScrollViewRefreshing: Binding<Bool> {
@@ -177,7 +179,7 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
         if tokenUpdated {
             self.value = nil
         }
-        lastRefreshDate = Date()
+        refreshStarted = Date()
     }
     
     func refresh() {
@@ -207,6 +209,8 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
     }
     
     func afterRefresh() {
-        
+        if state != .error {
+            lastRefreshDate = refreshStarted
+        }
     }
 }
