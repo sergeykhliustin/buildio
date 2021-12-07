@@ -11,6 +11,14 @@ import SwiftUI
 import Combine
 import BitriseAPIs
 
+struct ModelError: Hashable, Identifiable {
+    var id: Int {
+        return hashValue
+    }
+    let title: String
+    let message: String
+}
+
 final class BuildViewModel: BaseViewModel<BuildResponseItemModel>, CacheableViewModel {
     @Published var updater = false
     
@@ -19,6 +27,7 @@ final class BuildViewModel: BaseViewModel<BuildResponseItemModel>, CacheableView
     private var updaterTimer: Timer?
     private var statusTimer: Timer?
     @Published private(set) var estimatedDuration: Double?
+    @Published var actionError: ModelError?
     
     var progress: Double? {
         if let estimatedDuration = estimatedDuration,
@@ -60,7 +69,7 @@ final class BuildViewModel: BaseViewModel<BuildResponseItemModel>, CacheableView
         fetchEstimateIfNeeded()
     }
     
-    func rebuild(completion: @escaping (ErrorResponse?) -> Void) {
+    func rebuild(completion: ((ErrorResponse?) -> Void)? = nil) {
         if case .loading = state {
             return
         }
@@ -72,12 +81,14 @@ final class BuildViewModel: BaseViewModel<BuildResponseItemModel>, CacheableView
                 .sink(receiveCompletion: { [weak self] result in
                     guard let self = self else { return }
                     if case .failure(let error) = result {
+                        self.actionError = ModelError(title: "Failed to start the Build", message: error.rawErrorString)
                         self.error = error
                         self.state = .error
-                        completion(error)
+                        completion?(error)
                     } else {
                         self.state = .value
-                        completion(nil)
+                        self.refresh()
+                        completion?(nil)
                     }
                     self.actionCancellable = nil
                 }, receiveValue: { value in
@@ -86,7 +97,8 @@ final class BuildViewModel: BaseViewModel<BuildResponseItemModel>, CacheableView
         }
     }
     
-    func abort(reason: String?, completion: @escaping (ErrorResponse?) -> Void) {
+    func abort(reason: String?, completion: (() -> Void)? = nil) {
+        guard let reason = reason else { return }
         if case .loading = state {
             return
         }
@@ -96,16 +108,18 @@ final class BuildViewModel: BaseViewModel<BuildResponseItemModel>, CacheableView
             actionCancellable = BuildsAPI()
                 .buildAbort(appSlug: value.repository.slug,
                             buildSlug: value.slug,
-                            buildAbortParams: V0BuildAbortParams(abortReason: reason ?? "", abortWithSuccess: false, skipNotifications: false))
+                            buildAbortParams: V0BuildAbortParams(abortReason: reason, abortWithSuccess: false, skipNotifications: false))
                 .sink(receiveCompletion: { [weak self] result in
                     guard let self = self else { return }
                     if case .failure(let error) = result {
+                        self.actionError = ModelError(title: "Failed to abort the Build", message: error.rawErrorString)
                         self.error = error
                         self.state = .error
-                        completion(error)
+                        completion?()
                     } else {
                         self.state = .value
-                        completion(nil)
+                        self.refresh()
+                        completion?()
                     }
                     self.actionCancellable = nil
                 }, receiveValue: { value in

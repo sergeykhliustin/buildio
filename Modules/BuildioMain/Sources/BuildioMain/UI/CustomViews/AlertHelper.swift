@@ -17,7 +17,7 @@ extension UIAlertController {
         })
         let textField = self.textFields?.first
         addAction(UIAlertAction(title: alert.accept, style: .default) { _ in
-            alert.action(textField?.text)
+            alert.action(textField?.text ?? "")
         })
     }
 }
@@ -66,6 +66,15 @@ public struct AlertConfig {
     public var accept: String = "OK"
     public var cancel: String = "Cancel"
     public var action: (String?) -> Void
+    
+    static func abort(_ action: @escaping (String?) -> Void) -> Self {
+        return AlertConfig(title: "Are you sure you want to abort the current Build?",
+                    message: "You can specify a reason below for aborting this build. Your text will be included in the build email sent to team members. Leave blank if you are okay with the default message.",
+                    placeholder: "Abort reason (optional)",
+                    accept: "Abort",
+                    cancel: "Cancel",
+                    action: action)
+    }
 }
 
 extension View {

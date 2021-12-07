@@ -20,11 +20,18 @@ struct CustomProgressViewStyle: ProgressViewStyle {
             .fixedSize()
             .rotationEffect(.degrees(degrees))
             .onAppear {
-                DispatchQueue.main.async {
-                    withAnimation(.easeInOut(duration: 0.5).repeatForever()) {
-                        degrees = 270
-                    }
+                withAnimation(Animation.easeInOut(duration: 0.5).repeatForever()) {
+                    degrees = 270
                 }
             }
     }
 }
+
+#if DEBUG
+struct CustomProgressViewStyle_Previews: PreviewProvider {
+    static var previews: some View {
+        ProgressView()
+            .progressViewStyle(CustomProgressViewStyle())
+    }
+}
+#endif

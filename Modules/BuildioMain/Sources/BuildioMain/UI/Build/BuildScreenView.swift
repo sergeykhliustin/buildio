@@ -31,8 +31,6 @@ struct BuildScreenView: BaseView, RoutingView {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var model: BuildViewModel
     
-    @State private var rebuildError: ErrorResponse?
-    @State private var abortError: ErrorResponse?
     @State var route: Route?
     @State private var abortConfirmation: Bool = false
     @State private var abortReason: String = ""
@@ -57,8 +55,6 @@ struct BuildScreenView: BaseView, RoutingView {
                         model.rebuild { error in
                             if error == nil {
                                 presentationMode.wrappedValue.dismiss()
-                            } else {
-                                self.rebuildError = error
                             }
                         }
                     } label: {
@@ -88,32 +84,15 @@ struct BuildScreenView: BaseView, RoutingView {
             }
             .padding(.vertical, 8)
         }
-        .alert(item: $rebuildError, content: { error in
-            Alert(title: Text("Failed to start the Build"), message: Text(error.rawErrorString), dismissButton: nil)
+        .alert(item: $model.actionError, content: { error in
+            Alert(title: Text(error.title), message: Text(error.message))
         })
-        .alert(item: $abortError, content: { error in
-            Alert(title: Text("Failed to abort the Build"), message: Text(error.rawErrorString), dismissButton: nil)
-        })
-        .alert(isPresented: $abortConfirmation,
-               AlertConfig(title: "Are you sure you want to abort the current Build?",
-                           message: "You can specify a reason below for aborting this build. Your text will be included in the build email sent to team members. Leave blank if you are okay with the default message.",
-                           placeholder: "Abort reason (optional)",
-                           accept: "Abort",
-                           cancel: "Cancel",
-                           action: { text in
-            model.abort(reason: text) { error in
-                self.abortError = error
-            }
-        }))
+        .alert(isPresented: $abortConfirmation, AlertConfig.abort({ model.abort(reason: $0) }))
         .toolbar {
             if case .loading = model.state {
                 ProgressView()
             }
         }
-    }
-    
-    func isError() -> Binding<Bool> {
-        return Binding(get: { rebuildError != nil }, set: { newValue in if !newValue { rebuildError = nil } })
     }
 }
 

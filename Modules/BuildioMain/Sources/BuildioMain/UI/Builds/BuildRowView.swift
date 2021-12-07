@@ -14,6 +14,9 @@ struct BuildRowView: View {
     @StateObject private var viewModel: BuildViewModel
     let showBottomControls: Bool
     
+    @State private var abortConfirmation: Bool = false
+    @State private var abortReason: String = ""
+    
     init(build: BuildResponseItemModel, route: Binding<Route?>, showBottomControls: Bool = true) {
         self.showBottomControls = showBottomControls
         _route = route
@@ -52,7 +55,11 @@ struct BuildRowView: View {
                         }
                     }
                     
-                    Text(model.durationString ?? "")
+                    if viewModel.state == .loading {
+                        ProgressView()
+                    } else {   
+                        Text(model.durationString ?? "")
+                    }
                 }
                 .lineLimit(1)
                 .padding(8)
@@ -91,8 +98,17 @@ struct BuildRowView: View {
                             Image(systemName: "note.text")
                             Text("Logs")
                         })
-                            .buttonStyle(BorderButtonStyle())
-                        if model.finishedAt != nil {
+                            .buttonStyle(BorderButtonStyle(padding: 2))
+                        if model.status == .running {
+                            Spacer()
+                            Button(action: {
+                                abortConfirmation = true
+                            }, label: {
+                                Image(systemName: "nosign")
+                                Text("Abort")
+                            })
+                                .buttonStyle(BorderButtonStyle(padding: 2))
+                        } else {
                             Spacer()
                             Button(action: {
                                 route = .artifacts(model)
@@ -101,17 +117,30 @@ struct BuildRowView: View {
                                 Text("Apps & Artifacts")
                             })
                                 .buttonStyle(BorderButtonStyle(padding: 2))
+                            
+                            Spacer()
+                            Button(action: {
+                                viewModel.rebuild()
+                            }, label: {
+                                Image(systemName: "hammer")
+                                Text("Rebuild")
+                            })
+                                .buttonStyle(BorderButtonStyle(padding: 2))
                         }
                     }
                     .padding(2)
                 }
+                Group {
+                    
+                }.alert(isPresented: $abortConfirmation, AlertConfig.abort({ viewModel.abort(reason: $0) }))
             }
-            
         }
+        .alert(item: $viewModel.actionError, content: { error in
+            Alert(title: Text(error.title), message: Text(error.message))
+        })
         .font(.footnote)
         .multilineTextAlignment(.leading)
         .foregroundColor(.b_TextBlack)
-        
     }
 }
 
