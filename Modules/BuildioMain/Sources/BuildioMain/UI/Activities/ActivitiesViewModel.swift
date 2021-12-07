@@ -13,6 +13,14 @@ import BitriseAPIs
 final class ActivitiesViewModel: PagingViewModel<V0ActivityEventListResponseModel>, ResolvableViewModel {
     private let fetchLimit: Int = 10
     
+    deinit {
+        logger.debug("")
+    }
+    
+    override class var shouldAutoUpdate: Bool {
+        return true
+    }
+    
     override func fetch(params: Any?) -> AnyPublisher<V0ActivityEventListResponseModel, ErrorResponse> {
         ActivityAPI().activityList(limit: fetchLimit)
             .eraseToAnyPublisher()

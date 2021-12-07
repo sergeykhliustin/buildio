@@ -29,4 +29,8 @@ public struct V0BuildListResponseModel: Codable, Hashable, PagingResponseModel {
         try container.encodeIfPresent(data, forKey: .data)
         try container.encodeIfPresent(paging, forKey: .paging)
     }
+    
+    public static func empty() -> Self {
+        return V0BuildListResponseModel(data: [], paging: V0PagingResponseModel.empty())
+    }
 }

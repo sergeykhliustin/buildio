@@ -12,8 +12,22 @@ import Combine
 import BitriseAPIs
 
 final class BuildViewModel: BaseViewModel<BuildResponseItemModel>, CacheableViewModel {
-    private var timer: Timer?
+    @Published var updater = false
+    
     private var builder: AnyCancellable?
+    private var estimatorFetcher: AnyCancellable?
+    private var updaterTimer: Timer?
+    private var statusTimer: Timer?
+    @Published private(set) var estimatedDuration: Double?
+    
+    var progress: Double? {
+        if let estimatedDuration = estimatedDuration,
+           let duration = value?.duration,
+            value?.status == .running {
+            return min(duration / estimatedDuration, 0.99)
+        }
+        return nil
+    }
     
     deinit {
         logger.debug("")
@@ -23,10 +37,27 @@ final class BuildViewModel: BaseViewModel<BuildResponseItemModel>, CacheableView
         return false
     }
     
+    override class var shouldHandleTokenUpdates: Bool {
+        return false
+    }
+    
+    override class var shouldAutoUpdate: Bool {
+        return true
+    }
+    
     init(build: BuildResponseItemModel) {
         super.init()
         self.value = build
-        scheduleNextUpdate()
+        startUpdaterTimer()
+        startStatusTimer()
+        fetchEstimateIfNeeded()
+    }
+    
+    override func afterRefresh() {
+        super.afterRefresh()
+        startUpdaterTimer()
+        startStatusTimer()
+        fetchEstimateIfNeeded()
     }
     
     func rebuild(completion: @escaping (ErrorResponse?) -> Void) {
@@ -73,22 +104,45 @@ final class BuildViewModel: BaseViewModel<BuildResponseItemModel>, CacheableView
             .eraseToAnyPublisher()
     }
     
-    override func afterRefresh() {
-        super.afterRefresh()
-        scheduleNextUpdate()
+    private func fetchEstimateIfNeeded() {
+        guard let value = self.value else { return }
+        guard value.status == .running else { return }
+        guard let finishedAt = value.environmentPrepareFinishedAt else { return }
+        guard estimatedDuration == nil else { return }
+        BuildsAPI()
+            .buildList(appSlug: value.repository.slug,
+                       branch: value.branch,
+                       workflow: value.triggeredWorkflow,
+                       before: finishedAt,
+                       status: .success,
+                       limit: 1)
+            .replaceError(with: .empty())
+            .map({ $0.data.first?.duration })
+            .assign(to: &$estimatedDuration)
     }
     
-    private func scheduleNextUpdate() {
-        timer?.invalidate()
-        if value?.status != .running {
-            return
-        }
-        timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false, block: { [weak self] timer in
+    private func startStatusTimer() {
+        statusTimer?.invalidate()
+        guard case .running = value?.status else { return }
+        guard value?.environmentPrepareFinishedAt == nil else { return }
+        statusTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false, block: { [weak self] timer in
             guard let self = self else {
                 timer.invalidate()
                 return
             }
             self.refresh()
+        })
+    }
+    
+    private func startUpdaterTimer() {
+        updaterTimer?.invalidate()
+        guard case .running = value?.status else { return }
+        updaterTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] timer in
+            guard let self = self else {
+                timer.invalidate()
+                return
+            }
+            self.updater.toggle()
         })
     }
 }

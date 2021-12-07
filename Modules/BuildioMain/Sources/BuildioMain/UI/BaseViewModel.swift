@@ -108,6 +108,9 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
     
     private var tokenUpdated: Bool = false
     
+    private var activityWatcher: AnyCancellable?
+    private var lastRefreshDate: Date?
+    
     var isScrollViewRefreshing: Binding<Bool> {
         return Binding(get: { self.state == .loading && self.value == nil }, set: { _ in self.refresh() })
     }
@@ -132,6 +135,10 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
         return true
     }
     
+    class var shouldAutoUpdate: Bool {
+        return false
+    }
+    
     init() {
         if Self.shouldRefreshOnInit {
             refresh()
@@ -147,6 +154,19 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
                     }
                 }
         }
+        
+        if Self.shouldAutoUpdate {
+            activityWatcher = ActivityWatcher.shared.$lastActivityDate.sink { [weak self] date in
+                guard let self = self else { return }
+                if self.state == .value {
+                    if let lastRefreshDate = self.lastRefreshDate, lastRefreshDate < date {
+                        self.refresh()
+                    }
+                } else if self.state == .error {
+                    self.refresh()
+                }
+            }
+        }
     }
     
     func fetch(params: ParamsType) -> AnyPublisher<ValueType, ErrorResponse> {
@@ -157,6 +177,7 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
         if tokenUpdated {
             self.value = nil
         }
+        lastRefreshDate = Date()
     }
     
     func refresh() {

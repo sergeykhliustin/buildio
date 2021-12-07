@@ -73,7 +73,7 @@ struct BuildScreenView: BaseView, RoutingView {
                 ListItemWrapper {
                     
                 } content: {
-                    BuildView(model: .constant(value))
+                    BuildView(model: value, progress: model.progress)
                 }
             }
             .padding(.vertical, 8)

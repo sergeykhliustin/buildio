@@ -10,17 +10,11 @@ import Models
 import Combine
 
 struct BuildRowView: View {
-    var timer: Publishers.Autoconnect<Timer.TimerPublisher>!
-    @State private var durationString: String?
     @Binding private var route: Route?
     @StateObject private var viewModel: BuildViewModel
     
     init(build: BuildResponseItemModel, route: Binding<Route?>) {
         _route = route
-        if build.status == .running {
-            timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-        }
-        _durationString = State(initialValue: build.durationString)
         _viewModel = StateObject(wrappedValue: ViewModelResolver.build(build))
     }
     
@@ -33,6 +27,10 @@ struct BuildRowView: View {
                 .frame(width: 5)
             
             VStack(alignment: .leading, spacing: 0) {
+                if let progress = viewModel.progress {
+                    ProgressView(value: progress)
+                        .progressViewStyle(.linear)
+                }
                 HStack(alignment: .center, spacing: 8) {
                     AvatarView(app: model.repository)
                         .frame(width: 40, height: 40)
@@ -51,14 +49,8 @@ struct BuildRowView: View {
                             }
                         }
                     }
-                    if model.status == .running {
-                        Text(durationString ?? "")
-                            .onReceive(timer) { _ in
-                                durationString = model.durationString
-                            }
-                    } else {
-                        Text(durationString ?? "")
-                    }
+                    
+                    Text(model.durationString ?? "")
                 }
                 .lineLimit(1)
                 .padding(8)

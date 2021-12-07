@@ -24,11 +24,12 @@ final class ActivityWatcher: ObservableObject {
         fetcher = ActivityAPI()
             .activityList(limit: 1)
             .map({ $0.data.first?.createdAt })
-            .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] date in
+            .sink(receiveCompletion: { [weak self] _ in
+                self?.scheduleNextUpdate()
+            }, receiveValue: { [weak self] date in
                 if let date = date {
                     self?.lastActivityDate = date
                 }
-                self?.scheduleNextUpdate()
             })
     }
     

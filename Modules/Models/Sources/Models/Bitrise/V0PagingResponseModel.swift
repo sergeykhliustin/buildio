@@ -36,4 +36,8 @@ public struct V0PagingResponseModel: Codable, Hashable {
         try container.encodeIfPresent(pageItemLimit, forKey: .pageItemLimit)
         try container.encodeIfPresent(totalItemCount, forKey: .totalItemCount)
     }
+    
+    public static func empty() -> Self {
+        return V0PagingResponseModel(next: nil, pageItemLimit: nil, totalItemCount: nil)
+    }
 }

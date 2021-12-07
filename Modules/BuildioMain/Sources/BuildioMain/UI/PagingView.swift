@@ -41,8 +41,8 @@ extension PagingView {
             RefreshableScrollView(refreshing: model.isScrollViewRefreshing) {
                 if let error = model.error, model.state == .error {
                     buildErrorView(error)
-                } else {
-                    
+                } else if model.items.isEmpty && model.state == .value {
+                    buildEmptyView()
                 }
                 LazyVStack(spacing: 16, pinnedViews: [.sectionHeaders]) {
                     Section {
@@ -80,6 +80,19 @@ extension PagingView {
                 additionalToolbarItems()
             }
         }
+    }
+    
+    @ViewBuilder
+    func buildEmptyView() -> some View {
+        VStack(spacing: 16) {
+            Image(systemName: "hourglass")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 100, height: 100, alignment: .center)
+                .foregroundColor(Color.b_PrimaryLight)
+            Text("Nothing to show")
+        }
+        .padding(16)
     }
     
     @ViewBuilder

@@ -78,6 +78,10 @@ extension Date: JSONEncodable {
     func encodeToJSON() -> Any {
         return CodableHelper.dateFormatter.string(from: self) as Any
     }
+    
+    func encodeToJSONAsInt() -> Any {
+        Int(self.timeIntervalSince1970).encodeToJSON()
+    }
 }
 
 extension URL: JSONEncodable {

@@ -49,7 +49,8 @@ struct BuildView: View {
         }
     }
     
-    @Binding var model: BuildResponseItemModel
+    let model: BuildResponseItemModel
+    let progress: Double?
     
     var body: some View {
         HStack(alignment: .top, spacing: 0) {
@@ -90,12 +91,19 @@ struct BuildView: View {
                         .font(.subheadline)
                         .padding(.top, 4)
                     
-                    Rectangle().fill(Color.b_BorderLight).frame(height: 1)
+                    ProgressView(value: progress ?? 0)
+                        .progressViewStyle(.linear)
                 }
                 
                 Group {
-                    
-                    Text("Triggered @ " + model.triggeredAt.full).primary()
+                    HStack {
+                        Text("Triggered @ " + model.triggeredAt.full)
+                        Spacer()
+                        if let progress = progress {
+                            Text("\(Int(progress * 100))%")
+                        }
+                    }
+                    .primary()
                     Item(imageName: "clock", text: model.durationString)
                     Item(imageName: "coloncurrencysign.circle", text: model.creditCost?.description)
                     Item(imageName: "number", text: String(model.buildNumber))
@@ -178,7 +186,7 @@ struct BuildView: View {
 
 struct BuildView_Previews: PreviewProvider {
     static var previews: some View {
-        BuildView(model: .constant(BuildResponseItemModel.preview()))
+        BuildView(model: BuildResponseItemModel.preview(), progress: 0.99)
             .preferredColorScheme(.light)
             
     }
