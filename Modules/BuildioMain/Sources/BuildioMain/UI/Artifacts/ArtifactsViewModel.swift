@@ -14,6 +14,14 @@ final class ArtifactsViewModel: PagingViewModel<V0ArtifactListResponseModel> {
     private let fetchLimit: Int = 10
     private let build: BuildResponseItemModel
     
+    override class var shouldRefreshOnInit: Bool {
+        return true
+    }
+    
+    override class var shouldRefreshAfterBackground: Bool {
+        return true
+    }
+    
     init(build: BuildResponseItemModel) {
         self.build = build
         super.init()
