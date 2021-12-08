@@ -11,7 +11,7 @@ import Combine
 import UIKit
 import Models
 
-struct ActivityNotification {
+private struct ActivityNotification {
     let email: String
     let title: String
     let date: Date
@@ -92,7 +92,7 @@ final class BackgroundProcessing {
                         if activity.date.timeIntervalSince1970 > UserDefaults.standard.lastActivityDate(email: activity.email) {
                             UserDefaults.standard.setLastActivityDate(activity.date.timeIntervalSince1970, email: activity.email)
                         }
-                        NotificationManager.runNotification(with: "\(activity.email) @ \(activity.time)", subtitle: activity.title, id: UUID().uuidString) { error in
+                        NotificationManager.runNotification(with: "\(activity.email)", subtitle: "\(activity.time):\n\(activity.title)", id: UUID().uuidString) { error in
                             if let error = error {
                                 logger.error("[BGTASK \(identifier)] \(error)")
                             }

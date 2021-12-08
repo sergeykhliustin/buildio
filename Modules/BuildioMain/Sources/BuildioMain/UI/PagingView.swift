@@ -33,40 +33,38 @@ protocol PagingView: BaseView where ModelType: PagingViewModelProtocol, ModelTyp
 extension PagingView {
     @ViewBuilder
     var body: some View {
-        VStack(spacing: 0) {
+        RefreshableScrollView(refreshing: model.isScrollViewRefreshing) {
             ZStack {
                 navigationLinks()
             }
             .frame(width: 0, height: 0)
-            RefreshableScrollView(refreshing: model.isScrollViewRefreshing) {
-                if let error = model.error, model.state == .error {
-                    buildErrorView(error)
-                } else if model.items.isEmpty && model.state == .value {
-                    buildEmptyView()
-                }
-                LazyVStack(spacing: 16, pinnedViews: [.sectionHeaders]) {
-                    Section {
-                        ForEach(model.items) { item in
-                            buildItemView(item)
-                                .onAppear {
-                                    if item == model.items.last {
-                                        logger.debug("UI load more builds")
-                                        model.nextPage()
-                                    }
+            if let error = model.error, model.state == .error {
+                buildErrorView(error)
+            } else if model.items.isEmpty && model.state == .value {
+                buildEmptyView()
+            }
+            LazyVStack(spacing: 16, pinnedViews: [.sectionHeaders]) {
+                Section {
+                    ForEach(model.items) { item in
+                        buildItemView(item)
+                            .onAppear {
+                                if item == model.items.last {
+                                    logger.debug("UI load more builds")
+                                    model.nextPage()
                                 }
-                        }
-                    } header: {
-                        headerBody()
-                            .frame(height: 44)
+                            }
                     }
+                } header: {
+                    headerBody()
+                        .frame(height: 44)
                 }
-                .padding(.vertical, 16)
-                if case .loading = model.pagingState {
-                    ProgressView()
-                        .padding(.bottom, 16)
-                } else if case .error(let error) = model.pagingState {
-                    buildErrorView(error)
-                }
+            }
+            .padding(.vertical, 16)
+            if case .loading = model.pagingState {
+                ProgressView()
+                    .padding(.bottom, 16)
+            } else if case .error(let error) = model.pagingState {
+                buildErrorView(error)
             }
         }
         .onAppear(perform: {

@@ -9,15 +9,13 @@ import SwiftUI
 
 struct RefreshableScrollView<Content: View>: View {
     @State private var previousScrollOffset: CGFloat = 0
-    @State private var scrollOffset: CGFloat = 0
-    @State private var rotation: Angle = .degrees(0)
-    @State private var opacity: CGFloat = 0
+    @State private var progress: CGFloat = 0
     
     var threshold: CGFloat = 40
     @Binding var refreshing: Bool
     @ViewBuilder let content: () -> Content
 
-    init(height: CGFloat = 60, refreshing: Binding<Bool>, @ViewBuilder content: @escaping () -> Content) {
+    init(height: CGFloat = 40, refreshing: Binding<Bool>, @ViewBuilder content: @escaping () -> Content) {
         self.threshold = height
         self._refreshing = refreshing
         self.content = content
@@ -25,20 +23,20 @@ struct RefreshableScrollView<Content: View>: View {
     }
     
     var body: some View {
-        return VStack(spacing: 0) {
-            ScrollView {
-                ZStack(alignment: .top) {
-                    MovingView()
-                    VStack(spacing: 0) {
-                        SymbolView(threshold: self.threshold, height: self.scrollOffset > 0 ? self.scrollOffset : 0.0, loading: self.refreshing, rotation: self.rotation, opacity: self.opacity)
-                        self.content()
-                    }
-                }
+        ScrollView {
+            ZStack(alignment: .top) {
+                MovingView()
+                SymbolView(threshold: self.threshold,
+                           loading: self.refreshing,
+                           progress: self.progress)
+                
+                self.content()
+                    .offset(x: 0, y: threshold * progress)
             }
-            .background(FixedView())
-            .onPreferenceChange(RefreshableKeyTypes.PrefKey.self) { values in
-                self.refreshLogic(values: values)
-            }
+        }
+        .background(FixedView())
+        .onPreferenceChange(RefreshableKeyTypes.PrefKey.self) { values in
+            self.refreshLogic(values: values)
         }
     }
     
@@ -48,28 +46,34 @@ struct RefreshableScrollView<Content: View>: View {
             let movingBounds = values.first { $0.vType == .movingView }?.bounds ?? .zero
             let fixedBounds = values.first { $0.vType == .fixedView }?.bounds ?? .zero
             
-            self.scrollOffset = movingBounds.minY - fixedBounds.minY
+            let scrollOffset = movingBounds.minY - fixedBounds.minY
             
-            self.rotation = self.symbolRotation(self.scrollOffset)
-            self.opacity = self.symbolOpacity(self.scrollOffset)
+            self.progress = symbolProgress(scrollOffset)
             
             // Crossing the threshold on the way down, we start the refresh process
-            if !self.refreshing && (self.scrollOffset > self.threshold && self.previousScrollOffset <= self.threshold) {
+            if !self.refreshing && (scrollOffset > self.threshold && self.previousScrollOffset <= self.threshold) {
                 withAnimation {
                     self.refreshing = true
                 }
             }
             
             // Update last scroll offset
-            self.previousScrollOffset = self.scrollOffset
+            self.previousScrollOffset = scrollOffset
         }
     }
     
-    func symbolOpacity(_ scrollOffset: CGFloat) -> CGFloat {
+    private func symbolProgress(_ scrollOffset: CGFloat) -> CGFloat {
+        if scrollOffset < 0 {
+            return 0
+        }
+        return min(scrollOffset / threshold, 1.0)
+    }
+    
+    private func symbolOpacity(_ scrollOffset: CGFloat) -> CGFloat {
         return scrollOffset / self.threshold
     }
     
-    func symbolRotation(_ scrollOffset: CGFloat) -> Angle {
+    private func symbolRotation(_ scrollOffset: CGFloat) -> Angle {
         
         // We will begin rotation, only after we have passed
         // 60% of the way of reaching the threshold.
@@ -86,10 +90,8 @@ struct RefreshableScrollView<Content: View>: View {
     
     struct SymbolView: View {
         var threshold: CGFloat
-        var height: CGFloat
         var loading: Bool
-        var rotation: Angle
-        var opacity: CGFloat
+        var progress: CGFloat
         
         var body: some View {
             Group {
@@ -100,13 +102,12 @@ struct RefreshableScrollView<Content: View>: View {
                         Spacer()
                     }.frame(height: threshold).fixedSize()
                 } else {
-                    Image(systemName: "arrow.down") // If not loading, show the arrow
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: height * 0.25, height: height * 0.25).fixedSize()
-                        .padding(height * 0.375)
-                        .rotationEffect(rotation)
-                        .opacity(opacity)
+                    ZStack(alignment: .center) {
+                        ProgressView(value: progress)
+                            .progressViewStyle(CircularProgressViewStyle())
+                    }
+                    .frame(width: threshold, height: threshold, alignment: .center).fixedSize()
+                    .opacity(progress == 0 ? 0 : 1)
                 }
             }
         }

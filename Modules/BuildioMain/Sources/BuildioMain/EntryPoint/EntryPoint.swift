@@ -29,7 +29,7 @@ public struct EntryPoint: View {
         .accentColor(.b_Primary)
         .foregroundColor(.b_TextBlack)
         .background(Color.white)
-        .progressViewStyle(CustomProgressViewStyle())
+        .progressViewStyle(CircularInfiniteProgressViewStyle())
         .introspectViewController { controller in
             #if targetEnvironment(macCatalyst)
             let window = controller.viewIfLoaded?.window
