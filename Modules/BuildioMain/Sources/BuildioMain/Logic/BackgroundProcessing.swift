@@ -16,6 +16,13 @@ struct ActivityNotification {
     let title: String
     let date: Date
     
+    var time: String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .none
+        formatter.timeStyle = .medium
+        return formatter.string(from: date)
+    }
+    
     init?(_ item: V0ActivityEventResponseItemModel, email: String) {
         guard let title = item.description else { return nil }
         guard item.createdAt.timeIntervalSince1970 > UserDefaults.standard.lastActivityDate(email: email) else { return nil }
@@ -85,7 +92,7 @@ final class BackgroundProcessing {
                         if activity.date.timeIntervalSince1970 > UserDefaults.standard.lastActivityDate(email: activity.email) {
                             UserDefaults.standard.setLastActivityDate(activity.date.timeIntervalSince1970, email: activity.email)
                         }
-                        NotificationManager.runNotification(with: activity.email, subtitle: activity.title, id: UUID().uuidString) { error in
+                        NotificationManager.runNotification(with: "\(activity.email) @ \(activity.time)", subtitle: activity.title, id: UUID().uuidString) { error in
                             if let error = error {
                                 logger.error("[BGTASK \(identifier)] \(error)")
                             }

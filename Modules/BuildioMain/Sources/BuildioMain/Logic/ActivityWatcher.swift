@@ -43,7 +43,7 @@ final class ActivityWatcher: ObservableObject {
     
     private func scheduleNextUpdate() {
         timer?.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false, block: { [weak self] timer in
+        timer = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: { [weak self] timer in
             guard let self = self else {
                 timer.invalidate()
                 return
