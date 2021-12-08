@@ -32,10 +32,6 @@ struct BuildRowView: View {
                 .frame(width: 5)
             
             VStack(alignment: .leading, spacing: 0) {
-                if let progress = viewModel.progress {
-                    ProgressView(value: progress)
-                        .progressViewStyle(.linear)
-                }
                 HStack(alignment: .center, spacing: 8) {
                     AvatarView(app: model.repository)
                         .frame(width: 40, height: 40)
@@ -132,7 +128,14 @@ struct BuildRowView: View {
                 }
                 Group {
                     
-                }.alert(isPresented: $abortConfirmation, AlertConfig.abort({ viewModel.abort(reason: $0) }))
+                }
+                .frame(width: 0, height: 0)
+                .alert(isPresented: $abortConfirmation, AlertConfig.abort({ viewModel.abort(reason: $0) }))
+                
+                if let progress = viewModel.progress {
+                    ProgressView(value: progress)
+                        .progressViewStyle(.linear)
+                }
             }
         }
         .alert(item: $viewModel.actionError, content: { error in
