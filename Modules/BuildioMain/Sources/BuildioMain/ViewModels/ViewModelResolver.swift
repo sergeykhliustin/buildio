@@ -39,7 +39,11 @@ final class ViewModelResolver {
     }
     
     static func build(_ build: BuildResponseItemModel) -> BuildViewModel {
-        return cached(key: "BuildViewModel_\(build.slug)", ttl: Double.greatestFiniteMagnitude, model: BuildViewModel(build: build))
+        let model = cached(key: "BuildViewModel_\(build.slug)", ttl: Double.greatestFiniteMagnitude, model: BuildViewModel(build: build))
+        if build.status != .running {
+            model.value = build
+        }
+        return model
     }
     
     static func cached<T: CacheableViewModel>(key: String, ttl: TimeInterval, model: @autoclosure () -> T) -> T {

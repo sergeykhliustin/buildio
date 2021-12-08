@@ -17,6 +17,10 @@ final class AppsViewModel: RootPagingViewModel<V0AppListResponseModel>, Resolvab
     @Published var searchText = ""
     private var searchFetcher: AnyCancellable?
     
+    override class var shouldHandleActivityUpdates: Bool {
+        return false
+    }
+    
     override init() {
         super.init()
         searchFetcher = $searchText
