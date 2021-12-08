@@ -26,78 +26,27 @@ protocol CacheableViewModel {
 
 protocol BaseViewModelProtocol: ObservableObject {
     associatedtype ValueType
-    associatedtype ParamsType
     var value: ValueType? { get }
     var state: BaseViewModelState { get }
     var error: ErrorResponse? { get }
     var isScrollViewRefreshing: Binding<Bool> { get }
     var isTopIndicatorRefreshing: Binding<Bool> { get }
-    func fetch(params: ParamsType) -> AnyPublisher<ValueType, ErrorResponse>
-    func refresh(params: ParamsType)
+    
+    static var shouldRefreshOnInit: Bool { get }
+    static var shouldHandleTokenUpdates: Bool { get }
+    static var shouldHandleActivityUpdates: Bool { get }
+    static var shouldRefreshAfterBackground: Bool { get }
+    
+    var shouldHandleActivityUpdate: Bool { get }
+    var shouldRefreshAfterBackground: Bool { get }
+    
+    func fetch() -> AnyPublisher<ValueType, ErrorResponse>
+    func refresh()
     func beforeRefresh(_ tokenUpdated: Bool)
     func afterRefresh()
 }
 
-class ParamsBaseViewModel<ValueType, ParamsType>: BaseViewModelProtocol {
-    @Published var value: ValueType?
-    @Published var state: BaseViewModelState = .idle
-    @Published var error: ErrorResponse?
-    
-    var fetcher: AnyCancellable?
-    var isScrollViewRefreshing: Binding<Bool> {
-        return Binding(get: { self.state == .loading && self.value == nil }, set: { _ in })
-    }
-    
-    var isTopIndicatorRefreshing: Binding<Bool> {
-        return Binding(get: { self.state == .loading && self.value != nil }, set: { _ in })
-    }
-    
-    var errorString: String? {
-        if case .error = state {
-            return error?.rawErrorString
-        } else {
-            return nil
-        }
-    }
-    
-    func fetch(params: ParamsType) -> AnyPublisher<ValueType, ErrorResponse> {
-        fatalError("Should override")
-    }
-    
-    func beforeRefresh(_ tokenUpdated: Bool) {
-        if tokenUpdated {
-            self.value = nil
-        }
-    }
-    
-    func refresh(params: ParamsType) {
-        beforeRefresh(false)
-        fetcher?.cancel()
-        
-        state = .loading
-        
-        fetcher = fetch(params: params)
-            .sink(receiveCompletion: { [weak self] subscriberCompletion in
-                guard let self = self else { return }
-                if case .failure(let error) = subscriberCompletion {
-                    self.error = error
-                    self.state = .error
-                }
-                self.afterRefresh()
-            }, receiveValue: { [weak self] value in
-                guard let self = self else { return }
-                self.value = value
-                self.state = .value
-            })
-    }
-    
-    func afterRefresh() {
-        
-    }
-}
-
 class BaseViewModel<ValueType>: BaseViewModelProtocol {
-    typealias ParamsType = Any?
     
     @Published var value: ValueType?
     @Published var state: BaseViewModelState = .idle
@@ -109,6 +58,7 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
     private var tokenUpdated: Bool = false
     
     private var activityWatcher: AnyCancellable?
+    private var backgroundUpdater: AnyCancellable?
     
     private var refreshStarted: Date?
     private var lastRefreshDate: Date?
@@ -130,15 +80,27 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
     }
     
     class var shouldRefreshOnInit: Bool {
-        return true
+        return false
     }
     
     class var shouldHandleTokenUpdates: Bool {
-        return true
+        return false
     }
     
-    class var shouldAutoUpdate: Bool {
+    class var shouldHandleActivityUpdates: Bool {
         return false
+    }
+    
+    class var shouldRefreshAfterBackground: Bool {
+        return false
+    }
+    
+    var shouldHandleActivityUpdate: Bool {
+        return Self.shouldHandleActivityUpdates
+    }
+    
+    var shouldRefreshAfterBackground: Bool {
+        return Self.shouldRefreshAfterBackground
     }
     
     init() {
@@ -157,21 +119,36 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
                 }
         }
         
-        if Self.shouldAutoUpdate {
+        if Self.shouldHandleActivityUpdates {
             activityWatcher = ActivityWatcher.shared.$lastActivityDate.sink { [weak self] date in
                 guard let self = self else { return }
                 if self.state == .value {
                     if let lastRefreshDate = self.lastRefreshDate, lastRefreshDate < date {
-                        self.refresh()
+                        if self.shouldHandleActivityUpdate {
+                            self.refresh()
+                        }
                     }
                 } else if self.state == .error {
-                    self.refresh()
+                    if self.shouldHandleActivityUpdate {
+                        self.refresh()
+                    }
                 }
             }
         }
+        
+        if Self.shouldRefreshAfterBackground {
+            backgroundUpdater = NotificationCenter.default
+                .publisher(for: UIApplication.didBecomeActiveNotification)
+                .sink(receiveValue: { [weak self] _ in
+                    guard let self = self else { return }
+                    if self.shouldRefreshAfterBackground {
+                        self.refresh()
+                    }
+                })
+        }
     }
     
-    func fetch(params: ParamsType) -> AnyPublisher<ValueType, ErrorResponse> {
+    func fetch() -> AnyPublisher<ValueType, ErrorResponse> {
         fatalError("Should override")
     }
     
@@ -183,17 +160,13 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
     }
     
     func refresh() {
-        refresh(params: nil)
-    }
-    
-    func refresh(params: ParamsType) {
         beforeRefresh(tokenUpdated)
         tokenUpdated = false
         fetcher?.cancel()
         
         state = .loading
         
-        fetcher = fetch(params: params)
+        fetcher = fetch()
             .sink(receiveCompletion: { [weak self] subscriberCompletion in
                 guard let self = self else { return }
                 if case .failure(let error) = subscriberCompletion {

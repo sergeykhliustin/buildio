@@ -29,13 +29,15 @@ struct TokenView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 16) {
-                
+                Spacer()
                 Image(systemName: "key")
                     .resizable()
                     .aspectRatio(contentMode: SwiftUI.ContentMode.fit)
                     .rotationEffect(Angle(degrees: 90))
                     .frame(width: 200, height: 130, alignment: .center)
+                    .fixedSize()
                     .foregroundColor(.b_PrimaryLight)
+                Spacer()
                 
                 HStack {
                     Text("API Token")
@@ -121,7 +123,7 @@ struct TokenView: View {
     }
 }
 
-struct TokenFigmaScreenView_Previews: PreviewProvider {
+struct TokenView_Previews: PreviewProvider {
     static var previews: some View {
         TokenView()
             .previewDevice("iPhone 8")

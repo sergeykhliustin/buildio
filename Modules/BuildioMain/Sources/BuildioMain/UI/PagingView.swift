@@ -73,10 +73,12 @@ extension PagingView {
             onAppear()
         })
         .toolbar {
-            HStack(alignment: .center, spacing: 0) {
+            ToolbarItem(placement: .navigationBarTrailing) {
                 if model.isTopIndicatorRefreshing.wrappedValue {
                     ProgressView()
                 }
+            }
+            ToolbarItem(placement: .navigationBarTrailing) {
                 additionalToolbarItems()
             }
         }

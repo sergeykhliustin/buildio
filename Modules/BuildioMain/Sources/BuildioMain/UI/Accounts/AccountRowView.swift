@@ -13,16 +13,12 @@ import BitriseAPIs
 private final class AccountRowViewModel: BaseViewModel<V0UserProfileDataModel> {
     let token: String
     
-    override class var shouldHandleTokenUpdates: Bool {
-        return false
-    }
-    
     init(token: String) {
         self.token = token
         super.init()
     }
     
-    override func fetch(params: Any?) -> AnyPublisher<V0UserProfileDataModel, ErrorResponse> {
+    override func fetch() -> AnyPublisher<V0UserProfileDataModel, ErrorResponse> {
         UserAPI(apiToken: token)
             .userProfile().map({ $0.data })
             .eraseToAnyPublisher()
@@ -86,6 +82,7 @@ struct AccountRowView: View {
             .padding(.horizontal, 8)
             .frame(minHeight: 40)
         }
+        .onAppear { model.refresh() }
         .font(.footnote)
         .padding(.vertical, 8)
     }

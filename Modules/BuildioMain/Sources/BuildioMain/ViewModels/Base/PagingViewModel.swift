@@ -27,7 +27,7 @@ enum PagingState {
     }
 }
 
-protocol PagingViewModelProtocol: BaseViewModelProtocol where ValueType: PagingResponseModel, ParamsType == Any? {
+protocol PagingViewModelProtocol: BaseViewModelProtocol where ValueType: PagingResponseModel {
     var pagingState: PagingState { get set }
     var items: [ValueType.ItemType] { get set }
     

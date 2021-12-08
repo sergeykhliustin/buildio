@@ -17,8 +17,10 @@ struct NewBuildViewModelParams {
     var message: String
 }
 
-final class NewBuildViewModel: ParamsBaseViewModel<V0BuildTriggerRespModel, NewBuildViewModelParams> {
-    override func fetch(params: NewBuildViewModelParams) -> AnyPublisher<V0BuildTriggerRespModel, ErrorResponse> {
+final class NewBuildViewModel: BaseViewModel<V0BuildTriggerRespModel> {
+    var params: NewBuildViewModelParams!
+    
+    override func fetch() -> AnyPublisher<V0BuildTriggerRespModel, ErrorResponse> {
         let buildParams = BuildTriggerParams(branch: params.branch, workflowId: params.workflow, commitMessage: params.message)
         return BuildsAPI().buildTrigger(appSlug: params.appSlug, buildParams: buildParams)
     }

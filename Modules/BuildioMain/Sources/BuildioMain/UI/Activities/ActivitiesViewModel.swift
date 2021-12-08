@@ -10,18 +10,14 @@ import Models
 import Combine
 import BitriseAPIs
 
-final class ActivitiesViewModel: PagingViewModel<V0ActivityEventListResponseModel>, ResolvableViewModel {
+final class ActivitiesViewModel: RootPagingViewModel<V0ActivityEventListResponseModel>, ResolvableViewModel {
     private let fetchLimit: Int = 10
     
     deinit {
         logger.debug("")
     }
     
-    override class var shouldAutoUpdate: Bool {
-        return true
-    }
-    
-    override func fetch(params: Any?) -> AnyPublisher<V0ActivityEventListResponseModel, ErrorResponse> {
+    override func fetch() -> AnyPublisher<V0ActivityEventListResponseModel, ErrorResponse> {
         ActivityAPI().activityList(limit: fetchLimit)
             .eraseToAnyPublisher()
     }

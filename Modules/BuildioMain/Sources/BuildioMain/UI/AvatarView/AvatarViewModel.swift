@@ -51,7 +51,7 @@ final class AvatarViewModel: BaseViewModel<UIImage> {
         return color
     }
     
-    override func fetch(params: Any?) -> AnyPublisher<UIImage, ErrorResponse> {
+    override func fetch() -> AnyPublisher<UIImage, ErrorResponse> {
         ImageLoader().image(URL(str: url))
     }
 }

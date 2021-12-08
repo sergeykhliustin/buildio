@@ -19,7 +19,7 @@ final class ArtifactsViewModel: PagingViewModel<V0ArtifactListResponseModel> {
         super.init()
     }
     
-    override func fetch(params: Any?) -> AnyPublisher<V0ArtifactListResponseModel, ErrorResponse> {
+    override func fetch() -> AnyPublisher<V0ArtifactListResponseModel, ErrorResponse> {
         return BuildArtifactAPI().artifactList(appSlug: build.repository.slug, buildSlug: build.slug, limit: fetchLimit).eraseToAnyPublisher()
     }
     

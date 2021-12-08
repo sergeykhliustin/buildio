@@ -10,7 +10,7 @@ import Models
 import Combine
 import BitriseAPIs
 
-final class BuildsViewModel: PagingViewModel<V0BuildListResponseModel>, ResolvableViewModel {
+final class BuildsViewModel: RootPagingViewModel<V0BuildListResponseModel>, ResolvableViewModel {
     private let fetchLimit: Int = 10
     private(set) var app: V0AppResponseItemModel?
     
@@ -18,16 +18,12 @@ final class BuildsViewModel: PagingViewModel<V0BuildListResponseModel>, Resolvab
         logger.debug("")
     }
     
-    override class var shouldAutoUpdate: Bool {
-        return true
-    }
-    
     convenience init(app: V0AppResponseItemModel? = nil) {
         self.init()
         self.app = app
     }
     
-    override func fetch(params: Any?) -> AnyPublisher<V0BuildListResponseModel, ErrorResponse> {
+    override func fetch() -> AnyPublisher<V0BuildListResponseModel, ErrorResponse> {
         if let app = app {
             let enrich = self.enrich
             return BuildsAPI().buildList(appSlug: app.slug, limit: fetchLimit)

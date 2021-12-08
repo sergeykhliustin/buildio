@@ -15,9 +15,17 @@ final class ActivityWatcher: ObservableObject {
     
     private var fetcher: AnyCancellable?
     private var timer: Timer?
+    private var tokenHandler: AnyCancellable?
     
     private init() {
-        refresh()
+        tokenHandler = TokenManager.shared.$token.sink(receiveValue: { [weak self] token in
+            guard let self = self else { return }
+            if token != nil {
+                self.refresh()
+            } else {
+                self.timer?.invalidate()
+            }
+        })
     }
     
     private func refresh() {

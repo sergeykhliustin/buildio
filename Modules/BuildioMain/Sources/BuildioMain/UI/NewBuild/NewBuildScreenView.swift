@@ -63,7 +63,8 @@ struct NewBuildScreenView: View, RoutingView {
                     HStack(alignment: .center) {
                         Spacer()
                         Button("Start") {
-                            model.refresh(params: NewBuildViewModelParams(appSlug: app.wrappedValue.slug, branch: branch, workflow: workflow, message: message))
+                            model.params = NewBuildViewModelParams(appSlug: app.wrappedValue.slug, branch: branch, workflow: workflow, message: message)
+                            model.refresh()
                         }
                         .buttonStyle(SubmitButtonStyle())
                         .disabled(!validator)

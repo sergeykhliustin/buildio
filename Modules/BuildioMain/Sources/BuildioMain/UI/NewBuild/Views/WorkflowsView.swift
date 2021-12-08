@@ -13,11 +13,15 @@ import BitriseAPIs
 final class WorkflowsViewModel: BaseViewModel<[String]> {
     @Binding var app: V0AppResponseItemModel
     
+    override class var shouldRefreshOnInit: Bool {
+        return true
+    }
+    
     init(app: Binding<V0AppResponseItemModel>) {
         _app = app
     }
     
-    override func fetch(params: Any?) -> AnyPublisher<[String], ErrorResponse> {
+    override func fetch() -> AnyPublisher<[String], ErrorResponse> {
         BuildsAPI()
             .buildWorkflowList(appSlug: app.slug)
             .map({ $0.data ?? [] })

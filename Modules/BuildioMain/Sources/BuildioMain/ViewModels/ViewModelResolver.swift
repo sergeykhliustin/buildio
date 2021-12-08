@@ -7,16 +7,24 @@
 
 import Foundation
 import Models
+import Combine
 
 final class ViewModelResolver {
     private typealias CacheValue = (Date, TimeInterval, CacheableViewModel)
     private static var viewModels: [String: Any] = [:]
     private static var cachedViewModels: [String: CacheValue] = [:]
+    private static var tokenHandler: AnyCancellable?
     
     static func start() {
         _ = resolve(BuildsViewModel.self)
         _ = resolve(AppsViewModel.self)
         _ = resolve(ActivitiesViewModel.self)
+        
+        tokenHandler = TokenManager.shared.$token
+            .dropFirst()
+            .sink(receiveValue: { _ in
+                cleanupCache()
+            })
     }
     
     static func resolve<T: ResolvableViewModel>(_ type: T.Type) -> T {

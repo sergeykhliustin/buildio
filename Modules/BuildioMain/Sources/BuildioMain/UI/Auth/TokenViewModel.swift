@@ -12,15 +12,7 @@ import BitriseAPIs
 final class TokenViewModel: BaseViewModel<V0UserProfileRespModel> {
     var token: String?
     
-    override class var shouldRefreshOnInit: Bool {
-        return false
-    }
-    
-    override class var shouldHandleTokenUpdates: Bool {
-        return false
-    }
-    
-    override func fetch(params: BaseViewModel<V0UserProfileRespModel>.ParamsType) -> AnyPublisher<V0UserProfileRespModel, ErrorResponse> {
+    override func fetch() -> AnyPublisher<V0UserProfileRespModel, ErrorResponse> {
         return UserAPI(apiToken: token)
             .userProfile()
     }

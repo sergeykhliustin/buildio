@@ -50,8 +50,20 @@ final class BuildViewModel: BaseViewModel<BuildResponseItemModel>, CacheableView
         return false
     }
     
-    override class var shouldAutoUpdate: Bool {
+    override class var shouldHandleActivityUpdates: Bool {
         return true
+    }
+    
+    override class var shouldRefreshAfterBackground: Bool {
+        return true
+    }
+    
+    override var shouldHandleActivityUpdate: Bool {
+        return value?.status == .running
+    }
+    
+    override var shouldRefreshAfterBackground: Bool {
+        return value?.status == .running
     }
     
     init(build: BuildResponseItemModel) {
@@ -128,12 +140,9 @@ final class BuildViewModel: BaseViewModel<BuildResponseItemModel>, CacheableView
         }
     }
     
-    override func fetch(params: Any?) -> AnyPublisher<BuildResponseItemModel, ErrorResponse> {
+    override func fetch() -> AnyPublisher<BuildResponseItemModel, ErrorResponse> {
         let appSlug = value?.repository.slug ?? ""
-        var buildSlug = value?.slug ?? ""
-        if let params = params as? V0BuildTriggerRespModel, let slug = params.slug {
-            buildSlug = slug
-        }
+        let buildSlug = value?.slug ?? ""
         return BuildsAPI().buildShow(appSlug: appSlug, buildSlug: buildSlug)
             .map({
                 if let repository = self.value?.repository {

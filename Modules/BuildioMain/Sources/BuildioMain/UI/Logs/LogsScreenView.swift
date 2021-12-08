@@ -20,14 +20,12 @@ struct LogsScreenView: BaseView {
     }
     
     var body: some View {
-        VStack(spacing: 0) {   
-            LogsView(logs: $model.attributedLogs)
-                .toolbar {
-                    if case .loading = model.state {
-                        ProgressView()
-                    }
+        LogsView(logs: $model.attributedLogs)
+            .toolbar {
+                if case .loading = model.state {
+                    ProgressView()
                 }
-        }
+            }
     }
 }
 
