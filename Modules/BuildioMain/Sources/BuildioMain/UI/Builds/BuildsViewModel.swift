@@ -18,7 +18,7 @@ final class BuildsViewModel: RootPagingViewModel<V0BuildListResponseModel>, Reso
         logger.debug("")
     }
     
-    convenience init(app: V0AppResponseItemModel? = nil) {
+    convenience init(app: V0AppResponseItemModel?) {
         self.init()
         self.app = app
     }

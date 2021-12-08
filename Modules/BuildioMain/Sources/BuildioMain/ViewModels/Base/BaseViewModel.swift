@@ -105,7 +105,9 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
     
     init() {
         if Self.shouldRefreshOnInit {
-            refresh()
+            DispatchQueue.main.async {
+                self.refresh()
+            }
         }
         
         if Self.shouldHandleTokenUpdates {            
