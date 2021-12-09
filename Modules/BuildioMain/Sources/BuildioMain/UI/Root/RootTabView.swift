@@ -48,7 +48,6 @@ struct RootTabView: View, RoutingView {
                 if item.navigation {
                     NavigationView {
                         RootScreenItemView(item)
-                            .background(Color.white)
                             .navigationTitle(item.name)
                     }
                     .conditionalModifier(

@@ -11,11 +11,11 @@ struct RefreshableScrollView<Content: View>: View {
     @State private var previousScrollOffset: CGFloat = 0
     @State private var progress: CGFloat = 0
     
-    var threshold: CGFloat = 40
-    @Binding var refreshing: Bool
-    @ViewBuilder let content: () -> Content
+    private var threshold: CGFloat
+    @Binding private var refreshing: Bool
+    @ViewBuilder private let content: () -> Content
 
-    init(height: CGFloat = 40, refreshing: Binding<Bool>, @ViewBuilder content: @escaping () -> Content) {
+    init(height: CGFloat = 60, refreshing: Binding<Bool>, @ViewBuilder content: @escaping () -> Content) {
         self.threshold = height
         self._refreshing = refreshing
         self.content = content
@@ -29,9 +29,10 @@ struct RefreshableScrollView<Content: View>: View {
                 SymbolView(threshold: self.threshold,
                            loading: self.refreshing,
                            progress: self.progress)
-                
-                self.content()
-                    .offset(x: 0, y: threshold * progress)
+                VStack(spacing: 0) {
+                    self.content()
+                }
+                .offset(x: 0, y: threshold * progress)
             }
         }
         .background(FixedView())
@@ -106,8 +107,8 @@ struct RefreshableScrollView<Content: View>: View {
                         ProgressView(value: progress)
                             .progressViewStyle(CircularProgressViewStyle())
                     }
-                    .frame(width: threshold, height: threshold, alignment: .center).fixedSize()
-                    .opacity(progress == 0 ? 0 : 1)
+                    .frame(width: threshold, height: threshold + 16, alignment: .center) // 16 is default top padding for all views
+                    .opacity(progress < 0.2 ? 0 : 1)
                 }
             }
         }
