@@ -129,8 +129,8 @@ struct BuildRowView: View {
                 Group {
                     
                 }
-                .frame(width: 0, height: 0)
                 .alert(isPresented: $abortConfirmation, AlertConfig.abort({ viewModel.abort(reason: $0) }))
+                .frame(width: 0, height: 0)
                 
                 if let progress = viewModel.progress {
                     ProgressView(value: progress)

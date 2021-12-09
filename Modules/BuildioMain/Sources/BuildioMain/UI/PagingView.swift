@@ -66,7 +66,6 @@ extension PagingView {
                 buildErrorView(error)
             }
         }
-        .background(Color.white)
         .onAppear(perform: {
             onAppear()
         })

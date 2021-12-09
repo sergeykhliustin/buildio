@@ -49,6 +49,7 @@ struct RootTabView: View, RoutingView {
                     NavigationView {
                         RootScreenItemView(item)
                             .navigationTitle(item.name)
+                            .background(Color.white)
                     }
 //                    .conditionalModifier(
 //                        isStack,
