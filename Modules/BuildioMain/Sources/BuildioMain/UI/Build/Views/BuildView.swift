@@ -33,6 +33,12 @@ private extension View {
     }
 }
 
+extension Int: Identifiable {
+    public var id: Int {
+        return self
+    }
+}
+
 struct BuildView: View {
     private struct Item: View {
         let imageName: String
@@ -58,42 +64,13 @@ struct BuildView: View {
             Rectangle()
                 .fill(statusColor)
                 .frame(width: 5)
-
-            let statusText = model.extendedStatus.rawValue
             
             VStack(alignment: .leading) {
-                Group {
-                    TagView(spacing: 4, content: { [
-                        AnyView(
-                            Text(statusText)
-                                .foregroundColor(statusColor)
-                                .padding(8)
-                        ),
+                BuildHeaderView(model: model)
+                    .primary()
                         
-                        AnyView(
-                            Group {
-                                Text(model.branchOrigOwnerUIString)
-                                    .foregroundColor(.white)
-                                    .padding(8)
-                                    .lineLimit(1)
-                            }
-                                .background(Color.fromString(model.branchOrigOwnerUIString))
-                                .cornerRadius(4)
-                        ),
-                        
-                        AnyView(
-                            Text(model.triggeredWorkflow)
-                                .padding(8)
-                                .background(RoundedRectangle(cornerRadius: 4).stroke(Color.b_BorderLight))
-                        )
-                    ]
-                    })
-                        .font(.subheadline)
-                        .padding(.top, 4)
-                    
-                    ProgressView(value: progress ?? 0)
-                        .progressViewStyle(.linear)
-                }
+                ProgressView(value: progress ?? 0)
+                    .progressViewStyle(.linear)
                 
                 Group {
                     HStack {
