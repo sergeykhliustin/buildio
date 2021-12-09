@@ -38,16 +38,21 @@ struct BuildRowView: View {
                         .cornerRadius(8)
                     
                     VStack(alignment: .leading, spacing: 8) {
-                        Text(model.repository.title)
-                            .font(.footnote.bold())
+                        HStack(spacing: 0) {
+                            Text(model.repository.title)
+                                .font(.footnote.bold())
+                            if let tag = model.tag {
+                                Spacer()
+                                HStack(spacing: 2) {
+                                    Image(systemName: "tag")
+                                    Text(tag)
+                                }
+                                .padding(.horizontal, 2)
+                            }
+                        }
                         HStack(spacing: 0) {
                             Text(model.commitMessage ?? "No commit message")
-                            Spacer(minLength: 4)
-                            if let tag = model.tag {
-                                Text(tag)
-                                    .padding(2)
-                                    .background(Color.b_BorderLight)
-                            }
+                            
                         }
                     }
                     
@@ -62,7 +67,7 @@ struct BuildRowView: View {
                 Rectangle().fill(Color.b_BorderLight)
                     .frame(height: 1)
                 HStack(spacing: 0) {
-                    Text(model.branchUIString)
+                    Text(model.branchFromToUIString)
                         .padding(8)
                         .foregroundColor(extendedStatus.color)
                         .background(extendedStatus.colorLight)

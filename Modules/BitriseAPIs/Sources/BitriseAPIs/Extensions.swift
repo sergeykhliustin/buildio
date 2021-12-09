@@ -35,7 +35,9 @@ extension String: JSONEncodable {
 }
 
 extension RawRepresentable where RawValue: JSONEncodable {
-    func encodeToJSON() -> Any { return self.rawValue as Any }
+    func encodeToJSON() -> Any {
+        return self.rawValue as Any
+    }
 }
 
 private func encodeIfPossible<T>(_ object: T) -> Any {

@@ -222,7 +222,7 @@ public final class BuildsAPI: BaseAPI {
             "build_number": buildNumber?.encodeToJSON(),
             "after": after?.encodeToJSONAsInt(),
             "before": before?.encodeToJSONAsInt(),
-            "status": status?.encodeToJSON(),
+            "status": status?.rawValue.encodeToJSON(),
             "next": next?.encodeToJSON(),
             "limit": limit?.encodeToJSON()
         ])

@@ -15,7 +15,7 @@ public struct EntryPoint: View {
         navigationBarAppearance.backgroundColor = .white
         navigationBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor(Color.b_Primary)]
         navigationBarAppearance.titleTextAttributes = [.foregroundColor: UIColor(Color.b_Primary)]
-        navigationBarAppearance.shadowColor = UIColor(Color.b_ShadowLight)
+//        navigationBarAppearance.shadowColor = UIColor(Color.b_ShadowLight)
         UINavigationBar.appearance().standardAppearance = navigationBarAppearance
         UINavigationBar.appearance().compactAppearance = navigationBarAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance

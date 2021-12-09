@@ -20,9 +20,16 @@ extension BuildResponseItemModel {
         return duration?.stringFromTimeInterval()
     }
     
-    var branchUIString: String {
+    var branchFromToUIString: String {
         if let pullRequestTargetBranch = pullRequestTargetBranch {
             return "\(branch) → \(pullRequestTargetBranch)"
+        }
+        return branch
+    }
+    
+    var branchOrigOwnerUIString: String {
+        if case .string(let owner) = originalBuildParams["branch_repo_owner"] {
+            return [owner, branch].joined(separator: ":")
         }
         return branch
     }

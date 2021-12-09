@@ -72,12 +72,12 @@ struct BuildView: View {
                         
                         AnyView(
                             Group {
-                                Text(model.branch)
+                                Text(model.branchOrigOwnerUIString)
                                     .foregroundColor(.white)
                                     .padding(8)
                                     .lineLimit(1)
                             }
-                                .background(Color.fromString(model.branch))
+                                .background(Color.fromString(model.branchOrigOwnerUIString))
                                 .cornerRadius(4)
                         ),
                         
