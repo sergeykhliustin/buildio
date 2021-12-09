@@ -99,19 +99,7 @@ public struct BuildResponseItemModel: Codable, Hashable, Identifiable {
         case success = 1
         case error = 2
         case aborted = 3
-        
-        public var text: String {
-            switch self {
-            case .running:
-                return "Running"
-            case .success:
-                return "Success"
-            case .error:
-                return "Failed"
-            case .aborted:
-                return "Aborted"
-            }
-        }
+        case cancelled = 4 // aborted with success
     }
     
     public static func preview() -> Self {

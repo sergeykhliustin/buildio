@@ -40,6 +40,10 @@ struct BuildScreenView: BaseView, RoutingView {
         RefreshableScrollView(refreshing: model.isScrollViewRefreshing) {
             navigationLinks(route: $route)
             VStack(spacing: 8) {
+                if let error = model.error {
+                    Text(error.rawErrorString)
+                        .padding(16)
+                }
                 if value.status == .running {
                     Button {
                         abortConfirmation = true

@@ -26,9 +26,9 @@ struct BuildRowView: View {
     var body: some View {
         let model = viewModel.value!
         HStack(alignment: .top, spacing: 0) {
-            let statusColor = model.color
+            let extendedStatus = model.extendedStatus
             Rectangle()
-                .fill(statusColor)
+                .fill(extendedStatus.color)
                 .frame(width: 5)
             
             VStack(alignment: .leading, spacing: 0) {
@@ -64,8 +64,8 @@ struct BuildRowView: View {
                 HStack(spacing: 0) {
                     Text(model.branchUIString)
                         .padding(8)
-                        .foregroundColor(model.color)
-                        .background(model.colorLight)
+                        .foregroundColor(extendedStatus.color)
+                        .background(extendedStatus.colorLight)
                     if let pullRequestId = model.pullRequestId, pullRequestId != 0 {
                         Text(String(pullRequestId))
                             .padding(8)
