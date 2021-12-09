@@ -36,7 +36,7 @@ struct CustomTabBar: View {
     private let spacing: CGFloat
     private let style: Style
     private let onSecondTap: (() -> Void)?
-    @EnvironmentObject private var navigationHelper: NavigationHelper
+    @EnvironmentObject private var navigators: Navigators
 
     init(style: Style = .horizontal, spacing: CGFloat = 4, selected: Binding<Int>, onSecondTap: (() -> Void)? = nil) {
         self.spacing = spacing
@@ -55,7 +55,7 @@ struct CustomTabBar: View {
                         if selected == index {
                             logger.debug("UI on second tap")
                             onSecondTap?()
-                            navigationHelper.popToRoot(type: item)
+                            navigators.popToRoot(type: item)
                         } else {
                             selected = index
                         }

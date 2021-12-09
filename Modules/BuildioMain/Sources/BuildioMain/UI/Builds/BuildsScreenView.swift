@@ -10,7 +10,6 @@ import Models
 
 struct BuildsScreenView: View, PagingView, RoutingView {
     @EnvironmentObject var model: BuildsViewModel
-//    @StateObject var model: BuildsViewModel
     @State private var showNewBuild: Bool = false
     @State private var route: Route?
     

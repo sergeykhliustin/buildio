@@ -36,7 +36,7 @@ extension EnvironmentValues {
 }
 
 public struct EnvironmentConfiguratorView<Content: View>: View {
-    let navigationHelper = NavigationHelper()
+    @StateObject var navigators = Navigators()
     @State private var fullscreen: Bool = false
     @StateObject private var keyboard: KeyboardObserver = KeyboardObserver()
     @ViewBuilder let content: () -> Content
@@ -49,6 +49,6 @@ public struct EnvironmentConfiguratorView<Content: View>: View {
         content()
             .environment(\.fullscreen, $fullscreen)
             .environment(\.keyboard, keyboard.isVisible)
-            .environmentObject(navigationHelper)
+            .environmentObject(navigators)
     }
 }

@@ -27,7 +27,7 @@ private extension View {
 
 struct RootTabView: View, RoutingView {
     @Environment(\.fullscreen) private var fullscreen
-    @EnvironmentObject private var navigationHelper: NavigationHelper
+    @EnvironmentObject private var navigators: Navigators
     
     @Binding private var selection: Int
     private let configuration: [RootScreenItemType]
@@ -58,11 +58,11 @@ struct RootTabView: View, RoutingView {
                     .tag(index)
                     .introspectNavigationController(customize: { controller in
                         logger.debug("")
-                        navigationHelper.set(navigation: controller, for: item)
+                        navigators.set(navigation: controller, for: item)
                     })
                     .introspectSplitViewController { splitViewController in
                         logger.debug(splitViewController)
-                        navigationHelper.set(split: splitViewController, for: item)
+                        navigators.set(split: splitViewController, for: item)
                         splitViewController.preferredSplitBehavior = .tile
                         splitViewController.primaryBackgroundStyle = .none
                         splitViewController.minimumPrimaryColumnWidth = 300

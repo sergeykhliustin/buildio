@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftUINavigation
 
 struct AccountsScreenView: View {
-    @EnvironmentObject private var navigationHelper: NavigationHelper
+    @EnvironmentObject private var navigators: Navigators
     @State private var showingSheet = false
     @StateObject private var tokenManager = TokenManager.shared
     
@@ -19,7 +19,7 @@ struct AccountsScreenView: View {
             LazyVStack(spacing: 16) {
                 ForEach(tokenManager.tokens, id: \.token) { token in
                     ListItemWrapper {
-                        navigationHelper.popToRootAll()
+                        navigators.popToRootAll()
                         tokenManager.token = token
                     } content: {
                         AccountRowView(token)

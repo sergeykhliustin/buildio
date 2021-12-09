@@ -1,5 +1,5 @@
 //
-//  NavigationHelper.swift
+//  Navigators.swift
 //  
 //
 //  Created by Sergey Khliustin on 01.12.2021.
@@ -10,7 +10,7 @@ import UIKit
 import SwiftUI
 import Combine
 
-final class NavigationHelper: ObservableObject {
+final class Navigators: ObservableObject {
     private var navigationControllers = NSMapTable<NSString, UINavigationController>(valueOptions: .weakMemory)
     private var splitControllers = NSMapTable<NSString, UISplitViewController>(valueOptions: .weakMemory)
     
@@ -26,21 +26,42 @@ final class NavigationHelper: ObservableObject {
         navigationControllers.object(forKey: type.id as NSString)
     }
     
-    func getSplit(for type: RootScreenItemType) -> UISplitViewController? {
-        splitControllers.object(forKey: type.id as NSString)
-    }
-    
     func popToRoot(type: RootScreenItemType) {
         navigationControllers.object(forKey: type.id as NSString)?.popToRootViewController(animated: true)
         guard let splitController = splitControllers.object(forKey: type.id as NSString) else { return }
         if let navigation = splitController.viewController(for: .secondary) as? UINavigationController {
-            let hosting = UIHostingController(rootView: EmptyView())
+            let hosting = EmptyHostingController()
             navigation.setViewControllers([hosting], animated: false)
+            
             logger.debug(navigation)
         }
     }
     
     func popToRootAll() {
         RootScreenItemType.allCases.forEach({ popToRoot(type: $0) })
+    }
+    
+    private func fixEmptyNavigation(type: RootScreenItemType) {
+        guard let navigation = navigationControllers.object(forKey: type.id as NSString) else { return }
+        if navigation.viewControllers.contains(where: { childController in
+            (childController as? UINavigationController)?.viewControllers.contains(where: { $0 is EmptyHostingController }) == true
+        }) {
+            navigation.popToRootViewController(animated: false)
+        }
+        logger.debug(navigation)
+    }
+    
+    func fixEmptyNavigation() {
+        RootScreenItemType.allCases.forEach({ fixEmptyNavigation(type: $0) })
+    }
+}
+
+private final class EmptyHostingController: UIHostingController<EmptyView> {
+    init() {
+        super.init(rootView: EmptyView())
+    }
+    
+    @MainActor @objc required dynamic init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

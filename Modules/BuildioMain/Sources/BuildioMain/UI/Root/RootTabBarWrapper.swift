@@ -13,6 +13,7 @@ struct RootTabBarWrapper<Content: View>: View {
     @Environment(\.keyboard) private var keyboard
     @Environment(\.fullscreen) private var fullscreen
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @EnvironmentObject private var navigators: Navigators
     
     private var interfaceOrientation: UIInterfaceOrientation {
         guard let orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation else { return .portrait }
@@ -54,6 +55,9 @@ struct RootTabBarWrapper<Content: View>: View {
             }
             .edgesIgnoringSafeArea(interfaceOrientation == .landscapeLeft ? [.leading] : [])
             .statusBar(hidden: fullscreen.wrappedValue)
+            .onChange(of: horizontalSizeClass) { _ in
+                navigators.fixEmptyNavigation()
+            }
     }
 }
 
