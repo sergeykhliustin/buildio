@@ -9,10 +9,11 @@ import Foundation
 import SwiftUI
 
 struct RoundedBorderShadowModifier: ViewModifier {
-    let borderColor: Color
+    @Environment(\.colorScheme.theme) private var theme
+    var borderColor: Color?
     let horizontalPadding: CGFloat
     
-    init(borderColor: Color = Color.b_BorderLight, horizontalPadding: CGFloat = 16) {
+    init(borderColor: Color? = nil, horizontalPadding: CGFloat = 16) {
         self.borderColor = borderColor
         self.horizontalPadding = horizontalPadding
     }
@@ -20,14 +21,15 @@ struct RoundedBorderShadowModifier: ViewModifier {
     func body(content: Content) -> some View {
         ZStack {
             RoundedRectangle(cornerRadius: 4)
-                .fill(Color.white)
+//                .fill(Color.white)
                 .overlay(
                     RoundedRectangle(cornerRadius: 4)
-                        .stroke(borderColor, lineWidth: 1)
+                        .stroke(borderColor ?? theme.borderColor, lineWidth: 1)
                 )
-                .shadow(color: .b_ShadowLight, radius: 10, y: 0)
+                .listShadow(theme)
             content
                 .padding(.horizontal, horizontalPadding)
+                .contentShape(Rectangle())
         }
     }
 }

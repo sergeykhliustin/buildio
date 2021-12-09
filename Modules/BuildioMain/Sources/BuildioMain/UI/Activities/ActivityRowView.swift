@@ -44,8 +44,6 @@ struct ActivityRowView: View {
         .padding([.leading, .trailing], 8)
         .font(.footnote)
         .multilineTextAlignment(.leading)
-        .foregroundColor(Color.b_TextBlack)
-        .background(Color.white)
     }
 }
 

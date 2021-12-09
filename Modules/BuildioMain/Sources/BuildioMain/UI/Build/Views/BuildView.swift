@@ -11,15 +11,16 @@ import Models
 private struct PrimaryModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .foregroundColor(Color.b_TextBlack)
             .font(.subheadline)
     }
 }
 
 private struct SecondaryModifier: ViewModifier {
+    @Environment(\.colorScheme.theme) var theme
+    
     func body(content: Content) -> some View {
         content
-            .foregroundColor(Color.b_TextBlackLight)
+            .foregroundColor(theme.textColorLight)
             .font(.callout)
     }
 }
@@ -40,6 +41,8 @@ extension Int: Identifiable {
 }
 
 struct BuildView: View {
+    @Environment(\.colorScheme.theme) private var theme
+    
     private struct Item: View {
         let imageName: String
         let text: String?
@@ -89,27 +92,27 @@ struct BuildView: View {
                     Item(imageName: "bolt.fill", text: model.triggeredBy)
                     
                     Rectangle()
-                        .fill(Color.b_BorderLight)
+                        .fill(theme.borderColor)
                         .frame(height: 1)
                 }
                 
                 Group {
                     Text("Commit hash:").secondary()
                     Text(model.commitHash ?? "No commit hash specified").primary()
-                    Rectangle().fill(Color.b_BorderLight).frame(height: 1)
+                    Rectangle().fill(theme.borderColor).frame(height: 1)
                 }
                 
                 Group {
                     Text("Commit message:").secondary()
                     Text(model.commitMessage ?? "No commit message").primary()
-                    Rectangle().fill(Color.b_BorderLight).frame(height: 1)
+                    Rectangle().fill(theme.borderColor).frame(height: 1)
                 }
                 
                 if let abortReason = model.abortReason {
                     Group {
                         Text("Abort reason:").secondary()
                         Text(abortReason).primary()
-                        Rectangle().fill(Color.b_BorderLight).frame(height: 1)
+                        Rectangle().fill(theme.borderColor).frame(height: 1)
                     }
                 }
                 
@@ -117,7 +120,7 @@ struct BuildView: View {
                     Group {
                         Text("Build tags:").secondary()
                         Text(denTags.joined(separator: ", ")).primary()
-                        Rectangle().fill(Color.b_BorderLight).frame(height: 1)
+                        Rectangle().fill(theme.borderColor).frame(height: 1)
                     }
                 }
                 
@@ -125,7 +128,7 @@ struct BuildView: View {
                     Group {
                         Text("Started @").secondary()
                         Text(startedOn.full).primary()
-                        Rectangle().fill(Color.b_BorderLight).frame(height: 1)
+                        Rectangle().fill(theme.borderColor).frame(height: 1)
                     }
                 }
                 
@@ -133,7 +136,7 @@ struct BuildView: View {
                     Group {
                         Text("Finished @").secondary()
                         Text(finishedAt.full).primary()
-                        Rectangle().fill(Color.b_BorderLight).frame(height: 1)
+                        Rectangle().fill(theme.borderColor).frame(height: 1)
                     }
                 }
                 

@@ -8,6 +8,7 @@
 import SwiftUI
 
 private struct CustomTabBarButtonStyle: ButtonStyle {
+    @Environment(\.colorScheme.theme) var theme
     let selected: Bool
     @State private var hover: Bool = false
     
@@ -16,7 +17,7 @@ private struct CustomTabBarButtonStyle: ButtonStyle {
         configuration
             .label
             .contentShape(Rectangle())
-            .foregroundColor(highlighted ? Color.b_Primary : Color.b_PrimaryLight)
+            .foregroundColor(highlighted ? theme.accentColor : theme.accentColorLight)
 //            .background(
 //                RoundedRectangle(cornerRadius: 4).stroke(highlighted ? Color.b_Primary : .clear, lineWidth: 1)
 //            )
@@ -37,6 +38,7 @@ struct CustomTabBar: View {
     private let style: Style
     private let onSecondTap: (() -> Void)?
     @EnvironmentObject private var navigators: Navigators
+    @Environment(\.colorScheme.theme) private var theme
 
     init(style: Style = .horizontal, spacing: CGFloat = 4, selected: Binding<Int>, onSecondTap: (() -> Void)? = nil) {
         self.spacing = spacing
@@ -94,7 +96,7 @@ struct CustomTabBar: View {
         }
         .padding(.top, 4)
         .frame(maxHeight: 48)
-        .background(Color.white.shadow(color: .b_ShadowLight, radius: 3, y: -5))
+        .tabBarBackgroundShadow(theme)
     }
     
     @ViewBuilder
@@ -104,8 +106,7 @@ struct CustomTabBar: View {
         }
         .padding(.trailing, 4)
         .frame(maxWidth: 64)
-        .border(Color.b_ShadowLight, width: 1)
-//        .background(Color.white.shadow(color: .b_ShadowLight, radius: 3, x: 5))
+        .border(theme.borderColor, width: 1)
     }
 }
 

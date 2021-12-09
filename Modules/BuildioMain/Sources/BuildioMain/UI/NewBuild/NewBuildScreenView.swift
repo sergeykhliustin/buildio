@@ -10,6 +10,7 @@ import Models
 import Combine
 
 struct NewBuildScreenView: View, RoutingView {
+    @Environment(\.colorScheme.theme) var theme
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @StateObject var model: NewBuildViewModel = NewBuildViewModel()
     
@@ -19,6 +20,7 @@ struct NewBuildScreenView: View, RoutingView {
     @State private var branch: String = ""
     @State private var message: String = ""
     @State private var workflow: String = ""
+    @State private var focusedMessage: Bool = false
     
     init(app: V0AppResponseItemModel? = nil) {
         self._app = State(initialValue: app)
@@ -58,7 +60,11 @@ struct NewBuildScreenView: View, RoutingView {
                     Text("Workflow:")
                     WorkflowsView(app: app, workflow: $workflow)
                     Text("Message:")
-                    BTextField("e.g. triggered by Buildio", text: $message)
+                    TextField("e.g. triggered by Buildio",
+                              text: $message,
+                              onEditingChanged: { self.focusedMessage = $0 })
+                        .frame(height: 44)
+                        .modifier(RoundedBorderShadowModifier(borderColor: focusedMessage ? theme.accentColor : theme.borderColor, horizontalPadding: 8))
                     
                     HStack(alignment: .center) {
                         Spacer()
@@ -93,7 +99,6 @@ struct NewBuildScreenView: View, RoutingView {
             .disabled(model.state == .loading)
         }
         .font(.footnote)
-        .foregroundColor(Color.b_TextBlack)
         .toolbar {
             Button {
                 presentationMode.wrappedValue.dismiss()

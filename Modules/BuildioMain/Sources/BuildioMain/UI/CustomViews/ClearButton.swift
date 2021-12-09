@@ -20,7 +20,6 @@ struct ClearButton: ViewModifier {
                     self.text = ""
                 } label: {
                     Image(systemName: "delete.left")
-                        .foregroundColor(Color.b_ButtonPrimaryLight)
                 }
             }
         }

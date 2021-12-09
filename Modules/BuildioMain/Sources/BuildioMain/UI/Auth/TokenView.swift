@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TokenView: View {
+    @Environment(\.colorScheme.theme) var theme
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.openURL) private var openURL
     
@@ -36,7 +37,7 @@ struct TokenView: View {
                     .rotationEffect(Angle(degrees: 90))
                     .frame(width: 200, height: 130, alignment: .center)
                     .fixedSize()
-                    .foregroundColor(.b_PrimaryLight)
+                    .foregroundColor(theme.accentColor)
                 Spacer()
                 
                 HStack {
@@ -52,10 +53,9 @@ struct TokenView: View {
                     self.focused = editing
                 })
                     .font(.callout)
-                    .foregroundColor(.b_TextBlack)
                     .modifier(ClearButton(text: $tokenState))
                     .modifier(PasteButton(text: $tokenState))
-                    .modifier(RoundedBorderShadowModifier(borderColor: focused ? .b_Primary : .b_BorderLight, horizontalPadding: 8))
+                    .modifier(RoundedBorderShadowModifier(borderColor: focused ? theme.accentColor : theme.borderColor, horizontalPadding: 8))
                     .frame(height: 44)
                 
                 HStack(spacing: 0) {
@@ -68,7 +68,7 @@ struct TokenView: View {
                         
                         openURL(url)
                     } label: {
-                        Text("Click here").foregroundColor(Color.b_ButtonPrimaryLight)
+                        Text("Click here").foregroundColor(theme.linkColor)
                     }
                     .font(.callout)
                     .buttonStyle(.plain)

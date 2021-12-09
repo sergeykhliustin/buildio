@@ -9,6 +9,7 @@ import SwiftUI
 import Models
 
 struct AppsScreenView: View, PagingView, RoutingView {
+    @Environment(\.colorScheme.theme) var theme
     @EnvironmentObject var model: AppsViewModel
     
     private var completion: ((V0AppResponseItemModel) -> Void)?
@@ -29,10 +30,9 @@ struct AppsScreenView: View, PagingView, RoutingView {
             self.searchFocused = editing
         })
             .font(.callout)
-            .foregroundColor(.b_TextBlack)
             .frame(height: 44)
             .modifier(ClearButton(text: text))
-            .modifier(RoundedBorderShadowModifier(borderColor: searchFocused ? .b_Primary : .b_BorderLight, horizontalPadding: 8))
+            .modifier(RoundedBorderShadowModifier(borderColor: searchFocused ? theme.accentColor : theme.borderColor, horizontalPadding: 8))
             .padding(.horizontal, 16)
     }
     

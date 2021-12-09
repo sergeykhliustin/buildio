@@ -21,19 +21,20 @@ private struct CustomProgressShape: Shape {
 }
 
 struct CircularInfiniteProgressViewStyle: ProgressViewStyle {
+    @Environment(\.colorScheme.theme) var theme
     @State private var isAnimating = false
     
     func makeBody(configuration: Configuration) -> some View {
         ZStack {
             CustomProgressShape()
                 .frame(width: 20, height: 20, alignment: .center)
-                .foregroundColor(.b_PrimaryLight)
+                .foregroundColor(theme.accentColorLight)
                 .rotationEffect(Angle(degrees: isAnimating ? 360 : 0))
                 .animation(isAnimating ? animation : .none)
             
             CustomProgressShape()
                 .frame(width: 10, height: 10, alignment: .center)
-                .foregroundColor(.b_Primary)
+                .foregroundColor(theme.accentColor)
                 .rotationEffect(Angle(degrees: isAnimating ? -360 : 0))
                 .animation(isAnimating ? animation : .none)
         }
@@ -47,18 +48,20 @@ struct CircularInfiniteProgressViewStyle: ProgressViewStyle {
 }
 
 struct CircularProgressViewStyle: ProgressViewStyle {
+    @Environment(\.colorScheme.theme) var theme
+    
     func makeBody(configuration: Configuration) -> some View {
         let progress = configuration.fractionCompleted ?? 0.0
         ZStack {
             CustomProgressShape()
                 .frame(width: 20, height: 20, alignment: .center)
-                .foregroundColor(.b_PrimaryLight)
+                .foregroundColor(theme.accentColorLight)
                 .rotationEffect(Angle(degrees: 360 * progress ))
                 .animation(.none)
             
             CustomProgressShape()
                 .frame(width: 10, height: 10, alignment: .center)
-                .foregroundColor(.b_Primary)
+                .foregroundColor(theme.accentColor)
                 .rotationEffect(Angle(degrees: -360 * progress))
                 .animation(.none)
         }

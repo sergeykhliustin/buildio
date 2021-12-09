@@ -10,13 +10,15 @@ import Introspect
 
 struct LogsControls: View {
     private struct LogsSearchTextFieldStyle: TextFieldStyle {
+        @Environment(\.colorScheme.theme) var theme
+        
         func _body(configuration: TextField<Self._Label>) -> some View {
             configuration
                 .autocapitalization(.none)
                 .padding(.horizontal, 4)
                 .frame(height: 30)
                 .background(
-                    RoundedRectangle(cornerRadius: 4).stroke(Color.b_Primary, lineWidth: 1).background(Color.b_BorderLight.opacity(0.8))
+                    RoundedRectangle(cornerRadius: 4).stroke(theme.accentColor, lineWidth: 1).background(theme.logControlColor.opacity(0.8))
                 )
                 .cornerRadius(4)
                 .font(.footnote)
@@ -24,6 +26,8 @@ struct LogsControls: View {
     }
     
     private struct CustomButtonStyle: ButtonStyle {
+        @Environment(\.colorScheme.theme) var theme
+        
         @State private var hover: Bool = false
         @Binding var selected: Bool
         
@@ -38,7 +42,7 @@ struct LogsControls: View {
                 .frame(width: 30, height: 30, alignment: .center)
                 .contentShape(Rectangle())
                 .background(
-                    RoundedRectangle(cornerRadius: 4).stroke(highlighted ? Color.b_Primary : .clear, lineWidth: 1).background(Color.b_BorderLight.opacity(highlighted ? 0.8 : 0.5))
+                    RoundedRectangle(cornerRadius: 4).stroke(highlighted ? theme.accentColor : .clear, lineWidth: 1).background(theme.logControlColor.opacity(highlighted ? 0.8 : 0.5))
                 )
                 .cornerRadius(4)
                 .onHover { hover in
@@ -47,6 +51,7 @@ struct LogsControls: View {
         }
     }
     
+    @Environment(\.colorScheme.theme) var theme
     @Binding var fullscreen: Bool
     @Binding var follow: Bool
     @Binding var searchText: String
@@ -75,7 +80,7 @@ struct LogsControls: View {
                         .font(.footnote)
                         .padding(4)
                         .background(
-                            RoundedRectangle(cornerRadius: 4).stroke(Color.b_Primary, lineWidth: 1).background(Color.b_BorderLight.opacity(0.8))
+                            RoundedRectangle(cornerRadius: 4).stroke(theme.accentColor, lineWidth: 1).background(theme.logControlColor.opacity(0.8))
                         )
                         .cornerRadius(4)
                 }

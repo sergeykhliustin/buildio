@@ -10,6 +10,7 @@ import SwiftUI
 import UIKit
 
 struct LogsTextView: UIViewRepresentable {
+    @Environment(\.colorScheme.theme) private var theme
     @Binding var follow: Bool
     @Binding var selectedRange: NSRange?
     @Binding var attributed: NSAttributedString?
@@ -28,7 +29,7 @@ struct LogsTextView: UIViewRepresentable {
     func makeUIView(context: Context) -> UIView {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 200))
         view.clipsToBounds = true
-        view.backgroundColor = UIColor(Color.b_LogsBackground)
+        view.backgroundColor = UIColor(theme.logsBackgroundColor)
         let textView = UITextView()
         textView.delegate = scrollViewHandler
         textView.translatesAutoresizingMaskIntoConstraints = false
@@ -38,7 +39,7 @@ struct LogsTextView: UIViewRepresentable {
         textView.indicatorStyle = .white
         textView.autocorrectionType = .no
         textView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -8.5)
-        textView.backgroundColor = UIColor(Color.b_LogsBackground)
+        textView.backgroundColor = UIColor(theme.logsBackgroundColor)
         textView.textColor = UIColor.white
         
         view.addSubview(textView)

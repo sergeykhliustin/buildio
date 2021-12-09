@@ -10,6 +10,7 @@ import Models
 import Combine
 
 struct BuildRowView: View {
+    @Environment(\.colorScheme.theme) private var theme
     @Binding private var route: Route?
     @StateObject private var viewModel: BuildViewModel
     let showBottomControls: Bool
@@ -52,7 +53,7 @@ struct BuildRowView: View {
                         }
                         HStack(spacing: 0) {
                             Text(model.commitMessage ?? "No commit message")
-                            
+                            Spacer()
                         }
                     }
                     
@@ -64,10 +65,12 @@ struct BuildRowView: View {
                 }
                 .lineLimit(1)
                 .padding(8)
-                Rectangle().fill(Color.b_BorderLight)
+                Rectangle().fill(theme.borderColor)
                     .frame(height: 1)
                 HStack(spacing: 0) {
                     Text(model.branchFromToUIString)
+                        .truncationMode(.middle)
+                        .lineLimit(1)
                         .padding(8)
                         .foregroundColor(extendedStatus.color)
                         .background(extendedStatus.colorLight)
@@ -89,7 +92,7 @@ struct BuildRowView: View {
                         .padding(8)
                 }
                 
-                Rectangle().fill(Color.b_BorderLight)
+                Rectangle().fill(theme.borderColor)
                     .frame(height: 1)
                 if showBottomControls {
                     HStack(spacing: 8) {
@@ -148,7 +151,6 @@ struct BuildRowView: View {
         })
         .font(.footnote)
         .multilineTextAlignment(.leading)
-        .foregroundColor(.b_TextBlack)
     }
 }
 

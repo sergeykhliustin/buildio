@@ -9,11 +9,12 @@ import SwiftUI
 import Models
 
 struct AppRowView: View {
+    @Environment(\.colorScheme.theme) private var theme
     @State var model: V0AppResponseItemModel
     
     var body: some View {
         HStack(alignment: .top, spacing: 8) {
-            let statusColor = model.isDisabled ? Color.b_BorderLight : Color.clear
+            let statusColor = model.isDisabled ? theme.disabledColor : Color.clear
             Rectangle()
                 .fill(statusColor)
                 .frame(width: 5)
@@ -35,7 +36,6 @@ struct AppRowView: View {
             .padding(.vertical, 8)
             Spacer()
         }
-        .foregroundColor(.b_TextBlack)
     }
 }
 

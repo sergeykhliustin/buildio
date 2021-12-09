@@ -9,6 +9,7 @@ import SwiftUI
 import Models
 
 struct BuildHeaderView: View {
+    @Environment(\.colorScheme.theme) private var theme
     let model: BuildResponseItemModel
     var body: some View {
         let extendedStatus = model.extendedStatus
@@ -26,7 +27,7 @@ struct BuildHeaderView: View {
                     Text(model.triggeredWorkflow)
                 }
                 .padding(8)
-                .background(RoundedRectangle(cornerRadius: 4).stroke(Color.b_BorderLight))
+                .background(RoundedRectangle(cornerRadius: 4).stroke(theme.borderColor))
                 .eraseToAnyView()
             case 2:
                 if let pullRequest = model.pullRequestId, pullRequest != 0 {

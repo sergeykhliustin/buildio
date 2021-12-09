@@ -23,9 +23,7 @@ struct PasteButton: ViewModifier {
                     }
                 } label: {
                     Image(systemName: "doc.on.clipboard.fill")
-                        .foregroundColor(Color.b_ButtonPrimaryLight)
                 }
-                .background(Color.white)
             }
         }
     }

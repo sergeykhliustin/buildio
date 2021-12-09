@@ -15,18 +15,19 @@ struct SubmitButtonStyle: ButtonStyle {
     }
     
     struct SButton: View {
+        @Environment(\.colorScheme.theme) private var theme
         let configuration: ButtonStyle.Configuration
         let edgeInsets: EdgeInsets
         @Environment(\.isEnabled) private var isEnabled: Bool
         
         var body: some View {
-            var colors: [Color] = [.b_ButtonPrimaryLight, .b_ButtonPrimary]
+            var colors: [Color] = theme.submitButtonColors
             
             if configuration.isPressed {
                 colors.removeLast()
             }
             if !isEnabled {
-                colors = [Color.b_BorderLight]
+                colors = [theme.disabledColor]
             }
             
             return configuration.label

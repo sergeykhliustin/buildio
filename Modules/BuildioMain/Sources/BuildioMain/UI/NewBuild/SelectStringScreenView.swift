@@ -32,7 +32,6 @@ struct SelectStringScreenView: View {
             }
             .padding(.vertical, 8)
         }
-        .foregroundColor(Color.b_TextBlack)
         .font(.footnote)
     }
 }

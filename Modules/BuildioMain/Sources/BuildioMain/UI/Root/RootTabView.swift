@@ -26,6 +26,8 @@ private extension View {
 }
 
 struct RootTabView: View, RoutingView {
+    @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.colorScheme.theme) private var theme
     @Environment(\.fullscreen) private var fullscreen
     @EnvironmentObject private var navigators: Navigators
     
@@ -49,7 +51,7 @@ struct RootTabView: View, RoutingView {
                     NavigationView {
                         RootScreenItemView(item)
                             .navigationTitle(item.name)
-                            .background(Color.white)
+                            .background(theme.background)
                     }
 //                    .conditionalModifier(
 //                        isStack,
@@ -57,6 +59,9 @@ struct RootTabView: View, RoutingView {
 //                        ifFalse: { $0.navigationViewStyle(.automatic) }
 //                    )
                     .tag(index)
+                    .introspectViewController(customize: { controller in
+                        controller.viewIfLoaded?.backgroundColor = UIColor(theme.background)
+                    })
                     .introspectNavigationController(customize: { controller in
                         logger.debug("")
                         navigators.set(navigation: controller, for: item)
@@ -76,6 +81,9 @@ struct RootTabView: View, RoutingView {
                         if fullscreen.wrappedValue && splitViewController.displayMode != .secondaryOnly {
                             splitViewController.hide(.primary)
                         }
+                    }
+                    .onChange(of: colorScheme) { newValue in
+                        navigators.applyColorScheme(newValue)
                     }
                 } else {
                     RootScreenItemView(item)

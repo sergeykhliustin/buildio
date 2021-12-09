@@ -30,11 +30,13 @@ final class WorkflowsViewModel: BaseViewModel<[String]> {
 }
 
 struct WorkflowsView: BaseView {
+    @Environment(\.colorScheme.theme) var theme
     @State var isActiveRoute: Bool = false
     
     @StateObject var model: WorkflowsViewModel
     @Binding var workflow: String
     @Binding var app: V0AppResponseItemModel
+    @State private var focused: Bool = false
     
     init(app: Binding<V0AppResponseItemModel>, workflow: Binding<String>) {
         _app = app
@@ -54,7 +56,11 @@ struct WorkflowsView: BaseView {
             }
             .hidden()
             
-            BTextField("Select workflow", text: $workflow)
+            TextField("Select workflow",
+                      text: $workflow,
+                      onEditingChanged: { self.focused = $0 })
+                .frame(height: 44)
+                .modifier(RoundedBorderShadowModifier(borderColor: focused ? theme.accentColor : theme.borderColor, horizontalPadding: 8))
                 .modifier(RightButtonModifier(icon: "chevron.right", loading: model.value == nil, action: {
                     isActiveRoute.toggle()
                 }))

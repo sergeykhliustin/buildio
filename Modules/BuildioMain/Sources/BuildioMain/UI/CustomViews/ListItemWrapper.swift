@@ -8,6 +8,7 @@
 import SwiftUI
 
 private struct CustomListWrapperButtonStyle: ButtonStyle {
+    @Environment(\.colorScheme.theme) var theme
     let cornerRadius: CGFloat
     let handleHover: Bool
     @State private var hover: Bool = false
@@ -20,11 +21,11 @@ private struct CustomListWrapperButtonStyle: ButtonStyle {
             .cornerRadius(cornerRadius)
             .background(
                 RoundedRectangle(cornerRadius: 8)
-                    .fill(Color.white)
-                    .shadow(color: .b_ShadowLight, radius: 10, y: 0)
+                    .fill(theme.background)
+                    .listShadow(theme)
             )
             .background(
-                RoundedRectangle(cornerRadius: cornerRadius).stroke(highlighted ? Color.b_Primary : .clear, lineWidth: 2)
+                RoundedRectangle(cornerRadius: cornerRadius).stroke(highlighted ? theme.accentColor : .clear, lineWidth: 2)
                     
             )
             .onHover { hover in

@@ -15,6 +15,7 @@ struct AbortButtonStyle: ButtonStyle {
     }
     
     struct SButton: View {
+        @Environment(\.colorScheme.theme) private var theme
         let configuration: ButtonStyle.Configuration
         let edgeInsets: EdgeInsets
         @Environment(\.isEnabled) private var isEnabled: Bool
@@ -26,7 +27,7 @@ struct AbortButtonStyle: ButtonStyle {
                 colors.removeLast()
             }
             if !isEnabled {
-                colors = [Color.b_BorderLight]
+                colors = [theme.disabledColor]
             }
             
             return configuration.label
