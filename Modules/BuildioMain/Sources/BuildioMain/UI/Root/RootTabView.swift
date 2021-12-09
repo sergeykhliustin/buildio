@@ -50,11 +50,11 @@ struct RootTabView: View, RoutingView {
                         RootScreenItemView(item)
                             .navigationTitle(item.name)
                     }
-                    .conditionalModifier(
-                        isStack,
-                        ifTrue: { $0.navigationViewStyle(.stack) },
-                        ifFalse: { $0.navigationViewStyle(.automatic) }
-                    )
+//                    .conditionalModifier(
+//                        isStack,
+//                        ifTrue: { $0.navigationViewStyle(.stack) },
+//                        ifFalse: { $0.navigationViewStyle(.automatic) }
+//                    )
                     .tag(index)
                     .introspectNavigationController(customize: { controller in
                         logger.debug("")

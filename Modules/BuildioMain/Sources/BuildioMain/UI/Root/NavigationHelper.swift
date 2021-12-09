@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import SwiftUI
+import Combine
 
 final class NavigationHelper: ObservableObject {
     private var navigationControllers = NSMapTable<NSString, UINavigationController>(valueOptions: .weakMemory)
