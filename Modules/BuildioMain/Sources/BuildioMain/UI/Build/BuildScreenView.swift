@@ -28,6 +28,7 @@ struct ActionItem: View {
 }
 
 struct BuildScreenView: BaseView, RoutingView {
+    @Environment(\.theme) private var theme
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var model: BuildViewModel
     

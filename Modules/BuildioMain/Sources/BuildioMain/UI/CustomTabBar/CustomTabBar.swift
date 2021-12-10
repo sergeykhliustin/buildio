@@ -106,7 +106,12 @@ struct CustomTabBar: View {
         }
         .padding(.trailing, 4)
         .frame(maxWidth: 64)
-        .border(theme.borderColor, width: 1)
+        .background(
+            HStack(spacing: 0) {
+                Spacer()
+                Rectangle().fill(theme.borderColor).frame(width: 1, alignment: .trailing)
+            }
+        )
     }
 }
 

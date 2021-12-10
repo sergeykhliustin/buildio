@@ -20,6 +20,7 @@ final class Navigators: ObservableObject {
     
     func set(split: UISplitViewController, for type: RootScreenItemType) {
         splitControllers.setObject(split, forKey: type.id as NSString)
+        applyTheme(ThemeHelper.current)
     }
     
     func getNavigation(for type: RootScreenItemType) -> UINavigationController? {
@@ -53,18 +54,40 @@ final class Navigators: ObservableObject {
     
     func fixEmptyNavigation() {
         RootScreenItemType.allCases.forEach({ fixEmptyNavigation(type: $0) })
+        applyTheme(ThemeHelper.current)
     }
     
     func applyTheme(_ theme: Theme) {
         RootScreenItemType.allCases.forEach({
             guard let navigation = navigationControllers.object(forKey: $0.id as NSString) else { return }
-            
-            let navigationBar = navigation.navigationBar
-            navigationBar.standardAppearance = UINavigationBar.appearance().standardAppearance
-            navigationBar.compactAppearance = UINavigationBar.appearance().compactAppearance
-            navigationBar.scrollEdgeAppearance = UINavigationBar.appearance().scrollEdgeAppearance
+            applyTheme(navigation: navigation, theme: theme)
             
         })
+        
+        RootScreenItemType.allCases.forEach({
+            guard let split = splitControllers.object(forKey: $0.id as NSString) else { return }
+            
+//            split.viewIfLoaded?.backgroundColor = UIColor(theme.background)
+            split.viewControllers.forEach({
+                if let controller = $0 as? UINavigationController {
+                    applyTheme(navigation: controller, theme: theme)
+                }
+                $0.viewIfLoaded?.backgroundColor = UIColor(theme.background)
+                
+            })
+        })
+    }
+    
+    private func applyTheme(navigation: UINavigationController, theme: Theme) {
+        let navigationBar = navigation.navigationBar
+        navigationBar.standardAppearance = UINavigationBar.appearance().standardAppearance
+        navigationBar.compactAppearance = UINavigationBar.appearance().compactAppearance
+        navigationBar.scrollEdgeAppearance = UINavigationBar.appearance().scrollEdgeAppearance
+        
+        navigation.viewControllers.forEach({
+            $0.viewIfLoaded?.backgroundColor = UIColor(theme.background)
+        })
+        navigation.viewIfLoaded?.backgroundColor = UIColor(theme.background)
     }
 }
 

@@ -72,7 +72,9 @@ struct RootTabView: View, RoutingView {
                         if fullscreen.wrappedValue && splitViewController.displayMode != .secondaryOnly {
                             splitViewController.hide(.primary)
                         }
-                        
+                    }
+                    .introspectViewController { controller in
+                        controller.viewIfLoaded?.backgroundColor = UIColor(theme.background)
                     }
                 } else {
                     RootScreenItemView(item)

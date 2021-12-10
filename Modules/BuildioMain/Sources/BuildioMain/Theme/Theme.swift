@@ -111,7 +111,7 @@ struct DarkTheme: Theme {
     let borderColor = Color(hex: 0xdedede)
     let logControlColor = Color(hex: 0xdedede)
     let logsBackgroundColor = Color(hex: 0x2c3e50)
-    let shadowColor = Color(hex: 0x0).opacity(0.1)
+    let shadowColor = Color(hex: 0xffffff).opacity(0.1)
 
     var listShadow: Shadow {
         return (shadowColor, 10, 0, 0)
