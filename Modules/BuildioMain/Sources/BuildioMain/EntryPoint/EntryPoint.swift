@@ -10,8 +10,8 @@ import SwiftUI
 public struct EntryPoint: View {
     public init() { }
     public var body: some View {
-        ThemeConfiguratorView {
-            EnvironmentConfiguratorView {
+        EnvironmentConfiguratorView {
+            ThemeConfiguratorView {
                 AuthResolverScreenView()
             }
         }

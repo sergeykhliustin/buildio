@@ -55,9 +55,7 @@ struct RootTabView: View, RoutingView {
                     }
                     .tag(index)
                     .introspectNavigationController(customize: { controller in
-                        logger.debug("")
                         navigators.set(navigation: controller, for: item)
-                        navigators.applyTheme(theme)
                     })
                     .introspectSplitViewController { splitViewController in
                         logger.debug(splitViewController)

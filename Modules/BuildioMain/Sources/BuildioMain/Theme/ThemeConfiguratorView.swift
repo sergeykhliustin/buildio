@@ -23,6 +23,7 @@ extension EnvironmentValues {
 }
 
 struct ThemeConfiguratorView<Content: View>: View {
+    @EnvironmentObject private var navigators: Navigators
     @Environment(\.colorScheme) var colorScheme
     @State private var theme: Theme = ThemeHelper.current
     @ViewBuilder private let content: () -> Content
@@ -37,6 +38,7 @@ struct ThemeConfiguratorView<Content: View>: View {
             .onChange(of: colorScheme, perform: { newValue in
                 theme = ThemeHelper.theme(for: newValue)
                 configureAppearance(theme)
+                navigators.applyTheme(theme)
             })
             .environment(\.theme, theme)
             .accentColor(theme.accentColor)
