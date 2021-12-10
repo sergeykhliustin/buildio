@@ -55,15 +55,15 @@ final class Navigators: ObservableObject {
         RootScreenItemType.allCases.forEach({ fixEmptyNavigation(type: $0) })
     }
     
-    func applyColorScheme(_ scheme: ColorScheme) {
-        let theme = scheme.theme
+    func applyTheme(_ theme: Theme) {
         RootScreenItemType.allCases.forEach({
             guard let navigation = navigationControllers.object(forKey: $0.id as NSString) else { return }
+            
             let navigationBar = navigation.navigationBar
-            navigationBar.barTintColor = UIColor(theme.accentColor)
-            navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor(theme.textColor)]
-            navigationBar.titleTextAttributes = [.foregroundColor: UIColor(theme.textColor)]
-            navigationBar.backgroundColor =  UIColor(theme.background)
+            navigationBar.standardAppearance = UINavigationBar.appearance().standardAppearance
+            navigationBar.compactAppearance = UINavigationBar.appearance().compactAppearance
+            navigationBar.scrollEdgeAppearance = UINavigationBar.appearance().scrollEdgeAppearance
+            
         })
     }
 }

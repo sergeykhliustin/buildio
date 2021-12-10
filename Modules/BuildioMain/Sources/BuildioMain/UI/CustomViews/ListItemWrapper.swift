@@ -8,7 +8,7 @@
 import SwiftUI
 
 private struct CustomListWrapperButtonStyle: ButtonStyle {
-    @Environment(\.colorScheme.theme) var theme
+    @Environment(\.theme) private var theme
     let cornerRadius: CGFloat
     let handleHover: Bool
     @State private var hover: Bool = false

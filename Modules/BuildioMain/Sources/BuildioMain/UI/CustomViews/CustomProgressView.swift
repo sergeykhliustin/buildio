@@ -21,7 +21,7 @@ private struct CustomProgressShape: Shape {
 }
 
 struct CircularInfiniteProgressViewStyle: ProgressViewStyle {
-    @Environment(\.colorScheme.theme) var theme
+    @Environment(\.theme) private var theme
     @State private var isAnimating = false
     
     func makeBody(configuration: Configuration) -> some View {
@@ -48,7 +48,7 @@ struct CircularInfiniteProgressViewStyle: ProgressViewStyle {
 }
 
 struct CircularProgressViewStyle: ProgressViewStyle {
-    @Environment(\.colorScheme.theme) var theme
+    @Environment(\.theme) private var theme
     
     func makeBody(configuration: Configuration) -> some View {
         let progress = configuration.fractionCompleted ?? 0.0

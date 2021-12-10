@@ -9,7 +9,7 @@ import SwiftUI
 import Models
 
 struct BuildHeaderView: View {
-    @Environment(\.colorScheme.theme) private var theme
+    @Environment(\.theme) private var theme
     let model: BuildResponseItemModel
     var body: some View {
         let extendedStatus = model.extendedStatus

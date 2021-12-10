@@ -10,7 +10,7 @@ import Models
 import Combine
 
 struct BuildRowView: View {
-    @Environment(\.colorScheme.theme) private var theme
+    @Environment(\.theme) private var theme
     @Binding private var route: Route?
     @StateObject private var viewModel: BuildViewModel
     let showBottomControls: Bool

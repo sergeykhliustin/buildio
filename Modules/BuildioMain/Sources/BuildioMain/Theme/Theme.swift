@@ -26,6 +26,56 @@ protocol Theme {
     var tabBarBackgroundShadow: Shadow { get }
 }
 
+enum ThemeHelper {
+    static var current: Theme {
+        let style = UIScreen.main.traitCollection.userInterfaceStyle
+        switch style {
+        case .unspecified:
+            return LightTheme()
+        case .light:
+            return LightTheme()
+        case .dark:
+            return DarkTheme()
+        @unknown default:
+            return LightTheme()
+        }
+    }
+    
+    static func theme(for colorScheme: ColorScheme) -> Theme {
+        if colorScheme == .dark {
+            return DarkTheme()
+        } else {
+            return LightTheme()
+        }
+    }
+}
+
+final class ThemeObject: ObservableObject {
+    @Published var theme: Theme
+    init(_ colorScheme: ColorScheme) {
+//        UIScreen.main.traitCollection.userInterfaceStyle
+        switch colorScheme {
+        case .light:
+            theme = LightTheme()
+        case .dark:
+            theme = DarkTheme()
+        @unknown default:
+            theme = LightTheme()
+        }
+    }
+    
+    func update(_ colorScheme: ColorScheme) {
+        switch colorScheme {
+        case .light:
+            theme = LightTheme()
+        case .dark:
+            theme = DarkTheme()
+        @unknown default:
+            theme = LightTheme()
+        }
+    }
+}
+
 struct LightTheme: Theme {
     let background: Color = .white
     let textColor = Color(hex: 0x351d48)
@@ -66,7 +116,7 @@ struct DarkTheme: Theme {
     var listShadow: Shadow {
         return (shadowColor, 10, 0, 0)
     }
-    
+
     var tabBarBackgroundShadow: Shadow {
         return (shadowColor, 3, 0, -5)
     }

@@ -9,7 +9,7 @@ import SwiftUI
 import Models
 
 struct AppRowView: View {
-    @Environment(\.colorScheme.theme) private var theme
+    @Environment(\.theme) private var theme
     @State var model: V0AppResponseItemModel
     
     var body: some View {

@@ -15,7 +15,7 @@ struct SubmitButtonStyle: ButtonStyle {
     }
     
     struct SButton: View {
-        @Environment(\.colorScheme.theme) private var theme
+        @Environment(\.theme) private var theme
         let configuration: ButtonStyle.Configuration
         let edgeInsets: EdgeInsets
         @Environment(\.isEnabled) private var isEnabled: Bool

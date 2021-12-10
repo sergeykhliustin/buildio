@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TokenView: View {
-    @Environment(\.colorScheme.theme) var theme
+    @Environment(\.theme) private var theme
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.openURL) private var openURL
     

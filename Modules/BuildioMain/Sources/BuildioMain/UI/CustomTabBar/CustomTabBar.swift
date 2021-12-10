@@ -8,7 +8,7 @@
 import SwiftUI
 
 private struct CustomTabBarButtonStyle: ButtonStyle {
-    @Environment(\.colorScheme.theme) var theme
+    @Environment(\.theme) private var theme
     let selected: Bool
     @State private var hover: Bool = false
     
@@ -38,7 +38,7 @@ struct CustomTabBar: View {
     private let style: Style
     private let onSecondTap: (() -> Void)?
     @EnvironmentObject private var navigators: Navigators
-    @Environment(\.colorScheme.theme) private var theme
+    @Environment(\.theme) private var theme
 
     init(style: Style = .horizontal, spacing: CGFloat = 4, selected: Binding<Int>, onSecondTap: (() -> Void)? = nil) {
         self.spacing = spacing

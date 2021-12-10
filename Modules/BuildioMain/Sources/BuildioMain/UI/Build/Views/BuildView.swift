@@ -16,7 +16,7 @@ private struct PrimaryModifier: ViewModifier {
 }
 
 private struct SecondaryModifier: ViewModifier {
-    @Environment(\.colorScheme.theme) var theme
+    @Environment(\.theme) private var theme
     
     func body(content: Content) -> some View {
         content
@@ -41,7 +41,7 @@ extension Int: Identifiable {
 }
 
 struct BuildView: View {
-    @Environment(\.colorScheme.theme) private var theme
+    @Environment(\.theme) private var theme
     
     private struct Item: View {
         let imageName: String

@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct RoundedBorderShadowModifier: ViewModifier {
-    @Environment(\.colorScheme.theme) private var theme
+    @Environment(\.theme) private var theme
     var borderColor: Color?
     let horizontalPadding: CGFloat
     

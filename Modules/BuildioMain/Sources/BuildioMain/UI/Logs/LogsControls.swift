@@ -10,7 +10,7 @@ import Introspect
 
 struct LogsControls: View {
     private struct LogsSearchTextFieldStyle: TextFieldStyle {
-        @Environment(\.colorScheme.theme) var theme
+        @Environment(\.theme) private var theme
         
         func _body(configuration: TextField<Self._Label>) -> some View {
             configuration
@@ -26,7 +26,7 @@ struct LogsControls: View {
     }
     
     private struct CustomButtonStyle: ButtonStyle {
-        @Environment(\.colorScheme.theme) var theme
+        @Environment(\.theme) private var theme
         
         @State private var hover: Bool = false
         @Binding var selected: Bool
@@ -51,7 +51,7 @@ struct LogsControls: View {
         }
     }
     
-    @Environment(\.colorScheme.theme) var theme
+    @Environment(\.theme) private var theme
     @Binding var fullscreen: Bool
     @Binding var follow: Bool
     @Binding var searchText: String

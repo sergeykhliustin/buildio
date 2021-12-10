@@ -26,10 +26,10 @@ private extension View {
 }
 
 struct RootTabView: View, RoutingView {
-    @Environment(\.colorScheme) private var colorScheme
-    @Environment(\.colorScheme.theme) private var theme
+    @Environment(\.theme) private var theme
     @Environment(\.fullscreen) private var fullscreen
     @EnvironmentObject private var navigators: Navigators
+//    @EnvironmentObject private var themeObject: ThemeObject
     
     @Binding private var selection: Int
     private let configuration: [RootScreenItemType]
@@ -53,18 +53,11 @@ struct RootTabView: View, RoutingView {
                             .navigationTitle(item.name)
                             .background(theme.background)
                     }
-//                    .conditionalModifier(
-//                        isStack,
-//                        ifTrue: { $0.navigationViewStyle(.stack) },
-//                        ifFalse: { $0.navigationViewStyle(.automatic) }
-//                    )
                     .tag(index)
-                    .introspectViewController(customize: { controller in
-                        controller.viewIfLoaded?.backgroundColor = UIColor(theme.background)
-                    })
                     .introspectNavigationController(customize: { controller in
                         logger.debug("")
                         navigators.set(navigation: controller, for: item)
+                        navigators.applyTheme(theme)
                     })
                     .introspectSplitViewController { splitViewController in
                         logger.debug(splitViewController)
@@ -81,9 +74,7 @@ struct RootTabView: View, RoutingView {
                         if fullscreen.wrappedValue && splitViewController.displayMode != .secondaryOnly {
                             splitViewController.hide(.primary)
                         }
-                    }
-                    .onChange(of: colorScheme) { newValue in
-                        navigators.applyColorScheme(newValue)
+                        
                     }
                 } else {
                     RootScreenItemView(item)

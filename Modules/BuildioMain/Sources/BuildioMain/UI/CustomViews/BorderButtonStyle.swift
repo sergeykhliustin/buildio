@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct BorderButtonStyle: ButtonStyle {
-    @Environment(\.colorScheme.theme) private var theme
+    @Environment(\.theme) private var theme
     var padding: CGFloat = 4
     func makeBody(configuration: Configuration) -> some View {
         HStack(spacing: 0) {

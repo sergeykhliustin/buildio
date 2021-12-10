@@ -30,7 +30,7 @@ final class BranchesViewModel: BaseViewModel<[String]> {
 }
 
 struct BranchesView: BaseView {
-    @Environment(\.colorScheme.theme) var theme
+    @Environment(\.theme) private var theme
     @State var isActiveRoute: Bool = false
     
     @StateObject var model: BranchesViewModel

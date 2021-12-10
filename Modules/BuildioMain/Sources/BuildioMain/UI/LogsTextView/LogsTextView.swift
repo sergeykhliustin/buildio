@@ -10,7 +10,7 @@ import SwiftUI
 import UIKit
 
 struct LogsTextView: UIViewRepresentable {
-    @Environment(\.colorScheme.theme) private var theme
+    @Environment(\.theme) private var theme
     @Binding var follow: Bool
     @Binding var selectedRange: NSRange?
     @Binding var attributed: NSAttributedString?

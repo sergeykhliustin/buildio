@@ -10,7 +10,7 @@ import Models
 import Combine
 
 struct NewBuildScreenView: View, RoutingView {
-    @Environment(\.colorScheme.theme) var theme
+    @Environment(\.theme) private var theme
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @StateObject var model: NewBuildViewModel = NewBuildViewModel()
     
