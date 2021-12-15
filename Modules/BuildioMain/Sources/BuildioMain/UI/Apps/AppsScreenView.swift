@@ -9,7 +9,7 @@ import SwiftUI
 import Models
 
 struct AppsScreenView: View, PagingView, RoutingView {
-    @Environment(\.theme) private var theme
+    @Environment(\.theme) var theme
     @EnvironmentObject var model: AppsViewModel
     
     private var completion: ((V0AppResponseItemModel) -> Void)?

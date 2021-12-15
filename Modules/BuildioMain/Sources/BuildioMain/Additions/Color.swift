@@ -33,4 +33,8 @@ extension Color {
         }
         return .white
     }
+    
+    var uiColor: UIColor {
+        return UIColor(self)
+    }
 }

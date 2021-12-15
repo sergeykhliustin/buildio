@@ -21,7 +21,7 @@ struct RoundedBorderShadowModifier: ViewModifier {
     func body(content: Content) -> some View {
         ZStack {
             RoundedRectangle(cornerRadius: 4)
-//                .fill(Color.white)
+                .fill(Color.clear)
                 .overlay(
                     RoundedRectangle(cornerRadius: 4)
                         .stroke(borderColor ?? theme.borderColor, lineWidth: 1)

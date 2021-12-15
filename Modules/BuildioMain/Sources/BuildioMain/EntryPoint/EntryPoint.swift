@@ -11,7 +11,7 @@ public struct EntryPoint: View {
     public init() { }
     public var body: some View {
         EnvironmentConfiguratorView {
-            ThemeConfiguratorView {
+            AppThemeConfiguratorView {
                 AuthResolverScreenView()
             }
         }

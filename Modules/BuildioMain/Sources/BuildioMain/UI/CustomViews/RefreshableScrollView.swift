@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RefreshableScrollView<Content: View>: View {
+    @Environment(\.theme) private var theme
     @State private var previousScrollOffset: CGFloat = 0
     @State private var progress: CGFloat = 0
     
@@ -35,7 +36,7 @@ struct RefreshableScrollView<Content: View>: View {
                 .offset(x: 0, y: threshold * progress)
             }
         }
-        .background(FixedView())
+        .background(FixedView(color: theme.background))
         .onPreferenceChange(RefreshableKeyTypes.PrefKey.self) { values in
             self.refreshLogic(values: values)
         }
@@ -123,9 +124,11 @@ struct RefreshableScrollView<Content: View>: View {
     }
     
     private struct FixedView: View {
+        var color: Color = .clear
+        
         var body: some View {
             GeometryReader { proxy in
-                Color.clear.preference(key: RefreshableKeyTypes.PrefKey.self, value: [RefreshableKeyTypes.PrefData(vType: .fixedView, bounds: proxy.frame(in: .global))])
+                color.preference(key: RefreshableKeyTypes.PrefKey.self, value: [RefreshableKeyTypes.PrefData(vType: .fixedView, bounds: proxy.frame(in: .global))])
             }
         }
     }

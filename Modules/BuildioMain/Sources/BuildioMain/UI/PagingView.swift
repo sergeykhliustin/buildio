@@ -77,7 +77,12 @@ extension PagingView {
                 }
             }
             ToolbarItem(placement: .navigationBarTrailing) {
-                additionalToolbarItems()
+                if let s = self as? ScreenBuilder {
+                    additionalToolbarItems()
+                        .foregroundColor(s.theme.accentColor)
+                } else {
+                    additionalToolbarItems()
+                }
             }
         }
     }

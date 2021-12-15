@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RootScreenItemView: ScreenBuilder {
+    @Environment(\.theme) var theme
     let type: RootScreenItemType
     
     init(_ type: RootScreenItemType) {

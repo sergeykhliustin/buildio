@@ -8,7 +8,8 @@
 import SwiftUI
 import SwiftUINavigation
 
-struct AccountsScreenView: View {
+struct AccountsScreenView: ScreenBuilder {
+    @Environment(\.theme) var theme
     @EnvironmentObject private var navigators: Navigators
     @State private var showingSheet = false
     @StateObject private var tokenManager = TokenManager.shared
@@ -34,9 +35,10 @@ struct AccountsScreenView: View {
             } label: {
                 Image(systemName: "plus")
             }
+            .foregroundColor(theme.accentColor)
         }
         .sheet(isPresented: $showingSheet) {
-            AuthScreenView(canClose: true) {
+            authScreen(canClose: true) {
                 showingSheet = false
             }
         }

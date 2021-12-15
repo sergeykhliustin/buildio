@@ -28,7 +28,7 @@ struct ActionItem: View {
 }
 
 struct BuildScreenView: BaseView, RoutingView {
-    @Environment(\.theme) private var theme
+    @Environment(\.theme) var theme
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var model: BuildViewModel
     
@@ -87,7 +87,7 @@ struct BuildScreenView: BaseView, RoutingView {
                     BuildView(model: value, progress: model.progress)
                 }
             }
-            .padding(.vertical, 8)
+//            .padding(.vertical, 8)
         }
         .alert(item: $model.actionError, content: { error in
             Alert(title: Text(error.title), message: Text(error.message))

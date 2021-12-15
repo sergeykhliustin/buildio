@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Introspect
+import UIKit
 
 private extension View {
     typealias ContentTransform<Content: View> = (Self) -> Content
@@ -26,7 +27,7 @@ private extension View {
 }
 
 struct RootTabView: View, RoutingView {
-    @Environment(\.theme) private var theme
+    @Environment(\.theme) var theme
     @Environment(\.fullscreen) private var fullscreen
     @EnvironmentObject private var navigators: Navigators
 //    @EnvironmentObject private var themeObject: ThemeObject
@@ -55,11 +56,10 @@ struct RootTabView: View, RoutingView {
                     }
                     .tag(index)
                     .introspectNavigationController(customize: { controller in
-                        navigators.set(navigation: controller, for: item)
+                        navigators.set(navigation: controller, for: item, theme: theme)
                     })
                     .introspectSplitViewController { splitViewController in
-                        logger.debug(splitViewController)
-                        navigators.set(split: splitViewController, for: item)
+                        navigators.set(split: splitViewController, for: item, theme: theme)
                         splitViewController.preferredSplitBehavior = .tile
                         splitViewController.primaryBackgroundStyle = .none
                         splitViewController.minimumPrimaryColumnWidth = 300
@@ -73,9 +73,7 @@ struct RootTabView: View, RoutingView {
                             splitViewController.hide(.primary)
                         }
                     }
-                    .introspectViewController { controller in
-                        controller.viewIfLoaded?.backgroundColor = UIColor(theme.background)
-                    }
+                    
                 } else {
                     RootScreenItemView(item)
                         .tag(index)

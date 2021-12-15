@@ -9,6 +9,7 @@ import SwiftUI
 import Models
 
 struct BuildsScreenView: View, PagingView, RoutingView {
+    @Environment(\.theme) var theme
     @EnvironmentObject var model: BuildsViewModel
     @State private var showNewBuild: Bool = false
     @State private var route: Route?
@@ -36,10 +37,7 @@ struct BuildsScreenView: View, PagingView, RoutingView {
         .sheet(isPresented: $showNewBuild) {
             model.refresh()
         } content: {
-            NavigationView {
-                NewBuildScreenView(app: model.app)
-                    .navigationTitle("Start a build")
-            }
+            newBuildScreen(app: model.app)
         }
     }
 }

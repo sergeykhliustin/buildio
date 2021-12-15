@@ -7,9 +7,24 @@
 
 import Models
 import SwiftUI
+import Introspect
+
+struct ThemeBackground: ViewModifier {
+    @Environment(\.theme) var theme
+    
+    func body(content: Content) -> some View {
+        content
+            .introspectViewController { controller in
+                controller.applyTheme(theme)
+            }
+            .introspectSplitViewController { controller in
+                controller.applyTheme(theme)
+            }
+    }
+}
 
 protocol ScreenBuilder: View {
-    
+    var theme: Theme { get }
 }
 
 extension ScreenBuilder {
@@ -18,6 +33,7 @@ extension ScreenBuilder {
         BuildsScreenView()
             .environmentObject(app == nil ? ViewModelResolver.resolve(BuildsViewModel.self) : BuildsViewModel(app: app))
             .navigationTitle(app?.title ?? "Builds")
+            .modifier(ThemeBackground())
     }
     
     @ViewBuilder
@@ -25,6 +41,7 @@ extension ScreenBuilder {
         BuildScreenView()
             .environmentObject(ViewModelResolver.build(build))
             .navigationTitle("Build #\(String(build.buildNumber))")
+            .modifier(ThemeBackground())
     }
     
     @ViewBuilder
@@ -44,6 +61,7 @@ extension ScreenBuilder {
         AppsScreenView()
             .environmentObject(ViewModelResolver.resolve(AppsViewModel.self))
             .navigationTitle("Apps")
+            .modifier(ThemeBackground())
     }
     
     @ViewBuilder
@@ -57,17 +75,38 @@ extension ScreenBuilder {
     func accountsScreen() -> some View {
         AccountsScreenView()
             .navigationTitle("Accounts")
+            .modifier(ThemeBackground())
     }
     
     @ViewBuilder
     func activitiesScreen() -> some View {
         ActivitiesScreenView()
             .navigationTitle("Activities")
+            .modifier(ThemeBackground())
+    }
+    
+    @ViewBuilder
+    func authScreen(canClose: Bool = false, onCompletion: (() -> Void)? = nil) -> some View {
+        ThemeConfiguratorView {
+            AuthScreenView(canClose: canClose, onCompletion: onCompletion)
+        }
+    }
+    
+    @ViewBuilder
+    func newBuildScreen(app: V0AppResponseItemModel? = nil) -> some View {
+        ThemeConfiguratorView {
+            NavigationView {
+                NewBuildScreenView(app: app)
+                    .navigationTitle("Start a build")
+            }
+        }
     }
     
     @ViewBuilder
     func debugScreen() -> some View {
-        DebugScreenView()
-            .navigationTitle("Debug")
+        ThemeConfiguratorView {
+            DebugScreenView()
+                .navigationTitle("Debug")
+        }
     }
 }

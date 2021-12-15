@@ -1,67 +1,39 @@
 //
-//  ThemeConfiguratorView.swift
+//  SwiftUIView.swift
 //  
 //
-//  Created by Sergey Khliustin on 10.12.2021.
+//  Created by Sergey Khliustin on 15.12.2021.
 //
 
 import SwiftUI
 
-private struct ThemeEnvironmentKey: EnvironmentKey {
-    static var defaultValue: Theme = LightTheme()
-}
-
-extension EnvironmentValues {
-    var theme: Theme {
-        get {
-            self[ThemeEnvironmentKey.self]
-        }
-        set {
-            self[ThemeEnvironmentKey.self] = newValue
-        }
-    }
-}
-
 struct ThemeConfiguratorView<Content: View>: View {
-    @EnvironmentObject private var navigators: Navigators
-    @Environment(\.colorScheme) var colorScheme
-    @State private var theme: Theme = ThemeHelper.current
+    @Environment(\.theme) var theme
     @ViewBuilder private let content: () -> Content
-    
     init(_ content: @escaping () -> Content) {
         self.content = content
-        configureAppearance(theme)
     }
     
     var body: some View {
         content()
-            .onChange(of: colorScheme, perform: { newValue in
-                theme = ThemeHelper.theme(for: newValue)
-                configureAppearance(theme)
-                navigators.applyTheme(theme)
-            })
-            .environment(\.theme, theme)
-            .accentColor(theme.accentColor)
-            .foregroundColor(theme.textColor)
-            .background(theme.background)
-            .progressViewStyle(CircularInfiniteProgressViewStyle())
+            .introspectViewController { controller in
+                controller.applyTheme(theme)
+            }
     }
-    
-    func configureAppearance(_ theme: Theme) {
-        UIApplication.shared.windows.forEach({
-            $0.backgroundColor = UIColor(theme.background)
-            $0.rootViewController?.viewIfLoaded?.backgroundColor = UIColor(theme.background)
-        })
-        UITabBar.appearance().isHidden = true
-        let navigationBarAppearance = UINavigationBarAppearance()
-        navigationBarAppearance.configureWithTransparentBackground()
-        navigationBarAppearance.backgroundColor = UIColor(theme.background)
-        navigationBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor(theme.textColor)]
-        navigationBarAppearance.titleTextAttributes = [.foregroundColor: UIColor(theme.textColor)]
-//        navigationBarAppearance.shadowColor = UIColor(Color.b_ShadowLight)
-        UINavigationBar.appearance().standardAppearance = navigationBarAppearance
-        UINavigationBar.appearance().compactAppearance = navigationBarAppearance
-        UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
-        UINavigationBar.appearance().tintColor = UIColor(theme.accentColor)
+}
+
+extension UIViewController {
+    func applyTheme(_ theme: Theme) {
+        view.backgroundColor = theme.background.uiColor
+        
+        if let navigation = self as? UINavigationController {
+            let navigationBar = navigation.navigationBar
+            navigationBar.standardAppearance = UINavigationBar.appearance().standardAppearance
+            navigationBar.compactAppearance = UINavigationBar.appearance().compactAppearance
+            navigationBar.scrollEdgeAppearance = UINavigationBar.appearance().scrollEdgeAppearance
+        }
+        
+        children.forEach({ $0.applyTheme(theme) })
+        presentedViewController?.applyTheme(theme)
     }
 }

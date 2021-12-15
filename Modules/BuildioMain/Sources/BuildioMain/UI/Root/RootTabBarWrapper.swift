@@ -14,6 +14,7 @@ struct RootTabBarWrapper<Content: View>: View {
     @Environment(\.fullscreen) private var fullscreen
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @EnvironmentObject private var navigators: Navigators
+    @Environment(\.theme) var theme
     
     private var interfaceOrientation: UIInterfaceOrientation {
         guard let orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation else { return .portrait }
