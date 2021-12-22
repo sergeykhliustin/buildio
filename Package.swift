@@ -14,7 +14,7 @@ let package = Package(
             targets: ["BuildioApp"])
     ],
     dependencies: [
-        .package(name: "BuildioMain", path: "Modules/BuildioMain")
+        .package(name: "BuildioMain", path: "./Modules/BuildioMain")
     ],
     targets: [
         .target(
