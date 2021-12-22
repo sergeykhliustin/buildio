@@ -7,7 +7,7 @@
 import Foundation
 
 public class BaseAPI {
-    public static var defaultApiToken: (() -> String?)!
+    public static var defaultApiToken: (() -> String?)?
     public var requestBuilderFactory: RequestBuilderFactory {
         if let apiToken = self.apiToken {
             if apiToken == "demo" {
@@ -25,7 +25,7 @@ public class BaseAPI {
     let apiToken: String?
     
     public init() {
-        self.apiToken = BaseAPI.defaultApiToken()
+        self.apiToken = BaseAPI.defaultApiToken?()
     }
     
     public init(apiToken: String?) {
