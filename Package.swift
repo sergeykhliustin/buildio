@@ -16,7 +16,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/kishikawakatsumi/KeychainAccess.git", from: "4.0.0"),
         .package(url: "https://github.com/onevcat/Rainbow", from: "4.0.1"),
-        .package(name: "Introspect", url: "https://github.com/siteline/SwiftUI-Introspect.git", revision: "72a509c93166540c0adf8323fd2652daade7f9f6"),
+        .package(name: "Introspect", url: "https://github.com/siteline/SwiftUI-Introspect.git", from: "0.1.3"),
         .package(url: "https://github.com/pointfreeco/swiftui-navigation", from: "0.1.0"),
         .package(name: "SwiftyBeaver", url: "https://github.com/SwiftyBeaver/SwiftyBeaver.git", from: "1.9.5")
     ],
