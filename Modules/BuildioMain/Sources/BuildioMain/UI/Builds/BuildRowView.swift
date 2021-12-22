@@ -54,13 +54,12 @@ struct BuildRowView: View {
                         HStack(spacing: 0) {
                             Text(model.commitMessage ?? "No commit message")
                             Spacer()
+                            if viewModel.state == .loading {
+                                ProgressView()
+                            } else {
+                                Text(model.durationString ?? "")
+                            }
                         }
-                    }
-                    
-                    if viewModel.state == .loading {
-                        ProgressView()
-                    } else {   
-                        Text(model.durationString ?? "")
                     }
                 }
                 .lineLimit(1)
