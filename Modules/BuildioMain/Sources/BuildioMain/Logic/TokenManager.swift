@@ -17,6 +17,7 @@ struct Token: Equatable {
     let token: String
     let email: String
     fileprivate var current: Bool
+    var isDemo: Bool = false
     
     init(token: String, email: String) {
         self.token = token
@@ -93,39 +94,29 @@ class TokenManager: ObservableObject {
         } catch {
             logger.error(error)
         }
-        tokens.forEach { token in
-            var keychain = keychain
-            if token.current {
-                keychain = keychain.label("current")
+        tokens
+            .filter({ !$0.isDemo })
+            .forEach { token in
+                var keychain = keychain
+                if token.current {
+                    keychain = keychain.label("current")
+                }
+                do {
+                    try keychain.set(token.token, key: token.email)
+                } catch {
+                    logger.error(error)
+                }
             }
-            do {
-               try keychain.set(token.token, key: token.email)
-            } catch {
-                logger.error(error)
-            }
-        }
     }
     
-}
-
-fileprivate extension UserDefaults {
-    var tokens: [String] {
-        get {
-            return self.array(forKey: "tokens") as? [String] ?? []
-        }
-        set {
-            set(newValue, forKey: "tokens")
-            synchronize()
-        }
+    func setupDemo() {
+        var token = Token(token: "demo", email: "demo@example.com", current: true)
+        token.isDemo = true
+        self.token = token
     }
     
-    var currentToken: String? {
-        get {
-            return self.string(forKey: "token")
-        }
-        set {
-            set(newValue, forKey: "token")
-            synchronize()
-        }
+    func exitDemo() {
+        guard let token = self.token, token.isDemo else { return }
+        remove(token)
     }
 }

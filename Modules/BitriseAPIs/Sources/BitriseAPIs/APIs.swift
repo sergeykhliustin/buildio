@@ -17,7 +17,6 @@ open class OpenAPIClientAPI {
     public static var basePath = "https://api.bitrise.io/v0.1"
     public static var customHeaders: [String: String] = [:]
     public static var credential: URLCredential?
-    public static var requestBuilderFactory: RequestBuilderFactory = URLSessionRequestBuilderFactory()
     public static var apiResponseQueue: DispatchQueue = .main
 }
 
@@ -65,5 +64,5 @@ open class RequestBuilder<T> {
 
 public protocol RequestBuilderFactory {
     func getNonDecodableBuilder<T>() -> RequestBuilder<T>.Type
-    func getBuilder<T: Decodable>() -> RequestBuilder<T>.Type
+    func getBuilder<T: Codable>() -> RequestBuilder<T>.Type
 }

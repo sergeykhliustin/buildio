@@ -25,6 +25,7 @@ public final class SwiftyBeaverLogger: Logger {
             
             #if DEBUG
             let file = FileDestination()
+            file.logFileMaxSize = 1 * 1024 * 1024
             file.colored = true
             file.asynchronously = false
             SwiftyBeaver.addDestination(file)

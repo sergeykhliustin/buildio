@@ -26,6 +26,7 @@ private final class AccountRowViewModel: BaseViewModel<V0UserProfileDataModel> {
 }
 
 struct AccountRowView: View {
+    @Environment(\.isDemoMode) private var isDemoMode
     @StateObject private var model: AccountRowViewModel
     @StateObject private var tokenManager = TokenManager.shared
     let token: Token
@@ -74,7 +75,11 @@ struct AccountRowView: View {
                 }
                 Button {
                     logger.debug("trash")
-                    tokenManager.remove(token)
+                    if token.isDemo {
+                        isDemoMode.wrappedValue = false
+                    } else {
+                        tokenManager.remove(token)
+                    }
                 } label: {
                     Image(systemName: "trash")
                 }

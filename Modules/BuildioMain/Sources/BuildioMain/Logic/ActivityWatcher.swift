@@ -20,7 +20,7 @@ final class ActivityWatcher: ObservableObject {
     private init() {
         tokenHandler = TokenManager.shared.$token.sink(receiveValue: { [weak self] token in
             guard let self = self else { return }
-            if token != nil {
+            if let token = token, !token.isDemo {
                 self.refresh()
             } else {
                 self.timer?.invalidate()

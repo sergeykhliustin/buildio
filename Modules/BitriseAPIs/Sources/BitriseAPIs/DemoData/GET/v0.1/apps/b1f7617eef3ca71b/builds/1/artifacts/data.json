@@ -1,0 +1,35 @@
+{
+  "data" : [
+    {
+      "slug" : "a5c9637879bd3b99",
+      "title" : "Buildio.app.zip"
+    },
+    {
+      "slug" : "6c65c700837bf8e9",
+      "title" : "Buildio.dSYM.zip"
+    },
+    {
+      "slug" : "e4045756c866cf01",
+      "title" : "Buildio.ipa"
+    },
+    {
+      "slug" : "73031d283e4dfbc6",
+      "title" : "Buildio.xcarchive.zip"
+    },
+    {
+      "slug" : "1a3ba96a74e0f810",
+      "title" : "export_options.plist"
+    },
+    {
+      "slug" : "9129cd7d85de1062",
+      "title" : "xcodebuild-archive.log"
+    },
+    {
+      "slug" : "d27e5047af18e9a5",
+      "title" : "xcodebuild-export-archive.log"
+    }
+  ],
+  "paging" : {
+
+  }
+}

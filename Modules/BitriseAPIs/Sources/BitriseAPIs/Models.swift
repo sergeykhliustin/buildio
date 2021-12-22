@@ -31,7 +31,9 @@ private struct BitriseError: Decodable {
 public enum ErrorResponse: Error, Identifiable {
     public var id: String { rawErrorString }
     
+    case empty
     case error(Int, Data?, URLResponse?, Error)
+    case custom(String)
     
     public var rawErrorString: String {
         if case let .error(code, data, _, rawError) = self {
@@ -41,6 +43,8 @@ public enum ErrorResponse: Error, Identifiable {
                 return string
             }
             return rawError.localizedDescription
+        } else if case let .custom(string) = self {
+            return string
         }
         return self.localizedDescription
     }
@@ -63,11 +67,11 @@ public enum DecodableRequestBuilderError: Error {
 }
 
 open class Response<T> {
-    public let statusCode: Int
-    public let header: [String: String]
+    public let statusCode: Int?
+    public let header: [String: String]?
     public let body: T?
 
-    public init(statusCode: Int, header: [String: String], body: T?) {
+    public init(statusCode: Int? = nil, header: [String: String]? = nil, body: T?) {
         self.statusCode = statusCode
         self.header = header
         self.body = body

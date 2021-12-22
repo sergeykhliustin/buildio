@@ -1,0 +1,12 @@
+{
+  "data" : {
+    "slug" : "eb934d8a0a4c404f",
+    "payment_processor" : "Stripe",
+    "has_used_organization_trial" : false,
+    "created_at" : "2019-10-17T19:17:55.216422Z",
+    "email" : "demo@example.com",
+    "username" : "demo_user",
+    "data_id" : 121138,
+    "avatar_url" : ""
+  }
+}

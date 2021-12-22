@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftUINavigation
 
 struct AccountsScreenView: ScreenBuilder {
+    @Environment(\.isDemoMode) var isDemoMode
     @Environment(\.theme) var theme
     @EnvironmentObject private var navigators: Navigators
     @State private var showingSheet = false
@@ -30,12 +31,14 @@ struct AccountsScreenView: ScreenBuilder {
             .padding(.top, 16)
         }
         .toolbar {
-            Button {
-                showingSheet.toggle()
-            } label: {
-                Image(systemName: "plus")
+            if !isDemoMode.wrappedValue {
+                Button {
+                    showingSheet.toggle()
+                } label: {
+                    Image(systemName: "plus")
+                }
+                .foregroundColor(theme.accentColor)
             }
-            .foregroundColor(theme.accentColor)
         }
         .sheet(isPresented: $showingSheet) {
             authScreen(canClose: true) {

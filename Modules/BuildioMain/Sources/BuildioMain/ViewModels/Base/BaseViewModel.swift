@@ -20,6 +20,10 @@ protocol ResolvableViewModel {
     init()
 }
 
+protocol DemoResolvableViewModel {
+    static var demoType: ResolvableViewModel.Type { get }
+}
+
 protocol CacheableViewModel {
 
 }

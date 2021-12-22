@@ -1,0 +1,11 @@
+{
+  "data" : [
+    "deploy_all",
+    "build_ios",
+    "build_mac",
+    "build_all",
+    "deploy_ios",
+    "deploy_mac",
+    "deploy_release"
+  ]
+}

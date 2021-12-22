@@ -21,6 +21,10 @@ let package = Package(
     targets: [
         .target(
             name: "BitriseAPIs",
-            dependencies: ["Models", "Logger"])
+            dependencies: ["Models", "Logger"],
+            resources: [
+                .copy("DemoData")
+            ]
+        )
     ]
 )

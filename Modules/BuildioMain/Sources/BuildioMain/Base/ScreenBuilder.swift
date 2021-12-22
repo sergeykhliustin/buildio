@@ -81,6 +81,7 @@ extension ScreenBuilder {
     @ViewBuilder
     func activitiesScreen() -> some View {
         ActivitiesScreenView()
+            .environmentObject(ViewModelResolver.resolve(ActivitiesViewModel.self))
             .navigationTitle("Activities")
             .modifier(ThemeBackground())
     }

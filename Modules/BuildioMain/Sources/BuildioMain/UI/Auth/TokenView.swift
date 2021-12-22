@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TokenView: View {
+    @Environment(\.isDemoMode) private var isDemoMode: Binding<Bool>
     @Environment(\.theme) private var theme
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.openURL) private var openURL
@@ -79,6 +80,12 @@ struct TokenView: View {
                     Button("Submit") {
                         checkToken(tokenState)
                     }.buttonStyle(SubmitButtonStyle()).disabled(tokenState.isEmpty || isError)
+                }
+                
+                if !canClose {
+                    Button("Demo") {
+                        isDemoMode.wrappedValue = true
+                    }.buttonStyle(SubmitButtonStyle())
                 }
             }
             .frame(maxWidth: 414, alignment: .center)

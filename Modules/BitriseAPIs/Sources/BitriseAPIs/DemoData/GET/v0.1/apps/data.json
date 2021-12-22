@@ -1,0 +1,24 @@
+{
+  "data" : [
+    {
+      "owner" : {
+        "account_type" : "user",
+        "name" : "demo user",
+        "slug" : "eb934d8a0a4c404f"
+      },
+      "provider" : "github",
+      "is_disabled" : false,
+      "is_public" : false,
+      "repo_url" : "ssh:\/\/git@github.com\/sergeykhliustin\/buildio.git",
+      "slug" : "b1f7617eef3ca71b",
+      "status" : 1,
+      "title" : "buildio",
+      "repo_owner" : "sergeykhliustin",
+      "repo_slug" : "buildio",
+      "project_type" : "ios"
+    }
+  ],
+  "paging" : {
+
+  }
+}

@@ -14,17 +14,31 @@ final class ViewModelResolver {
     private static var viewModels: [String: Any] = [:]
     private static var cachedViewModels: [String: CacheValue] = [:]
     private static var tokenHandler: AnyCancellable?
+    private static var isDemo: Bool = false {
+        willSet {
+            if newValue != isDemo {
+                viewModels.removeAll()
+            }
+        }
+    }
     
     static func start() {
+        tokenHandler = TokenManager.shared.$token
+            .sink(receiveValue: { value in
+                cleanupCache()
+                if let value = value {
+                    isDemo = value.isDemo
+                }
+                if value != nil {
+                    resolveRootModels()
+                }
+            })
+    }
+    
+    private static func resolveRootModels() {
         _ = resolve(BuildsViewModel.self)
         _ = resolve(AppsViewModel.self)
         _ = resolve(ActivitiesViewModel.self)
-        
-        tokenHandler = TokenManager.shared.$token
-            .dropFirst()
-            .sink(receiveValue: { _ in
-                cleanupCache()
-            })
     }
     
     static func resolve<T: ResolvableViewModel>(_ type: T.Type) -> T {
@@ -32,6 +46,17 @@ final class ViewModelResolver {
         if let viewModel = viewModels[key] as? T {
             return viewModel
         } else {
+            if isDemo,
+               let type = type as? DemoResolvableViewModel.Type {
+                let resolvableType = type.demoType
+                let viewModel = resolvableType.init()
+                
+                if let viewModel = viewModel as? T {
+                    viewModels[key] = viewModel
+                    return viewModel
+                }
+            }
+            
             let viewModel = T()
             viewModels[key] = viewModel
             return viewModel

@@ -9,7 +9,7 @@ import SwiftUI
 import Models
 
 struct ActivitiesScreenView: PagingView {
-    @StateObject var model: ActivitiesViewModel = ViewModelResolver.resolve(ActivitiesViewModel.self)
+    @EnvironmentObject var model: ActivitiesViewModel
     
     func buildItemView(_ item: V0ActivityEventResponseItemModel) -> some View {
         ListItemWrapper(action: {
