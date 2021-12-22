@@ -4,25 +4,34 @@
 import PackageDescription
 
 let package = Package(
-    name: "BuildioApp",
+    name: "BuildioMain",
     platforms: [
-        .macOS(.v10_15),
-        .iOS(.v13)
+        .iOS(.v14)
     ],
     products: [
         .library(
-            name: "BuildioApp",
-            targets: ["BuildioApp"])
+            name: "BuildioMain",
+            targets: ["BuildioMain"])
     ],
     dependencies: [
-        .package(name: "BuildioMain", path: "./Modules/BuildioMain")
+        .package(name: "Models", path: "Modules/Models"),
+        .package(name: "BitriseAPIs", path: "Modules/BitriseAPIs"),
+        .package(url: "https://github.com/kishikawakatsumi/KeychainAccess.git", from: "4.0.0"),
+        .package(url: "https://github.com/onevcat/Rainbow", from: "4.0.1"),
+        .package(name: "Introspect", url: "https://github.com/siteline/SwiftUI-Introspect.git", branch: "master"),
+        .package(url: "https://github.com/pointfreeco/swiftui-navigation", from: "0.1.0")
     ],
     targets: [
         .target(
-            name: "BuildioApp",
+            name: "BuildioMain",
             dependencies: [
-                "BuildioMain"
-            ], path: "Shared",
-            sources: [])
+                "KeychainAccess",
+                "Rainbow",
+                "Introspect",
+                "Models",
+                "BitriseAPIs",
+                .product(name: "SwiftUINavigation", package: "swiftui-navigation")
+            ], path: "Modules/BuildioMain/Sources/BuildioMain"
+        )
     ]
 )
