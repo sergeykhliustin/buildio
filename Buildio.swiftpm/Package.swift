@@ -10,14 +10,14 @@ import AppleProductTypes
 let package = Package(
     name: "Buildio",
     platforms: [
-        .iOS(.v14)
+        .iOS("15.2")
     ],
     products: [
         .iOSApplication(
             name: "Buildio",
             targets: ["Buildio"],
-            bundleIdentifier: "com.home.TestSPMApp",
-            teamIdentifier: "RUAYJDT8WF",
+            bundleIdentifier: "com.sergeyk.Buildio",
+            teamIdentifier: "6C4646EB2U",
             displayVersion: "1.0",
             bundleVersion: "1",
             iconAssetName: "AppIcon",
@@ -35,12 +35,12 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(name: "BuildioUI", path: "../Modules/BuildioUI")
+        .package(name: "BuildioMain", url: "https://github.com/sergeykhliustin/buildio", from: "1.0.2")
     ],
     targets: [
         .executableTarget(
             name: "Buildio",
-            dependencies: ["BuildioUI"],
+            dependencies: ["BuildioMain"],
             path: "Shared"
         )
     ]

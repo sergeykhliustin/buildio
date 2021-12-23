@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "BuildioMain",
+        "repositoryURL": "https://github.com/sergeykhliustin/buildio",
+        "state": {
+          "branch": null,
+          "revision": "3ab9adbea643f43c48052fe72f08f4b8f8e9f408",
+          "version": "1.0.2"
+        }
+      },
+      {
         "package": "KeychainAccess",
         "repositoryURL": "https://github.com/kishikawakatsumi/KeychainAccess.git",
         "state": {
@@ -20,12 +29,30 @@
         }
       },
       {
+        "package": "swift-case-paths",
+        "repositoryURL": "https://github.com/pointfreeco/swift-case-paths",
+        "state": {
+          "branch": null,
+          "revision": "d226d167bd4a68b51e352af5655c92bce8ee0463",
+          "version": "0.7.0"
+        }
+      },
+      {
         "package": "Introspect",
         "repositoryURL": "https://github.com/siteline/SwiftUI-Introspect.git",
         "state": {
-          "branch": "master",
-          "revision": "72a509c93166540c0adf8323fd2652daade7f9f6",
-          "version": null
+          "branch": null,
+          "revision": "2e09be8af614401bc9f87d40093ec19ce56ccaf2",
+          "version": "0.1.3"
+        }
+      },
+      {
+        "package": "swiftui-navigation",
+        "repositoryURL": "https://github.com/pointfreeco/swiftui-navigation",
+        "state": {
+          "branch": null,
+          "revision": "2694c03284a368168b3e0b8d7ab52626802d2246",
+          "version": "0.1.0"
         }
       },
       {
