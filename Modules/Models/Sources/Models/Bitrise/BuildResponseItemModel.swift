@@ -126,7 +126,7 @@ public struct BuildResponseItemModel: Codable, Hashable, Identifiable {
             startedOnWorkerAt: Date(),
             status: .success,
             statusText: "success",
-            tag: nil,
+            tag: "some tag",
             triggeredAt: Date(),
             triggeredBy: nil,
             triggeredWorkflow: "triggeredWorkflow")

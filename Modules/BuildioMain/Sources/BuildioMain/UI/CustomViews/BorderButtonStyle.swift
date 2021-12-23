@@ -17,7 +17,7 @@ struct BorderButtonStyle: ButtonStyle {
                 .label
                 .padding(padding)
         }
-        .background(RoundedRectangle(cornerRadius: 4).stroke(configuration.isPressed ? theme.accentColor : theme.borderColor, lineWidth: 1))
+        .background(RoundedRectangle(cornerRadius: 0).stroke(configuration.isPressed ? theme.accentColor : theme.borderColor, lineWidth: 1))
         .contentShape(Rectangle())
     }
 }

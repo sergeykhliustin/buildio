@@ -18,6 +18,20 @@ struct BuildRowView: View {
     @State private var abortConfirmation: Bool = false
     @State private var abortReason: String = ""
     
+    private struct Item: View {
+        let imageName: String
+        let text: String?
+        
+        var body: some View {
+            if let text = text, !text.isEmpty {
+                HStack(spacing: 0) {
+                    Image(systemName: imageName)
+                    Text("\(text)")
+                }
+            }
+        }
+    }
+    
     init(build: BuildResponseItemModel, route: Binding<Route?>, showBottomControls: Bool = true) {
         self.showBottomControls = showBottomControls
         _route = route
@@ -56,8 +70,9 @@ struct BuildRowView: View {
                             Spacer()
                             if viewModel.state == .loading {
                                 ProgressView()
+                                    .frame(width: 15, height: 15, alignment: .center)
                             } else {
-                                Text(model.durationString ?? "")
+                                Item(imageName: "clock", text: model.durationString)
                             }
                         }
                     }
@@ -66,7 +81,7 @@ struct BuildRowView: View {
                 .padding(8)
                 Rectangle().fill(theme.borderColor)
                     .frame(height: 1)
-                HStack(spacing: 0) {
+                HStack(spacing: 8) {
                     Text(model.branchFromToUIString)
                         .truncationMode(.middle)
                         .lineLimit(1)
@@ -74,22 +89,18 @@ struct BuildRowView: View {
                         .foregroundColor(extendedStatus.color)
                         .background(extendedStatus.colorLight)
                     if let pullRequestId = model.pullRequestId, pullRequestId != 0 {
-                        Text(String(pullRequestId))
-                            .padding(8)
+                        Item(imageName: "arrow.triangle.pull", text: String(pullRequestId))
                     } else if let commitHash = model.commitHash {
-                        Text(String(commitHash.prefix(7)))
-                            .padding(8)
+                        Item(imageName: "command.circle", text: String(commitHash.prefix(7)))
                     }
-                    Spacer(minLength: 0)
-                    if let cost = model.creditCost {
-                        Text(String(cost))
-                            .padding(8)
-                    }
-                    Text(model.triggeredWorkflow)
-                        .padding(8)
-                    Text("#\(String(model.buildNumber))")
-                        .padding(8)
+                    Spacer(minLength: -2)
+                    Item(imageName: "coloncurrencysign.circle", text: model.creditCost?.description)
+                    Item(imageName: "point.topleft.down.curvedto.point.bottomright.up", text: model.triggeredWorkflow)
+                        .truncationMode(.middle)
+                        .lineLimit(1)
+                    Item(imageName: "number", text: String(model.buildNumber))
                 }
+                .padding(.trailing, 8)
                 
                 Rectangle().fill(theme.borderColor)
                     .frame(height: 1)
