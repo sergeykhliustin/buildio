@@ -94,3 +94,4 @@ Modules/Models/Tests/ModelsTests/TestResources/TestJSONs
 Modules/BitriseAPIs/.swiftpm/xcode/package.xcworkspace/xcshareddata
 Buildio.swiftpm/.swiftpm/xcode/package.xcworkspace/xcshareddata
 Modules/BuildioUI/.swiftpm/xcode/package.xcworkspace/xcshareddata
+Package.resolved
