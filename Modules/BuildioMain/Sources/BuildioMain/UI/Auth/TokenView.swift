@@ -125,8 +125,12 @@ struct TokenView: View {
     }
     
     private func checkToken(_ token: String) {
-        model.token = token
-        model.refresh()
+        if !canClose && token.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() == "demo" {
+            isDemoMode.wrappedValue = true
+        } else {
+            model.token = token
+            model.refresh()
+        }
     }
 }
 

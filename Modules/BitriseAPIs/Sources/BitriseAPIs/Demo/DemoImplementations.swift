@@ -33,7 +33,7 @@ final class DemoRequestBuilder<T>: URLSessionRequestBuilder<T> {
         if ProcessInfo.processInfo.environment["DEMO_RECORD"] != nil {
             super.execute(apiResponseQueue, completion)
         } else {
-            completion(.failure(.custom("Unsupported in demo mode")))
+            completion(.failure(.demoRestricted))
         }
     }
 }
@@ -65,10 +65,10 @@ final class DemoDecodableRequestBuilder<T: Codable>: URLSessionDecodableRequestB
                     completion(.success(Response(body: value)))
                 } catch {
                     logger.error(error)
-                    completion(.failure(ErrorResponse.custom("Unsupported in demo mode")))
+                    completion(.failure(.demoRestricted))
                 }
             } else {
-                completion(.failure(ErrorResponse.custom("Unsupported in demo mode")))
+                completion(.failure(.demoRestricted))
             }
         }
     }

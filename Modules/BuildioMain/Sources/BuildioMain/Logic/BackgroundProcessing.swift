@@ -72,7 +72,9 @@ final class BackgroundProcessing {
             return
         }
         self.fetcher?.cancel()
-        self.fetcher = Publishers.MergeMany(TokenManager.shared.tokens.map({ self.activityList($0) }))
+        self.fetcher = Publishers.MergeMany(TokenManager.shared.tokens
+                                                .filter({ !$0.isDemo })
+                                                .map({ self.activityList($0) }))
             .collect()
             .reduce([ActivityNotification](), { result, values in
                 var result = result

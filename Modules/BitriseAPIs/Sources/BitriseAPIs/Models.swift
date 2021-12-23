@@ -33,20 +33,22 @@ public enum ErrorResponse: Error, Identifiable {
     
     case empty
     case error(Int, Data?, URLResponse?, Error)
-    case custom(String)
+    case demoRestricted
     
     public var rawErrorString: String {
-        if case let .error(code, data, _, rawError) = self {
+        switch self {
+        case .error(let code, let data, _, let error):
             if code == 401 {
                 return "Token expired or invalid"
-            } else if let data = data, let string = try? JSONDecoder().decode(BitriseError.self, from: data).message {
+            } else if let data = data, let string = try? CodableHelper.decode(type: BitriseError.self, from: data).message {
                 return string
             }
-            return rawError.localizedDescription
-        } else if case let .custom(string) = self {
-            return string
+            return error.localizedDescription
+        case .demoRestricted:
+            return "Unsupported in demo mode"
+        case .empty:
+            return ""
         }
-        return self.localizedDescription
     }
 }
 
