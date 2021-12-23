@@ -35,7 +35,7 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(name: "BuildioMain", url: "https://github.com/sergeykhliustin/buildio", from: "1.0.2")
+        .package(name: "BuildioMain", url: "https://github.com/sergeykhliustin/buildio", from: "1.0.3")
     ],
     targets: [
         .executableTarget(
