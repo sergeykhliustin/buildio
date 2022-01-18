@@ -9,12 +9,10 @@ import SwiftUI
 import Models
 import Combine
 
-struct NewBuildScreenView: View, RoutingView {
+struct NewBuildScreenView: View, ScreenBuilder {
+    @EnvironmentObject private var navigator: Navigator
     @Environment(\.theme) var theme
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @StateObject var model: NewBuildViewModel = NewBuildViewModel()
-    
-    @State var isActiveRoute: Bool = false
     
     @State private var app: V0AppResponseItemModel?
     @State private var branch: String = ""
@@ -28,20 +26,13 @@ struct NewBuildScreenView: View, RoutingView {
     
     var body: some View {
         ScrollView {
-            NavigationLink(isActive: $isActiveRoute) {
-                appSelectScreen { app in
-                    self.app = app
-                    self.isActiveRoute = false
-                }
-            } label: {
-                EmptyView()
-            }
-            .hidden()
-
             VStack(alignment: .leading, spacing: 8) {
                 Text("App:")
                 Button {
-                    isActiveRoute.toggle()
+                    navigator.go(.appSelect({ app in
+                        self.app = app
+                        navigator.popToRoot()
+                    }))
                 } label: {
                     HStack {
                         Text(app?.title ?? "Select the app")
@@ -92,7 +83,7 @@ struct NewBuildScreenView: View, RoutingView {
             }
             .onReceive(model.$state, perform: { state in
                 if state == .value {
-                    presentationMode.wrappedValue.dismiss()
+                    navigator.dismiss()
                 }
             })
             .padding(16)
@@ -101,7 +92,7 @@ struct NewBuildScreenView: View, RoutingView {
         .font(.footnote)
         .toolbar {
             Button {
-                presentationMode.wrappedValue.dismiss()
+                navigator.dismiss()
             } label: {
                 Image(systemName: "xmark")
             }

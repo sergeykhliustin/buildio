@@ -6,9 +6,14 @@
 //
 
 import SwiftUI
+import BitriseAPIs
 
 public struct EntryPoint: View {
-    public init() { }
+    public init() {
+        BaseAPI.defaultApiToken = { TokenManager.shared.token?.token }
+        BackgroundProcessing.shared.start()
+        ViewModelResolver.start()
+    }
     public var body: some View {
         EnvironmentConfiguratorView {
             AppThemeConfiguratorView {
@@ -23,5 +28,11 @@ public struct EntryPoint: View {
             window?.windowScene?.titlebar?.separatorStyle = .none
             #endif
         }
+    }
+}
+
+struct EntryPoint_Previews: PreviewProvider {
+    static var previews: some View {
+        EntryPoint()
     }
 }

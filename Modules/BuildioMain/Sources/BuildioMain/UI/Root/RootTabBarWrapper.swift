@@ -35,30 +35,31 @@ struct RootTabBarWrapper<Content: View>: View {
     }
     
     var body: some View {
-        MainSecondaryOptionalView(
-            orientation: .hSecondaryMain,
-            isSecondaryVisible: isLeftBarVisible) {
-                MainSecondaryOptionalView(
-                    orientation: .vMainSecondary,
-                    isSecondaryVisible: isBottomBarVisible) {
+        GeometryReader { proxy in
+            MainSecondaryOptionalView(
+                orientation: .hSecondaryMain,
+                isSecondaryVisible: isLeftBarVisible) {
+                    MainSecondaryOptionalView(
+                        orientation: .vMainSecondary,
+                        isSecondaryVisible: isBottomBarVisible) {
+                            
+                            content()
+                            
+                        } secondary: {
+                            CustomTabBar(selected: $selection)
+                                .padding(.bottom, proxy.safeAreaInsets.bottom)
+                        }
+                    
+                } secondary: {
+                    CustomTabBar(style: .vertical, selected: $selection)
+                        .padding(.leading, interfaceOrientation == .landscapeRight ? proxy.safeAreaInsets.leading : 0)
+                        .zIndex(1)
                         
-                        content()
-                        
-                    } secondary: {
-                        CustomTabBar(selected: $selection)
-                            .edgesIgnoringSafeArea(.horizontal)
-                    }
-                
-            } secondary: {
-                CustomTabBar(style: .vertical, selected: $selection)
-                    .edgesIgnoringSafeArea(interfaceOrientation == .landscapeLeft ? [.vertical, .leading] : [.vertical])
-                    .zIndex(1)
-            }
-            .edgesIgnoringSafeArea(interfaceOrientation == .landscapeLeft ? [.leading] : [])
-            .statusBar(hidden: fullscreen.wrappedValue)
-            .onChange(of: horizontalSizeClass) { _ in
-                navigators.fixEmptyNavigation()
-            }
+                }
+                .background(theme.background)
+                .ignoresSafeArea()
+                .statusBar(hidden: fullscreen.wrappedValue)
+        }
     }
 }
 

@@ -24,90 +24,62 @@ struct ThemeBackground: ViewModifier {
 }
 
 protocol ScreenBuilder: View {
-    var theme: Theme { get }
+    
 }
 
 extension ScreenBuilder {
     @ViewBuilder
     func buildsScreen(app: V0AppResponseItemModel? = nil) -> some View {
-        BuildsScreenView()
-            .environmentObject(app == nil ? ViewModelResolver.resolve(BuildsViewModel.self) : BuildsViewModel(app: app))
-            .navigationTitle(app?.title ?? "Builds")
-            .modifier(ThemeBackground())
+        ScreenBuilderStatic.buildsScreen(app: app)
     }
     
     @ViewBuilder
     func buildScreen(build: BuildResponseItemModel) -> some View {
-        BuildScreenView()
-            .environmentObject(ViewModelResolver.build(build))
-            .navigationTitle("Build #\(String(build.buildNumber))")
-            .modifier(ThemeBackground())
+        ScreenBuilderStatic.buildScreen(build: build)
     }
     
     @ViewBuilder
     func logsScreen(build: BuildResponseItemModel) -> some View {
-        LogsScreenView(build: build)
-            .navigationTitle("Build #\(String(build.buildNumber)) logs")
+        ScreenBuilderStatic.logsScreen(build: build)
     }
     
     @ViewBuilder
     func artifactsScreen(build: BuildResponseItemModel) -> some View {
-        ArtifactsScreenView(build: build)
-            .navigationTitle("Build #\(String(build.buildNumber)) artifacts")
+        ScreenBuilderStatic.artifactsScreen(build: build)
     }
     
     @ViewBuilder
     func appsScreen() -> some View {
-        AppsScreenView()
-            .environmentObject(ViewModelResolver.resolve(AppsViewModel.self))
-            .navigationTitle("Apps")
-            .modifier(ThemeBackground())
+        ScreenBuilderStatic.appsScreen()
     }
     
     @ViewBuilder
     func appSelectScreen(completion: @escaping ((V0AppResponseItemModel) -> Void)) -> some View {
-        AppsScreenView(completion: completion)
-            .environmentObject(ViewModelResolver.resolve(AppsViewModel.self))
-            .navigationTitle("Select the app")
+        ScreenBuilderStatic.appSelectScreen(completion: completion)
     }
     
     @ViewBuilder
     func accountsScreen() -> some View {
-        AccountsScreenView()
-            .navigationTitle("Accounts")
-            .modifier(ThemeBackground())
+        ScreenBuilderStatic.accountsScreen()
     }
     
     @ViewBuilder
     func activitiesScreen() -> some View {
-        ActivitiesScreenView()
-            .environmentObject(ViewModelResolver.resolve(ActivitiesViewModel.self))
-            .navigationTitle("Activities")
-            .modifier(ThemeBackground())
+        ScreenBuilderStatic.activitiesScreen()
     }
     
     @ViewBuilder
     func authScreen(canClose: Bool = false, onCompletion: (() -> Void)? = nil) -> some View {
-        ThemeConfiguratorView {
-            AuthScreenView(canClose: canClose, onCompletion: onCompletion)
-        }
+        ScreenBuilderStatic.authScreen(canClose: canClose, onCompletion: onCompletion)
     }
     
     @ViewBuilder
     func newBuildScreen(app: V0AppResponseItemModel? = nil) -> some View {
-        ThemeConfiguratorView {
-            NavigationView {
-                NewBuildScreenView(app: app)
-                    .navigationTitle("Start a build")
-            }
-        }
+        ScreenBuilderStatic.newBuildScreen(app: app)
     }
     
     @ViewBuilder
     func debugScreen() -> some View {
-        ThemeConfiguratorView {
-            DebugScreenView()
-                .navigationTitle("Debug")
-        }
+        ScreenBuilderStatic.debugScreen()
     }
 }
