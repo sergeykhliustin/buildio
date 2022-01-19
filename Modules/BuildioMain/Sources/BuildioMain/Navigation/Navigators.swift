@@ -11,15 +11,22 @@ import SwiftUI
 import Combine
 
 final class Navigators: ObservableObject {
+    @Published var isPresentingModal: Bool = false
     private var navigators = NSMapTable<NSString, Navigator>(valueOptions: .weakMemory)
     
     public func navigator(for type: RootScreenItemType) -> Navigator {
         if let navigator = navigators.object(forKey: type.id as NSString) {
             return navigator
         } else {
-            let navigator = Navigator()
+            let navigator = Navigator(self)
             navigators.setObject(navigator, forKey: type.id as NSString)
             return navigator
+        }
+    }
+    
+    public func updatePresenting() {
+        withAnimation {
+            isPresentingModal = (navigators.objectEnumerator()?.allObjects ?? []).compactMap({ $0 as? Navigator }).map({ $0.isPresentingSheet }).contains(true)
         }
     }
     

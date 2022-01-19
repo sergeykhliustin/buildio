@@ -77,6 +77,9 @@ struct CustomTabBar: View {
                 }
             }
         }
+        .overlay(
+            navigators.isPresentingModal ? Color.black.opacity(0.15) : nil
+        )
     }
     
     @ViewBuilder

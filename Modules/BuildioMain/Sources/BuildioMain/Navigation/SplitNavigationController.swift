@@ -28,6 +28,7 @@ struct SplitNavigationView<Content: View>: UIViewControllerRepresentable {
         let rootViewController = UIHostingController(rootView: content())
         let controller = SplitNavigationController(rootViewController: rootViewController)
         navigator.navigationController = controller
+        controller.navigator = navigator
         return controller
     }
     
@@ -84,7 +85,7 @@ final class SplitNavigationController: UIViewController {
         view.backgroundColor = .separator
         return view
     }()
-    private weak var navigator: Navigator?
+    fileprivate weak var navigator: Navigator?
     
     var mode: Mode = .primaryOnly {
         didSet {
@@ -139,7 +140,10 @@ final class SplitNavigationController: UIViewController {
     func sheet(_ controller: UIViewController) {
         controller.view.translatesAutoresizingMaskIntoConstraints = false
         controller.view.backgroundColor = view.backgroundColor
-        #if !targetEnvironment(macCatalyst)
+        #if targetEnvironment(macCatalyst)
+        controller.view.layer.cornerRadius = Constants.ipadPresentationCornerRadius
+        controller.view.layer.masksToBounds = true
+        #else
         if UIDevice.current.userInterfaceIdiom == .phone {
             controller.view.layer.cornerRadius = Constants.iphonePresentationCornerRadius
             controller.view.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
@@ -191,7 +195,11 @@ final class SplitNavigationController: UIViewController {
         customPresentedController = controller
     }
     
-    @objc func dismissSheet() {
+    @objc private func navigatorDismiss() {
+        navigator?.dismiss()
+    }
+    
+    func dismissSheet() {
         guard let customPresentedController = customPresentedController else {
             return
         }
@@ -265,7 +273,7 @@ final class SplitNavigationController: UIViewController {
             view.bottomAnchor.constraint(equalTo: superview.bottomAnchor)
         ])
         
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissSheet)))
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(navigatorDismiss)))
         
         return view
     }
