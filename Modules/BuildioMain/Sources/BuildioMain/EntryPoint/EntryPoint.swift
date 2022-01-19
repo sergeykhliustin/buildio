@@ -10,9 +10,7 @@ import BitriseAPIs
 
 public struct EntryPoint: View {
     public init() {
-        BaseAPI.defaultApiToken = { TokenManager.shared.token?.token }
-        BackgroundProcessing.shared.start()
-        ViewModelResolver.start()
+        
     }
     public var body: some View {
         EnvironmentConfiguratorView {

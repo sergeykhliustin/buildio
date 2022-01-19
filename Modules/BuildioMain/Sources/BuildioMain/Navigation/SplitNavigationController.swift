@@ -15,16 +15,13 @@ struct SplitNavigationView<Content: View>: UIViewControllerRepresentable {
     @Environment(\.theme) private var theme
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @EnvironmentObject private var navigator: Navigator
-    let overridedTheme: Theme?
     private let shouldSplit: Bool
     @ViewBuilder private var content: () -> Content
     
     init(shouldSplit: Bool,
-         overridedTheme: Theme? = nil,
          content: @escaping () -> Content) {
         self.shouldSplit = shouldSplit
         self.content = content
-        self.overridedTheme = overridedTheme
     }
     
     func makeUIViewController(context: Context) -> SplitNavigationController {
@@ -41,7 +38,7 @@ struct SplitNavigationView<Content: View>: UIViewControllerRepresentable {
             navigator.navigationController?.mode = .primaryOnly
         }
         
-        navigator.updateTheme(overridedTheme ?? theme)
+        navigator.navigationController?.updateTheme(theme)
     }
 }
 
@@ -69,7 +66,16 @@ final class SplitNavigationController: UIViewController {
     private let rootViewController: UIViewController
     private let primaryNavigationController: UINavigationController
     private let secondaryNavigationController: UINavigationController
+    private var customPresentedController: UIViewController?
     private let separatorWidth: CGFloat = 1.0
+    private lazy var fadeView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .black.withAlphaComponent(0.5)
+        self.view.addSubview(view)
+        view.isHidden = true
+        return view
+    }()
     private let separator: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -124,18 +130,94 @@ final class SplitNavigationController: UIViewController {
                 secondaryNavigationController.popToRootViewController(animated: true)
             }
         }
+        
+        dismissSheet()
     }
     
     func sheet(_ controller: UIViewController) {
-        present(controller, animated: true)
+        controller.view.translatesAutoresizingMaskIntoConstraints = false
         controller.view.backgroundColor = view.backgroundColor
+        #if !targetEnvironment(macCatalyst)
+        controller.view.layer.cornerRadius = 38
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            controller.view.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        } else {
+            controller.view.layer.masksToBounds = true
+        }
+        #endif
+        view.addSubview(controller.view)
+        addChild(controller)
+        didMove(toParent: self)
+        
+        controller.view.constraints.forEach({ controller.view.removeConstraint($0) })
+        
+        var centerY = controller.view.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: view.frame.size.height).priority(.defaultHigh)
+        var constraints = [
+            centerY,
+            controller.view.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ]
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            constraints.append(controller.view.widthAnchor.constraint(equalTo: view.widthAnchor))
+            constraints.append(controller.view.heightAnchor.constraint(equalTo: view.heightAnchor))
+        } else {
+            constraints.append(controller.view.heightAnchor.constraint(equalTo: view.heightAnchor, constant: -80))
+            constraints.append(controller.view.widthAnchor.constraint(lessThanOrEqualToConstant: 800))
+            constraints.append(controller.view.widthAnchor.constraint(greaterThanOrEqualToConstant: 0))
+            constraints.append(controller.view.leftAnchor.constraint(greaterThanOrEqualTo: view.leftAnchor))
+            constraints.append(controller.view.rightAnchor.constraint(lessThanOrEqualTo: view.rightAnchor))
+            
+            constraints.append(controller.view.widthAnchor.constraint(equalToConstant: 800).priority(.defaultHigh))
+        }
+        
+        NSLayoutConstraint.activate(constraints)
+        fadeView.alpha = 0
+        fadeView.isHidden = false
+        fadeView.constraints.forEach({ fadeView.removeConstraint($0) })
+        
+        NSLayoutConstraint.activate([
+            fadeView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            fadeView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
+            fadeView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+            fadeView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+        ])
+        view.layoutIfNeeded()
+        controller.view.removeConstraint(centerY)
+        centerY = controller.view.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        NSLayoutConstraint.activate([
+            centerY
+        ])
+        UIView.animate(withDuration: 0.4) {
+            self.fadeView.alpha = 1.0
+            self.view.layoutIfNeeded()
+        }
+        
+        customPresentedController = controller
+    }
+    
+    func dismissSheet() {
+        guard let customPresentedController = customPresentedController else {
+            return
+        }
+        let presentedView = customPresentedController.view!
+        UIView.animate(
+            withDuration: 0.4,
+            animations: {
+                var frame = presentedView.frame
+                frame.origin.y = self.view.frame.size.height
+                presentedView.frame = frame
+                self.fadeView.alpha = 0
+            },
+            completion: { _ in
+                self.fadeView.isHidden = true
+                customPresentedController.willMove(toParent: nil)
+                customPresentedController.view.removeFromSuperview()
+                customPresentedController.removeFromParent()
+            })
+        self.customPresentedController = nil
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(primaryNavigationController.view)
-        addChild(primaryNavigationController)
-        didMove(toParent: primaryNavigationController)
         
         primaryNavigationController.view.translatesAutoresizingMaskIntoConstraints = false
         secondaryNavigationController.view.translatesAutoresizingMaskIntoConstraints = false
@@ -159,7 +241,7 @@ final class SplitNavigationController: UIViewController {
             navigationBar.scrollEdgeAppearance = UINavigationBar.appearance().scrollEdgeAppearance
         }
         
-        presentedViewController?.view.backgroundColor = theme.background.uiColor
+        customPresentedController?.view.backgroundColor = theme.background.uiColor
     }
     
     private static func navigationController(_ rootViewController: UIViewController) -> UINavigationController {
@@ -190,9 +272,20 @@ final class SplitNavigationController: UIViewController {
         
         view.addSubview(separator)
         
-        view.constraints.forEach({
-            view.removeConstraint($0)
-        })
+        view.constraints
+            .relatedTo(view: primaryNavigationController.view)
+            .forEach({
+                view.removeConstraint($0)
+            })
+        view.constraints
+            .relatedTo(view: secondaryNavigationController.view)
+            .forEach({
+                view.removeConstraint($0)
+            })
+        
+//        view.constraints.forEach({
+//            view.removeConstraint($0)
+//        })
         
         primaryNavigationController.view.constraints.forEach({
             if $0.firstItem as? AnyHashable == view as AnyHashable || $0.secondItem as? AnyHashable == view as AnyHashable {
@@ -224,6 +317,11 @@ final class SplitNavigationController: UIViewController {
             secondaryNavigationController.view.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor),
             secondaryNavigationController.view.leftAnchor.constraint(equalTo: separator.rightAnchor)
         ])
+        
+        view.bringSubviewToFront(fadeView)
+        if let presented = customPresentedController {
+            view.bringSubviewToFront(presented.view)
+        }
     }
     
     private func switchToPrimaryOnly() {
@@ -252,14 +350,10 @@ final class SplitNavigationController: UIViewController {
             primaryNavigationController.view.rightAnchor.constraint(equalTo: layoutGuide.rightAnchor),
             primaryNavigationController.view.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor)
         ])
+        
+        view.bringSubviewToFront(fadeView)
+        if let presented = customPresentedController {
+            view.bringSubviewToFront(presented.view)
+        }
     }
-    
-//    override func viewDidLayoutSubviews() {
-//        super.viewDidLayoutSubviews()
-//        if view.frame.width > minumumPrimaryWidth * 2 + separatorWidth {
-//            self.mode = .primarySecondary
-//        } else {
-//            self.mode = .primaryOnly
-//        }
-//    }
 }

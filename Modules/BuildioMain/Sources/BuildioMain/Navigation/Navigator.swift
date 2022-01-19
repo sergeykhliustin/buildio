@@ -54,17 +54,15 @@ final class Navigator: ObservableObject {
     }
     
     func go(_ route: NewBuildRoute, theme: Theme? = nil) {
-        #warning("accent color")
         let builder = ScreenBuilderStatic.self
         switch route {
         case .newBuild(let app):
             let navigator = Navigator(parent: self)
             self.child = navigator
-            let controller = SplitNavigationView(shouldSplit: false, overridedTheme: theme) {
+            let controller = SplitNavigationView(shouldSplit: false) {
                 builder.newBuildScreen(app: app)
             }
             .environmentObject(navigator)
-            .accentColor(theme?.accentColor)
             .hosting
             
             navigationController?.sheet(controller)
@@ -82,16 +80,9 @@ final class Navigator: ObservableObject {
     
     func dismiss(child: Navigator) {
         if self.child === child {
-            navigationController?.dismiss(animated: true)
+            navigationController?.dismissSheet()
             self.child = nil
         }
-    }
-    
-    func updateTheme(_ theme: Theme) {
-        if let child = child {
-            child.updateTheme(theme)
-        }
-        navigationController?.updateTheme(theme)
     }
     
     private func shouldChain(_ route: Route, prevRoute: Route?) -> Bool {
