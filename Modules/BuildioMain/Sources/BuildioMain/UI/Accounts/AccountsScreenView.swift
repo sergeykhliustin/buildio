@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AccountsScreenView: ScreenBuilder {
+struct AccountsScreenView: View {
     @EnvironmentObject private var navigator: Navigator
     @Environment(\.isDemoMode) var isDemoMode
     @Environment(\.theme) var theme

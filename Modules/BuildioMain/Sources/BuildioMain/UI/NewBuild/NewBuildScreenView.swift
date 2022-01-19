@@ -9,7 +9,7 @@ import SwiftUI
 import Models
 import Combine
 
-struct NewBuildScreenView: View, ScreenBuilder {
+struct NewBuildScreenView: View {
     @EnvironmentObject private var navigator: Navigator
     @Environment(\.theme) var theme
     @StateObject var model: NewBuildViewModel = NewBuildViewModel()

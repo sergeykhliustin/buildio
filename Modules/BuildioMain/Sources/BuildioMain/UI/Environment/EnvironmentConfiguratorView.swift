@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+enum WindowMode {
+    case compact
+    case split
+}
+
 private struct FullscreenEnvironmentKey: EnvironmentKey {
     static var defaultValue: Binding<Bool> = .constant(false)
 }

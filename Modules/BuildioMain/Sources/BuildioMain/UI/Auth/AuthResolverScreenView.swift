@@ -15,7 +15,7 @@ public struct AuthResolverScreenView: View {
     public var body: some View {
         if tokenManager.token == nil {
             SplitNavigationView(shouldSplit: false) {
-                ScreenBuilderStatic.authScreen(canClose: false, onCompletion: nil)
+                ScreenBuilder.authScreen(canClose: false, onCompletion: nil)
             }
             .ignoresSafeArea()
             .environmentObject(Navigator())

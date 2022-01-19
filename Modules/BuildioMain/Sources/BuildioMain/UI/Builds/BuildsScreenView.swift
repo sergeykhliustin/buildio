@@ -8,7 +8,7 @@
 import SwiftUI
 import Models
 
-struct BuildsScreenView: View, PagingView, ScreenBuilder {
+struct BuildsScreenView: View, PagingView {
     @Environment(\.theme) var theme
     @EnvironmentObject var model: BuildsViewModel
     @EnvironmentObject var navigator: Navigator

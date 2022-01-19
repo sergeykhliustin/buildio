@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RootScreenItemView: ScreenBuilder {
+struct RootScreenItemView: View {
     @Environment(\.theme) var theme
     let type: RootScreenItemType
     
@@ -16,17 +16,18 @@ struct RootScreenItemView: ScreenBuilder {
     }
     
     var body: some View {
+        let builder = ScreenBuilder.self
         switch type {
         case .builds:
-            buildsScreen(app: nil)
+            builder.buildsScreen(app: nil)
         case .apps:
-            appsScreen()
+            builder.appsScreen()
         case .accounts:
-            accountsScreen()
+            builder.accountsScreen()
         case .activities:
-            activitiesScreen()
+            builder.activitiesScreen()
         case .debug:
-            debugScreen()
+            builder.debugScreen()
         }
     }
 }

@@ -58,7 +58,7 @@ final class Navigator: ObservableObject {
     }
     
     func go(_ route: Route) {
-        let builder = ScreenBuilderStatic.self
+        let builder = ScreenBuilder.self
         var controller: UIViewController!
         switch route {
         case .builds(let app):
@@ -75,7 +75,7 @@ final class Navigator: ObservableObject {
     }
     
     func go(_ route: NewBuildRoute) {
-        let builder = ScreenBuilderStatic.self
+        let builder = ScreenBuilder.self
         switch route {
         case .newBuild(let app):
             let navigator = Navigator(self)
@@ -96,7 +96,7 @@ final class Navigator: ObservableObject {
     }
     
     func go(_ route: AuthRoute) {
-        let builder = ScreenBuilderStatic.self
+        let builder = ScreenBuilder.self
         switch route {
         case .auth(let completion):
             let navigator = Navigator(self)

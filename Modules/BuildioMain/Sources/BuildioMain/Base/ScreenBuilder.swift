@@ -1,85 +1,82 @@
 //
-//  ScreenBuilder.swift
+//  File.swift
 //  
 //
-//  Created by Sergey Khliustin on 04.12.2021.
+//  Created by Sergey Khliustin on 18.01.2022.
 //
 
-import Models
+import Foundation
 import SwiftUI
-import Introspect
+import Models
 
-struct ThemeBackground: ViewModifier {
-    @Environment(\.theme) var theme
-    
-    func body(content: Content) -> some View {
-        content
-            .introspectViewController { controller in
-                controller.applyTheme(theme)
-            }
-            .introspectSplitViewController { controller in
-                controller.applyTheme(theme)
-            }
-    }
-}
-
-protocol ScreenBuilder: View {
-    
-}
-
-extension ScreenBuilder {
+final class ScreenBuilder {
     @ViewBuilder
-    func buildsScreen(app: V0AppResponseItemModel? = nil) -> some View {
-        ScreenBuilderStatic.buildsScreen(app: app)
+    class func buildsScreen(app: V0AppResponseItemModel? = nil) -> some View {
+        BuildsScreenView()
+            .environmentObject(app == nil ? ViewModelResolver.resolve(BuildsViewModel.self) : BuildsViewModel(app: app))
+            .navigationTitle(app?.title ?? "Builds")
     }
     
     @ViewBuilder
-    func buildScreen(build: BuildResponseItemModel) -> some View {
-        ScreenBuilderStatic.buildScreen(build: build)
+    class func buildScreen(build: BuildResponseItemModel) -> some View {
+        BuildScreenView()
+            .environmentObject(ViewModelResolver.build(build))
+            .navigationTitle("Build #\(String(build.buildNumber))")
     }
     
     @ViewBuilder
-    func logsScreen(build: BuildResponseItemModel) -> some View {
-        ScreenBuilderStatic.logsScreen(build: build)
+    class func logsScreen(build: BuildResponseItemModel) -> some View {
+        LogsScreenView(build: build)
+            .navigationTitle("Build #\(String(build.buildNumber)) logs")
     }
     
     @ViewBuilder
-    func artifactsScreen(build: BuildResponseItemModel) -> some View {
-        ScreenBuilderStatic.artifactsScreen(build: build)
+    class func artifactsScreen(build: BuildResponseItemModel) -> some View {
+        ArtifactsScreenView(build: build)
+            .navigationTitle("Build #\(String(build.buildNumber)) artifacts")
     }
     
     @ViewBuilder
-    func appsScreen() -> some View {
-        ScreenBuilderStatic.appsScreen()
+    class func appsScreen() -> some View {
+        AppsScreenView()
+            .environmentObject(ViewModelResolver.resolve(AppsViewModel.self))
+            .navigationTitle("Apps")
     }
     
     @ViewBuilder
-    func appSelectScreen(completion: @escaping ((V0AppResponseItemModel) -> Void)) -> some View {
-        ScreenBuilderStatic.appSelectScreen(completion: completion)
+    class func appSelectScreen(completion: @escaping ((V0AppResponseItemModel) -> Void)) -> some View {
+        AppsScreenView(completion: completion)
+            .environmentObject(ViewModelResolver.resolve(AppsViewModel.self))
+            .navigationTitle("Select the app")
     }
     
     @ViewBuilder
-    func accountsScreen() -> some View {
-        ScreenBuilderStatic.accountsScreen()
+    class func accountsScreen() -> some View {
+        AccountsScreenView()
+            .navigationTitle("Accounts")
     }
     
     @ViewBuilder
-    func activitiesScreen() -> some View {
-        ScreenBuilderStatic.activitiesScreen()
+    class func activitiesScreen() -> some View {
+        ActivitiesScreenView()
+            .environmentObject(ViewModelResolver.resolve(ActivitiesViewModel.self))
+            .navigationTitle("Activities")
     }
     
     @ViewBuilder
-    func authScreen(canClose: Bool = false, onCompletion: (() -> Void)? = nil) -> some View {
-        ScreenBuilderStatic.authScreen(canClose: canClose, onCompletion: onCompletion)
+    class func authScreen(canClose: Bool = false, onCompletion: (() -> Void)? = nil) -> some View {
+        AuthScreenView(canClose: canClose, onCompletion: onCompletion)
     }
     
     @ViewBuilder
-    func newBuildScreen(app: V0AppResponseItemModel? = nil) -> some View {
-        ScreenBuilderStatic.newBuildScreen(app: app)
+    class func newBuildScreen(app: V0AppResponseItemModel? = nil) -> some View {
+        NewBuildScreenView(app: app)
+            .navigationTitle("Start a build")
     }
     
     @ViewBuilder
-    func debugScreen() -> some View {
-        ScreenBuilderStatic.debugScreen()
+    class func debugScreen() -> some View {
+        DebugScreenView()
+            .navigationTitle("Debug")
     }
 }

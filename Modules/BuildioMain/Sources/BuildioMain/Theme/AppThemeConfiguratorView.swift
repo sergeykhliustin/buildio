@@ -34,18 +34,16 @@ struct AppThemeConfiguratorView<Content: View>: View {
     }
     
     var body: some View {
-        ThemeConfiguratorView {
-            content()
-        }
-        .onChange(of: colorScheme, perform: { newValue in
-            theme = ThemeHelper.theme(for: newValue)
-            configureAppearance(theme)
-        })
-        .environment(\.theme, theme)
-        .accentColor(theme.accentColor)
-        .foregroundColor(theme.textColor)
-        .background(theme.background)
-        .progressViewStyle(CircularInfiniteProgressViewStyle())
+        content()
+            .onChange(of: colorScheme, perform: { newValue in
+                theme = ThemeHelper.theme(for: newValue)
+                configureAppearance(theme)
+            })
+            .environment(\.theme, theme)
+            .accentColor(theme.accentColor)
+            .foregroundColor(theme.textColor)
+            .background(theme.background)
+            .progressViewStyle(CircularInfiniteProgressViewStyle())
     }
     
     func configureAppearance(_ theme: Theme) {
