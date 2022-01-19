@@ -11,12 +11,29 @@ import Combine
 
 struct ActionItem: View {
     let title: String
-    let icon: String
+    let icon: String?
+    let color: String?
     let action: () -> Void
+    
+    init(title: String,
+         icon: String? = nil,
+         color: String? = nil,
+         action: @escaping () -> Void) {
+        self.title = title
+        self.icon = icon
+        self.color = color
+        self.action = action
+    }
+    
     var body: some View {
         ListItemWrapper(action: action) {
             HStack {
-                Image(systemName: icon)
+                if let icon = icon {
+                    Image(systemName: icon)
+                }
+                if let hex = color, let color = try? Color(hex: hex) {
+                    color.frame(width: 20, height: 20).cornerRadius(2)
+                }
                 Text(title)
                 Spacer()
                 Image(systemName: "chevron.right")

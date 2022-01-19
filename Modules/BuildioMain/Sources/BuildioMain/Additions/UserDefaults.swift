@@ -8,6 +8,58 @@
 import Foundation
 
 extension UserDefaults {
+    var lightTheme: LightTheme? {
+        get {
+            if let data = data(forKey: "lightTheme") {
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                do {
+                    return try decoder.decode(LightTheme.self, from: data)
+                } catch {
+                    logger.error(error)
+                }
+            }
+            return nil
+        }
+        set {
+            let encoder = JSONEncoder()
+            encoder.keyEncodingStrategy = .convertToSnakeCase
+            do {
+                let data = try encoder.encode(newValue)
+                set(data, forKey: "lightTheme")
+                synchronize()
+            } catch {
+                logger.error(error)
+            }
+        }
+    }
+    
+    var darkTheme: DarkTheme? {
+        get {
+            if let data = data(forKey: "darkTheme") {
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                do {
+                    return try decoder.decode(DarkTheme.self, from: data)
+                } catch {
+                    logger.error(error)
+                }
+            }
+            return nil
+        }
+        set {
+            let encoder = JSONEncoder()
+            encoder.keyEncodingStrategy = .convertToSnakeCase
+            do {
+                let data = try encoder.encode(newValue)
+                set(data, forKey: "darkTheme")
+                synchronize()
+            } catch {
+                logger.error(error)
+            }
+        }
+    }
+    
     func lastActivityDate(email: String) -> TimeInterval {
         if let double = dictionary(forKey: "last_activity_dates")?[email] as? Double {
             return double

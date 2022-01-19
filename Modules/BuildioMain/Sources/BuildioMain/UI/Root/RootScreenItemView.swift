@@ -28,6 +28,8 @@ struct RootScreenItemView: View {
             builder.activitiesScreen()
         case .debug:
             builder.debugScreen()
+        case .theme:
+            builder.themeScreen()
         }
     }
 }

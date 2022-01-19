@@ -7,88 +7,70 @@
 
 import SwiftUI
 
-protocol Theme {
+extension Color: Codable {
+    public init(from decoder: Decoder) throws {
+        try self.init(hex: String(from: decoder))
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        try hex().encode(to: encoder)
+    }
+}
+
+protocol Theme: Codable {
     typealias Shadow = (color: Color, radius: CGFloat, x: CGFloat, y: CGFloat)
     
-    var background: Color { get }
-    var textColor: Color { get }
-    var textColorLight: Color { get }
-    var accentColor: Color { get }
-    var accentColorLight: Color { get }
-    var linkColor: Color { get }
-    var submitButtonColors: [Color] { get }
-    var disabledColor: Color { get }
-    var borderColor: Color { get }
-    var logControlColor: Color { get }
-    var logsBackgroundColor: Color { get }
-    var shadowColor: Color { get }
+    var background: Color { get set }
+    var textColor: Color { get set }
+    var textColorLight: Color { get set }
+    var accentColor: Color { get set }
+    var accentColorLight: Color { get set }
+    var linkColor: Color { get set }
+    var submitButtonColor1: Color { get set }
+    var submitButtonColor2: Color { get set }
+    var disabledColor: Color { get set }
+    var borderColor: Color { get set }
+    var logControlColor: Color { get set }
+    var logsBackgroundColor: Color { get set }
+    var shadowColor: Color { get set }
     var listShadow: Shadow { get }
     var tabBarBackgroundShadow: Shadow { get }
+    
+    func save()
 }
 
 enum ThemeHelper {
     static var current: Theme {
         let style = UIScreen.main.traitCollection.userInterfaceStyle
-        switch style {
-        case .unspecified:
-            return LightTheme()
-        case .light:
-            return LightTheme()
-        case .dark:
-            return DarkTheme()
-        @unknown default:
-            return LightTheme()
+        if let sheme = ColorScheme(style) {
+            return theme(for: sheme)
         }
+        return LightTheme()
     }
     
     static func theme(for colorScheme: ColorScheme) -> Theme {
         if colorScheme == .dark {
-            return DarkTheme()
+            return UserDefaults.standard.darkTheme ?? DarkTheme()
         } else {
-            return LightTheme()
+            return UserDefaults.standard.lightTheme ?? LightTheme()
         }
     }
 }
 
-final class ThemeObject: ObservableObject {
-    @Published var theme: Theme
-    init(_ colorScheme: ColorScheme) {
-//        UIScreen.main.traitCollection.userInterfaceStyle
-        switch colorScheme {
-        case .light:
-            theme = LightTheme()
-        case .dark:
-            theme = DarkTheme()
-        @unknown default:
-            theme = LightTheme()
-        }
-    }
-    
-    func update(_ colorScheme: ColorScheme) {
-        switch colorScheme {
-        case .light:
-            theme = LightTheme()
-        case .dark:
-            theme = DarkTheme()
-        @unknown default:
-            theme = LightTheme()
-        }
-    }
-}
-
-struct LightTheme: Theme {
-    let background: Color = .white
-    let textColor = Color(hex: 0x351d48)
-    let textColorLight = Color(hex: 0x351d48).opacity(0.6)
-    let accentColor = Color(hex: 0x4a2e5c)
-    let accentColorLight = Color(hex: 0x4a2e5c).opacity(0.6)
-    let linkColor = Color(hex: 0x6c0eb2)
-    let submitButtonColors = [Color(hex: 0x6c0eb2), Color(hex: 0x450674)]
-    let disabledColor = Color(hex: 0xdedede)
-    let borderColor = Color(hex: 0xdedede)
-    let logControlColor = Color(hex: 0xdedede)
-    let logsBackgroundColor = Color(hex: 0x2c3e50)
-    let shadowColor = Color(hex: 0x0).opacity(0.1)
+struct LightTheme: Theme, Equatable {
+    var background: Color = .white
+    var textColor = Color(hex: 0x351d48)
+    var textColorLight = Color(hex: 0x351d48).opacity(0.6)
+    var accentColor = Color(hex: 0x4a2e5c)
+    var accentColorLight = Color(hex: 0x4a2e5c).opacity(0.6)
+    var linkColor = Color(hex: 0x6c0eb2)
+    var submitButtonColor1 = Color(hex: 0x6c0eb2)
+    var submitButtonColor2 = Color(hex: 0x450674)
+    var disabledColor = Color(hex: 0xdedede)
+    var borderColor = Color(hex: 0xdedede)
+    var logControlColor = Color(hex: 0xdedede)
+    var logsBackgroundColor = Color(hex: 0x2c3e50)
+    var shadowColor = Color(hex: 0x0).opacity(0.1)
 
     var listShadow: Shadow {
         return (shadowColor, 10, 0, 0)
@@ -97,21 +79,26 @@ struct LightTheme: Theme {
     var tabBarBackgroundShadow: Shadow {
         return (shadowColor, 3, 0, -5)
     }
+    
+    func save() {
+        UserDefaults.standard.lightTheme = self
+    }
 }
 
-struct DarkTheme: Theme {
-    let background = Color(hex: 0x2c3e50)
-    let textColor = Color.white
-    let textColorLight = Color.white.opacity(0.6)
-    let accentColor = Color.green
-    let accentColorLight = Color.green.opacity(0.6)
-    let linkColor = Color(hex: 0x6c0eb2)
-    let submitButtonColors = [Color(hex: 0x6c0eb2), Color(hex: 0x450674)]
-    let disabledColor = Color(hex: 0xdedede)
-    let borderColor = Color(hex: 0xdedede)
-    let logControlColor = Color(hex: 0xdedede)
-    let logsBackgroundColor = Color(hex: 0x2c3e50)
-    let shadowColor = Color(hex: 0xffffff).opacity(0.1)
+struct DarkTheme: Theme, Equatable {
+    var background = Color(hex: 0x2c3e50)
+    var textColor = Color.white
+    var textColorLight = Color.white.opacity(0.6)
+    var accentColor = Color.green
+    var accentColorLight = Color.green.opacity(0.6)
+    var linkColor = Color(hex: 0x6c0eb2)
+    var submitButtonColor1 = Color(hex: 0x6c0eb2)
+    var submitButtonColor2 = Color(hex: 0x450674)
+    var disabledColor = Color(hex: 0xdedede)
+    var borderColor = Color(hex: 0xdedede)
+    var logControlColor = Color(hex: 0xdedede)
+    var logsBackgroundColor = Color(hex: 0x2c3e50)
+    var shadowColor = Color(hex: 0xffffff).opacity(0.1)
 
     var listShadow: Shadow {
         return (shadowColor, 10, 0, 0)
@@ -119,6 +106,10 @@ struct DarkTheme: Theme {
 
     var tabBarBackgroundShadow: Shadow {
         return (shadowColor, 3, 0, -5)
+    }
+    
+    func save() {
+        UserDefaults.standard.darkTheme = self
     }
 }
 

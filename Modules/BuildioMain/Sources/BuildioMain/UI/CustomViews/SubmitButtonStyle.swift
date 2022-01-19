@@ -21,7 +21,7 @@ struct SubmitButtonStyle: ButtonStyle {
         @Environment(\.isEnabled) private var isEnabled: Bool
         
         var body: some View {
-            var colors: [Color] = theme.submitButtonColors
+            var colors: [Color] = [theme.submitButtonColor1, theme.submitButtonColor2]
             
             if configuration.isPressed {
                 colors.removeLast()
