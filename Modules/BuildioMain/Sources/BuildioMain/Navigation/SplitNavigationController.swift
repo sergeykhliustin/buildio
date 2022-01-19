@@ -58,24 +58,26 @@ private final class EmptyViewController: UIViewController {
 }
 
 final class SplitNavigationController: UIViewController {
+    private struct Constants {
+        static let separatorWidth = 1.0
+        static let primaryWidth = 300.0
+        static let iphonePresentationCornerRadius = 38.0
+        static let ipadPresentationCornerRadius = 10.0
+        static let presentationWidth = 700.0
+        static let ipadPresentationHeightOffset = 80.0
+        static let fadeColor = UIColor.black.withAlphaComponent(0.15)
+    }
     enum Mode {
         case primaryOnly
         case primarySecondary
     }
-    private let minumumPrimaryWidth: CGFloat = 300.0
+    
     private let rootViewController: UIViewController
     private let primaryNavigationController: UINavigationController
     private let secondaryNavigationController: UINavigationController
     private var customPresentedController: UIViewController?
-    private let separatorWidth: CGFloat = 1.0
-    private lazy var fadeView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .black.withAlphaComponent(0.5)
-        self.view.addSubview(view)
-        view.isHidden = true
-        return view
-    }()
+    
+    private var fadeView: UIView?
     private let separator: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -138,10 +140,11 @@ final class SplitNavigationController: UIViewController {
         controller.view.translatesAutoresizingMaskIntoConstraints = false
         controller.view.backgroundColor = view.backgroundColor
         #if !targetEnvironment(macCatalyst)
-        controller.view.layer.cornerRadius = 38
         if UIDevice.current.userInterfaceIdiom == .phone {
+            controller.view.layer.cornerRadius = Constants.iphonePresentationCornerRadius
             controller.view.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         } else {
+            controller.view.layer.cornerRadius = Constants.ipadPresentationCornerRadius
             controller.view.layer.masksToBounds = true
         }
         #endif
@@ -160,26 +163,20 @@ final class SplitNavigationController: UIViewController {
             constraints.append(controller.view.widthAnchor.constraint(equalTo: view.widthAnchor))
             constraints.append(controller.view.heightAnchor.constraint(equalTo: view.heightAnchor))
         } else {
-            constraints.append(controller.view.heightAnchor.constraint(equalTo: view.heightAnchor, constant: -80))
-            constraints.append(controller.view.widthAnchor.constraint(lessThanOrEqualToConstant: 800))
+            constraints.append(controller.view.heightAnchor.constraint(equalTo: view.heightAnchor, constant: -Constants.ipadPresentationHeightOffset))
+            constraints.append(controller.view.widthAnchor.constraint(lessThanOrEqualToConstant: Constants.presentationWidth))
             constraints.append(controller.view.widthAnchor.constraint(greaterThanOrEqualToConstant: 0))
             constraints.append(controller.view.leftAnchor.constraint(greaterThanOrEqualTo: view.leftAnchor))
             constraints.append(controller.view.rightAnchor.constraint(lessThanOrEqualTo: view.rightAnchor))
             
-            constraints.append(controller.view.widthAnchor.constraint(equalToConstant: 800).priority(.defaultHigh))
+            constraints.append(controller.view.widthAnchor.constraint(equalToConstant: Constants.presentationWidth).priority(.defaultHigh))
         }
         
         NSLayoutConstraint.activate(constraints)
-        fadeView.alpha = 0
-        fadeView.isHidden = false
-        fadeView.constraints.forEach({ fadeView.removeConstraint($0) })
         
-        NSLayoutConstraint.activate([
-            fadeView.topAnchor.constraint(equalTo: self.view.topAnchor),
-            fadeView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
-            fadeView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
-            fadeView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
-        ])
+        self.fadeView = createFadeView()
+        view.bringSubviewToFront(controller.view)
+        
         view.layoutIfNeeded()
         controller.view.removeConstraint(centerY)
         centerY = controller.view.centerYAnchor.constraint(equalTo: view.centerYAnchor)
@@ -187,14 +184,14 @@ final class SplitNavigationController: UIViewController {
             centerY
         ])
         UIView.animate(withDuration: 0.4) {
-            self.fadeView.alpha = 1.0
+            self.fadeView?.alpha = 1.0
             self.view.layoutIfNeeded()
         }
         
         customPresentedController = controller
     }
     
-    func dismissSheet() {
+    @objc func dismissSheet() {
         guard let customPresentedController = customPresentedController else {
             return
         }
@@ -205,10 +202,12 @@ final class SplitNavigationController: UIViewController {
                 var frame = presentedView.frame
                 frame.origin.y = self.view.frame.size.height
                 presentedView.frame = frame
-                self.fadeView.alpha = 0
+                self.fadeView?.alpha = 0
             },
             completion: { _ in
-                self.fadeView.isHidden = true
+                self.fadeView?.removeFromSuperview()
+                self.fadeView = nil
+                
                 customPresentedController.willMove(toParent: nil)
                 customPresentedController.view.removeFromSuperview()
                 customPresentedController.removeFromParent()
@@ -250,6 +249,27 @@ final class SplitNavigationController: UIViewController {
         return navigation
     }
     
+    private func createFadeView() -> UIView {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = Constants.fadeColor
+        view.alpha = 0
+        
+        let superview: UIView = self.view        
+        superview.addSubview(view)
+        
+        NSLayoutConstraint.activate([
+            view.topAnchor.constraint(equalTo: superview.topAnchor),
+            view.leftAnchor.constraint(equalTo: superview.leftAnchor),
+            view.rightAnchor.constraint(equalTo: superview.rightAnchor),
+            view.bottomAnchor.constraint(equalTo: superview.bottomAnchor)
+        ])
+        
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissSheet)))
+        
+        return view
+    }
+    
     private func switchToPrimarySecondary() {
         var viewControllers = primaryNavigationController.viewControllers
         if viewControllers.count > 1 {
@@ -283,10 +303,6 @@ final class SplitNavigationController: UIViewController {
                 view.removeConstraint($0)
             })
         
-//        view.constraints.forEach({
-//            view.removeConstraint($0)
-//        })
-        
         primaryNavigationController.view.constraints.forEach({
             if $0.firstItem as? AnyHashable == view as AnyHashable || $0.secondItem as? AnyHashable == view as AnyHashable {
                 primaryNavigationController.view.removeConstraint($0)
@@ -305,12 +321,12 @@ final class SplitNavigationController: UIViewController {
             primaryNavigationController.view.topAnchor.constraint(equalTo: layoutGuide.topAnchor),
             primaryNavigationController.view.leftAnchor.constraint(equalTo: layoutGuide.leftAnchor),
             primaryNavigationController.view.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor),
-            primaryNavigationController.view.widthAnchor.constraint(equalToConstant: minumumPrimaryWidth),
+            primaryNavigationController.view.widthAnchor.constraint(equalToConstant: Constants.primaryWidth),
             
             separator.topAnchor.constraint(equalTo: layoutGuide.topAnchor),
             separator.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor),
             separator.leftAnchor.constraint(equalTo: primaryNavigationController.view.rightAnchor),
-            separator.widthAnchor.constraint(equalToConstant: separatorWidth),
+            separator.widthAnchor.constraint(equalToConstant: Constants.separatorWidth),
             
             secondaryNavigationController.view.topAnchor.constraint(equalTo: layoutGuide.topAnchor),
             secondaryNavigationController.view.rightAnchor.constraint(equalTo: layoutGuide.rightAnchor),
@@ -318,7 +334,9 @@ final class SplitNavigationController: UIViewController {
             secondaryNavigationController.view.leftAnchor.constraint(equalTo: separator.rightAnchor)
         ])
         
-        view.bringSubviewToFront(fadeView)
+        if let fadeView = fadeView {
+            view.bringSubviewToFront(fadeView)
+        }
         if let presented = customPresentedController {
             view.bringSubviewToFront(presented.view)
         }
@@ -351,7 +369,9 @@ final class SplitNavigationController: UIViewController {
             primaryNavigationController.view.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor)
         ])
         
-        view.bringSubviewToFront(fadeView)
+        if let fadeView = fadeView {
+            view.bringSubviewToFront(fadeView)
+        }
         if let presented = customPresentedController {
             view.bringSubviewToFront(presented.view)
         }

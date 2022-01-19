@@ -14,12 +14,11 @@ public struct AuthResolverScreenView: View {
     
     public var body: some View {
         if tokenManager.token == nil {
-            AuthScreenView(canClose: false)
-                .introspectViewController { controller in
-                    #if targetEnvironment(macCatalyst)
-                    controller.viewIfLoaded?.window?.windowScene?.sizeRestrictions?.minimumSize = CGSize(width: 414, height: 600)
-                    #endif
-                }
+            SplitNavigationView(shouldSplit: false) {
+                ScreenBuilderStatic.authScreen(canClose: false, onCompletion: nil)
+            }
+            .ignoresSafeArea()
+            .environmentObject(Navigator())
         } else {
             RootScreenView()
         }

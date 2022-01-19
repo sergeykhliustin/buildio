@@ -70,9 +70,7 @@ final class ScreenBuilderStatic {
     
     @ViewBuilder
     class func authScreen(canClose: Bool = false, onCompletion: (() -> Void)? = nil) -> some View {
-        ThemeConfiguratorView {
-            AuthScreenView(canClose: canClose, onCompletion: onCompletion)
-        }
+        AuthScreenView(canClose: canClose, onCompletion: onCompletion)
     }
     
     @ViewBuilder

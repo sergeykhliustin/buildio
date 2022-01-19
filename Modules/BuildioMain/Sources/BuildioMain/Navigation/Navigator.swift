@@ -22,6 +22,10 @@ enum NewBuildRoute {
     case appSelect((V0AppResponseItemModel) -> Void)
 }
 
+enum AuthRoute {
+    case auth((() -> Void)?)
+}
+
 final class Navigator: ObservableObject {
     private let parent: Navigator?
     private weak var child: Navigator?
@@ -53,7 +57,7 @@ final class Navigator: ObservableObject {
         self.route = route
     }
     
-    func go(_ route: NewBuildRoute, theme: Theme? = nil) {
+    func go(_ route: NewBuildRoute) {
         let builder = ScreenBuilderStatic.self
         switch route {
         case .newBuild(let app):
@@ -62,13 +66,28 @@ final class Navigator: ObservableObject {
             let controller = SplitNavigationView(shouldSplit: false) {
                 builder.newBuildScreen(app: app)
             }
-            .environmentObject(navigator)
-            .hosting
+                .environmentObject(navigator)
+                .hosting
             
             navigationController?.sheet(controller)
         case .appSelect(let completion):
             let controller = builder.appSelectScreen(completion: completion).hosting
             navigationController?.push(controller, shouldReplace: false)
+        }
+    }
+    
+    func go(_ route: AuthRoute) {
+        let builder = ScreenBuilderStatic.self
+        switch route {
+        case .auth(let completion):
+            let navigator = Navigator(parent: self)
+            self.child = navigator
+            let controller = SplitNavigationView(shouldSplit: false) {
+                builder.authScreen(canClose: true, onCompletion: completion)
+            }
+                .environmentObject(navigator)
+                .hosting
+            navigationController?.sheet(controller)
         }
     }
     

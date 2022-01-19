@@ -9,7 +9,7 @@ import Models
 import Combine
 import BitriseAPIs
 
-final class TokenViewModel: BaseViewModel<V0UserProfileRespModel> {
+final class AuthScreenViewModel: BaseViewModel<V0UserProfileRespModel> {
     var token: String?
     
     override func fetch() -> AnyPublisher<V0UserProfileRespModel, ErrorResponse> {

@@ -12,7 +12,6 @@ struct BuildsScreenView: View, PagingView, ScreenBuilder {
     @Environment(\.theme) var theme
     @EnvironmentObject var model: BuildsViewModel
     @EnvironmentObject var navigator: Navigator
-    @State private var showNewBuild: Bool = false
     
     func buildItemView(_ item: BuildResponseItemModel) -> some View {
         ListItemWrapper(action: {
@@ -25,14 +24,9 @@ struct BuildsScreenView: View, PagingView, ScreenBuilder {
     @ViewBuilder
     func additionalToolbarItems() -> some View {
         Button {
-            navigator.go(.newBuild(nil), theme: theme)
+            navigator.go(.newBuild(nil))
         } label: {
             Image(systemName: "plus")
         }
-//        .sheet(isPresented: $showNewBuild) {
-//            model.refresh()
-//        } content: {
-//            newBuildScreen(app: model.app)
-//        }
     }
 }
