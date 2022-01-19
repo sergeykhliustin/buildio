@@ -10,8 +10,9 @@ import Models
 import Combine
 
 struct BuildRowView: View {
+    @EnvironmentObject var navigator: Navigator
     @Environment(\.theme) private var theme
-    @Binding private var route: Route?
+    
     @StateObject private var viewModel: BuildViewModel
     let showBottomControls: Bool
     
@@ -32,9 +33,8 @@ struct BuildRowView: View {
         }
     }
     
-    init(build: BuildResponseItemModel, route: Binding<Route?>, showBottomControls: Bool = true) {
+    init(build: BuildResponseItemModel, showBottomControls: Bool = true) {
         self.showBottomControls = showBottomControls
-        _route = route
         _viewModel = StateObject(wrappedValue: ViewModelResolver.build(build))
     }
     
@@ -107,7 +107,7 @@ struct BuildRowView: View {
                 if showBottomControls {
                     HStack(spacing: 8) {
                         Button(action: {
-                            route = .logs(model)
+                            navigator.go(.logs(model))
                         }, label: {
                             Image(systemName: "note.text")
                             Text("Logs")
@@ -125,7 +125,7 @@ struct BuildRowView: View {
                         } else {
                             Spacer()
                             Button(action: {
-                                route = .artifacts(model)
+                                navigator.go(.artifacts(model))
                             }, label: {
                                 Image(systemName: "archivebox")
                                 Text("Apps & Artifacts")
@@ -166,7 +166,7 @@ struct BuildRowView: View {
 
 struct BuildRowView_Previews: PreviewProvider {
     static var previews: some View {
-        BuildRowView(build: BuildResponseItemModel.preview(), route: .constant(nil))
+        BuildRowView(build: BuildResponseItemModel.preview())
             .preferredColorScheme(.light)
             .padding(8)
             

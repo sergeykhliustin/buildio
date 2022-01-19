@@ -24,16 +24,8 @@ struct ThemeConfiguratorView<Content: View>: View {
 
 extension UIViewController {
     func applyTheme(_ theme: Theme) {
-        view.backgroundColor = theme.background.uiColor
-        
-        if let navigation = self as? UINavigationController {
-            let navigationBar = navigation.navigationBar
-            navigationBar.standardAppearance = UINavigationBar.appearance().standardAppearance
-            navigationBar.compactAppearance = UINavigationBar.appearance().compactAppearance
-            navigationBar.scrollEdgeAppearance = UINavigationBar.appearance().scrollEdgeAppearance
-        }
-        
-        children.forEach({ $0.applyTheme(theme) })
-        presentedViewController?.applyTheme(theme)
+//        view.backgroundColor = theme.background.uiColor        
+//        children.forEach({ $0.applyTheme(theme) })
+//        presentedViewController?.applyTheme(theme)
     }
 }

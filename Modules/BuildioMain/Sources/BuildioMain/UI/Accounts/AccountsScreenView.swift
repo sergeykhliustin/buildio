@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftUINavigation
 
 struct AccountsScreenView: ScreenBuilder {
     @Environment(\.isDemoMode) var isDemoMode

@@ -47,8 +47,8 @@ enum RootScreenItemType: CaseIterable {
         }
     }
     
-    var navigation: Bool {
-        return self != .debug
+    var splitNavigation: Bool {
+        return ![Self.debug, Self.accounts].contains(self)
     }
     
     #if DEBUG

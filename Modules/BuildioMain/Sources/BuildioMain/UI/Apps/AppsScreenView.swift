@@ -8,7 +8,8 @@
 import SwiftUI
 import Models
 
-struct AppsScreenView: View, PagingView, RoutingView {
+struct AppsScreenView: View, PagingView {
+    @EnvironmentObject var navigator: Navigator
     @Environment(\.theme) var theme
     @EnvironmentObject var model: AppsViewModel
     
@@ -42,16 +43,11 @@ struct AppsScreenView: View, PagingView, RoutingView {
             if let completion = completion {
                 completion(item)
             } else {
-                route = .builds(item)
+                navigator.go(.builds(item))
             }
         }, content: {
             AppRowView(model: item)
         })
-    }
-    
-    @ViewBuilder
-    func navigationLinks() -> some View {
-        navigationLinks(route: $route)
     }
     
     @ViewBuilder

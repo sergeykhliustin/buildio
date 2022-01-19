@@ -8,36 +8,31 @@
 import SwiftUI
 import Models
 
-struct BuildsScreenView: View, PagingView, RoutingView {
+struct BuildsScreenView: View, PagingView, ScreenBuilder {
     @Environment(\.theme) var theme
     @EnvironmentObject var model: BuildsViewModel
+    @EnvironmentObject var navigator: Navigator
     @State private var showNewBuild: Bool = false
-    @State private var route: Route?
     
     func buildItemView(_ item: BuildResponseItemModel) -> some View {
         ListItemWrapper(action: {
-            route = .build(item)
+            navigator.go(.build(item))
         }, content: {
-            BuildRowView(build: item, route: $route)
+            BuildRowView(build: item)
         })
-    }
-    
-    @ViewBuilder
-    func navigationLinks() -> some View {
-        navigationLinks(route: $route)
     }
     
     @ViewBuilder
     func additionalToolbarItems() -> some View {
         Button {
-            showNewBuild.toggle()
+            navigator.go(.newBuild(nil), theme: theme)
         } label: {
             Image(systemName: "plus")
         }
-        .sheet(isPresented: $showNewBuild) {
-            model.refresh()
-        } content: {
-            newBuildScreen(app: model.app)
-        }
+//        .sheet(isPresented: $showNewBuild) {
+//            model.refresh()
+//        } content: {
+//            newBuildScreen(app: model.app)
+//        }
     }
 }

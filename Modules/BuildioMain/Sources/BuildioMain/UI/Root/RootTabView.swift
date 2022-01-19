@@ -9,28 +9,9 @@ import SwiftUI
 import Introspect
 import UIKit
 
-private extension View {
-    typealias ContentTransform<Content: View> = (Self) -> Content
-
-    @ViewBuilder
-    func conditionalModifier<TrueContent: View, FalseContent: View>(
-        _ condition: Bool,
-        ifTrue: ContentTransform<TrueContent>,
-        ifFalse: ContentTransform<FalseContent>
-    ) -> some View {
-        if condition {
-            ifTrue(self)
-        } else {
-            ifFalse(self)
-        }
-    }
-}
-
-struct RootTabView: View, RoutingView {
+struct RootTabView: View {
     @Environment(\.theme) var theme
-    @Environment(\.fullscreen) private var fullscreen
     @EnvironmentObject private var navigators: Navigators
-//    @EnvironmentObject private var themeObject: ThemeObject
     
     @Binding private var selection: Int
     private let configuration: [RootScreenItemType]
@@ -40,44 +21,18 @@ struct RootTabView: View, RoutingView {
         self.configuration = configuration
     }
     
-    private var isStack: Bool {
-        UIDevice.current.userInterfaceIdiom == .phone
-    }
-    
     var body: some View {
         TabView(selection: $selection) {
             ForEach(0..<configuration.count) { index in
                 let item = configuration[index]
-                if item.navigation {
-                    NavigationView {
-                        RootScreenItemView(item)
-                            .navigationTitle(item.name)
-                            .background(theme.background)
-                    }
-                    .tag(index)
-                    .introspectNavigationController(customize: { controller in
-                        navigators.set(navigation: controller, for: item, theme: theme)
-                    })
-                    .introspectSplitViewController { splitViewController in
-                        navigators.set(split: splitViewController, for: item, theme: theme)
-                        splitViewController.preferredSplitBehavior = .tile
-                        splitViewController.primaryBackgroundStyle = .none
-                        splitViewController.minimumPrimaryColumnWidth = 300
-                        splitViewController.maximumPrimaryColumnWidth = 600
-                        
-                        if !fullscreen.wrappedValue {
-                            splitViewController.preferredDisplayMode = .oneOverSecondary
-                        }
-                        
-                        if fullscreen.wrappedValue && splitViewController.displayMode != .secondaryOnly {
-                            splitViewController.hide(.primary)
-                        }
-                    }
-                    
-                } else {
+                SplitNavigationView(shouldSplit: item.splitNavigation) {
                     RootScreenItemView(item)
-                        .tag(index)
+                        .navigationTitle(item.name)
                 }
+                .ignoresSafeArea()
+                .environmentObject(navigators.navigator(for: item))
+                .tag(index)
+                
             }
         }
     }

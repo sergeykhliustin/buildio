@@ -27,19 +27,18 @@ struct ActionItem: View {
     }
 }
 
-struct BuildScreenView: BaseView, RoutingView {
+struct BuildScreenView: BaseView {
+    @EnvironmentObject var navigator: Navigator
     @Environment(\.theme) var theme
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var model: BuildViewModel
     
-    @State var route: Route?
     @State private var abortConfirmation: Bool = false
     @State private var abortReason: String = ""
     
     var body: some View {
         let value = model.value!
         RefreshableScrollView(refreshing: model.isScrollViewRefreshing) {
-            navigationLinks(route: $route)
             VStack(spacing: 8) {
                 if let error = model.error {
                     Text(error.rawErrorString)
@@ -73,11 +72,11 @@ struct BuildScreenView: BaseView, RoutingView {
                 }
                 
                 ActionItem(title: "Logs", icon: "note.text") {
-                    self.route = .logs(value)
+                    navigator.go(.logs(value))
                 }
                 if value.status != .running {
                     ActionItem(title: "Apps & Artifacts", icon: "archivebox") {
-                        self.route = .artifacts(value)
+                        navigator.go(.artifacts(value))
                     }
                 }
                 

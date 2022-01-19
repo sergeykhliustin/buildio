@@ -9,6 +9,10 @@ import SwiftUI
 import Introspect
 
 extension View {
+    var hosting: UIHostingController<Self> {
+        return UIHostingController(rootView: self)
+    }
+    
     func eraseToAnyView() -> AnyView {
         return AnyView(self)
     }
