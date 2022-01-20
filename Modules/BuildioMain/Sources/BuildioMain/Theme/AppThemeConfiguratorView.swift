@@ -36,7 +36,6 @@ extension EnvironmentValues {
 }
 
 struct AppThemeConfiguratorView<Content: View>: View {
-    @EnvironmentObject private var navigators: Navigators
     @Environment(\.colorScheme) var colorScheme
     @State private var theme: Theme = Theme.current
     @State private var themeUpdater: Theme = Theme.current

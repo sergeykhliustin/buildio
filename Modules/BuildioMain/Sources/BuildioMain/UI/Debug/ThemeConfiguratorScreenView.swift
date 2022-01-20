@@ -10,8 +10,6 @@ import SwiftUI
 
 struct ThemeConfiguratorScreenView: View {
     @Environment(\.themeUpdater) var theme
-    @State private var selectedKey: String?
-    @State private var selectedColor: CGColor = Color.clear.cgColor!
     
     var body: some View {
         let dict = theme.wrappedValue.dictionary as? [String: String] ?? [:]
@@ -30,6 +28,19 @@ struct ThemeConfiguratorScreenView: View {
                     ColorPicker(key, selection: binding)
                         .frame(height: 44)
                         .padding(.horizontal, 16)
+                }
+                IconActionItem(title: "Export", icon: "square.and.arrow.up.fill") {
+                    let encoder = JSONEncoder()
+                    do {
+                        let data = try encoder.encode(theme.wrappedValue)
+                        let url = URL(fileURLWithPath: (NSTemporaryDirectory() as NSString).appendingPathComponent("theme.json"))
+                        try data.write(to: url)
+                        let controller = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+                        
+                        UIApplication.shared.windows.first?.rootViewController?.present(controller, animated: true)
+                    } catch {
+                        logger.error(error)
+                    }
                 }
             }
             .padding(.vertical, 8)
