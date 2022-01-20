@@ -77,12 +77,15 @@ final class ScreenBuilder {
     @ViewBuilder
     class func debugScreen() -> some View {
         DebugScreenView()
-            .navigationTitle("Debug")
+    }
+    
+    @ViewBuilder
+    class func debugLogsScreen() -> some View {
+        DebugLogsScreenView()
     }
     
     @ViewBuilder
     class func themeScreen() -> some View {
         ThemeConfiguratorScreenView()
-            .navigationTitle("Theme")
     }
 }

@@ -26,6 +26,11 @@ enum AuthRoute {
     case auth((() -> Void)?)
 }
 
+enum DebugRoute {
+    case debugLogs
+    case theme
+}
+
 final class Navigator: ObservableObject {
     private weak var parentNavigators: Navigators?
     private let parent: Navigator?
@@ -109,6 +114,18 @@ final class Navigator: ObservableObject {
             self.isPresentingSheet = true
             navigationController?.sheet(controller)
         }
+    }
+    
+    func go(_ route: DebugRoute) {
+        let builder = ScreenBuilder.self
+        var controller: UIViewController!
+        switch route {
+        case .debugLogs:
+            controller = builder.debugLogsScreen().hosting
+        case .theme:
+            controller = builder.themeScreen().hosting
+        }
+        navigationController?.push(controller, shouldReplace: false)
     }
     
     func dismiss() {

@@ -17,60 +17,78 @@ extension Color: Codable {
     }
 }
 
-protocol Theme: Codable {
+struct Theme: Codable, Equatable {
     typealias Shadow = (color: Color, radius: CGFloat, x: CGFloat, y: CGFloat)
     
-    var background: Color { get set }
-    var textColor: Color { get set }
-    var textColorLight: Color { get set }
-    var accentColor: Color { get set }
-    var accentColorLight: Color { get set }
-    var linkColor: Color { get set }
-    var submitButtonColor1: Color { get set }
-    var submitButtonColor2: Color { get set }
-    var disabledColor: Color { get set }
-    var borderColor: Color { get set }
-    var logControlColor: Color { get set }
-    var logsBackgroundColor: Color { get set }
-    var shadowColor: Color { get set }
-    var listShadow: Shadow { get }
-    var tabBarBackgroundShadow: Shadow { get }
+    static let lightTheme = [
+        "accentColor": "#492D5B",
+        "accentColorLight": "#492D5B99",
+        "background": "#FEFEFE",
+        "borderColor": "#DEDEDE",
+        "disabledColor": "#DEDEDE",
+        "linkColor": "#6C0EB2",
+        "logControlColor": "#DEDEDE",
+        "logsBackgroundColor": "#2C3D50",
+        "shadowColor": "#00000019",
+        "submitButtonColor1": "#6C0EB2",
+        "submitButtonColor2": "#450673",
+        "textColor": "#341D47",
+        "textColorLight": "#341D4799"
+    ]
     
-    func save()
-}
-
-enum ThemeHelper {
+    static let darkTheme = [
+        "accentColor": "#33C758",
+        "accentColorLight": "#33C75899",
+        "background": "#2C3D50",
+        "borderColor": "#DEDEDE",
+        "disabledColor": "#DEDEDE",
+        "linkColor": "#6C0EB2",
+        "logControlColor": "#DEDEDE",
+        "logsBackgroundColor": "#2C3D50",
+        "shadowColor": "#FEFEFE19",
+        "submitButtonColor1": "#6C0EB2",
+        "submitButtonColor2": "#450673",
+        "textColor": "#FEFEFE",
+        "textColorLight": "#FEFEFE99"
+    ]
+    
+    init(colorScheme: ColorScheme) {
+        if colorScheme == .dark {
+            try! self.init(from: Self.darkTheme)
+        } else {
+            try! self.init(from: Self.lightTheme)
+        }
+    }
+    
     static var current: Theme {
         let style = UIScreen.main.traitCollection.userInterfaceStyle
         if let sheme = ColorScheme(style) {
             return theme(for: sheme)
         }
-        return LightTheme()
+        return Theme(colorScheme: .light)
     }
     
     static func theme(for colorScheme: ColorScheme) -> Theme {
         if colorScheme == .dark {
-            return UserDefaults.standard.darkTheme ?? DarkTheme()
+            return UserDefaults.standard.darkTheme ?? Theme(colorScheme: .dark)
         } else {
-            return UserDefaults.standard.lightTheme ?? LightTheme()
+            return UserDefaults.standard.lightTheme ?? Theme(colorScheme: .light)
         }
     }
-}
-
-struct LightTheme: Theme, Equatable {
-    var background: Color = .white
-    var textColor = Color(hex: 0x351d48)
-    var textColorLight = Color(hex: 0x351d48).opacity(0.6)
-    var accentColor = Color(hex: 0x4a2e5c)
-    var accentColorLight = Color(hex: 0x4a2e5c).opacity(0.6)
-    var linkColor = Color(hex: 0x6c0eb2)
-    var submitButtonColor1 = Color(hex: 0x6c0eb2)
-    var submitButtonColor2 = Color(hex: 0x450674)
-    var disabledColor = Color(hex: 0xdedede)
-    var borderColor = Color(hex: 0xdedede)
-    var logControlColor = Color(hex: 0xdedede)
-    var logsBackgroundColor = Color(hex: 0x2c3e50)
-    var shadowColor = Color(hex: 0x0).opacity(0.1)
+    
+    var background: Color
+    var textColor: Color
+    var textColorLight: Color
+    var accentColor: Color
+    var accentColorLight: Color
+    var linkColor: Color
+    var submitButtonColor1: Color
+    var submitButtonColor2: Color
+    var disabledColor: Color
+    var borderColor: Color
+    var logControlColor: Color
+    var logsBackgroundColor: Color
+    var shadowColor: Color
 
     var listShadow: Shadow {
         return (shadowColor, 10, 0, 0)
@@ -82,34 +100,6 @@ struct LightTheme: Theme, Equatable {
     
     func save() {
         UserDefaults.standard.lightTheme = self
-    }
-}
-
-struct DarkTheme: Theme, Equatable {
-    var background = Color(hex: 0x2c3e50)
-    var textColor = Color.white
-    var textColorLight = Color.white.opacity(0.6)
-    var accentColor = Color.green
-    var accentColorLight = Color.green.opacity(0.6)
-    var linkColor = Color(hex: 0x6c0eb2)
-    var submitButtonColor1 = Color(hex: 0x6c0eb2)
-    var submitButtonColor2 = Color(hex: 0x450674)
-    var disabledColor = Color(hex: 0xdedede)
-    var borderColor = Color(hex: 0xdedede)
-    var logControlColor = Color(hex: 0xdedede)
-    var logsBackgroundColor = Color(hex: 0x2c3e50)
-    var shadowColor = Color(hex: 0xffffff).opacity(0.1)
-
-    var listShadow: Shadow {
-        return (shadowColor, 10, 0, 0)
-    }
-
-    var tabBarBackgroundShadow: Shadow {
-        return (shadowColor, 3, 0, -5)
-    }
-    
-    func save() {
-        UserDefaults.standard.darkTheme = self
     }
 }
 

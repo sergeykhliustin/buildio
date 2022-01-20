@@ -9,41 +9,6 @@ import SwiftUI
 import Models
 import Combine
 
-struct ActionItem: View {
-    let title: String
-    let icon: String?
-    let color: String?
-    let action: () -> Void
-    
-    init(title: String,
-         icon: String? = nil,
-         color: String? = nil,
-         action: @escaping () -> Void) {
-        self.title = title
-        self.icon = icon
-        self.color = color
-        self.action = action
-    }
-    
-    var body: some View {
-        ListItemWrapper(action: action) {
-            HStack {
-                if let icon = icon {
-                    Image(systemName: icon)
-                }
-                if let hex = color, let color = try? Color(hex: hex) {
-                    color.frame(width: 20, height: 20).cornerRadius(2)
-                }
-                Text(title)
-                Spacer()
-                Image(systemName: "chevron.right")
-            }
-            .frame(height: 44)
-            .padding(.horizontal, 16)
-        }
-    }
-}
-
 struct BuildScreenView: BaseView {
     @EnvironmentObject var navigator: Navigator
     @Environment(\.theme) var theme
@@ -88,11 +53,11 @@ struct BuildScreenView: BaseView {
                     .cornerRadius(20)
                 }
                 
-                ActionItem(title: "Logs", icon: "note.text") {
+                IconActionItem(title: "Logs", icon: "note.text") {
                     navigator.go(.logs(value))
                 }
                 if value.status != .running {
-                    ActionItem(title: "Apps & Artifacts", icon: "archivebox") {
+                    IconActionItem(title: "Apps & Artifacts", icon: "archivebox") {
                         navigator.go(.artifacts(value))
                     }
                 }

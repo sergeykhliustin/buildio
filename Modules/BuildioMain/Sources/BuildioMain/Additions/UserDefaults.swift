@@ -8,13 +8,13 @@
 import Foundation
 
 extension UserDefaults {
-    var lightTheme: LightTheme? {
+    var lightTheme: Theme? {
         get {
             if let data = data(forKey: "lightTheme") {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 do {
-                    return try decoder.decode(LightTheme.self, from: data)
+                    return try decoder.decode(Theme.self, from: data)
                 } catch {
                     logger.error(error)
                 }
@@ -34,13 +34,13 @@ extension UserDefaults {
         }
     }
     
-    var darkTheme: DarkTheme? {
+    var darkTheme: Theme? {
         get {
             if let data = data(forKey: "darkTheme") {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 do {
-                    return try decoder.decode(DarkTheme.self, from: data)
+                    return try decoder.decode(Theme.self, from: data)
                 } catch {
                     logger.error(error)
                 }

@@ -8,15 +8,11 @@
 import SwiftUI
 
 private struct ThemeEnvironmentKey: EnvironmentKey {
-    static var defaultValue: Theme = LightTheme()
+    static var defaultValue: Theme = Theme.current
 }
 
-private struct LightThemeEnvironmentKey: EnvironmentKey {
-    static var defaultValue: Binding<LightTheme> = .constant(LightTheme())
-}
-
-private struct DarkThemeEnvironmentKey: EnvironmentKey {
-    static var defaultValue: Binding<DarkTheme> = .constant(DarkTheme())
+private struct ThemeUpdaterEnvironmentKey: EnvironmentKey {
+    static var defaultValue: Binding<Theme> = .constant(Theme.current)
 }
 
 extension EnvironmentValues {
@@ -29,21 +25,12 @@ extension EnvironmentValues {
         }
     }
     
-    var lightTheme: Binding<LightTheme> {
+    var themeUpdater: Binding<Theme> {
         get {
-            self[LightThemeEnvironmentKey.self]
+            self[ThemeUpdaterEnvironmentKey.self]
         }
         set {
-            self[LightThemeEnvironmentKey.self] = newValue
-        }
-    }
-    
-    var darkTheme: Binding<DarkTheme> {
-        get {
-            self[DarkThemeEnvironmentKey.self]
-        }
-        set {
-            self[DarkThemeEnvironmentKey.self] = newValue
+            self[ThemeUpdaterEnvironmentKey.self] = newValue
         }
     }
 }
@@ -51,9 +38,8 @@ extension EnvironmentValues {
 struct AppThemeConfiguratorView<Content: View>: View {
     @EnvironmentObject private var navigators: Navigators
     @Environment(\.colorScheme) var colorScheme
-    @State private var theme: Theme = ThemeHelper.current
-    @State private var lightTheme: LightTheme = LightTheme()
-    @State private var darkTheme: DarkTheme = DarkTheme()
+    @State private var theme: Theme = Theme.current
+    @State private var themeUpdater: Theme = Theme.current
     @ViewBuilder private let content: () -> Content
     
     init(_ content: @escaping () -> Content) {
@@ -64,27 +50,18 @@ struct AppThemeConfiguratorView<Content: View>: View {
     var body: some View {
         content()
             .environment(\.theme, theme)
-            .environment(\.lightTheme, $lightTheme)
-            .environment(\.darkTheme, $darkTheme)
+            .environment(\.themeUpdater, $themeUpdater)
             .accentColor(theme.accentColor)
             .foregroundColor(theme.textColor)
             .background(theme.background)
             .progressViewStyle(CircularInfiniteProgressViewStyle())
             .onChange(of: colorScheme, perform: { newValue in
-                theme = ThemeHelper.theme(for: newValue)
+                theme = Theme.theme(for: newValue)
                 configureAppearance(theme)
             })
-            .onChange(of: $lightTheme.wrappedValue, perform: { newValue in
-                if colorScheme == .light {
-                    theme = newValue
-                    configureAppearance(theme)
-                }
-            })
-            .onChange(of: $darkTheme.wrappedValue, perform: { newValue in
-                if colorScheme == .dark {
-                    theme = newValue
-                    configureAppearance(theme)
-                }
+            .onChange(of: $themeUpdater.wrappedValue, perform: { newValue in
+                theme = newValue
+                configureAppearance(theme)
             })
     }
     
