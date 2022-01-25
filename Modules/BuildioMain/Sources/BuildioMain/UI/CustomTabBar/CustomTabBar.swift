@@ -33,12 +33,12 @@ struct CustomTabBar: View {
         case vertical
     }
     @Binding var selected: Int
-    private let configuration = RootScreenItemType.default
     private let spacing: CGFloat
     private let style: Style
     private let onSecondTap: (() -> Void)?
     @EnvironmentObject private var navigators: Navigators
     @Environment(\.theme) private var theme
+    @Environment(\.previewMode) private var previewMode
 
     init(style: Style = .horizontal, spacing: CGFloat = 4, selected: Binding<Int>, onSecondTap: (() -> Void)? = nil) {
         self.spacing = spacing
@@ -48,6 +48,7 @@ struct CustomTabBar: View {
     }
     
     var body: some View {
+        let configuration = previewMode ? RootScreenItemType.preview : RootScreenItemType.default
         stack(style: style) {
             Group {
                 Spacer()

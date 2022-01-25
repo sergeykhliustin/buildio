@@ -18,15 +18,13 @@ struct ThemeConfiguratorScreenView: View {
             VStack(spacing: 8) {
                 let scale = 0.5
                 let height = geometry.size.height
-                let width = height / 19.5 * 9
+                let width = height / 16 * 9
                 EntryPoint(previewMode: true, theme: $theme)
                     .frame(width: width, height: height, alignment: .center)
                     .cornerRadius(20)
                     .background(RoundedRectangle(cornerRadius: 20).stroke(Color.black, lineWidth: 1))
                     .scaleEffect(scale)
                     .padding(EdgeInsets(top: -height * scale / 2, leading: 0, bottom: -height * scale / 2, trailing: 0))
-                
-                    
                 
                 ScrollView {
                     VStack(spacing: 8) {

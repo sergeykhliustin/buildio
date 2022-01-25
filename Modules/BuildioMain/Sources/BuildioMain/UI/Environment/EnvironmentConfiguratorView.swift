@@ -24,6 +24,10 @@ private struct WindowModeEnvironmentKey: EnvironmentKey {
     static var defaultValue: WindowMode = .compact
 }
 
+private struct PreviewEnvironmentKey: EnvironmentKey {
+    static var defaultValue: Bool = false
+}
+
 extension EnvironmentValues {
     var fullscreen: Binding<Bool> {
         get {
@@ -49,6 +53,15 @@ extension EnvironmentValues {
         }
         set {
             self[WindowModeEnvironmentKey.self] = newValue
+        }
+    }
+    
+    var previewMode: Bool {
+        get {
+            self[PreviewEnvironmentKey.self]
+        }
+        set {
+            self[PreviewEnvironmentKey.self] = newValue
         }
     }
 }
@@ -85,6 +98,7 @@ public struct EnvironmentConfiguratorView<Content: View>: View {
     
     public var body: some View {
         content()
+            .environment(\.previewMode, previewMode)
             .environment(\.fullscreen, $fullscreen)
             .environment(\.keyboard, keyboard.isVisible)
             .environment(\.windowMode, windowMode)
