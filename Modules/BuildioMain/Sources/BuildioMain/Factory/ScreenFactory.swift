@@ -130,6 +130,18 @@ final class ScreenFactory: ObservableObject {
             .environmentObject(viewModelFactory.avatar(title: title, url: url))
     }
     
+    // MARK: - Settings
+    
+    @ViewBuilder
+    func settingsScreen() -> some View {
+        SettingsScreenView()
+    }
+    
+    @ViewBuilder
+    func themeScreen(theme: Theme) -> some View {
+        ThemeConfiguratorScreenView(theme: theme)
+    }
+    
     // MARK: - Debug
     
     @ViewBuilder
@@ -140,10 +152,5 @@ final class ScreenFactory: ObservableObject {
     @ViewBuilder
     func debugLogsScreen() -> some View {
         DebugLogsScreenView()
-    }
-    
-    @ViewBuilder
-    func themeScreen() -> some View {
-        ThemeConfiguratorScreenView()
     }
 }

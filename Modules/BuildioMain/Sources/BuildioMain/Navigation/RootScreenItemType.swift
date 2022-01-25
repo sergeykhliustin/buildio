@@ -12,7 +12,7 @@ enum RootScreenItemType: CaseIterable {
     case apps
     case accounts
     case activities
-    case debug
+    case settings
     
     var id: String {
         return name
@@ -30,8 +30,8 @@ enum RootScreenItemType: CaseIterable {
             return "Accounts"
         case .activities:
             return "Activities"
-        case .debug:
-            return "Debug"
+        case .settings:
+            return "Settings"
         }
     }
     
@@ -47,29 +47,20 @@ enum RootScreenItemType: CaseIterable {
             return "key"
         case .activities:
             return "bell"
-        case .debug:
-            return "bolt.heart"
+        case .settings:
+            return "gearshape"
         }
     }
     
     var splitNavigation: Bool {
-        return ![Self.debug, Self.accounts].contains(self)
+        return ![Self.accounts].contains(self)
     }
     
-    #if DEBUG
     static let `default`: [RootScreenItemType] = [
         .builds,
         .apps,
         .accounts,
         .activities,
-        .debug,
+        .settings
     ]
-    #else
-    static let `default`: [RootScreenItemType] = [
-        .builds,
-        .apps,
-        .accounts,
-        .activities
-    ]
-    #endif
 }

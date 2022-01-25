@@ -9,12 +9,16 @@ import SwiftUI
 import BitriseAPIs
 
 public struct EntryPoint: View {
-    public init() {
-        
+    private let previewMode: Bool
+    private let theme: Binding<Theme>?
+    
+    public init(previewMode: Bool = false, theme: Binding<Theme>? = nil) {
+        self.previewMode = previewMode
+        self.theme = theme
     }
     public var body: some View {
-        EnvironmentConfiguratorView {
-            AppThemeConfiguratorView {
+        EnvironmentConfiguratorView(previewMode: previewMode) {
+            AppThemeConfiguratorView(forcedTheme: theme) {
                 AuthResolverScreenView()
             }
         }

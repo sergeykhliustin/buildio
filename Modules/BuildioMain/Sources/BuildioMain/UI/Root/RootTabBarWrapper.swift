@@ -10,9 +10,9 @@ import SwiftUI
 struct RootTabBarWrapper<Content: View>: View {
     @ViewBuilder private let content: () -> Content
     @Binding private var selection: Int
+    @Environment(\.windowMode) private var windowMode
     @Environment(\.keyboard) private var keyboard
     @Environment(\.fullscreen) private var fullscreen
-    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @EnvironmentObject private var navigators: Navigators
     @Environment(\.theme) var theme
     
@@ -22,11 +22,11 @@ struct RootTabBarWrapper<Content: View>: View {
     }
     
     private var isLeftBarVisible: Bool {
-        !fullscreen.wrappedValue && horizontalSizeClass == .regular
+        !fullscreen.wrappedValue && windowMode == .split
     }
     
     private var isBottomBarVisible: Bool {
-        !fullscreen.wrappedValue && !keyboard && horizontalSizeClass == .compact
+        !fullscreen.wrappedValue && !keyboard && windowMode == .compact
     }
     
     init(selection: Binding<Int>, _ content: @escaping () -> Content) {

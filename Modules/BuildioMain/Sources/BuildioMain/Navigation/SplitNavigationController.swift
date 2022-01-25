@@ -13,7 +13,7 @@ struct SplitNavigationView<Content: View>: UIViewControllerRepresentable {
     typealias UIViewControllerType = SplitNavigationController
     @Environment(\.fullscreen) private var fullscreen
     @Environment(\.theme) private var theme
-    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Environment(\.windowMode) private var windowMode
     @EnvironmentObject private var navigator: Navigator
     private let shouldSplit: Bool
     @ViewBuilder private var content: () -> Content
@@ -33,7 +33,7 @@ struct SplitNavigationView<Content: View>: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: SplitNavigationController, context: Context) {
-        if (horizontalSizeClass == .regular && shouldSplit) && !fullscreen.wrappedValue {
+        if (windowMode == .split && shouldSplit) && !fullscreen.wrappedValue {
             navigator.navigationController?.mode = .primarySecondary
         } else {
             navigator.navigationController?.mode = .primaryOnly

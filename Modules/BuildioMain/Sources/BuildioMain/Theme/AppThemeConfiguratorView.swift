@@ -37,11 +37,14 @@ extension EnvironmentValues {
 
 struct AppThemeConfiguratorView<Content: View>: View {
     @Environment(\.colorScheme) var colorScheme
-    @State private var theme: Theme = Theme.current
+    @State private var theme: Theme
     @State private var themeUpdater: Theme = Theme.current
     @ViewBuilder private let content: () -> Content
+    private var forcedTheme: Binding<Theme>?
     
-    init(_ content: @escaping () -> Content) {
+    init(forcedTheme: Binding<Theme>? = nil, _ content: @escaping () -> Content) {
+        self.forcedTheme = forcedTheme
+        _theme = State(initialValue: forcedTheme?.wrappedValue ?? Theme.current)
         self.content = content
         configureAppearance(theme)
     }
@@ -55,12 +58,21 @@ struct AppThemeConfiguratorView<Content: View>: View {
             .background(theme.background)
             .progressViewStyle(CircularInfiniteProgressViewStyle())
             .onChange(of: colorScheme, perform: { newValue in
-                theme = Theme.theme(for: newValue)
-                configureAppearance(theme)
+                if forcedTheme == nil {
+                    theme = Theme.theme(for: newValue)
+                    configureAppearance(theme)
+                }
             })
             .onChange(of: $themeUpdater.wrappedValue, perform: { newValue in
-                theme = newValue
-                configureAppearance(theme)
+                if forcedTheme == nil {
+                    theme = newValue
+                    configureAppearance(theme)
+                }
+            })
+            .onChange(of: forcedTheme?.wrappedValue, perform: { newValue in
+                if let newValue = newValue {
+                    theme = newValue
+                }
             })
     }
     

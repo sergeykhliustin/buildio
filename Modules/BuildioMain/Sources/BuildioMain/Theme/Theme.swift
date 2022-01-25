@@ -17,7 +17,7 @@ extension Color: Codable {
     }
 }
 
-struct Theme: Codable, Equatable {
+public struct Theme: Codable, Equatable {
     typealias Shadow = (color: Color, radius: CGFloat, x: CGFloat, y: CGFloat)
     
     static let lightTheme = [

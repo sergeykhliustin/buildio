@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum WindowMode {
+public enum WindowMode {
     case compact
     case split
 }
@@ -18,6 +18,10 @@ private struct FullscreenEnvironmentKey: EnvironmentKey {
 
 private struct KeyboardEnvironmentKey: EnvironmentKey {
     static var defaultValue: Bool = false
+}
+
+private struct WindowModeEnvironmentKey: EnvironmentKey {
+    static var defaultValue: WindowMode = .compact
 }
 
 extension EnvironmentValues {
@@ -38,22 +42,37 @@ extension EnvironmentValues {
             self[KeyboardEnvironmentKey.self] = newValue
         }
     }
+    
+    var windowMode: WindowMode {
+        get {
+            self[WindowModeEnvironmentKey.self]
+        }
+        set {
+            self[WindowModeEnvironmentKey.self] = newValue
+        }
+    }
 }
 
 public struct EnvironmentConfiguratorView<Content: View>: View {
+    @StateObject private var keyboard: KeyboardObserver = KeyboardObserver()
     @StateObject var navigators: Navigators
     @State private var fullscreen: Bool = false
-    @StateObject private var keyboard: KeyboardObserver = KeyboardObserver()
+    @State private var windowMode: WindowMode = .compact
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    
     @ViewBuilder let content: () -> Content
     
-    private let activityWatcher: ActivityWatcher
+    private let previewMode: Bool
+    
+    private let activityWatcher: ActivityWatcher?
     private weak var screenFactory: ScreenFactory!
     private weak var tokenManager: TokenManager!
     
-    public init(_ content: @escaping () -> Content) {
+    init(previewMode: Bool = false, _ content: @escaping () -> Content) {
+        self.previewMode = previewMode
         self.content = content
         
-        let tokenManager = TokenManager()
+        let tokenManager = previewMode ? PreviewTokenManager() : TokenManager()
         let viewModelFactory = ViewModelFactory(tokenManager)
         let screenFactory = ScreenFactory(viewModelFactory)
         let navigators = Navigators(screenFactory)
@@ -68,8 +87,12 @@ public struct EnvironmentConfiguratorView<Content: View>: View {
         content()
             .environment(\.fullscreen, $fullscreen)
             .environment(\.keyboard, keyboard.isVisible)
+            .environment(\.windowMode, windowMode)
             .environmentObject(navigators)
             .environmentObject(screenFactory)
             .environmentObject(tokenManager)
+            .onChange(of: horizontalSizeClass) { newValue in
+                windowMode = previewMode ? .compact : (newValue == .compact ? .compact : .split)
+            }
     }
 }

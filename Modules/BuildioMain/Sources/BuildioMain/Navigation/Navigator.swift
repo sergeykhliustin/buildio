@@ -26,9 +26,11 @@ enum AuthRoute {
     case auth((() -> Void)?)
 }
 
-enum DebugRoute {
+enum SettingsRoute {
     case debugLogs
-    case theme
+    case themeLight
+    case themeDark
+    case debug
 }
 
 final class Navigator: ObservableObject {
@@ -114,14 +116,18 @@ final class Navigator: ObservableObject {
         }
     }
     
-    func go(_ route: DebugRoute) {
+    func go(_ route: SettingsRoute) {
         let builder = screenFactory
         var controller: UIViewController!
         switch route {
         case .debugLogs:
             controller = builder.debugLogsScreen().hosting
-        case .theme:
-            controller = builder.themeScreen().hosting
+        case .themeLight:
+            controller = builder.themeScreen(theme: Theme(colorScheme: .light)).hosting
+        case .themeDark:
+            controller = builder.themeScreen(theme: Theme(colorScheme: .dark)).hosting
+        case .debug:
+            controller = builder.debugScreen().hosting
         }
         navigationController?.push(controller, shouldReplace: false)
     }

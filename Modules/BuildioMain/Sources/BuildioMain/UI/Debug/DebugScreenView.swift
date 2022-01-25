@@ -15,9 +15,6 @@ struct DebugScreenView: View {
             IconActionItem(title: "Logs", icon: "doc.plaintext") {
                 navigator.go(.debugLogs)
             }
-            IconActionItem(title: "Tune theme", icon: "eyedropper.halffull") {
-                navigator.go(.theme)
-            }
             IconActionItem(title: "Reset UserDefaults", icon: "clear", action: {
                 UserDefaults.standard.reset()
             })

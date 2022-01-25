@@ -30,12 +30,30 @@ struct Token: Equatable {
         self.email = email
         self.current = current
     }
+    
+    static func demo() -> Token {
+        var token = Token(token: "demo", email: "demo@example.com", current: true)
+        token.isDemo = true
+        return token
+    }
 }
 
-final class TokenManager: ObservableObject {
-    private static let keychain = Keychain()
+final class PreviewTokenManager: TokenManager {
+    override init() {
+        super.init()
+        self.tokens = [Token.demo()]
+        self.token = self.tokens.first
+    }
     
-    @Published private(set) var tokens: [Token] {
+    override func saveTokens() {
+        
+    }
+}
+
+class TokenManager: ObservableObject {
+    private let keychain: Keychain
+    
+    @Published fileprivate(set) var tokens: [Token] {
         didSet {
             saveTokens()
         }
@@ -61,7 +79,16 @@ final class TokenManager: ObservableObject {
     }
     
     init() {
-        self.tokens = TokenManager.getTokens()
+        let keychain = Keychain()
+        self.tokens = keychain.allKeys().reduce([Token]()) { partialResult, key in
+            var result = partialResult
+            if let token = keychain[key] {
+                let current = keychain[attributes: key]?.label == "current"
+                result.append(Token(token: token, email: key, current: current))
+            }
+            return result
+        }
+        self.keychain = keychain
         self.token = self.tokens.first(where: { $0.current })
     }
     
@@ -73,20 +100,7 @@ final class TokenManager: ObservableObject {
         }
     }
     
-    private static func getTokens() -> [Token] {
-        let keychain = TokenManager.keychain
-        return keychain.allKeys().reduce([Token]()) { partialResult, key in
-            var result = partialResult
-            if let token = keychain[key] {
-                let current = keychain[attributes: key]?.label == "current"
-                result.append(Token(token: token, email: key, current: current))
-            }
-            return result
-        }
-    }
-    
-    private func saveTokens() {
-        let keychain = TokenManager.keychain
+    fileprivate func saveTokens() {
         do {
             try keychain.removeAll()
         } catch {
@@ -108,9 +122,7 @@ final class TokenManager: ObservableObject {
     }
     
     func setupDemo() {
-        var token = Token(token: "demo", email: "demo@example.com", current: true)
-        token.isDemo = true
-        self.token = token
+        self.token = Token.demo()
     }
     
     func exitDemo() {

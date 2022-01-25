@@ -29,14 +29,14 @@ struct RootScreenItemView: View {
             factory.accountsScreen()
         case .activities:
             factory.activitiesScreen()
-        case .debug:
-            factory.debugScreen()
+        case .settings:
+            factory.settingsScreen()
         }
     }
 }
 
 struct RootScreenItemView_Previews: PreviewProvider {
     static var previews: some View {
-        RootScreenItemView(.debug)
+        RootScreenItemView(.settings)
     }
 }
