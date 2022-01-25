@@ -32,6 +32,7 @@ enum DebugRoute {
 }
 
 final class Navigator: ObservableObject {
+    private let screenFactory: ScreenFactory
     private weak var parentNavigators: Navigators?
     private let parent: Navigator?
     private weak var child: Navigator?
@@ -43,19 +44,16 @@ final class Navigator: ObservableObject {
         }
     }
     
-    init(_ parent: Navigators?) {
+    init(_ parent: Navigators, factory: ScreenFactory) {
         self.parentNavigators = parent
         self.parent = nil
+        self.screenFactory = factory
     }
     
-    init(_ parent: Navigator?) {
+    init(_ parent: Navigator) {
         self.parent = parent
         self.parentNavigators = nil
-    }
-    
-    init() {
-        self.parent = nil
-        self.parentNavigators = nil
+        self.screenFactory = parent.screenFactory
     }
     
     func popToRoot() {
@@ -63,7 +61,7 @@ final class Navigator: ObservableObject {
     }
     
     func go(_ route: Route) {
-        let builder = ScreenBuilder.self
+        let builder = screenFactory
         var controller: UIViewController!
         switch route {
         case .builds(let app):
@@ -80,7 +78,7 @@ final class Navigator: ObservableObject {
     }
     
     func go(_ route: NewBuildRoute) {
-        let builder = ScreenBuilder.self
+        let builder = screenFactory
         switch route {
         case .newBuild(let app):
             let navigator = Navigator(self)
@@ -101,7 +99,7 @@ final class Navigator: ObservableObject {
     }
     
     func go(_ route: AuthRoute) {
-        let builder = ScreenBuilder.self
+        let builder = screenFactory
         switch route {
         case .auth(let completion):
             let navigator = Navigator(self)
@@ -117,7 +115,7 @@ final class Navigator: ObservableObject {
     }
     
     func go(_ route: DebugRoute) {
-        let builder = ScreenBuilder.self
+        let builder = screenFactory
         var controller: UIViewController!
         switch route {
         case .debugLogs:

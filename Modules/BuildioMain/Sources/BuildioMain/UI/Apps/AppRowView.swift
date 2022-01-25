@@ -9,6 +9,7 @@ import SwiftUI
 import Models
 
 struct AppRowView: View {
+    @EnvironmentObject private var screenFactory: ScreenFactory
     @Environment(\.theme) private var theme
     @State var model: V0AppResponseItemModel
     
@@ -19,7 +20,8 @@ struct AppRowView: View {
                 .fill(statusColor)
                 .frame(width: 5)
             HStack(spacing: 8) {
-                AvatarView(app: model)
+                screenFactory
+                    .avatarView(app: model)
                     .frame(width: 40, height: 40)
                     .cornerRadius(8)
                 

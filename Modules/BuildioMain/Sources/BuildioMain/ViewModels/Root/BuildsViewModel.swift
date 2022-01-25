@@ -10,7 +10,8 @@ import Models
 import Combine
 import BitriseAPIs
 
-final class BuildsViewModel: RootPagingViewModel<V0BuildListResponseModel>, ResolvableViewModel {
+final class BuildsViewModel: RootPagingViewModel<V0BuildListResponseModel>, RootViewModel {
+    
     private let fetchLimit: Int = 10
     private(set) var app: V0AppResponseItemModel?
     
@@ -18,30 +19,36 @@ final class BuildsViewModel: RootPagingViewModel<V0BuildListResponseModel>, Reso
         logger.debug("")
     }
     
-    convenience init(app: V0AppResponseItemModel?) {
-        self.init()
+    convenience init(_ tokenManager: TokenManager, app: V0AppResponseItemModel?) {
+        self.init(tokenManager)
         self.app = app
     }
     
     override func fetch() -> AnyPublisher<V0BuildListResponseModel, ErrorResponse> {
+        let api = apiFactory.api(BuildsAPI.self)
         if let app = app {
             let enrich = self.enrich
-            return BuildsAPI().buildList(appSlug: app.slug, limit: fetchLimit)
+            return api
+                .buildList(appSlug: app.slug, limit: fetchLimit)
                 .map({ enrich($0, app) })
                 .eraseToAnyPublisher()
         }
-        return BuildsAPI().buildListAll(limit: fetchLimit)
+        return api
+            .buildListAll(limit: fetchLimit)
             .eraseToAnyPublisher()
     }
     
     override func fetchPage(next: String?) -> AnyPublisher<PagingViewModel<V0BuildListResponseModel>.ValueType, ErrorResponse> {
+        let api = apiFactory.api(BuildsAPI.self)
         if let app = app {
             let enrich = self.enrich
-            return BuildsAPI().buildList(appSlug: app.slug, sortBy: .runningFirst, next: next, limit: fetchLimit)
+            return api
+                .buildList(appSlug: app.slug, sortBy: .runningFirst, next: next, limit: fetchLimit)
                 .map({ enrich($0, app) })
                 .eraseToAnyPublisher()
         }
-        return BuildsAPI().buildListAll(next: next, limit: fetchLimit)
+        return api
+            .buildListAll(next: next, limit: fetchLimit)
             .eraseToAnyPublisher()
     }
     

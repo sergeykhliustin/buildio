@@ -10,37 +10,17 @@ import Models
 import Combine
 import BitriseAPIs
 
-final class WorkflowsViewModel: BaseViewModel<[String]> {
-    @Binding var app: V0AppResponseItemModel
-    
-    override class var shouldRefreshOnInit: Bool {
-        return true
-    }
-    
-    init(app: Binding<V0AppResponseItemModel>) {
-        _app = app
-    }
-    
-    override func fetch() -> AnyPublisher<[String], ErrorResponse> {
-        BuildsAPI()
-            .buildWorkflowList(appSlug: app.slug)
-            .map({ $0.data ?? [] })
-            .eraseToAnyPublisher()
-    }
-}
-
 struct WorkflowsView: BaseView {
     @Environment(\.theme) private var theme
     @State var isActiveRoute: Bool = false
     
-    @StateObject var model: WorkflowsViewModel
+    @EnvironmentObject var model: WorkflowsViewModel
     @Binding var workflow: String
-    @Binding var app: V0AppResponseItemModel
+    private let app: V0AppResponseItemModel
     @State private var focused: Bool = false
     
-    init(app: Binding<V0AppResponseItemModel>, workflow: Binding<String>) {
-        _app = app
-        _model = StateObject(wrappedValue: WorkflowsViewModel(app: app))
+    init(app: V0AppResponseItemModel, workflow: Binding<String>) {
+        self.app = app
         _workflow = workflow
     }
     
@@ -74,11 +54,5 @@ struct WorkflowsView: BaseView {
                     model.refresh()
                 }
         }
-    }
-}
-
-struct WorkflowsView_Previews: PreviewProvider {
-    static var previews: some View {
-        WorkflowsView(app: .constant(V0AppResponseItemModel.preview()), workflow: .constant("workflow"))
     }
 }

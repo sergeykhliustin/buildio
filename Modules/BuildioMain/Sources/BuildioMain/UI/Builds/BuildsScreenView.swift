@@ -11,13 +11,14 @@ import Models
 struct BuildsScreenView: View, PagingView {
     @Environment(\.theme) var theme
     @EnvironmentObject var model: BuildsViewModel
-    @EnvironmentObject var navigator: Navigator
+    @EnvironmentObject private var navigator: Navigator
+    @EnvironmentObject private var screenFactory: ScreenFactory
     
     func buildItemView(_ item: BuildResponseItemModel) -> some View {
         ListItemWrapper(action: {
             navigator.go(.build(item))
         }, content: {
-            BuildRowView(build: item)
+            screenFactory.buildRowView(build: item, showBottomControls: true)
         })
     }
     

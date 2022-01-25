@@ -9,10 +9,9 @@ import SwiftUI
 
 struct AccountsScreenView: View {
     @EnvironmentObject private var navigator: Navigator
-    @Environment(\.isDemoMode) var isDemoMode
     @Environment(\.theme) var theme
     @EnvironmentObject private var navigators: Navigators
-    @StateObject private var tokenManager = TokenManager.shared
+    @EnvironmentObject private var tokenManager: TokenManager
     
     var body: some View {
         
@@ -30,7 +29,7 @@ struct AccountsScreenView: View {
             .padding(.top, 16)
         }
         .toolbar {
-            if !isDemoMode.wrappedValue {
+            if tokenManager.token?.isDemo == false {
                 Button {
                     navigator.go(.auth({
                         navigator.dismiss()

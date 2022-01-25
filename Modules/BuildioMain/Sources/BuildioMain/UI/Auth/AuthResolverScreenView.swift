@@ -8,17 +8,20 @@
 import SwiftUI
 
 public struct AuthResolverScreenView: View {
-    @StateObject var tokenManager = TokenManager.shared
+    @EnvironmentObject private var navigators: Navigators
+    @EnvironmentObject private var screenFactory: ScreenFactory
+    @EnvironmentObject private var tokenManager: TokenManager
     
     public init() { }
     
     public var body: some View {
         if tokenManager.token == nil {
             SplitNavigationView(shouldSplit: false) {
-                ScreenBuilder.authScreen(canClose: false, onCompletion: nil)
+                screenFactory
+                    .authScreen(canClose: false, onCompletion: nil)
             }
             .ignoresSafeArea()
-            .environmentObject(Navigator())
+            .environmentObject(navigators.navigator(for: .auth))
         } else {
             RootScreenView()
         }

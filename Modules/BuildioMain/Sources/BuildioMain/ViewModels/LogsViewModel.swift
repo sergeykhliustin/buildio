@@ -12,7 +12,7 @@ import Rainbow
 import SwiftUI
 import BitriseAPIs
 
-final class LogsViewModel: BaseViewModel<BuildLogResponseModel> {
+final class LogsViewModel: BaseApiViewModel<BuildLogResponseModel> {
     let build: BuildResponseItemModel
     private var timer: Timer?
     @Published var attributedLogs: NSAttributedString?
@@ -21,9 +21,9 @@ final class LogsViewModel: BaseViewModel<BuildLogResponseModel> {
         logger.debug("")
     }
     
-    init(build: BuildResponseItemModel) {
+    init(_ tokenManager: TokenManager, build: BuildResponseItemModel) {
         self.build = build
-        super.init()
+        super.init(tokenManager)
     }
     
     override class var shouldRefreshOnInit: Bool {
@@ -31,7 +31,9 @@ final class LogsViewModel: BaseViewModel<BuildLogResponseModel> {
     }
     
     override func fetch() -> AnyPublisher<BuildLogResponseModel, ErrorResponse> {
-        BuildsAPI().buildLog(appSlug: build.repository.slug, buildSlug: build.slug, timestamp: value?.nextAfterTimestamp)
+        apiFactory
+            .api(BuildsAPI.self)
+            .buildLog(appSlug: build.repository.slug, buildSlug: build.slug, timestamp: value?.nextAfterTimestamp)
             .eraseToAnyPublisher()
     }
     

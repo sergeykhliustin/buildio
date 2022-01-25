@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AuthScreenView: View {
     @EnvironmentObject private var navigator: Navigator
-    @Environment(\.isDemoMode) private var isDemoMode: Binding<Bool>
+    @EnvironmentObject private var tokenManager: TokenManager
     @Environment(\.theme) private var theme
     @Environment(\.openURL) private var openURL
     
@@ -84,7 +84,7 @@ struct AuthScreenView: View {
                 
                 if !canClose {
                     Button("Demo") {
-                        isDemoMode.wrappedValue = true
+                        tokenManager.setupDemo()
                     }.buttonStyle(SubmitButtonStyle())
                 }
             }
@@ -95,7 +95,7 @@ struct AuthScreenView: View {
             switch newValue {
             case .value:
                 if let token = model.token, let email = model.value?.data.email {
-                    TokenManager.shared.token = Token(token: token, email: email)
+                    tokenManager.token = Token(token: token, email: email)
                     onCompletion?()
                 }
             case .idle:
@@ -126,7 +126,7 @@ struct AuthScreenView: View {
     
     private func checkToken(_ token: String) {
         if !canClose && token.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() == "demo" {
-            isDemoMode.wrappedValue = true
+            tokenManager.setupDemo()
         } else {
             model.token = token
             model.refresh()

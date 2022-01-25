@@ -7,6 +7,7 @@
 import SwiftUI
 
 enum RootScreenItemType: CaseIterable {
+    case auth
     case builds
     case apps
     case accounts
@@ -19,6 +20,8 @@ enum RootScreenItemType: CaseIterable {
     
     var name: String {
         switch self {
+        case .auth:
+            return "Auth"
         case .builds:
             return "Builds"
         case .apps:
@@ -34,6 +37,8 @@ enum RootScreenItemType: CaseIterable {
     
     var icon: String {
         switch self {
+        case .auth:
+            return ""
         case .builds:
             return "hammer"
         case .apps:

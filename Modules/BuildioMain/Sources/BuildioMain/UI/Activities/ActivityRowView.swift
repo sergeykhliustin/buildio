@@ -9,11 +9,13 @@ import SwiftUI
 import Models
 
 struct ActivityRowView: View {
+    @EnvironmentObject private var screenFactory: ScreenFactory
     var model: V0ActivityEventResponseItemModel
     
     var body: some View {
         HStack(alignment: .top, spacing: 0) {
-            AvatarView(title: model.repositoryTitle, url: model.eventIcon ?? model.repositoryAvatarIconUrl)
+            screenFactory
+                .avatarView(title: model.repositoryTitle, url: model.eventIcon ?? model.repositoryAvatarIconUrl)
                 .frame(width: 40, height: 40)
                 .cornerRadius(8)
                 .padding(.top, 8)

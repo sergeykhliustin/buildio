@@ -16,12 +16,8 @@ public enum BaseViewModelState {
     case error
 }
 
-protocol ResolvableViewModel {
-    init()
-}
-
-protocol DemoResolvableViewModel {
-    static var demoType: ResolvableViewModel.Type { get }
+protocol RootViewModel {
+    init(_ tokenManager: TokenManager)
 }
 
 protocol CacheableViewModel {
@@ -37,7 +33,6 @@ protocol BaseViewModelProtocol: ObservableObject {
     var isTopIndicatorRefreshing: Binding<Bool> { get }
     
     static var shouldRefreshOnInit: Bool { get }
-    static var shouldHandleTokenUpdates: Bool { get }
     static var shouldHandleActivityUpdates: Bool { get }
     static var shouldRefreshAfterBackground: Bool { get }
     
@@ -46,7 +41,7 @@ protocol BaseViewModelProtocol: ObservableObject {
     
     func fetch() -> AnyPublisher<ValueType, ErrorResponse>
     func refresh()
-    func beforeRefresh(_ tokenUpdated: Bool)
+    func beforeRefresh()
     func afterRefresh()
 }
 
@@ -57,9 +52,6 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
     @Published var error: ErrorResponse?
     
     private var fetcher: AnyCancellable?
-    private var tokenRefresher: AnyCancellable?
-    
-    private var tokenUpdated: Bool = false
     
     private var activityWatcher: AnyCancellable?
     private var backgroundUpdater: AnyCancellable?
@@ -87,10 +79,6 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
         return false
     }
     
-    class var shouldHandleTokenUpdates: Bool {
-        return false
-    }
-    
     class var shouldHandleActivityUpdates: Bool {
         return false
     }
@@ -114,20 +102,9 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
             }
         }
         
-        if Self.shouldHandleTokenUpdates {            
-            tokenRefresher = TokenManager.shared.$token
-                .dropFirst()
-                .sink { [weak self] value in
-                    DispatchQueue.main.async {
-                        self?.tokenUpdated = true
-                        self?.refresh()
-                    }
-                }
-        }
-        
         if Self.shouldHandleActivityUpdates {
-            activityWatcher = ActivityWatcher.shared.$lastActivityDate.sink { [weak self] date in
-                guard let self = self else { return }
+            activityWatcher = NotificationCenter.default.publisher(for: ActivityWatcher.lastActivityDateUpdated).sink { [weak self] notification in
+                guard let self = self, let date = notification.object as? Date else { return }
                 if self.state == .value {
                     if let lastRefreshDate = self.lastRefreshDate, lastRefreshDate < date {
                         if self.shouldHandleActivityUpdate {
@@ -158,16 +135,13 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
         fatalError("Should override")
     }
     
-    func beforeRefresh(_ tokenUpdated: Bool) {
-        if tokenUpdated {
-            self.value = nil
-        }
+    func beforeRefresh() {
         refreshStarted = Date()
     }
     
     func refresh() {
-        beforeRefresh(tokenUpdated)
-        tokenUpdated = false
+        beforeRefresh()
+        
         fetcher?.cancel()
         
         state = .loading

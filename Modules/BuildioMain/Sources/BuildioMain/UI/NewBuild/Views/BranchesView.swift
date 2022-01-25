@@ -10,37 +10,17 @@ import Models
 import Combine
 import BitriseAPIs
 
-final class BranchesViewModel: BaseViewModel<[String]> {
-    @Binding var app: V0AppResponseItemModel
-    
-    override class var shouldRefreshOnInit: Bool {
-        return true
-    }
-    
-    init(app: Binding<V0AppResponseItemModel>) {
-        self._app = app
-    }
-    
-    override func fetch() -> AnyPublisher<[String], ErrorResponse> {
-        ApplicationAPI()
-            .branchList(appSlug: app.slug)
-            .map({ $0.data ?? [] })
-            .eraseToAnyPublisher()
-    }
-}
-
 struct BranchesView: BaseView {
     @Environment(\.theme) private var theme
     @State var isActiveRoute: Bool = false
     
-    @StateObject var model: BranchesViewModel
+    @EnvironmentObject var model: BranchesViewModel
     @Binding var branch: String
-    @Binding var app: V0AppResponseItemModel
+    private let app: V0AppResponseItemModel
     @State private var focused: Bool = false
     
-    init(app: Binding<V0AppResponseItemModel>, branch: Binding<String>) {
-        self._app = app
-        _model = StateObject(wrappedValue: BranchesViewModel(app: app))
+    init(app: V0AppResponseItemModel, branch: Binding<String>) {
+        self.app = app
         _branch = branch
     }
     
@@ -74,11 +54,5 @@ struct BranchesView: BaseView {
                     model.refresh()
                 }
         }
-    }
-}
-
-struct BranchesView_Previews: PreviewProvider {
-    static var previews: some View {
-        BranchesView(app: .constant(V0AppResponseItemModel.preview()), branch: .constant("branch"))
     }
 }

@@ -11,8 +11,9 @@ import Combine
 
 struct NewBuildScreenView: View {
     @EnvironmentObject private var navigator: Navigator
+    @EnvironmentObject private var screenFactory: ScreenFactory
     @Environment(\.theme) var theme
-    @StateObject var model: NewBuildViewModel = NewBuildViewModel()
+    @EnvironmentObject var model: NewBuildViewModel
     
     @State private var app: V0AppResponseItemModel?
     @State private var branch: String = ""
@@ -47,9 +48,11 @@ struct NewBuildScreenView: View {
                 .buttonStyle(.plain)
                 if let app = Binding($app) {
                     Text("Branch:")
-                    BranchesView(app: app, branch: $branch)
+                    screenFactory
+                        .branchesView(app: app.wrappedValue, branch: $branch)
                     Text("Workflow:")
-                    WorkflowsView(app: app, workflow: $workflow)
+                    screenFactory
+                        .workflowsView(app: app.wrappedValue, workflow: $workflow)
                     Text("Message:")
                     TextField("e.g. triggered by Buildio",
                               text: $message,

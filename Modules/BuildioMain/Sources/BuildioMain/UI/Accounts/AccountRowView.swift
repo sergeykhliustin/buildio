@@ -26,9 +26,11 @@ private final class AccountRowViewModel: BaseViewModel<V0UserProfileDataModel> {
 }
 
 struct AccountRowView: View {
-    @Environment(\.isDemoMode) private var isDemoMode
+    @EnvironmentObject private var screenFactory: ScreenFactory
+    @EnvironmentObject private var tokenManager: TokenManager
+    
     @StateObject private var model: AccountRowViewModel
-    @StateObject private var tokenManager = TokenManager.shared
+    
     let token: Token
     
     init(_ token: Token) {
@@ -40,7 +42,8 @@ struct AccountRowView: View {
         HStack(spacing: 0) {
             HStack(spacing: 8) {
                 if let user = model.value {
-                    AvatarView(user: user)
+                    screenFactory
+                        .avatartView(user: user)
                         .frame(width: 40, height: 40)
                         .cornerRadius(8)
                     VStack(alignment: .leading) {
@@ -55,7 +58,8 @@ struct AccountRowView: View {
                         ProgressView()
                             .frame(width: 40, height: 40)
                     } else {
-                        AvatarView(title: token.token)
+                        screenFactory
+                            .avatarView(title: token.token)
                             .frame(width: 40, height: 40)
                             .cornerRadius(8)
                     }
@@ -76,7 +80,7 @@ struct AccountRowView: View {
                 Button {
                     logger.debug("trash")
                     if token.isDemo {
-                        isDemoMode.wrappedValue = false
+                        tokenManager.exitDemo()
                     } else {
                         tokenManager.remove(token)
                     }

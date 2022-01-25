@@ -36,7 +36,7 @@ protocol PagingViewModelProtocol: BaseViewModelProtocol where ValueType: PagingR
     func fetchPage(next: String?) -> AnyPublisher<ValueType, ErrorResponse>
 }
 
-class PagingViewModel<VALUE: PagingResponseModel>: BaseViewModel<VALUE>, PagingViewModelProtocol {
+class PagingViewModel<VALUE: PagingResponseModel>: BaseApiViewModel<VALUE>, PagingViewModelProtocol {
     
     @Published var pagingState: PagingState = .idle
     @Published var items: [ValueType.ItemType] = []

@@ -11,7 +11,7 @@ import Combine
 import SwiftUI
 import BitriseAPIs
 
-final class AppsViewModel: RootPagingViewModel<V0AppListResponseModel>, ResolvableViewModel {
+final class AppsViewModel: RootPagingViewModel<V0AppListResponseModel>, RootViewModel {
     private let fetchLimit: Int = 10
     private var origItems: [V0AppResponseItemModel] = []
     @Published var searchText = ""
@@ -21,8 +21,8 @@ final class AppsViewModel: RootPagingViewModel<V0AppListResponseModel>, Resolvab
         return false
     }
     
-    override init() {
-        super.init()
+    override init(_ tokenManager: TokenManager) {
+        super.init(tokenManager)
         searchFetcher = $searchText
             .dropFirst()
             .sink { [weak self] newValue in
@@ -53,13 +53,15 @@ final class AppsViewModel: RootPagingViewModel<V0AppListResponseModel>, Resolvab
     }
     
     override func fetch() -> AnyPublisher<V0AppListResponseModel, ErrorResponse> {
-        ApplicationAPI()
+        apiFactory
+            .api(ApplicationAPI.self)
             .appList(title: searchText, sortBy: .lastBuildAt, limit: fetchLimit)
             .eraseToAnyPublisher()
     }
     
     override func fetchPage(next: String?) -> AnyPublisher<PagingViewModel<V0AppListResponseModel>.ValueType, ErrorResponse> {
-        ApplicationAPI()
+        apiFactory
+            .api(ApplicationAPI.self)
             .appList(title: searchText, sortBy: .lastBuildAt, next: next, limit: fetchLimit)
             .eraseToAnyPublisher()
     }

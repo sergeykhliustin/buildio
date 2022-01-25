@@ -10,10 +10,11 @@ import Models
 import Combine
 
 struct BuildRowView: View {
-    @EnvironmentObject var navigator: Navigator
+    @EnvironmentObject private var navigator: Navigator
+    @EnvironmentObject private var screenFactory: ScreenFactory
     @Environment(\.theme) private var theme
     
-    @StateObject private var viewModel: BuildViewModel
+    @EnvironmentObject private var viewModel: BuildViewModel
     let showBottomControls: Bool
     
     @State private var abortConfirmation: Bool = false
@@ -35,7 +36,6 @@ struct BuildRowView: View {
     
     init(build: BuildResponseItemModel, showBottomControls: Bool = true) {
         self.showBottomControls = showBottomControls
-        _viewModel = StateObject(wrappedValue: ViewModelResolver.build(build))
     }
     
     var body: some View {
@@ -48,7 +48,8 @@ struct BuildRowView: View {
             
             VStack(alignment: .leading, spacing: 0) {
                 HStack(alignment: .center, spacing: 8) {
-                    AvatarView(app: model.repository)
+                    screenFactory
+                        .avatarView(app: model.repository)
                         .frame(width: 40, height: 40)
                         .cornerRadius(8)
                     

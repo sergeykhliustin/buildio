@@ -19,7 +19,7 @@ struct ModelError: Hashable, Identifiable {
     let message: String
 }
 
-final class BuildViewModel: BaseViewModel<BuildResponseItemModel>, CacheableViewModel {
+final class BuildViewModel: BaseApiViewModel<BuildResponseItemModel>, CacheableViewModel {
     @Published var updater = false
     
     private var actionCancellable: AnyCancellable?
@@ -66,8 +66,8 @@ final class BuildViewModel: BaseViewModel<BuildResponseItemModel>, CacheableView
         return value?.status == .running
     }
     
-    init(build: BuildResponseItemModel) {
-        super.init()
+    init(_ tokenManager: TokenManager, build: BuildResponseItemModel) {
+        super.init(tokenManager)
         self.value = build
         startUpdaterTimer()
         startStatusTimer()
@@ -88,7 +88,7 @@ final class BuildViewModel: BaseViewModel<BuildResponseItemModel>, CacheableView
         if let value = self.value, actionCancellable == nil {
             self.state = .loading
             
-            actionCancellable = BuildsAPI()
+            actionCancellable = apiFactory.api(BuildsAPI.self)
                 .buildTrigger(appSlug: value.repository.slug, buildParams: BuildTriggerParams(build: value))
                 .sink(receiveCompletion: { [weak self] result in
                     guard let self = self else { return }
@@ -117,7 +117,7 @@ final class BuildViewModel: BaseViewModel<BuildResponseItemModel>, CacheableView
         if let value = self.value, actionCancellable == nil {
             self.state = .loading
             
-            actionCancellable = BuildsAPI()
+            actionCancellable = apiFactory.api(BuildsAPI.self)
                 .buildAbort(appSlug: value.repository.slug,
                             buildSlug: value.slug,
                             buildAbortParams: V0BuildAbortParams(abortReason: reason, abortWithSuccess: false, skipNotifications: false))
@@ -143,7 +143,8 @@ final class BuildViewModel: BaseViewModel<BuildResponseItemModel>, CacheableView
     override func fetch() -> AnyPublisher<BuildResponseItemModel, ErrorResponse> {
         let appSlug = value?.repository.slug ?? ""
         let buildSlug = value?.slug ?? ""
-        return BuildsAPI().buildShow(appSlug: appSlug, buildSlug: buildSlug)
+        return apiFactory.api(BuildsAPI.self)
+            .buildShow(appSlug: appSlug, buildSlug: buildSlug)
             .map({
                 if let repository = self.value?.repository {
                     var build = $0.data
@@ -160,7 +161,8 @@ final class BuildViewModel: BaseViewModel<BuildResponseItemModel>, CacheableView
         guard value.status == .running else { return }
         guard let finishedAt = value.environmentPrepareFinishedAt else { return }
         guard estimatedDuration == nil else { return }
-        BuildsAPI()
+        apiFactory
+            .api(BuildsAPI.self)
             .buildList(appSlug: value.repository.slug,
                        branch: value.branch,
                        workflow: value.triggeredWorkflow,

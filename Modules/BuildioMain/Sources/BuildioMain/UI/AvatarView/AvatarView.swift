@@ -9,19 +9,7 @@ import SwiftUI
 import Models
 
 struct AvatarView: BaseView {
-    @StateObject var model: AvatarViewModel
-    
-    init(app: V0AppResponseItemModel) {
-        self._model = StateObject(wrappedValue: AvatarViewModel(title: app.title, url: app.avatarUrl))
-    }
-    
-    init(user: V0UserProfileDataModel) {
-        self._model = StateObject(wrappedValue: AvatarViewModel(title: user.username ?? user.email, url: user.avatarUrl))
-    }
-    
-    init(title: String? = nil, url: String? = nil) {
-        self._model = StateObject(wrappedValue: AvatarViewModel(title: title, url: url))
-    }
+    @EnvironmentObject var model: AvatarViewModel
     
     var body: some View {
         SpacerWrapper {
@@ -47,12 +35,5 @@ struct AvatarView: BaseView {
         }
         .background(model.backgroundColor)
         
-    }
-}
-
-struct ImageURL_Previews: PreviewProvider {
-    static var previews: some View {
-        AvatarView(app: V0AppResponseItemModel.preview())
-            .frame(width: 40, height: 40)
     }
 }

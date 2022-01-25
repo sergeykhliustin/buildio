@@ -22,16 +22,22 @@ final class ArtifactsViewModel: PagingViewModel<V0ArtifactListResponseModel> {
         return true
     }
     
-    init(build: BuildResponseItemModel) {
+    init(_ tokenManager: TokenManager, build: BuildResponseItemModel) {
         self.build = build
-        super.init()
+        super.init(tokenManager)
     }
     
     override func fetch() -> AnyPublisher<V0ArtifactListResponseModel, ErrorResponse> {
-        return BuildArtifactAPI().artifactList(appSlug: build.repository.slug, buildSlug: build.slug, limit: fetchLimit).eraseToAnyPublisher()
+        apiFactory
+            .api(BuildArtifactAPI.self)
+            .artifactList(appSlug: build.repository.slug, buildSlug: build.slug, limit: fetchLimit)
+            .eraseToAnyPublisher()
     }
     
     override func fetchPage(next: String?) -> AnyPublisher<V0ArtifactListResponseModel, ErrorResponse> {
-        return BuildArtifactAPI().artifactList(appSlug: build.repository.slug, buildSlug: build.slug, next: next, limit: fetchLimit).eraseToAnyPublisher()
+        apiFactory
+            .api(BuildArtifactAPI.self)
+            .artifactList(appSlug: build.repository.slug, buildSlug: build.slug, next: next, limit: fetchLimit)
+            .eraseToAnyPublisher()
     }
 }

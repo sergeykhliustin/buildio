@@ -32,7 +32,7 @@ struct Token: Equatable {
     }
 }
 
-class TokenManager: ObservableObject {
+final class TokenManager: ObservableObject {
     private static let keychain = Keychain()
     
     @Published private(set) var tokens: [Token] {
@@ -60,9 +60,7 @@ class TokenManager: ObservableObject {
         }
     }
     
-    static let shared = TokenManager()
-    
-    private init() {
+    init() {
         self.tokens = TokenManager.getTokens()
         self.token = self.tokens.first(where: { $0.current })
     }

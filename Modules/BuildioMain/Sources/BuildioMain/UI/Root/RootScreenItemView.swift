@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RootScreenItemView: View {
+    @EnvironmentObject private var screenFactory: ScreenFactory
     @Environment(\.theme) var theme
     let type: RootScreenItemType
     
@@ -16,18 +17,20 @@ struct RootScreenItemView: View {
     }
     
     var body: some View {
-        let builder = ScreenBuilder.self
+        let factory = screenFactory
         switch type {
+        case .auth:
+            EmptyView()
         case .builds:
-            builder.buildsScreen(app: nil)
+            factory.buildsScreen(app: nil)
         case .apps:
-            builder.appsScreen()
+            factory.appsScreen()
         case .accounts:
-            builder.accountsScreen()
+            factory.accountsScreen()
         case .activities:
-            builder.activitiesScreen()
+            factory.activitiesScreen()
         case .debug:
-            builder.debugScreen()
+            factory.debugScreen()
         }
     }
 }

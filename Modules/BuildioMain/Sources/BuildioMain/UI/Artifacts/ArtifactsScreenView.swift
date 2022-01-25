@@ -9,11 +9,7 @@ import SwiftUI
 import Models
 
 struct ArtifactsScreenView: PagingView {
-    @StateObject var model: ArtifactsViewModel
-    
-    init(build: BuildResponseItemModel) {
-        self._model = StateObject(wrappedValue: ArtifactsViewModel(build: build))
-    }
+    @EnvironmentObject var model: ArtifactsViewModel
     
     func buildItemView(_ item: V0ArtifactListElementResponseModel) -> some View {
         ListItemWrapper(action: {}, content: {

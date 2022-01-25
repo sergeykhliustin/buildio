@@ -14,9 +14,7 @@ import BitriseAPIs
 public final class BuildioUIAppDelegate: NSObject, UIApplicationDelegate {
     
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
-        BaseAPI.defaultApiToken = { TokenManager.shared.token?.token }
         BackgroundProcessing.shared.start()
-        ViewModelResolver.start()
         return true
     }
 }

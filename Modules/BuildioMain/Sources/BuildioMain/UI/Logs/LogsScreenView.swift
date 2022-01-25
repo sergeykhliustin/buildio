@@ -10,13 +10,12 @@ import Models
 import Rainbow
 
 struct LogsScreenView: BaseView {
+    @EnvironmentObject var model: LogsViewModel
     @Environment(\.fullscreen) private var fullscreen
-    @StateObject var model: LogsViewModel
     let build: BuildResponseItemModel
     
     init(build: BuildResponseItemModel) {
         self.build = build
-        self._model = StateObject(wrappedValue: LogsViewModel(build: build))
     }
     
     var body: some View {
