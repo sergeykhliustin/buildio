@@ -60,6 +60,16 @@ extension UserDefaults {
         }
     }
     
+    var backgroundAnalytics: [String: Int] {
+        get {
+            return dictionary(forKey: "background_analytics") as? [String: Int] ?? [:]
+        }
+        set {
+            set(newValue, forKey: "background_analytics")
+            synchronize()
+        }
+    }
+    
     func lastActivityDate(email: String) -> TimeInterval {
         if let double = dictionary(forKey: "last_activity_dates")?[email] as? Double {
             return double

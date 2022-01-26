@@ -14,17 +14,19 @@ struct DebugLogsScreenView: View {
     
     var body: some View {
         LogsView(logs: $logs)
-            .onAppear {
+            .onAppear(perform: {
                 updateLogs()
-            }
+            })
             .navigationTitle("Logs")
     }
     
     private func updateLogs() {
-        guard let fileURL = SwiftyBeaver.destinations.compactMap({ $0 as? FileDestination }).first?.logFileURL else { return }
-        guard let data = try? Data(contentsOf: fileURL) else { return }
-        guard let string = String(data: data, encoding: .utf8) else { return }
-        self.logs = Rainbow.chunkToAttributed(string)
+        DispatchQueue.global().async {
+            guard let fileURL = SwiftyBeaver.destinations.compactMap({ $0 as? FileDestination }).first?.logFileURL else { return }
+            guard let data = try? Data(contentsOf: fileURL) else { return }
+            guard let string = String(data: data, encoding: .utf8) else { return }
+            self.logs = Rainbow.chunkToAttributed(string)
+        }
     }
 }
 

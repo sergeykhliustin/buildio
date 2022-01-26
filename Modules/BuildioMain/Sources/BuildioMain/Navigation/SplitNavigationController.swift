@@ -59,7 +59,7 @@ private final class EmptyViewController: UIViewController {
 }
 
 final class SplitNavigationController: UIViewController {
-    private struct Constants {
+    struct Constants {
         static let separatorWidth = 1.0
         static let primaryWidth = 300.0
         static let iphonePresentationCornerRadius = 38.0
@@ -243,9 +243,15 @@ final class SplitNavigationController: UIViewController {
         for navigation in [primaryNavigationController, secondaryNavigationController] {
             navigation.viewControllers.first?.view.backgroundColor = theme.background.uiColor
             let navigationBar = navigation.navigationBar
-            navigationBar.standardAppearance = UINavigationBar.appearance().standardAppearance
-            navigationBar.compactAppearance = UINavigationBar.appearance().compactAppearance
-            navigationBar.scrollEdgeAppearance = UINavigationBar.appearance().scrollEdgeAppearance
+            
+            let navigationBarAppearance = UINavigationBarAppearance()
+            navigationBarAppearance.configureWithTransparentBackground()
+            navigationBarAppearance.backgroundColor = UIColor(theme.background)
+            navigationBarAppearance.largeTitleTextAttributes = [.foregroundColor: theme.textColor.uiColor]
+            navigationBarAppearance.titleTextAttributes = [.foregroundColor: theme.textColor.uiColor]
+            navigationBar.standardAppearance = navigationBarAppearance
+            navigationBar.compactAppearance = navigationBarAppearance
+            navigationBar.scrollEdgeAppearance = navigationBarAppearance
         }
         
         customPresentedController?.view.backgroundColor = theme.background.uiColor

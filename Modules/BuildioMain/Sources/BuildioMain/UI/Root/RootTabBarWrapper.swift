@@ -22,11 +22,11 @@ struct RootTabBarWrapper<Content: View>: View {
     }
     
     private var isLeftBarVisible: Bool {
-        !fullscreen.wrappedValue && windowMode == .split
+        !fullscreen.wrappedValue && windowMode == .split && !(UIDevice.current.userInterfaceIdiom == .phone && navigators.isPresentingModal)
     }
     
     private var isBottomBarVisible: Bool {
-        !fullscreen.wrappedValue && !keyboard && windowMode == .compact
+        !fullscreen.wrappedValue && !keyboard && windowMode == .compact && !(UIDevice.current.userInterfaceIdiom == .phone && navigators.isPresentingModal)
     }
     
     init(selection: Binding<Int>, _ content: @escaping () -> Content) {

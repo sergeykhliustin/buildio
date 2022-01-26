@@ -9,17 +9,18 @@ import Foundation
 import SwiftUI
 
 struct ThemeConfiguratorScreenView: View {
+    @Environment(\.theme) private var theme
     @Environment(\.themeUpdater) var themeUpdater
-    @State var theme: Theme
+    @State var themeToTune: Theme
     
     var body: some View {
-        let dict = theme.dictionary as? [String: String] ?? [:]
+        let dict = themeToTune.dictionary as? [String: String] ?? [:]
         GeometryReader { geometry in
             VStack(spacing: 8) {
                 let scale = 0.5
                 let height = geometry.size.height
                 let width = height / 16 * 9
-                EntryPoint(previewMode: true, theme: $theme)
+                EntryPoint(previewMode: true, theme: $themeToTune)
                     .frame(width: width, height: height, alignment: .center)
                     .cornerRadius(20)
                     .background(RoundedRectangle(cornerRadius: 20).stroke(Color.black, lineWidth: 1))
@@ -35,7 +36,7 @@ struct ThemeConfiguratorScreenView: View {
                             }, set: { cgColor in
                                 var dict = dict
                                 dict[key] = try! Color(UIColor(cgColor: cgColor)).hex()
-                                theme = try! Theme(from: dict)
+                                themeToTune = try! Theme(from: dict)
                             })
                             
                             ColorPicker(key, selection: binding)
@@ -47,7 +48,7 @@ struct ThemeConfiguratorScreenView: View {
                 IconActionItem(title: "Export", icon: "square.and.arrow.up.fill") {
                     let encoder = JSONEncoder()
                     do {
-                        let data = try encoder.encode(theme)
+                        let data = try encoder.encode(themeToTune)
                         let url = URL(fileURLWithPath: (NSTemporaryDirectory() as NSString).appendingPathComponent("theme.json"))
                         try data.write(to: url)
                         let controller = UIActivityViewController(activityItems: [url], applicationActivities: nil)
@@ -58,18 +59,19 @@ struct ThemeConfiguratorScreenView: View {
                     }
                 }
                 IconActionItem(title: "Apply theme", icon: "") {
-                    themeUpdater.wrappedValue = theme
+                    themeUpdater.wrappedValue = themeToTune
                 }
             }
             .padding(.vertical, 8)
             
         }
+        .background(theme.background)
         .navigationTitle("Theme")
     }
 }
 
 struct ThemeConfiguratorScreenView_Preview: PreviewProvider {
     static var previews: some View {
-        ThemeConfiguratorScreenView(theme: Theme(colorScheme: .light))
+        ThemeConfiguratorScreenView(themeToTune: Theme(colorScheme: .light))
     }
 }

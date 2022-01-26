@@ -67,6 +67,12 @@ final class BackgroundProcessing {
     private lazy var launchHandler: (BGTask) -> Void = { [weak self] task in
         let identifier = task.identifier
         logger.debug("[BGTASK] Perform bg fetch \(identifier)")
+        if var count = UserDefaults.standard.backgroundAnalytics[identifier] {
+            count += 1
+            UserDefaults.standard.backgroundAnalytics[identifier] = count
+        } else {
+            UserDefaults.standard.backgroundAnalytics[identifier] = 1
+        }
         guard let self = self else {
             logger.debug("[BGTASK] AppDelegate is nil")
             return

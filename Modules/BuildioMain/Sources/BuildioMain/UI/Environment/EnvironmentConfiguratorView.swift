@@ -97,16 +97,33 @@ public struct EnvironmentConfiguratorView<Content: View>: View {
     }
     
     public var body: some View {
-        content()
-            .environment(\.previewMode, previewMode)
-            .environment(\.fullscreen, $fullscreen)
-            .environment(\.keyboard, keyboard.isVisible)
-            .environment(\.windowMode, windowMode)
-            .environmentObject(navigators)
-            .environmentObject(screenFactory)
-            .environmentObject(tokenManager)
-            .onChange(of: horizontalSizeClass) { newValue in
-                windowMode = previewMode ? .compact : (newValue == .compact ? .compact : .split)
-            }
+        GeometryReader { geometry in
+            content()
+                .environment(\.previewMode, previewMode)
+                .environment(\.fullscreen, $fullscreen)
+                .environment(\.keyboard, keyboard.isVisible)
+                .environment(\.windowMode, windowMode)
+                .environmentObject(navigators)
+                .environmentObject(screenFactory)
+                .environmentObject(tokenManager)
+                .onAppear(perform: {
+                    updateWindowMode(geometry)
+                })
+                .onChange(of: geometry.size) { _ in
+                    updateWindowMode(geometry)
+                }
+        }
+    }
+    
+    private func updateWindowMode(_ geometry: GeometryProxy) {
+        guard !previewMode else {
+            windowMode = .compact
+            return
+        }
+        if geometry.size.width > SplitNavigationController.Constants.primaryWidth * 2 + CustomTabBar.Constants.horizontalWidth {
+            windowMode = .split
+        } else {
+            windowMode = .compact
+        }
     }
 }

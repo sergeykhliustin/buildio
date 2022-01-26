@@ -139,7 +139,7 @@ final class ScreenFactory: ObservableObject {
     
     @ViewBuilder
     func themeScreen(theme: Theme) -> some View {
-        ThemeConfiguratorScreenView(theme: theme)
+        ThemeConfiguratorScreenView(themeToTune: theme)
     }
     
     // MARK: - Debug

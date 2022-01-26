@@ -53,7 +53,7 @@ enum RootScreenItemType: CaseIterable {
     }
     
     var splitNavigation: Bool {
-        return ![Self.accounts].contains(self)
+        return ![Self.accounts, Self.activities, Self.settings].contains(self)
     }
     
     static let `default`: [RootScreenItemType] = [

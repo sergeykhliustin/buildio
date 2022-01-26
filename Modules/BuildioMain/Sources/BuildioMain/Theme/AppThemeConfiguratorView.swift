@@ -46,7 +46,7 @@ struct AppThemeConfiguratorView<Content: View>: View {
         self.forcedTheme = forcedTheme
         _theme = State(initialValue: forcedTheme?.wrappedValue ?? Theme.current)
         self.content = content
-        configureAppearance(theme)
+        UITabBar.appearance().isHidden = true
     }
     
     var body: some View {
@@ -60,13 +60,11 @@ struct AppThemeConfiguratorView<Content: View>: View {
             .onChange(of: colorScheme, perform: { newValue in
                 if forcedTheme == nil {
                     theme = Theme.theme(for: newValue)
-                    configureAppearance(theme)
                 }
             })
-            .onChange(of: $themeUpdater.wrappedValue, perform: { newValue in
+            .onChange(of: themeUpdater, perform: { newValue in
                 if forcedTheme == nil {
                     theme = newValue
-                    configureAppearance(theme)
                 }
             })
             .onChange(of: forcedTheme?.wrappedValue, perform: { newValue in
@@ -74,17 +72,5 @@ struct AppThemeConfiguratorView<Content: View>: View {
                     theme = newValue
                 }
             })
-    }
-    
-    func configureAppearance(_ theme: Theme) {
-        UITabBar.appearance().isHidden = true
-        let navigationBarAppearance = UINavigationBarAppearance()
-        navigationBarAppearance.configureWithTransparentBackground()
-        navigationBarAppearance.backgroundColor = UIColor(theme.background)
-        navigationBarAppearance.largeTitleTextAttributes = [.foregroundColor: theme.textColor.uiColor]
-        navigationBarAppearance.titleTextAttributes = [.foregroundColor: theme.textColor.uiColor]
-        UINavigationBar.appearance().standardAppearance = navigationBarAppearance
-        UINavigationBar.appearance().compactAppearance = navigationBarAppearance
-        UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
     }
 }

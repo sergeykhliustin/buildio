@@ -28,6 +28,10 @@ private struct CustomTabBarButtonStyle: ButtonStyle {
 }
 
 struct CustomTabBar: View {
+    struct Constants {
+        static let horizontalWidth: CGFloat = 64
+        static let verticalHeight: CGFloat = 48
+    }
     enum Style {
         case horizontal
         case vertical
@@ -99,7 +103,7 @@ struct CustomTabBar: View {
             content()
         }
         .padding(.top, 4)
-        .frame(maxHeight: 48)
+        .frame(maxHeight: Constants.verticalHeight)
         .tabBarBackgroundShadow(theme)
     }
     
@@ -109,7 +113,7 @@ struct CustomTabBar: View {
             content()
         }
         .padding(.trailing, 4)
-        .frame(maxWidth: 64)
+        .frame(maxWidth: Constants.horizontalWidth)
         .background(
             HStack(spacing: 0) {
                 Spacer()

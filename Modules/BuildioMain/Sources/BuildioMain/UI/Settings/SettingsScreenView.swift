@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SettingsScreenView: View {
+    @Environment(\.theme) private var theme
     @AppStorage("debugModeActive") private var debugModeActive: Bool = false
     @EnvironmentObject private var navigator: Navigator
     
@@ -31,6 +32,8 @@ struct SettingsScreenView: View {
                 })
             }
         }
+        .frame(maxHeight: .infinity)
+        .background(theme.background)
         .padding(.bottom, 8)
         .navigationTitle("Settings")
     }
