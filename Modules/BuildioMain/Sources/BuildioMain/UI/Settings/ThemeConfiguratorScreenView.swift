@@ -53,6 +53,7 @@ struct ThemeConfiguratorScreenView: View {
                             .buttonStyle(ControlButtonStyle())
                     }
                     .scaleEffect(0.8)
+                    .background(themeToTune.background)
                     .environment(\.theme, themeToTune)
                     
                 }

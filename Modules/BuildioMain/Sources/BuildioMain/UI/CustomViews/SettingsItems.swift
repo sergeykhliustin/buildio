@@ -35,7 +35,7 @@ struct CheckmarkSettingsItem: View {
     var body: some View {
         ContentSettingsItem(title: title,
                           leftContent: {
-            EmptyView()
+            SettingsIcon(systemName: icon)
         }, rightContent: {
             SettingsIcon(systemName: selected ? "checkmark" : "")
         }, action: action)

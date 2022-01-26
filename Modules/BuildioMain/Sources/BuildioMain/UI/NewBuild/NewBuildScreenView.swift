@@ -67,6 +67,7 @@ struct NewBuildScreenView: View {
                             model.refresh()
                         }
                         .buttonStyle(SubmitButtonStyle())
+                        .cornerRadius(30)
                         .disabled(!validator)
                         .frame(alignment: .center)
                         Spacer()
