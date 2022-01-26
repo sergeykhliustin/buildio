@@ -238,7 +238,7 @@ final class SplitNavigationController: UIViewController {
     
     func updateTheme(_ theme: Theme) {
         view.backgroundColor = theme.background.uiColor
-        separator.backgroundColor = theme.borderColor.uiColor
+        separator.backgroundColor = theme.separatorColor.uiColor
         
         for navigation in [primaryNavigationController, secondaryNavigationController] {
             navigation.viewControllers.first?.view.backgroundColor = theme.background.uiColor
@@ -247,8 +247,10 @@ final class SplitNavigationController: UIViewController {
             let navigationBarAppearance = UINavigationBarAppearance()
             navigationBarAppearance.configureWithTransparentBackground()
             navigationBarAppearance.backgroundColor = UIColor(theme.background)
-            navigationBarAppearance.largeTitleTextAttributes = [.foregroundColor: theme.textColor.uiColor]
-            navigationBarAppearance.titleTextAttributes = [.foregroundColor: theme.textColor.uiColor]
+            navigationBarAppearance.largeTitleTextAttributes = [.foregroundColor: theme.navigationColor.uiColor]
+            navigationBarAppearance.titleTextAttributes = [.foregroundColor: theme.navigationColor.uiColor]
+            navigationBarAppearance.buttonAppearance.normal.titleTextAttributes = [.foregroundColor: theme.navigationColor.uiColor]
+            navigationBar.tintColor = theme.navigationColor.uiColor
             navigationBar.standardAppearance = navigationBarAppearance
             navigationBar.compactAppearance = navigationBarAppearance
             navigationBar.scrollEdgeAppearance = navigationBarAppearance

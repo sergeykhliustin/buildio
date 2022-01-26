@@ -10,11 +10,12 @@ import SwiftUI
 
 struct RoundedBorderShadowModifier: ViewModifier {
     @Environment(\.theme) private var theme
-    var borderColor: Color?
-    let horizontalPadding: CGFloat
+    private let focused: Bool
+    private var borderColor: Color?
+    private let horizontalPadding: CGFloat
     
-    init(borderColor: Color? = nil, horizontalPadding: CGFloat = 16) {
-        self.borderColor = borderColor
+    init(focused: Bool = false, horizontalPadding: CGFloat = 16) {
+        self.focused = focused
         self.horizontalPadding = horizontalPadding
     }
     
@@ -24,7 +25,7 @@ struct RoundedBorderShadowModifier: ViewModifier {
                 .fill(Color.clear)
                 .overlay(
                     RoundedRectangle(cornerRadius: 4)
-                        .stroke(borderColor ?? theme.borderColor, lineWidth: 1)
+                        .stroke(focused ? theme.accentColor : theme.borderColor, lineWidth: 1)
                 )
                 .listShadow(theme)
             content

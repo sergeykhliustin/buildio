@@ -40,7 +40,7 @@ struct BranchesView: BaseView {
                       text: $branch,
                       onEditingChanged: { self.focused = $0 })
                 .frame(height: 44)
-                .modifier(RoundedBorderShadowModifier(borderColor: focused ? theme.accentColor : theme.borderColor, horizontalPadding: 8))
+                .modifier(RoundedBorderShadowModifier(focused: focused, horizontalPadding: 8))
                 .modifier(RightButtonModifier(icon: "chevron.right", loading: model.value == nil, action: {
                     isActiveRoute.toggle()
                 }))

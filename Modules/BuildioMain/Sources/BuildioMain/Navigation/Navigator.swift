@@ -123,9 +123,9 @@ final class Navigator: ObservableObject {
         case .debugLogs:
             controller = builder.debugLogsScreen().hosting
         case .themeLight:
-            controller = builder.themeScreen(theme: Theme(colorScheme: .light)).hosting
+            controller = builder.themeScreen(theme: Theme.theme(for: .light)).hosting
         case .themeDark:
-            controller = builder.themeScreen(theme: Theme(colorScheme: .dark)).hosting
+            controller = builder.themeScreen(theme: Theme.theme(for: .dark)).hosting
         case .debug:
             controller = builder.debugScreen().hosting
         }

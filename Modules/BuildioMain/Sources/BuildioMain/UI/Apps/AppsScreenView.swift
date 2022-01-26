@@ -9,8 +9,8 @@ import SwiftUI
 import Models
 
 struct AppsScreenView: View, PagingView {
-    @EnvironmentObject var navigator: Navigator
-    @Environment(\.theme) var theme
+    @EnvironmentObject private var navigator: Navigator
+    @Environment(\.theme) private var theme
     @EnvironmentObject var model: AppsViewModel
     
     private var completion: ((V0AppResponseItemModel) -> Void)?
@@ -33,7 +33,8 @@ struct AppsScreenView: View, PagingView {
             .font(.callout)
             .frame(height: 44)
             .modifier(ClearButton(text: text))
-            .modifier(RoundedBorderShadowModifier(borderColor: searchFocused ? theme.accentColor : theme.borderColor, horizontalPadding: 8))
+            .modifier(RoundedBorderShadowModifier(focused: searchFocused, horizontalPadding: 8))
+            .background(theme.background)
             .padding(.horizontal, 16)
     }
     

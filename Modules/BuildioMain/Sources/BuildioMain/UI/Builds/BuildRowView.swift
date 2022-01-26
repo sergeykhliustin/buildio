@@ -80,7 +80,7 @@ struct BuildRowView: View {
                 }
                 .lineLimit(1)
                 .padding(8)
-                Rectangle().fill(theme.borderColor)
+                Rectangle().fill(theme.separatorColor)
                     .frame(height: 1)
                 HStack(spacing: 8) {
                     Text(model.branchFromToUIString)
@@ -103,7 +103,7 @@ struct BuildRowView: View {
                 }
                 .padding(.trailing, 8)
                 
-                Rectangle().fill(theme.borderColor)
+                Rectangle().fill(theme.separatorColor)
                     .frame(height: 1)
                 if showBottomControls {
                     HStack(spacing: 8) {
@@ -113,7 +113,7 @@ struct BuildRowView: View {
                             Image(systemName: "note.text")
                             Text("Logs")
                         })
-                            .buttonStyle(BorderButtonStyle(padding: 2))
+                            .buttonStyle(LinkButtonStyle())
                         if model.status == .running {
                             Spacer()
                             Button(action: {
@@ -129,9 +129,9 @@ struct BuildRowView: View {
                                 navigator.go(.artifacts(model))
                             }, label: {
                                 Image(systemName: "archivebox")
-                                Text("Apps & Artifacts")
+                                Text("Artifacts")
                             })
-                                .buttonStyle(BorderButtonStyle(padding: 2))
+                                .buttonStyle(LinkButtonStyle())
                             
                             Spacer()
                             Button(action: {
@@ -140,7 +140,7 @@ struct BuildRowView: View {
                                 Image(systemName: "hammer")
                                 Text("Rebuild")
                             })
-                                .buttonStyle(BorderButtonStyle(padding: 2))
+                                .buttonStyle(LinkButtonStyle())
                         }
                     }
                     .padding(2)

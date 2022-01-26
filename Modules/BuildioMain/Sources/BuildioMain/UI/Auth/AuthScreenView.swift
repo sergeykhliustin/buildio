@@ -56,7 +56,7 @@ struct AuthScreenView: View {
                     .font(.callout)
                     .modifier(ClearButton(text: $tokenState))
                     .modifier(PasteButton(text: $tokenState))
-                    .modifier(RoundedBorderShadowModifier(borderColor: focused ? theme.accentColor : theme.borderColor, horizontalPadding: 8))
+                    .modifier(RoundedBorderShadowModifier(focused: focused, horizontalPadding: 8))
                     .frame(height: 44)
                 
                 HStack(spacing: 0) {
@@ -69,10 +69,9 @@ struct AuthScreenView: View {
                         
                         openURL(url)
                     } label: {
-                        Text("Click here").foregroundColor(theme.linkColor)
+                        Text("Click here")
                     }
-                    .font(.callout)
-                    .buttonStyle(.plain)
+                    .buttonStyle(LinkButtonStyle())
                 }
                 if model.state == .loading {
                     ProgressView()

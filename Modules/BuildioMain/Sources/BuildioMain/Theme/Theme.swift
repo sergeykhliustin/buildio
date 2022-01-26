@@ -7,6 +7,24 @@
 
 import SwiftUI
 
+extension ColorScheme: RawRepresentable, Codable {
+    public typealias RawValue = String
+    public init?(rawValue: String) {
+        if rawValue.lowercased() == "light" {
+            self = .light
+        } else if rawValue.lowercased() == "dark" {
+            self = .dark
+        } else {
+            logger.error("unsupported scheme")
+            return nil
+        }
+    }
+    
+    public var rawValue: String {
+        return self == .light ? "light" : "dark"
+    }
+}
+
 extension Color: Codable {
     public init(from decoder: Decoder) throws {
         try self.init(hex: String(from: decoder))
@@ -21,10 +39,12 @@ public struct Theme: Codable, Equatable {
     typealias Shadow = (color: Color, radius: CGFloat, x: CGFloat, y: CGFloat)
     
     static let lightTheme = [
+        "scheme": "light",
         "accentColor": "#492D5B",
         "accentColorLight": "#492D5B99",
         "background": "#FEFEFE",
         "borderColor": "#DEDEDE",
+        "separatorColor": "#DEDEDE",
         "disabledColor": "#DEDEDE",
         "linkColor": "#6C0EB2",
         "logControlColor": "#DEDEDE",
@@ -33,14 +53,17 @@ public struct Theme: Codable, Equatable {
         "submitButtonColor1": "#6C0EB2",
         "submitButtonColor2": "#450673",
         "textColor": "#341D47",
-        "textColorLight": "#341D4799"
+        "textColorLight": "#341D4799",
+        "navigationColor": "#341D47"
     ]
     
     static let darkTheme = [
+        "scheme": "dark",
         "accentColor": "#33C758",
         "accentColorLight": "#33C75899",
         "background": "#2C3D50",
         "borderColor": "#DEDEDE",
+        "separatorColor": "#DEDEDE",
         "disabledColor": "#DEDEDE",
         "linkColor": "#6C0EB2",
         "logControlColor": "#DEDEDE",
@@ -49,10 +72,11 @@ public struct Theme: Codable, Equatable {
         "submitButtonColor1": "#6C0EB2",
         "submitButtonColor2": "#450673",
         "textColor": "#FEFEFE",
-        "textColorLight": "#FEFEFE99"
+        "textColorLight": "#FEFEFE99",
+        "navigationColor": "#FEFEFE"
     ]
     
-    init(colorScheme: ColorScheme) {
+    private init(colorScheme: ColorScheme) {
         if colorScheme == .dark {
             try! self.init(from: Self.darkTheme)
         } else {
@@ -76,6 +100,7 @@ public struct Theme: Codable, Equatable {
         }
     }
     
+    var scheme: ColorScheme
     var background: Color
     var textColor: Color
     var textColorLight: Color
@@ -86,9 +111,11 @@ public struct Theme: Codable, Equatable {
     var submitButtonColor2: Color
     var disabledColor: Color
     var borderColor: Color
+    var separatorColor: Color
     var logControlColor: Color
     var logsBackgroundColor: Color
     var shadowColor: Color
+    var navigationColor: Color
 
     var listShadow: Shadow {
         return (shadowColor, 10, 0, 0)
@@ -99,7 +126,11 @@ public struct Theme: Codable, Equatable {
     }
     
     func save() {
-        UserDefaults.standard.lightTheme = self
+        if self.scheme == .light {
+            UserDefaults.standard.lightTheme = self
+        } else {
+            UserDefaults.standard.darkTheme = self
+        }
     }
 }
 

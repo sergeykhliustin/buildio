@@ -117,7 +117,7 @@ struct CustomTabBar: View {
         .background(
             HStack(spacing: 0) {
                 Spacer()
-                Rectangle().fill(theme.borderColor).frame(width: 1, alignment: .trailing)
+                Rectangle().fill(theme.separatorColor).frame(width: 1, alignment: .trailing)
             }
         )
     }

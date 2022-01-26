@@ -10,18 +10,18 @@ import Introspect
 import UIKit
 
 struct RootTabView: View {
-    @Environment(\.theme) var theme
+    @Environment(\.previewMode) private var previewMode
+    @Environment(\.theme) private var theme
     @EnvironmentObject private var navigators: Navigators
     
     @Binding private var selection: Int
-    private let configuration: [RootScreenItemType]
     
-    init(selection: Binding<Int>, configuration: [RootScreenItemType] = RootScreenItemType.default) {
+    init(selection: Binding<Int>) {
         self._selection = selection
-        self.configuration = configuration
     }
     
     var body: some View {
+        let configuration = previewMode ? RootScreenItemType.preview : RootScreenItemType.default
         TabView(selection: $selection) {
             ForEach(0..<configuration.count) { index in
                 let item = configuration[index]

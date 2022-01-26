@@ -92,27 +92,27 @@ struct BuildView: View {
                     Item(imageName: "bolt.fill", text: model.triggeredBy)
                     
                     Rectangle()
-                        .fill(theme.borderColor)
+                        .fill(theme.separatorColor)
                         .frame(height: 1)
                 }
                 
                 Group {
                     Text("Commit hash:").secondary()
                     Text(model.commitHash ?? "No commit hash specified").primary()
-                    Rectangle().fill(theme.borderColor).frame(height: 1)
+                    Rectangle().fill(theme.separatorColor).frame(height: 1)
                 }
                 
                 Group {
                     Text("Commit message:").secondary()
                     Text(model.commitMessage ?? "No commit message").primary()
-                    Rectangle().fill(theme.borderColor).frame(height: 1)
+                    Rectangle().fill(theme.separatorColor).frame(height: 1)
                 }
                 
                 if let abortReason = model.abortReason {
                     Group {
                         Text("Abort reason:").secondary()
                         Text(abortReason).primary()
-                        Rectangle().fill(theme.borderColor).frame(height: 1)
+                        Rectangle().fill(theme.separatorColor).frame(height: 1)
                     }
                 }
                 
@@ -120,7 +120,7 @@ struct BuildView: View {
                     Group {
                         Text("Build tags:").secondary()
                         Text(denTags.joined(separator: ", ")).primary()
-                        Rectangle().fill(theme.borderColor).frame(height: 1)
+                        Rectangle().fill(theme.separatorColor).frame(height: 1)
                     }
                 }
                 
@@ -128,7 +128,7 @@ struct BuildView: View {
                     Group {
                         Text("Started @").secondary()
                         Text(startedOn.full).primary()
-                        Rectangle().fill(theme.borderColor).frame(height: 1)
+                        Rectangle().fill(theme.separatorColor).frame(height: 1)
                     }
                 }
                 
@@ -136,7 +136,7 @@ struct BuildView: View {
                     Group {
                         Text("Finished @").secondary()
                         Text(finishedAt.full).primary()
-                        Rectangle().fill(theme.borderColor).frame(height: 1)
+                        Rectangle().fill(theme.separatorColor).frame(height: 1)
                     }
                 }
                 

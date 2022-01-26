@@ -58,7 +58,7 @@ struct NewBuildScreenView: View {
                               text: $message,
                               onEditingChanged: { self.focusedMessage = $0 })
                         .frame(height: 44)
-                        .modifier(RoundedBorderShadowModifier(borderColor: focusedMessage ? theme.accentColor : theme.borderColor, horizontalPadding: 8))
+                        .modifier(RoundedBorderShadowModifier(focused: focusedMessage, horizontalPadding: 8))
                     
                     HStack(alignment: .center) {
                         Spacer()
