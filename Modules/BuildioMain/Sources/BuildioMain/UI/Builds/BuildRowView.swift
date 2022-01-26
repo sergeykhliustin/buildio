@@ -113,7 +113,7 @@ struct BuildRowView: View {
                             Image(systemName: "note.text")
                             Text("Logs")
                         })
-                            .buttonStyle(LinkButtonStyle())
+                            .buttonStyle(ControlButtonStyle())
                         if model.status == .running {
                             Spacer()
                             Button(action: {
@@ -122,7 +122,7 @@ struct BuildRowView: View {
                                 Image(systemName: "nosign")
                                 Text("Abort")
                             })
-                                .buttonStyle(BorderButtonStyle(padding: 2))
+                                .buttonStyle(ControlButtonStyle())
                         } else {
                             Spacer()
                             Button(action: {
@@ -131,7 +131,7 @@ struct BuildRowView: View {
                                 Image(systemName: "archivebox")
                                 Text("Artifacts")
                             })
-                                .buttonStyle(LinkButtonStyle())
+                                .buttonStyle(ControlButtonStyle())
                             
                             Spacer()
                             Button(action: {
@@ -140,7 +140,7 @@ struct BuildRowView: View {
                                 Image(systemName: "hammer")
                                 Text("Rebuild")
                             })
-                                .buttonStyle(LinkButtonStyle())
+                                .buttonStyle(ControlButtonStyle())
                         }
                     }
                     .padding(2)

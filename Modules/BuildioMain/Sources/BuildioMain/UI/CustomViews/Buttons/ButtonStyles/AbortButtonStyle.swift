@@ -21,7 +21,7 @@ struct AbortButtonStyle: ButtonStyle {
         @Environment(\.isEnabled) private var isEnabled: Bool
         
         var body: some View {
-            var colors: [Color] = [.red, .red.opacity(0.8)]
+            var colors: [Color] = [theme.abortButtonColor1, theme.abortButtonColor2]
             
             if configuration.isPressed {
                 colors.removeLast()
@@ -39,7 +39,7 @@ struct AbortButtonStyle: ButtonStyle {
                         gradient: Gradient(colors: colors),
                         startPoint: .top,
                         endPoint: .bottom
-                    ).cornerRadius(4)
+                    ).cornerRadius(20)
                 )
         }
     }

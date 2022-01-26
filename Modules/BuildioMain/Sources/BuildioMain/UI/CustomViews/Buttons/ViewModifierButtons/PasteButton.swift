@@ -10,6 +10,7 @@ import SwiftUI
 import UIKit
 
 struct PasteButton: ViewModifier {
+    @Environment(\.theme) private var theme
     @Binding var text: String
     
     func body(content: Content) -> some View {
@@ -22,7 +23,9 @@ struct PasteButton: ViewModifier {
                         text = pb
                     }
                 } label: {
-                    Image(systemName: "doc.on.clipboard.fill")
+                    Image(systemName: "doc.on.clipboard")
+                        .foregroundColor(theme.accentColor)
+                    
                 }
             }
         }

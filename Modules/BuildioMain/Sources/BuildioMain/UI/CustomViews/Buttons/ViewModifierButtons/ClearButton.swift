@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct ClearButton: ViewModifier {
+    @Environment(\.theme) private var theme
     @Binding var text: String
     
     func body(content: Content) -> some View {
@@ -20,6 +21,7 @@ struct ClearButton: ViewModifier {
                     self.text = ""
                 } label: {
                     Image(systemName: "delete.left")
+                        .foregroundColor(theme.accentColor)
                 }
             }
         }

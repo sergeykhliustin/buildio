@@ -27,37 +27,24 @@ struct BuildScreenView: BaseView {
                         .padding(16)
                 }
                 if value.status == .running {
-                    Button {
+                    AbortButton {
                         abortConfirmation = true
-                    } label: {
-                        HStack {
-                            Image(systemName: "nosign")
-                            Text("Abort")
-                        }
                     }
-                    .buttonStyle(AbortButtonStyle())
                 } else {
-                    Button {
+                    RebuildButton {
                         model.rebuild { error in
                             if error == nil {
                                 presentationMode.wrappedValue.dismiss()
                             }
                         }
-                    } label: {
-                        HStack {
-                            Image(systemName: "hammer")
-                            Text("Rebuild")
-                        }
                     }
-                    .buttonStyle(SubmitButtonStyle(edgeInsets: EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16)))
-                    .cornerRadius(20)
                 }
                 
-                IconActionItem(title: "Logs", icon: "note.text") {
+                NavigateSettingsItem(title: "Logs", icon: "note.text") {
                     navigator.go(.logs(value))
                 }
                 if value.status != .running {
-                    IconActionItem(title: "Apps & Artifacts", icon: "archivebox") {
+                    NavigateSettingsItem(title: "Apps & Artifacts", icon: "archivebox") {
                         navigator.go(.artifacts(value))
                     }
                 }

@@ -124,6 +124,15 @@ final class SplitNavigationController: UIViewController {
         controller.view.backgroundColor = .clear
     }
     
+    func pop() {
+        switch mode {
+        case .primaryOnly:
+            primaryNavigationController.popViewController(animated: true)
+        case .primarySecondary:
+            secondaryNavigationController.popViewController(animated: true)
+        }
+    }
+    
     func popToRoot() {
         switch mode {
         case .primaryOnly:

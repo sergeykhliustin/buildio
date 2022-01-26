@@ -132,11 +132,18 @@ final class Navigator: ObservableObject {
         navigationController?.push(controller, shouldReplace: false)
     }
     
+    func go<Content: View>(_ content: () -> Content) {
+        let controller = content().hosting
+        navigationController?.push(controller, shouldReplace: false)
+    }
+    
     func dismiss() {
         if let parent = parent {
             parent.dismiss(child: self)
         } else if let child = child {
             dismiss(child: child)
+        } else {
+            navigationController?.pop()
         }
     }
     

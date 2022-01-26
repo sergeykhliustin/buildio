@@ -20,12 +20,42 @@ struct ThemeConfiguratorScreenView: View {
                 let scale = 0.5
                 let height = geometry.size.height
                 let width = height / 16 * 9
-                EntryPoint(previewMode: true, theme: $themeToTune)
-                    .frame(width: width, height: height, alignment: .center)
-                    .cornerRadius(20)
-                    .background(RoundedRectangle(cornerRadius: 20).stroke(Color.black, lineWidth: 1))
-                    .scaleEffect(scale)
-                    .padding(EdgeInsets(top: -height * scale / 2, leading: 0, bottom: -height * scale / 2, trailing: 0))
+                HStack {
+                    EntryPoint(previewMode: true, theme: $themeToTune)
+                        .frame(width: width, height: height, alignment: .center)
+                        .cornerRadius(20)
+                        .background(RoundedRectangle(cornerRadius: 20).stroke(Color.black, lineWidth: 1))
+                        .scaleEffect(scale)
+                        .padding(EdgeInsets(top: -height * scale / 2, leading: -width * scale / 2, bottom: -height * scale / 2, trailing: -width * scale / 2))
+                    VStack {
+                        AbortButton({})
+                        
+                        RebuildButton({})
+                        
+                        SubmitButton({})
+                            
+                        SubmitButton({})
+                            .disabled(true)
+                        
+                        Button {
+                            
+                        } label: {
+                            Text("Click here")
+                        }
+                        .buttonStyle(LinkButtonStyle())
+                        
+                        Button(action: {
+                            
+                        }, label: {
+                            Image(systemName: "note.text")
+                            Text("Logs")
+                        })
+                            .buttonStyle(ControlButtonStyle())
+                    }
+                    .scaleEffect(0.8)
+                    .environment(\.theme, themeToTune)
+                    
+                }
                 
                 ScrollView {
                     VStack(spacing: 8) {
@@ -44,7 +74,7 @@ struct ThemeConfiguratorScreenView: View {
                                 .padding(.horizontal, 16)
                         }
                         
-                        IconActionItem(title: "Export", icon: "square.and.arrow.up.fill") {
+                        NavigateSettingsItem(title: "Export", icon: "square.and.arrow.up.fill") {
                             let encoder = JSONEncoder()
                             do {
                                 let data = try encoder.encode(themeToTune)
@@ -57,13 +87,13 @@ struct ThemeConfiguratorScreenView: View {
                                 logger.error(error)
                             }
                         }
-                        IconActionItem(title: "Apply theme", icon: "") {
+                        NavigateSettingsItem(title: "Apply theme", icon: "") {
                             themeUpdater.wrappedValue = themeToTune
                         }
-                        IconActionItem(title: "Save theme", icon: "") {
+                        NavigateSettingsItem(title: "Save theme", icon: "") {
                             themeToTune.save()
                         }
-                        IconActionItem(title: "Reset theme changes", icon: "") {
+                        NavigateSettingsItem(title: "Reset theme changes", icon: "") {
                             UserDefaults.standard.resetTheme()
                         }
                     }

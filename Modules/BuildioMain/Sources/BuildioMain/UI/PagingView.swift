@@ -88,7 +88,7 @@ extension PagingView {
             Image(systemName: "hourglass")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 50, height: 50, alignment: .center)
+                .frame(width: 40, height: 40, alignment: .center)
             Text("Nothing to show")
         }
         .padding(16)

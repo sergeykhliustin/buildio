@@ -27,20 +27,20 @@ struct DebugScreenView: View {
                     
                 }
                 
-                IconActionItem(title: "Logs", icon: "doc.plaintext") {
+                NavigateSettingsItem(title: "Logs", icon: "doc.plaintext") {
                     navigator.go(.debugLogs)
                 }
-                IconActionItem(title: "Reset UserDefaults", icon: "clear", action: {
+                SettingsItem(title: "Reset UserDefaults", icon: "clear", action: {
                     UserDefaults.standard.reset()
                 })
-                ToggleActionItem(title: "Disable screen dim",
+                ToggleSettingsItem(title: "Disable screen dim",
                                  icon: "clear",
                                  toggle: Binding(get: { UIApplication.shared.isIdleTimerDisabled }, set: { newValue in UIApplication.shared.isIdleTimerDisabled = newValue }))
-                IconActionItem(title: "Tune light theme", icon: "eyedropper.halffull") {
+                NavigateSettingsItem(title: "Tune light theme", icon: "eyedropper.halffull") {
                     navigator.go(.themeLight)
                 }
                 
-                IconActionItem(title: "Tune dark theme", icon: "eyedropper.halffull") {
+                NavigateSettingsItem(title: "Tune dark theme", icon: "eyedropper.halffull") {
                     navigator.go(.themeDark)
                 }
             }

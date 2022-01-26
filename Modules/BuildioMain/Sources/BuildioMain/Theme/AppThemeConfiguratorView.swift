@@ -36,6 +36,7 @@ extension EnvironmentValues {
 }
 
 struct AppThemeConfiguratorView<Content: View>: View {
+    @AppStorage(UserDefaults.Keys.theme) private var themeSettings: ThemeSettings = .system
     @Environment(\.colorScheme) var colorScheme
     @State private var theme: Theme
     @State private var themeUpdater: Theme = Theme.current
@@ -51,15 +52,21 @@ struct AppThemeConfiguratorView<Content: View>: View {
     
     var body: some View {
         content()
+            .preferredColorScheme(themeSettings.colorScheme)
             .environment(\.theme, theme)
             .environment(\.themeUpdater, $themeUpdater)
             .accentColor(theme.accentColor)
             .foregroundColor(theme.textColor)
             .background(theme.background)
             .progressViewStyle(CircularInfiniteProgressViewStyle())
+            .onChange(of: themeSettings, perform: { newValue in
+                if forcedTheme == nil {
+                    theme = Theme.current
+                }
+            })
             .onChange(of: colorScheme, perform: { newValue in
                 if forcedTheme == nil {
-                    theme = Theme.theme(for: newValue)
+                    theme = Theme.current
                 }
             })
             .onChange(of: themeUpdater, perform: { newValue in

@@ -88,11 +88,10 @@ struct AuthScreenView: View {
                 if model.state == .loading {
                     ProgressView()
                 } else {
-                    Button("Submit") {
+                    SubmitButton {
                         checkToken(tokenState)
-                    }.buttonStyle(SubmitButtonStyle())
-                        .cornerRadius(30)
-                        .disabled(tokenState.isEmpty || isError)
+                    }
+                    .disabled(tokenState.isEmpty || isError)
                 }
             }
             .disabled(model.state == .loading)

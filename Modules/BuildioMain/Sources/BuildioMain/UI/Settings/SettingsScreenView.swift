@@ -9,25 +9,31 @@ import SwiftUI
 
 struct SettingsScreenView: View {
     @Environment(\.theme) private var theme
-    @AppStorage("debugModeActive") private var debugModeActive: Bool = false
+    @AppStorage(UserDefaults.Keys.debugMode) private var debugModeActive: Bool = false
+    @AppStorage(UserDefaults.Keys.theme) private var themeSettings: ThemeSettings = .system
     @EnvironmentObject private var navigator: Navigator
     
     var body: some View {
         VStack(spacing: 8) {
-            
-            IconActionItem(title: "About", icon: "info", action: {})
-                .overlay(Rectangle().fill(Color.white.opacity(0.01)).onTapGesture(count: 10, perform: {
-                    debugModeActive.toggle()
-                }))
+            NavigateSettingsItem(title: "Preferred color scheme", icon: "eyedropper.halffull", subtitle: themeSettings.rawValue, action: {
+                navigator.go {
+                    ThemeSelectScreenView()
+                }
+            })
+            NavigateSettingsItem(title: "About", icon: "info", action: {})
+                
             if debugModeActive {
-                IconActionItem(title: "Debug", icon: "bolt.heart", action: {
+                NavigateSettingsItem(title: "Debug", icon: "bolt.heart", action: {
                     navigator.go(.debug)
                 })
             }
         }
-        .frame(maxHeight: .infinity)
+        .frame(maxHeight: .infinity, alignment: .top)
         .background(theme.background)
-        .padding(.bottom, 8)
+        .onTapGesture(count: 10, perform: {
+            debugModeActive.toggle()
+        })
+        .padding(.vertical, 8)
         .navigationTitle("Settings")
     }
 }

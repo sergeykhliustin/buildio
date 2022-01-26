@@ -40,42 +40,50 @@ public struct Theme: Codable, Equatable {
     
     static let lightTheme = [
         "scheme": "light",
-        "accentColor": "#492D5B",
-        "accentColorLight": "#492D5B99",
+        
+        "accentColor": "#440C59",
+        "accentColorLight": "#492D5B5F",
         "background": "#FEFEFE",
-        "borderColor": "#DEDEDE",
-        "separatorColor": "#DEDEDE",
-        "disabledColor": "#DEDEDE",
+        "borderColor": "#ADADADA7",
+        "controlsColor": "#454545",
+        "disabledColor": "#ADADAD",
+        "fadeColor": "#84848425",
         "linkColor": "#6C0EB2",
-        "logControlColor": "#DEDEDE",
-        "logsBackgroundColor": "#2C3D50",
-        "shadowColor": "#00000019",
-        "submitButtonColor1": "#6C0EB2",
-        "submitButtonColor2": "#450673",
-        "textColor": "#341D47",
+        "logControlColor": "#6E6F6F",
+        "logsBackgroundColor": "#000000",
+        "navigationColor": "#2D063C",
+        "separatorColor": "#DEDEDE",
+        "shadowColor": "#EAEAEA",
+        "submitButtonColor1": "#E292FE",
+        "submitButtonColor2": "#440C59",
+        "textColor": "#000000",
         "textColorLight": "#341D4799",
-        "navigationColor": "#341D47",
-        "fadeColor": "#00000026"
+        "abortButtonColor1": "#982ABC",
+        "abortButtonColor2": "#450673"
     ]
     
     static let darkTheme = [
         "scheme": "dark",
-        "accentColor": "#33C758",
-        "accentColorLight": "#33C75899",
-        "background": "#2C3D50",
-        "borderColor": "#DEDEDE",
-        "separatorColor": "#DEDEDE",
-        "disabledColor": "#DEDEDE",
-        "linkColor": "#6C0EB2",
-        "logControlColor": "#DEDEDE",
-        "logsBackgroundColor": "#2C3D50",
-        "shadowColor": "#FEFEFE19",
-        "submitButtonColor1": "#6C0EB2",
+        
+        "accentColor": "#FEFFFF",
+        "accentColorLight": "#99999999",
+        "background": "#000000",
+        "borderColor": "#999999",
+        "controlsColor": "#CDCDCD",
+        "disabledColor": "#999999",
+        "fadeColor": "#FFFFFF26",
+        "linkColor": "#ADADAD",
+        "logControlColor": "#5B5B5B",
+        "logsBackgroundColor": "#000000",
+        "navigationColor": "#EAEAEA",
+        "separatorColor": "#848484",
+        "shadowColor": "#FEFFFF00",
+        "submitButtonColor1": "#982ABC",
         "submitButtonColor2": "#450673",
         "textColor": "#FEFEFE",
         "textColorLight": "#FEFEFE99",
-        "navigationColor": "#FEFEFE",
-        "fadeColor": "#FFFFFF26"
+        "abortButtonColor1": "#982ABC",
+        "abortButtonColor2": "#450673"
     ]
     
     private init(colorScheme: ColorScheme) {
@@ -88,10 +96,18 @@ public struct Theme: Codable, Equatable {
     
     static var current: Theme {
         let style = UIScreen.main.traitCollection.userInterfaceStyle
-        if let sheme = ColorScheme(style) {
-            return theme(for: sheme)
+        let themeSettings = UserDefaults.standard.themeSettings
+        switch themeSettings {
+        case .light:
+            return theme(for: .light)
+        case .dark:
+            return theme(for: .dark)
+        case .system:
+            if let sheme = ColorScheme(style) {
+                return theme(for: sheme)
+            }
+            return Theme(colorScheme: .light)
         }
-        return Theme(colorScheme: .light)
     }
     
     static func theme(for colorScheme: ColorScheme) -> Theme {
@@ -119,6 +135,9 @@ public struct Theme: Codable, Equatable {
     var shadowColor: Color
     var navigationColor: Color
     var fadeColor: Color
+    var controlsColor: Color
+    var abortButtonColor1: Color
+    var abortButtonColor2: Color
 
     var listShadow: Shadow {
         return (shadowColor, 10, 0, 0)
