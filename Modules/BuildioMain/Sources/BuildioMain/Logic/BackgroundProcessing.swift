@@ -44,14 +44,6 @@ final class BackgroundProcessing {
     private var notificationCenterPubliser: AnyCancellable?
     
     func start() {
-        NotificationManager.checkPermissionGranted { granted in
-            if !granted {
-                NotificationManager.requestAuthorization { _ in
-                    
-                }
-            }
-        }
-        
         ([Self.appRefreshTaskId] + Self.processingTasksIds).forEach { identifier in
             BGTaskScheduler.shared.register(forTaskWithIdentifier: identifier, using: nil, launchHandler: launchHandler)
         }
