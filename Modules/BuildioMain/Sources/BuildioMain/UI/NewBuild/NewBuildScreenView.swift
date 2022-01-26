@@ -62,12 +62,10 @@ struct NewBuildScreenView: View {
                     
                     HStack(alignment: .center) {
                         Spacer()
-                        Button("Start") {
+                        StartBuildButton("Start") {
                             model.params = NewBuildViewModelParams(appSlug: app.wrappedValue.slug, branch: branch, workflow: workflow, message: message)
                             model.refresh()
                         }
-                        .buttonStyle(SubmitButtonStyle())
-                        .cornerRadius(30)
                         .disabled(!validator)
                         .frame(alignment: .center)
                         Spacer()

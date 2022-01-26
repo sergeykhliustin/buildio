@@ -24,7 +24,7 @@ struct SubmitButtonStyle: ButtonStyle {
             var colors: [Color] = [theme.submitButtonColor1, theme.submitButtonColor2]
             
             if configuration.isPressed {
-                colors.removeLast()
+                colors.removeFirst()
             }
             if !isEnabled {
                 colors = [theme.disabledColor]

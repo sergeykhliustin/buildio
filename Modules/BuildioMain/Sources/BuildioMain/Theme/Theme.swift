@@ -58,8 +58,8 @@ public struct Theme: Codable, Equatable {
         "submitButtonColor2": "#440C59",
         "textColor": "#000000",
         "textColorLight": "#341D4799",
-        "abortButtonColor1": "#982ABC",
-        "abortButtonColor2": "#450673"
+        "abortButtonColor1": "#FF8C82",
+        "abortButtonColor2": "#831100"
     ]
     
     static let darkTheme = [
@@ -82,8 +82,8 @@ public struct Theme: Codable, Equatable {
         "submitButtonColor2": "#450673",
         "textColor": "#FEFEFE",
         "textColorLight": "#FEFEFE99",
-        "abortButtonColor1": "#982ABC",
-        "abortButtonColor2": "#450673"
+        "abortButtonColor1": "#FF4014",
+        "abortButtonColor2": "#710E00"
     ]
     
     private init(colorScheme: ColorScheme) {

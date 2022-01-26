@@ -136,11 +136,40 @@ public struct BuildResponseItemModel: Codable, Hashable, Identifiable {
 extension BuildResponseItemModel {
     public var originalBuildParamsString: String {
         let params = originalBuildParams
-        return JSONValue.object(params).jsonString
+        do {
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = [.prettyPrinted, .sortedKeys, .withoutEscapingSlashes]
+            let json = try encoder.encode(params)
+            return String(data: json, encoding: .utf8) ?? ""
+        } catch {
+            
+        }
+        return ""
     }
 }
 
 extension JSONValue {
+    var string: Any {
+        switch self {
+        case .string(let string):
+            return "\"" + string + "\""
+        case .int(let int):
+            return "\(int)"
+        case .double(let double):
+            return "\(double)"
+        case .bool(let bool):
+            return "\(bool)"
+        case .null:
+            return "null"
+        case .array(let array):
+            return array.map({ $0.string })
+        case .object(let object):
+            return object.map { (key: String, value: JSONValue) in
+                return (key: key, value: value.string)
+            }
+        }
+    }
+    
     var jsonString: String {
         switch self {
         case .string(let string):

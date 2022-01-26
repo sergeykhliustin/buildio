@@ -24,7 +24,7 @@ struct AbortButtonStyle: ButtonStyle {
             var colors: [Color] = [theme.abortButtonColor1, theme.abortButtonColor2]
             
             if configuration.isPressed {
-                colors.removeLast()
+                colors.removeFirst()
             }
             if !isEnabled {
                 colors = [theme.disabledColor]

@@ -31,7 +31,7 @@ struct BuildScreenView: BaseView {
                         abortConfirmation = true
                     }
                 } else {
-                    RebuildButton {
+                    StartBuildButton("Rebuild") {
                         model.rebuild { error in
                             if error == nil {
                                 presentationMode.wrappedValue.dismiss()
@@ -55,7 +55,7 @@ struct BuildScreenView: BaseView {
                     BuildView(model: value, progress: model.progress)
                 }
             }
-//            .padding(.vertical, 8)
+            .padding(.vertical, 8)
         }
         .alert(item: $model.actionError, content: { error in
             Alert(title: Text(error.title), message: Text(error.message))

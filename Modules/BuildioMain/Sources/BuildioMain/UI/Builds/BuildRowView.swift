@@ -153,7 +153,7 @@ struct BuildRowView: View {
                 
                 if let progress = viewModel.progress {
                     ProgressView(value: progress)
-                        .progressViewStyle(.linear)
+                        .progressViewStyle(LinearProgressViewStyle())
                 }
             }
         }

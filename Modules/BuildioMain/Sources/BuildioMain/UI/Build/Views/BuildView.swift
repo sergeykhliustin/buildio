@@ -73,7 +73,7 @@ struct BuildView: View {
                     .primary()
                         
                 ProgressView(value: progress ?? 0)
-                    .progressViewStyle(.linear)
+                    .progressViewStyle(LinearProgressViewStyle())
                 
                 Group {
                     HStack {
@@ -152,8 +152,8 @@ struct BuildView: View {
                                 .padding(10)
                                 .layoutPriority(1)
                         }
-                        .border(Color(red: 0.84, green: 0.84, blue: 0.84), width: 1)
-                        .background(Color(red: 0.93, green: 0.93, blue: 0.93))
+                        .border(theme.borderColor, width: 1)
+//                        .background(Color(red: 0.93, green: 0.93, blue: 0.93))
                         .cornerRadius(4)
                     }
                 }

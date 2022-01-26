@@ -69,7 +69,7 @@ struct CircularProgressViewStyle: ProgressViewStyle {
 }
 
 #if DEBUG
-struct CustomProgressViewStyle_Previews: PreviewProvider {
+struct CircularProgressViewStyle_Previews: PreviewProvider {
     static var previews: some View {
         ProgressView()
             .progressViewStyle(CircularInfiniteProgressViewStyle())

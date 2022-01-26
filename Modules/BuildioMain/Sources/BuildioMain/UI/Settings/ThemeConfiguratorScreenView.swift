@@ -30,7 +30,7 @@ struct ThemeConfiguratorScreenView: View {
                     VStack {
                         AbortButton({})
                         
-                        RebuildButton({})
+                        StartBuildButton("Rebuild", {})
                         
                         SubmitButton({})
                             
@@ -70,9 +70,17 @@ struct ThemeConfiguratorScreenView: View {
                                 themeToTune = try! Theme(from: dict)
                             })
                             
-                            ColorPicker(key, selection: binding)
-                                .frame(height: 44)
-                                .padding(.horizontal, 16)
+                            HStack {
+                                Text(key)
+                                Spacer()
+                                Text(dict[key]!)
+                                
+                                ColorPicker("", selection: binding)
+                                    .frame(height: 44)
+                                    
+                            }
+                            .padding(.horizontal, 16)
+                            
                         }
                         
                         NavigateSettingsItem(title: "Export", icon: "square.and.arrow.up.fill") {

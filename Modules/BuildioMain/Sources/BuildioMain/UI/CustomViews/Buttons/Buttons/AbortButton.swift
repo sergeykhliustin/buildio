@@ -17,10 +17,17 @@ struct AbortButton: View {
     var body: some View {
         Button(action: action) {
             HStack {
-                Image(systemName: "nosign")
                 Text("Abort")
             }
         }
         .buttonStyle(AbortButtonStyle())
     }
 }
+
+#if DEBUG
+struct AbortButton_Preview: PreviewProvider {
+    static var previews: some View {
+        AbortButton({})
+    }
+}
+#endif
