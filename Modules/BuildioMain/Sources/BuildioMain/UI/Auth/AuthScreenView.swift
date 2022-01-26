@@ -73,20 +73,29 @@ struct AuthScreenView: View {
                     }
                     .buttonStyle(LinkButtonStyle())
                 }
+                if !canClose {
+                    HStack(spacing: 0) {
+                        Text("Want to explore the app? ")
+                            .font(.callout)
+                        Button {
+                            tokenManager.setupDemo()
+                        } label: {
+                            Text("Demo here")
+                        }
+                        .buttonStyle(LinkButtonStyle())
+                    }
+                }
                 if model.state == .loading {
                     ProgressView()
                 } else {
                     Button("Submit") {
                         checkToken(tokenState)
-                    }.buttonStyle(SubmitButtonStyle()).disabled(tokenState.isEmpty || isError)
-                }
-                
-                if !canClose {
-                    Button("Demo") {
-                        tokenManager.setupDemo()
                     }.buttonStyle(SubmitButtonStyle())
+                        .cornerRadius(30)
+                        .disabled(tokenState.isEmpty || isError)
                 }
             }
+            .disabled(model.state == .loading)
             .frame(maxWidth: 414, alignment: .center)
             .padding(16)
         }

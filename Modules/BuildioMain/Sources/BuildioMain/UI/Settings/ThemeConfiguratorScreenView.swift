@@ -51,7 +51,7 @@ struct ThemeConfiguratorScreenView: View {
                                 let url = URL(fileURLWithPath: (NSTemporaryDirectory() as NSString).appendingPathComponent("theme.json"))
                                 try data.write(to: url)
                                 let controller = UIActivityViewController(activityItems: [url], applicationActivities: nil)
-                                
+                                controller.popoverPresentationController?.sourceView = UIView()
                                 UIApplication.shared.windows.first?.rootViewController?.present(controller, animated: true)
                             } catch {
                                 logger.error(error)

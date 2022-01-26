@@ -36,6 +36,13 @@ struct DebugScreenView: View {
                 ToggleActionItem(title: "Disable screen dim",
                                  icon: "clear",
                                  toggle: Binding(get: { UIApplication.shared.isIdleTimerDisabled }, set: { newValue in UIApplication.shared.isIdleTimerDisabled = newValue }))
+                IconActionItem(title: "Tune light theme", icon: "eyedropper.halffull") {
+                    navigator.go(.themeLight)
+                }
+                
+                IconActionItem(title: "Tune dark theme", icon: "eyedropper.halffull") {
+                    navigator.go(.themeDark)
+                }
             }
             .padding(.vertical, 8)
         }

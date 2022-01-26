@@ -66,7 +66,6 @@ final class SplitNavigationController: UIViewController {
         static let ipadPresentationCornerRadius = 10.0
         static let presentationWidth = 700.0
         static let ipadPresentationHeightOffset = 80.0
-        static let fadeColor = UIColor.black.withAlphaComponent(0.15)
     }
     enum Mode {
         case primaryOnly
@@ -79,6 +78,11 @@ final class SplitNavigationController: UIViewController {
     private var customPresentedController: UIViewController?
     
     private var fadeView: UIView?
+    private var fadeColor: UIColor = .clear {
+        didSet {
+            fadeView?.backgroundColor = fadeColor
+        }
+    }
     private let separator: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -237,6 +241,7 @@ final class SplitNavigationController: UIViewController {
     }
     
     func updateTheme(_ theme: Theme) {
+        fadeColor = theme.fadeColor.uiColor
         view.backgroundColor = theme.background.uiColor
         separator.backgroundColor = theme.separatorColor.uiColor
         
@@ -268,7 +273,7 @@ final class SplitNavigationController: UIViewController {
     private func createFadeView() -> UIView {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = Constants.fadeColor
+        view.backgroundColor = fadeColor
         view.alpha = 0
         
         let superview: UIView = self.view        

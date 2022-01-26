@@ -14,13 +14,6 @@ struct SettingsScreenView: View {
     
     var body: some View {
         VStack(spacing: 8) {
-            IconActionItem(title: "Tune light theme", icon: "eyedropper.halffull") {
-                navigator.go(.themeLight)
-            }
-            
-            IconActionItem(title: "Tune dark theme", icon: "eyedropper.halffull") {
-                navigator.go(.themeDark)
-            }
             
             IconActionItem(title: "About", icon: "info", action: {})
                 .overlay(Rectangle().fill(Color.white.opacity(0.01)).onTapGesture(count: 10, perform: {

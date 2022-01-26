@@ -54,7 +54,8 @@ public struct Theme: Codable, Equatable {
         "submitButtonColor2": "#450673",
         "textColor": "#341D47",
         "textColorLight": "#341D4799",
-        "navigationColor": "#341D47"
+        "navigationColor": "#341D47",
+        "fadeColor": "#00000026"
     ]
     
     static let darkTheme = [
@@ -73,7 +74,8 @@ public struct Theme: Codable, Equatable {
         "submitButtonColor2": "#450673",
         "textColor": "#FEFEFE",
         "textColorLight": "#FEFEFE99",
-        "navigationColor": "#FEFEFE"
+        "navigationColor": "#FEFEFE",
+        "fadeColor": "#FFFFFF26"
     ]
     
     private init(colorScheme: ColorScheme) {
@@ -116,6 +118,7 @@ public struct Theme: Codable, Equatable {
     var logsBackgroundColor: Color
     var shadowColor: Color
     var navigationColor: Color
+    var fadeColor: Color
 
     var listShadow: Shadow {
         return (shadowColor, 10, 0, 0)
