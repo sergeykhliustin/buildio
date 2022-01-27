@@ -7,18 +7,46 @@
 
 import SwiftUI
 
+enum Platform: String, CaseIterable {
+    case ios
+    case macos
+    case xamarin
+    case android
+    case cordova
+    case ionic
+    case react = "react-native"
+    case flutter
+    case fastlane
+    case nodejs = "node-js"
+    case go
+    case other
+}
+
 struct PlatformIcon: View {
-    private enum Platform: String {
-        case ios
-    }
+    @Environment(\.theme) private var theme
 
     private static let icons: [Platform: String] = [
-        .ios: "applelogo"
+        .ios: "PlatformApple",
+        .macos: "PlatformMacos",
+        .xamarin: "PlatformXamarin",
+        .android: "PlatformAndroid",
+        .cordova: "PlatformCordova",
+        .ionic: "PlatformIonic",
+        .react: "PlatformReact",
+        .flutter: "PlatformFlutter",
+        .fastlane: "PlatformFastlane",
+        .nodejs: "PlatformNodejs",
+        .go: "PlatformGo",
+        .other: "PlatformOther"
     ]
 
-    private static let defaultIcon = "target"
+    private static let defaultIcon = "PlatformOther"
     
     private let iconName: String
+    
+    init(platform: Platform) {
+        self.init(platform.rawValue)
+    }
     
     init(_ platformString: String?) {
         if let platformString = platformString,
@@ -30,12 +58,20 @@ struct PlatformIcon: View {
         }
     }
     var body: some View {
-        Image(systemName: iconName)
+        Image(iconName)
+            .renderingMode(.template)
     }
 }
 
 struct PlatformIcon_Previews: PreviewProvider {
     static var previews: some View {
-        PlatformIcon("ios")
+        VStack {
+            ForEach(Platform.allCases, id: \.rawValue) { item in
+                PlatformIcon(platform: item)
+                    .frame(width: 40, height: 40, alignment: .center)
+                    .foregroundColor(Color.white)
+                    .background(Color.black)
+            }
+        }
     }
 }

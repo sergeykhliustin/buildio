@@ -27,32 +27,41 @@ struct ThemeConfiguratorScreenView: View {
                         .background(RoundedRectangle(cornerRadius: 20).stroke(Color.black, lineWidth: 1))
                         .scaleEffect(scale)
                         .padding(EdgeInsets(top: -height * scale / 2, leading: -width * scale / 2, bottom: -height * scale / 2, trailing: -width * scale / 2))
-                    VStack {
-                        AbortButton({})
-                        
-                        StartBuildButton("Rebuild", {})
-                        
-                        SubmitButton({})
+                    Group {
+                        VStack {
+                            AbortButton({})
                             
-                        SubmitButton({})
-                            .disabled(true)
-                        
-                        Button {
+                            StartBuildButton("Rebuild", {})
                             
-                        } label: {
-                            Text("Click here")
+                            SubmitButton({})
+                            
+                            SubmitButton({})
+                                .disabled(true)
+                            
+                            Button {
+                                
+                            } label: {
+                                Text("Click here")
+                            }
+                            .buttonStyle(LinkButtonStyle())
+                            
+                            Button(action: {
+                                
+                            }, label: {
+                                Image(systemName: "note.text")
+                                Text("Logs")
+                            })
+                                .buttonStyle(ControlButtonStyle())
                         }
-                        .buttonStyle(LinkButtonStyle())
+                        .scaleEffect(0.8)
                         
-                        Button(action: {
-                            
-                        }, label: {
-                            Image(systemName: "note.text")
-                            Text("Logs")
-                        })
-                            .buttonStyle(ControlButtonStyle())
+                        VStack {
+                            ForEach(Platform.allCases, id: \.rawValue) { item in
+                                PlatformIcon(platform: item)
+                            }
+                        }
                     }
-                    .scaleEffect(0.8)
+                    .foregroundColor(themeToTune.textColor)
                     .background(themeToTune.background)
                     .environment(\.theme, themeToTune)
                     
