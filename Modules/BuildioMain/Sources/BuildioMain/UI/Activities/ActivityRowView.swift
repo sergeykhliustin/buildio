@@ -9,6 +9,7 @@ import SwiftUI
 import Models
 
 struct ActivityRowView: View {
+    @Environment(\.theme) private var theme
     @EnvironmentObject private var screenFactory: ScreenFactory
     var model: V0ActivityEventResponseItemModel
     
@@ -20,25 +21,9 @@ struct ActivityRowView: View {
                 .cornerRadius(8)
                 .padding(.top, 8)
             
-            VStack(alignment: .leading) {
-                
-                Text("Created @ \(model.createdAt.full)")
-                
-                if let title = model.title {
-                    Text(title)
-                }
-                
-                if let description = model.description {
-                    Text(description)
-                }
-                
-                if let repoTitle = model.repositoryTitle {
-                    Text(repoTitle)
-                }
-                
-                if let eventStype = model.eventStype {
-                    Text(eventStype)
-                }
+            VStack(alignment: .leading, spacing: 8) {
+                Text(model.description ?? model.title ?? model.repositoryTitle ?? model.eventStype ?? "")
+                Text("@ \(model.createdAt.full)").foregroundColor(theme.textColorLight)
             }
             .padding(8)
             Spacer()

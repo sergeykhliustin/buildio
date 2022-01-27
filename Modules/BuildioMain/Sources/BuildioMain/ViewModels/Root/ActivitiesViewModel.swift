@@ -22,4 +22,27 @@ final class ActivitiesViewModel: RootPagingViewModel<V0ActivityEventListResponse
     override func fetchPage(next: String?) async throws -> PagingViewModel<V0ActivityEventListResponseModel>.ValueType {
         try await apiFactory.api(ActivityAPI.self).activityList(next: next, limit: fetchLimit)
     }
+    
+    func findBuild(_ item: V0ActivityEventResponseItemModel) async -> BuildResponseItemModel? {
+        let targetComponents = item.targetPathString?.split(separator: "/")
+        guard state != .loading,
+              item.eventStype == "build",
+              let components = targetComponents,
+              components.count == 2,
+              components.first == "build",
+              let appName = item.description?.components(separatedBy: " - ").first,
+              !appName.isEmpty else { return nil }
+        let state = self.state
+        self.state = .loading
+        defer {
+            self.state = state
+        }
+        let buildSlug = components[1]
+        guard let app = try? await apiFactory.api(ApplicationAPI.self).appList(title: appName).data.first(where: { $0.title == appName }) else {
+            return nil
+        }
+        var build = try? await apiFactory.api(BuildsAPI.self).buildShow(appSlug: app.slug, buildSlug: String(buildSlug)).data
+        build?.repository = app
+        return build
+    }
 }

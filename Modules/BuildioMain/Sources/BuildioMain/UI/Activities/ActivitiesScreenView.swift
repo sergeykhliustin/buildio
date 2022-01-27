@@ -9,6 +9,7 @@ import SwiftUI
 import Models
 
 struct ActivitiesScreenView: PagingView {
+    @EnvironmentObject private var navigator: Navigator
     @EnvironmentObject var model: ActivitiesViewModel
     @Environment(\.openURL) private var openURL
     @State private var notificationsAuthorization: UNAuthorizationStatus?
@@ -34,7 +35,11 @@ struct ActivitiesScreenView: PagingView {
     
     func buildItemView(_ item: V0ActivityEventResponseItemModel) -> some View {
         ListItemWrapper(action: {
-            
+            Task {
+                if let build = await model.findBuild(item) {
+                    navigator.go(.build(build))
+                }
+            }
         }, content: {
             ActivityRowView(model: item)
         })
