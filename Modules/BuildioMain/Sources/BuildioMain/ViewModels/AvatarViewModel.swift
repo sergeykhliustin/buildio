@@ -21,12 +21,17 @@ private extension URL {
 }
 
 final class AvatarViewModel: BaseViewModel<UIImage> {
+    override class var shouldRefreshOnInit: Bool {
+        return true
+    }
+    
     let title: String?
     let url: String?
     
     init(title: String?, url: String?) {
         self.title = title
         self.url = url
+        super.init()
     }
     
     lazy var name: String? = {

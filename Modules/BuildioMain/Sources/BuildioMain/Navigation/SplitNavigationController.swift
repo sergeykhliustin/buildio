@@ -146,8 +146,6 @@ final class SplitNavigationController: UIViewController {
                 secondaryNavigationController.popToRootViewController(animated: true)
             }
         }
-        
-        dismissSheet()
     }
     
     func sheet(_ controller: UIViewController) {
@@ -212,7 +210,7 @@ final class SplitNavigationController: UIViewController {
         navigator?.dismiss()
     }
     
-    func dismissSheet() {
+    func dismissSheet(_ completion: (() -> Void)?) {
         guard let customPresentedController = customPresentedController else {
             return
         }
@@ -232,6 +230,7 @@ final class SplitNavigationController: UIViewController {
                 customPresentedController.willMove(toParent: nil)
                 customPresentedController.view.removeFromSuperview()
                 customPresentedController.removeFromParent()
+                completion?()
             })
         self.customPresentedController = nil
     }

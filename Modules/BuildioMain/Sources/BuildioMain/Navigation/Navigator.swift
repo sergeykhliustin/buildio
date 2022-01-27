@@ -15,6 +15,7 @@ enum Route {
     case build(BuildResponseItemModel)
     case logs(BuildResponseItemModel)
     case artifacts(BuildResponseItemModel)
+    case activities
 }
 
 enum NewBuildRoute {
@@ -74,6 +75,8 @@ final class Navigator: ObservableObject {
             controller = builder.logsScreen(build: build).hosting
         case .artifacts(let build):
             controller = builder.artifactsScreen(build: build).hosting
+        case .activities:
+            controller = builder.activitiesScreen().hosting
         }
         navigationController?.push(controller, shouldReplace: !shouldChain(route, prevRoute: self.route))
         self.route = route
@@ -149,9 +152,10 @@ final class Navigator: ObservableObject {
     
     func dismiss(child: Navigator) {
         if self.child === child {
-            navigationController?.dismissSheet()
-            self.child = nil
-            self.isPresentingSheet = false
+            navigationController?.dismissSheet({
+                self.child = nil
+                self.isPresentingSheet = false
+            })
         }
     }
     

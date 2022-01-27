@@ -60,13 +60,11 @@ enum RootScreenItemType: CaseIterable {
         .builds,
         .apps,
         .accounts,
-        .activities,
         .settings
     ]
     
     static let preview: [RootScreenItemType] = [
         .builds,
-        .apps,
-        .activities
+        .apps
     ]
 }

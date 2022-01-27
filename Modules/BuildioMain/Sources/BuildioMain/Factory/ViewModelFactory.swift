@@ -43,7 +43,6 @@ final class ViewModelFactory {
     private func resolveRootModels() {
         _ = resolve(BuildsViewModel.self)
         _ = resolve(AppsViewModel.self)
-        _ = resolve(ActivitiesViewModel.self)
     }
     
     func resolve<T: RootViewModel>(_ type: T.Type) -> T {

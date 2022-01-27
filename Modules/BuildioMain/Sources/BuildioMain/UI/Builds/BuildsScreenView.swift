@@ -24,10 +24,18 @@ struct BuildsScreenView: View, PagingView {
     
     @ViewBuilder
     func additionalToolbarItems() -> some View {
-        Button {
-            navigator.go(.newBuild(nil))
-        } label: {
-            Image(systemName: "plus")
+        HStack {
+            Button {
+                navigator.go(.activities)
+            } label: {
+                Image(systemName: "bell")
+            }
+            
+            Button {
+                navigator.go(.newBuild(nil))
+            } label: {
+                Image(systemName: "plus")
+            }
         }
     }
 }
