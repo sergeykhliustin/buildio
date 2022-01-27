@@ -108,7 +108,7 @@ struct BuildRowView: View {
                 if showBottomControls {
                     HStack(spacing: 8) {
                         Button(action: {
-                            navigator.go(.logs(model))
+                            navigator.go(.logs(model), replace: true)
                         }, label: {
                             Image(systemName: "note.text")
                             Text("Logs")
@@ -126,7 +126,7 @@ struct BuildRowView: View {
                         } else {
                             Spacer()
                             Button(action: {
-                                navigator.go(.artifacts(model))
+                                navigator.go(.artifacts(model), replace: true)
                             }, label: {
                                 Image(systemName: "archivebox")
                                 Text("Artifacts")

@@ -40,7 +40,6 @@ final class Navigator: ObservableObject {
     private let parent: Navigator?
     private weak var child: Navigator?
     weak var navigationController: SplitNavigationController?
-    private(set) var route: Route?
     private(set) var isPresentingSheet: Bool = false {
         didSet {
             parentNavigators?.updatePresenting()
@@ -64,7 +63,7 @@ final class Navigator: ObservableObject {
     }
     
     @MainActor
-    func go(_ route: Route) {
+    func go(_ route: Route, replace: Bool) {
         let builder = screenFactory
         var controller: UIViewController!
         switch route {
@@ -79,8 +78,7 @@ final class Navigator: ObservableObject {
         case .activities:
             controller = builder.activitiesScreen().hosting
         }
-        navigationController?.push(controller, shouldReplace: !shouldChain(route, prevRoute: self.route))
-        self.route = route
+        navigationController?.push(controller, shouldReplace: replace)
     }
     
     @MainActor
@@ -160,21 +158,6 @@ final class Navigator: ObservableObject {
                 self.child = nil
                 self.isPresentingSheet = false
             })
-        }
-    }
-    
-    private func shouldChain(_ route: Route, prevRoute: Route?) -> Bool {
-        switch (route, prevRoute) {
-        case (.logs(let logsBuild), .build(let build)):
-            return logsBuild == build
-        case (.artifacts(let artifacts), .build(let build)):
-            return artifacts == build
-        case (.logs, .builds):
-            return true
-        case (.artifacts, .builds):
-            return true
-        default:
-            return false
         }
     }
 }

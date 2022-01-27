@@ -37,7 +37,7 @@ struct ActivitiesScreenView: PagingView {
         ListItemWrapper(action: {
             Task {
                 if let build = await model.findBuild(item) {
-                    navigator.go(.build(build))
+                    navigator.go(.build(build), replace: false)
                 }
             }
         }, content: {

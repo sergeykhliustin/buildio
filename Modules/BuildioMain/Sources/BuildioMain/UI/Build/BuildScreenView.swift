@@ -41,11 +41,11 @@ struct BuildScreenView: BaseView {
                 }
                 
                 NavigateSettingsItem(title: "Logs", icon: "note.text") {
-                    navigator.go(.logs(value))
+                    navigator.go(.logs(value), replace: false)
                 }
                 if value.status != .running {
                     NavigateSettingsItem(title: "Apps & Artifacts", icon: "archivebox") {
-                        navigator.go(.artifacts(value))
+                        navigator.go(.artifacts(value), replace: false)
                     }
                 }
                 

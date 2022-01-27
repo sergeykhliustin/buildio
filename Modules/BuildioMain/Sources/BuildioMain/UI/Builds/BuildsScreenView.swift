@@ -16,7 +16,7 @@ struct BuildsScreenView: View, PagingView {
     
     func buildItemView(_ item: BuildResponseItemModel) -> some View {
         ListItemWrapper(action: {
-            navigator.go(.build(item))
+            navigator.go(.build(item), replace: true)
         }, content: {
             screenFactory.buildRowView(build: item, showBottomControls: true)
         })
@@ -26,7 +26,7 @@ struct BuildsScreenView: View, PagingView {
     func additionalToolbarItems() -> some View {
         HStack {
             Button {
-                navigator.go(.activities)
+                navigator.go(.activities, replace: false)
             } label: {
                 Image(systemName: "bell")
             }
