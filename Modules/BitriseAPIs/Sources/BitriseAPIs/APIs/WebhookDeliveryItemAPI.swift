@@ -21,23 +21,32 @@ public final class WebhookDeliveryItemAPI: BaseAPI {
      - parameter next: (query) Slug of the first delivery item in the response (optional)
      - parameter limit: (query) Max number of elements per page (default: 50) (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0WebhookDeliveryItemShowResponseModel, ErrorResponse>
+     - returns: V0WebhookDeliveryItemShowResponseModel
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func webhookDeliveryItemList(appSlug: String, appWebhookSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0WebhookDeliveryItemShowResponseModel, ErrorResponse> {
-        return Future<V0WebhookDeliveryItemShowResponseModel, ErrorResponse> { [weak self] promise in
-            self?.webhookDeliveryItemListWithRequestBuilder(appSlug: appSlug, appWebhookSlug: appWebhookSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func webhookDeliveryItemList(appSlug: String, appWebhookSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> V0WebhookDeliveryItemShowResponseModel {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = webhookDeliveryItemListWithRequestBuilder(appSlug: appSlug, appWebhookSlug: appWebhookSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      List the webhook delivery items of an app
@@ -85,23 +94,32 @@ public final class WebhookDeliveryItemAPI: BaseAPI {
      - parameter appWebhookSlug: (path) App webhook slug 
      - parameter webhookDeliveryItemSlug: (path) Webhook delivery item slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<ServiceStandardErrorRespModel, ErrorResponse>
+     - returns: ServiceStandardErrorRespModel
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func webhookDeliveryItemRedeliver(appSlug: String, appWebhookSlug: String, webhookDeliveryItemSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<ServiceStandardErrorRespModel, ErrorResponse> {
-        return Future<ServiceStandardErrorRespModel, ErrorResponse> { [weak self] promise in
-            self?.webhookDeliveryItemRedeliverWithRequestBuilder(appSlug: appSlug, appWebhookSlug: appWebhookSlug, webhookDeliveryItemSlug: webhookDeliveryItemSlug).execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func webhookDeliveryItemRedeliver(appSlug: String, appWebhookSlug: String, webhookDeliveryItemSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> ServiceStandardErrorRespModel {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = webhookDeliveryItemRedeliverWithRequestBuilder(appSlug: appSlug, appWebhookSlug: appWebhookSlug, webhookDeliveryItemSlug: webhookDeliveryItemSlug).execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      Re-deliver the webhook delivery items of an app
@@ -147,23 +165,32 @@ public final class WebhookDeliveryItemAPI: BaseAPI {
      - parameter appWebhookSlug: (path) App webhook slug 
      - parameter webhookDeliveryItemSlug: (path) Webhook delivery item slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0WebhookDeliveryItemResponseModel, ErrorResponse>
+     - returns: V0WebhookDeliveryItemResponseModel
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func webhookDeliveryItemShow(appSlug: String, appWebhookSlug: String, webhookDeliveryItemSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0WebhookDeliveryItemResponseModel, ErrorResponse> {
-        return Future<V0WebhookDeliveryItemResponseModel, ErrorResponse> { [weak self] promise in
-            self?.webhookDeliveryItemShowWithRequestBuilder(appSlug: appSlug, appWebhookSlug: appWebhookSlug, webhookDeliveryItemSlug: webhookDeliveryItemSlug).execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func webhookDeliveryItemShow(appSlug: String, appWebhookSlug: String, webhookDeliveryItemSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> V0WebhookDeliveryItemResponseModel {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = webhookDeliveryItemShowWithRequestBuilder(appSlug: appSlug, appWebhookSlug: appWebhookSlug, webhookDeliveryItemSlug: webhookDeliveryItemSlug).execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      Get a specific delivery item of a webhook

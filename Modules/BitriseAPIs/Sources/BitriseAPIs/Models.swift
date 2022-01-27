@@ -69,17 +69,17 @@ public enum DecodableRequestBuilderError: Error {
 }
 
 open class Response<T> {
-    public let statusCode: Int?
-    public let header: [String: String]?
-    public let body: T?
+    public let statusCode: Int
+    public let header: [String: String]
+    public let body: T
 
-    public init(statusCode: Int? = nil, header: [String: String]? = nil, body: T?) {
+    public init(statusCode: Int, header: [String: String], body: T) {
         self.statusCode = statusCode
         self.header = header
         self.body = body
     }
 
-    public convenience init(response: HTTPURLResponse, body: T?) {
+    public convenience init(response: HTTPURLResponse, body: T) {
         let rawHeader = response.allHeaderFields
         var header = [String: String]()
         for (key, value) in rawHeader {
@@ -88,5 +88,18 @@ open class Response<T> {
             }
         }
         self.init(statusCode: response.statusCode, header: header, body: body)
+    }
+}
+
+public final class RequestTask {
+    private var task: URLSessionTask?
+
+    internal func set(task: URLSessionTask) {
+        self.task = task
+    }
+
+    public func cancel() {
+        task?.cancel()
+        task = nil
     }
 }

@@ -12,8 +12,7 @@ import BitriseAPIs
 final class AuthScreenViewModel: BaseViewModel<V0UserProfileRespModel> {
     var token: String?
     
-    override func fetch() -> AnyPublisher<V0UserProfileRespModel, ErrorResponse> {
-        return UserAPI(apiToken: token)
-            .userProfile()
+    override func fetch() async throws -> V0UserProfileRespModel {
+        try await UserAPI(apiToken: token).userProfile()
     }
 }

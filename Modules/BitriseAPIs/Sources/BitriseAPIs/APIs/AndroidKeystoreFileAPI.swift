@@ -19,23 +19,32 @@ public final class AndroidKeystoreFileAPI: BaseAPI {
      - parameter appSlug: (path) App slug 
      - parameter androidKeystoreFile: (body) Android keystore file parameters 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0ProjectFileStorageResponseModel, ErrorResponse>
+     - returns: V0ProjectFileStorageResponseModel
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func androidKeystoreFileCreate(appSlug: String, androidKeystoreFile: V0AndroidKeystoreFileUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageResponseModel, ErrorResponse> {
-        return Future<V0ProjectFileStorageResponseModel, ErrorResponse> { [weak self] promise in
-            self?.androidKeystoreFileCreateWithRequestBuilder(appSlug: appSlug, androidKeystoreFile: androidKeystoreFile).execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func androidKeystoreFileCreate(appSlug: String, androidKeystoreFile: V0AndroidKeystoreFileUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> V0ProjectFileStorageResponseModel {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = androidKeystoreFileCreateWithRequestBuilder(appSlug: appSlug, androidKeystoreFile: androidKeystoreFile).execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      Create an Android keystore file
@@ -74,23 +83,32 @@ public final class AndroidKeystoreFileAPI: BaseAPI {
      - parameter next: (query) Slug of the first android keystore file in the response (optional)
      - parameter limit: (query) Max number of build certificates per page is 50. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0ProjectFileStorageListResponseModel, ErrorResponse>
+     - returns: V0ProjectFileStorageListResponseModel
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func androidKeystoreFileList(appSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProjectFileStorageListResponseModel, ErrorResponse> {
-        return Future<V0ProjectFileStorageListResponseModel, ErrorResponse> { [weak self] promise in
-            self?.androidKeystoreFileListWithRequestBuilder(appSlug: appSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func androidKeystoreFileList(appSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> V0ProjectFileStorageListResponseModel {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = androidKeystoreFileListWithRequestBuilder(appSlug: appSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      Get a list of the android keystore files

@@ -16,6 +16,7 @@ public enum BaseViewModelState {
     case error
 }
 
+@MainActor
 protocol RootViewModel {
     init(_ tokenManager: TokenManager)
 }
@@ -24,6 +25,7 @@ protocol CacheableViewModel {
 
 }
 
+@MainActor
 protocol BaseViewModelProtocol: ObservableObject {
     associatedtype ValueType
     var value: ValueType? { get }
@@ -39,7 +41,7 @@ protocol BaseViewModelProtocol: ObservableObject {
     var shouldHandleActivityUpdate: Bool { get }
     var shouldRefreshAfterBackground: Bool { get }
     
-    func fetch() -> AnyPublisher<ValueType, ErrorResponse>
+    func fetch() async throws -> ValueType
     func refresh()
     func beforeRefresh()
     func afterRefresh()
@@ -51,7 +53,7 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
     @Published var state: BaseViewModelState = .idle
     @Published var error: ErrorResponse?
     
-    private var fetcher: AnyCancellable?
+    private var fetcher: Task<Void, Never>?
     
     private var activityWatcher: AnyCancellable?
     private var backgroundUpdater: AnyCancellable?
@@ -131,7 +133,7 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
         }
     }
     
-    func fetch() -> AnyPublisher<ValueType, ErrorResponse> {
+    func fetch() async throws -> ValueType {
         fatalError("Should override")
     }
     
@@ -145,20 +147,16 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
         fetcher?.cancel()
         
         state = .loading
-        
-        fetcher = fetch()
-            .sink(receiveCompletion: { [weak self] subscriberCompletion in
-                guard let self = self else { return }
-                if case .failure(let error) = subscriberCompletion {
-                    self.error = error
-                    self.state = .error
-                }
-                self.afterRefresh()
-            }, receiveValue: { [weak self] value in
-                guard let self = self else { return }
-                self.value = value
+        fetcher = Task {
+            do {
+                self.value = try await fetch()
                 self.state = .value
-            })
+            } catch {
+                self.error = error as? ErrorResponse
+                self.state = .error
+            }
+            self.afterRefresh()
+        }
     }
     
     func afterRefresh() {

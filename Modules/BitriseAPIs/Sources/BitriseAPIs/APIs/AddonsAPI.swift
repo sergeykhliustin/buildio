@@ -18,23 +18,32 @@ public final class AddonsAPI: BaseAPI {
      
      - parameter appSlug: (path) App slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0AppAddOnsListResponseModel, ErrorResponse>
+     - returns: V0AppAddOnsListResponseModel
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func addonListByApp(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppAddOnsListResponseModel, ErrorResponse> {
-        return Future<V0AppAddOnsListResponseModel, ErrorResponse> { [weak self] promise in
-            self?.addonListByAppWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func addonListByApp(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> V0AppAddOnsListResponseModel {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = addonListByAppWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      Get list of the addons for apps
@@ -73,23 +82,32 @@ public final class AddonsAPI: BaseAPI {
      
      - parameter organizationSlug: (path) Organization slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0OwnerAddOnsListResponseModel, ErrorResponse>
+     - returns: V0OwnerAddOnsListResponseModel
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func addonListByOrganization(organizationSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0OwnerAddOnsListResponseModel, ErrorResponse> {
-        return Future<V0OwnerAddOnsListResponseModel, ErrorResponse> { [weak self] promise in
-            self?.addonListByOrganizationWithRequestBuilder(organizationSlug: organizationSlug).execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func addonListByOrganization(organizationSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> V0OwnerAddOnsListResponseModel {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = addonListByOrganizationWithRequestBuilder(organizationSlug: organizationSlug).execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      Get list of the addons for organization
@@ -125,23 +143,32 @@ public final class AddonsAPI: BaseAPI {
      
      - parameter userSlug: (path) User slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0OwnerAddOnsListResponseModel, ErrorResponse>
+     - returns: V0OwnerAddOnsListResponseModel
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func addonListByUser(userSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0OwnerAddOnsListResponseModel, ErrorResponse> {
-        return Future<V0OwnerAddOnsListResponseModel, ErrorResponse> { [weak self] promise in
-            self?.addonListByUserWithRequestBuilder(userSlug: userSlug).execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func addonListByUser(userSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> V0OwnerAddOnsListResponseModel {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = addonListByUserWithRequestBuilder(userSlug: userSlug).execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      Get list of the addons for user
@@ -176,23 +203,32 @@ public final class AddonsAPI: BaseAPI {
      Get list of available Bitrise addons
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0AddonsListResponseModel, ErrorResponse>
+     - returns: V0AddonsListResponseModel
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func addonsList(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AddonsListResponseModel, ErrorResponse> {
-        return Future<V0AddonsListResponseModel, ErrorResponse> { [weak self] promise in
-            self?.addonsListWithRequestBuilder().execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func addonsList(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> V0AddonsListResponseModel {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = addonsListWithRequestBuilder().execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      Get list of available Bitrise addons
@@ -224,23 +260,32 @@ public final class AddonsAPI: BaseAPI {
      
      - parameter addonId: (path) Addon ID 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0AddonsShowResponseModel, ErrorResponse>
+     - returns: V0AddonsShowResponseModel
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func addonsShow(addonId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AddonsShowResponseModel, ErrorResponse> {
-        return Future<V0AddonsShowResponseModel, ErrorResponse> { [weak self] promise in
-            self?.addonsShowWithRequestBuilder(addonId: addonId).execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func addonsShow(addonId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> V0AddonsShowResponseModel {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = addonsShowWithRequestBuilder(addonId: addonId).execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      Get a specific Bitrise addon

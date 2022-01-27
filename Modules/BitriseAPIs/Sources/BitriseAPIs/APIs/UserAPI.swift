@@ -17,23 +17,32 @@ public final class UserAPI: BaseAPI {
      The active addon tokens of the user
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[String], ErrorResponse>
+     - returns: [String]
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func userAddonTokens(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<[String], ErrorResponse> {
-        return Future<[String], ErrorResponse> { [weak self] promise in
-            self?.userAddonTokensWithRequestBuilder().execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func userAddonTokens(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> [String] {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = userAddonTokensWithRequestBuilder().execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      The active addon tokens of the user
@@ -64,23 +73,32 @@ public final class UserAPI: BaseAPI {
      Removes an active addon token of the user
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<Void, ErrorResponse>
+     - returns: Void
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func userAddonTokensDelete(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<Void, ErrorResponse> {
-        return Future<Void, ErrorResponse> { [weak self] promise in
-            self?.userAddonTokensDeleteWithRequestBuilder().execute(apiResponseQueue) { result in
-                switch result {
-                case .success:
-                    promise(.success(()))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func userAddonTokensDelete(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = userAddonTokensDeleteWithRequestBuilder().execute(apiResponseQueue) { result in
+                    switch result {
+                    case .success:
+                        continuation.resume(returning: ())
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      Removes an active addon token of the user
@@ -111,23 +129,32 @@ public final class UserAPI: BaseAPI {
      The subscription plan of the user
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0UserPlanRespModel, ErrorResponse>
+     - returns: V0UserPlanRespModel
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func userPlan(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0UserPlanRespModel, ErrorResponse> {
-        return Future<V0UserPlanRespModel, ErrorResponse> { [weak self] promise in
-            self?.userPlanWithRequestBuilder().execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func userPlan(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> V0UserPlanRespModel {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = userPlanWithRequestBuilder().execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      The subscription plan of the user
@@ -158,23 +185,32 @@ public final class UserAPI: BaseAPI {
      Get your profile data
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0UserProfileRespModel, ErrorResponse>
+     - returns: V0UserProfileRespModel
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func userProfile(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0UserProfileRespModel, ErrorResponse> {
-        return Future<V0UserProfileRespModel, ErrorResponse> { [weak self] promise in
-            self?.userProfileWithRequestBuilder().execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func userProfile(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> V0UserProfileRespModel {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = userProfileWithRequestBuilder().execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      Get your profile data
@@ -206,23 +242,32 @@ public final class UserAPI: BaseAPI {
      
      - parameter userSlug: (path) User slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0UserProfileRespModel, ErrorResponse>
+     - returns: V0UserProfileRespModel
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func userShow(userSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0UserProfileRespModel, ErrorResponse> {
-        return Future<V0UserProfileRespModel, ErrorResponse> { [weak self] promise in
-            self?.userShowWithRequestBuilder(userSlug: userSlug).execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func userShow(userSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> V0UserProfileRespModel {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = userShowWithRequestBuilder(userSlug: userSlug).execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      Get a specific user

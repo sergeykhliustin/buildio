@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import Models
 
+@MainActor
 final class ScreenFactory: ObservableObject {
     private let viewModelFactory: ViewModelFactory
     

@@ -12,7 +12,7 @@ import BitriseAPIs
 final class ActivityWatcher: ObservableObject {
     static let lastActivityDateUpdated: Notification.Name = Notification.Name(rawValue: "ActivityWatcher.lastActivityDateUpdated")
     
-    private var fetcher: AnyCancellable?
+    private var fetcher: Task<Void, Never>?
     private var timer: Timer?
     private var tokenHandler: AnyCancellable?
     private var token: String?
@@ -35,26 +35,30 @@ final class ActivityWatcher: ObservableObject {
     }
     
     private func refresh() {
-        fetcher = ActivityAPI(apiToken: self.token)
-            .activityList(limit: 1)
-            .map({ $0.data.first?.createdAt })
-            .sink(receiveCompletion: { [weak self] _ in
-                self?.scheduleNextUpdate()
-            }, receiveValue: { [weak self] date in
-                if let date = date {
-                    self?.lastActivityDate = date
+        fetcher?.cancel()
+        fetcher = Task {
+            do {
+                if let date = try await ActivityAPI(apiToken: self.token).activityList(limit: 1).data.first?.createdAt {
+                    self.lastActivityDate = date
                 }
-            })
+            } catch {
+                logger.error(error)
+            }
+            scheduleNextUpdate()
+        }
     }
     
     private func scheduleNextUpdate() {
-        timer?.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: { [weak self] timer in
-            guard let self = self else {
-                timer.invalidate()
-                return
-            }
-            self.refresh()
-        })
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.timer?.invalidate()
+            self.timer = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: { [weak self] timer in
+                guard let self = self else {
+                    timer.invalidate()
+                    return
+                }
+                self.refresh()
+            })
+        }
     }
 }

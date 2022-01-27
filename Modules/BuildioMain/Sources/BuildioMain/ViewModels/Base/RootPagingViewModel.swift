@@ -7,6 +7,7 @@
 
 import Models
 
+@MainActor
 class RootPagingViewModel<VALUE: PagingResponseModel>: PagingViewModel<VALUE> {
     
     override class var shouldRefreshOnInit: Bool {

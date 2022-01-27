@@ -12,15 +12,16 @@ final class NoApiKeyRequestBuilderFactory: RequestBuilderFactory {
         return EmptyRequestBuilder<T>.self
     }
     
-    func getBuilder<T>() -> RequestBuilder<T>.Type where T: Decodable, T: Encodable {
+    func getBuilder<T: Codable>() -> RequestBuilder<T>.Type {
         return EmptyRequestBuilder<T>.self
     }
 }
 
 final class EmptyRequestBuilder<T>: RequestBuilder<T> {
-    override func execute(_ apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, _ completion: @escaping (Result<Response<T>, ErrorResponse>) -> Void) {
+    override func execute(_ apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, _ completion: @escaping (Result<Response<T>, ErrorResponse>) -> Void) -> RequestTask {
         let path = URLComponents(string: URLString)?.path ?? URLString
         logger.info("No Api key to execute: \(method) -> \(path)")
         completion(.failure(.empty))
+        return requestTask
     }
 }

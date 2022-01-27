@@ -63,6 +63,7 @@ final class Navigator: ObservableObject {
         navigationController?.popToRoot()
     }
     
+    @MainActor
     func go(_ route: Route) {
         let builder = screenFactory
         var controller: UIViewController!
@@ -82,6 +83,7 @@ final class Navigator: ObservableObject {
         self.route = route
     }
     
+    @MainActor
     func go(_ route: NewBuildRoute) {
         let builder = screenFactory
         switch route {
@@ -103,6 +105,7 @@ final class Navigator: ObservableObject {
         }
     }
     
+    @MainActor
     func go(_ route: AuthRoute) {
         let builder = screenFactory
         switch route {
@@ -119,6 +122,7 @@ final class Navigator: ObservableObject {
         }
     }
     
+    @MainActor
     func go(_ route: SettingsRoute) {
         let builder = screenFactory
         var controller: UIViewController!

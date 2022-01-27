@@ -18,23 +18,32 @@ public final class BuildRequestAPI: BaseAPI {
      
      - parameter appSlug: (path) App slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0BuildRequestListResponseModel, ErrorResponse>
+     - returns: V0BuildRequestListResponseModel
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func buildRequestList(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildRequestListResponseModel, ErrorResponse> {
-        return Future<V0BuildRequestListResponseModel, ErrorResponse> { [weak self] promise in
-            self?.buildRequestListWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func buildRequestList(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> V0BuildRequestListResponseModel {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = buildRequestListWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      List the open build requests for an app
@@ -75,23 +84,32 @@ public final class BuildRequestAPI: BaseAPI {
      - parameter buildRequestSlug: (path) Build request slug 
      - parameter buildRequest: (body) Build request parameters 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0BuildRequestUpdateResponseModel, ErrorResponse>
+     - returns: V0BuildRequestUpdateResponseModel
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func buildRequestUpdate(appSlug: String, buildRequestSlug: String, buildRequest: V0BuildRequestUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0BuildRequestUpdateResponseModel, ErrorResponse> {
-        return Future<V0BuildRequestUpdateResponseModel, ErrorResponse> { [weak self] promise in
-            self?.buildRequestUpdateWithRequestBuilder(appSlug: appSlug, buildRequestSlug: buildRequestSlug, buildRequest: buildRequest).execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func buildRequestUpdate(appSlug: String, buildRequestSlug: String, buildRequest: V0BuildRequestUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> V0BuildRequestUpdateResponseModel {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = buildRequestUpdateWithRequestBuilder(appSlug: appSlug, buildRequestSlug: buildRequestSlug, buildRequest: buildRequest).execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      Update a build request

@@ -7,7 +7,6 @@
 
 import SwiftUI
 import Models
-import Combine
 import BitriseAPIs
 
 private final class AccountRowViewModel: BaseViewModel<V0UserProfileDataModel> {
@@ -18,10 +17,8 @@ private final class AccountRowViewModel: BaseViewModel<V0UserProfileDataModel> {
         super.init()
     }
     
-    override func fetch() -> AnyPublisher<V0UserProfileDataModel, ErrorResponse> {
-        UserAPI(apiToken: token)
-            .userProfile().map({ $0.data })
-            .eraseToAnyPublisher()
+    override func fetch() async throws -> V0UserProfileDataModel {
+        try await UserAPI(apiToken: token).userProfile().data
     }
 }
 

@@ -20,10 +20,8 @@ struct NewBuildViewModelParams {
 final class NewBuildViewModel: BaseApiViewModel<V0BuildTriggerRespModel> {
     var params: NewBuildViewModelParams!
     
-    override func fetch() -> AnyPublisher<V0BuildTriggerRespModel, ErrorResponse> {
+    override func fetch() async throws -> V0BuildTriggerRespModel {
         let buildParams = BuildTriggerParams(branch: params.branch, workflowId: params.workflow, commitMessage: params.message)
-        return apiFactory
-            .api(BuildsAPI.self)
-            .buildTrigger(appSlug: params.appSlug, buildParams: buildParams)
+        return try await apiFactory.api(BuildsAPI.self).buildTrigger(appSlug: params.appSlug, buildParams: buildParams)
     }
 }

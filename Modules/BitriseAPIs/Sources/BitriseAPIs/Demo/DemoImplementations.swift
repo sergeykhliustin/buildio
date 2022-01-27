@@ -29,24 +29,25 @@ final class DemoRequestBuilder<T>: URLSessionRequestBuilder<T> {
         super.init(method: method, URLString: URLString, parameters: parameters, headers: headers)
     }
     
-    override func execute(_ apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, _ completion: @escaping (Result<Response<T>, ErrorResponse>) -> Void) {
+    override func execute(_ apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, _ completion: @escaping (Result<Response<T>, ErrorResponse>) -> Void) -> RequestTask {
         if ProcessInfo.processInfo.environment["DEMO_RECORD"] != nil {
-            super.execute(apiResponseQueue, completion)
+            return super.execute(apiResponseQueue, completion)
         } else {
             completion(.failure(.demoRestricted))
+            return requestTask
         }
     }
 }
 
 final class DemoDecodableRequestBuilder<T: Codable>: URLSessionDecodableRequestBuilder<T> {
-    override func execute(_ apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, _ completion: @escaping (Result<Response<T>, ErrorResponse>) -> Void) {
-        
+    override func execute(_ apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, _ completion: @escaping (Result<Response<T>, ErrorResponse>) -> Void) -> RequestTask {
         if let path = demoRecordPath {
             try? FileManager.default
                 .createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
             let fileUrl = URL(fileURLWithPath: path).appendingPathComponent("data.json")
             let completionWrapped: (Result<Response<T>, ErrorResponse>) -> Void = {
-                if case .success(let response) = $0, let value = response.body {
+                if case .success(let response) = $0 {
+                    let value = response.body
                     do {
                         let data = try CodableHelper.encode(value: value)
                         try data.write(to: fileUrl)
@@ -56,13 +57,13 @@ final class DemoDecodableRequestBuilder<T: Codable>: URLSessionDecodableRequestB
                 }
                 completion($0)
             }
-            super.execute(apiResponseQueue, completionWrapped)
+            return super.execute(apiResponseQueue, completionWrapped)
         } else {
             if let demoDataURL = demoDataFileURL,
                 let data = try? Data(contentsOf: demoDataURL) {
                 do {
                     let value = try CodableHelper.decode(type: T.self, from: data)
-                    completion(.success(Response(body: value)))
+                    completion(.success(Response(statusCode: 200, header: [:], body: value)))
                 } catch {
                     logger.error(error)
                     completion(.failure(.demoRestricted))
@@ -71,6 +72,7 @@ final class DemoDecodableRequestBuilder<T: Codable>: URLSessionDecodableRequestB
                 completion(.failure(.demoRestricted))
             }
         }
+        return requestTask
     }
     
     private let demoRedirectRules: [String: String] = [

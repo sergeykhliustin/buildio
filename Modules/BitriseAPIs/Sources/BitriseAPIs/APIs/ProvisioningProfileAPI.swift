@@ -19,23 +19,32 @@ public final class ProvisioningProfileAPI: BaseAPI {
      - parameter appSlug: (path) App slug 
      - parameter provisioningProfileSlug: (path) Provisioning profile slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0ProvisionProfileResponseModel, ErrorResponse>
+     - returns: V0ProvisionProfileResponseModel
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func provisioningProfileConfirm(appSlug: String, provisioningProfileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileResponseModel, ErrorResponse> {
-        return Future<V0ProvisionProfileResponseModel, ErrorResponse> { [weak self] promise in
-            self?.provisioningProfileConfirmWithRequestBuilder(appSlug: appSlug, provisioningProfileSlug: provisioningProfileSlug).execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func provisioningProfileConfirm(appSlug: String, provisioningProfileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> V0ProvisionProfileResponseModel {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = provisioningProfileConfirmWithRequestBuilder(appSlug: appSlug, provisioningProfileSlug: provisioningProfileSlug).execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      Confirm a provisioning profile upload
@@ -76,23 +85,32 @@ public final class ProvisioningProfileAPI: BaseAPI {
      - parameter appSlug: (path) App slug 
      - parameter provisioningProfile: (body) Provisioning profile parameters such as file name and file size 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0ProvisionProfileResponseModel, ErrorResponse>
+     - returns: V0ProvisionProfileResponseModel
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func provisioningProfileCreate(appSlug: String, provisioningProfile: V0ProvisionProfileUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileResponseModel, ErrorResponse> {
-        return Future<V0ProvisionProfileResponseModel, ErrorResponse> { [weak self] promise in
-            self?.provisioningProfileCreateWithRequestBuilder(appSlug: appSlug, provisioningProfile: provisioningProfile).execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func provisioningProfileCreate(appSlug: String, provisioningProfile: V0ProvisionProfileUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> V0ProvisionProfileResponseModel {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = provisioningProfileCreateWithRequestBuilder(appSlug: appSlug, provisioningProfile: provisioningProfile).execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      Create a provisioning profile
@@ -130,23 +148,32 @@ public final class ProvisioningProfileAPI: BaseAPI {
      - parameter appSlug: (path) App slug 
      - parameter provisioningProfileSlug: (path) Provisioning profile slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0ProvisionProfileResponseModel, ErrorResponse>
+     - returns: V0ProvisionProfileResponseModel
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func provisioningProfileDelete(appSlug: String, provisioningProfileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileResponseModel, ErrorResponse> {
-        return Future<V0ProvisionProfileResponseModel, ErrorResponse> { [weak self] promise in
-            self?.provisioningProfileDeleteWithRequestBuilder(appSlug: appSlug, provisioningProfileSlug: provisioningProfileSlug).execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func provisioningProfileDelete(appSlug: String, provisioningProfileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> V0ProvisionProfileResponseModel {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = provisioningProfileDeleteWithRequestBuilder(appSlug: appSlug, provisioningProfileSlug: provisioningProfileSlug).execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      Delete a provisioning profile
@@ -188,23 +215,32 @@ public final class ProvisioningProfileAPI: BaseAPI {
      - parameter next: (query) Slug of the first provisioning profile in the response (optional)
      - parameter limit: (query) Max number of elements per page (default: 50) (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0ProvisionProfileListResponseModel, ErrorResponse>
+     - returns: V0ProvisionProfileListResponseModel
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func provisioningProfileList(appSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileListResponseModel, ErrorResponse> {
-        return Future<V0ProvisionProfileListResponseModel, ErrorResponse> { [weak self] promise in
-            self?.provisioningProfileListWithRequestBuilder(appSlug: appSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func provisioningProfileList(appSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> V0ProvisionProfileListResponseModel {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = provisioningProfileListWithRequestBuilder(appSlug: appSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      Get a list of the provisioning profiles
@@ -250,23 +286,32 @@ public final class ProvisioningProfileAPI: BaseAPI {
      - parameter appSlug: (path) App slug 
      - parameter provisioningProfileSlug: (path) Provisioning profile slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0ProvisionProfileResponseModel, ErrorResponse>
+     - returns: V0ProvisionProfileResponseModel
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func provisioningProfileShow(appSlug: String, provisioningProfileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileResponseModel, ErrorResponse> {
-        return Future<V0ProvisionProfileResponseModel, ErrorResponse> { [weak self] promise in
-            self?.provisioningProfileShowWithRequestBuilder(appSlug: appSlug, provisioningProfileSlug: provisioningProfileSlug).execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func provisioningProfileShow(appSlug: String, provisioningProfileSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> V0ProvisionProfileResponseModel {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = provisioningProfileShowWithRequestBuilder(appSlug: appSlug, provisioningProfileSlug: provisioningProfileSlug).execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      Get a specific provisioning profile
@@ -308,23 +353,32 @@ public final class ProvisioningProfileAPI: BaseAPI {
      - parameter provisioningProfileSlug: (path) Provisioning profile slug 
      - parameter provisioningProfile: (body) Provisioning profile parameters 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0ProvisionProfileResponseModel, ErrorResponse>
+     - returns: V0ProvisionProfileResponseModel
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func provisioningProfileUpdate(appSlug: String, provisioningProfileSlug: String, provisioningProfile: V0ProvProfileDocumentUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ProvisionProfileResponseModel, ErrorResponse> {
-        return Future<V0ProvisionProfileResponseModel, ErrorResponse> { [weak self] promise in
-            self?.provisioningProfileUpdateWithRequestBuilder(appSlug: appSlug, provisioningProfileSlug: provisioningProfileSlug, provisioningProfile: provisioningProfile).execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func provisioningProfileUpdate(appSlug: String, provisioningProfileSlug: String, provisioningProfile: V0ProvProfileDocumentUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> V0ProvisionProfileResponseModel {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = provisioningProfileUpdateWithRequestBuilder(appSlug: appSlug, provisioningProfileSlug: provisioningProfileSlug, provisioningProfile: provisioningProfile).execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      Update a provisioning profile

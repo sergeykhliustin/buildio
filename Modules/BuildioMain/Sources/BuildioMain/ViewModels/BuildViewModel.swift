@@ -22,7 +22,7 @@ struct ModelError: Hashable, Identifiable {
 final class BuildViewModel: BaseApiViewModel<BuildResponseItemModel>, CacheableViewModel {
     @Published var updater = false
     
-    private var actionCancellable: AnyCancellable?
+    private var actionCancellable: Task<Void, Never>?
     private var estimatorFetcher: AnyCancellable?
     private var updaterTimer: Timer?
     private var statusTimer: Timer?
@@ -87,25 +87,21 @@ final class BuildViewModel: BaseApiViewModel<BuildResponseItemModel>, CacheableV
         }
         if let value = self.value, actionCancellable == nil {
             self.state = .loading
-            
-            actionCancellable = apiFactory.api(BuildsAPI.self)
-                .buildTrigger(appSlug: value.repository.slug, buildParams: BuildTriggerParams(build: value))
-                .sink(receiveCompletion: { [weak self] result in
-                    guard let self = self else { return }
-                    if case .failure(let error) = result {
-                        self.actionError = ModelError(title: "Failed to start the Build", message: error.rawErrorString)
-                        self.error = error
-                        self.state = .error
-                        completion?(error)
-                    } else {
-                        self.state = .value
-                        self.refresh()
-                        completion?(nil)
-                    }
-                    self.actionCancellable = nil
-                }, receiveValue: { value in
-                    logger.debug(value)
-                })
+            actionCancellable =
+            Task {
+                do {
+                    _ = try await apiFactory.api(BuildsAPI.self)
+                        .buildTrigger(appSlug: value.repository.slug, buildParams: BuildTriggerParams(build: value))
+                    self.state = .value
+                    self.refresh()
+                } catch {
+                    self.actionError = ModelError(title: "Failed to start the Build", message: (error as? ErrorResponse)?.rawErrorString ?? "")
+                    self.error = error as? ErrorResponse
+                    self.state = .error
+                }
+                self.actionCancellable = nil
+                completion?(self.error)
+            }
         }
     }
     
@@ -116,44 +112,33 @@ final class BuildViewModel: BaseApiViewModel<BuildResponseItemModel>, CacheableV
         }
         if let value = self.value, actionCancellable == nil {
             self.state = .loading
-            
-            actionCancellable = apiFactory.api(BuildsAPI.self)
-                .buildAbort(appSlug: value.repository.slug,
-                            buildSlug: value.slug,
-                            buildAbortParams: V0BuildAbortParams(abortReason: reason, abortWithSuccess: false, skipNotifications: false))
-                .sink(receiveCompletion: { [weak self] result in
-                    guard let self = self else { return }
-                    if case .failure(let error) = result {
-                        self.actionError = ModelError(title: "Failed to abort the Build", message: error.rawErrorString)
-                        self.error = error
-                        self.state = .error
-                        completion?()
-                    } else {
-                        self.state = .value
-                        self.refresh()
-                        completion?()
-                    }
-                    self.actionCancellable = nil
-                }, receiveValue: { value in
-                    logger.debug(value)
-                })
+            let params = V0BuildAbortParams(abortReason: reason, abortWithSuccess: false, skipNotifications: false)
+            actionCancellable =
+            Task {
+                do {
+                    _ = try await apiFactory.api(BuildsAPI.self)
+                        .buildAbort(appSlug: value.repository.slug, buildSlug: value.slug, buildAbortParams: params)
+                    self.state = .value
+                    self.refresh()
+                } catch {
+                    self.actionError = ModelError(title: "Failed to abort the Build", message: (error as? ErrorResponse)?.rawErrorString ?? "")
+                    self.error = error as? ErrorResponse
+                    self.state = .error
+                }
+                self.actionCancellable = nil
+                completion?()
+            }
         }
     }
     
-    override func fetch() -> AnyPublisher<BuildResponseItemModel, ErrorResponse> {
+    override func fetch() async throws -> BuildResponseItemModel {
         let appSlug = value?.repository.slug ?? ""
         let buildSlug = value?.slug ?? ""
-        return apiFactory.api(BuildsAPI.self)
-            .buildShow(appSlug: appSlug, buildSlug: buildSlug)
-            .map({
-                if let repository = self.value?.repository {
-                    var build = $0.data
-                    build.repository = repository
-                    return build
-                }
-                return $0.data
-            })
-            .eraseToAnyPublisher()
+        var build = try await apiFactory.api(BuildsAPI.self).buildShow(appSlug: appSlug, buildSlug: buildSlug).data
+        if let repository = self.value?.repository {
+            build.repository = repository
+        }
+        return build
     }
     
     private func fetchEstimateIfNeeded() {
@@ -161,17 +146,21 @@ final class BuildViewModel: BaseApiViewModel<BuildResponseItemModel>, CacheableV
         guard value.status == .running else { return }
         guard let finishedAt = value.environmentPrepareFinishedAt else { return }
         guard estimatedDuration == nil else { return }
-        apiFactory
-            .api(BuildsAPI.self)
-            .buildList(appSlug: value.repository.slug,
-                       branch: value.branch,
-                       workflow: value.triggeredWorkflow,
-                       before: finishedAt,
-                       status: .success,
-                       limit: 1)
-            .replaceError(with: .empty())
-            .map({ $0.data.first?.duration })
-            .assign(to: &$estimatedDuration)
+        Task {
+            do {
+                let duration = try await apiFactory
+                    .api(BuildsAPI.self)
+                    .buildList(appSlug: value.repository.slug,
+                               branch: value.branch,
+                               workflow: value.triggeredWorkflow,
+                               before: finishedAt,
+                               status: .success,
+                               limit: 1).data.first?.duration
+                estimatedDuration = duration
+            } catch {
+                logger.error(error)
+            }
+        }
     }
     
     private func startStatusTimer() {

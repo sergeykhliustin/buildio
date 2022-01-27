@@ -19,23 +19,32 @@ public final class AppSetupAPI: BaseAPI {
      - parameter appSlug: (path) App slug 
      - parameter appConfig: (body) App config parameters 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[String: String], ErrorResponse>
+     - returns: [String: String]
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func appConfigCreate(appSlug: String, appConfig: V0AppConfigRequestParam, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<[String: String], ErrorResponse> {
-        return Future<[String: String], ErrorResponse> { [weak self] promise in
-            self?.appConfigCreateWithRequestBuilder(appSlug: appSlug, appConfig: appConfig).execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func appConfigCreate(appSlug: String, appConfig: V0AppConfigRequestParam, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> [String: String] {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = appConfigCreateWithRequestBuilder(appSlug: appSlug, appConfig: appConfig).execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      Upload a new bitrise.yml for your application.
@@ -72,23 +81,32 @@ public final class AppSetupAPI: BaseAPI {
      
      - parameter app: (body) App parameters 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0AppRespModel, ErrorResponse>
+     - returns: V0AppRespModel
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func appCreate(app: V0AppUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppRespModel, ErrorResponse> {
-        return Future<V0AppRespModel, ErrorResponse> { [weak self] promise in
-            self?.appCreateWithRequestBuilder(app: app).execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func appCreate(app: V0AppUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> V0AppRespModel {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = appCreateWithRequestBuilder(app: app).execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      Add a new app
@@ -122,23 +140,32 @@ public final class AppSetupAPI: BaseAPI {
      - parameter appSlug: (path) App slug 
      - parameter app: (body) App finish parameters 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0AppFinishRespModel, ErrorResponse>
+     - returns: V0AppFinishRespModel
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func appFinish(appSlug: String, app: V0AppFinishParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppFinishRespModel, ErrorResponse> {
-        return Future<V0AppFinishRespModel, ErrorResponse> { [weak self] promise in
-            self?.appFinishWithRequestBuilder(appSlug: appSlug, app: app).execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func appFinish(appSlug: String, app: V0AppFinishParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> V0AppFinishRespModel {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = appFinishWithRequestBuilder(appSlug: appSlug, app: app).execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      Save the application at the end of the app registration process
@@ -175,23 +202,32 @@ public final class AppSetupAPI: BaseAPI {
      
      - parameter appSlug: (path) App slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0WebhookRespModel, ErrorResponse>
+     - returns: V0WebhookRespModel
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func appWebhookCreate(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0WebhookRespModel, ErrorResponse> {
-        return Future<V0WebhookRespModel, ErrorResponse> { [weak self] promise in
-            self?.appWebhookCreateWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func appWebhookCreate(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> V0WebhookRespModel {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = appWebhookCreateWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      Register an incoming webhook for a specific application
@@ -228,23 +264,32 @@ public final class AppSetupAPI: BaseAPI {
      - parameter appSlug: (path) App slug 
      - parameter sshKey: (body) SSH key parameters 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0SSHKeyRespModel, ErrorResponse>
+     - returns: V0SSHKeyRespModel
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func sshKeyCreate(appSlug: String, sshKey: V0SSHKeyUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0SSHKeyRespModel, ErrorResponse> {
-        return Future<V0SSHKeyRespModel, ErrorResponse> { [weak self] promise in
-            self?.sshKeyCreateWithRequestBuilder(appSlug: appSlug, sshKey: sshKey).execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func sshKeyCreate(appSlug: String, sshKey: V0SSHKeyUploadParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> V0SSHKeyRespModel {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = sshKeyCreateWithRequestBuilder(appSlug: appSlug, sshKey: sshKey).execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      Add an SSH-key to a specific app

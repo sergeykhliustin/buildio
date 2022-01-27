@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Combine
 import BitriseAPIs
 import Models
 
@@ -22,10 +21,7 @@ final class WorkflowsViewModel: BaseApiViewModel<[String]> {
         super.init(tokenManager)
     }
     
-    override func fetch() -> AnyPublisher<[String], ErrorResponse> {
-        apiFactory.api(BuildsAPI.self)
-            .buildWorkflowList(appSlug: app.slug)
-            .map({ $0.data ?? [] })
-            .eraseToAnyPublisher()
+    override func fetch() async throws -> [String] {
+        try await apiFactory.api(BuildsAPI.self).buildWorkflowList(appSlug: app.slug).data ?? []
     }
 }

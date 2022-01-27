@@ -19,23 +19,32 @@ public final class OutgoingWebhookAPI: BaseAPI {
      - parameter appSlug: (path) App slug 
      - parameter appWebhookCreateParams: (body) App webhook creation params 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0AppWebhookCreatedResponseModel, ErrorResponse>
+     - returns: V0AppWebhookCreatedResponseModel
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func outgoingWebhookCreate(appSlug: String, appWebhookCreateParams: V0AppWebhookCreateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppWebhookCreatedResponseModel, ErrorResponse> {
-        return Future<V0AppWebhookCreatedResponseModel, ErrorResponse> { [weak self] promise in
-            self?.outgoingWebhookCreateWithRequestBuilder(appSlug: appSlug, appWebhookCreateParams: appWebhookCreateParams).execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func outgoingWebhookCreate(appSlug: String, appWebhookCreateParams: V0AppWebhookCreateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> V0AppWebhookCreatedResponseModel {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = outgoingWebhookCreateWithRequestBuilder(appSlug: appSlug, appWebhookCreateParams: appWebhookCreateParams).execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      Create an outgoing webhook for an app
@@ -76,23 +85,32 @@ public final class OutgoingWebhookAPI: BaseAPI {
      - parameter appSlug: (path) App slug 
      - parameter appWebhookSlug: (path) App webhook slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0AppWebhookDeletedResponseModel, ErrorResponse>
+     - returns: V0AppWebhookDeletedResponseModel
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func outgoingWebhookDelete(appSlug: String, appWebhookSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppWebhookDeletedResponseModel, ErrorResponse> {
-        return Future<V0AppWebhookDeletedResponseModel, ErrorResponse> { [weak self] promise in
-            self?.outgoingWebhookDeleteWithRequestBuilder(appSlug: appSlug, appWebhookSlug: appWebhookSlug).execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func outgoingWebhookDelete(appSlug: String, appWebhookSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> V0AppWebhookDeletedResponseModel {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = outgoingWebhookDeleteWithRequestBuilder(appSlug: appSlug, appWebhookSlug: appWebhookSlug).execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      Delete an outgoing webhook of an app
@@ -134,23 +152,32 @@ public final class OutgoingWebhookAPI: BaseAPI {
      - parameter next: (query) Slug of the first webhook in the response (optional)
      - parameter limit: (query) Max number of elements per page (default: 50) (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0AppWebhookListResponseModel, ErrorResponse>
+     - returns: V0AppWebhookListResponseModel
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func outgoingWebhookList(appSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppWebhookListResponseModel, ErrorResponse> {
-        return Future<V0AppWebhookListResponseModel, ErrorResponse> { [weak self] promise in
-            self?.outgoingWebhookListWithRequestBuilder(appSlug: appSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func outgoingWebhookList(appSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> V0AppWebhookListResponseModel {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = outgoingWebhookListWithRequestBuilder(appSlug: appSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      List the outgoing webhooks of an app
@@ -197,23 +224,32 @@ public final class OutgoingWebhookAPI: BaseAPI {
      - parameter appWebhookSlug: (path) App webhook slug 
      - parameter appWebhookUpdateParams: (body) App webhook update params 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0AppWebhookResponseModel, ErrorResponse>
+     - returns: V0AppWebhookResponseModel
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func outgoingWebhookUpdate(appSlug: String, appWebhookSlug: String, appWebhookUpdateParams: V0AppWebhookUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AppWebhookResponseModel, ErrorResponse> {
-        return Future<V0AppWebhookResponseModel, ErrorResponse> { [weak self] promise in
-            self?.outgoingWebhookUpdateWithRequestBuilder(appSlug: appSlug, appWebhookSlug: appWebhookSlug, appWebhookUpdateParams: appWebhookUpdateParams).execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func outgoingWebhookUpdate(appSlug: String, appWebhookSlug: String, appWebhookUpdateParams: V0AppWebhookUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> V0AppWebhookResponseModel {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = outgoingWebhookUpdateWithRequestBuilder(appSlug: appSlug, appWebhookSlug: appWebhookSlug, appWebhookUpdateParams: appWebhookUpdateParams).execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      Update an outgoing webhook of an app

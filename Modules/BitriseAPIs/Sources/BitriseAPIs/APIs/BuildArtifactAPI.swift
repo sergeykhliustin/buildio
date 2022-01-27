@@ -20,23 +20,32 @@ public final class BuildArtifactAPI: BaseAPI {
      - parameter buildSlug: (path) Build slug 
      - parameter artifactSlug: (path) Artifact slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0ArtifactDeleteResponseModel, ErrorResponse>
+     - returns: V0ArtifactDeleteResponseModel
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func artifactDelete(appSlug: String, buildSlug: String, artifactSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ArtifactDeleteResponseModel, ErrorResponse> {
-        return Future<V0ArtifactDeleteResponseModel, ErrorResponse> { [weak self] promise in
-            self?.artifactDeleteWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug, artifactSlug: artifactSlug).execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func artifactDelete(appSlug: String, buildSlug: String, artifactSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> V0ArtifactDeleteResponseModel {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = artifactDeleteWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug, artifactSlug: artifactSlug).execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      Delete a build artifact
@@ -83,23 +92,32 @@ public final class BuildArtifactAPI: BaseAPI {
      - parameter next: (query) Slug of the first build artifact in the response (optional)
      - parameter limit: (query) Max number of build artifacts per page is 50. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0ArtifactListResponseModel, ErrorResponse>
+     - returns: V0ArtifactListResponseModel
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func artifactList(appSlug: String, buildSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ArtifactListResponseModel, ErrorResponse> {
-        return Future<V0ArtifactListResponseModel, ErrorResponse> { [weak self] promise in
-            self?.artifactListWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func artifactList(appSlug: String, buildSlug: String, next: String? = nil, limit: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> V0ArtifactListResponseModel {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = artifactListWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug, next: next, limit: limit).execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      Get a list of all build artifacts
@@ -151,23 +169,32 @@ public final class BuildArtifactAPI: BaseAPI {
      - parameter artifactSlug: (path) Artifact slug 
      - parameter download: (query) Setting this will result in a redirect to the artifact download location (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0ArtifactShowResponseModel, ErrorResponse>
+     - returns: V0ArtifactShowResponseModel
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func artifactShow(appSlug: String, buildSlug: String, artifactSlug: String, download: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ArtifactShowResponseModel, ErrorResponse> {
-        return Future<V0ArtifactShowResponseModel, ErrorResponse> { [weak self] promise in
-            self?.artifactShowWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug, artifactSlug: artifactSlug, download: download).execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func artifactShow(appSlug: String, buildSlug: String, artifactSlug: String, download: Int? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> V0ArtifactShowResponseModel {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = artifactShowWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug, artifactSlug: artifactSlug, download: download).execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      Get a specific build artifact
@@ -221,23 +248,32 @@ public final class BuildArtifactAPI: BaseAPI {
      - parameter artifactSlug: (path) Artifact slug 
      - parameter artifactParams: (body) Artifact parameters 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0ArtifactShowResponseModel, ErrorResponse>
+     - returns: V0ArtifactShowResponseModel
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func artifactUpdate(appSlug: String, buildSlug: String, artifactSlug: String, artifactParams: V0ArtifactUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0ArtifactShowResponseModel, ErrorResponse> {
-        return Future<V0ArtifactShowResponseModel, ErrorResponse> { [weak self] promise in
-            self?.artifactUpdateWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug, artifactSlug: artifactSlug, artifactParams: artifactParams).execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func artifactUpdate(appSlug: String, buildSlug: String, artifactSlug: String, artifactParams: V0ArtifactUpdateParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> V0ArtifactShowResponseModel {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = artifactUpdateWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug, artifactSlug: artifactSlug, artifactParams: artifactParams).execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      Update a build artifact

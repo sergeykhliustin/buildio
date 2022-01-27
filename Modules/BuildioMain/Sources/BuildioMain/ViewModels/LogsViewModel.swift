@@ -30,11 +30,8 @@ final class LogsViewModel: BaseApiViewModel<BuildLogResponseModel> {
         return true
     }
     
-    override func fetch() -> AnyPublisher<BuildLogResponseModel, ErrorResponse> {
-        apiFactory
-            .api(BuildsAPI.self)
-            .buildLog(appSlug: build.repository.slug, buildSlug: build.slug, timestamp: value?.nextAfterTimestamp)
-            .eraseToAnyPublisher()
+    override func fetch() async throws -> BuildLogResponseModel {
+        try await apiFactory.api(BuildsAPI.self).buildLog(appSlug: build.repository.slug, buildSlug: build.slug, timestamp: value?.nextAfterTimestamp)
     }
     
     override func afterRefresh() {

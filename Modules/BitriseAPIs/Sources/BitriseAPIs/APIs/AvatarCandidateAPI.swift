@@ -19,23 +19,32 @@ public final class AvatarCandidateAPI: BaseAPI {
      - parameter appSlug: (path) App slug 
      - parameter avatarCandidate: (body) Avatar candidate parameters 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<[V0AvatarCandidateCreateResponseItem], ErrorResponse>
+     - returns: [V0AvatarCandidateCreateResponseItem]
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func avatarCandidateCreate(appSlug: String, avatarCandidate: [V0AvatarCandidateCreateParams], apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<[V0AvatarCandidateCreateResponseItem], ErrorResponse> {
-        return Future<[V0AvatarCandidateCreateResponseItem], ErrorResponse> { [weak self] promise in
-            self?.avatarCandidateCreateWithRequestBuilder(appSlug: appSlug, avatarCandidate: avatarCandidate).execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func avatarCandidateCreate(appSlug: String, avatarCandidate: [V0AvatarCandidateCreateParams], apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> [V0AvatarCandidateCreateResponseItem] {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = avatarCandidateCreateWithRequestBuilder(appSlug: appSlug, avatarCandidate: avatarCandidate).execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      Create avatar candidates
@@ -72,23 +81,32 @@ public final class AvatarCandidateAPI: BaseAPI {
      
      - parameter appSlug: (path) App slug 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0FindAvatarCandidateResponse, ErrorResponse>
+     - returns: V0FindAvatarCandidateResponse
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func avatarCandidateList(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0FindAvatarCandidateResponse, ErrorResponse> {
-        return Future<V0FindAvatarCandidateResponse, ErrorResponse> { [weak self] promise in
-            self?.avatarCandidateListWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func avatarCandidateList(appSlug: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> V0FindAvatarCandidateResponse {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = avatarCandidateListWithRequestBuilder(appSlug: appSlug).execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      Get list of the avatar candidates
@@ -126,23 +144,32 @@ public final class AvatarCandidateAPI: BaseAPI {
      - parameter avatarSlug: (path) Avatar candidate slug 
      - parameter avatarPromoteParams: (body) Avatar promote parameters 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: AnyPublisher<V0AvatarPromoteResponseModel, ErrorResponse>
+     - returns: V0AvatarPromoteResponseModel
      */
-    #if canImport(Combine)
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    public func avatarCandidatePromote(appSlug: String, avatarSlug: String, avatarPromoteParams: V0AvatarPromoteParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> AnyPublisher<V0AvatarPromoteResponseModel, ErrorResponse> {
-        return Future<V0AvatarPromoteResponseModel, ErrorResponse> { [weak self] promise in
-            self?.avatarCandidatePromoteWithRequestBuilder(appSlug: appSlug, avatarSlug: avatarSlug, avatarPromoteParams: avatarPromoteParams).execute(apiResponseQueue) { result in
-                switch result {
-                case let .success(response):
-                    promise(.success(response.body!))
-                case let .failure(error):
-                    promise(.failure(error))
+    public func avatarCandidatePromote(appSlug: String, avatarSlug: String, avatarPromoteParams: V0AvatarPromoteParams, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) async throws -> V0AvatarPromoteResponseModel {
+        var requestTask: RequestTask?
+        return try await withTaskCancellationHandler {
+            try Task.checkCancellation()
+            return try await withCheckedThrowingContinuation { continuation in
+                guard !Task.isCancelled else {
+                  continuation.resume(throwing: CancellationError())
+                  return
+                }
+
+                requestTask = avatarCandidatePromoteWithRequestBuilder(appSlug: appSlug, avatarSlug: avatarSlug, avatarPromoteParams: avatarPromoteParams).execute(apiResponseQueue) { result in
+                    switch result {
+                    case let .success(response):
+                        continuation.resume(returning: response.body)
+                    case let .failure(error):
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
-        }.eraseToAnyPublisher()
+        } onCancel: { [requestTask] in
+            requestTask?.cancel()
+        }
     }
-    #endif
 
     /**
      Promote an avatar candidate

@@ -20,7 +20,7 @@ private extension URL {
     }
 }
 
-final class AvatarViewModel: BaseViewModel<UIImage> {
+final class AvatarViewModel: BaseViewModel<UIImage>, CacheableViewModel {
     override class var shouldRefreshOnInit: Bool {
         return true
     }
@@ -56,7 +56,7 @@ final class AvatarViewModel: BaseViewModel<UIImage> {
         return color
     }
     
-    override func fetch() -> AnyPublisher<UIImage, ErrorResponse> {
-        ImageLoader().image(URL(str: url))
+    override func fetch() async throws -> UIImage {
+        try await ImageLoader().image(URL(str: url))
     }
 }

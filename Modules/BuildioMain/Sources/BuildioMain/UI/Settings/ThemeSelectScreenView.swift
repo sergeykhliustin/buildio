@@ -15,9 +15,11 @@ struct ThemeSelectScreenView: View {
     var body: some View {
         VStack(spacing: 8) {
             ForEach(ThemeSettings.allCases) { item in
-                CheckmarkSettingsItem(title: item.rawValue, icon: "", selected: item == themeSettings, action: {
+                CheckmarkSettingsItem(title: item.rawValue, selected: item == themeSettings, action: {
                     themeSettings = item
-                    navigator.dismiss()
+                    DispatchQueue.main.async {
+                        navigator.dismiss()
+                    }
                 })
             }
         }

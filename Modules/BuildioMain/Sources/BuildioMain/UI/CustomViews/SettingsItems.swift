@@ -8,22 +8,24 @@
 import SwiftUI
 
 private struct SettingsIcon: View {
-    let systemName: String
+    let systemName: String?
     
     var body: some View {
-        Image(systemName: systemName)
-            .frame(width: 20, height: 20, alignment: .center)
+        if let systemName = systemName {
+            Image(systemName: systemName)
+                .frame(width: 20, height: 20, alignment: .center)
+        }
     }
 }
 
 struct CheckmarkSettingsItem: View {
     let title: String
-    let icon: String
+    let icon: String?
     let selected: Bool
     let action: () -> Void
     
     init(title: String,
-         icon: String,
+         icon: String? = nil,
          selected: Bool,
          action: @escaping () -> Void) {
         self.selected = selected
@@ -37,7 +39,7 @@ struct CheckmarkSettingsItem: View {
                           leftContent: {
             SettingsIcon(systemName: icon)
         }, rightContent: {
-            SettingsIcon(systemName: selected ? "checkmark" : "")
+            SettingsIcon(systemName: selected ? "checkmark" : nil)
         }, action: action)
     }
 }
@@ -68,12 +70,12 @@ struct SettingsItem: View {
 struct NavigateSettingsItem: View {
     @Environment(\.theme) private var theme
     let title: String
-    let icon: String
+    let icon: String?
     let subtitle: String?
     let action: () -> Void
     
     init(title: String,
-         icon: String,
+         icon: String? = nil,
          subtitle: String? = nil,
          action: @escaping () -> Void) {
         self.title = title

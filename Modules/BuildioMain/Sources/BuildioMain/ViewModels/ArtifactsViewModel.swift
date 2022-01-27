@@ -27,17 +27,15 @@ final class ArtifactsViewModel: PagingViewModel<V0ArtifactListResponseModel> {
         super.init(tokenManager)
     }
     
-    override func fetch() -> AnyPublisher<V0ArtifactListResponseModel, ErrorResponse> {
-        apiFactory
+    override func fetch() async throws -> V0ArtifactListResponseModel {
+        try await apiFactory
             .api(BuildArtifactAPI.self)
             .artifactList(appSlug: build.repository.slug, buildSlug: build.slug, limit: fetchLimit)
-            .eraseToAnyPublisher()
     }
     
-    override func fetchPage(next: String?) -> AnyPublisher<V0ArtifactListResponseModel, ErrorResponse> {
-        apiFactory
+    override func fetchPage(next: String?) async throws -> PagingViewModel<V0ArtifactListResponseModel>.ValueType {
+        try await apiFactory
             .api(BuildArtifactAPI.self)
             .artifactList(appSlug: build.repository.slug, buildSlug: build.slug, next: next, limit: fetchLimit)
-            .eraseToAnyPublisher()
     }
 }

@@ -24,32 +24,24 @@ final class BuildsViewModel: RootPagingViewModel<V0BuildListResponseModel>, Root
         self.app = app
     }
     
-    override func fetch() -> AnyPublisher<V0BuildListResponseModel, ErrorResponse> {
+    override func fetch() async throws -> V0BuildListResponseModel {
         let api = apiFactory.api(BuildsAPI.self)
         if let app = app {
-            let enrich = self.enrich
-            return api
-                .buildList(appSlug: app.slug, limit: fetchLimit)
-                .map({ enrich($0, app) })
-                .eraseToAnyPublisher()
+            let list = try await api.buildList(appSlug: app.slug, limit: fetchLimit)
+            return enrich(list, app: app)
+        } else {
+            return try await api.buildListAll(limit: fetchLimit)
         }
-        return api
-            .buildListAll(limit: fetchLimit)
-            .eraseToAnyPublisher()
     }
     
-    override func fetchPage(next: String?) -> AnyPublisher<PagingViewModel<V0BuildListResponseModel>.ValueType, ErrorResponse> {
+    override func fetchPage(next: String?) async throws -> PagingViewModel<V0BuildListResponseModel>.ValueType {
         let api = apiFactory.api(BuildsAPI.self)
         if let app = app {
-            let enrich = self.enrich
-            return api
-                .buildList(appSlug: app.slug, sortBy: .runningFirst, next: next, limit: fetchLimit)
-                .map({ enrich($0, app) })
-                .eraseToAnyPublisher()
+            let list = try await api.buildList(appSlug: app.slug, sortBy: .runningFirst, next: next, limit: fetchLimit)
+            return enrich(list, app: app)
+        } else {
+            return try await api.buildListAll(next: next, limit: fetchLimit)
         }
-        return api
-            .buildListAll(next: next, limit: fetchLimit)
-            .eraseToAnyPublisher()
     }
     
     private func enrich(_ model: V0BuildListResponseModel, app: V0AppResponseItemModel) -> V0BuildListResponseModel {

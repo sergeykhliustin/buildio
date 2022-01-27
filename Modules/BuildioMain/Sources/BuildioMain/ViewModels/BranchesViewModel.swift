@@ -21,10 +21,7 @@ final class BranchesViewModel: BaseApiViewModel<[String]> {
         super.init(tokenManager)
     }
     
-    override func fetch() -> AnyPublisher<[String], ErrorResponse> {
-        apiFactory.api(ApplicationAPI.self)
-            .branchList(appSlug: app.slug)
-            .map({ $0.data ?? [] })
-            .eraseToAnyPublisher()
+    override func fetch() async throws -> [String] {
+        try await apiFactory.api(ApplicationAPI.self).branchList(appSlug: app.slug).data ?? []
     }
 }

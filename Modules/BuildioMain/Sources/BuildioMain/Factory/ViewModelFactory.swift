@@ -9,6 +9,7 @@ import Foundation
 import Models
 import Combine
 
+@MainActor
 final class ViewModelFactory {
     private typealias CacheValue = (Date, TimeInterval, CacheableViewModel)
     
@@ -61,7 +62,7 @@ final class ViewModelFactory {
     }
     
     func build(_ build: BuildResponseItemModel) -> BuildViewModel {
-        let model = cached(key: "BuildViewModel_\(build.slug)", ttl: Double.greatestFiniteMagnitude, model: BuildViewModel(tokenManager, build: build))
+        let model = cached(key: "BuildViewModel_\(build.slug)", model: BuildViewModel(tokenManager, build: build))
         if build.status != .running {
             model.value = build
         }
@@ -89,18 +90,20 @@ final class ViewModelFactory {
     }
     
     func avatar(app: V0AppResponseItemModel) -> AvatarViewModel {
-        AvatarViewModel(title: app.title, url: app.avatarUrl)
+        let key = "AvatartViewModel_" + app.title + (app.avatarUrl ?? "")
+        return cached(key: key, model: AvatarViewModel(title: app.title, url: app.avatarUrl))
     }
     
     func avatar(user: V0UserProfileDataModel) -> AvatarViewModel {
-        AvatarViewModel(title: user.username ?? user.email, url: user.avatarUrl)
+        let key = "AvatartViewModel_" + (user.username ?? user.email) + (user.avatarUrl ?? "")
+        return cached(key: key, model: AvatarViewModel(title: user.username ?? user.email, url: user.avatarUrl))
     }
     
     func avatar(title: String? = nil, url: String? = nil) -> AvatarViewModel {
         AvatarViewModel(title: title, url: url)
     }
     
-    func cached<T: CacheableViewModel>(key: String, ttl: TimeInterval, model: @autoclosure () -> T) -> T {
+    func cached<T: CacheableViewModel>(key: String, ttl: TimeInterval = Double.greatestFiniteMagnitude, model: @autoclosure () -> T) -> T {
         DispatchQueue.main.async {
             self.cleanupCache()
         }

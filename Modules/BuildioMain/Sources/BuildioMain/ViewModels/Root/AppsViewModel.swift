@@ -52,17 +52,11 @@ final class AppsViewModel: RootPagingViewModel<V0AppListResponseModel>, RootView
         origItems.removeAll()
     }
     
-    override func fetch() -> AnyPublisher<V0AppListResponseModel, ErrorResponse> {
-        apiFactory
-            .api(ApplicationAPI.self)
-            .appList(title: searchText, sortBy: .lastBuildAt, limit: fetchLimit)
-            .eraseToAnyPublisher()
+    override func fetch() async throws -> V0AppListResponseModel {
+        try await apiFactory.api(ApplicationAPI.self).appList(title: searchText, sortBy: .lastBuildAt, limit: fetchLimit)
     }
     
-    override func fetchPage(next: String?) -> AnyPublisher<PagingViewModel<V0AppListResponseModel>.ValueType, ErrorResponse> {
-        apiFactory
-            .api(ApplicationAPI.self)
-            .appList(title: searchText, sortBy: .lastBuildAt, next: next, limit: fetchLimit)
-            .eraseToAnyPublisher()
+    override func fetchPage(next: String?) async throws -> PagingViewModel<V0AppListResponseModel>.ValueType {
+        try await apiFactory.api(ApplicationAPI.self).appList(title: searchText, sortBy: .lastBuildAt, next: next, limit: fetchLimit)
     }
 }

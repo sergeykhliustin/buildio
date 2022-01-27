@@ -109,7 +109,17 @@ final class BackgroundProcessing {
     }
     
     private func activityList(_ token: Token) -> AnyPublisher<(String, [V0ActivityEventResponseItemModel]), ErrorResponse> {
-        return ActivityAPI(apiToken: token.token).activityList(limit: 1).map({ (token.email, $0.data) }).eraseToAnyPublisher()
+        return Future<[V0ActivityEventResponseItemModel], ErrorResponse> { promise in
+            Task {
+                do {
+                    promise(.success(try await ActivityAPI(apiToken: token.token).activityList().data))
+                } catch {
+                    promise(.failure(error as! ErrorResponse))
+                }
+            }
+        }
+        .map({ (token.email, $0) })
+        .eraseToAnyPublisher()
     }
     
     private func scheduleAppRefresh() {

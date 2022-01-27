@@ -15,15 +15,15 @@ struct SettingsScreenView: View {
     
     var body: some View {
         VStack(spacing: 8) {
-            NavigateSettingsItem(title: "Preferred color scheme", icon: "eyedropper.halffull", subtitle: themeSettings.rawValue, action: {
+            NavigateSettingsItem(title: "Preferred color scheme", subtitle: themeSettings.rawValue, action: {
                 navigator.go {
                     ThemeSelectScreenView()
                 }
             })
-            NavigateSettingsItem(title: "About", icon: "info", action: {})
+            NavigateSettingsItem(title: "About", action: {})
                 
             if debugModeActive {
-                NavigateSettingsItem(title: "Debug", icon: "bolt.heart", action: {
+                NavigateSettingsItem(title: "Debug", action: {
                     navigator.go(.debug)
                 })
             }
