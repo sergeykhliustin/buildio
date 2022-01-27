@@ -6,9 +6,6 @@
 //
 
 import Foundation
-#if canImport(Combine)
-import Combine
-#endif
 import Models
 
 public final class OutgoingWebhookAPI: BaseAPI {
