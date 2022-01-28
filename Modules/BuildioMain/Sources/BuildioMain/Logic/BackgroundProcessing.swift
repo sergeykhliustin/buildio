@@ -36,7 +36,6 @@ final class BackgroundProcessing {
     static let shared = BackgroundProcessing()
     
     private static let appRefreshTaskId = "buildio.appRefreshTask"
-    private static let processingTasksIds = (0..<10).map({ "buildio.processingTask\($0)" })
     private init() {}
     
     private var fetcher: AnyCancellable?
@@ -44,9 +43,7 @@ final class BackgroundProcessing {
     private var notificationCenterPubliser: AnyCancellable?
     
     func start() {
-        ([Self.appRefreshTaskId] + Self.processingTasksIds).forEach { identifier in
-            BGTaskScheduler.shared.register(forTaskWithIdentifier: identifier, using: nil, launchHandler: launchHandler)
-        }
+        BGTaskScheduler.shared.register(forTaskWithIdentifier: Self.appRefreshTaskId, using: nil, launchHandler: launchHandler)
         
         notificationCenterPubliser =
         NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification).sink { _ in
@@ -135,22 +132,6 @@ final class BackgroundProcessing {
                 } catch {
                     let error = error
                     logger.debug("Could not schedule \(Self.appRefreshTaskId) \(error)")
-                }
-            }
-            
-            Self.processingTasksIds.forEach { identifier in
-                if !tasks.contains(where: { $0.identifier == identifier }) {
-                    logger.debug("[\(identifier)] scheduling app refresh")
-                    let request = BGProcessingTaskRequest(identifier: identifier)
-                    request.earliestBeginDate = Date(timeIntervalSinceNow: 0)
-                    
-                    do {
-                        try BGTaskScheduler.shared.submit(request)
-                        logger.debug("[\(identifier)] submitted")
-                    } catch {
-                        let error = error
-                        logger.debug("Could not schedule \(identifier) \(error)")
-                    }
                 }
             }
         }
