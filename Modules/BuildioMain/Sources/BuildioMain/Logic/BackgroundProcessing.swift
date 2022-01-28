@@ -108,13 +108,13 @@ final class BackgroundProcessing {
         }
     }
     
-    private func activityList(_ token: Token) -> AnyPublisher<(String, [V0ActivityEventResponseItemModel]), ErrorResponse> {
-        return Future<[V0ActivityEventResponseItemModel], ErrorResponse> { promise in
+    private func activityList(_ token: Token) -> AnyPublisher<(String, [V0ActivityEventResponseItemModel]), Error> {
+        return Future<[V0ActivityEventResponseItemModel], Error> { promise in
             Task {
                 do {
-                    promise(.success(try await ActivityAPI(apiToken: token.token).activityList().data))
+                    promise(.success(try await ActivityAPI(apiToken: token.token).activityList().data.reversed()))
                 } catch {
-                    promise(.failure(error as! ErrorResponse))
+                    promise(.failure(error))
                 }
             }
         }
