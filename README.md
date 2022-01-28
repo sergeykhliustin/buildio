@@ -21,3 +21,6 @@ https://github.com/SwiftyBeaver/SwiftyBeaver
 https://github.com/kishikawakatsumi/KeychainAccess
 
 https://github.com/onevcat/Rainbow
+
+### Privacy policy
+App does not collect or store any user information or data except for storing access token in Keychain
