@@ -109,7 +109,7 @@ final class BackgroundProcessing {
         return Future<[V0ActivityEventResponseItemModel], Error> { promise in
             Task {
                 do {
-                    promise(.success(try await ActivityAPI(apiToken: token.token).activityList().data.reversed()))
+                    promise(.success(try await ActivityAPI(apiToken: token.token).activityList(limit: 1).data))
                 } catch {
                     promise(.failure(error))
                 }
