@@ -17,8 +17,7 @@ let package = Package(
         .package(name: "Models", path: "../Models"),
         .package(name: "BitriseAPIs", path: "../BitriseAPIs"),
         .package(url: "https://github.com/kishikawakatsumi/KeychainAccess.git", from: "4.0.0"),
-        .package(url: "https://github.com/onevcat/Rainbow", from: "4.0.1"),
-        .package(name: "Introspect", url: "https://github.com/siteline/SwiftUI-Introspect.git", from: "0.1.3")
+        .package(url: "https://github.com/onevcat/Rainbow", from: "4.0.1")
     ],
     targets: [
         .target(
@@ -26,7 +25,6 @@ let package = Package(
             dependencies: [
                 "KeychainAccess",
                 "Rainbow",
-                "Introspect",
                 "Models",
                 "BitriseAPIs"
             ])
