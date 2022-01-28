@@ -352,7 +352,7 @@ public final class BuildsAPI: BaseAPI {
                   return
                 }
 
-                requestTask = buildLogWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug).execute(apiResponseQueue) { result in
+                requestTask = buildLogWithRequestBuilder(appSlug: appSlug, buildSlug: buildSlug, timestamp: timestamp).execute(apiResponseQueue) { result in
                     switch result {
                     case let .success(response):
                         continuation.resume(returning: response.body)
@@ -380,7 +380,7 @@ public final class BuildsAPI: BaseAPI {
      - parameter buildSlug: (path) Build slug 
      - returns: RequestBuilder<Void> 
      */
-    private func buildLogWithRequestBuilder(appSlug: String, buildSlug: String, timestamp: String? = nil) -> RequestBuilder<BuildLogResponseModel> {
+    private func buildLogWithRequestBuilder(appSlug: String, buildSlug: String, timestamp: String?) -> RequestBuilder<BuildLogResponseModel> {
         var localVariablePath = "/apps/{app-slug}/builds/{build-slug}/log"
         if let timestamp = timestamp {
             localVariablePath.append("?after_timestamp=\(timestamp)&timestamp=\(timestamp)")

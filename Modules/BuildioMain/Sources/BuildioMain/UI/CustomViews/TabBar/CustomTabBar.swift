@@ -18,9 +18,6 @@ private struct CustomTabBarButtonStyle: ButtonStyle {
             .label
             .contentShape(Rectangle())
             .foregroundColor(highlighted ? theme.accentColor : theme.accentColorLight)
-//            .background(
-//                RoundedRectangle(cornerRadius: 4).stroke(highlighted ? Color.b_Primary : .clear, lineWidth: 1)
-//            )
             .onHover { hover in
                 self.hover = hover
             }
@@ -29,7 +26,7 @@ private struct CustomTabBarButtonStyle: ButtonStyle {
 
 struct CustomTabBar: View {
     struct Constants {
-        static let horizontalWidth: CGFloat = 64
+        static let horizontalWidth: CGFloat = 68
         static let verticalHeight: CGFloat = 48
     }
     enum Style {

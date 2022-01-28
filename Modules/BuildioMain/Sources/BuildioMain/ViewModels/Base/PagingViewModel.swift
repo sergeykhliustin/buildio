@@ -76,7 +76,7 @@ class PagingViewModel<VALUE: PagingResponseModel>: BaseApiViewModel<VALUE>, Pagi
                     pagingState = .idle
                 }
             } catch {
-                self.pagingState = .error(error as! ErrorResponse)
+                self.pagingState = .error((error as? ErrorResponse) ?? .empty)
             }
         }
     }

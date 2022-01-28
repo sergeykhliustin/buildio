@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Introspect
 
 struct LogsControls: View {
     private struct LogsSearchTextFieldStyle: TextFieldStyle {
@@ -87,9 +86,6 @@ struct LogsControls: View {
                 HStack(spacing: 8) {
                     if search {
                         TextField("Search", text: $searchText)
-                            .introspectTextField { textField in
-                                textField.returnKeyType = .next
-                            }
                             .textFieldStyle(LogsSearchTextFieldStyle())
                         Button {
                             onSubmit?()

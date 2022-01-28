@@ -7,6 +7,7 @@
 
 import SwiftUI
 import BitriseAPIs
+import UIKit
 
 public struct EntryPoint: View {
     private let previewMode: Bool
@@ -22,14 +23,35 @@ public struct EntryPoint: View {
                 AuthResolverScreenView()
             }
         }
-        .introspectViewController { controller in
-            #if targetEnvironment(macCatalyst)
-            let window = controller.viewIfLoaded?.window
-            window?.windowScene?.titlebar?.titleVisibility = .hidden
-            window?.windowScene?.titlebar?.toolbar?.isVisible = false
-            window?.windowScene?.titlebar?.separatorStyle = .none
-            #endif
+        #if targetEnvironment(macCatalyst)
+        .withHostingWindow { window in
+            let titlebar = window?.windowScene?.titlebar
+            titlebar?.titleVisibility = .hidden
+            titlebar?.toolbar?.isVisible = false
+            titlebar?.separatorStyle = .none
         }
+        #endif
+    }
+}
+
+private extension View {
+    func withHostingWindow(_ callback: @escaping (UIWindow?) -> Void) -> some View {
+        self.background(HostingWindowFinder(callback: callback))
+    }
+}
+
+private struct HostingWindowFinder: UIViewRepresentable {
+    var callback: (UIWindow?) -> Void
+    
+    func makeUIView(context: Context) -> UIView {
+        let view = UIView()
+        DispatchQueue.main.async { [weak view] in
+            self.callback(view?.window)
+        }
+        return view
+    }
+    
+    func updateUIView(_ uiView: UIView, context: Context) {
     }
 }
 
