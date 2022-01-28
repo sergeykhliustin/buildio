@@ -1,9 +1,7 @@
 ## Buildio
 ![Image](Shared/Assets.xcassets/AppIcon.appiconset/100.png) 
 
-Buildio is an unofficial [Bitrise CI](https://bitrise.io) client for iOS and macOS platforms
-
-Buildio helps you to manage all your builds in one place just from your iPhone
+Buildio is an unofficial client for [Bitrise CI](https://bitrise.io) built for iOS, iPadOS and macOS platforms
 
 Features: lightweight, multiaccount support, notifications and more
 
