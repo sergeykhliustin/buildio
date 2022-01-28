@@ -81,7 +81,7 @@ public struct Theme: Codable, Equatable {
         "logsBackgroundColor": "#002524",
         "navigationColor": "#EAEAEA",
         "separatorColor": "#848484",
-        "shadowColor": "#FEFFFF00",
+        "shadowColor": "#FFFFFF18",
         "submitButtonColor1": "#00C7FC",
         "submitButtonColor2": "#253E0F",
         "textColor": "#FEFEFE",
