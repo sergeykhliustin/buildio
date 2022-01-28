@@ -55,7 +55,7 @@ struct AboutScreenView: View {
                 Text("Dependencies:")
                 Group {
                     Link("SwiftyBeaver", destination: URL(string: "https://github.com/SwiftyBeaver/SwiftyBeaver")!)
-                    Link("KeychainAccess", destination: URL(string: "https://github.com/kishikawakatsumi/KeychainAccess.git")!)
+                    Link("KeychainAccess", destination: URL(string: "https://github.com/kishikawakatsumi/KeychainAccess")!)
                     Link("Rainbow", destination: URL(string: "https://github.com/onevcat/Rainbow")!)
                 }
                 .foregroundColor(theme.linkColor)
