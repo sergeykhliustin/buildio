@@ -8,26 +8,6 @@
 import Foundation
 import SwiftUI
 
-enum ThemeSettings: String, CaseIterable, Identifiable {
-    var id: String {
-        rawValue
-    }
-    case system = "System"
-    case light = "Light"
-    case dark = "Dark"
-    
-    var colorScheme: ColorScheme? {
-        switch self {
-        case .system:
-            return nil
-        case .light:
-            return .light
-        case .dark:
-            return .dark
-        }
-    }
-}
-
 extension UserDefaults {
     struct Keys {
         static let theme = "theme"
@@ -36,11 +16,33 @@ extension UserDefaults {
         static let backgroundAnalytics = "background_analytics"
         static let lastActivityDates = "last_activity_dates"
         static let debugMode = "debugMode"
+        static let lightThemeName = "lightThemeName"
+        static let darkThemeName = "darkThemeName"
     }
     
-    var themeSettings: ThemeSettings {
+    enum ColorSchemeSettings: String, CaseIterable, Identifiable {
+        var id: String {
+            rawValue
+        }
+        case system = "System"
+        case light = "Light"
+        case dark = "Dark"
+        
+        var colorScheme: ColorScheme? {
+            switch self {
+            case .system:
+                return nil
+            case .light:
+                return .light
+            case .dark:
+                return .dark
+            }
+        }
+    }
+    
+    var colorSchemeSettings: ColorSchemeSettings {
         get {
-            if let string = string(forKey: Keys.theme), let settings = ThemeSettings(rawValue: string) {
+            if let string = string(forKey: Keys.theme), let settings = ColorSchemeSettings(rawValue: string) {
                 return settings
             }
             return .system
@@ -50,51 +52,39 @@ extension UserDefaults {
         }
     }
     
-    var lightTheme: Theme? {
-        get {
-            if let data = data(forKey: Keys.lightTheme) {
-                let decoder = JSONDecoder()
-                do {
-                    return try decoder.decode(Theme.self, from: data)
-                } catch {
-                    logger.error(error)
-                }
-            }
-            return nil
-        }
-        set {
-            let encoder = JSONEncoder()
-            do {
-                let data = try encoder.encode(newValue)
-                set(data, forKey: Keys.lightTheme)
-                synchronize()
-            } catch {
-                logger.error(error)
-            }
+    func themeName(for scheme: ColorScheme) -> String? {
+        if scheme == .dark {
+            return darkThemeName
+        } else {
+            return lightThemeName
         }
     }
     
-    var darkTheme: Theme? {
+    func setThemeName(_ name: String?, for scheme: ColorScheme) {
+        if scheme == .dark {
+            self.darkThemeName = name
+        } else {
+            self.lightThemeName = name
+        }
+    }
+    
+    var lightThemeName: String? {
         get {
-            if let data = data(forKey: Keys.darkTheme) {
-                let decoder = JSONDecoder()
-                do {
-                    return try decoder.decode(Theme.self, from: data)
-                } catch {
-                    logger.error(error)
-                }
-            }
-            return nil
+            string(forKey: Keys.lightThemeName)
         }
         set {
-            let encoder = JSONEncoder()
-            do {
-                let data = try encoder.encode(newValue)
-                set(data, forKey: Keys.darkTheme)
-                synchronize()
-            } catch {
-                logger.error(error)
-            }
+            set(newValue, forKey: Keys.lightThemeName)
+            synchronize()
+        }
+    }
+    
+    var darkThemeName: String? {
+        get {
+            string(forKey: Keys.darkThemeName)
+        }
+        set {
+            set(newValue, forKey: Keys.darkThemeName)
+            synchronize()
         }
     }
     

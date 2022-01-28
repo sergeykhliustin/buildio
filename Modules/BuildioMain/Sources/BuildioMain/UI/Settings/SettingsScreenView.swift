@@ -10,16 +10,30 @@ import SwiftUI
 struct SettingsScreenView: View {
     @Environment(\.theme) private var theme
     @AppStorage(UserDefaults.Keys.debugMode) private var debugModeActive: Bool = false
-    @AppStorage(UserDefaults.Keys.theme) private var themeSettings: ThemeSettings = .system
+    @AppStorage(UserDefaults.Keys.theme) private var colorSchemeSettings: UserDefaults.ColorSchemeSettings = .system
+    @AppStorage(UserDefaults.Keys.darkThemeName) private var darkThemeName = Theme.defaultDarkName
+    @AppStorage(UserDefaults.Keys.lightThemeName) private var lightThemeName = Theme.defaultLightName
     @EnvironmentObject private var navigator: Navigator
     
     var body: some View {
         VStack(spacing: 8) {
-            NavigateSettingsItem(title: "Preferred color scheme", subtitle: themeSettings.rawValue, action: {
-                navigator.go {
-                    ThemeSelectScreenView()
-                }
-            })
+            NavigateSettingsItem(
+                title: "Preferred appearance",
+                subtitle: colorSchemeSettings.rawValue,
+                action: {
+                    navigator.go {
+                        ColorSchemeSelectScreenView()
+                    }
+                })
+            NavigateSettingsItem(
+                title: "Theme for dark appearance",
+                subtitle: darkThemeName,
+                action: {
+                    navigator.go({
+                        ThemeSelectScreenView(colorScheme: .dark)
+                    })
+                })
+            
             NavigateSettingsItem(title: "About", action: {})
                 
             if debugModeActive {

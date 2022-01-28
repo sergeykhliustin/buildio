@@ -69,8 +69,9 @@ struct ThemeConfiguratorScreenView: View {
                 
                 ScrollView {
                     VStack(spacing: 8) {
-                        let keys = dict.keys.sorted().filter({ $0 != "scheme" })
+                        let keys = dict.keys.sorted().filter({ $0 != "scheme" && $0 != "name" })
                         ForEach(keys, id: \.hashValue) { key in
+                            // swiftlint:disable force_try
                             let binding: Binding<CGColor> = Binding(get: {
                                 return try! Color(hex: dict[key]!).cgColor!
                             }, set: { cgColor in
@@ -78,6 +79,7 @@ struct ThemeConfiguratorScreenView: View {
                                 dict[key] = try! Color(UIColor(cgColor: cgColor)).hex()
                                 themeToTune = try! Theme(from: dict)
                             })
+                            // swiftlint:enable force_try
                             
                             HStack {
                                 Text(key)
@@ -108,11 +110,8 @@ struct ThemeConfiguratorScreenView: View {
                         NavigateSettingsItem(title: "Apply theme", icon: "") {
                             themeUpdater.wrappedValue = themeToTune
                         }
-                        NavigateSettingsItem(title: "Save theme", icon: "") {
-                            themeToTune.save()
-                        }
                         NavigateSettingsItem(title: "Reset theme changes", icon: "") {
-                            UserDefaults.standard.resetTheme()
+                            themeUpdater.wrappedValue = Theme.current
                         }
                     }
                 }
@@ -128,6 +127,6 @@ struct ThemeConfiguratorScreenView: View {
 
 struct ThemeConfiguratorScreenView_Preview: PreviewProvider {
     static var previews: some View {
-        ThemeConfiguratorScreenView(themeToTune: Theme.theme(for: .light))
+        ThemeConfiguratorScreenView(themeToTune: Theme.defaultTheme(for: .light))
     }
 }

@@ -108,8 +108,7 @@ extension UIColor {
                 Int(green * multiplier),
                 Int(blue * multiplier)
             )
-        }
-        else {
+        } else {
             return String(
                 format: "#%02lX%02lX%02lX%02lX",
                 Int(red * multiplier),

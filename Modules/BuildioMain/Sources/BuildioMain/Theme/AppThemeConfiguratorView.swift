@@ -36,7 +36,9 @@ extension EnvironmentValues {
 }
 
 struct AppThemeConfiguratorView<Content: View>: View {
-    @AppStorage(UserDefaults.Keys.theme) private var themeSettings: ThemeSettings = .system
+    @AppStorage(UserDefaults.Keys.theme) private var colorSchemeSettings: UserDefaults.ColorSchemeSettings = .system
+    @AppStorage(UserDefaults.Keys.lightThemeName) private var lightThemeName = Theme.defaultLightName
+    @AppStorage(UserDefaults.Keys.darkThemeName) private var darkThemeName = Theme.defaultDarkName
     @Environment(\.colorScheme) var colorScheme
     @State private var theme: Theme
     @State private var themeUpdater: Theme = Theme.current
@@ -52,14 +54,14 @@ struct AppThemeConfiguratorView<Content: View>: View {
     
     var body: some View {
         content()
-            .preferredColorScheme(themeSettings.colorScheme)
+            .preferredColorScheme(colorSchemeSettings.colorScheme)
             .environment(\.theme, theme)
             .environment(\.themeUpdater, $themeUpdater)
             .accentColor(theme.accentColor)
             .foregroundColor(theme.textColor)
             .background(theme.background)
             .progressViewStyle(CircularInfiniteProgressViewStyle())
-            .onChange(of: themeSettings, perform: { newValue in
+            .onChange(of: colorSchemeSettings, perform: { newValue in
                 if forcedTheme == nil {
                     theme = Theme.current
                 }
@@ -72,6 +74,16 @@ struct AppThemeConfiguratorView<Content: View>: View {
             .onChange(of: themeUpdater, perform: { newValue in
                 if forcedTheme == nil {
                     theme = newValue
+                }
+            })
+            .onChange(of: lightThemeName, perform: { _ in
+                if forcedTheme == nil {
+                    theme = Theme.current
+                }
+            })
+            .onChange(of: darkThemeName, perform: { _ in
+                if forcedTheme == nil {
+                    theme = Theme.current
                 }
             })
             .onChange(of: forcedTheme?.wrappedValue, perform: { newValue in

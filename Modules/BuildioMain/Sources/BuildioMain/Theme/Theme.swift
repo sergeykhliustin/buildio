@@ -38,7 +38,8 @@ extension Color: Codable {
 public struct Theme: Codable, Equatable {
     typealias Shadow = (color: Color, radius: CGFloat, x: CGFloat, y: CGFloat)
     
-    static let lightTheme = [
+    private static let defaultLightTheme = [
+        "name": "Default",
         "scheme": "light",
         
         "accentColor": "#440C59",
@@ -62,7 +63,33 @@ public struct Theme: Codable, Equatable {
         "abortButtonColor2": "#831100"
     ]
     
-    static let darkTheme = [
+    private static let defaultDarkTheme = [
+        "name": "Sea Green",
+        "scheme": "dark",
+        
+        "abortButtonColor1": "#FE8646",
+        "abortButtonColor2": "#3C3300",
+        "accentColor": "#FEFFFF",
+        "accentColorLight": "#99999999",
+        "background": "#003037",
+        "borderColor": "#999999",
+        "controlsColor": "#06ADCE",
+        "disabledColor": "#999999",
+        "fadeColor": "#FFFFFF26",
+        "linkColor": "#06ADCE",
+        "logControlColor": "#5B5B5B",
+        "logsBackgroundColor": "#002524",
+        "navigationColor": "#EAEAEA",
+        "separatorColor": "#848484",
+        "shadowColor": "#FEFFFF00",
+        "submitButtonColor1": "#00C7FC",
+        "submitButtonColor2": "#253E0F",
+        "textColor": "#FEFEFE",
+        "textColorLight": "#FEFEFE99"
+    ]
+    
+    private static let annDarkTheme = [
+        "name": "Ann Dark",
         "scheme": "dark",
         
         "accentColor": "#FEFFFF",
@@ -86,38 +113,58 @@ public struct Theme: Codable, Equatable {
         "abortButtonColor2": "#710E00"
     ]
     
-    private init(colorScheme: ColorScheme) {
-        if colorScheme == .dark {
-            try! self.init(from: Self.darkTheme)
-        } else {
-            try! self.init(from: Self.lightTheme)
-        }
-    }
+    private static let themes = [
+        Self.defaultLightTheme,
+        Self.defaultDarkTheme,
+        Self.annDarkTheme
+    ]
     
+    static let defaultDarkName: String = "Sea Green"
+    static let defaultLightName = "Default"
+    
+    // swiftlint:disable force_try
     static var current: Theme {
-        let style = UIScreen.main.traitCollection.userInterfaceStyle
-        let themeSettings = UserDefaults.standard.themeSettings
-        switch themeSettings {
-        case .light:
-            return theme(for: .light)
+        let style = UserDefaults.standard.colorSchemeSettings.colorScheme ?? ColorScheme(UIScreen.main.traitCollection.userInterfaceStyle) ?? .light
+        let lightThemeName = UserDefaults.standard.lightThemeName ?? defaultLightName
+        let darkThemeName = UserDefaults.standard.darkThemeName ?? defaultDarkName
+        switch style {
         case .dark:
-            return theme(for: .dark)
-        case .system:
-            if let sheme = ColorScheme(style) {
-                return theme(for: sheme)
-            }
-            return Theme(colorScheme: .light)
+            let theme = themes.first(where: { $0["scheme"] == "dark" && $0["name"] == darkThemeName }) ?? defaultDarkTheme
+            return try! Theme(from: theme)
+        default:
+            let theme = themes.first(where: { $0["scheme"] == "light" && $0["name"] == lightThemeName }) ?? defaultLightTheme
+            return try! Theme(from: theme)
         }
     }
     
-    static func theme(for colorScheme: ColorScheme) -> Theme {
+    static func defaultTheme(for colorScheme: ColorScheme) -> Theme {
         if colorScheme == .dark {
-            return UserDefaults.standard.darkTheme ?? Theme(colorScheme: .dark)
+            let theme = themes.first(where: { $0["scheme"] == "dark" && $0["name"] == defaultDarkName }) ?? defaultDarkTheme
+            return try! Theme(from: theme)
         } else {
-            return UserDefaults.standard.lightTheme ?? Theme(colorScheme: .light)
+            let theme = themes.first(where: { $0["scheme"] == "light" && $0["name"] == defaultLightName }) ?? defaultLightTheme
+            return try! Theme(from: theme)
+        }
+    }
+    // swiftlint:enable force_try
+    
+    static func defaultName(for colorScheme: ColorScheme) -> String {
+        if colorScheme == .dark {
+            return defaultDarkName
+        } else {
+            return defaultLightName
         }
     }
     
+    static func themeNames(for scheme: ColorScheme) -> [String] {
+        if scheme == .dark {
+            return Self.themes.filter({ $0["scheme"] == "dark" }).map({ $0["name"]! })
+        } else {
+            return Self.themes.filter({ $0["scheme"] == "light" }).map({ $0["name"]! })
+        }
+    }
+    
+    var name: String
     var scheme: ColorScheme
     var background: Color
     var textColor: Color
@@ -145,14 +192,6 @@ public struct Theme: Codable, Equatable {
     
     var tabBarBackgroundShadow: Shadow {
         return (shadowColor, 3, 0, -5)
-    }
-    
-    func save() {
-        if self.scheme == .light {
-            UserDefaults.standard.lightTheme = self
-        } else {
-            UserDefaults.standard.darkTheme = self
-        }
     }
 }
 

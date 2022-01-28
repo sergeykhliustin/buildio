@@ -1,22 +1,30 @@
 //
-//  File.swift
+//  ThemeSelectScreenView.swift
 //  
 //
-//  Created by Sergey Khliustin on 26.01.2022.
+//  Created by Sergey Khliustin on 28.01.2022.
 //
 
+import Foundation
 import SwiftUI
 
 struct ThemeSelectScreenView: View {
-    @AppStorage(UserDefaults.Keys.theme) private var themeSettings: ThemeSettings = .system
     @Environment(\.theme) private var theme
     @EnvironmentObject private var navigator: Navigator
     
+    private let colorScheme: ColorScheme
+    
+    init(colorScheme: ColorScheme) {
+        self.colorScheme = colorScheme
+    }
+    
     var body: some View {
+        let names = Theme.themeNames(for: colorScheme)
+        let name = UserDefaults.standard.themeName(for: colorScheme) ?? Theme.defaultName(for: colorScheme)
         VStack(spacing: 8) {
-            ForEach(ThemeSettings.allCases) { item in
-                CheckmarkSettingsItem(title: item.rawValue, selected: item == themeSettings, action: {
-                    themeSettings = item
+            ForEach(names, id: \.self) { item in
+                CheckmarkSettingsItem(title: item, selected: item == name, action: {
+                    UserDefaults.standard.setThemeName(item, for: colorScheme)
                     DispatchQueue.main.async {
                         navigator.dismiss()
                     }
@@ -26,6 +34,6 @@ struct ThemeSelectScreenView: View {
         .frame(maxHeight: .infinity, alignment: .top)
         .background(theme.background)
         .padding(.vertical, 8)
-        .navigationTitle("Preferred color scheme")
+        .navigationTitle("Preferred theme")
     }
 }
