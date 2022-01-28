@@ -208,8 +208,9 @@ open class URLSessionRequestBuilder<T>: RequestBuilder<T> {
 
         switch T.self {
         case is Void.Type:
-
+            // swiftlint:disable force_cast
             completion(.success(Response(response: httpResponse, body: () as! T)))
+            // swiftlint:enable force_cast
 
         default:
             fatalError("Unsupported Response Body Type - \(String(describing: T.self))")
@@ -307,9 +308,9 @@ open class URLSessionDecodableRequestBuilder<T: Codable>: URLSessionRequestBuild
         case is String.Type:
 
             let body = data.flatMap { String(data: $0, encoding: .utf8) } ?? ""
-
+            // swiftlint:disable force_cast
             completion(.success(Response<T>(response: httpResponse, body: body as! T)))
-
+            // swiftlint:enable force_cast
         case is URL.Type:
             do {
 
@@ -338,9 +339,9 @@ open class URLSessionDecodableRequestBuilder<T: Codable>: URLSessionRequestBuild
 
                 try fileManager.createDirectory(atPath: directoryPath, withIntermediateDirectories: true, attributes: nil)
                 try data.write(to: filePath, options: .atomic)
-
+                // swiftlint:disable force_cast
                 completion(.success(Response(response: httpResponse, body: filePath as! T)))
-
+                // swiftlint:enable force_cast
             } catch let requestParserError as DownloadException {
                 completion(.failure(ErrorResponse.error(400, data, response, requestParserError)))
             } catch {
@@ -348,13 +349,13 @@ open class URLSessionDecodableRequestBuilder<T: Codable>: URLSessionRequestBuild
             }
 
         case is Void.Type:
-
+            // swiftlint:disable force_cast
             completion(.success(Response(response: httpResponse, body: () as! T)))
-
+            // swiftlint:enable force_cast
         case is Data.Type:
-
+            // swiftlint:disable force_cast
             completion(.success(Response(response: httpResponse, body: data as! T)))
-
+            // swiftlint:enable force_cast
         default:
 
             guard let data = data, !data.isEmpty else {
