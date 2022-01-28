@@ -34,7 +34,9 @@ struct SettingsScreenView: View {
                     })
                 })
             
-            NavigateSettingsItem(title: "About", action: {})
+            NavigateSettingsItem(title: "About", action: {
+                navigator.go(.about)
+            })
                 
             if debugModeActive {
                 NavigateSettingsItem(title: "Debug", action: {

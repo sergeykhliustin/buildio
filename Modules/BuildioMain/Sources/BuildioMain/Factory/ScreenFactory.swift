@@ -139,8 +139,8 @@ final class ScreenFactory: ObservableObject {
     }
     
     @ViewBuilder
-    func themeScreen(theme: Theme) -> some View {
-        ThemeConfiguratorScreenView(themeToTune: theme)
+    func aboutScreen() -> some View {
+        AboutScreenView()
     }
     
     // MARK: - Debug
@@ -153,5 +153,10 @@ final class ScreenFactory: ObservableObject {
     @ViewBuilder
     func debugLogsScreen() -> some View {
         DebugLogsScreenView()
+    }
+    
+    @ViewBuilder
+    func themeScreen(theme: Theme) -> some View {
+        ThemeConfiguratorScreenView(themeToTune: theme)
     }
 }

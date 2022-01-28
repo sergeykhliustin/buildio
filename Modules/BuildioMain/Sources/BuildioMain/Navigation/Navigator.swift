@@ -32,6 +32,7 @@ enum SettingsRoute {
     case themeLight
     case themeDark
     case debug
+    case about
 }
 
 final class Navigator: ObservableObject {
@@ -133,6 +134,8 @@ final class Navigator: ObservableObject {
             controller = builder.themeScreen(theme: Theme.defaultTheme(for: .dark)).hosting
         case .debug:
             controller = builder.debugScreen().hosting
+        case .about:
+            controller = builder.aboutScreen().hosting
         }
         navigationController?.push(controller, shouldReplace: false)
     }
