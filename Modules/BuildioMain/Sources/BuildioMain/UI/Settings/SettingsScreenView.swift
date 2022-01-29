@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ServiceManagement
 
 struct SettingsScreenView: View {
     @Environment(\.theme) private var theme

@@ -7,14 +7,18 @@
 
 import Foundation
 import UIKit
-import Combine
-import BackgroundTasks
-import BitriseAPIs
+import BuildioMain
 
 public final class BuildioUIAppDelegate: NSObject, UIApplicationDelegate {
     
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         BackgroundProcessing.shared.start()
+        _ = setStatusMenuEnabled(true)
         return true
+    }
+    
+    private func setStatusMenuEnabled(_ isEnabled: Bool) -> Bool {
+        let bundleId = "com.sergeyk.BuildioStatusBar" as CFString
+        return SMLoginItemSetEnabled(bundleId, isEnabled)
     }
 }

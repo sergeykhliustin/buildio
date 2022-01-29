@@ -7,13 +7,54 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F3E6B9527A5A9200087E002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3E6B9427A5A9200087E002 /* ContentView.swift */; };
+		3F3E6B9727A5A9210087E002 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F3E6B9627A5A9210087E002 /* Assets.xcassets */; };
+		3F3E6B9A27A5A9210087E002 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F3E6B9927A5A9210087E002 /* Preview Assets.xcassets */; };
+		3F3E6BA227A5A9B90087E002 /* BuildioStatusBarNSAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3E6BA127A5A9B90087E002 /* BuildioStatusBarNSAppDelegate.swift */; };
+		3F3E6BA327A5AC020087E002 /* BuildioStatusBarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3E6B9227A5A9200087E002 /* BuildioStatusBarApp.swift */; };
+		3F3E6BA827A5AD3C0087E002 /* BuildioStatusBar.app in Copy Status Bar App */ = {isa = PBXBuildFile; fileRef = 3F3E6B9027A5A9200087E002 /* BuildioStatusBar.app */; platformFilter = maccatalyst; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3F3E6BAB27A5B0700087E002 /* BuildioUIAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3E6BAA27A5B0700087E002 /* BuildioUIAppDelegate.swift */; };
 		3F7063252750F6130028150F /* BuildioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7063242750F6130028150F /* BuildioApp.swift */; };
 		3FC502202750FF6C005BC8F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FC5021F2750FF6C005BC8F3 /* Assets.xcassets */; };
 		3FF23B44275EAE2800AFE0F1 /* BuildioMain in Frameworks */ = {isa = PBXBuildFile; productRef = 3FF23B43275EAE2800AFE0F1 /* BuildioMain */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		3F3E6BA427A5AC450087E002 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3FE7B53F27072C1B00A6D8E1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3F3E6B8F27A5A9200087E002;
+			remoteInfo = BuildioStatusBar;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3F3E6BA727A5AD1C0087E002 /* Copy Status Bar App */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				3F3E6BA827A5AD3C0087E002 /* BuildioStatusBar.app in Copy Status Bar App */,
+			);
+			name = "Copy Status Bar App";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		3F3295842735A623001994B0 /* Buildio (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Buildio (iOS).entitlements"; sourceTree = "<group>"; };
+		3F3E6B9027A5A9200087E002 /* BuildioStatusBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BuildioStatusBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F3E6B9227A5A9200087E002 /* BuildioStatusBarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildioStatusBarApp.swift; sourceTree = "<group>"; };
+		3F3E6B9427A5A9200087E002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		3F3E6B9627A5A9210087E002 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3F3E6B9927A5A9210087E002 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3F3E6B9B27A5A9210087E002 /* BuildioStatusBar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BuildioStatusBar.entitlements; sourceTree = "<group>"; };
+		3F3E6BA027A5A92B0087E002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		3F3E6BA127A5A9B90087E002 /* BuildioStatusBarNSAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildioStatusBarNSAppDelegate.swift; sourceTree = "<group>"; };
+		3F3E6BA927A5AEF00087E002 /* BuildioBridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuildioBridgingHeader.h; sourceTree = "<group>"; };
+		3F3E6BAA27A5B0700087E002 /* BuildioUIAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildioUIAppDelegate.swift; sourceTree = "<group>"; };
 		3F7063242750F6130028150F /* BuildioApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildioApp.swift; sourceTree = "<group>"; };
 		3FC5021F2750FF6C005BC8F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3FD8FDBF2731F78C0060BDF4 /* Buildio.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Buildio.plist; sourceTree = "<group>"; };
@@ -22,6 +63,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3F3E6B8D27A5A9200087E002 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3FE7B54827072C1E00A6D8E1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -48,11 +96,35 @@
 			name = Packages;
 			sourceTree = "<group>";
 		};
+		3F3E6B9127A5A9200087E002 /* BuildioStatusBar */ = {
+			isa = PBXGroup;
+			children = (
+				3F3E6BA027A5A92B0087E002 /* Info.plist */,
+				3F3E6B9227A5A9200087E002 /* BuildioStatusBarApp.swift */,
+				3F3E6B9427A5A9200087E002 /* ContentView.swift */,
+				3F3E6B9627A5A9210087E002 /* Assets.xcassets */,
+				3F3E6B9B27A5A9210087E002 /* BuildioStatusBar.entitlements */,
+				3F3E6B9827A5A9210087E002 /* Preview Content */,
+				3F3E6BA127A5A9B90087E002 /* BuildioStatusBarNSAppDelegate.swift */,
+			);
+			path = BuildioStatusBar;
+			sourceTree = "<group>";
+		};
+		3F3E6B9827A5A9210087E002 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				3F3E6B9927A5A9210087E002 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 		3F7063232750F6130028150F /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				3F3E6BAA27A5B0700087E002 /* BuildioUIAppDelegate.swift */,
 				3FC5021F2750FF6C005BC8F3 /* Assets.xcassets */,
 				3F7063242750F6130028150F /* BuildioApp.swift */,
+				3F3E6BA927A5AEF00087E002 /* BuildioBridgingHeader.h */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -71,6 +143,7 @@
 				3F3295842735A623001994B0 /* Buildio (iOS).entitlements */,
 				3FD8FDBF2731F78C0060BDF4 /* Buildio.plist */,
 				3F19ABAB272C092D0070DFE3 /* Packages */,
+				3F3E6B9127A5A9200087E002 /* BuildioStatusBar */,
 				3FE7B54C27072C1E00A6D8E1 /* Products */,
 				3F030284272C0A08005B5F2A /* Frameworks */,
 				3FD8FDB52731C44F0060BDF4 /* Recovered References */,
@@ -81,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				3FE7B54B27072C1E00A6D8E1 /* Buildio.app */,
+				3F3E6B9027A5A9200087E002 /* BuildioStatusBar.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -88,6 +162,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3F3E6B8F27A5A9200087E002 /* BuildioStatusBar */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F3E6B9F27A5A9210087E002 /* Build configuration list for PBXNativeTarget "BuildioStatusBar" */;
+			buildPhases = (
+				3F3E6B8C27A5A9200087E002 /* Sources */,
+				3F3E6B8D27A5A9200087E002 /* Frameworks */,
+				3F3E6B8E27A5A9200087E002 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BuildioStatusBar;
+			productName = BuildioStatusBar;
+			productReference = 3F3E6B9027A5A9200087E002 /* BuildioStatusBar.app */;
+			productType = "com.apple.product-type.application";
+		};
 		3FE7B54A27072C1E00A6D8E1 /* Buildio */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3FE7B55C27072C1E00A6D8E1 /* Build configuration list for PBXNativeTarget "Buildio" */;
@@ -96,10 +187,12 @@
 				3FE7B54827072C1E00A6D8E1 /* Frameworks */,
 				3FE7B54927072C1E00A6D8E1 /* Resources */,
 				3F509BEA272B0A6400C051A0 /* Swiftlint */,
+				3F3E6BA727A5AD1C0087E002 /* Copy Status Bar App */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				3F3E6BA527A5AC450087E002 /* PBXTargetDependency */,
 			);
 			name = Buildio;
 			packageProductDependencies = (
@@ -116,9 +209,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1300;
+				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1300;
 				TargetAttributes = {
+					3F3E6B8F27A5A9200087E002 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
 					3FE7B54A27072C1E00A6D8E1 = {
 						CreatedOnToolsVersion = 13.0;
 					};
@@ -140,11 +236,21 @@
 			projectRoot = "";
 			targets = (
 				3FE7B54A27072C1E00A6D8E1 /* Buildio */,
+				3F3E6B8F27A5A9200087E002 /* BuildioStatusBar */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3F3E6B8E27A5A9200087E002 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F3E6B9A27A5A9210087E002 /* Preview Assets.xcassets in Resources */,
+				3F3E6B9727A5A9210087E002 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3FE7B54927072C1E00A6D8E1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -177,17 +283,130 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3F3E6B8C27A5A9200087E002 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F3E6B9527A5A9200087E002 /* ContentView.swift in Sources */,
+				3F3E6BA227A5A9B90087E002 /* BuildioStatusBarNSAppDelegate.swift in Sources */,
+				3F3E6BA327A5AC020087E002 /* BuildioStatusBarApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3FE7B54727072C1E00A6D8E1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				3F7063252750F6130028150F /* BuildioApp.swift in Sources */,
+				3F3E6BAB27A5B0700087E002 /* BuildioUIAppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		3F3E6BA527A5AC450087E002 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = maccatalyst;
+			target = 3F3E6B8F27A5A9200087E002 /* BuildioStatusBar */;
+			targetProxy = 3F3E6BA427A5AC450087E002 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		3F3E6B9C27A5A9210087E002 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BuildioStatusBar/BuildioStatusBar.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"BuildioStatusBar/Preview Content\"";
+				DEVELOPMENT_TEAM = 6C4646EB2U;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BuildioStatusBar/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSPrincipalClass = BuildioStatusBar.BuildioStatusBarApp;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sergeyk.BuildioStatusBar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		3F3E6B9D27A5A9210087E002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BuildioStatusBar/BuildioStatusBar.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"BuildioStatusBar/Preview Content\"";
+				DEVELOPMENT_TEAM = 6C4646EB2U;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BuildioStatusBar/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSPrincipalClass = BuildioStatusBar.BuildioStatusBarApp;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sergeyk.BuildioStatusBar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		3F3E6B9E27A5A9210087E002 /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BuildioStatusBar/BuildioStatusBar.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"BuildioStatusBar/Preview Content\"";
+				DEVELOPMENT_TEAM = 6C4646EB2U;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BuildioStatusBar/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSPrincipalClass = BuildioStatusBar.BuildioStatusBarApp;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sergeyk.BuildioStatusBar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = AdHoc;
+		};
 		3F71C675275E37F800C6A7DB /* AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -275,6 +494,7 @@
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = Shared/BuildioBridgingHeader.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,6";
 				VALIDATE_PRODUCT = YES;
@@ -429,6 +649,7 @@
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = Shared/BuildioBridgingHeader.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
@@ -466,6 +687,7 @@
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = Shared/BuildioBridgingHeader.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,6";
 				VALIDATE_PRODUCT = YES;
@@ -475,6 +697,16 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3F3E6B9F27A5A9210087E002 /* Build configuration list for PBXNativeTarget "BuildioStatusBar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F3E6B9C27A5A9210087E002 /* Debug */,
+				3F3E6B9D27A5A9210087E002 /* Release */,
+				3F3E6B9E27A5A9210087E002 /* AdHoc */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3FE7B54227072C1B00A6D8E1 /* Build configuration list for PBXProject "Buildio" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -32,8 +32,8 @@ private struct ActivityNotification {
     }
 }
 
-final class BackgroundProcessing {
-    static let shared = BackgroundProcessing()
+public final class BackgroundProcessing {
+    public static let shared = BackgroundProcessing()
     
     private static let appRefreshTaskId = "buildio.appRefreshTask"
     private init() {}
@@ -42,7 +42,7 @@ final class BackgroundProcessing {
     private var longFetcher: AnyCancellable?
     private var notificationCenterPubliser: AnyCancellable?
     
-    func start() {
+    public func start() {
         BGTaskScheduler.shared.register(forTaskWithIdentifier: Self.appRefreshTaskId, using: nil, launchHandler: launchHandler)
         
         notificationCenterPubliser =
