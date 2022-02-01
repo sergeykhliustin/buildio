@@ -17,7 +17,8 @@ let package = Package(
         .package(name: "Models", path: "../Models"),
         .package(name: "BitriseAPIs", path: "../BitriseAPIs"),
         .package(url: "https://github.com/kishikawakatsumi/KeychainAccess.git", from: "4.0.0"),
-        .package(url: "https://github.com/onevcat/Rainbow", from: "4.0.1")
+        .package(url: "https://github.com/onevcat/Rainbow", from: "4.0.1"),
+        .package(url: "https://github.com/gonzalezreal/MarkdownUI", from: "1.0.0")
     ],
     targets: [
         .target(
@@ -26,7 +27,8 @@ let package = Package(
                 "KeychainAccess",
                 "Rainbow",
                 "Models",
-                "BitriseAPIs"
+                "BitriseAPIs",
+                "MarkdownUI"
             ])
     ]
 )

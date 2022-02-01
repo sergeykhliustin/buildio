@@ -115,6 +115,34 @@ struct ToggleSettingsItem: View {
     }
 }
 
+struct SliderSettingsItem: View {
+    @Environment(\.theme) private var theme
+    let title: String
+    let value: Binding<Double>
+    
+    var body: some View {
+        ListItemWrapper {
+            VStack(spacing: 8) {
+                HStack(spacing: 8) {
+                    Text(title)
+                    Spacer(minLength: 0)
+                    Slider(value: value, in: (0...60), step: 1)
+                    if value.wrappedValue > 0 {
+                        Text(String(Int(value.wrappedValue)) + "s")
+                            .foregroundColor(theme.textColorLight)
+                    } else {
+                        Text("Disabled")
+                            .foregroundColor(theme.textColorLight)
+                    }
+                }
+                
+            }
+            .frame(height: 44)
+            .padding(.horizontal, 16)
+        }
+    }
+}
+
 struct ContentSettingsItem<LeftContent: View, RightContent: View>: View {
     let title: String
     let leftContent: (() -> LeftContent)?

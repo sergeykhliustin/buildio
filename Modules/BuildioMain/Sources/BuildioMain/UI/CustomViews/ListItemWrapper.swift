@@ -28,10 +28,27 @@ private struct CustomListWrapperButtonStyle: ButtonStyle {
                 RoundedRectangle(cornerRadius: cornerRadius).stroke(highlighted ? theme.accentColor : .clear, lineWidth: 2)
                     
             )
+            .padding(.horizontal, 16)
             .onHover { hover in
                 self.hover = hover
             }
     }
+}
+
+private struct CustomListViewModifier: ViewModifier {
+    @Environment(\.theme) private var theme
+    let cornerRadius: CGFloat
+    func body(content: Content) -> some View {
+        content
+            .cornerRadius(cornerRadius)
+            .background(
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(theme.background)
+                    .listShadow(theme)
+            )
+            .padding(.horizontal, 16)
+    }
+    
 }
 
 struct ListItemWrapper<Content>: View where Content: View {
@@ -46,8 +63,12 @@ struct ListItemWrapper<Content>: View where Content: View {
     }
     
     var body: some View {
-        Button(action: { action?() }, label: content)
-            .buttonStyle(CustomListWrapperButtonStyle(cornerRadius: cornerRadius, handleHover: action != nil))
-            .padding(.horizontal, 16)
+        if let action = action {
+            Button(action: action, label: content)
+                .buttonStyle(CustomListWrapperButtonStyle(cornerRadius: cornerRadius, handleHover: true))
+        } else {
+            content()
+                .modifier(CustomListViewModifier(cornerRadius: cornerRadius))
+        }
     }
 }

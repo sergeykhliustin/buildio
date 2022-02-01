@@ -42,10 +42,27 @@ public final class BackgroundProcessingMac {
     private var fetcher: AnyCancellable?
     private var notificationCenterPubliser: AnyCancellable?
     private var timer: Timer?
-    var poolingInterval: TimeInterval
+    private var poolingInterval: TimeInterval
+    private var userDefaultsNotification: AnyObject?
     
     public func start() {
-        timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true, block: { [weak self] timer in
+        userDefaultsNotification = NotificationCenter.default.addObserver(forName: UserDefaults.didChangeNotification, object: nil, queue: nil) { [weak self] _ in
+            guard let self = self else { return }
+            if UserDefaults.standard.pollingInterval != self.poolingInterval {
+                self.poolingInterval = UserDefaults.standard.pollingInterval
+                self.restartTimer()
+            }
+        }
+        
+        restartTimer()
+    }
+    
+    private func restartTimer() {
+        timer?.invalidate()
+        if poolingInterval <= 0 {
+            return
+        }
+        timer = Timer.scheduledTimer(withTimeInterval: poolingInterval, repeats: true, block: { [weak self] timer in
             guard let self = self else {
                 timer.invalidate()
                 return
@@ -55,7 +72,7 @@ public final class BackgroundProcessingMac {
     }
     
     func update() {
-        logger.info("")
+        logger.debug("")
         self.fetcher?.cancel()
         self.fetcher = Publishers.MergeMany(TokenManager().tokens
                                                 .filter({ !$0.isDemo })

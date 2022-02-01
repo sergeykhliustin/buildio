@@ -13,6 +13,7 @@ struct SettingsScreenView: View {
     @AppStorage(UserDefaults.Keys.theme) private var colorSchemeSettings: UserDefaults.ColorSchemeSettings = .system
     @AppStorage(UserDefaults.Keys.darkThemeName) private var darkThemeName = Theme.defaultDarkName
     @AppStorage(UserDefaults.Keys.lightThemeName) private var lightThemeName = Theme.defaultLightName
+    @AppStorage(UserDefaults.Keys.pollingInterval) private var pollingInterval = 30.0
     @EnvironmentObject private var navigator: Navigator
     
     var body: some View {
@@ -33,6 +34,9 @@ struct SettingsScreenView: View {
                         ThemeSelectScreenView(colorScheme: .dark)
                     })
                 })
+            #if targetEnvironment(macCatalyst)
+            SliderSettingsItem(title: "Polling interval", value: $pollingInterval)
+            #endif
             
             NavigateSettingsItem(title: "About", action: {
                 navigator.go(.about)

@@ -49,6 +49,7 @@ struct AboutScreenView: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("Dependencies:")
                     Group {
+                        Link("MarkdownUI", destination: URL(string: "https://github.com/gonzalezreal/MarkdownUI")!)
                         Link("SwiftyBeaver", destination: URL(string: "https://github.com/SwiftyBeaver/SwiftyBeaver")!)
                         Link("KeychainAccess", destination: URL(string: "https://github.com/kishikawakatsumi/KeychainAccess")!)
                         Link("Rainbow", destination: URL(string: "https://github.com/onevcat/Rainbow")!)

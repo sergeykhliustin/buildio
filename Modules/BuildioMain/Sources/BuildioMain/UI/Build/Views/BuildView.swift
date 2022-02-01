@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Models
+import MarkdownUI
 
 private struct PrimaryModifier: ViewModifier {
     func body(content: Content) -> some View {
@@ -104,7 +105,12 @@ struct BuildView: View {
                 
                 Group {
                     Text("Commit message:").secondary()
-                    Text(model.commitMessage ?? "No commit message").primary()
+                    if let commitMessage = model.commitMessage {
+                        Markdown(commitMessage).primary()
+                    } else {
+                        Text("No commit message").primary()
+                    }
+                    
                     Rectangle().fill(theme.separatorColor).frame(height: 1)
                 }
                 
@@ -152,9 +158,9 @@ struct BuildView: View {
                                 .padding(10)
                                 .layoutPriority(1)
                         }
-                        .border(theme.borderColor, width: 1)
-//                        .background(Color(red: 0.93, green: 0.93, blue: 0.93))
                         .cornerRadius(4)
+                        .border(theme.borderColor, width: 1)
+                        
                     }
                 }
             }

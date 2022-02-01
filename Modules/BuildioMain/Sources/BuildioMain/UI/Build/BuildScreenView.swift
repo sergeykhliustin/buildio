@@ -50,8 +50,6 @@ struct BuildScreenView: BaseView {
                 }
                 
                 ListItemWrapper {
-                    
-                } content: {
                     BuildView(model: value, progress: model.progress)
                 }
             }
