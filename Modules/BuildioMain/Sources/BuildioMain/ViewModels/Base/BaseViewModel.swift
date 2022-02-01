@@ -147,7 +147,8 @@ class BaseViewModel<ValueType>: BaseViewModelProtocol {
         fetcher?.cancel()
         
         state = .loading
-        fetcher = Task {
+        fetcher = Task { [weak self] in
+            guard let self = self else { return }
             do {
                 self.value = try await fetch()
                 self.state = .value

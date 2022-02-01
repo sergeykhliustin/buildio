@@ -32,40 +32,30 @@ private struct ActivityNotification {
     }
 }
 
-public final class BackgroundProcessing {
-    public static let shared = BackgroundProcessing()
+public final class BackgroundProcessingMac {
+    public static let shared = BackgroundProcessingMac()
     
-    private static let appRefreshTaskId = "buildio.appRefreshTask"
-    private init() {}
-    
-    private var fetcher: AnyCancellable?
-    private var longFetcher: AnyCancellable?
-    private var notificationCenterPubliser: AnyCancellable?
-    
-    public func start() {
-        BGTaskScheduler.shared.register(forTaskWithIdentifier: Self.appRefreshTaskId, using: nil, launchHandler: launchHandler)
-        
-        notificationCenterPubliser =
-        NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification).sink { _ in
-            
-        } receiveValue: { [weak self] _ in
-            self?.scheduleAppRefresh()
-        }
+    private init() {
+        self.poolingInterval = UserDefaults.standard.pollingInterval
     }
     
-    private lazy var launchHandler: (BGTask) -> Void = { [weak self] task in
-        let identifier = task.identifier
-        logger.debug("[BGTASK] Perform bg fetch \(identifier)")
-        if var count = UserDefaults.standard.backgroundAnalytics[identifier] {
-            count += 1
-            UserDefaults.standard.backgroundAnalytics[identifier] = count
-        } else {
-            UserDefaults.standard.backgroundAnalytics[identifier] = 1
-        }
-        guard let self = self else {
-            logger.debug("[BGTASK] AppDelegate is nil")
-            return
-        }
+    private var fetcher: AnyCancellable?
+    private var notificationCenterPubliser: AnyCancellable?
+    private var timer: Timer?
+    var poolingInterval: TimeInterval
+    
+    public func start() {
+        timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true, block: { [weak self] timer in
+            guard let self = self else {
+                timer.invalidate()
+                return
+            }
+            self.update()
+        })
+    }
+    
+    func update() {
+        logger.info("")
         self.fetcher?.cancel()
         self.fetcher = Publishers.MergeMany(TokenManager().tokens
                                                 .filter({ !$0.isDemo })
@@ -81,8 +71,7 @@ public final class BackgroundProcessing {
             })
             .eraseToAnyPublisher()
             .sink { [weak self] _ in
-                task.setTaskCompleted(success: true)
-                self?.scheduleAppRefresh()
+                self?.fetcher = nil
             } receiveValue: { result in
                 DispatchQueue.main.async {
                     result.forEach { activity in
@@ -91,18 +80,13 @@ public final class BackgroundProcessing {
                         }
                         NotificationManager.runNotification(with: "\(activity.email)", subtitle: "\(activity.time):\n\(activity.title)", id: UUID().uuidString) { error in
                             if let error = error {
-                                logger.error("[BGTASK \(identifier)] \(error)")
+                                logger.error("\(error)")
                             }
                         }
                     }
                     
                 }
             }
-
-        task.expirationHandler = { [weak self] in
-            logger.debug("[BGTASK \(identifier)] expired")
-            self?.fetcher?.cancel()
-        }
     }
     
     private func activityList(_ token: Token) -> AnyPublisher<(String, [V0ActivityEventResponseItemModel]), Error> {
@@ -117,23 +101,5 @@ public final class BackgroundProcessing {
         }
         .map({ (token.email, $0) })
         .eraseToAnyPublisher()
-    }
-    
-    private func scheduleAppRefresh() {
-        BGTaskScheduler.shared.getPendingTaskRequests { tasks in
-            if !tasks.contains(where: { $0.identifier == Self.appRefreshTaskId }) {
-                logger.debug("[\(Self.appRefreshTaskId)] scheduling app refresh")
-                let request = BGAppRefreshTaskRequest(identifier: Self.appRefreshTaskId)
-                request.earliestBeginDate = Date(timeIntervalSinceNow: 0)
-                
-                do {
-                    try BGTaskScheduler.shared.submit(request)
-                    logger.debug("[\(Self.appRefreshTaskId)] submitted")
-                } catch {
-                    let error = error
-                    logger.debug("Could not schedule \(Self.appRefreshTaskId) \(error)")
-                }
-            }
-        }
     }
 }

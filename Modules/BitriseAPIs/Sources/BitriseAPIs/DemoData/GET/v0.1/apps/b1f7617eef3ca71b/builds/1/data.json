@@ -1,0 +1,43 @@
+{
+    "data" : {
+        "build_number" : 113,
+        "stack_identifier" : "osx-xcode-13.1.x",
+        "original_build_params" : {
+            "workflow_id" : "deploy_all",
+            "branch" : "main"
+        },
+        "finished_at" : "2021-12-09T13:58:37.000Z",
+        "machine_type_id" : "standard",
+        "triggered_at" : "2021-12-09T13:43:11.000Z",
+        "triggered_workflow" : "deploy_all",
+        "credit_cost": 25,
+        "branch" : "main",
+        "is_on_hold" : false,
+        "environment_prepare_finished_at" : "2021-12-09T13:44:08.000Z",
+        "slug" : "113",
+        "started_on_worker_at" : "2021-12-09T13:44:08.000Z",
+        "pull_request_id" : 0,
+        "is_processed" : true,
+        "status_text" : "success",
+        "status" : 1,
+        "triggered_by" : "manual-severehed",
+        "repository" : {
+            "owner" : {
+                "account_type" : "user",
+                "name" : "severehed",
+                "slug" : "eb934d8a0a4c404f"
+            },
+            "provider" : "github",
+            "is_disabled" : false,
+            "is_public" : false,
+            "repo_url" : "ssh:\/\/git@github.com\/sergeykhliustin\/buildio.git",
+            "slug" : "b1f7617eef3ca71b",
+            "status" : 1,
+            "title" : "buildio",
+            "repo_owner" : "sergeykhliustin",
+            "repo_slug" : "buildio",
+            "project_type" : "ios",
+            "avatar_url": "[[APP_ICON]]"
+        }
+    }
+}

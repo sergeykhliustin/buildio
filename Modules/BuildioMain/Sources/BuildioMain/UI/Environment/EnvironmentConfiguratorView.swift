@@ -68,7 +68,7 @@ extension EnvironmentValues {
 
 public struct EnvironmentConfiguratorView<Content: View>: View {
     @StateObject private var keyboard: KeyboardObserver = KeyboardObserver()
-    @StateObject var navigators: Navigators
+    @StateObject private var navigators: Navigators
     @State private var fullscreen: Bool = false
     @State private var windowMode: WindowMode = .compact
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass

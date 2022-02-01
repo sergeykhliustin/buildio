@@ -6,7 +6,6 @@
 
 import Foundation
 import CoreServices
-import UIKit
 
 class URLSessionRequestBuilderFactory: RequestBuilderFactory {
     func getNonDecodableBuilder<T>() -> RequestBuilder<T>.Type {

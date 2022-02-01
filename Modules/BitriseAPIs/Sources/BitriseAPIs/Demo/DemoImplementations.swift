@@ -60,7 +60,15 @@ final class DemoDecodableRequestBuilder<T: Codable>: URLSessionDecodableRequestB
             return super.execute(apiResponseQueue, completionWrapped)
         } else {
             if let demoDataURL = demoDataFileURL,
-                let data = try? Data(contentsOf: demoDataURL) {
+                var data = try? Data(contentsOf: demoDataURL) {
+                
+                if let appIconPlaceholder = "[[APP_ICON]]".data(using: .utf8),
+                   let appIconURL = Bundle.main.url(forResource: "app_icon", withExtension: "png")?.absoluteString.data(using: .utf8) {
+                    while let range = data.range(of: appIconPlaceholder) {
+                        data.replaceSubrange(range, with: appIconURL)
+                    }
+                }
+                
                 do {
                     let value = try CodableHelper.decode(type: T.self, from: data)
                     completion(.success(Response(statusCode: 200, header: [:], body: value)))

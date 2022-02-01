@@ -18,6 +18,8 @@ extension UserDefaults {
         static let debugMode = "debugMode"
         static let lightThemeName = "lightThemeName"
         static let darkThemeName = "darkThemeName"
+        static let pollingInterval = "pollingInterval"
+        static let lastAccount = "lastAccount"
     }
     
     enum ColorSchemeSettings: String, CaseIterable, Identifiable {
@@ -107,6 +109,26 @@ extension UserDefaults {
     
     func setLastActivityDate(_ date: TimeInterval, email: String) {
         lastActivityDates[email] = date
+    }
+    
+    var pollingInterval: TimeInterval {
+        get {
+            value(forKey: Keys.pollingInterval) as? Double ?? 30.0
+        }
+        set {
+            set(newValue, forKey: Keys.pollingInterval)
+            synchronize()
+        }
+    }
+    
+    var lastAccount: String? {
+        get {
+            string(forKey: Keys.lastAccount)
+        }
+        set {
+            set(newValue, forKey: Keys.lastAccount)
+            synchronize()
+        }
     }
     
     private var lastActivityDates: [String: Double] {

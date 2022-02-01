@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+#if canImport(UIKit)
 import UIKit
 
 public final class ImageLoader {
@@ -64,3 +65,4 @@ public final class ImageLoader {
         .eraseToAnyPublisher()
     }
 }
+#endif

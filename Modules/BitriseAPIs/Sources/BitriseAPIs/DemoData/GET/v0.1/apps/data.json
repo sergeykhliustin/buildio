@@ -15,7 +15,8 @@
       "title" : "buildio",
       "repo_owner" : "sergeykhliustin",
       "repo_slug" : "buildio",
-      "project_type" : "ios"
+      "project_type" : "ios",
+      "avatar_url": "[[APP_ICON]]"
     }
   ],
   "paging" : {

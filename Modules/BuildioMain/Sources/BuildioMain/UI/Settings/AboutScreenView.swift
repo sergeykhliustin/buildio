@@ -8,16 +8,6 @@
 import SwiftUI
 
 private extension Bundle {
-    var icon: UIImage? {
-        if let icons = infoDictionary?["CFBundleIcons"] as? [String: Any],
-            let primaryIcon = icons["CFBundlePrimaryIcon"] as? [String: Any],
-            let iconFiles = primaryIcon["CFBundleIconFiles"] as? [String],
-            let lastIcon = iconFiles.last {
-            return UIImage(named: lastIcon)
-        }
-        return nil
-    }
-    
     var build: String? {
         return infoDictionary?["CFBundleVersion"] as? String
     }
@@ -30,35 +20,41 @@ private extension Bundle {
 struct AboutScreenView: View {
     @Environment(\.theme) private var theme: Theme
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            if let image = Bundle.main.icon {
+        VStack(alignment: .center, spacing: 16) {
+            if let imagePath = Bundle.main.path(forResource: "app_icon", ofType: "png"),
+                let image = UIImage(contentsOfFile: imagePath) {
                 Image(uiImage: image)
-                    .cornerRadius(10)
+                    .cornerRadius(30)
+                    .background(
+                        RoundedRectangle(cornerRadius: 30).shadow(color: theme.shadowColor, radius: 10, x: 0, y: 10)
+                    )
             }
-            
-            Text("Buildio \(Bundle.main.version ?? "") (\(Bundle.main.build ?? ""))")
-                .font(.title)
-            
-            HStack(spacing: 0) {
-                Text("Open source client for ")
-                Link("Bitrise CI", destination: URL(string: "bitrise.io")!)
-                    .foregroundColor(theme.linkColor)
-            }
-            
-            HStack(spacing: 0) {
-                Text("Source code available ")
-                Link("on Github", destination: URL(string: "https://github.com/sergeykhliustin/buildio")!)
-                    .foregroundColor(theme.linkColor)
-            }
-            
-            VStack(alignment: .leading, spacing: 8) {
-                Text("Dependencies:")
-                Group {
-                    Link("SwiftyBeaver", destination: URL(string: "https://github.com/SwiftyBeaver/SwiftyBeaver")!)
-                    Link("KeychainAccess", destination: URL(string: "https://github.com/kishikawakatsumi/KeychainAccess")!)
-                    Link("Rainbow", destination: URL(string: "https://github.com/onevcat/Rainbow")!)
+            VStack(alignment: .leading, spacing: 16) {
+                
+                Text("Buildio \(Bundle.main.version ?? "") (\(Bundle.main.build ?? ""))")
+                    .font(.title)
+                
+                HStack(spacing: 0) {
+                    Text("Open source client for ")
+                    Link("Bitrise CI", destination: URL(string: "bitrise.io")!)
+                        .foregroundColor(theme.linkColor)
                 }
-                .foregroundColor(theme.linkColor)
+                
+                HStack(spacing: 0) {
+                    Text("Source code available ")
+                    Link("on Github", destination: URL(string: "https://github.com/sergeykhliustin/buildio")!)
+                        .foregroundColor(theme.linkColor)
+                }
+                
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Dependencies:")
+                    Group {
+                        Link("SwiftyBeaver", destination: URL(string: "https://github.com/SwiftyBeaver/SwiftyBeaver")!)
+                        Link("KeychainAccess", destination: URL(string: "https://github.com/kishikawakatsumi/KeychainAccess")!)
+                        Link("Rainbow", destination: URL(string: "https://github.com/onevcat/Rainbow")!)
+                    }
+                    .foregroundColor(theme.linkColor)
+                }
             }
         }
         .padding(.horizontal, 16)

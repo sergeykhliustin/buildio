@@ -113,6 +113,31 @@ public struct Theme: Codable, Equatable {
         "abortButtonColor2": "#710E00"
     ]
     
+    private static let khndzTheme = [
+        "name": "Khndz Dark",
+        "scheme": "dark",
+        
+        "abortButtonColor1": "#FE8646",
+        "abortButtonColor2": "#B51A00",
+        "accentColor": "#FEFFFF",
+        "accentColorLight": "#99999999",
+        "background": "#000000",
+        "borderColor": "#999999",
+        "controlsColor": "#FEFFFF",
+        "disabledColor": "#999999",
+        "fadeColor": "#FFFFFF26",
+        "linkColor": "#06ADCE",
+        "logControlColor": "#5B5B5B",
+        "logsBackgroundColor": "#002524",
+        "navigationColor": "#EAEAEA",
+        "separatorColor": "#848484",
+        "shadowColor": "#FFFFFF18",
+        "submitButtonColor1": "#00C7FC",
+        "submitButtonColor2": "#003549",
+        "textColor": "#FEFEFE",
+        "textColorLight": "#FEFEFE99"
+    ]
+    
     private static let themes = [
         Self.defaultLightTheme,
         Self.defaultDarkTheme,

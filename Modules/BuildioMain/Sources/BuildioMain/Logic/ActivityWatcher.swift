@@ -36,7 +36,8 @@ final class ActivityWatcher: ObservableObject {
     
     private func refresh() {
         fetcher?.cancel()
-        fetcher = Task {
+        fetcher = Task { [weak self] in
+            guard let self = self else { return }
             do {
                 if let date = try await ActivityAPI(apiToken: self.token).activityList(limit: 1).data.first?.createdAt {
                     self.lastActivityDate = date
@@ -45,6 +46,7 @@ final class ActivityWatcher: ObservableObject {
                 logger.error(error)
             }
             scheduleNextUpdate()
+            self.fetcher = nil
         }
     }
     

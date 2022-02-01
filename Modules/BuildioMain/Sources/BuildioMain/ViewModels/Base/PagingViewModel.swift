@@ -65,7 +65,8 @@ class PagingViewModel<VALUE: PagingResponseModel>: BaseApiViewModel<VALUE>, Pagi
         guard pagingState.canLoadNext else { return }
         pagingState = .loading
         
-        pageFetcher = Task {
+        pageFetcher = Task { [weak self] in
+            guard let self = self else { return }
             do {
                 let value = try await fetchPage(next: value?.paging.next)
                 self.items = merge(value: self.items, newValue: value.data)

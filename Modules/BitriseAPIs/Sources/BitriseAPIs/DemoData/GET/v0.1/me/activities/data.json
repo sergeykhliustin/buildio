@@ -6,9 +6,9 @@
       "event_stype" : "build",
       "created_at" : "2021-12-22T15:37:36.201Z",
       "title" : "Build aborted",
-      "repository_avatar_icon_url" : "",
+      "repository_avatar_icon_url" : "[[APP_ICON]]",
       "description" : "buildio - build Aborted, Reason: ",
-      "target_path_string" : "\/build\/c7717bbe-ba09-4bfb-9774-a71b2ea8ccb7"
+      "target_path_string" : "\/build\/1"
     },
     {
       "slug" : "4a6853434cda29aa",
@@ -16,9 +16,9 @@
       "event_stype" : "build",
       "created_at" : "2021-12-22T15:37:32.945Z",
       "title" : "Build aborted",
-      "repository_avatar_icon_url" : "",
+      "repository_avatar_icon_url" : "[[APP_ICON]]",
       "description" : "buildio - build Aborted, Reason: ",
-      "target_path_string" : "\/build\/5e01d90a-10b3-4873-bc16-ef411597d092"
+      "target_path_string" : "\/build\/1"
     },
     {
       "slug" : "aab7a5559bc1c84c",
@@ -26,9 +26,9 @@
       "event_stype" : "build",
       "created_at" : "2021-12-22T15:37:23.867Z",
       "title" : "Build triggered",
-      "repository_avatar_icon_url" : "",
+      "repository_avatar_icon_url" : "[[APP_ICON]]",
       "description" : "buildio - build triggered.",
-      "target_path_string" : "\/build\/c7717bbe-ba09-4bfb-9774-a71b2ea8ccb7"
+      "target_path_string" : "\/build\/1"
     },
     {
       "slug" : "7490d2510caa930e",
@@ -36,9 +36,9 @@
       "event_stype" : "build",
       "created_at" : "2021-12-22T15:36:52.903Z",
       "title" : "Build triggered",
-      "repository_avatar_icon_url" : "",
+      "repository_avatar_icon_url" : "[[APP_ICON]]",
       "description" : "buildio - build triggered.",
-      "target_path_string" : "\/build\/5e01d90a-10b3-4873-bc16-ef411597d092"
+      "target_path_string" : "\/build\/1"
     },
     {
       "slug" : "0a4f13565ba8cde3",
@@ -46,9 +46,9 @@
       "event_stype" : "build",
       "created_at" : "2021-12-09T13:58:38.122Z",
       "title" : "Build finished",
-      "repository_avatar_icon_url" : "",
+      "repository_avatar_icon_url" : "[[APP_ICON]]",
       "description" : "buildio - build finished with Success.",
-      "target_path_string" : "\/build\/075386b1-51b8-44db-84f4-cf9d17bf58c1"
+      "target_path_string" : "\/build\/1"
     },
     {
       "slug" : "05b174620000ea0c",
@@ -56,9 +56,9 @@
       "event_stype" : "build",
       "created_at" : "2021-12-09T13:43:12.237Z",
       "title" : "Build triggered",
-      "repository_avatar_icon_url" : "",
+      "repository_avatar_icon_url" : "[[APP_ICON]]",
       "description" : "buildio - build triggered.",
-      "target_path_string" : "\/build\/075386b1-51b8-44db-84f4-cf9d17bf58c1"
+      "target_path_string" : "\/build\/1"
     },
     {
       "slug" : "7cd0151af6bfc5db",
@@ -66,9 +66,9 @@
       "event_stype" : "build",
       "created_at" : "2021-12-09T13:35:00.685Z",
       "title" : "Build aborted",
-      "repository_avatar_icon_url" : "",
+      "repository_avatar_icon_url" : "[[APP_ICON]]",
       "description" : "buildio - build Aborted, Reason: success abort",
-      "target_path_string" : "\/build\/7c386104-7d68-4ad5-a950-0ed4c72617c6"
+      "target_path_string" : "\/build\/1"
     },
     {
       "slug" : "ad0ad3ca5361eb13",
@@ -76,9 +76,9 @@
       "event_stype" : "build",
       "created_at" : "2021-12-09T13:34:43.969Z",
       "title" : "Build triggered",
-      "repository_avatar_icon_url" : "",
+      "repository_avatar_icon_url" : "[[APP_ICON]]",
       "description" : "buildio - build triggered.",
-      "target_path_string" : "\/build\/7c386104-7d68-4ad5-a950-0ed4c72617c6"
+      "target_path_string" : "\/build\/1"
     },
     {
       "slug" : "53dcd80090982101",
@@ -86,9 +86,9 @@
       "event_stype" : "build",
       "created_at" : "2021-12-09T13:24:17.582Z",
       "title" : "Build aborted",
-      "repository_avatar_icon_url" : "",
+      "repository_avatar_icon_url" : "[[APP_ICON]]",
       "description" : "buildio - build Aborted, Reason: test reason",
-      "target_path_string" : "\/build\/3c3aa23f-ad21-4b53-9fb8-1f3d5fee5fcf"
+      "target_path_string" : "\/build\/1"
     },
     {
       "slug" : "6c8217c404bffe26",
@@ -96,9 +96,9 @@
       "event_stype" : "build",
       "created_at" : "2021-12-09T13:23:55.661Z",
       "title" : "Build triggered",
-      "repository_avatar_icon_url" : "",
+      "repository_avatar_icon_url" : "[[APP_ICON]]",
       "description" : "buildio - build triggered.",
-      "target_path_string" : "\/build\/3c3aa23f-ad21-4b53-9fb8-1f3d5fee5fcf"
+      "target_path_string" : "\/build\/1"
     }
   ],
   "paging" : {
