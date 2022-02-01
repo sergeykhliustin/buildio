@@ -63,11 +63,14 @@ struct AuthScreenView: View {
                     Text("Don't have one? ")
                         .font(.callout)
                     Button {
+                        #if targetEnvironment(macCatalyst)
                         guard let url = URL(string: "https://app.bitrise.io/me/profile#/security") else {
                             return
                         }
-                        
                         openURL(url)
+                        #else
+                        navigator.go(.getToken)
+                        #endif
                     } label: {
                         Text("Click here")
                     }

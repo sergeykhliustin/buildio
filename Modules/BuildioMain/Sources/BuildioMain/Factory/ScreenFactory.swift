@@ -111,6 +111,12 @@ final class ScreenFactory: ObservableObject {
         AuthScreenView(canClose: canClose, onCompletion: onCompletion)
     }
     
+    @ViewBuilder
+    func getToken() -> some View {
+        AuthWebViewContoller()
+            .navigationTitle(AuthWebViewContoller.navigationTitle)
+    }
+    
     // MARK: - Avatar
     
     @ViewBuilder

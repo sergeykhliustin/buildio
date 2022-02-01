@@ -25,6 +25,7 @@ enum NewBuildRoute {
 
 enum AuthRoute {
     case auth((() -> Void)?)
+    case getToken
 }
 
 enum SettingsRoute {
@@ -118,6 +119,9 @@ final class Navigator: ObservableObject {
                 .hosting
             self.isPresentingSheet = true
             navigationController?.sheet(controller)
+        case .getToken:
+            let controller = screenFactory.getToken().hosting
+            navigationController?.push(controller, shouldReplace: false)
         }
     }
     
