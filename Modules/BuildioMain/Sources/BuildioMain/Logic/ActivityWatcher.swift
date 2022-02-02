@@ -16,6 +16,8 @@ final class ActivityWatcher: ObservableObject {
     private var timer: Timer?
     private var tokenHandler: AnyCancellable?
     private var token: String?
+    private var isPaused: Bool = false
+    
     private var lastActivityDate: Date = Date() {
         didSet {
             NotificationCenter.default.post(name: Self.lastActivityDateUpdated, object: lastActivityDate)
@@ -32,6 +34,21 @@ final class ActivityWatcher: ObservableObject {
                 self.timer?.invalidate()
             }
         })
+    }
+    
+    func pause() {
+        logger.verbose("")
+        isPaused = true
+        fetcher?.cancel()
+        fetcher = nil
+        timer?.invalidate()
+        timer = nil
+    }
+    
+    func resume() {
+        logger.verbose("")
+        isPaused = false
+        refresh()
     }
     
     private func refresh() {
@@ -51,6 +68,7 @@ final class ActivityWatcher: ObservableObject {
     }
     
     private func scheduleNextUpdate() {
+        guard !isPaused else { return }
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             self.timer?.invalidate()

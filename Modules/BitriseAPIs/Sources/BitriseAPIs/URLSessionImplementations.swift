@@ -157,7 +157,7 @@ open class URLSessionRequestBuilder<T>: RequestBuilder<T> {
                         let requestUrl = request.url?.absoluteString ?? ""
                         let wrappedCompletion: (_ result: Swift.Result<Response<T>, ErrorResponse>) -> Void = { result in
                             completion(result)
-                            logger.info("Request: \(T.self), \(requestUrl)")
+                            logger.verbose("Request: \(T.self), \(requestUrl)")
                             if case .failure(let error) = result {
                                 logger.error(error)
                             }

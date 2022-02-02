@@ -23,11 +23,24 @@ struct BuildRowView: View {
     private struct Item: View {
         let imageName: String
         let text: String?
+        let system: Bool
+        
+        init(imageName: String, text: String?, system: Bool = true) {
+            self.imageName = imageName
+            self.text = text
+            self.system = system
+        }
         
         var body: some View {
             if let text = text, !text.isEmpty {
                 HStack(spacing: 0) {
-                    Image(systemName: imageName)
+                    if system {
+                        Image(systemName: imageName)
+                    } else {
+                        Image(imageName)
+                            .renderingMode(.template)
+                            .padding(4)
+                    }
                     Text("\(text)")
                 }
             }
@@ -92,7 +105,7 @@ struct BuildRowView: View {
                     if let pullRequestId = model.pullRequestId, pullRequestId != 0 {
                         Item(imageName: "arrow.triangle.pull", text: String(pullRequestId))
                     } else if let commitHash = model.commitHash {
-                        Item(imageName: "command.circle", text: String(commitHash.prefix(7)))
+                        Item(imageName: "github", text: String(commitHash.prefix(7)), system: false)
                     }
                     Spacer(minLength: -2)
                     Item(imageName: "coloncurrencysign.circle", text: model.creditCost?.description)

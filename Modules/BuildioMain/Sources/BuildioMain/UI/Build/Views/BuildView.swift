@@ -41,8 +41,14 @@ extension Int: Identifiable {
     }
 }
 
+private enum MessageStyle {
+    case markdown
+    case raw
+}
+
 struct BuildView: View {
     @Environment(\.theme) private var theme
+    @State private var messageStyle: MessageStyle = .markdown
     
     private struct Item: View {
         let imageName: String
@@ -104,11 +110,29 @@ struct BuildView: View {
                 }
                 
                 Group {
-                    Text("Commit message:").secondary()
-                    if let commitMessage = model.commitMessage {
-                        Markdown(commitMessage).primary()
+                    HStack {
+                        Text("Commit message:")
+                        Picker("", selection: $messageStyle) {
+                            Text("MD")
+                                .tag(MessageStyle.markdown)
+                            Text("TXT")
+                                .tag(MessageStyle.raw)
+                        }
+                        .pickerStyle(.segmented)
+                        .fixedSize()
+                    }
+                    .secondary()
+                    
+                    if let commitMessage = model.commitMessage, messageStyle == .markdown {
+                        Markdown(commitMessage)
+                            .markdownStyle(
+                                MarkdownStyle(
+                                    font: .subheadline,
+                                    foregroundColor: MarkdownStyle.Color(uiColor: theme.textColor.uiColor)
+                                )
+                            )
                     } else {
-                        Text("No commit message").primary()
+                        Text(model.commitMessage ?? "No commit message").primary()
                     }
                     
                     Rectangle().fill(theme.separatorColor).frame(height: 1)

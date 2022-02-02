@@ -33,6 +33,7 @@ struct AccountsScreenView: View {
                 Button {
                     navigator.go(.auth({
                         navigator.dismiss()
+                        navigators.popToRootAll()
                     }))
                 } label: {
                     Image(systemName: "plus")

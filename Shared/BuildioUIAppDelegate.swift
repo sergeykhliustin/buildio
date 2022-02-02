@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import Combine
 import BuildioMain
+import UserNotifications
 
 public final class BuildioUIAppDelegate: NSObject, UIApplicationDelegate {
     var statusBarPlugin: MacStatusBarPluginProtocol?
@@ -19,6 +20,10 @@ public final class BuildioUIAppDelegate: NSObject, UIApplicationDelegate {
         #else
         BackgroundProcessing.shared.start()
         #endif
+        
+        let center = UNUserNotificationCenter.current()
+        center.removeAllDeliveredNotifications()
+        center.removeAllPendingNotificationRequests()
         
         return true
     }

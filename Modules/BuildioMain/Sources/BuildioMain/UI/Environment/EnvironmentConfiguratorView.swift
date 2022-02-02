@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 public enum WindowMode {
     case compact
@@ -72,6 +73,7 @@ public struct EnvironmentConfiguratorView<Content: View>: View {
     @State private var fullscreen: Bool = false
     @State private var windowMode: WindowMode = .compact
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Environment(\.scenePhase) private var scenePhase
     
     @ViewBuilder let content: () -> Content
     
@@ -111,6 +113,25 @@ public struct EnvironmentConfiguratorView<Content: View>: View {
                 })
                 .onChange(of: geometry.size) { _ in
                     updateWindowMode(geometry)
+                }
+                .onChange(of: scenePhase) { newValue in
+                    logger.info("ScenePhase: \(newValue)")
+                    if newValue == .active {
+                        let center = UNUserNotificationCenter.current()
+                        center.removeAllDeliveredNotifications()
+                        center.removeAllPendingNotificationRequests()
+                        activityWatcher?.resume()
+                    } else {
+                        activityWatcher?.pause()
+                    }
+                }
+                .onReceive(NotificationCenter.default.publisher(for: Notification.Name(rawValue: "NSApplicationDidBecomeActiveNotification")), perform: { _ in
+                    logger.info("NSApplicationDidBecomeActiveNotification")
+                    activityWatcher?.resume()
+                })
+                .onReceive(NotificationCenter.default.publisher(for: Notification.Name(rawValue: "NSApplicationWillResignActiveNotification"))) { _ in
+                    logger.info("NSApplicationWillResignActiveNotification")
+                    activityWatcher?.pause()
                 }
         }
     }
