@@ -141,7 +141,8 @@ public struct Theme: Codable, Equatable {
     private static let themes = [
         Self.defaultLightTheme,
         Self.defaultDarkTheme,
-        Self.annDarkTheme
+        Self.annDarkTheme,
+        Self.khndzTheme
     ]
     
     static let defaultDarkName: String = "Sea Green"
