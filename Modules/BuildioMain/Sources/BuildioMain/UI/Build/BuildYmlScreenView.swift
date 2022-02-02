@@ -53,7 +53,5 @@ struct BuildYmlScreenView: BaseView {
         .withHostingWindow { window in
             self.window = window
         }
-        
-        //.background(theme.background)
     }
 }

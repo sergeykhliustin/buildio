@@ -38,15 +38,6 @@ open class URLSessionRequestBuilder<T>: RequestBuilder<T> {
      */
     public var taskDidReceiveChallenge: OpenAPIClientAPIChallengeHandler?
 
-    /**
-     May be assigned if you want to do any of those things:
-     - control the task completion
-     - intercept and handle errors like authorization
-     - retry the request.
-     */
-    @available(*, deprecated, message: "Please override execute() method to intercept and handle errors like authorization or retry the request. Check the Wiki for more info. https://github.com/OpenAPITools/openapi-generator/wiki/FAQ#how-do-i-implement-bearer-token-authentication-with-urlsession-on-the-swift-api-client")
-    public var taskCompletionShouldRetry: ((Data?, URLResponse?, Error?, @escaping (Bool) -> Void) -> Void)?
-
     required public init(method: String, URLString: String, parameters: [String: Any]?, headers: [String: String] = [:]) {
         super.init(method: method, URLString: URLString, parameters: parameters, headers: headers)
     }
@@ -137,35 +128,18 @@ open class URLSessionRequestBuilder<T>: RequestBuilder<T> {
              }
 
             let dataTask = urlSession.dataTask(with: request) { data, response, error in
-
-                if let taskCompletionShouldRetry = self.taskCompletionShouldRetry {
-
-                    taskCompletionShouldRetry(data, response, error) { shouldRetry in
-
-                        if shouldRetry {
-                            cleanupRequest()
-                            self.execute(apiResponseQueue, completion)
-                        } else {
-                            apiResponseQueue.async {
-                                self.processRequestResponse(urlRequest: request, data: data, response: response, error: error, completion: completion)
-                                cleanupRequest()
-                            }
+                apiResponseQueue.async {
+                    let requestUrl = request.url?.absoluteString ?? ""
+                    let wrappedCompletion: (_ result: Swift.Result<Response<T>, ErrorResponse>) -> Void = { result in
+                        completion(result)
+                        logger.verbose("Request: \(T.self), \(requestUrl)")
+                        if case .failure(let error) = result {
+                            logger.error(error)
                         }
                     }
-                } else {
-                    apiResponseQueue.async {
-                        let requestUrl = request.url?.absoluteString ?? ""
-                        let wrappedCompletion: (_ result: Swift.Result<Response<T>, ErrorResponse>) -> Void = { result in
-                            completion(result)
-                            logger.verbose("Request: \(T.self), \(requestUrl)")
-                            if case .failure(let error) = result {
-                                logger.error(error)
-                            }
-                        }
-                        self.processRequestResponse(urlRequest: request, data: data, response: response, error: error, completion: wrappedCompletion)
-                        cleanupRequest()
-                    }
-                }
+                    self.processRequestResponse(urlRequest: request, data: data, response: response, error: error, completion: wrappedCompletion)
+                    cleanupRequest()
+                }   
             }
 
             if #available(iOS 11.0, macOS 10.13, macCatalyst 13.0, tvOS 11.0, watchOS 4.0, *) {
