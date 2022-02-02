@@ -77,6 +77,10 @@ final class ViewModelFactory {
         ArtifactsViewModel(tokenManager, build: build)
     }
     
+    func yml(_ build: BuildResponseItemModel) -> BuildYmlViewModel {
+        BuildYmlViewModel(tokenManager, build: build)
+    }
+    
     func newBuild() -> NewBuildViewModel {
         NewBuildViewModel(tokenManager)
     }

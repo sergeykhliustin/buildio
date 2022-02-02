@@ -12,10 +12,11 @@ struct ArtifactsScreenView: PagingView {
     @EnvironmentObject var model: ArtifactsViewModel
     
     func buildItemView(_ item: V0ArtifactListElementResponseModel) -> some View {
-        ListItemWrapper(action: {}, content: {
+        ListItemWrapper {
             ArtifactRowView(value: item)
-        })
-            .navigationTitle("Artifacts")
+                .padding(8)
+        }
+        .navigationTitle("Artifacts")
     }
     
     private func string(item: V0ArtifactListElementResponseModel) -> String {

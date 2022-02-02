@@ -52,6 +52,12 @@ final class ScreenFactory: ObservableObject {
             .navigationTitle("Build #\(String(build.buildNumber)) artifacts")
     }
     
+    @ViewBuilder
+    func ymlScreen(build: BuildResponseItemModel) -> some View {
+        BuildYmlScreenView()
+            .environmentObject(viewModelFactory.yml(build))
+    }
+    
     // MARK: - New Build
     
     @ViewBuilder

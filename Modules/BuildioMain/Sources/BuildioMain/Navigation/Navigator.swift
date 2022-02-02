@@ -16,6 +16,7 @@ enum Route {
     case logs(BuildResponseItemModel)
     case artifacts(BuildResponseItemModel)
     case activities
+    case yml(BuildResponseItemModel)
 }
 
 enum NewBuildRoute {
@@ -79,6 +80,8 @@ final class Navigator: ObservableObject {
             controller = builder.artifactsScreen(build: build).hosting
         case .activities:
             controller = builder.activitiesScreen().hosting
+        case .yml(let build):
+            controller = builder.ymlScreen(build: build).hosting
         }
         navigationController?.push(controller, shouldReplace: replace)
     }

@@ -132,7 +132,11 @@ struct BuildView: View {
                                 )
                             )
                     } else {
-                        Text(model.commitMessage ?? "No commit message").primary()
+                        Text(model.commitMessage ?? "No commit message")
+                            .multilineTextAlignment(.leading)
+                            .lineLimit(nil)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .primary()
                     }
                     
                     Rectangle().fill(theme.separatorColor).frame(height: 1)

@@ -16,10 +16,10 @@ public struct V0ArtifactListElementResponseModel: Codable, Hashable, Identifiabl
     public var artifactType: String?
     public var fileSizeBytes: Int?
     public var isPublicPageEnabled: Bool?
-    public var slug: String?
+    public var slug: String!
     public var title: String?
 
-    public init(artifactMeta: [Int]? = nil, artifactType: String? = nil, fileSizeBytes: Int? = nil, isPublicPageEnabled: Bool? = nil, slug: String? = nil, title: String? = nil) {
+    public init(artifactMeta: [Int]? = nil, artifactType: String? = nil, fileSizeBytes: Int? = nil, isPublicPageEnabled: Bool? = nil, slug: String = "", title: String? = nil) {
         self.artifactMeta = artifactMeta
         self.artifactType = artifactType
         self.fileSizeBytes = fileSizeBytes

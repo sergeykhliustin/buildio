@@ -49,6 +49,10 @@ struct BuildScreenView: BaseView {
                     }
                 }
                 
+                NavigateSettingsItem(title: "Bitrise.yml", icon: "gearshape.2") {
+                    navigator.go(.yml(value), replace: false)
+                }
+                
                 ListItemWrapper {
                     BuildView(model: value, progress: model.progress)
                 }
