@@ -70,8 +70,17 @@ final class DemoDecodableRequestBuilder<T: Codable>: URLSessionDecodableRequestB
                 }
                 
                 do {
-                    let value = try CodableHelper.decode(type: T.self, from: data)
-                    completion(.success(Response(statusCode: 200, header: [:], body: value)))
+                    switch T.self {
+                    case is String.Type:
+                        let value = String(data: data, encoding: .utf8) ?? ""
+                        // swiftlint:disable force_cast
+                        completion(.success(Response(statusCode: 200, header: [:], body: value as! T)))
+                        // swiftlint:enable force_cast
+                    default:
+                        let value = try CodableHelper.decode(type: T.self, from: data)
+                        completion(.success(Response(statusCode: 200, header: [:], body: value)))
+                    }
+                    
                 } catch {
                     logger.error(error)
                     completion(.failure(.demoRestricted))
@@ -86,7 +95,8 @@ final class DemoDecodableRequestBuilder<T: Codable>: URLSessionDecodableRequestB
     private let demoRedirectRules: [String: String] = [
         "v0.1/apps/b1f7617eef3ca71b/builds": "v0.1/builds",
         "artifacts": "v0.1/apps/b1f7617eef3ca71b/builds/1/artifacts",
-        "log": "v0.1/apps/b1f7617eef3ca71b/builds/1/log"
+        "log": "v0.1/apps/b1f7617eef3ca71b/builds/1/log",
+        "bitrise.yml": "v0.1/apps/b1f7617eef3ca71b/builds/1/bitrise.yml"
     ]
     
     private func applyRedirectRules(_ path: String) -> String {
@@ -95,6 +105,8 @@ final class DemoDecodableRequestBuilder<T: Codable>: URLSessionDecodableRequestB
             return demoRedirectRules["artifacts"] ?? path
         } else if trimmed.hasSuffix("log") {
             return demoRedirectRules["log"] ?? path
+        } else if trimmed.hasSuffix("bitrise.yml") {
+            return demoRedirectRules["bitrise.yml"] ?? path
         }
         return demoRedirectRules[trimmed] ?? path
     }

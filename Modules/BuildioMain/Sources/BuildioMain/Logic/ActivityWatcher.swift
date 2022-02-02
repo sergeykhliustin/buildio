@@ -52,6 +52,7 @@ final class ActivityWatcher: ObservableObject {
     }
     
     private func refresh() {
+        guard self.token != nil else { return }
         fetcher?.cancel()
         fetcher = Task { [weak self] in
             guard let self = self else { return }
