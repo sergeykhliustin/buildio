@@ -14,30 +14,30 @@ extension SHA256Digest {
     }
 }
 
-protocol SHA256Convertable {
+public protocol SHA256Convertable {
     var sha256: String { get }
 }
 
 extension Data: SHA256Convertable {
-    var sha256: String {
+    public var sha256: String {
         return SHA256.hash(data: self).string
     }
 }
 
 extension String: SHA256Convertable {
-    var sha256: String {
+    public var sha256: String {
         return SHA256.hash(data: self.data(using: .utf8)!).string
     }
 }
 
 extension URL: SHA256Convertable {
-    var sha256: String {
+    public var sha256: String {
         return absoluteString.sha256
     }
 }
 
 extension Dictionary: SHA256Convertable where Key == String, Value == String {
-    var sha256: String {
+    public var sha256: String {
         var data: [String] = keys.sorted()
         data.append(contentsOf: values.sorted())
         return data.joined().sha256
@@ -45,7 +45,7 @@ extension Dictionary: SHA256Convertable where Key == String, Value == String {
 }
 
 extension URLRequest: SHA256Convertable {
-    var sha256: String {
+    public var sha256: String {
         
         return [url?.sha256, self.httpBody?.sha256, self.allHTTPHeaderFields?.sha256].compactMap({ $0 }).joined().sha256
     }

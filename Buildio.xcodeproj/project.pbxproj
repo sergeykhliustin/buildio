@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F17BABC27AC449F005CA881 /* BuildioUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3F17BABB27AC449F005CA881 /* BuildioUI */; };
 		3F1AC91827A999C800DB3BB6 /* MacStatusBarPlugin.bundle in Embed PlugIns */ = {isa = PBXBuildFile; fileRef = 3F9C2D5E27A99772005D90DF /* MacStatusBarPlugin.bundle */; platformFilter = maccatalyst; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3F1AC91D27A9A26700DB3BB6 /* icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1AC91C27A9A26700DB3BB6 /* icon@3x.png */; };
 		3F47282227A9DDF000C4CD88 /* app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F47282127A9DDF000C4CD88 /* app_icon.png */; };
@@ -16,7 +17,6 @@
 		3F9C2D6927A99800005D90DF /* MacStatusBarPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9C2D6827A99800005D90DF /* MacStatusBarPlugin.swift */; };
 		3F9C2D6B27A99878005D90DF /* BuildioUIAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9C2D6A27A99878005D90DF /* BuildioUIAppDelegate.swift */; };
 		3FC502202750FF6C005BC8F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FC5021F2750FF6C005BC8F3 /* Assets.xcassets */; };
-		3FF23B44275EAE2800AFE0F1 /* BuildioMain in Frameworks */ = {isa = PBXBuildFile; productRef = 3FF23B43275EAE2800AFE0F1 /* BuildioMain */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +44,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3F17BABA27AC4487005CA881 /* BuildioUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BuildioUI; path = Modules/BuildioUI; sourceTree = "<group>"; };
 		3F1AC91C27A9A26700DB3BB6 /* icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@3x.png"; sourceTree = "<group>"; };
 		3F1AC92227A9D7D500DB3BB6 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		3F3295842735A623001994B0 /* Buildio (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Buildio (iOS).entitlements"; sourceTree = "<group>"; };
@@ -57,7 +58,6 @@
 		3FC5021F2750FF6C005BC8F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3FD8FDBF2731F78C0060BDF4 /* Buildio.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Buildio.plist; sourceTree = "<group>"; };
 		3FE7B54B27072C1E00A6D8E1 /* Buildio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Buildio.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3FF23B42275EAE1000AFE0F1 /* BuildioMain */ = {isa = PBXFileReference; lastKnownFileType = folder; name = BuildioMain; path = Modules/BuildioMain; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,7 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FF23B44275EAE2800AFE0F1 /* BuildioMain in Frameworks */,
+				3F17BABC27AC449F005CA881 /* BuildioUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,7 +90,7 @@
 		3F19ABAB272C092D0070DFE3 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				3FF23B42275EAE1000AFE0F1 /* BuildioMain */,
+				3F17BABA27AC4487005CA881 /* BuildioUI */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -186,7 +186,7 @@
 			);
 			name = Buildio;
 			packageProductDependencies = (
-				3FF23B43275EAE2800AFE0F1 /* BuildioMain */,
+				3F17BABB27AC449F005CA881 /* BuildioUI */,
 			);
 			productName = "Buildio (iOS)";
 			productReference = 3FE7B54B27072C1E00A6D8E1 /* Buildio.app */;
@@ -716,9 +716,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		3FF23B43275EAE2800AFE0F1 /* BuildioMain */ = {
+		3F17BABB27AC449F005CA881 /* BuildioUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = BuildioMain;
+			productName = BuildioUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

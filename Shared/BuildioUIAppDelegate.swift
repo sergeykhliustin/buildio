@@ -8,8 +8,8 @@
 import Foundation
 import UIKit
 import Combine
-import BuildioMain
 import UserNotifications
+import BuildioLogic
 
 public final class BuildioUIAppDelegate: NSObject, UIApplicationDelegate {
     var statusBarPlugin: MacStatusBarPluginProtocol?
