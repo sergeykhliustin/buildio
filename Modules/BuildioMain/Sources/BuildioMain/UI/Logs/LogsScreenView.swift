@@ -12,14 +12,15 @@ import Rainbow
 struct LogsScreenView: BaseView {
     @EnvironmentObject var model: LogsViewModel
     @Environment(\.fullscreen) private var fullscreen
-    let build: BuildResponseItemModel
+    private let build: BuildResponseItemModel
     
     init(build: BuildResponseItemModel) {
         self.build = build
     }
     
     var body: some View {
-        LogsView(logs: $model.attributedLogs)
+        let fetchRaw: (() -> Void)? = model.canFetchRaw ? { model.fetchRaw() } : nil
+        LogsView(logs: model.attributedLogs, fetchRawAction: fetchRaw)
             .toolbar {
                 if case .loading = model.state {
                     ProgressView()

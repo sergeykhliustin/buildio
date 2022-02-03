@@ -13,7 +13,7 @@ struct DebugLogsScreenView: View {
     @State private var logs: NSAttributedString?
     
     var body: some View {
-        LogsView(logs: $logs)
+        LogsView(logs: logs)
             .onAppear(perform: {
                 updateLogs()
             })

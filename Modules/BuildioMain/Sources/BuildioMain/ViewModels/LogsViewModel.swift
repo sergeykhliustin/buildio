@@ -16,6 +16,10 @@ final class LogsViewModel: BaseApiViewModel<BuildLogResponseModel> {
     let build: BuildResponseItemModel
     private var timer: Timer?
     @Published var attributedLogs: NSAttributedString?
+    @Published private var isRawFetched: Bool = false
+    var canFetchRaw: Bool {
+        !isRawFetched && value?.expiringRawLogUrl != nil
+    }
     
     deinit {
         logger.debug("")
@@ -34,8 +38,39 @@ final class LogsViewModel: BaseApiViewModel<BuildLogResponseModel> {
         try await apiFactory.api(BuildsAPI.self).buildLog(appSlug: build.repository.slug, buildSlug: build.slug, timestamp: value?.nextAfterTimestamp)
     }
     
+    func fetchRaw() {
+        guard let value = value, state != .loading,
+                let rawLogString = value.expiringRawLogUrl,
+                let rawLogUrl = URL(string: rawLogString) else { return }
+        state = .loading
+        DispatchQueue.global().async { [weak self] in
+            do {
+                let data = try Data(contentsOf: rawLogUrl)
+                var attributed: NSAttributedString?
+                if let string = String(data: data, encoding: .utf8) {
+                    attributed = Rainbow.chunkToAttributed(string)
+                    
+                }
+                DispatchQueue.main.async {
+                    self?.state = .value
+                    if let attributed = attributed {
+                        self?.attributedLogs = attributed
+                        self?.isRawFetched = true
+                    }
+                }
+                
+            } catch {
+                logger.error(error)
+                DispatchQueue.main.async {
+                    self?.state = .error
+                }
+            }
+        }
+    }
+    
     override func afterRefresh() {
         guard let value = value else { return }
+        logger.verbose(value.isArchived)
         let logChunks = value.logChunks
         
         DispatchQueue.global().async { [weak self] in

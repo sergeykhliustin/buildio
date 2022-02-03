@@ -13,14 +13,15 @@ struct LogsTextView: UIViewRepresentable {
     @Environment(\.theme) private var theme
     @Binding var follow: Bool
     @Binding var selectedRange: NSRange?
-    @Binding var attributed: NSAttributedString?
+    private let attributed: NSAttributedString?
     
     private var scrollViewHandler: ScrollViewDelegate
     
-    init(follow: Binding<Bool>, selectedRange: Binding<NSRange?>, attributed: Binding<NSAttributedString?>) {
+    init(follow: Binding<Bool>, selectedRange: Binding<NSRange?>, attributed: NSAttributedString?) {
+        self.attributed = attributed
         self._follow = follow
         self._selectedRange = selectedRange
-        self._attributed = attributed
+        
         scrollViewHandler = ScrollViewDelegate(onScroll: {
             follow.wrappedValue = false
         })
@@ -56,7 +57,7 @@ struct LogsTextView: UIViewRepresentable {
     func updateUIView(_ uiView: UIView, context: Context) {
         guard let textView = uiView.subviews.first(where: { $0 is UITextView }) as? UITextView else { return }
         textView.delegate = scrollViewHandler
-        textView.attributedText = attributed ?? NSAttributedString(string: "Loading logs...", attributes: [.foregroundColor: UIColor.white])
+        textView.attributedText = attributed ?? NSAttributedString(string: "Loading logs...", attributes: [.foregroundColor: UIColor(Color.b_LogsDefault)])
         scrollToBottom(textView: textView)
         selectRange(textView: textView)
     }

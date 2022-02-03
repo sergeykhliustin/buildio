@@ -50,6 +50,33 @@ struct LogsControls: View {
         }
     }
     
+    private struct FetchRawButtonStyle: ButtonStyle {
+        @Environment(\.theme) private var theme
+        
+        @State private var hover: Bool = false
+        @Binding var selected: Bool
+        
+        init(selected: Binding<Bool> = .constant(false)) {
+            _selected = selected
+        }
+        
+        func makeBody(configuration: ButtonStyle.Configuration) -> some View {
+            let highlighted = selected || configuration.isPressed || hover
+            configuration
+                .label
+                .padding(.horizontal, 4)
+                .frame(height: 30, alignment: .center)
+                .contentShape(Rectangle())
+                .background(
+                    RoundedRectangle(cornerRadius: 4).stroke(highlighted ? theme.accentColor : .clear, lineWidth: 1).background(theme.logControlColor.opacity(highlighted ? 0.8 : 0.5))
+                )
+                .cornerRadius(4)
+                .onHover { hover in
+                    self.hover = hover
+                }
+        }
+    }
+    
     @Environment(\.theme) private var theme
     @Binding var fullscreen: Bool
     @Binding var follow: Bool
@@ -58,12 +85,19 @@ struct LogsControls: View {
     @Binding var searchCountText: String?
     
     var onSubmit: (() -> Void)?
+    var onFetchRaw: (() -> Void)?
     
     var body: some View {
         HStack {
             Spacer()
             VStack(alignment: .trailing) {
                 HStack(spacing: 8) {
+                    if let onFetchRaw = onFetchRaw {
+                        Button(action: onFetchRaw) {
+                            Text("Fetch full log")
+                        }
+                        .buttonStyle(FetchRawButtonStyle())
+                    }
                     Button {
                         withAnimation {
                             fullscreen.toggle()

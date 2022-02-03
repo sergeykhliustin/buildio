@@ -10,7 +10,7 @@ import Combine
 
 private final class SearchModel: ObservableObject {
     @Published var searchText: String = ""
-    @Binding var logs: NSAttributedString?
+    private let logs: NSAttributedString?
     
     @Published var selectedRanges: [NSRange] = []
     @Published var selectedRangeIndex: Int?
@@ -28,8 +28,8 @@ private final class SearchModel: ObservableObject {
     
     private var refresher: AnyCancellable?
     
-    init(logs: Binding<NSAttributedString?>) {
-        self._logs = logs
+    init(logs: NSAttributedString?) {
+        self.logs = logs
         refresher =
         self.$searchText
             .dropFirst()
@@ -77,31 +77,35 @@ struct LogsView: View {
     @State private var follow: Bool = true
     @Environment(\.fullscreen) private var fullscreen
     
-    @Binding var logs: NSAttributedString?
+    private let logs: NSAttributedString?
+    private let fetchRawAction: (() -> Void)?
     
-    init(logs: Binding<NSAttributedString?>) {
-        self._logs = logs
+    init(logs: NSAttributedString?, fetchRawAction: (() -> Void)? = nil) {
+        self.logs = logs
         self._searchModel = StateObject(wrappedValue: SearchModel(logs: logs))
+        self.fetchRawAction = fetchRawAction
     }
     
     var body: some View {
         VStack(alignment: .center) {
             ZStack {
-                LogsTextView(follow: $follow, selectedRange: searchModel.selectedRange, attributed: $logs)
+                LogsTextView(follow: $follow, selectedRange: searchModel.selectedRange, attributed: logs)
                     .edgesIgnoringSafeArea(fullscreen.wrappedValue ? .all : [.bottom])
                 
-                LogsControls(fullscreen: fullscreen,
-                             follow: $follow,
-                             searchText: $searchModel.searchText,
-                             searchCountText: Binding(get: {
+                let searchCount: Binding<String?> = Binding(get: {
                     if let index = searchModel.selectedRangeIndex {
                         return "\(index + 1)/\(searchModel.selectedRanges.count)"
                     } else {
                         return nil
                     }
-                }, set: {_ in })) {
-                    searchModel.next()
-                }
+                }, set: {_ in })
+                
+                LogsControls(fullscreen: fullscreen,
+                             follow: $follow,
+                             searchText: $searchModel.searchText,
+                             searchCountText: searchCount,
+                             onSubmit: { searchModel.next() },
+                             onFetchRaw: fetchRawAction)
             }
         }
         .frame(maxHeight: .infinity)
@@ -117,6 +121,6 @@ struct LogsView: View {
 
 struct LogsView_Previews: PreviewProvider {
     static var previews: some View {
-        LogsView(logs: .constant(NSAttributedString(string: "Logs")))
+        LogsView(logs: NSAttributedString(string: "Logs"))
     }
 }
