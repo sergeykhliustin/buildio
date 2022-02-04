@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI
-import UIKit
 
 struct PasteButton: ViewModifier {
     @Environment(\.theme) private var theme

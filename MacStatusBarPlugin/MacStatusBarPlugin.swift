@@ -7,6 +7,7 @@
 
 import Foundation
 import AppKit
+import BuildioUI
 
 final class MacStatusBarPlugin: NSObject, MacStatusBarPluginProtocol {
     var statusItem: NSStatusItem!

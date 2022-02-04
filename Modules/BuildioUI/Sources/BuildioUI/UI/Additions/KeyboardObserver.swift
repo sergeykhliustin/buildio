@@ -7,12 +7,13 @@
 
 import Foundation
 import Combine
-import UIKit
 
 final class KeyboardObserver: ObservableObject {
     @Published var isVisible: Bool = false
     init() {
+        #if os(iOS)
         NotificationCenter.default.publisher(for: UIApplication.keyboardWillShowNotification).eraseToAnyPublisher().map({ _ in true }).assign(to: &$isVisible)
         NotificationCenter.default.publisher(for: UIApplication.keyboardDidHideNotification).eraseToAnyPublisher().map({ _ in false }).assign(to: &$isVisible)
+        #endif
     }
 }

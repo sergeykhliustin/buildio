@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3F17BABC27AC449F005CA881 /* BuildioUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3F17BABB27AC449F005CA881 /* BuildioUI */; };
+		3F17BAC027AD0886005CA881 /* BuildioUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3F17BABF27AD0886005CA881 /* BuildioUI */; };
 		3F1AC91827A999C800DB3BB6 /* MacStatusBarPlugin.bundle in Embed PlugIns */ = {isa = PBXBuildFile; fileRef = 3F9C2D5E27A99772005D90DF /* MacStatusBarPlugin.bundle */; platformFilter = maccatalyst; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3F1AC91D27A9A26700DB3BB6 /* icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1AC91C27A9A26700DB3BB6 /* icon@3x.png */; };
 		3F47282227A9DDF000C4CD88 /* app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F47282127A9DDF000C4CD88 /* app_icon.png */; };
@@ -65,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F17BAC027AD0886005CA881 /* BuildioUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,9 +163,11 @@
 			buildRules = (
 			);
 			dependencies = (
+				3F17BABE27AD0880005CA881 /* PBXTargetDependency */,
 			);
 			name = MacStatusBarPlugin;
 			packageProductDependencies = (
+				3F17BABF27AD0886005CA881 /* BuildioUI */,
 			);
 			productName = MacStatusBarPlugin;
 			productReference = 3F9C2D5E27A99772005D90DF /* MacStatusBarPlugin.bundle */;
@@ -296,6 +300,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3F17BABE27AD0880005CA881 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 3F17BABD27AD0880005CA881 /* BuildioUI */;
+		};
 		3F1AC91A27A999C800DB3BB6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			platformFilter = maccatalyst;
@@ -416,6 +424,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sergeyk.MacStatusBarPlugin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -446,6 +455,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sergeyk.MacStatusBarPlugin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -475,6 +485,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sergeyk.MacStatusBarPlugin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -717,6 +728,14 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		3F17BABB27AC449F005CA881 /* BuildioUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BuildioUI;
+		};
+		3F17BABD27AD0880005CA881 /* BuildioUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BuildioUI;
+		};
+		3F17BABF27AD0886005CA881 /* BuildioUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = BuildioUI;
 		};

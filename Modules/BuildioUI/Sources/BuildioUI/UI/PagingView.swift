@@ -73,12 +73,12 @@ extension PagingView {
             onAppear()
         })
         .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
+            ToolbarItem() {
                 if model.isTopIndicatorRefreshing.wrappedValue {
                     ProgressView()
                 }
             }
-            ToolbarItem(placement: .navigationBarTrailing) {
+            ToolbarItem() {
                 additionalToolbarItems()
             }
         }

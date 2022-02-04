@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 import SwiftUI
 import BuildioLogic
 
@@ -23,6 +22,14 @@ struct SplitNavigationView<Content: View>: UIViewControllerRepresentable {
          content: @escaping () -> Content) {
         self.shouldSplit = shouldSplit
         self.content = content
+    }
+    
+    func makeNSViewController(context: Context) -> SplitNavigationController {
+        makeUIViewController(context: context)
+    }
+    
+    func updateNSViewController(_ nsViewController: SplitNavigationController, context: Context) {
+        updateUIViewController(nsViewController, context: context)
     }
     
     func makeUIViewController(context: Context) -> SplitNavigationController {
@@ -122,7 +129,7 @@ final class SplitNavigationController: UIViewController {
                 secondaryNavigationController.pushViewController(controller, animated: animated)
             }
         }
-        controller.view.backgroundColor = .clear
+        controller.view.backgroundColor = UIColor.clear
     }
     
     func pop() {
@@ -152,7 +159,7 @@ final class SplitNavigationController: UIViewController {
     func sheet(_ controller: UIViewController) {
         controller.view.translatesAutoresizingMaskIntoConstraints = false
         controller.view.backgroundColor = view.backgroundColor
-        #if targetEnvironment(macCatalyst)
+        #if targetEnvironment(macCatalyst) || os(macOS)
         controller.view.layer.cornerRadius = Constants.ipadPresentationCornerRadius
         controller.view.layer.masksToBounds = true
         #else

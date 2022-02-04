@@ -33,6 +33,7 @@ struct BuildYmlScreenView: BaseView {
             .padding(16)
         }
         .toolbar(content: {
+            #if !os(macOS)
             if let value = model.value {
                 Button {
                     let url = URL(fileURLWithPath: (NSTemporaryDirectory() as NSString).appendingPathComponent("bitrise_\(model.build.slug).yml"))
@@ -48,6 +49,7 @@ struct BuildYmlScreenView: BaseView {
                     Image(systemName: "square.and.arrow.up")
                 }
             }
+            #endif
 
         })
         .navigationTitle("Bitrise.yml")

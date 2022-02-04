@@ -73,7 +73,6 @@ public struct EnvironmentConfiguratorView<Content: View>: View {
     @StateObject private var navigators: Navigators
     @State private var fullscreen: Bool = false
     @State private var windowMode: WindowMode = .compact
-    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Environment(\.scenePhase) private var scenePhase
     
     @ViewBuilder let content: () -> Content

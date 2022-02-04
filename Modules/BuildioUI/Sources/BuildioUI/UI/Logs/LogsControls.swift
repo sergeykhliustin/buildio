@@ -4,7 +4,7 @@
 //
 //  Created by Sergey Khliustin on 24.11.2021.
 //
-
+#if !os(macOS)
 import SwiftUI
 
 struct LogsControls: View {
@@ -20,7 +20,7 @@ struct LogsControls: View {
                     RoundedRectangle(cornerRadius: 4).stroke(theme.accentColor, lineWidth: 1).background(theme.logControlColor.opacity(0.8))
                 )
                 .cornerRadius(4)
-                .font(.footnote)
+                .font(Font.footnote)
         }
     }
     
@@ -154,3 +154,4 @@ struct LogsControls: View {
         .padding(8)
     }
 }
+#endif

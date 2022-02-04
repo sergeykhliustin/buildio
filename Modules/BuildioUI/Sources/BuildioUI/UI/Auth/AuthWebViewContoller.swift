@@ -11,11 +11,16 @@ import WebKit
 
 struct AuthWebViewContoller: UIViewControllerRepresentable {
     static let navigationTitle = "app.bitrise.io"
-    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
         
     }
     
     func makeUIViewController(context: Context) -> some UIViewController {
+        let controller = AuthWebViewUIWebViewController()
+        return controller
+    }
+    
+    func makeNSViewController(context: Context) -> some UIViewController {
         let controller = AuthWebViewUIWebViewController()
         return controller
     }

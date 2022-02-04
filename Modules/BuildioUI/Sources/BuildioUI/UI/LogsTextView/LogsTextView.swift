@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI
-import UIKit
 
 struct LogsTextView: UIViewRepresentable {
     @Environment(\.theme) private var theme
@@ -25,6 +24,14 @@ struct LogsTextView: UIViewRepresentable {
         scrollViewHandler = ScrollViewDelegate(onScroll: {
             follow.wrappedValue = false
         })
+    }
+    
+    func makeNSView(context: Context) -> some UIView {
+        makeUIView(context: context)
+    }
+    
+    func updateNSView(_ nsView: UIView, context: Context) {
+        updateUIView(nsView, context: context)
     }
     
     func makeUIView(context: Context) -> UIView {

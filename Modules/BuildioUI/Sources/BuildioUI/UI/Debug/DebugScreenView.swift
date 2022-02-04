@@ -33,9 +33,11 @@ struct DebugScreenView: View {
                 SettingsItem(title: "Reset UserDefaults", icon: "clear", action: {
                     UserDefaults.standard.reset()
                 })
+                #if !os(macOS) && !targetEnvironment(macCatalys)
                 ToggleSettingsItem(title: "Disable screen dim",
                                  icon: "clear",
                                  toggle: Binding(get: { UIApplication.shared.isIdleTimerDisabled }, set: { newValue in UIApplication.shared.isIdleTimerDisabled = newValue }))
+                #endif
                 NavigateSettingsItem(title: "Tune light theme", icon: "eyedropper.halffull") {
                     navigator.go(.themeLight)
                 }

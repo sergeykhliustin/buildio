@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import UIKit
 
 struct RootTabView: View {
     @Environment(\.previewMode) private var previewMode

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct SelectableModifier: ViewModifier {
     func body(content: Content) -> some View {
-        if #available(iOS 15.0, *) {
+        if #available(iOS 15.0, macOS 12.0, *) {
             content.textSelection(.enabled)
         } else {
             content

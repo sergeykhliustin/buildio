@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import UIKit
 import BuildioLogic
 
 public struct EntryPoint: View {
@@ -42,6 +41,17 @@ extension View {
 
 struct HostingWindowFinder: UIViewRepresentable {
     var callback: (UIWindow?) -> Void
+    
+    func makeNSView(context: Context) -> some NSView {
+        let view = UIView()
+        DispatchQueue.main.async { [weak view] in
+            self.callback(view?.window)
+        }
+        return view
+    }
+    
+    func updateNSView(_ nsView: NSViewType, context: Context) {
+    }
     
     func makeUIView(context: Context) -> UIView {
         let view = UIView()

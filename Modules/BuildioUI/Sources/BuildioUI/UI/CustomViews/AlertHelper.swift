@@ -5,7 +5,6 @@
 //  Created by Sergey Khliustin on 07.12.2021.
 //
 
-import UIKit
 import SwiftUI
 
 extension UIAlertController {

@@ -6,7 +6,9 @@
 //
 
 import Foundation
-import UIKit
+#if canImport(AppKit)
+import AppKit
+#endif
 
 extension NSLayoutConstraint {
     func priority(_ priority: UILayoutPriority) -> NSLayoutConstraint {
