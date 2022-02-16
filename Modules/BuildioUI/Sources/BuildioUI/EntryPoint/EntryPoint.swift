@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import UIKit
 import BuildioLogic
 
 public struct EntryPoint: View {

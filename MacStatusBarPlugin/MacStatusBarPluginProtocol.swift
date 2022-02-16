@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import SwiftUI
 
 @objc(MacStatusBarPluginProtocol)
 protocol MacStatusBarPluginProtocol: NSObjectProtocol {
-    init(_ actionHandler: @escaping (MacStatusBarPluginActions) -> Void)
+    var view: Any! { get set }
+    init(_ actionHandler: @escaping (MacStatusBarPluginActions, Any?, Any?) -> Void)
     
     func setup()
 }

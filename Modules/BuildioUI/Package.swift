@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "BuildioMain",
+    name: "BuildioUI",
     platforms: [
         .iOS(.v14)
     ],

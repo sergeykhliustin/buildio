@@ -7,12 +7,17 @@
 
 import Foundation
 import AppKit
+import SwiftUI
+import Cocoa
 
 final class MacStatusBarPlugin: NSObject, MacStatusBarPluginProtocol {
     var statusItem: NSStatusItem!
-    var actionHandler: ((MacStatusBarPluginActions) -> Void)!
+    var actionHandler: ((MacStatusBarPluginActions, Any?, Any?) -> Void)!
+    var popover: NSPopover!
+//    var controller: NSViewController!
+    var view: Any!
     
-    required convenience init(_ actionHandler: @escaping (MacStatusBarPluginActions) -> Void) {
+    required convenience init(_ actionHandler: @escaping (MacStatusBarPluginActions, Any?, Any?) -> Void) {
         self.init()
         self.actionHandler = actionHandler
     }
@@ -25,8 +30,25 @@ final class MacStatusBarPlugin: NSObject, MacStatusBarPluginProtocol {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         if let image = Bundle(for: Self.self).image(forResource: "icon") {
             statusItem.button?.image = image
+            statusItem.button?.target = self
+            statusItem.button?.action = #selector(showPopover)
         }
-        setupMenus()
+//        setupMenus()
+    }
+    
+    @objc private func showPopover() {
+        if let button = statusItem.button {
+            actionHandler(.newWindow, button.bounds, button)
+        }
+        return
+        popover = NSPopover()
+        let hosting = NSHostingController(rootView: Text(""))
+        popover.contentViewController = hosting
+        popover.behavior = .transient
+        popover.animates = true
+        if let button = statusItem.button {
+            popover.show(relativeTo: button.bounds, of: button, preferredEdge: .maxY)
+        }
     }
     
     func setupMenus() {
@@ -43,6 +65,6 @@ final class MacStatusBarPlugin: NSObject, MacStatusBarPluginProtocol {
     }
     
     @objc private func didTapOne() {
-        actionHandler(.newWindow)
+        
     }
 }
