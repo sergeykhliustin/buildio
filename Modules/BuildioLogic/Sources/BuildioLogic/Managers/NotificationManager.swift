@@ -45,6 +45,7 @@ public class NotificationManager {
         let content = UNMutableNotificationContent()
         content.title = title
         content.body = subtitle
+        content.sound = UNNotificationSound.default
         content.threadIdentifier = threadIdentifier
         logger.debug("content configured")
         
