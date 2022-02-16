@@ -38,7 +38,7 @@ public final class BuildioUIAppDelegate: NSObject, UIApplicationDelegate {
         let className = "MacStatusBarPlugin.MacStatusBarPlugin"
         guard let pluginClass = bundle.classNamed(className) as? MacStatusBarPluginProtocol.Type else { return }
 
-        let plugin = pluginClass.init { action in
+        let plugin = pluginClass.init { action, _, _  in
             switch action {
             case .newWindow:
                 UIApplication.shared.requestSceneSessionActivation(nil, userActivity: nil, options: nil) { error in
