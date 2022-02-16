@@ -19,7 +19,7 @@ struct BuildsScreenView: View, PagingView {
         ListItemWrapper(action: {
             navigator.go(.build(item), replace: true)
         }, content: {
-            screenFactory.buildRowView(build: item, showBottomControls: true)
+            screenFactory.buildRowView(build: item)
         })
     }
     

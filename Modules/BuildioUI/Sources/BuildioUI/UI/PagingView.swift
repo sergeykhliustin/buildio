@@ -49,6 +49,7 @@ extension PagingView {
                     }
                     ForEach(model.items) { item in
                         buildItemView(item)
+                            .defaultHorizontalPadding()
                             .onAppear {
                                 if item == model.items.last {
                                     logger.debug("UI load more builds")

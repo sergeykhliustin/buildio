@@ -20,15 +20,14 @@ private struct CustomListWrapperButtonStyle: ButtonStyle {
             .contentShape(Rectangle())
             .cornerRadius(cornerRadius)
             .background(
-                RoundedRectangle(cornerRadius: 8)
-                    .fill(theme.background)
-                    .listShadow(theme)
+                ZStack {
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(theme.background)
+                        .listShadow(theme)
+                    RoundedRectangle(cornerRadius: cornerRadius)
+                        .stroke(highlighted ? theme.accentColor : .clear, lineWidth: 2)
+                }
             )
-            .background(
-                RoundedRectangle(cornerRadius: cornerRadius).stroke(highlighted ? theme.accentColor : .clear, lineWidth: 2)
-                    
-            )
-            .padding(.horizontal, 16)
             .onHover { hover in
                 self.hover = hover
             }

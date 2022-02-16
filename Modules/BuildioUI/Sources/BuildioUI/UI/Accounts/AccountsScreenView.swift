@@ -25,6 +25,7 @@ struct AccountsScreenView: View {
                     } content: {
                         AccountRowView(token)
                     }
+                    .defaultHorizontalPadding()
                 }
             }
             .padding(.top, 16)

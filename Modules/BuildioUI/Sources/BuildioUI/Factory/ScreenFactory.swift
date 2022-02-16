@@ -27,8 +27,8 @@ final class ScreenFactory: ObservableObject {
     }
     
     @ViewBuilder
-    func buildRowView(build: BuildResponseItemModel, showBottomControls: Bool) -> some View {
-        BuildRowView(build: build, showBottomControls: showBottomControls)
+    func buildRowView(build: BuildResponseItemModel) -> some View {
+        BuildRowView()
             .environmentObject(viewModelFactory.build(build))
     }
     

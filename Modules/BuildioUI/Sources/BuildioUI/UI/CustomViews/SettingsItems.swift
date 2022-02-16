@@ -138,7 +138,7 @@ struct SliderSettingsItem: View {
                 
             }
             .frame(height: 44)
-            .padding(.horizontal, 16)
+            .defaultHorizontalPadding()
         }
     }
 }
@@ -170,5 +170,6 @@ struct ContentSettingsItem<LeftContent: View, RightContent: View>: View {
             .frame(height: 44)
             .padding(.horizontal, 16)
         }
+        .defaultHorizontalPadding()
     }
 }

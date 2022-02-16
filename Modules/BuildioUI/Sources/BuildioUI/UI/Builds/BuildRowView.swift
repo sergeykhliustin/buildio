@@ -16,7 +16,6 @@ struct BuildRowView: View {
     @Environment(\.theme) private var theme
     
     @EnvironmentObject private var viewModel: BuildViewModel
-    let showBottomControls: Bool
     
     @State private var abortConfirmation: Bool = false
     @State private var abortReason: String = ""
@@ -46,10 +45,6 @@ struct BuildRowView: View {
                 }
             }
         }
-    }
-    
-    init(build: BuildResponseItemModel, showBottomControls: Bool = true) {
-        self.showBottomControls = showBottomControls
     }
     
     var body: some View {
@@ -117,48 +112,6 @@ struct BuildRowView: View {
                 }
                 .padding(.trailing, 8)
                 
-                Rectangle().fill(theme.separatorColor)
-                    .frame(height: 1)
-                if showBottomControls {
-                    HStack(spacing: 8) {
-                        Button(action: {
-                            navigator.go(.logs(model), replace: true)
-                        }, label: {
-                            Image(systemName: "note.text")
-                            Text("Logs")
-                        })
-                            .buttonStyle(ControlButtonStyle())
-                        if model.status == .running {
-                            Spacer()
-                            Button(action: {
-                                abortConfirmation = true
-                            }, label: {
-                                Image(systemName: "nosign")
-                                Text("Abort")
-                            })
-                                .buttonStyle(ControlButtonStyle())
-                        } else {
-                            Spacer()
-                            Button(action: {
-                                navigator.go(.artifacts(model), replace: true)
-                            }, label: {
-                                Image(systemName: "archivebox")
-                                Text("Artifacts")
-                            })
-                                .buttonStyle(ControlButtonStyle())
-                            
-                            Spacer()
-                            Button(action: {
-                                viewModel.rebuild()
-                            }, label: {
-                                Image(systemName: "hammer")
-                                Text("Rebuild")
-                            })
-                                .buttonStyle(ControlButtonStyle())
-                        }
-                    }
-                    .padding(2)
-                }
                 Group {
                     
                 }
@@ -168,6 +121,9 @@ struct BuildRowView: View {
                 if let progress = viewModel.progress {
                     ProgressView(value: progress)
                         .progressViewStyle(LinearProgressViewStyle())
+                } else {
+                    Rectangle().fill(theme.separatorColor)
+                        .frame(height: 1)
                 }
             }
         }
@@ -176,14 +132,37 @@ struct BuildRowView: View {
         })
         .font(.footnote)
         .multilineTextAlignment(.leading)
-    }
-}
-
-struct BuildRowView_Previews: PreviewProvider {
-    static var previews: some View {
-        BuildRowView(build: BuildResponseItemModel.preview())
-            .preferredColorScheme(.light)
-            .padding(8)
+        .background(theme.background)
+        .contextMenu {
+            Button(action: {
+                navigator.go(.logs(model), replace: true)
+            }, label: {
+                Image(systemName: "note.text")
+                Text("Logs")
+            })
             
+            if model.status == .running {
+                Button(action: {
+                    abortConfirmation = true
+                }, label: {
+                    Image(systemName: "nosign")
+                    Text("Abort")
+                })
+            } else {
+                Button(action: {
+                    navigator.go(.artifacts(model), replace: true)
+                }, label: {
+                    Image(systemName: "archivebox")
+                    Text("Artifacts")
+                })
+                
+                Button(action: {
+                    viewModel.rebuild()
+                }, label: {
+                    Image(systemName: "hammer")
+                    Text("Rebuild")
+                })
+            }
+        }
     }
 }

@@ -31,6 +31,7 @@ struct SelectStringScreenView: View {
                 }
             }
             .padding(.vertical, 8)
+            .defaultHorizontalPadding()
         }
         .font(.footnote)
     }

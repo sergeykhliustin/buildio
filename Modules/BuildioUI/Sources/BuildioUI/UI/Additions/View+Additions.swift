@@ -26,5 +26,9 @@ extension View {
         let shadow = theme.tabBarBackgroundShadow
         return self.background(theme.background.shadow(color: shadow.color, radius: shadow.radius, x: shadow.x, y: shadow.y))
     }
+    
+    func defaultHorizontalPadding() -> some View {
+        self.padding(.horizontal, 16)
+    }
 
 }
