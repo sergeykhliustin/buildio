@@ -20,6 +20,8 @@ public extension UserDefaults {
         public static let darkThemeName = "darkThemeName"
         public static let pollingInterval = "pollingInterval"
         public static let lastAccount = "lastAccount"
+        public static let appOpenCount = "appOpenCount"
+        public static let reviewRequestCount = "reviewRequestCount"
     }
     
     enum ColorSchemeSettings: String, CaseIterable, Identifiable {
@@ -137,6 +139,26 @@ public extension UserDefaults {
         }
         set {
             set(newValue, forKey: Keys.lastActivityDates)
+            synchronize()
+        }
+    }
+    
+    var reviewRequestCount: Int {
+        get {
+            integer(forKey: Keys.reviewRequestCount)
+        }
+        set {
+            set(newValue, forKey: Keys.reviewRequestCount)
+            synchronize()
+        }
+    }
+    
+    var appOpenCount: Int {
+        get {
+            integer(forKey: Keys.appOpenCount)
+        }
+        set {
+            set(newValue, forKey: Keys.appOpenCount)
             synchronize()
         }
     }

@@ -122,6 +122,7 @@ public struct EnvironmentConfiguratorView<Content: View>: View {
                         center.removeAllDeliveredNotifications()
                         center.removeAllPendingNotificationRequests()
                         activityWatcher?.resume()
+                        StoreReviewHelper.appDidBecomeActive()
                     } else {
                         activityWatcher?.pause()
                     }
@@ -129,6 +130,7 @@ public struct EnvironmentConfiguratorView<Content: View>: View {
                 .onReceive(NotificationCenter.default.publisher(for: Notification.Name(rawValue: "NSApplicationDidBecomeActiveNotification")), perform: { _ in
                     logger.info("NSApplicationDidBecomeActiveNotification")
                     activityWatcher?.resume()
+                    StoreReviewHelper.appDidBecomeActive()
                 })
                 .onReceive(NotificationCenter.default.publisher(for: Notification.Name(rawValue: "NSApplicationWillResignActiveNotification"))) { _ in
                     logger.info("NSApplicationWillResignActiveNotification")

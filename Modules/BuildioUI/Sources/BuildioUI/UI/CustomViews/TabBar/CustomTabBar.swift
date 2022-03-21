@@ -16,6 +16,7 @@ private struct CustomTabBarButtonStyle: ButtonStyle {
         let highlighted = selected || configuration.isPressed || hover
         configuration
             .label
+            .scaleEffect(configuration.isPressed ? 0.9 : 1.0)
             .contentShape(Rectangle())
             .foregroundColor(highlighted ? theme.accentColor : theme.accentColorLight)
             .onHover { hover in
@@ -61,7 +62,9 @@ struct CustomTabBar: View {
                             onSecondTap?()
                             navigators.popToRoot(type: item)
                         } else {
-                            selected = index
+                            withAnimation {
+                                selected = index
+                            }
                         }
                     }, label: {
                         VStack(alignment: .center, spacing: 6) {
