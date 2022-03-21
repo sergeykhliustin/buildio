@@ -8,15 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3F17BABC27AC449F005CA881 /* BuildioUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3F17BABB27AC449F005CA881 /* BuildioUI */; };
-		3F1AC91D27A9A26700DB3BB6 /* icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1AC91C27A9A26700DB3BB6 /* icon@3x.png */; };
 		3F47282227A9DDF000C4CD88 /* app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F47282127A9DDF000C4CD88 /* app_icon.png */; };
 		3F7063252750F6130028150F /* BuildioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7063242750F6130028150F /* BuildioApp.swift */; };
-		3F722AEA27AD72580032289A /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F1AC92227A9D7D500DB3BB6 /* SwiftUI.framework */; };
-		3F722AF127AD8A480032289A /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F722AF027AD8A480032289A /* AppKit.framework */; };
-		3F722AF627ADA73A0032289A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F722AF527ADA73A0032289A /* Cocoa.framework */; };
-		3F9C2D6627A997A2005D90DF /* MacStatusBarPluginProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9C2D6527A997A2005D90DF /* MacStatusBarPluginProtocol.swift */; };
-		3F9C2D6727A997A2005D90DF /* MacStatusBarPluginProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9C2D6527A997A2005D90DF /* MacStatusBarPluginProtocol.swift */; };
-		3F9C2D6927A99800005D90DF /* MacStatusBarPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9C2D6827A99800005D90DF /* MacStatusBarPlugin.swift */; };
 		3F9C2D6B27A99878005D90DF /* BuildioUIAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9C2D6A27A99878005D90DF /* BuildioUIAppDelegate.swift */; };
 		3FC502202750FF6C005BC8F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FC5021F2750FF6C005BC8F3 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -36,17 +29,12 @@
 
 /* Begin PBXFileReference section */
 		3F17BABA27AC4487005CA881 /* BuildioUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BuildioUI; path = Modules/BuildioUI; sourceTree = "<group>"; };
-		3F1AC91C27A9A26700DB3BB6 /* icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@3x.png"; sourceTree = "<group>"; };
 		3F1AC92227A9D7D500DB3BB6 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		3F3295842735A623001994B0 /* Buildio (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Buildio (iOS).entitlements"; sourceTree = "<group>"; };
 		3F47282127A9DDF000C4CD88 /* app_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon.png; sourceTree = "<group>"; };
 		3F7063242750F6130028150F /* BuildioApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildioApp.swift; sourceTree = "<group>"; };
 		3F722AF027AD8A480032289A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		3F722AF527ADA73A0032289A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		3F9C2D5E27A99772005D90DF /* MacStatusBarPlugin.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MacStatusBarPlugin.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		3F9C2D6427A997A1005D90DF /* MacStatusBarPlugin-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MacStatusBarPlugin-Bridging-Header.h"; sourceTree = "<group>"; };
-		3F9C2D6527A997A2005D90DF /* MacStatusBarPluginProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacStatusBarPluginProtocol.swift; sourceTree = "<group>"; };
-		3F9C2D6827A99800005D90DF /* MacStatusBarPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacStatusBarPlugin.swift; sourceTree = "<group>"; };
 		3F9C2D6A27A99878005D90DF /* BuildioUIAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildioUIAppDelegate.swift; sourceTree = "<group>"; };
 		3FC5021F2750FF6C005BC8F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3FD8FDBF2731F78C0060BDF4 /* Buildio.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Buildio.plist; sourceTree = "<group>"; };
@@ -54,16 +42,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		3F9C2D5B27A99772005D90DF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3F722AEA27AD72580032289A /* SwiftUI.framework in Frameworks */,
-				3F722AF127AD8A480032289A /* AppKit.framework in Frameworks */,
-				3F722AF627ADA73A0032289A /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3FE7B54827072C1E00A6D8E1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -104,17 +82,6 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
-		3F9C2D6327A99791005D90DF /* MacStatusBarPlugin */ = {
-			isa = PBXGroup;
-			children = (
-				3F9C2D6527A997A2005D90DF /* MacStatusBarPluginProtocol.swift */,
-				3F9C2D6427A997A1005D90DF /* MacStatusBarPlugin-Bridging-Header.h */,
-				3F9C2D6827A99800005D90DF /* MacStatusBarPlugin.swift */,
-				3F1AC91C27A9A26700DB3BB6 /* icon@3x.png */,
-			);
-			path = MacStatusBarPlugin;
-			sourceTree = "<group>";
-		};
 		3FD8FDB52731C44F0060BDF4 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,7 +92,6 @@
 		3FE7B53E27072C1B00A6D8E1 = {
 			isa = PBXGroup;
 			children = (
-				3F9C2D6327A99791005D90DF /* MacStatusBarPlugin */,
 				3F7063232750F6130028150F /* Shared */,
 				3F3295842735A623001994B0 /* Buildio (iOS).entitlements */,
 				3FD8FDBF2731F78C0060BDF4 /* Buildio.plist */,
@@ -140,7 +106,6 @@
 			isa = PBXGroup;
 			children = (
 				3FE7B54B27072C1E00A6D8E1 /* Buildio.app */,
-				3F9C2D5E27A99772005D90DF /* MacStatusBarPlugin.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -148,25 +113,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3F9C2D5D27A99772005D90DF /* MacStatusBarPlugin */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3F9C2D6227A99772005D90DF /* Build configuration list for PBXNativeTarget "MacStatusBarPlugin" */;
-			buildPhases = (
-				3F9C2D5A27A99772005D90DF /* Sources */,
-				3F9C2D5B27A99772005D90DF /* Frameworks */,
-				3F9C2D5C27A99772005D90DF /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = MacStatusBarPlugin;
-			packageProductDependencies = (
-			);
-			productName = MacStatusBarPlugin;
-			productReference = 3F9C2D5E27A99772005D90DF /* MacStatusBarPlugin.bundle */;
-			productType = "com.apple.product-type.bundle";
-		};
 		3FE7B54A27072C1E00A6D8E1 /* Buildio */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3FE7B55C27072C1E00A6D8E1 /* Build configuration list for PBXNativeTarget "Buildio" */;
@@ -199,10 +145,6 @@
 				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 1300;
 				TargetAttributes = {
-					3F9C2D5D27A99772005D90DF = {
-						CreatedOnToolsVersion = 13.2.1;
-						LastSwiftMigration = 1320;
-					};
 					3FE7B54A27072C1E00A6D8E1 = {
 						CreatedOnToolsVersion = 13.0;
 					};
@@ -224,20 +166,11 @@
 			projectRoot = "";
 			targets = (
 				3FE7B54A27072C1E00A6D8E1 /* Buildio */,
-				3F9C2D5D27A99772005D90DF /* MacStatusBarPlugin */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		3F9C2D5C27A99772005D90DF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3F1AC91D27A9A26700DB3BB6 /* icon@3x.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3FE7B54927072C1E00A6D8E1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -271,20 +204,10 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		3F9C2D5A27A99772005D90DF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3F9C2D6927A99800005D90DF /* MacStatusBarPlugin.swift in Sources */,
-				3F9C2D6727A997A2005D90DF /* MacStatusBarPluginProtocol.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3FE7B54727072C1E00A6D8E1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F9C2D6627A997A2005D90DF /* MacStatusBarPluginProtocol.swift in Sources */,
 				3F7063252750F6130028150F /* BuildioApp.swift in Sources */,
 				3F9C2D6B27A99878005D90DF /* BuildioUIAppDelegate.swift in Sources */,
 			);
@@ -384,94 +307,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,6";
 				VALIDATE_PRODUCT = YES;
-			};
-			name = AdHoc;
-		};
-		3F9C2D5F27A99772005D90DF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6C4646EB2U;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSPrincipalClass = "";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sergeyk.MacStatusBarPlugin;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "MacStatusBarPlugin/MacStatusBarPlugin-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Debug;
-		};
-		3F9C2D6027A99772005D90DF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6C4646EB2U;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSPrincipalClass = "";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sergeyk.MacStatusBarPlugin;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "MacStatusBarPlugin/MacStatusBarPlugin-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Release;
-		};
-		3F9C2D6127A99772005D90DF /* AdHoc */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6C4646EB2U;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSPrincipalClass = "";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sergeyk.MacStatusBarPlugin;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "MacStatusBarPlugin/MacStatusBarPlugin-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-				WRAPPER_EXTENSION = bundle;
 			};
 			name = AdHoc;
 		};
@@ -671,16 +506,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3F9C2D6227A99772005D90DF /* Build configuration list for PBXNativeTarget "MacStatusBarPlugin" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3F9C2D5F27A99772005D90DF /* Debug */,
-				3F9C2D6027A99772005D90DF /* Release */,
-				3F9C2D6127A99772005D90DF /* AdHoc */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		3FE7B54227072C1B00A6D8E1 /* Build configuration list for PBXProject "Buildio" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
