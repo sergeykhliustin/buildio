@@ -20,7 +20,7 @@ struct ClearButton: ViewModifier {
                 Button {
                     self.text = ""
                 } label: {
-                    Image(systemName: "delete.left")
+                    Image(.delete_left)
                         .foregroundColor(theme.accentColor)
                 }
             }

@@ -8,11 +8,11 @@
 import SwiftUI
 
 private struct SettingsIcon: View {
-    let systemName: String?
+    let system: Images?
     
     var body: some View {
-        if let systemName = systemName {
-            Image(systemName: systemName)
+        if let system = system {
+            Image(system)
                 .frame(width: 20, height: 20, alignment: .center)
         }
     }
@@ -20,12 +20,12 @@ private struct SettingsIcon: View {
 
 struct CheckmarkSettingsItem: View {
     let title: String
-    let icon: String?
+    let icon: Images?
     let selected: Bool
     let action: () -> Void
     
     init(title: String,
-         icon: String? = nil,
+         icon: Images? = nil,
          selected: Bool,
          action: @escaping () -> Void) {
         self.selected = selected
@@ -37,20 +37,20 @@ struct CheckmarkSettingsItem: View {
     var body: some View {
         ContentSettingsItem(title: title,
                           leftContent: {
-            SettingsIcon(systemName: icon)
+            SettingsIcon(system: icon)
         }, rightContent: {
-            SettingsIcon(systemName: selected ? "checkmark" : nil)
+            SettingsIcon(system: selected ? .checkmark : nil)
         }, action: action)
     }
 }
 
 struct SettingsItem: View {
     let title: String
-    let icon: String
+    let icon: Images
     let action: () -> Void
     
     init(title: String,
-         icon: String,
+         icon: Images,
          action: @escaping () -> Void) {
         self.title = title
         self.icon = icon
@@ -60,7 +60,7 @@ struct SettingsItem: View {
     var body: some View {
         ContentSettingsItem(title: title,
                           leftContent: {
-            SettingsIcon(systemName: icon)
+            SettingsIcon(system: icon)
         }, rightContent: {
             EmptyView()
         }, action: action)
@@ -70,12 +70,12 @@ struct SettingsItem: View {
 struct NavigateSettingsItem: View {
     @Environment(\.theme) private var theme
     let title: String
-    let icon: String?
+    let icon: Images?
     let subtitle: String?
     let action: () -> Void
     
     init(title: String,
-         icon: String? = nil,
+         icon: Images? = nil,
          subtitle: String? = nil,
          action: @escaping () -> Void) {
         self.title = title
@@ -87,14 +87,14 @@ struct NavigateSettingsItem: View {
     var body: some View {
         ContentSettingsItem(title: title,
                           leftContent: {
-            SettingsIcon(systemName: icon)
+            SettingsIcon(system: icon)
         }, rightContent: {
             HStack {
                 if let subtitle = subtitle {
                     Text(subtitle)
                         .foregroundColor(theme.textColorLight)
                 }
-                SettingsIcon(systemName: "chevron.right")
+                SettingsIcon(system: .chevron_right)
             }
         }, action: action)
     }
@@ -102,13 +102,13 @@ struct NavigateSettingsItem: View {
 
 struct ToggleSettingsItem: View {
     let title: String
-    let icon: String
+    let icon: Images?
     @Binding var toggle: Bool
     
     var body: some View {
         ContentSettingsItem(title: title,
                           leftContent: {
-            SettingsIcon(systemName: icon)
+            SettingsIcon(system: icon)
         }, rightContent: {
             Toggle("", isOn: $toggle)
         }, action: { toggle.toggle() })

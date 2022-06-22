@@ -34,7 +34,7 @@ public final class ActivitiesViewModel: RootPagingViewModel<V0ActivityEventListR
               let components = targetComponents,
               components.count == 2,
               components.first == "build",
-              let appName = item.description?.components(separatedBy: " - ").first,
+              let appName = item.appName,
               !appName.isEmpty else { return nil }
         let state = self.state
         self.state = .loading

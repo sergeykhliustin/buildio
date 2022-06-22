@@ -88,7 +88,7 @@ extension PagingView {
     @ViewBuilder
     func buildEmptyView() -> some View {
         VStack(spacing: 16) {
-            Image(systemName: "hourglass")
+            Image(.hourglass)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 40, height: 40, alignment: .center)

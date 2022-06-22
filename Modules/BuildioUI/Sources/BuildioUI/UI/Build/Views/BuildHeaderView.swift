@@ -23,7 +23,7 @@ struct BuildHeaderView: View {
                     
             case 1:
                 return HStack(spacing: 4) {
-                    Image(systemName: "point.topleft.down.curvedto.point.bottomright.up")
+                    Image(.point_topleft_down_curvedto_point_bottomright_up)
                     Text(model.triggeredWorkflow)
                 }
                 .padding(8)
@@ -32,7 +32,7 @@ struct BuildHeaderView: View {
             case 2:
                 if let pullRequest = model.pullRequestId, pullRequest != 0 {
                     return HStack(spacing: 4) {
-                        Image(systemName: "arrow.triangle.pull")
+                        Image(.arrow_triangle_pull)
                         Text(String(pullRequest))
                     }
                     .padding(8)
@@ -54,7 +54,7 @@ struct BuildHeaderView: View {
                 
             case 4:
                 if model.pullRequestTargetBranch != nil {
-                    return Image(systemName: "arrow.right").padding(8).eraseToAnyView()
+                    return Image(.arrow_right).padding(8).eraseToAnyView()
                 } else {
                     return EmptyView().eraseToAnyView()
                 }

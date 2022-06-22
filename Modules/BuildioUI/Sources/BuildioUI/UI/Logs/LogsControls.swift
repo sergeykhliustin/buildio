@@ -103,7 +103,7 @@ struct LogsControls: View {
                             fullscreen.toggle()
                         }
                     } label: {
-                        Image(systemName: fullscreen ? "arrow.down.right.and.arrow.up.left" : "arrow.up.left.and.arrow.down.right")
+                        Image(fullscreen ? .arrow_down_right_and_arrow_up_left : .arrow_up_left_and_arrow_down_right)
                     }
                 }
                 
@@ -124,7 +124,7 @@ struct LogsControls: View {
                         Button {
                             onSubmit?()
                         } label: {
-                            Image(systemName: "chevron.compact.down")
+                            Image(.chevron_compact_down)
                         }
                         .buttonStyle(CustomButtonStyle(selected: .constant(true)))
                     }
@@ -136,7 +136,7 @@ struct LogsControls: View {
                             }
                         }
                     } label: {
-                        Image(systemName: "magnifyingglass")
+                        Image(.magnifyingglass)
                     }
                     .buttonStyle(CustomButtonStyle(selected: $search))
                     
@@ -144,7 +144,7 @@ struct LogsControls: View {
                         Button {
                             follow.toggle()
                         } label: {
-                            Image(systemName: "chevron.down.square")
+                            Image(.chevron_down_square)
                         }
                     }
                 }

@@ -41,7 +41,7 @@ struct WorkflowsView: BaseView {
                       onEditingChanged: { self.focused = $0 })
                 .frame(height: 44)
                 .modifier(RoundedBorderShadowModifier(focused: focused, horizontalPadding: 8))
-                .modifier(RightButtonModifier(icon: "chevron.right", loading: model.value == nil, action: {
+                .modifier(RightButtonModifier(icon: .chevron_right, loading: model.value == nil, action: {
                     isActiveRoute.toggle()
                 }))
                 .onReceive(model.$value) { workflows in

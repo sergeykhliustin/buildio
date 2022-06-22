@@ -42,7 +42,7 @@ struct NewBuildScreenView: View {
                             .cornerRadius(4)
                             .frame(height: 44)
                         Spacer()
-                        Image(systemName: "chevron.right")
+                        Image(.chevron_right)
                     }
                     .modifier(RoundedBorderShadowModifier())
                 }
@@ -97,7 +97,7 @@ struct NewBuildScreenView: View {
             Button {
                 navigator.dismiss()
             } label: {
-                Image(systemName: "xmark")
+                Image(.xmark)
             }
 
         }

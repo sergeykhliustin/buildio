@@ -16,9 +16,11 @@ struct AccountRowView: View {
     @StateObject private var model: AccountRowViewModel
     
     let token: Token
+    let settings: () -> Void
     
-    init(_ token: Token) {
+    init(_ token: Token, settings: @escaping () -> Void) {
         self.token = token
+        self.settings = settings
         self._model = StateObject(wrappedValue: AccountRowViewModel(token: token))
     }
     
@@ -59,7 +61,7 @@ struct AccountRowView: View {
                 }
                 Spacer()
                 if token == tokenManager.token {
-                    Image(systemName: "checkmark")
+                    Image(.checkmark)
                 }
                 Button {
                     logger.debug("trash")
@@ -69,7 +71,7 @@ struct AccountRowView: View {
                         tokenManager.remove(token)
                     }
                 } label: {
-                    Image(systemName: "trash")
+                    Image(.trash)
                 }
             }
             .padding(.horizontal, 8)
@@ -83,6 +85,6 @@ struct AccountRowView: View {
 
 struct AccountRowView_Previews: PreviewProvider {
     static var previews: some View {
-        AccountRowView(Token(token: "asdas", email: "email"))
+        AccountRowView(Token(token: "asdas", email: "email"), settings: {})
     }
 }

@@ -83,6 +83,7 @@ public struct EnvironmentConfiguratorView<Content: View>: View {
     private let activityWatcher: ActivityWatcher?
     private weak var screenFactory: ScreenFactory!
     private weak var tokenManager: TokenManager!
+    private let accountSettings: AccountSettingsManager
     
     init(previewMode: Bool = false, _ content: @escaping () -> Content) {
         self.previewMode = previewMode
@@ -92,11 +93,13 @@ public struct EnvironmentConfiguratorView<Content: View>: View {
         let viewModelFactory = ViewModelFactory(tokenManager)
         let screenFactory = ScreenFactory(viewModelFactory)
         let navigators = Navigators(screenFactory)
+        let accountSettings = AccountSettingsManager(tokenManager)
         
         self.screenFactory = screenFactory
         self.tokenManager = tokenManager
         self.activityWatcher = ActivityWatcher(tokenManager)
         _navigators = StateObject(wrappedValue: navigators)
+        self.accountSettings = accountSettings
     }
     
     public var body: some View {
@@ -109,6 +112,7 @@ public struct EnvironmentConfiguratorView<Content: View>: View {
                 .environmentObject(navigators)
                 .environmentObject(screenFactory)
                 .environmentObject(tokenManager)
+                .environmentObject(accountSettings)
                 .onAppear(perform: {
                     updateWindowMode(geometry)
                 })

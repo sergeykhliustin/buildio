@@ -17,7 +17,7 @@ struct ActivitiesScreenView: PagingView {
     
     func headerBody() -> some View {
         if let notificationsAuthorization = notificationsAuthorization, notificationsAuthorization != .authorized {
-            NavigateSettingsItem(title: "Enable notifications", icon: "bell") {
+            NavigateSettingsItem(title: "Enable notifications", icon: .bell) {
                 if notificationsAuthorization == .notDetermined {
                     Task {
                         let granted = try? await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge])

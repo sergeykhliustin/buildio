@@ -80,6 +80,10 @@ public final class ViewModelFactory {
     public func yml(_ build: BuildResponseItemModel) -> BuildYmlViewModel {
         BuildYmlViewModel(tokenManager, build: build)
     }
+
+    public func accountSettings(_ token: Token) -> AccountSettingsViewModel {
+        AccountSettingsViewModel(token: token)
+    }
     
     public func newBuild() -> NewBuildViewModel {
         NewBuildViewModel(tokenManager)

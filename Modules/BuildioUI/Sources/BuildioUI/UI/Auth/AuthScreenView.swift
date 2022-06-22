@@ -33,7 +33,7 @@ struct AuthScreenView: View {
         ScrollView {
             VStack(spacing: 16) {
                 Spacer()
-                Image(systemName: "key")
+                Image(.key)
                     .resizable()
                     .aspectRatio(contentMode: SwiftUI.ContentMode.fit)
                     .rotationEffect(Angle(degrees: 90))
@@ -129,7 +129,7 @@ struct AuthScreenView: View {
                 Button {
                     navigator.dismiss()
                 } label: {
-                    Image(systemName: "xmark")
+                    Image(.xmark)
                 }
             }
         }

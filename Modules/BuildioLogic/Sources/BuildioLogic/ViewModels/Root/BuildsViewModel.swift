@@ -13,7 +13,7 @@ import BitriseAPIs
 public final class BuildsViewModel: RootPagingViewModel<V0BuildListResponseModel>, RootViewModel {
     
     private let fetchLimit: Int = 10
-    private(set) var app: V0AppResponseItemModel?
+    public private(set) var app: V0AppResponseItemModel?
     
     deinit {
         logger.debug("")

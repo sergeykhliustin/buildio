@@ -10,10 +10,10 @@ import SwiftUI
 
 struct RightButtonModifier: ViewModifier {
     var action: () -> Void
-    let icon: String
+    let icon: Images
     let loading: Bool
     
-    init(icon: String, loading: Bool, action: @escaping () -> Void) {
+    init(icon: Images, loading: Bool, action: @escaping () -> Void) {
         self.icon = icon
         self.action = action
         self.loading = loading
@@ -28,7 +28,7 @@ struct RightButtonModifier: ViewModifier {
                     .padding(.trailing, 16)
             } else {
                 Button(action: action, label: {
-                    Image(systemName: icon)
+                    Image(icon)
                 })
                     .padding(.trailing, 16)
             }

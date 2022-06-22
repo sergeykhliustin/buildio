@@ -8,6 +8,10 @@
 import Foundation
 import SwiftUI
 
+public struct AccountSettings: Codable {
+    public var mutedApps: [String] = []
+}
+
 public extension UserDefaults {
     struct Keys {
         public static let theme = "theme"
@@ -22,6 +26,8 @@ public extension UserDefaults {
         public static let lastAccount = "lastAccount"
         public static let appOpenCount = "appOpenCount"
         public static let reviewRequestCount = "reviewRequestCount"
+        public static let accountSettings = "accountSettings"
+        public static let matchingPipelineMuted = "matchingPipelineMuted"
     }
     
     enum ColorSchemeSettings: String, CaseIterable, Identifiable {
@@ -159,6 +165,45 @@ public extension UserDefaults {
         }
         set {
             set(newValue, forKey: Keys.appOpenCount)
+            synchronize()
+        }
+    }
+
+    func accountSettings(for account: String) -> AccountSettings {
+        return self.accountsSettings[account] ?? AccountSettings()
+    }
+
+    func setAccountSettings(_ settings: AccountSettings, for account: String) {
+        accountsSettings[account] = settings
+    }
+
+    private(set) var accountsSettings: [String: AccountSettings] {
+        get {
+            let decoder = JSONDecoder()
+            guard let data = data(forKey: Keys.accountSettings),
+                  let object = try? decoder.decode([String: AccountSettings].self, from: data) else {
+                return [:]
+            }
+            return object
+        }
+        set {
+            let encoder = JSONEncoder()
+            do {
+                let data = try encoder.encode(newValue)
+                set(data, forKey: Keys.accountSettings)
+                synchronize()
+            } catch {
+                logger.error(error)
+            }
+        }
+    }
+
+    var isMatchingPipelineMuted: Bool {
+        get {
+            bool(forKey: Keys.matchingPipelineMuted)
+        }
+        set {
+            set(newValue, forKey: Keys.matchingPipelineMuted)
             synchronize()
         }
     }

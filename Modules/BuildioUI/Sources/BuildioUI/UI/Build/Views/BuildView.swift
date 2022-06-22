@@ -51,13 +51,13 @@ struct BuildView: View {
     @State private var messageStyle: MessageStyle = .markdown
     
     private struct Item: View {
-        let imageName: String
+        let image: Images
         let text: String?
         
         var body: some View {
             if let text = text, !text.isEmpty {
                 HStack(spacing: 4) {
-                    Image(systemName: imageName)
+                    Image(image)
                     Text("\(text)")
                 }
                 .primary()
@@ -91,12 +91,12 @@ struct BuildView: View {
                         }
                     }
                     .primary()
-                    Item(imageName: "clock", text: model.durationString)
-                    Item(imageName: "coloncurrencysign.circle", text: model.creditCost?.description)
-                    Item(imageName: "number", text: String(model.buildNumber))
-                    Item(imageName: "square.stack.3d.up",
+                    Item(image: .clock, text: model.durationString)
+                    Item(image: .coloncurrencysign_circle, text: model.creditCost?.description)
+                    Item(image: .number, text: String(model.buildNumber))
+                    Item(image: .square_stack_3d_up,
                          text: [model.machineTypeId, model.stackIdentifier].compactMap({ $0 }).joined(separator: " "))
-                    Item(imageName: "bolt.fill", text: model.triggeredBy)
+                    Item(image: .bolt_fill, text: model.triggeredBy)
                     
                     Rectangle()
                         .fill(theme.separatorColor)

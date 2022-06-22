@@ -18,6 +18,8 @@ private struct ActivityNotification {
     let email: String
     let title: String
     let date: Date
+    let appName: String?
+    let isMatchingPipeline: Bool
     
     var time: String {
         let formatter = DateFormatter()
@@ -32,6 +34,8 @@ private struct ActivityNotification {
         self.title = title
         self.email = email
         self.date = item.createdAt
+        self.appName = item.appName
+        self.isMatchingPipeline = item.isMatchingPipeline
     }
 }
 
@@ -70,6 +74,7 @@ public final class BackgroundProcessing {
             logger.debug("[BGTASK] AppDelegate is nil")
             return
         }
+        let accountsSettings = UserDefaults.standard.accountsSettings
         self.fetcher?.cancel()
         self.fetcher = Publishers.MergeMany(TokenManager().tokens
                                                 .filter({ !$0.isDemo })
@@ -88,14 +93,18 @@ public final class BackgroundProcessing {
                 task.setTaskCompleted(success: true)
                 self?.scheduleAppRefresh()
             } receiveValue: { result in
-                DispatchQueue.main.async {
+                DispatchQueue.main.async { [weak self] in
                     result.forEach { activity in
                         if activity.date.timeIntervalSince1970 > UserDefaults.standard.lastActivityDate(email: activity.email) {
                             UserDefaults.standard.setLastActivityDate(activity.date.timeIntervalSince1970, email: activity.email)
                         }
-                        NotificationManager.runNotification(with: "\(activity.email)", subtitle: "\(activity.time):\n\(activity.title)", id: UUID().uuidString) { error in
-                            if let error = error {
-                                logger.error("[BGTASK \(identifier)] \(error)")
+                        if self?.shouldPublishNotification(activity, with: accountsSettings) == true {
+                            NotificationManager.runNotification(with: "\(activity.email)",
+                                                                subtitle: "\(activity.time):\n\(activity.title)",
+                                                                id: UUID().uuidString) { error in
+                                if let error = error {
+                                    logger.error("[BGTASK \(identifier)] \(error)")
+                                }
                             }
                         }
                     }
@@ -107,6 +116,16 @@ public final class BackgroundProcessing {
             logger.debug("[BGTASK \(identifier)] expired")
             self?.fetcher?.cancel()
         }
+    }
+
+    private func shouldPublishNotification(_ activity: ActivityNotification, with settings: [String: AccountSettings]) -> Bool {
+        guard !(UserDefaults.standard.isMatchingPipelineMuted && activity.isMatchingPipeline) else {
+            return false
+        }
+        guard let appName = activity.appName else {
+            return true
+        }
+        return settings[activity.email]?.mutedApps.contains(appName) != true
     }
     
     private func activityList(_ token: Token) -> AnyPublisher<(String, [V0ActivityEventResponseItemModel]), Error> {

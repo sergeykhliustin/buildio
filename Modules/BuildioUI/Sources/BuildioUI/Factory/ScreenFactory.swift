@@ -58,6 +58,12 @@ final class ScreenFactory: ObservableObject {
         BuildYmlScreenView()
             .environmentObject(viewModelFactory.yml(build))
     }
+
+    @ViewBuilder
+    func accountSettings(token: Token) -> some View {
+        AccountSettingsScreenView()
+            .environmentObject(viewModelFactory.accountSettings(token))
+    }
     
     // MARK: - New Build
     

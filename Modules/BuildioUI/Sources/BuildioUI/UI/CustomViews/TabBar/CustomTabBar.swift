@@ -68,7 +68,7 @@ struct CustomTabBar: View {
                         }
                     }, label: {
                         VStack(alignment: .center, spacing: 6) {
-                            Image(systemName: item.icon + (selected == index ? ".fill" : ""))
+                            Image(selected == index ? item.iconFill : item.icon)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 20, height: 20)

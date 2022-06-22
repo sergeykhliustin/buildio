@@ -41,16 +41,16 @@ struct BuildScreenView: BaseView {
                     }
                 }
                 
-                NavigateSettingsItem(title: "Logs", icon: "note.text") {
+                NavigateSettingsItem(title: "Logs", icon: .note_text) {
                     navigator.go(.logs(value), replace: false)
                 }
                 if value.status != .running {
-                    NavigateSettingsItem(title: "Apps & Artifacts", icon: "archivebox") {
+                    NavigateSettingsItem(title: "Apps & Artifacts", icon: .archivebox) {
                         navigator.go(.artifacts(value), replace: false)
                     }
                 }
                 
-                NavigateSettingsItem(title: "Bitrise.yml", icon: "gearshape.2") {
+                NavigateSettingsItem(title: "Bitrise.yml", icon: .gearshape_2) {
                     navigator.go(.yml(value), replace: false)
                 }
                 

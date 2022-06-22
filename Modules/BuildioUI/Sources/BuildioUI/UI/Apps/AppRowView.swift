@@ -7,14 +7,16 @@
 
 import SwiftUI
 import Models
+import BuildioLogic
 
 struct AppRowView: View {
     @EnvironmentObject private var screenFactory: ScreenFactory
     @Environment(\.theme) private var theme
     @State var model: V0AppResponseItemModel
+    @EnvironmentObject private var accountSettings: AccountSettingsManager
     
     var body: some View {
-        HStack(alignment: .top, spacing: 8) {
+        HStack(alignment: .center, spacing: 8) {
             let statusColor = model.isDisabled ? theme.disabledColor : Color.clear
             Rectangle()
                 .fill(statusColor)
@@ -34,9 +36,17 @@ struct AppRowView: View {
                     Text(model.owner.name)
                         .font(.footnote)
                 }
+
             }
             .padding(.vertical, 8)
             Spacer()
+            Button(action: {
+                accountSettings.toggleMuted(app: model)
+            }, label: {
+                Image(accountSettings.isMuted(app: model) ? .bell_slash : .bell)
+                    .padding()
+            })
+            .padding()
         }
     }
 }

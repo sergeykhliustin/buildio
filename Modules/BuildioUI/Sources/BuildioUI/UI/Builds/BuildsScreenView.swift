@@ -17,7 +17,7 @@ struct BuildsScreenView: View, PagingView {
     
     func buildItemView(_ item: BuildResponseItemModel) -> some View {
         ListItemWrapper(action: {
-            navigator.go(.build(item), replace: true)
+            navigator.go(.build(item), replace: model.app == nil)
         }, content: {
             screenFactory.buildRowView(build: item)
         })
@@ -26,16 +26,18 @@ struct BuildsScreenView: View, PagingView {
     @ViewBuilder
     func additionalToolbarItems() -> some View {
         HStack {
-            Button {
-                navigator.go(.activities, replace: false)
-            } label: {
-                Image(systemName: "bell")
+            if model.app == nil {
+                Button {
+                    navigator.go(.activities, replace: true)
+                } label: {
+                    Image(.bell)
+                }
             }
             
             Button {
                 navigator.go(.newBuild(nil))
             } label: {
-                Image(systemName: "plus")
+                Image(.plus)
             }
         }
     }

@@ -35,20 +35,37 @@ enum RootScreenItemType: CaseIterable {
         }
     }
     
-    var icon: String {
+    var icon: Images {
         switch self {
         case .auth:
-            return ""
+            return .empty
         case .builds:
-            return "hammer"
+            return .hammer
         case .apps:
-            return "tray.2"
+            return .tray_2
         case .accounts:
-            return "key"
+            return .key
         case .activities:
-            return "bell"
+            return .bell
         case .settings:
-            return "gearshape"
+            return .gearshape
+        }
+    }
+
+    var iconFill: Images {
+        switch self {
+        case .auth:
+            return .empty
+        case .builds:
+            return .hammer_fill
+        case .apps:
+            return .tray_2_fill
+        case .accounts:
+            return .key_fill
+        case .activities:
+            return .bell_fill
+        case .settings:
+            return .gearshape_fill
         }
     }
     

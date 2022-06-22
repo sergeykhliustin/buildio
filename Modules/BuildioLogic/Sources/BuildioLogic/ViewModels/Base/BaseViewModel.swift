@@ -25,7 +25,6 @@ protocol CacheableViewModel {
 
 }
 
-
 @MainActor
 public protocol BaseViewModelProtocol: ObservableObject {
     associatedtype ValueType

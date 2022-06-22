@@ -19,24 +19,28 @@ struct BuildRowView: View {
     
     @State private var abortConfirmation: Bool = false
     @State private var abortReason: String = ""
+
+    enum ImageType {
+        case system(Images)
+        case custom(String)
+    }
     
     private struct Item: View {
-        let imageName: String
+        let image: ImageType
         let text: String?
-        let system: Bool
         
-        init(imageName: String, text: String?, system: Bool = true) {
-            self.imageName = imageName
+        init(image: ImageType, text: String?) {
+            self.image = image
             self.text = text
-            self.system = system
         }
         
         var body: some View {
             if let text = text, !text.isEmpty {
                 HStack(spacing: 0) {
-                    if system {
-                        Image(systemName: imageName)
-                    } else {
+                    switch image {
+                    case .system(let image):
+                        Image(image)
+                    case .custom(let imageName):
                         Image(imageName)
                             .renderingMode(.template)
                             .padding(4)
@@ -69,7 +73,7 @@ struct BuildRowView: View {
                             if let tag = model.tag {
                                 Spacer()
                                 HStack(spacing: 2) {
-                                    Image(systemName: "tag")
+                                    Image(.tag)
                                     Text(tag)
                                 }
                                 .padding(.horizontal, 2)
@@ -82,7 +86,7 @@ struct BuildRowView: View {
                                 ProgressView()
                                     .frame(width: 15, height: 15, alignment: .center)
                             } else {
-                                Item(imageName: "clock", text: model.durationString)
+                                Item(image: .system(.clock), text: model.durationString)
                             }
                         }
                     }
@@ -99,16 +103,16 @@ struct BuildRowView: View {
                         .foregroundColor(extendedStatus.color)
                         .background(extendedStatus.colorLight)
                     if let pullRequestId = model.pullRequestId, pullRequestId != 0 {
-                        Item(imageName: "arrow.triangle.pull", text: String(pullRequestId))
+                        Item(image: .system(.arrow_triangle_pull), text: String(pullRequestId))
                     } else if let commitHash = model.commitHash {
-                        Item(imageName: "github", text: String(commitHash.prefix(7)), system: false)
+                        Item(image: .custom("github"), text: String(commitHash.prefix(7)))
                     }
                     Spacer(minLength: -2)
-                    Item(imageName: "coloncurrencysign.circle", text: model.creditCost?.description)
-                    Item(imageName: "point.topleft.down.curvedto.point.bottomright.up", text: model.triggeredWorkflow)
+                    Item(image: .system(.coloncurrencysign_circle), text: model.creditCost?.description)
+                    Item(image: .system(.point_topleft_down_curvedto_point_bottomright_up), text: model.triggeredWorkflow)
                         .truncationMode(.middle)
                         .lineLimit(1)
-                    Item(imageName: "number", text: String(model.buildNumber))
+                    Item(image: .system(.number), text: String(model.buildNumber))
                 }
                 .padding(.trailing, 8)
                 
@@ -137,7 +141,7 @@ struct BuildRowView: View {
             Button(action: {
                 navigator.go(.logs(model), replace: true)
             }, label: {
-                Image(systemName: "note.text")
+                Image(.note_text)
                 Text("Logs")
             })
             
@@ -145,21 +149,21 @@ struct BuildRowView: View {
                 Button(action: {
                     abortConfirmation = true
                 }, label: {
-                    Image(systemName: "nosign")
+                    Image(.nosign)
                     Text("Abort")
                 })
             } else {
                 Button(action: {
                     navigator.go(.artifacts(model), replace: true)
                 }, label: {
-                    Image(systemName: "archivebox")
+                    Image(.archivebox)
                     Text("Artifacts")
                 })
                 
                 Button(action: {
                     viewModel.rebuild()
                 }, label: {
-                    Image(systemName: "hammer")
+                    Image(.hammer)
                     Text("Rebuild")
                 })
             }

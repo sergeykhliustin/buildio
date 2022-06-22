@@ -45,7 +45,7 @@ struct AppsScreenView: View, PagingView {
             if let completion = completion {
                 completion(item)
             } else {
-                navigator.go(.builds(item), replace: false)
+                navigator.go(.builds(item), replace: true)
             }
         }, content: {
             AppRowView(model: item)

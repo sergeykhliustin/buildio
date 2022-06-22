@@ -45,7 +45,7 @@ struct BuildYmlScreenView: BaseView {
                         logger.error(error)
                     }
                 } label: {
-                    Image(systemName: "square.and.arrow.up")
+                    Image(.square_and_arrow_up)
                 }
             }
 

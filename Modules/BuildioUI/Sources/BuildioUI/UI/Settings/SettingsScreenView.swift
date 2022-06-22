@@ -8,24 +8,6 @@
 import SwiftUI
 import BuildioLogic
 
-private struct SectionTextViewModifier: ViewModifier {
-    @Environment(\.theme) private var theme
-    
-    func body(content: Content) -> some View {
-        content
-            .padding(.horizontal, 24)
-            .padding(.top, 8)
-            .foregroundColor(theme.textColorLight)
-            .font(.callout)
-    }
-}
-
-private extension View {
-    func section() -> some View {
-        modifier(SectionTextViewModifier())
-    }
-}
-
 struct SettingsScreenView: View {
     @Environment(\.theme) private var theme
     @AppStorage(UserDefaults.Keys.debugMode) private var debugModeActive: Bool = false
@@ -33,11 +15,15 @@ struct SettingsScreenView: View {
     @AppStorage(UserDefaults.Keys.darkThemeName) private var darkThemeName = Theme.defaultDarkName
     @AppStorage(UserDefaults.Keys.lightThemeName) private var lightThemeName = Theme.defaultLightName
     @AppStorage(UserDefaults.Keys.pollingInterval) private var pollingInterval = 30.0
+    @AppStorage(UserDefaults.Keys.matchingPipelineMuted) private var matchingPipelineMuted = false
     @EnvironmentObject private var navigator: Navigator
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 8) {
+                Text("Notifications")
+                    .section()
+                ToggleSettingsItem(title: "Mute all 'no matching pipeline found*' notifications", icon: nil, toggle: $matchingPipelineMuted)
                 Text("Color settings")
                     .section()
                 NavigateSettingsItem(

@@ -38,4 +38,12 @@ public struct V0ActivityEventResponseItemModel: Codable, Hashable, Identifiable 
     public static func preview() -> Self {
         return V0ActivityEventResponseItemModel(createdAt: Date(), description: "description", eventIcon: "icon", eventStype: "type", repositoryAvatarIconUrl: "icon", repositoryTitle: "repoTitle", slug: "slug", targetPathString: "targetPath", title: "title")
     }
+
+    public var appName: String? {
+        return description?.components(separatedBy: " - ").first
+    }
+
+    public var isMatchingPipeline: Bool {
+        return description?.contains("no matching pipeline & workflow found with trigger params") == true
+    }
 }

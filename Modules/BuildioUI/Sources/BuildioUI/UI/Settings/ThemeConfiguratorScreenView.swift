@@ -49,7 +49,7 @@ struct ThemeConfiguratorScreenView: View {
                             Button(action: {
                                 
                             }, label: {
-                                Image(systemName: "note.text")
+                                Image(.note_text)
                                 Text("Logs")
                             })
                                 .buttonStyle(ControlButtonStyle())
@@ -95,7 +95,7 @@ struct ThemeConfiguratorScreenView: View {
                             
                         }
                         
-                        NavigateSettingsItem(title: "Export", icon: "square.and.arrow.up.fill") {
+                        NavigateSettingsItem(title: "Export", icon: .square_and_arrow_up_fill) {
                             let encoder = JSONEncoder()
                             do {
                                 let data = try encoder.encode(themeToTune)
@@ -108,10 +108,10 @@ struct ThemeConfiguratorScreenView: View {
                                 logger.error(error)
                             }
                         }
-                        NavigateSettingsItem(title: "Apply theme", icon: "") {
+                        NavigateSettingsItem(title: "Apply theme", icon: .empty) {
                             themeUpdater.wrappedValue = themeToTune
                         }
-                        NavigateSettingsItem(title: "Reset theme changes", icon: "") {
+                        NavigateSettingsItem(title: "Reset theme changes", icon: .empty) {
                             themeUpdater.wrappedValue = Theme.current
                         }
                     }

@@ -23,7 +23,7 @@ struct PasteButton: ViewModifier {
                         text = pb
                     }
                 } label: {
-                    Image(systemName: "doc.on.clipboard")
+                    Image(.doc_on_clipboard)
                         .foregroundColor(theme.accentColor)
                     
                 }

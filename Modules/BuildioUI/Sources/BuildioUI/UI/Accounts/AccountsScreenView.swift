@@ -23,7 +23,9 @@ struct AccountsScreenView: View {
                         navigators.popToRootAll()
                         tokenManager.token = token
                     } content: {
-                        AccountRowView(token)
+                        AccountRowView(token, settings: {
+                            navigator.go(.accountSettings(token), replace: true)
+                        })
                     }
                     .defaultHorizontalPadding()
                 }
@@ -38,7 +40,7 @@ struct AccountsScreenView: View {
                         navigators.popToRootAll()
                     }))
                 } label: {
-                    Image(systemName: "plus")
+                    Image(.plus)
                 }
                 .foregroundColor(theme.accentColor)
             }
