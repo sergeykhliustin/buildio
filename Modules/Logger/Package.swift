@@ -11,7 +11,7 @@ let package = Package(
             targets: ["Logger"])
     ],
     dependencies: [
-        .package(name: "SwiftyBeaver", url: "https://github.com/SwiftyBeaver/SwiftyBeaver.git", from: "1.9.5")
+        .package(name: "SwiftyBeaver", url: "https://github.com/SwiftyBeaver/SwiftyBeaver.git", from: "1.9.6")
     ],
     targets: [
         .target(

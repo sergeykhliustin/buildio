@@ -128,7 +128,7 @@ struct BuildView: View {
                             .markdownStyle(
                                 MarkdownStyle(
                                     font: .subheadline,
-                                    foregroundColor: MarkdownStyle.Color(uiColor: theme.textColor.uiColor)
+                                    foregroundColor: theme.textColor
                                 )
                             )
                     } else {
