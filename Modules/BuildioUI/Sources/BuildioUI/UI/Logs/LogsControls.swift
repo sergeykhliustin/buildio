@@ -80,17 +80,14 @@ struct LogsControls: View {
     @Environment(\.theme) private var theme
     @Binding var fullscreen: Bool
     @Binding var follow: Bool
-    @Binding var searchText: String
-    @State private var search: Bool = false
-    @Binding var searchCountText: String?
-    
-    var onSubmit: (() -> Void)?
+    @Binding var search: Bool
     var onFetchRaw: (() -> Void)?
     
     var body: some View {
         HStack {
             Spacer()
             VStack(alignment: .trailing) {
+                Spacer()
                 HStack(spacing: 8) {
                     if let onFetchRaw = onFetchRaw {
                         Button(action: onFetchRaw) {
@@ -105,42 +102,23 @@ struct LogsControls: View {
                     } label: {
                         Image(fullscreen ? .arrow_down_right_and_arrow_up_left : .arrow_up_left_and_arrow_down_right)
                     }
-                }
-                
-                Spacer()
-                if let searchCountText = searchCountText, search {
-                    Text(searchCountText)
-                        .font(.footnote)
-                        .padding(4)
-                        .background(
-                            RoundedRectangle(cornerRadius: 4).stroke(theme.accentColor, lineWidth: 1).background(theme.logControlColor.opacity(0.8))
-                        )
-                        .cornerRadius(4)
-                }
-                HStack(spacing: 8) {
-                    if search {
-                        TextField("Search", text: $searchText)
-                            .textFieldStyle(LogsSearchTextFieldStyle())
+                    Spacer()
+                    if #available(iOS 16.0, *) {
                         Button {
-                            onSubmit?()
+                            withAnimation {
+                                search.toggle()
+                            }
                         } label: {
-                            Image(.chevron_compact_down)
-                        }
-                        .buttonStyle(CustomButtonStyle(selected: .constant(true)))
-                    }
-                    Button {
-                        withAnimation {
-                            search.toggle()
-                            if !search {
-                                searchText = ""
+                            if search {
+                                Image(.magnifyingglass).colorInvert()
+                            } else {
+                                Image(.magnifyingglass)
                             }
                         }
-                    } label: {
-                        Image(.magnifyingglass)
+                        .buttonStyle(CustomButtonStyle(selected: $search))
                     }
-                    .buttonStyle(CustomButtonStyle(selected: $search))
                     
-                    if !follow && !search {
+                    if !follow {
                         Button {
                             follow.toggle()
                         } label: {
