@@ -62,10 +62,11 @@ public final class ViewModelFactory {
     }
     
     public func build(_ build: BuildResponseItemModel) -> BuildViewModel {
+        // TODO: Double check
         let model = cached(key: "BuildViewModel_\(build.slug)", model: BuildViewModel(tokenManager, build: build))
-        if build.status != .running {
-            model.value = build
-        }
+//        if build.status != .running {
+//            model.value = build
+//        }
         return model
     }
     

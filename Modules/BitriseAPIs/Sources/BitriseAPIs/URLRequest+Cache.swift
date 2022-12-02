@@ -30,10 +30,8 @@ extension URLRequest {
         if ProcessInfo.processInfo.environment["USE_URL_CACHE"] != "true" {
             let cachePath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!
             if let contents = try? FileManager.default.contentsOfDirectory(atPath: cachePath) {
-                for content in contents {
-                    if content.hasSuffix(".urlrequestcache") {
-                        try? FileManager.default.removeItem(atPath: (cachePath as NSString).appendingPathComponent(content))
-                    }
+                for content in contents where content.hasSuffix(".urlrequestcache") {
+                    try? FileManager.default.removeItem(atPath: (cachePath as NSString).appendingPathComponent(content))
                 }
             }
         }

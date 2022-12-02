@@ -19,7 +19,6 @@ struct AccountSettingsScreenView: View {
             .frame(maxHeight: .infinity, alignment: .top)
             .padding(.bottom, 8)
         }
-        .navigationTitle("Account settings")
     }
 }
 

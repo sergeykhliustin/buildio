@@ -123,7 +123,6 @@ struct AuthScreenView: View {
                 isError = false
             })
         }
-        .navigationTitle("Log in to Bitrise")
         .toolbar {
             if canClose {
                 Button {
