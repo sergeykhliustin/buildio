@@ -12,15 +12,14 @@ import UIKit
 struct LogsTextView: UIViewRepresentable {
     @Environment(\.theme) private var theme
     @Binding var follow: Bool
-    @Binding var selectedRange: NSRange?
+    @Binding var search: Bool
     private let attributed: NSAttributedString?
-    
     private var scrollViewHandler: ScrollViewDelegate
     
-    init(follow: Binding<Bool>, selectedRange: Binding<NSRange?>, attributed: NSAttributedString?) {
+    init(follow: Binding<Bool>, search: Binding<Bool>, attributed: NSAttributedString?) {
         self.attributed = attributed
         self._follow = follow
-        self._selectedRange = selectedRange
+        self._search = search
         
         scrollViewHandler = ScrollViewDelegate(onScroll: {
             follow.wrappedValue = false
@@ -42,6 +41,9 @@ struct LogsTextView: UIViewRepresentable {
         textView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -8.5)
         textView.backgroundColor = UIColor(theme.logsBackgroundColor)
         textView.textColor = UIColor.white
+        if #available(iOS 16.0, *) {
+            textView.isFindInteractionEnabled = true
+        }
         
         view.addSubview(textView)
         NSLayoutConstraint.activate([
@@ -59,27 +61,15 @@ struct LogsTextView: UIViewRepresentable {
         textView.delegate = scrollViewHandler
         textView.attributedText = attributed ?? NSAttributedString(string: "Loading logs...", attributes: [.foregroundColor: UIColor(Color.b_LogsDefault)])
         scrollToBottom(textView: textView)
-        selectRange(textView: textView)
-    }
-    
-    private func selectRange(textView: UITextView) {
-        guard let range = selectedRange else { return }
-        guard let attributed = textView.attributedText else { return }
-        
-        if range.length > 0 {
-            let mutable = NSMutableAttributedString(attributedString: attributed)
-            mutable.addAttributes([
-                .backgroundColor: UIColor.yellow,
-                .foregroundColor: UIColor.black
-            ], range: range)
-            textView.attributedText = mutable
-            textView.scrollRangeToVisible(range)
+        if search {
+            textView.presentFind()
+        } else {
+            textView.dismissFind()
         }
     }
     
     private func scrollToBottom(textView: UITextView) {
-        guard follow && selectedRange == nil else { return }
-        
+        guard follow && !textView.isFindVisible else { return }
         DispatchQueue.main.async {
             if textView.attributedText.length > 0 {
                 let location = textView.attributedText.length - 1
@@ -105,5 +95,27 @@ private final class ScrollViewDelegate: NSObject, UITextViewDelegate {
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         onScroll()
+    }
+}
+
+private extension UITextView {
+    var isFindVisible: Bool {
+        if #available(iOS 16.0, *) {
+            return findInteraction?.isFindNavigatorVisible == true
+        } else {
+            return false
+        }
+    }
+
+    func presentFind() {
+        if #available(iOS 16.0, *) {
+            findInteraction?.presentFindNavigator(showingReplace: false)
+        }
+    }
+
+    func dismissFind() {
+        if #available(iOS 16.0, *) {
+            findInteraction?.dismissFindNavigator()
+        }
     }
 }
