@@ -33,8 +33,8 @@
         "repositoryURL": "https://github.com/gonzalezreal/MarkdownUI",
         "state": {
           "branch": null,
-          "revision": "94e07c111f1ef0a9c997d2fadac984e8bb7d7405",
-          "version": "1.0.0"
+          "revision": "6a33c60ad430772d69ac5278e35474d6b3e5d30a",
+          "version": "1.1.1"
         }
       },
       {
@@ -69,8 +69,8 @@
         "repositoryURL": "https://github.com/SwiftyBeaver/SwiftyBeaver.git",
         "state": {
           "branch": null,
-          "revision": "2c039501d6eeb4d4cd4aec4a8d884ad28862e044",
-          "version": "1.9.5"
+          "revision": "12b5acf96d98f91d50de447369bd18df74600f1a",
+          "version": "1.9.6"
         }
       },
       {
