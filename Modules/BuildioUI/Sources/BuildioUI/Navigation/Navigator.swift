@@ -23,6 +23,8 @@ enum Route {
 enum NewBuildRoute {
     case newBuild(V0AppResponseItemModel?)
     case appSelect((V0AppResponseItemModel) -> Void)
+    case branchSelect(branches: [String], onSelect: (String) -> Void)
+    case workflowSelect(workflows: [String], onSelect: (String) -> Void)
 }
 
 enum AuthRoute {
@@ -32,10 +34,12 @@ enum AuthRoute {
 
 enum SettingsRoute {
     case debugLogs
-    case themeLight
-    case themeDark
+    case tuneLightTheme
+    case tuneDarkTheme
     case debug
     case about
+    case appearance
+    case darkTheme
 }
 
 final class Navigator: ObservableObject {
@@ -96,9 +100,8 @@ final class Navigator: ObservableObject {
         case .newBuild(let app):
             let navigator = Navigator(self)
             self.child = navigator
-            let controller = SplitNavigationView(shouldSplit: false) {
-                builder.newBuildScreen(app: app)
-            }
+            let controller = SplitNavigationView(shouldSplit: false,
+                                                 screen: builder.newBuildScreen(app: app))
                 .environmentObject(navigator)
                 .hosting
             
@@ -107,6 +110,12 @@ final class Navigator: ObservableObject {
             
         case .appSelect(let completion):
             let controller = builder.appSelectScreen(completion: completion).hosting
+            navigationController?.push(controller, shouldReplace: false)
+        case .branchSelect(let branches, let onSelect):
+            let controller = builder.branchesScreen(branches, onSelect: onSelect).hosting
+            navigationController?.push(controller, shouldReplace: false)
+        case .workflowSelect(let workflows, let onSelect):
+            let controller = builder.workflowsScreen(workflows, onSelect: onSelect).hosting
             navigationController?.push(controller, shouldReplace: false)
         }
     }
@@ -118,9 +127,8 @@ final class Navigator: ObservableObject {
         case .auth(let completion):
             let navigator = Navigator(self)
             self.child = navigator
-            let controller = SplitNavigationView(shouldSplit: false) {
-                builder.authScreen(canClose: true, onCompletion: completion)
-            }
+            let controller = SplitNavigationView(shouldSplit: false,
+                                                 screen: builder.authScreen(canClose: true, onCompletion: completion))
                 .environmentObject(navigator)
                 .hosting
             self.isPresentingSheet = true
@@ -138,20 +146,19 @@ final class Navigator: ObservableObject {
         switch route {
         case .debugLogs:
             controller = builder.debugLogsScreen().hosting
-        case .themeLight:
-            controller = builder.themeScreen(theme: Theme.defaultTheme(for: .light)).hosting
-        case .themeDark:
-            controller = builder.themeScreen(theme: Theme.defaultTheme(for: .dark)).hosting
+        case .tuneLightTheme:
+            controller = builder.themeConfigurationScreen(theme: Theme.defaultTheme(for: .light)).hosting
+        case .tuneDarkTheme:
+            controller = builder.themeConfigurationScreen(theme: Theme.defaultTheme(for: .dark)).hosting
         case .debug:
             controller = builder.debugScreen().hosting
         case .about:
             controller = builder.aboutScreen().hosting
+        case .appearance:
+            controller = builder.colorSchemeScreen().hosting
+        case .darkTheme:
+            controller = builder.themeSelectScreen().hosting
         }
-        navigationController?.push(controller, shouldReplace: false)
-    }
-    
-    func go<Content: View>(_ content: () -> Content) {
-        let controller = content().hosting
         navigationController?.push(controller, shouldReplace: false)
     }
     

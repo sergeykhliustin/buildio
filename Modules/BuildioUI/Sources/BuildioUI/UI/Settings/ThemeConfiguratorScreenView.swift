@@ -122,7 +122,6 @@ struct ThemeConfiguratorScreenView: View {
             
         }
         .background(theme.background)
-        .navigationTitle("Theme")
     }
 }
 

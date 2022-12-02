@@ -37,17 +37,16 @@ struct DebugScreenView: View {
                                    icon: .clear,
                                  toggle: Binding(get: { UIApplication.shared.isIdleTimerDisabled }, set: { newValue in UIApplication.shared.isIdleTimerDisabled = newValue }))
                 NavigateSettingsItem(title: "Tune light theme", icon: .eyedropper_halffull) {
-                    navigator.go(.themeLight)
+                    navigator.go(.tuneLightTheme)
                 }
                 
                 NavigateSettingsItem(title: "Tune dark theme", icon: .eyedropper_halffull) {
-                    navigator.go(.themeDark)
+                    navigator.go(.tuneDarkTheme)
                 }
             }
             .padding(.vertical, 8)
         }
         .background(theme.background)
-        .navigationTitle("Debug")
     }
 }
 

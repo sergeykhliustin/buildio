@@ -62,7 +62,6 @@ struct AboutScreenView: View {
         .padding(.horizontal, 16)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(theme.background)
-        .navigationTitle("About")
     }
 }
 

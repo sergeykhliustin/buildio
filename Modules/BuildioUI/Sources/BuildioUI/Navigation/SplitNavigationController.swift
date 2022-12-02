@@ -10,23 +10,23 @@ import UIKit
 import SwiftUI
 import BuildioLogic
 
-struct SplitNavigationView<Content: View>: UIViewControllerRepresentable {
+struct SplitNavigationView<Content: Screen>: UIViewControllerRepresentable {
     typealias UIViewControllerType = SplitNavigationController
     @Environment(\.fullscreen) private var fullscreen
     @Environment(\.theme) private var theme
     @Environment(\.windowMode) private var windowMode
     @EnvironmentObject private var navigator: Navigator
     private let shouldSplit: Bool
-    @ViewBuilder private var content: () -> Content
+    private let screen: () -> Content
     
     init(shouldSplit: Bool,
-         content: @escaping () -> Content) {
+         screen: @autoclosure @escaping () -> Content) {
         self.shouldSplit = shouldSplit
-        self.content = content
+        self.screen = screen
     }
     
     func makeUIViewController(context: Context) -> SplitNavigationController {
-        let rootViewController = UIHostingController(rootView: content())
+        let rootViewController = screen().hosting
         let controller = SplitNavigationController(rootViewController: rootViewController)
         navigator.navigationController = controller
         controller.navigator = navigator

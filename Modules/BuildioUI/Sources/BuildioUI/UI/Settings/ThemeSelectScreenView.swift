@@ -35,6 +35,5 @@ struct ThemeSelectScreenView: View {
         .frame(maxHeight: .infinity, alignment: .top)
         .background(theme.background)
         .padding(.vertical, 8)
-        .navigationTitle("Preferred theme")
     }
 }

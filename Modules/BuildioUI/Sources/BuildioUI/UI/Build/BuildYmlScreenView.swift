@@ -50,7 +50,6 @@ struct BuildYmlScreenView: BaseView {
             }
 
         })
-        .navigationTitle("Bitrise.yml")
         .withHostingWindow { window in
             self.window = window
         }

@@ -16,7 +16,6 @@ struct DebugLogsScreenView: BaseView {
     
     var body: some View {
         LogsView(logs: model.value)
-            .navigationTitle("Logs")
     }
 }
 

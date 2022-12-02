@@ -30,17 +30,13 @@ struct SettingsScreenView: View {
                     title: "Preferred appearance",
                     subtitle: colorSchemeSettings.rawValue,
                     action: {
-                        navigator.go {
-                            ColorSchemeSelectScreenView()
-                        }
+                        navigator.go(.appearance)
                     })
                 NavigateSettingsItem(
                     title: "Theme for dark appearance",
                     subtitle: darkThemeName,
                     action: {
-                        navigator.go({
-                            ThemeSelectScreenView(colorScheme: .dark)
-                        })
+                        navigator.go(.darkTheme)
                     })
                 #if targetEnvironment(macCatalyst)
                 Text("Buildio requests updates in the background with this interval. Slide to zero to disable")
@@ -65,8 +61,6 @@ struct SettingsScreenView: View {
         .onTapGesture(count: 10, perform: {
             debugModeActive.toggle()
         })
-        
-        .navigationTitle("Settings")
     }
 }
 
