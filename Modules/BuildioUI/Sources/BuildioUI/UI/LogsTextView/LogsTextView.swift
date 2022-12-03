@@ -13,11 +13,11 @@ struct LogsTextView: UIViewRepresentable {
     @Environment(\.theme) private var theme
     @Binding var follow: Bool
     @Binding var search: Bool
-    private let attributed: NSAttributedString?
+    private let log: NSAttributedString?
     private var scrollViewHandler: ScrollViewDelegate
     
-    init(follow: Binding<Bool>, search: Binding<Bool>, attributed: NSAttributedString?) {
-        self.attributed = attributed
+    init(follow: Binding<Bool>, search: Binding<Bool>, log: NSAttributedString?) {
+        self.log = log
         self._follow = follow
         self._search = search
         
@@ -59,8 +59,13 @@ struct LogsTextView: UIViewRepresentable {
     func updateUIView(_ uiView: UIView, context: Context) {
         guard let textView = uiView.subviews.first(where: { $0 is UITextView }) as? UITextView else { return }
         textView.delegate = scrollViewHandler
-        textView.attributedText = attributed ?? NSAttributedString(string: "Loading logs...", attributes: [.foregroundColor: UIColor(Color.b_LogsDefault)])
+        let attributed = log ?? NSAttributedString(string: "Loading logs...", attributes: [.foregroundColor: UIColor(Color.b_LogsDefault)])
+        if textView.text != attributed.string {
+            textView.attributedText = attributed
+            textView.layoutManager.ensureLayout(forCharacterRange: NSRange(location: 0, length: textView.attributedText.length))
+        }
         scrollToBottom(textView: textView)
+
         if search {
             textView.presentFind()
         } else {
