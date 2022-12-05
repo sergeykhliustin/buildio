@@ -39,6 +39,7 @@ struct SplitNavigationView<Content: Screen>: UIViewControllerRepresentable {
         } else {
             navigator.navigationController?.mode = .primaryOnly
         }
+        navigator.navigationController?.setNavigationBarHidden(fullscreen.wrappedValue, animated: true)
         
         navigator.navigationController?.updateTheme(theme)
     }
@@ -109,6 +110,11 @@ final class SplitNavigationController: UIViewController {
         self.primaryNavigationController = Self.navigationController(rootViewController)
         self.secondaryNavigationController = Self.navigationController(EmptyViewController())
         super.init(nibName: nil, bundle: nil)
+    }
+
+    func setNavigationBarHidden(_ hidden: Bool, animated: Bool) {
+        primaryNavigationController.setNavigationBarHidden(hidden, animated: animated)
+        secondaryNavigationController.setNavigationBarHidden(hidden, animated: animated)
     }
     
     func push(_ controller: UIViewController, animated: Bool = true, shouldReplace: Bool) {
