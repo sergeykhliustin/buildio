@@ -34,7 +34,6 @@ struct LogsView: View {
             }
         }
         .frame(maxHeight: .infinity)
-        .navigationBarHidden(fullscreen.wrappedValue)
         .onAppear {
             fullscreen.wrappedValue = false
         }
