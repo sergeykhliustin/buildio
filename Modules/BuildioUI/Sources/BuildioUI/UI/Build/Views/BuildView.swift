@@ -114,8 +114,10 @@ struct BuildView: View {
                         Text("Commit message:")
                         Picker("", selection: $messageStyle) {
                             Text("MD")
+                                .primary()
                                 .tag(MessageStyle.markdown)
                             Text("TXT")
+                                .primary()
                                 .tag(MessageStyle.raw)
                         }
                         .pickerStyle(.segmented)

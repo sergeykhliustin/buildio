@@ -150,7 +150,12 @@ public struct Theme: Codable, Equatable {
     
     // swiftlint:disable force_try
     public static var current: Theme {
-        let style = UserDefaults.standard.colorSchemeSettings.colorScheme ?? ColorScheme.current
+        let style: ColorScheme
+        if let overrideInterfaceStyle = ProcessInfo.processInfo.env[.OverrideInterfaceStyle] {
+            style = overrideInterfaceStyle == "dark" ? .dark : .light
+        } else {
+            style = UserDefaults.standard.colorSchemeSettings.colorScheme ?? ColorScheme.current
+        }
         let lightThemeName = UserDefaults.standard.lightThemeName ?? defaultLightName
         let darkThemeName = UserDefaults.standard.darkThemeName ?? defaultDarkName
         switch style {

@@ -16,7 +16,9 @@ struct ActivitiesScreenView: PagingView {
     @State private var notificationsAuthorization: UNAuthorizationStatus?
     
     func headerBody() -> some View {
-        if let notificationsAuthorization = notificationsAuthorization, notificationsAuthorization != .authorized {
+        if let notificationsAuthorization = notificationsAuthorization,
+            notificationsAuthorization != .authorized,
+            !ProcessInfo.processInfo.isTestEnv {
             NavigateSettingsItem(title: "Enable notifications", icon: .bell) {
                 if notificationsAuthorization == .notDetermined {
                     Task {

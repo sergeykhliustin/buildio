@@ -22,14 +22,20 @@ public struct EntryPoint: View {
                 AuthResolverScreenView()
             }
         }
-        #if targetEnvironment(macCatalyst)
+        .statusBar(hidden: ProcessInfo.processInfo.isTestEnv)
         .withHostingWindow { window in
+            if ProcessInfo.processInfo.isTestEnv {
+                UIView.setAnimationsEnabled(false)
+                window?.layer.speed = 100
+            }
+            #if targetEnvironment(macCatalyst)
             let titlebar = window?.windowScene?.titlebar
             titlebar?.titleVisibility = .hidden
             titlebar?.toolbar?.isVisible = false
             titlebar?.separatorStyle = .none
+            #endif
         }
-        #endif
+
     }
 }
 

@@ -26,17 +26,19 @@ struct AppsScreenView: View, PagingView {
     @ViewBuilder
     func headerBody() -> some View {
         let text = Binding(get: { model.searchText }, set: { model.searchText = $0 })
-        TextField("Search",
+        TextField("",
                   text: text,
                   onEditingChanged: { editing in
             self.searchFocused = editing
         })
-            .font(.callout)
-            .frame(height: 44)
-            .modifier(ClearButton(text: text))
-            .modifier(RoundedBorderShadowModifier(focused: searchFocused, horizontalPadding: 8))
-            .background(theme.background)
-            .padding(.horizontal, 16)
+        .font(.callout)
+        .frame(height: 44)
+        .modifier(PlaceholderTextField(placeholder: "Search", text: text))
+        .modifier(ClearButton(text: text))
+        .modifier(RoundedBorderShadowModifier(focused: searchFocused, horizontalPadding: 8))
+        .background(theme.background)
+        .padding(.horizontal, 16)
+        .foregroundColor(theme.textColor)
     }
     
     @ViewBuilder
