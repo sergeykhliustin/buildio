@@ -52,6 +52,7 @@ public struct Theme: Codable, Equatable {
         "linkColor": "#6C0EB2",
         "logControlColor": "#6E6F6F",
         "logsBackgroundColor": "#000000",
+        "logControlHighlightedColor": "#683d87",
         "navigationColor": "#2D063C",
         "separatorColor": "#DEDEDE",
         "shadowColor": "#EAEAEA",
@@ -79,6 +80,7 @@ public struct Theme: Codable, Equatable {
         "linkColor": "#06ADCE",
         "logControlColor": "#5B5B5B",
         "logsBackgroundColor": "#201B22",
+        "logControlHighlightedColor": "#683d87",
         "navigationColor": "#EAEAEA",
         "separatorColor": "#848484",
         "shadowColor": "#FFFFFF18",
@@ -100,7 +102,8 @@ public struct Theme: Codable, Equatable {
         "disabledColor": "#999999",
         "fadeColor": "#FFFFFF26",
         "linkColor": "#ADADAD",
-        "logControlColor": "#5B5B5B",
+        "logControlColor": "#FFFFFF",
+        "logControlHighlightedColor": "#683d87",
         "logsBackgroundColor": "#201B22",
         "navigationColor": "#EAEAEA",
         "separatorColor": "#848484",
@@ -127,7 +130,8 @@ public struct Theme: Codable, Equatable {
         "disabledColor": "#999999",
         "fadeColor": "#FFFFFF26",
         "linkColor": "#06ADCE",
-        "logControlColor": "#5B5B5B",
+        "logControlColor": "#FFFFFF",
+        "logControlHighlightedColor": "#683d87",
         "logsBackgroundColor": "#201B22",
         "navigationColor": "#EAEAEA",
         "separatorColor": "#848484",
@@ -209,6 +213,7 @@ public struct Theme: Codable, Equatable {
     public var borderColor: Color
     public var separatorColor: Color
     public var logControlColor: Color
+    public var logControlHighlightedColor: Color
     public var logsBackgroundColor: Color
     public var shadowColor: Color
     public var navigationColor: Color
