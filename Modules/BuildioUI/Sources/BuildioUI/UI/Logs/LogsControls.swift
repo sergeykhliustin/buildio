@@ -38,10 +38,13 @@ struct LogsControls: View {
             let highlighted = selected || configuration.isPressed || hover
             configuration
                 .label
-                .frame(width: 30, height: 30, alignment: .center)
+                .frame(width: 40, height: 40, alignment: .center)
                 .contentShape(Rectangle())
                 .background(
-                    RoundedRectangle(cornerRadius: 4).stroke(highlighted ? theme.accentColor : .clear, lineWidth: 1).background(theme.logControlColor.opacity(highlighted ? 0.8 : 0.5))
+                    RoundedRectangle(cornerRadius: 4)
+                        .stroke(highlighted ? theme.accentColor : .clear, lineWidth: 1)
+                        .background(highlighted ? theme.logControlHighlightedColor : theme.logControlColor)
+                        .opacity(highlighted ? 1.0 : 0.7)
                 )
                 .cornerRadius(4)
                 .onHover { hover in
@@ -65,10 +68,13 @@ struct LogsControls: View {
             configuration
                 .label
                 .padding(.horizontal, 4)
-                .frame(height: 30, alignment: .center)
+                .frame(height: 40, alignment: .center)
                 .contentShape(Rectangle())
                 .background(
-                    RoundedRectangle(cornerRadius: 4).stroke(highlighted ? theme.accentColor : .clear, lineWidth: 1).background(theme.logControlColor.opacity(highlighted ? 0.8 : 0.5))
+                    RoundedRectangle(cornerRadius: 4)
+                        .stroke(highlighted ? theme.accentColor : .clear, lineWidth: 1)
+                        .background(highlighted ? theme.logControlHighlightedColor : theme.logControlColor)
+
                 )
                 .cornerRadius(4)
                 .onHover { hover in
@@ -100,8 +106,15 @@ struct LogsControls: View {
                             fullscreen.toggle()
                         }
                     } label: {
-                        Image(fullscreen ? .arrow_down_right_and_arrow_up_left : .arrow_up_left_and_arrow_down_right)
+                        if fullscreen {
+                            Image(.arrow_down_right_and_arrow_up_left)
+                                .renderingMode(.template)
+                                .foregroundColor(.white)
+                        } else {
+                            Image(fullscreen ? .arrow_down_right_and_arrow_up_left : .arrow_up_left_and_arrow_down_right)
+                        }
                     }
+                    .buttonStyle(CustomButtonStyle(selected: $fullscreen))
                     Spacer()
                     if #available(iOS 16.0, *) {
                         Button {
@@ -110,21 +123,28 @@ struct LogsControls: View {
                             }
                         } label: {
                             if search {
-                                Image(.magnifyingglass).colorInvert()
+                                Image(.magnifyingglass)
+                                    .renderingMode(.template)
+                                    .foregroundColor(.white)
                             } else {
                                 Image(.magnifyingglass)
                             }
                         }
                         .buttonStyle(CustomButtonStyle(selected: $search))
                     }
-                    
-                    if !follow {
-                        Button {
-                            follow.toggle()
-                        } label: {
+
+                    Button {
+                        follow.toggle()
+                    } label: {
+                        if follow {
+                            Image(.chevron_down_square)
+                                .renderingMode(.template)
+                                .foregroundColor(.white)
+                        } else {
                             Image(.chevron_down_square)
                         }
                     }
+                    .buttonStyle(CustomButtonStyle(selected: $follow))
                 }
             }
         }
