@@ -16,6 +16,7 @@ public struct StoreReviewHelper {
     }
     
     private static func incrementAppOpenedCount() {
+        guard !ProcessInfo.processInfo.isTestEnv else { return }
         UserDefaults.standard.appOpenCount += 1
     }
 
@@ -33,6 +34,7 @@ public struct StoreReviewHelper {
     }
 
     private func requestReview() {
+        guard !ProcessInfo.processInfo.isTestEnv else { return }
         SKStoreReviewController.requestReview()
     }
 

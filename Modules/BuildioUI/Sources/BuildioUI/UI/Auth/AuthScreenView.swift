@@ -49,16 +49,18 @@ struct AuthScreenView: View {
                     Spacer()
                 }
                 
-                TextField("*******************",
+                TextField("",
                           text: $tokenState,
                           onEditingChanged: { editing in
                     self.focused = editing
                 })
                     .font(.callout)
+                    .modifier(PlaceholderTextField(placeholder: "*******************", text: $tokenState))
                     .modifier(ClearButton(text: $tokenState))
                     .modifier(PasteButton(text: $tokenState))
                     .modifier(RoundedBorderShadowModifier(focused: focused, horizontalPadding: 8))
                     .frame(height: 44)
+                    .foregroundColor(theme.textColor)
                 
                 HStack(spacing: 0) {
                     Text("Don't have one? ")
