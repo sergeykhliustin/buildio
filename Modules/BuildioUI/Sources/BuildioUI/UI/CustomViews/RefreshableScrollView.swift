@@ -11,12 +11,17 @@ struct RefreshableScrollView<Content: View>: View {
     @Environment(\.theme) private var theme
     @State private var previousScrollOffset: CGFloat = 0
     @State private var progress: CGFloat = 0
-    
+
+    private let axes: Axis.Set
     private var threshold: CGFloat
     @Binding private var refreshing: Bool
     @ViewBuilder private let content: () -> Content
 
-    init(height: CGFloat = 60, refreshing: Binding<Bool>, @ViewBuilder content: @escaping () -> Content) {
+    init(_ axes: Axis.Set = .vertical,
+         height: CGFloat = 60,
+         refreshing: Binding<Bool>,
+         @ViewBuilder content: @escaping () -> Content) {
+        self.axes = axes
         self.threshold = height
         self._refreshing = refreshing
         self.content = content
@@ -24,7 +29,7 @@ struct RefreshableScrollView<Content: View>: View {
     }
     
     var body: some View {
-        ScrollView {
+        ScrollView(axes) {
             ZStack(alignment: .top) {
                 MovingView()
                 SymbolView(threshold: self.threshold,
