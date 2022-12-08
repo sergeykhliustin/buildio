@@ -13,12 +13,15 @@ import SwiftUI
 import BitriseAPIs
 
 public final class LogsViewModel: BaseApiViewModel<BuildLogResponseModel> {
-    let build: BuildResponseItemModel
+    public let build: BuildResponseItemModel
     private var timer: Timer?
     @Published public var attributedLogs: NSAttributedString?
-    @Published private var isRawFetched: Bool = false
-    public var canFetchRaw: Bool {
-        !isRawFetched && value?.expiringRawLogUrl != nil
+    @Published public var rawLogs: String?
+
+    @Published private var isFullLogFetched: Bool = false
+
+    public var canFetchFullLog: Bool {
+        !isFullLogFetched && value?.expiringRawLogUrl != nil
     }
     
     deinit {
@@ -38,7 +41,7 @@ public final class LogsViewModel: BaseApiViewModel<BuildLogResponseModel> {
         try await apiFactory.api(BuildsAPI.self).buildLog(appSlug: build.repository.slug, buildSlug: build.slug, timestamp: value?.nextAfterTimestamp)
     }
     
-    public func fetchRaw() {
+    public func fetchFullLog() {
         guard let value = value, state != .loading,
                 let rawLogString = value.expiringRawLogUrl,
                 let rawLogUrl = URL(string: rawLogString) else { return }
@@ -55,7 +58,7 @@ public final class LogsViewModel: BaseApiViewModel<BuildLogResponseModel> {
                     self?.state = .value
                     if let attributed = attributed {
                         self?.attributedLogs = attributed
-                        self?.isRawFetched = true
+                        self?.isFullLogFetched = true
                     }
                 }
                 
@@ -75,6 +78,7 @@ public final class LogsViewModel: BaseApiViewModel<BuildLogResponseModel> {
         
         DispatchQueue.global().async { [weak self] in
             guard let self = self else { return }
+            let raw = logChunks.map({ $0.chunk }).joined()
             let attributed = logChunks.reduce(NSMutableAttributedString()) { partialResult, chunk in
                 partialResult.append(Rainbow.chunkToAttributed(chunk.chunk))
                 return partialResult
@@ -88,6 +92,9 @@ public final class LogsViewModel: BaseApiViewModel<BuildLogResponseModel> {
                     } else {
                         self.attributedLogs = attributed
                     }
+                }
+                if !raw.isEmpty {
+                    self.rawLogs = self.rawLogs ?? "" + raw
                 }
                 if !value.isArchived {
                     self.scheduleNextUpdate()

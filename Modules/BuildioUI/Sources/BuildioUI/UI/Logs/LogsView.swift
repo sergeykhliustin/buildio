@@ -14,11 +14,11 @@ struct LogsView: View {
     @Environment(\.fullscreen) private var fullscreen
     
     private let logs: NSAttributedString?
-    private let fetchRawAction: (() -> Void)?
+    private let fetchFullLogAction: (() -> Void)?
     
-    init(logs: NSAttributedString?, fetchRawAction: (() -> Void)? = nil) {
+    init(logs: NSAttributedString?, fetchFullLogAction: (() -> Void)? = nil) {
         self.logs = logs
-        self.fetchRawAction = fetchRawAction
+        self.fetchFullLogAction = fetchFullLogAction
     }
     
     var body: some View {
@@ -30,7 +30,7 @@ struct LogsView: View {
                 LogsControls(fullscreen: fullscreen,
                              follow: $follow,
                              search: $search,
-                             onFetchRaw: fetchRawAction)
+                             onFetchFullLog: fetchFullLogAction)
             }
         }
         .frame(maxHeight: .infinity)

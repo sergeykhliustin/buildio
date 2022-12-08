@@ -53,7 +53,7 @@ struct LogsControls: View {
         }
     }
     
-    private struct FetchRawButtonStyle: ButtonStyle {
+    private struct FetchFullLogButtonStyle: ButtonStyle {
         @Environment(\.theme) private var theme
         
         @State private var hover: Bool = false
@@ -87,7 +87,7 @@ struct LogsControls: View {
     @Binding var fullscreen: Bool
     @Binding var follow: Bool
     @Binding var search: Bool
-    var onFetchRaw: (() -> Void)?
+    var onFetchFullLog: (() -> Void)?
     
     var body: some View {
         HStack {
@@ -95,11 +95,11 @@ struct LogsControls: View {
             VStack(alignment: .trailing) {
                 Spacer()
                 HStack(spacing: 8) {
-                    if let onFetchRaw = onFetchRaw {
-                        Button(action: onFetchRaw) {
+                    if let onFetchFullLog = onFetchFullLog {
+                        Button(action: onFetchFullLog) {
                             Text("Fetch full log")
                         }
-                        .buttonStyle(FetchRawButtonStyle())
+                        .buttonStyle(FetchFullLogButtonStyle())
                     }
                     Button {
                         withAnimation {
