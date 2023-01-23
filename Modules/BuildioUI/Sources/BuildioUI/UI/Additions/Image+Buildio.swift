@@ -45,6 +45,7 @@ enum Images: String {
     case bell_fill
     case gearshape_fill
     case bell_slash
+    case text_justify
 }
 
 extension Image {

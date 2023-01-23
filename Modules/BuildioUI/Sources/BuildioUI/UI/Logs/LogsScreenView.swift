@@ -22,9 +22,12 @@ struct LogsScreenView: BaseView {
         let fetchRaw: (() -> Void)? = model.canFetchRaw ? { model.fetchRaw() } : nil
         LogsView(logs: model.attributedLogs, fetchRawAction: fetchRaw)
             .toolbar {
-                if case .loading = model.state {
-                    ProgressView()
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    if case .loading = model.state {
+                        ProgressView()
+                    }
                 }
+
             }
     }
 }
