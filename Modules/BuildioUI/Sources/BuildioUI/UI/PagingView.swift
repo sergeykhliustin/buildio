@@ -13,7 +13,6 @@ import BuildioLogic
 protocol PagingView: BaseView where ModelType: PagingViewModelProtocol, ModelType.ValueType.ItemType: Hashable {
     associatedtype ValueBody: View
     associatedtype ToolbarBody: View
-    associatedtype NavigationLinksBody: View
     associatedtype HeaderBody: View
     
     @ViewBuilder
@@ -21,9 +20,6 @@ protocol PagingView: BaseView where ModelType: PagingViewModelProtocol, ModelTyp
     
     @ViewBuilder
     func additionalToolbarItems() -> ToolbarBody
-    
-    @ViewBuilder
-    func navigationLinks() -> NavigationLinksBody
     
     @ViewBuilder
     func headerBody() -> HeaderBody
@@ -35,10 +31,6 @@ extension PagingView {
     @ViewBuilder
     var body: some View {
         RefreshableScrollView(refreshing: model.isScrollViewRefreshing) {
-            ZStack {
-                navigationLinks()
-            }
-            .frame(width: 0, height: 0)
             if let error = model.error, model.state == .error {
                 buildErrorView(error)
             }
@@ -101,11 +93,6 @@ extension PagingView {
     func buildErrorView(_ error: ErrorResponse) -> some View {
         Text(error.rawErrorString)
             .padding(16)
-    }
-    
-    @ViewBuilder
-    func navigationLinks() -> some View {
-        
     }
     
     @ViewBuilder
