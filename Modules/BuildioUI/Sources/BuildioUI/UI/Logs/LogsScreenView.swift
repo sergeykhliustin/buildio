@@ -19,12 +19,29 @@ struct LogsScreenView: BaseView {
     }
     
     var body: some View {
-        let fetchRaw: (() -> Void)? = model.canFetchRaw ? { model.fetchRaw() } : nil
-        LogsView(logs: model.attributedLogs, fetchRawAction: fetchRaw)
+        let fetchFullLogAction: (() -> Void)? = model.canFetchFullLog ? { model.fetchFullLog() } : nil
+        LogsView(logs: model.attributedLogs, fetchFullLogAction: fetchFullLogAction)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     if case .loading = model.state {
                         ProgressView()
+                    }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    if let value = model.rawLogs {
+                        Button {
+                            let url = URL(fileURLWithPath: (NSTemporaryDirectory() as NSString).appendingPathComponent("build_\(model.build.slug).log"))
+                            do {
+                                try value.write(to: url, atomically: true, encoding: .utf8)
+                                let controller = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+                                controller.popoverPresentationController?.sourceView = UIView()
+                                UIApplication.shared.windows.first?.rootViewController?.present(controller, animated: true)
+                            } catch {
+                                logger.error(error)
+                            }
+                        } label: {
+                            Image(.square_and_arrow_up)
+                        }
                     }
                 }
 
