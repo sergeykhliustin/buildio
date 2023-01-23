@@ -58,7 +58,7 @@ struct BuildView: View {
             if let text = text, !text.isEmpty {
                 HStack(spacing: 4) {
                     Image(image)
-                    Text("\(text)")
+                    TextElement("\(text)")
                 }
                 .primary()
             }
@@ -84,10 +84,10 @@ struct BuildView: View {
                 
                 Group {
                     HStack {
-                        Text("Triggered @ " + model.triggeredAt.full)
+                        TextElement("Triggered @ " + model.triggeredAt.full)
                         Spacer()
                         if let progress = progress {
-                            Text("\(Int(progress * 100))%")
+                            TextElement("\(Int(progress * 100))%")
                         }
                     }
                     .primary()
@@ -105,7 +105,7 @@ struct BuildView: View {
                 
                 Group {
                     Text("Commit hash:").secondary()
-                    Text(model.commitHash ?? "No commit hash specified").primary()
+                    TextElement(model.commitHash ?? "No commit hash specified").primary()
                     Rectangle().fill(theme.separatorColor).frame(height: 1)
                 }
                 
@@ -134,7 +134,7 @@ struct BuildView: View {
                                 )
                             )
                     } else {
-                        Text(model.commitMessage ?? "No commit message")
+                        TextElement(model.commitMessage ?? "No commit message")
                             .multilineTextAlignment(.leading)
                             .lineLimit(nil)
                             .fixedSize(horizontal: false, vertical: true)
@@ -147,7 +147,7 @@ struct BuildView: View {
                 if let abortReason = model.abortReason {
                     Group {
                         Text("Abort reason:").secondary()
-                        Text(abortReason).primary()
+                        TextElement(abortReason).primary()
                         Rectangle().fill(theme.separatorColor).frame(height: 1)
                     }
                 }
@@ -155,7 +155,7 @@ struct BuildView: View {
                 if let denTags = model.denTags, !denTags.isEmpty {
                     Group {
                         Text("Build tags:").secondary()
-                        Text(denTags.joined(separator: ", ")).primary()
+                        TextElement(denTags.joined(separator: ", ")).primary()
                         Rectangle().fill(theme.separatorColor).frame(height: 1)
                     }
                 }
@@ -163,7 +163,7 @@ struct BuildView: View {
                 if let startedOn = model.startedOnWorkerAt {
                     Group {
                         Text("Started @").secondary()
-                        Text(startedOn.full).primary()
+                        TextElement(startedOn.full).primary()
                         Rectangle().fill(theme.separatorColor).frame(height: 1)
                     }
                 }
@@ -171,7 +171,7 @@ struct BuildView: View {
                 if let finishedAt = model.finishedAt {
                     Group {
                         Text("Finished @").secondary()
-                        Text(finishedAt.full).primary()
+                        TextElement(finishedAt.full).primary()
                         Rectangle().fill(theme.separatorColor).frame(height: 1)
                     }
                 }
@@ -181,7 +181,7 @@ struct BuildView: View {
                         Text("Build parameters:").secondary()
                         
                         Group {
-                            Text(params)
+                            TextElement(params)
                                 .primary()
                                 .font(.footnote)
                                 .lineLimit(nil)

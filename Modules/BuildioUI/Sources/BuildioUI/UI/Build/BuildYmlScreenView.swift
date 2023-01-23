@@ -19,15 +19,14 @@ struct BuildYmlScreenView: BaseView {
             VStack(alignment: .center, spacing: 8) {
                 switch model.state {
                 case .value:
-                    Text(model.value!)
+                    TextElement(model.value!)
                 case .error:
-                    Text(model.errorString ?? "")
+                    TextElement(model.errorString ?? "")
                 default:
                     EmptyView()
                 }
                 
             }
-            .selectable()
             .font(.subheadline)
             .foregroundColor(theme.textColor)
             .padding(16)
