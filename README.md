@@ -25,4 +25,4 @@ https://github.com/onevcat/Rainbow
 ### Privacy policy
 App does not collect or store any user information or data except for storing access token in Keychain
 
-![Image](Shared/Assets.xcassets/AppIcon.appiconset/120.png)
+![Image](Shared/app_icon.png)
