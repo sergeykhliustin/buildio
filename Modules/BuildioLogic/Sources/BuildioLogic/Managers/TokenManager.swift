@@ -73,12 +73,16 @@ public class TokenManager: ObservableObject {
     
     public init(_ account: String? = nil) {
         let keychain = Keychain()
-        self.tokens = keychain.allKeys().reduce([Token]()) { partialResult, key in
-            var result = partialResult
-            if let token = keychain[key] {
-                result.append(Token(token: token, email: key))
+        if ProcessInfo.processInfo.isTestEnv {
+            self.tokens = []
+        } else {
+            self.tokens = keychain.allKeys().reduce([Token]()) { partialResult, key in
+                var result = partialResult
+                if let token = keychain[key] {
+                    result.append(Token(token: token, email: key))
+                }
+                return result
             }
-            return result
         }
         self.keychain = keychain
         if let account = account {
@@ -108,6 +112,8 @@ public class TokenManager: ObservableObject {
     }
     
     fileprivate func saveTokens() {
+        guard !ProcessInfo.processInfo.isTestEnv else { return }
+
         do {
             try keychain.removeAll()
         } catch {
