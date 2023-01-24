@@ -27,6 +27,13 @@ public struct EntryPoint: View {
             if ProcessInfo.processInfo.isTestEnv {
                 UIView.setAnimationsEnabled(false)
                 window?.layer.speed = 100
+                if let style = ProcessInfo.processInfo.env[.OverrideInterfaceStyle] {
+                    if style == "dark" {
+                        window?.overrideUserInterfaceStyle = .dark
+                    } else if style == "light" {
+                        window?.overrideUserInterfaceStyle = .light
+                    }
+                }
             }
             #if targetEnvironment(macCatalyst)
             let titlebar = window?.windowScene?.titlebar

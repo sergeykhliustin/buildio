@@ -171,6 +171,18 @@ public struct Theme: Codable, Equatable {
             return try! Theme(from: theme)
         }
     }
+
+    public static var currentLight: Theme {
+        let lightThemeName = UserDefaults.standard.lightThemeName ?? defaultLightName
+        let theme = themes.first(where: { $0["scheme"] == "light" && $0["name"] == lightThemeName }) ?? defaultLightTheme
+        return try! Theme(from: theme)
+    }
+
+    public static var currentDark: Theme {
+        let darkThemeName = UserDefaults.standard.darkThemeName ?? defaultDarkName
+        let theme = themes.first(where: { $0["scheme"] == "dark" && $0["name"] == darkThemeName }) ?? defaultDarkTheme
+        return try! Theme(from: theme)
+    }
     
     public static func defaultTheme(for colorScheme: ColorScheme) -> Theme {
         if colorScheme == .dark {

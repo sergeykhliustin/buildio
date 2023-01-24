@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "BuildioUI",
     platforms: [
-        .iOS(.v14)
+        .iOS(.v15)
     ],
     products: [
         .library(
@@ -16,7 +16,7 @@ let package = Package(
     dependencies: [
         .package(name: "Models", path: "../Models"),
         .package(name: "BuildioLogic", path: "../BuildioLogic"),
-        .package(url: "https://github.com/gonzalezreal/MarkdownUI", from: "1.1.1")
+        .package(name: "MarkdownUI", url: "https://github.com/gonzalezreal/swift-markdown-ui", from: "2.0.0")
     ],
     targets: [
         .target(
