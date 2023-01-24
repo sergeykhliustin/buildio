@@ -20,7 +20,9 @@ func appLight() -> XCUIApplication {
         "-AppleLocale",
         "en_US"
     ]
+    #if !targetEnvironment(macCatalyst)
     XCUIDevice.shared.orientation = .portrait
+    #endif
     app.launch()
     return app
 }
@@ -35,7 +37,9 @@ func appDark() -> XCUIApplication {
         "-AppleLocale",
         "en_US"
     ]
+    #if !targetEnvironment(macCatalyst)
     XCUIDevice.shared.orientation = .portrait
+    #endif
     app.launch()
     return app
 }
@@ -80,7 +84,8 @@ extension XCTActivity {
                         line: UInt = #line) {
         guard let image = app.windows.firstMatch.screenshot().image.removingBottomBar else { return }
         let view = UIImageView(image: image)
-        SnapshotTesting.assertSnapshot(matching: view, as: .image(perceptualPrecision: 0.92), file: file, testName: testName, line: line)
+        let name = (ProcessInfo.processInfo.isMacCatalystApp ? "mac_" : "ios_") + testName
+        SnapshotTesting.assertSnapshot(matching: view, as: .image(perceptualPrecision: 0.92), file: file, testName: name, line: line)
     }
 }
 
