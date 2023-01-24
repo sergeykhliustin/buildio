@@ -8,6 +8,7 @@
 import SwiftUI
 import Models
 import MarkdownUI
+import BuildioLogic
 
 private struct PrimaryModifier: ViewModifier {
     func body(content: Content) -> some View {
@@ -44,6 +45,18 @@ extension Int: Identifiable {
 private enum MessageStyle {
     case markdown
     case raw
+}
+
+extension MarkdownUI.Theme {
+    static let buildio = Theme()
+        .text {
+            FontSize(11)
+            ForegroundColor(Color(light: BuildioLogic.Theme.currentLight.textColor, dark: BuildioLogic.Theme.currentDark.textColor))
+            BackgroundColor(.clear)
+        }
+        .link {
+            UnderlineStyle(.single)
+        }
 }
 
 struct BuildView: View {
@@ -127,12 +140,7 @@ struct BuildView: View {
                     
                     if let commitMessage = model.commitMessage, messageStyle == .markdown {
                         Markdown(commitMessage)
-                            .markdownStyle(
-                                MarkdownStyle(
-                                    font: .subheadline,
-                                    foregroundColor: theme.textColor
-                                )
-                            )
+                            .markdownTheme(.buildio)
                     } else {
                         TextElement(model.commitMessage ?? "No commit message")
                             .multilineTextAlignment(.leading)

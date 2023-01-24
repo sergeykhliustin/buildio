@@ -16,6 +16,10 @@ func appLight() -> XCUIApplication {
         ProcessInfo.Keys.OverrideInterfaceStyle.rawValue: "light",
         ProcessInfo.Keys.TestsMode.rawValue: "true"
     ]
+    app.launchArguments = [
+        "-AppleLocale",
+        "en_US"
+    ]
     XCUIDevice.shared.orientation = .portrait
     app.launch()
     return app
@@ -26,6 +30,10 @@ func appDark() -> XCUIApplication {
     app.launchEnvironment = [
         ProcessInfo.Keys.OverrideInterfaceStyle.rawValue: "dark",
         ProcessInfo.Keys.TestsMode.rawValue: "true"
+    ]
+    app.launchArguments = [
+        "-AppleLocale",
+        "en_US"
     ]
     XCUIDevice.shared.orientation = .portrait
     app.launch()

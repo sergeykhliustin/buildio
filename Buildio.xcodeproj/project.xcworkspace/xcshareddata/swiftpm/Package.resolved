@@ -2,48 +2,12 @@
   "object": {
     "pins": [
       {
-        "package": "AttributedText",
-        "repositoryURL": "https://github.com/gonzalezreal/AttributedText",
-        "state": {
-          "branch": null,
-          "revision": "2dc2d7864e0fee4b524a5850d7d7cf9a7eeda0fc",
-          "version": "1.0.0"
-        }
-      },
-      {
-        "package": "combine-schedulers",
-        "repositoryURL": "https://github.com/pointfreeco/combine-schedulers",
-        "state": {
-          "branch": null,
-          "revision": "4cf088c29a20f52be0f2ca54992b492c54e0076b",
-          "version": "0.5.3"
-        }
-      },
-      {
         "package": "KeychainAccess",
         "repositoryURL": "https://github.com/kishikawakatsumi/KeychainAccess.git",
         "state": {
           "branch": null,
           "revision": "84e546727d66f1adc5439debad16270d0fdd04e7",
           "version": "4.2.2"
-        }
-      },
-      {
-        "package": "MarkdownUI",
-        "repositoryURL": "https://github.com/gonzalezreal/MarkdownUI",
-        "state": {
-          "branch": null,
-          "revision": "6a33c60ad430772d69ac5278e35474d6b3e5d30a",
-          "version": "1.1.1"
-        }
-      },
-      {
-        "package": "NetworkImage",
-        "repositoryURL": "https://github.com/gonzalezreal/NetworkImage",
-        "state": {
-          "branch": null,
-          "revision": "f8b8ed0be39d2f4aa00a6e8d3b18a62a94eff8d8",
-          "version": "4.0.0"
         }
       },
       {
@@ -56,6 +20,15 @@
         }
       },
       {
+        "package": "swift-markdown-ui",
+        "repositoryURL": "https://github.com/gonzalezreal/swift-markdown-ui",
+        "state": {
+          "branch": null,
+          "revision": "b89d6e4b60f86d3a8163cc97bf48d4c959015370",
+          "version": "2.0.0"
+        }
+      },
+      {
         "package": "swift-snapshot-testing",
         "repositoryURL": "https://github.com/pointfreeco/swift-snapshot-testing",
         "state": {
@@ -65,30 +38,12 @@
         }
       },
       {
-        "package": "SwiftCommonMark",
-        "repositoryURL": "https://github.com/gonzalezreal/SwiftCommonMark",
-        "state": {
-          "branch": null,
-          "revision": "ed252beaddecce28ea6363f800c773d6169011b8",
-          "version": "1.0.0"
-        }
-      },
-      {
         "package": "SwiftyBeaver",
         "repositoryURL": "https://github.com/SwiftyBeaver/SwiftyBeaver.git",
         "state": {
           "branch": null,
           "revision": "12b5acf96d98f91d50de447369bd18df74600f1a",
           "version": "1.9.6"
-        }
-      },
-      {
-        "package": "xctest-dynamic-overlay",
-        "repositoryURL": "https://github.com/pointfreeco/xctest-dynamic-overlay",
-        "state": {
-          "branch": null,
-          "revision": "50a70a9d3583fe228ce672e8923010c8df2deddd",
-          "version": "0.2.1"
         }
       }
     ]
