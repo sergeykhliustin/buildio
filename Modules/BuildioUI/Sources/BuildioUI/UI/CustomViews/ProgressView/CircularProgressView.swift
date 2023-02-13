@@ -59,13 +59,11 @@ struct CircularProgressViewStyle: ProgressViewStyle {
                 .frame(width: 20, height: 20, alignment: .center)
                 .foregroundColor(theme.accentColorLight)
                 .rotationEffect(Angle(degrees: 360 * progress ))
-                .animation(.none)
             
             CustomProgressShape()
                 .frame(width: 10, height: 10, alignment: .center)
                 .foregroundColor(theme.accentColor)
                 .rotationEffect(Angle(degrees: -360 * progress))
-                .animation(.none)
         }
     }
 }

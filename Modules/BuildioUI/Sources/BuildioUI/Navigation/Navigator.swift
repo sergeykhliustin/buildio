@@ -11,7 +11,7 @@ import Models
 import BuildioLogic
 
 enum Route {
-    case builds(V0AppResponseItemModel)
+    case builds(V0AppResponseItemModel?)
     case build(BuildResponseItemModel)
     case logs(BuildResponseItemModel)
     case artifacts(BuildResponseItemModel)

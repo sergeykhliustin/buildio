@@ -11,8 +11,8 @@ struct RootScreenView: View {
     @State private var selection: Int = 0
     
     var body: some View {
-        RootTabBarWrapper(selection: $selection) {
-            RootTabView(selection: $selection)
+        RootTabBarWrapper {
+            RootTabView()
         }
     }
 }

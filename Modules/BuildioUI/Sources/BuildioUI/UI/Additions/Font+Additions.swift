@@ -29,7 +29,7 @@ extension UIFont {
         case .caption:     style = .caption1
         case .caption2:    style = .caption2
         case .footnote:    style = .footnote
-        case .body: fallthrough
+        case .body:        style = .body
         default:           style = .body
         }
         return  UIFont.preferredFont(forTextStyle: style)

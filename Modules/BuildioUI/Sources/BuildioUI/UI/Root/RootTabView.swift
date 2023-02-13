@@ -14,15 +14,9 @@ struct RootTabView: View {
     @Environment(\.theme) private var theme
     @EnvironmentObject private var navigators: Navigators
     
-    @Binding private var selection: Int
-    
-    init(selection: Binding<Int>) {
-        self._selection = selection
-    }
-    
     var body: some View {
         let configuration = previewMode ? RootScreenItemType.preview : RootScreenItemType.default
-        TabView(selection: $selection) {
+        TabView(selection: $navigators.tabSelection) {
             ForEach(0..<configuration.count) { index in
                 let item = configuration[index]
                 splitNavigation(for: item)
@@ -55,11 +49,5 @@ struct RootTabView: View {
             SplitNavigationView(shouldSplit: item.splitNavigation,
                                 screen: screenFactory.settingsScreen())
         }
-    }
-}
-
-struct RootTabView_Previews: PreviewProvider {
-    static var previews: some View {
-        RootTabView(selection: .constant(0))
     }
 }
