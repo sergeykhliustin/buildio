@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0WebhookRespModel: Codable, Hashable {
+public struct V0WebhookRespModel: Codable {
 
     public var status: String?
 

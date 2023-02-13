@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0ArtifactResponseItemModel: Codable, Hashable {
+public struct V0ArtifactResponseItemModel: Codable {
 
     public var artifactMeta: [Int]?
     public var artifactType: String?

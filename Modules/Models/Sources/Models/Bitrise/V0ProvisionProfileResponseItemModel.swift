@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0ProvisionProfileResponseItemModel: Codable, Hashable {
+public struct V0ProvisionProfileResponseItemModel: Codable {
 
     public var downloadUrl: String?
     public var isExpose: Bool?

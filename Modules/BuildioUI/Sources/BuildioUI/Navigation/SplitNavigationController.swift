@@ -128,7 +128,7 @@ final class SplitNavigationController: UIViewController {
                 secondaryNavigationController.pushViewController(controller, animated: animated)
             }
         }
-        controller.view.backgroundColor = .clear
+        controller.view.backgroundColor = view.backgroundColor
     }
     
     func pop() {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0AvatarPromoteParams: Codable, Hashable {
+public struct V0AvatarPromoteParams: Codable {
 
     public var isPromoted: Bool
 

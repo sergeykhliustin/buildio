@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0ProvisionProfileListResponseModel: Codable, Hashable {
+public struct V0ProvisionProfileListResponseModel: Codable {
 
     public var data: [V0ProvisionProfileResponseItemModel]?
     public var paging: V0PagingResponseModel?

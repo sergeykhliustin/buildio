@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0OrganizationDataModel: Codable, Hashable {
+public struct V0OrganizationDataModel: Codable {
 
     public var avatarIconUrl: String?
     public var concurrencyCount: Int?

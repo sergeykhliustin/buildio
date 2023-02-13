@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0BuildRequestListResponseModel: Codable, Hashable {
+public struct V0BuildRequestListResponseModel: Codable {
 
     public var data: [V0BuildRequestResponseItemModel]?
 

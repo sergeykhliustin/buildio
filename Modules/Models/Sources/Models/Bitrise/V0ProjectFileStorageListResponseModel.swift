@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0ProjectFileStorageListResponseModel: Codable, Hashable {
+public struct V0ProjectFileStorageListResponseModel: Codable {
 
     public var data: [V0ProjectFileStorageResponseItemModel]?
     public var paging: V0PagingResponseModel?

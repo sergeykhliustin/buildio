@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0AppFinishRespModel: Codable, Hashable {
+public struct V0AppFinishRespModel: Codable {
 
     public var branchName: String?
     public var buildTriggerToken: String?

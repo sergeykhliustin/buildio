@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0ArtifactUpdateParams: Codable, Hashable {
+public struct V0ArtifactUpdateParams: Codable {
 
     public var isPublicPageEnabled: Bool
 

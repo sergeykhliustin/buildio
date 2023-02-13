@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0AvatarPromoteResponseItemModel: Codable, Hashable {
+public struct V0AvatarPromoteResponseItemModel: Codable {
 
     public var isCandidate: Bool?
     public var slug: String?

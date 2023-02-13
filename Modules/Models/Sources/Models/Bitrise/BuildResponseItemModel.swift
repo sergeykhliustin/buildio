@@ -7,9 +7,9 @@
 
 import Foundation
 
-public struct BuildResponseItemModel: Codable, Hashable, Identifiable {
-    public var id: Int {
-        return hashValue
+public struct BuildResponseItemModel: Codable, Identifiable {
+    public var id: String {
+        return repository.id + slug
     }
     
     public var abortReason: String?

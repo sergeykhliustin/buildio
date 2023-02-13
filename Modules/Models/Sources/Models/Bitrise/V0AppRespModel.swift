@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0AppRespModel: Codable, Hashable {
+public struct V0AppRespModel: Codable {
 
     public var slug: String?
     public var status: String?

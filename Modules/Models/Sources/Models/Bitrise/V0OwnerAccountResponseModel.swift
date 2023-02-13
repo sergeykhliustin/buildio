@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0OwnerAccountResponseModel: Codable, Hashable {
+public struct V0OwnerAccountResponseModel: Codable {
     public var accountType: String
     public var name: String
     public var slug: String

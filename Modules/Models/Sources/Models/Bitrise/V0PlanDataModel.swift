@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0PlanDataModel: Codable, Hashable {
+public struct V0PlanDataModel: Codable {
 
     public var containerCount: Int?
     public var expiresAt: String?

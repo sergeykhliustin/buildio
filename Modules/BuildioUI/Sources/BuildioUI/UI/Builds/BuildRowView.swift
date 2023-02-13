@@ -15,7 +15,7 @@ struct BuildRowView: View {
     @EnvironmentObject private var screenFactory: ScreenFactory
     @Environment(\.theme) private var theme
     
-    @EnvironmentObject private var viewModel: BuildViewModel
+    @EnvironmentObject var viewModel: BuildViewModel
     
     @State private var abortConfirmation: Bool = false
     @State private var abortReason: String = ""

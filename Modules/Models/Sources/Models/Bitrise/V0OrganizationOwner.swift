@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0OrganizationOwner: Codable, Hashable {
+public struct V0OrganizationOwner: Codable {
 
     public var email: String?
     public var slug: String?

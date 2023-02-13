@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0ArtifactListResponseModel: Codable, Hashable, PagingResponseModel {
+public struct V0ArtifactListResponseModel: Codable, PagingResponseModel {
 
     public var data: [V0ArtifactListElementResponseModel]
     public var paging: V0PagingResponseModel

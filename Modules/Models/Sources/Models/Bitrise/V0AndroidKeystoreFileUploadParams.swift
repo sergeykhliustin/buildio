@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0AndroidKeystoreFileUploadParams: Codable, Hashable {
+public struct V0AndroidKeystoreFileUploadParams: Codable {
 
     public var alias: String
     public var password: String

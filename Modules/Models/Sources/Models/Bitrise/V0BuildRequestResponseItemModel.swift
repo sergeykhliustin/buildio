@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0BuildRequestResponseItemModel: Codable, Hashable {
+public struct V0BuildRequestResponseItemModel: Codable {
 
     public var buildParams: [Int]?
     public var createdAt: String?

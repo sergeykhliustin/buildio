@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0ProjectFileStorageDocumentUpdateParams: Codable, Hashable {
+public struct V0ProjectFileStorageDocumentUpdateParams: Codable {
 
     public var exposedMetaDatastore: [Int]?
     public var isExpose: Bool?

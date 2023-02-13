@@ -10,7 +10,7 @@ import SwiftUI
 import BuildioLogic
 
 @MainActor
-protocol PagingView: BaseView where ModelType: PagingViewModelProtocol, ModelType.ValueType.ItemType: Hashable {
+protocol PagingView: BaseView where ModelType: PagingViewModelProtocol, ModelType.ValueType.ItemType: Identifiable {
     associatedtype ValueBody: View
     associatedtype ToolbarBody: View
     associatedtype HeaderBody: View
@@ -30,45 +30,46 @@ protocol PagingView: BaseView where ModelType: PagingViewModelProtocol, ModelTyp
 extension PagingView {
     @ViewBuilder
     var body: some View {
-        RefreshableScrollView(refreshing: model.isScrollViewRefreshing) {
-            if let error = model.error, model.state == .error {
-                buildErrorView(error)
-            }
-            LazyVStack(spacing: 16, pinnedViews: [.sectionHeaders]) {
-                Section {
-                    if model.items.isEmpty && model.state == .value {
-                        buildEmptyView()
-                    }
-                    ForEach(model.items) { item in
-                        buildItemView(item)
-                            .defaultHorizontalPadding()
-                            .onAppear {
-                                if item == model.items.last {
-                                    logger.debug("UI load more builds")
-                                    model.nextPage()
-                                }
-                            }
-                    }
-                } header: {
-                    headerBody()
-                        .frame(height: 44)
+        RefreshableScrollView(
+            refreshing: model.isScrollViewRefreshing,
+            loadMore: {
+                model.nextPage()
+            }, content: {
+                if let error = model.error, model.state == .error {
+                    buildErrorView(error)
                 }
-            }
-            .padding(.vertical, 16)
-            if case .loading = model.pagingState {
-                ProgressView()
-                    .padding(.bottom, 16)
-            } else if case .error(let error) = model.pagingState {
-                buildErrorView(error)
-            }
-        }
+                LazyVStack(spacing: 16, pinnedViews: [.sectionHeaders]) {
+                    Section {
+                        if model.items.isEmpty && model.state == .value {
+                            buildEmptyView()
+                        }
+                        ForEach(model.items) { item in
+                            buildItemView(item)
+                                .defaultHorizontalPadding()
+                        }
+                    } header: {
+                        headerBody()
+                            .frame(height: 44)
+                    }
+                }
+                .padding(.vertical, 16)
+                if case .loading = model.pagingState {
+                    ProgressView()
+                        .padding(.bottom, 16)
+                } else if case .error(let error) = model.pagingState {
+                    buildErrorView(error)
+                }
+            })
         .onAppear(perform: {
             onAppear()
         })
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                if model.isTopIndicatorRefreshing.wrappedValue {
-                    ProgressView()
+                HStack {
+                    if model.isTopIndicatorRefreshing.wrappedValue {
+                        ProgressView()
+                        Spacer(minLength: 20)
+                    }
                 }
             }
             ToolbarItem(placement: .navigationBarTrailing) {

@@ -25,7 +25,7 @@ struct BuildsScreenView: View, PagingView {
     
     @ViewBuilder
     func additionalToolbarItems() -> some View {
-        HStack {
+        HStack(spacing: 20) {
             if model.app == nil {
                 Button {
                     navigator.go(.activities, replace: true)

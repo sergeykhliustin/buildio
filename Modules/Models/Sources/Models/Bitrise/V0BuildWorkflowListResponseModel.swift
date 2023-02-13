@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0BuildWorkflowListResponseModel: Codable, Hashable {
+public struct V0BuildWorkflowListResponseModel: Codable {
 
     public var data: [String]?
 

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0BuildAbortResponseModel: Codable, Hashable {
+public struct V0BuildAbortResponseModel: Codable {
 
     public var status: String?
 

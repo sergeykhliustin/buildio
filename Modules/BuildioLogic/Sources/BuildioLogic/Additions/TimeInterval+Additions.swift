@@ -8,10 +8,14 @@
 import Foundation
 
 extension TimeInterval {
-    func stringFromTimeInterval() -> String {
+    private static let formatter: DateComponentsFormatter = {
         let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .abbreviated
         formatter.calendar?.locale = Locale(identifier: "en")
-        return formatter.string(from: self) ?? ""
+        return formatter
+    }()
+
+    func stringFromTimeInterval() -> String {
+        return Double.formatter.string(from: self) ?? ""
     }
 }

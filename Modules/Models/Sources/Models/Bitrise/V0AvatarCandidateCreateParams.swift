@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0AvatarCandidateCreateParams: Codable, Hashable {
+public struct V0AvatarCandidateCreateParams: Codable {
 
     public var filename: String
     public var filesize: Int

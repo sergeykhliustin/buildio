@@ -62,6 +62,7 @@ struct AppThemeConfiguratorView<Content: View>: View {
             .foregroundColor(theme.textColor)
             .background(theme.background)
             .progressViewStyle(CircularInfiniteProgressViewStyle())
+            .buttonStyle(.plain)
             .onChange(of: colorSchemeSettings, perform: { newValue in
                 if forcedTheme == nil {
                     theme = Theme.current

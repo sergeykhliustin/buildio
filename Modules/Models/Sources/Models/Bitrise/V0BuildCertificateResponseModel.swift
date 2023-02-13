@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0BuildCertificateResponseModel: Codable, Hashable {
+public struct V0BuildCertificateResponseModel: Codable {
 
     public var data: V0BuildCertificateResponseItemModel?
 

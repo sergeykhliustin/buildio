@@ -50,7 +50,11 @@ private enum MessageStyle {
 extension MarkdownUI.Theme {
     static let buildio = Theme()
         .text {
+            #if targetEnvironment(macCatalyst)
             FontSize(11)
+            #else
+            FontSize(15)
+            #endif
             ForegroundColor(Color(light: BuildioLogic.Theme.currentLight.textColor, dark: BuildioLogic.Theme.currentDark.textColor))
             BackgroundColor(.clear)
         }
@@ -78,38 +82,38 @@ struct BuildView: View {
         }
     }
     
-    let model: BuildResponseItemModel
-    let progress: Double?
+    @EnvironmentObject var model: BuildViewModel
     
     var body: some View {
+        let build = model.value!
         HStack(alignment: .top, spacing: 0) {
-            let statusColor = model.extendedStatus.color
+            let statusColor = build.extendedStatus.color
             Rectangle()
                 .fill(statusColor)
                 .frame(width: 5)
             
             VStack(alignment: .leading) {
-                BuildHeaderView(model: model)
+                BuildHeaderView(model: build)
                     .primary()
                         
-                ProgressView(value: progress ?? 0)
+                ProgressView(value: model.progress ?? 0)
                     .progressViewStyle(LinearProgressViewStyle())
                 
                 Group {
                     HStack {
-                        TextElement("Triggered @ " + model.triggeredAt.full)
+                        TextElement("Triggered @ " + build.triggeredAt.full)
                         Spacer()
-                        if let progress = progress {
+                        if let progress = model.progress {
                             TextElement("\(Int(progress * 100))%")
                         }
                     }
                     .primary()
-                    Item(image: .clock, text: model.durationString)
-                    Item(image: .coloncurrencysign_circle, text: model.creditCost?.description)
-                    Item(image: .number, text: String(model.buildNumber))
+                    Item(image: .clock, text: build.durationString)
+                    Item(image: .coloncurrencysign_circle, text: build.creditCost?.description)
+                    Item(image: .number, text: String(build.buildNumber))
                     Item(image: .square_stack_3d_up,
-                         text: [model.machineTypeId, model.stackIdentifier].compactMap({ $0 }).joined(separator: " "))
-                    Item(image: .bolt_fill, text: model.triggeredBy)
+                         text: [build.machineTypeId, build.stackIdentifier].compactMap({ $0 }).joined(separator: " "))
+                    Item(image: .bolt_fill, text: build.triggeredBy)
                     
                     Rectangle()
                         .fill(theme.separatorColor)
@@ -118,7 +122,7 @@ struct BuildView: View {
                 
                 Group {
                     Text("Commit hash:").secondary()
-                    TextElement(model.commitHash ?? "No commit hash specified").primary()
+                    TextElement(build.commitHash ?? "No commit hash specified").primary()
                     Rectangle().fill(theme.separatorColor).frame(height: 1)
                 }
                 
@@ -138,11 +142,12 @@ struct BuildView: View {
                     }
                     .secondary()
                     
-                    if let commitMessage = model.commitMessage, messageStyle == .markdown {
+                    if let commitMessage = build.commitMessage, messageStyle == .markdown {
                         Markdown(commitMessage)
                             .markdownTheme(.buildio)
+                            .padding([.top], 1)
                     } else {
-                        TextElement(model.commitMessage ?? "No commit message")
+                        TextElement(build.commitMessage ?? "No commit message")
                             .multilineTextAlignment(.leading)
                             .lineLimit(nil)
                             .fixedSize(horizontal: false, vertical: true)
@@ -152,7 +157,7 @@ struct BuildView: View {
                     Rectangle().fill(theme.separatorColor).frame(height: 1)
                 }
                 
-                if let abortReason = model.abortReason {
+                if let abortReason = build.abortReason {
                     Group {
                         Text("Abort reason:").secondary()
                         TextElement(abortReason).primary()
@@ -160,7 +165,7 @@ struct BuildView: View {
                     }
                 }
                 
-                if let denTags = model.denTags, !denTags.isEmpty {
+                if let denTags = build.denTags, !denTags.isEmpty {
                     Group {
                         Text("Build tags:").secondary()
                         TextElement(denTags.joined(separator: ", ")).primary()
@@ -168,7 +173,7 @@ struct BuildView: View {
                     }
                 }
                 
-                if let startedOn = model.startedOnWorkerAt {
+                if let startedOn = build.startedOnWorkerAt {
                     Group {
                         Text("Started @").secondary()
                         TextElement(startedOn.full).primary()
@@ -176,7 +181,7 @@ struct BuildView: View {
                     }
                 }
                 
-                if let finishedAt = model.finishedAt {
+                if let finishedAt = build.finishedAt {
                     Group {
                         Text("Finished @").secondary()
                         TextElement(finishedAt.full).primary()
@@ -184,7 +189,7 @@ struct BuildView: View {
                     }
                 }
                 
-                if let params = model.originalBuildParamsString {
+                if let params = build.originalBuildParamsString {
                     Group {
                         Text("Build parameters:").secondary()
                         
@@ -205,13 +210,5 @@ struct BuildView: View {
             .padding(.horizontal, 8)
         }
         .multilineTextAlignment(.leading)
-    }
-}
-
-struct BuildView_Previews: PreviewProvider {
-    static var previews: some View {
-        BuildView(model: BuildResponseItemModel.preview(), progress: 0.99)
-            .preferredColorScheme(.light)
-            
     }
 }

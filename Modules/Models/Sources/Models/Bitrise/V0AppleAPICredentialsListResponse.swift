@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0AppleAPICredentialsListResponse: Codable, Hashable {
+public struct V0AppleAPICredentialsListResponse: Codable {
 
     public var data: [V0AppleAPICredentialResponseItem]?
 

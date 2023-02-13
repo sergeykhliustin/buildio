@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0CommitPaths: Codable, Hashable {
+public struct V0CommitPaths: Codable {
 
     public var added: [String]?
     public var modified: [String]?

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0BuildCertificateUpdateParams: Codable, Hashable {
+public struct V0BuildCertificateUpdateParams: Codable {
 
     public var certificatePassword: String?
     public var isExpose: Bool?
