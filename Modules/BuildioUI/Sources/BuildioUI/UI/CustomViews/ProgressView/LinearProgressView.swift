@@ -35,7 +35,6 @@ struct LinearProgressViewStyle: ProgressViewStyle {
                 CustomProgressShape()
                     .foregroundColor(theme.accentColor)
                     .frame(width: geometry.size.width * progress)
-                    .animation(.none)
             }
         }
         .frame(height: 2, alignment: .center)

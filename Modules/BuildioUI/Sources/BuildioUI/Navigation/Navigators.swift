@@ -11,6 +11,7 @@ import SwiftUI
 import Combine
 
 final class Navigators: ObservableObject {
+    @Published var tabSelection: Int = 0
     @Published var isPresentingModal: Bool = false
     private var navigators = NSMapTable<NSString, Navigator>(valueOptions: .weakMemory)
     private let screenFactory: ScreenFactory

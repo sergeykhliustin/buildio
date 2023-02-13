@@ -15,13 +15,13 @@ struct AccountsScreenView: View {
     @EnvironmentObject private var tokenManager: TokenManager
     
     var body: some View {
-        
         ScrollView {
             LazyVStack(spacing: 16) {
                 ForEach(tokenManager.tokens) { token in
                     ListItemWrapper {
                         navigators.popToRootAll()
                         tokenManager.token = token
+                        navigators.tabSelection = 0
                     } content: {
                         AccountRowView(token, settings: {
                             navigator.go(.accountSettings(token), replace: true)

@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct RootTabBarWrapper<Content: View>: View {
-    @ViewBuilder private let content: () -> Content
-    @Binding private var selection: Int
+    @ViewBuilder let content: () -> Content
     @Environment(\.windowMode) private var windowMode
     @Environment(\.keyboard) private var keyboard
     @Environment(\.fullscreen) private var fullscreen
@@ -29,11 +28,6 @@ struct RootTabBarWrapper<Content: View>: View {
         !fullscreen.wrappedValue && !keyboard && windowMode == .compact && !(UIDevice.current.userInterfaceIdiom == .phone && navigators.isPresentingModal)
     }
     
-    init(selection: Binding<Int>, _ content: @escaping () -> Content) {
-        self._selection = selection
-        self.content = content
-    }
-    
     var body: some View {
         GeometryReader { proxy in
             MainSecondaryOptionalView(
@@ -46,12 +40,12 @@ struct RootTabBarWrapper<Content: View>: View {
                             content()
                             
                         } secondary: {
-                            CustomTabBar(selected: $selection)
+                            CustomTabBar(selected: $navigators.tabSelection)
                                 .padding(.bottom, proxy.safeAreaInsets.bottom)
                         }
                     
                 } secondary: {
-                    CustomTabBar(style: .vertical, selected: $selection)
+                    CustomTabBar(style: .vertical, selected: $navigators.tabSelection)
                         .padding(.leading, interfaceOrientation == .landscapeRight ? proxy.safeAreaInsets.leading : 0)
                         .zIndex(1)
                         
@@ -59,14 +53,6 @@ struct RootTabBarWrapper<Content: View>: View {
                 .background(theme.background)
                 .ignoresSafeArea()
                 .statusBar(hidden: fullscreen.wrappedValue)
-        }
-    }
-}
-
-struct RootTabBarWrapper_Previews: PreviewProvider {
-    static var previews: some View {
-        RootTabBarWrapper(selection: .constant(0)) {
-            Text("wrapped")
         }
     }
 }
