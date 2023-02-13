@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0SSHKeyRespModel: Codable, Hashable {
+public struct V0SSHKeyRespModel: Codable {
 
     public var status: String?
 

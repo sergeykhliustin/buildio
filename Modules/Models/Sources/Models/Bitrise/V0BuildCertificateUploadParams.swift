@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0BuildCertificateUploadParams: Codable, Hashable {
+public struct V0BuildCertificateUploadParams: Codable {
 
     public var uploadFileName: String
     public var uploadFileSize: Int

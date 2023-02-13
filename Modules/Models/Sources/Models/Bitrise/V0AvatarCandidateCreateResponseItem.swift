@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0AvatarCandidateCreateResponseItem: Codable, Hashable {
+public struct V0AvatarCandidateCreateResponseItem: Codable {
 
     public var filename: String?
     public var filesize: Int?

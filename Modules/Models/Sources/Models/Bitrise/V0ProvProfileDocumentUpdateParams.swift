@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0ProvProfileDocumentUpdateParams: Codable, Hashable {
+public struct V0ProvProfileDocumentUpdateParams: Codable {
 
     public var isExpose: Bool?
     public var isProtected: Bool?

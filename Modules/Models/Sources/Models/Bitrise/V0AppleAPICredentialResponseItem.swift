@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0AppleAPICredentialResponseItem: Codable, Hashable {
+public struct V0AppleAPICredentialResponseItem: Codable {
 
     public var createdAt: String?
     public var issuerId: String?

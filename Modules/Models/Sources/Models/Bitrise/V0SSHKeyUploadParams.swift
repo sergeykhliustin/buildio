@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0SSHKeyUploadParams: Codable, Hashable {
+public struct V0SSHKeyUploadParams: Codable {
 
     /** The private part of the SSH key you would like to use */
     public var authSshPrivateKey: String

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0TestDeviceResponseItemModel: Codable, Hashable {
+public struct V0TestDeviceResponseItemModel: Codable {
 
     public var deviceId: String?
     public var deviceType: String?

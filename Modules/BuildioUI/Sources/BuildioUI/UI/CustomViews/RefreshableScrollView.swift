@@ -7,6 +7,25 @@
 
 import SwiftUI
 
+private struct OffsetReader: View {
+    var onChange: (CGRect) -> Void
+    @State private var frame = CGRect()
+
+    public var body: some View {
+        GeometryReader { geometry in
+            Spacer(minLength: 0)
+                .onChange(of: geometry.frame(in: .global)) { value in
+                    if value.integral != self.frame.integral {
+                        DispatchQueue.main.async {
+                            self.frame = value
+                            onChange(value)
+                        }
+                    }
+                }
+        }
+    }
+}
+
 struct RefreshableScrollView<Content: View>: View {
     @Environment(\.theme) private var theme
     @State private var previousScrollOffset: CGFloat = 0
@@ -14,59 +33,67 @@ struct RefreshableScrollView<Content: View>: View {
 
     private let axes: Axis.Set
     private var threshold: CGFloat
+    private let loadMoreThreshold: CGFloat = 60
     @Binding private var refreshing: Bool
     @ViewBuilder private let content: () -> Content
+    @State private var globalInset = CGRect.zero
+    private var loadMore: (() -> Void)?
 
     init(_ axes: Axis.Set = .vertical,
          height: CGFloat = 60,
          refreshing: Binding<Bool>,
+         loadMore: (() -> Void)? = nil,
          @ViewBuilder content: @escaping () -> Content) {
         self.axes = axes
         self.threshold = height
         self._refreshing = refreshing
+        self.loadMore = loadMore
         self.content = content
 
     }
     
     var body: some View {
-        ScrollView(axes) {
-            ZStack(alignment: .top) {
-                MovingView()
-                SymbolView(threshold: self.threshold,
-                           loading: self.refreshing,
-                           progress: self.progress)
-                VStack(spacing: 0) {
-                    self.content()
+        GeometryReader { globalGeometry in
+            ScrollView(axes) {
+                ZStack(alignment: .top) {
+                    OffsetReader { val in
+                        offsetChanged(val)
+                    }
+                    SymbolView(threshold: self.threshold,
+                               loading: self.refreshing,
+                               progress: self.progress)
+                    VStack(spacing: 0) {
+                        self.content()
+                            .offset(x: 0, y: threshold * progress)
+                    }
                 }
-                .offset(x: 0, y: threshold * progress)
             }
-        }
-        .background(FixedView(color: theme.background))
-        .onPreferenceChange(RefreshableKeyTypes.PrefKey.self) { values in
-            self.refreshLogic(values: values)
+            .onChange(of: globalGeometry.frame(in: .global)) { newValue in
+                globalInset = newValue
+            }
+            .onAppear {
+                DispatchQueue.main.async {
+                    globalInset = globalGeometry.frame(in: .global)
+                }
+            }
         }
     }
-    
-    private func refreshLogic(values: [RefreshableKeyTypes.PrefData]) {
-        DispatchQueue.main.async {
-            // Calculate scroll offset
-            let movingBounds = values.first { $0.vType == .movingView }?.bounds ?? .zero
-            let fixedBounds = values.first { $0.vType == .fixedView }?.bounds ?? .zero
-            
-            let scrollOffset = movingBounds.minY - fixedBounds.minY
-            
-            self.progress = symbolProgress(scrollOffset)
-            
-            // Crossing the threshold on the way down, we start the refresh process
-            if !self.refreshing && (scrollOffset > self.threshold && self.previousScrollOffset <= self.threshold) {
-                withAnimation {
-                    self.refreshing = true
-                }
-            }
-            
-            // Update last scroll offset
-            self.previousScrollOffset = scrollOffset
+
+    private func offsetChanged(_ val: CGRect) {
+        guard globalInset != .zero else { return }
+        let scrollOffset = val.minY - globalInset.minY
+
+        self.progress = symbolProgress(scrollOffset)
+
+        // Crossing the threshold on the way down, we start the refresh process
+        if !self.refreshing && (scrollOffset > self.threshold && self.previousScrollOffset <= self.threshold) {
+            self.refreshing = true
+        } else if (val.maxY - loadMoreThreshold) <= globalInset.maxY {
+            loadMore?()
         }
+
+        // Update last scroll offset
+        self.previousScrollOffset = scrollOffset
     }
     
     private func symbolProgress(_ scrollOffset: CGFloat) -> CGFloat {
@@ -118,45 +145,5 @@ struct RefreshableScrollView<Content: View>: View {
                 }
             }
         }
-    }
-    
-    private struct MovingView: View {
-        var body: some View {
-            GeometryReader { proxy in
-                Color.clear.preference(key: RefreshableKeyTypes.PrefKey.self, value: [RefreshableKeyTypes.PrefData(vType: .movingView, bounds: proxy.frame(in: .global))])
-            }.frame(height: 0)
-        }
-    }
-    
-    private struct FixedView: View {
-        var color: Color = .clear
-        
-        var body: some View {
-            GeometryReader { proxy in
-                color.preference(key: RefreshableKeyTypes.PrefKey.self, value: [RefreshableKeyTypes.PrefData(vType: .fixedView, bounds: proxy.frame(in: .global))])
-            }
-        }
-    }
-}
-
-private struct RefreshableKeyTypes {
-    enum ViewType: Int {
-        case movingView
-        case fixedView
-    }
-
-    struct PrefData: Equatable {
-        let vType: ViewType
-        let bounds: CGRect
-    }
-
-    struct PrefKey: PreferenceKey {
-        static var defaultValue: [PrefData] = []
-
-        static func reduce(value: inout [PrefData], nextValue: () -> [PrefData]) {
-            value.append(contentsOf: nextValue())
-        }
-
-        typealias Value = [PrefData]
     }
 }

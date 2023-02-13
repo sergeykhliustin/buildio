@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0BuildCertificateResponseItemModel: Codable, Hashable {
+public struct V0BuildCertificateResponseItemModel: Codable {
 
     public var certificatePassword: String?
     public var downloadUrl: String?

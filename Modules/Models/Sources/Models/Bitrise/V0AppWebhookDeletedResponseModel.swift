@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0AppWebhookDeletedResponseModel: Codable, Hashable {
+public struct V0AppWebhookDeletedResponseModel: Codable {
 
     public var data: V0AppWebhookResponseItemModel?
 

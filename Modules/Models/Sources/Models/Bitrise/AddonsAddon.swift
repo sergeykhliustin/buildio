@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct AddonsAddon: Codable, Hashable {
+public struct AddonsAddon: Codable {
 
     public var bannerImage: String?
     public var cardHeaderColors: [String]?

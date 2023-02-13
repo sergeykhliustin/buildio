@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0ProjectFileStorageResponseItemModel: Codable, Hashable {
+public struct V0ProjectFileStorageResponseItemModel: Codable {
 
     public var downloadUrl: String?
     public var exposedMetaDatastore: [Int]?

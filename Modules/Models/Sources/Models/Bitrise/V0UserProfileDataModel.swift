@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0UserProfileDataModel: Codable, Hashable {
+public struct V0UserProfileDataModel: Codable {
     public var avatarUrl: String?
     public var createdAt: String?
     public var dataId: Int?

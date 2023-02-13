@@ -30,15 +30,17 @@ struct CircularInfiniteProgressViewStyle: ProgressViewStyle {
                 .frame(width: 20, height: 20, alignment: .center)
                 .foregroundColor(theme.accentColorLight)
                 .rotationEffect(Angle(degrees: isAnimating ? 360 : 0))
-                .animation(isAnimating ? animation : .none)
             
             CustomProgressShape()
                 .frame(width: 10, height: 10, alignment: .center)
                 .foregroundColor(theme.accentColor)
                 .rotationEffect(Angle(degrees: isAnimating ? -360 : 0))
-                .animation(isAnimating ? animation : .none)
         }
-        .onAppear { isAnimating = true }
+        .onAppear {
+            withAnimation(animation) {
+                isAnimating = true
+            }
+        }
         .onDisappear { isAnimating = false }
     }
     

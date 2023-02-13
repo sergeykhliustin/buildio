@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0ProxyErrorRespModel: Codable, Hashable {
+public struct V0ProxyErrorRespModel: Codable {
 
     public var errorMsg: String?
 

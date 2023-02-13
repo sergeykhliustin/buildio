@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0BuildTriggerParamsHookInfo: Codable, Hashable {
+public struct V0BuildTriggerParamsHookInfo: Codable {
 
     /** Should be \"bitrise\" */
     public var type: String?

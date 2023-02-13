@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0AvatarPromoteResponseModel: Codable, Hashable {
+public struct V0AvatarPromoteResponseModel: Codable {
 
     public var data: V0AvatarPromoteResponseItemModel?
 

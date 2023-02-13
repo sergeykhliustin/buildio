@@ -7,9 +7,13 @@
 
 import Foundation
 
-public struct V0AppResponseItemModel: Codable, Hashable, Identifiable {
-    public var id: Int {
-        hashValue
+public struct V0AppResponseItemModel: Codable, Identifiable, Equatable {
+    public static func == (lhs: V0AppResponseItemModel, rhs: V0AppResponseItemModel) -> Bool {
+        return lhs.slug == rhs.slug
+    }
+
+    public var id: String {
+        return owner.slug + slug
     }
     public var avatarUrl: String?
     public var isDisabled: Bool

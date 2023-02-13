@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct ServiceStandardErrorRespModel: Codable, Hashable {
+public struct ServiceStandardErrorRespModel: Codable {
 
     public var message: String?
 

@@ -38,10 +38,6 @@ public final class BuildViewModel: BaseApiViewModel<BuildResponseItemModel>, Cac
         return nil
     }
     
-    deinit {
-        logger.debug("")
-    }
-    
     override class var shouldRefreshOnInit: Bool {
         return false
     }

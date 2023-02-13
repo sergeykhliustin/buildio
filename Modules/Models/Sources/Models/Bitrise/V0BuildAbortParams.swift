@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0BuildAbortParams: Codable, Hashable {
+public struct V0BuildAbortParams: Codable {
 
     public var abortReason: String
     public var abortWithSuccess: Bool

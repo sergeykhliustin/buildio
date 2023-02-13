@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0ProvisionProfileUploadParams: Codable, Hashable {
+public struct V0ProvisionProfileUploadParams: Codable {
 
     public var uploadFileName: String
     public var uploadFileSize: Int

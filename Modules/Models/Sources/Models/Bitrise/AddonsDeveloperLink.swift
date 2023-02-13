@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct AddonsDeveloperLink: Codable, Hashable {
+public struct AddonsDeveloperLink: Codable {
 
     public var title: String?
     public var url: String?

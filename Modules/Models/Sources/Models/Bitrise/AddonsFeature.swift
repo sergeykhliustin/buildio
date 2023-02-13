@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct AddonsFeature: Codable, Hashable {
+public struct AddonsFeature: Codable {
 
     public var available: Bool?
     public var description: String?

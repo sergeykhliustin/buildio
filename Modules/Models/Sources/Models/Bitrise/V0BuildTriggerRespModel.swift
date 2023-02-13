@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0BuildTriggerRespModel: Codable, Hashable {
+public struct V0BuildTriggerRespModel: Codable {
 
     public var buildNumber: Int?
     public var buildSlug: String?

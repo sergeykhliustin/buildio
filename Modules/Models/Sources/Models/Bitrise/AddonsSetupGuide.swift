@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct AddonsSetupGuide: Codable, Hashable {
+public struct AddonsSetupGuide: Codable {
 
     public var instructions: [AddonsSetupInstruction]?
     public var notification: String?

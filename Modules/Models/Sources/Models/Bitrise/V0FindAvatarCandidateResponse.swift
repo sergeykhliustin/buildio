@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0FindAvatarCandidateResponse: Codable, Hashable {
+public struct V0FindAvatarCandidateResponse: Codable {
 
     public var data: [V0FindAvatarCandidateResponseItem]?
 

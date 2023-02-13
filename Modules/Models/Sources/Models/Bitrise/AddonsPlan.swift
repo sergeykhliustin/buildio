@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct AddonsPlan: Codable, Hashable {
+public struct AddonsPlan: Codable {
 
     public var features: [AddonsFeature]?
     public var id: String?

@@ -7,9 +7,9 @@
 
 import Foundation
 
-public struct V0ActivityEventResponseItemModel: Codable, Hashable, Identifiable {
-    public var id: Int {
-        return hashValue
+public struct V0ActivityEventResponseItemModel: Codable, Identifiable {
+    public var id: String {
+        return slug
     }
 
     public var createdAt: Date

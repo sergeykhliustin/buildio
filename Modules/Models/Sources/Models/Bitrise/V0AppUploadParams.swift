@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0AppUploadParams: Codable, Hashable {
+public struct V0AppUploadParams: Codable {
 
     /** The slug of the owner of the repository at the git provider */
     public var gitOwner: String

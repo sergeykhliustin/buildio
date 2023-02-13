@@ -50,15 +50,17 @@ public final class LogsViewModel: BaseApiViewModel<BuildLogResponseModel> {
             do {
                 let data = try Data(contentsOf: rawLogUrl)
                 var attributed: NSAttributedString?
+                var raw: String?
                 if let string = String(data: data, encoding: .utf8) {
                     attributed = Rainbow.chunkToAttributed(string)
-                    
+                    raw = string
                 }
                 DispatchQueue.main.async {
                     self?.state = .value
                     if let attributed = attributed {
                         self?.attributedLogs = attributed
                         self?.isFullLogFetched = true
+                        self?.rawLogs = raw
                     }
                 }
                 

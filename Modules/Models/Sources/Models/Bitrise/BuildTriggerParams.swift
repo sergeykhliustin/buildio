@@ -9,7 +9,7 @@ import Foundation
 
 public typealias BuildTriggerParamsBuildParams = [String: JSONValue]
 
-public struct BuildTriggerParams: Codable, Hashable {
+public struct BuildTriggerParams: Codable {
 
     public var buildParams: BuildTriggerParamsBuildParams?
     public var hookInfo: V0BuildTriggerParamsHookInfo?

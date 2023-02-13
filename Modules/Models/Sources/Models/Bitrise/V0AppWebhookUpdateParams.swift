@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0AppWebhookUpdateParams: Codable, Hashable {
+public struct V0AppWebhookUpdateParams: Codable {
 
     public var events: [String]
     public var headers: [Int]?

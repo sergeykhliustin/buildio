@@ -55,11 +55,12 @@ struct BuildScreenView: BaseView {
                 }
                 
                 ListItemWrapper {
-                    BuildView(model: value, progress: model.progress)
+                    BuildView()
                 }
             }
             .padding(.vertical, 8)
         }
+        .background(theme.background)
         .alert(item: $model.actionError, content: { error in
             Alert(title: Text(error.title), message: Text(error.message))
         })

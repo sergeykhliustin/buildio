@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0AppWebhookResponseItemModel: Codable, Hashable {
+public struct V0AppWebhookResponseItemModel: Codable {
 
     public var createdAt: String?
     public var events: [String]?

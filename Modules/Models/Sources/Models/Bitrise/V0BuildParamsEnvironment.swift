@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0BuildParamsEnvironment: Codable, Hashable {
+public struct V0BuildParamsEnvironment: Codable {
 
     public var isExpand: Bool?
     public var mappedTo: String?

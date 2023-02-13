@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0UserPlanDataModel: Codable, Hashable {
+public struct V0UserPlanDataModel: Codable {
 
     public var currentPlan: V0PlanDataModel?
     public var pendingPlan: V0PlanDataModel?

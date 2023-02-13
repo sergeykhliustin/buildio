@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct V0AppAddOnsListResponseModel: Codable, Hashable {
+public struct V0AppAddOnsListResponseModel: Codable {
 
     public var data: [V0AppAddOnResponseItemModel]?
 

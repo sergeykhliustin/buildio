@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct AddonsSetupInstruction: Codable, Hashable {
+public struct AddonsSetupInstruction: Codable {
 
     public var cardContent: String?
     public var description: String?
