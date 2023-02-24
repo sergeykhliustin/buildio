@@ -31,7 +31,7 @@ public final class BuildsViewModel: RootPagingViewModel<V0BuildListResponseModel
     override func fetch() async throws -> V0BuildListResponseModel {
         let api = apiFactory.api(BuildsAPI.self)
         if let app = app {
-            let list = try await api.buildList(appSlug: app.slug, limit: fetchLimit)
+            let list = try await api.buildList(appSlug: app.slug, sortBy: .runningFirst, limit: fetchLimit)
             return enrich(list, app: app)
         } else {
             return try await api.buildListAll(limit: fetchLimit)

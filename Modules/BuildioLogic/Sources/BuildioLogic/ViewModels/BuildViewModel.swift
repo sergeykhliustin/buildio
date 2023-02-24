@@ -54,14 +54,6 @@ public final class BuildViewModel: BaseApiViewModel<BuildResponseItemModel>, Cac
         return true
     }
     
-    override var shouldHandleActivityUpdate: Bool {
-        return value?.status == .running
-    }
-    
-    override var shouldRefreshAfterBackground: Bool {
-        return value?.status == .running
-    }
-    
     init(_ tokenManager: TokenManager, build: BuildResponseItemModel) {
         super.init(tokenManager)
         self.value = build

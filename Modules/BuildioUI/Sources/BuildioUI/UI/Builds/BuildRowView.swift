@@ -70,7 +70,7 @@ struct BuildRowView: View {
                         HStack(spacing: 0) {
                             Text(model.repository.title)
                                 .font(.footnote.bold())
-                            if let tag = model.tag {
+                            if let tag = model.tag, !tag.isEmpty {
                                 Spacer()
                                 HStack(spacing: 2) {
                                     Image(.tag)

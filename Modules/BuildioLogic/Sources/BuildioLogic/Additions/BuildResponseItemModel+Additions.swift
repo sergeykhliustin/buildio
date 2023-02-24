@@ -23,6 +23,8 @@ extension BuildResponseItemModel {
     public var branchFromToUIString: String {
         if let pullRequestTargetBranch = pullRequestTargetBranch {
             return "\(branch) → \(pullRequestTargetBranch)"
+        } else if let tag, !tag.isEmpty {
+            return ""
         }
         return branch
     }
