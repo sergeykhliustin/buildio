@@ -188,23 +188,20 @@ struct BuildView: View {
                         Rectangle().fill(theme.separatorColor).frame(height: 1)
                     }
                 }
-                
-                if let params = build.originalBuildParamsString {
+
+                Group {
+                    Text("Build parameters:").secondary()
+
                     Group {
-                        Text("Build parameters:").secondary()
-                        
-                        Group {
-                            TextElement(params)
-                                .primary()
-                                .font(.footnote)
-                                .lineLimit(nil)
-                                .padding(10)
-                                .layoutPriority(1)
-                        }
-                        .cornerRadius(4)
-                        .border(theme.borderColor, width: 1)
-                        
+                        TextElement(build.originalBuildParamsString)
+                            .primary()
+                            .font(.footnote)
+                            .lineLimit(nil)
+                            .padding(10)
+                            .layoutPriority(1)
                     }
+                    .cornerRadius(4)
+                    .border(theme.borderColor, width: 1)
                 }
             }
             .padding(.horizontal, 8)

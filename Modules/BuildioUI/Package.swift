@@ -16,7 +16,7 @@ let package = Package(
     dependencies: [
         .package(name: "Models", path: "../Models"),
         .package(name: "BuildioLogic", path: "../BuildioLogic"),
-        .package(name: "MarkdownUI", url: "https://github.com/gonzalezreal/swift-markdown-ui", from: "2.0.0")
+        .package(name: "MarkdownUI", url: "https://github.com/gonzalezreal/swift-markdown-ui", from: "2.1.0")
     ],
     targets: [
         .target(
