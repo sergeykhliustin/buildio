@@ -48,7 +48,7 @@ public struct StoreReviewHelper {
         if number == 0 {
             return 1
         } else {
-            return (1...number).reduce(into: 0) { $0 *= $1 }
+            return (1...number).reduce(into: 1) { $0 *= $1 }
         }
     }
 }
