@@ -16,7 +16,7 @@ struct RootTabBarWrapper<Content: View>: View {
     @Environment(\.theme) var theme
     
     private var interfaceOrientation: UIInterfaceOrientation {
-        guard let orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation else { return .portrait }
+        guard let orientation = UIApplication.shared.windowScene?.interfaceOrientation else { return .portrait }
         return orientation
     }
     
