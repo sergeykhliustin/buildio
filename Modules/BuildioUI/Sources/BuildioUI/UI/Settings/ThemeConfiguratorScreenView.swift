@@ -103,7 +103,7 @@ struct ThemeConfiguratorScreenView: View {
                                 try data.write(to: url)
                                 let controller = UIActivityViewController(activityItems: [url], applicationActivities: nil)
                                 controller.popoverPresentationController?.sourceView = UIView()
-                                UIApplication.shared.windows.first?.rootViewController?.present(controller, animated: true)
+                                UIApplication.shared.rootViewController?.present(controller, animated: true)
                             } catch {
                                 logger.error(error)
                             }

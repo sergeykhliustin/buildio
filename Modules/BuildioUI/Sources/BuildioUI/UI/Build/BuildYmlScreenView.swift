@@ -39,7 +39,7 @@ struct BuildYmlScreenView: BaseView {
                         try value.write(to: url, atomically: true, encoding: .utf8)
                         let controller = UIActivityViewController(activityItems: [url], applicationActivities: nil)
                         controller.popoverPresentationController?.sourceView = UIView()
-                        UIApplication.shared.windows.first?.rootViewController?.present(controller, animated: true)
+                        UIApplication.shared.rootViewController?.present(controller, animated: true)
                     } catch {
                         logger.error(error)
                     }
@@ -52,5 +52,15 @@ struct BuildYmlScreenView: BaseView {
         .withHostingWindow { window in
             self.window = window
         }
+    }
+}
+
+extension UIApplication {
+    var windowScene: UIWindowScene? {
+        connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene
+    }
+    
+    var rootViewController: UIViewController? {
+        return windowScene?.windows.first?.rootViewController
     }
 }

@@ -17,7 +17,7 @@ struct RootTabView: View {
     var body: some View {
         let configuration = previewMode ? RootScreenItemType.preview : RootScreenItemType.default
         TabView(selection: $navigators.tabSelection) {
-            ForEach(0..<configuration.count) { index in
+            ForEach(0..<configuration.count, id: \.self) { index in
                 let item = configuration[index]
                 splitNavigation(for: item)
                     .ignoresSafeArea()

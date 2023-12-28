@@ -8,6 +8,7 @@
 import Foundation
 import BuildioLogic
 import StoreKit
+import SwiftUI
 
 public struct StoreReviewHelper {
     public static func appDidBecomeActive() {
@@ -35,17 +36,19 @@ public struct StoreReviewHelper {
 
     private func requestReview() {
         guard !ProcessInfo.processInfo.isTestEnv else { return }
-        SKStoreReviewController.requestReview()
+        
+        if let scene = UIApplication.shared.windowScene {
+            DispatchQueue.main.async {
+                SKStoreReviewController.requestReview(in: scene)
+            }
+        }
     }
 
     private static func factorial(_ number: Int) -> Int {
         if number == 0 {
             return 1
+        } else {
+            return (1...number).reduce(into: 1) { $0 *= $1 }
         }
-        var sum: Int = 1
-        for index in 1...number {
-            sum *= index
-        }
-        return sum
     }
 }
