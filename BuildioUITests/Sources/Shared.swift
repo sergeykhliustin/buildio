@@ -85,7 +85,7 @@ extension XCTActivity {
         guard let image = app.windows.firstMatch.screenshot().image.removingBottomBar else { return }
         let view = UIImageView(image: image)
         let name = (ProcessInfo.processInfo.isMacCatalystApp ? "mac_" : "ios_") + testName
-        SnapshotTesting.assertSnapshot(matching: view, as: .image(perceptualPrecision: 0.92), file: file, testName: name, line: line)
+        SnapshotTesting.assertSnapshot(matching: view, as: .image(precision: 0.95, perceptualPrecision: 0.95), file: file, testName: name, line: line)
     }
 }
 

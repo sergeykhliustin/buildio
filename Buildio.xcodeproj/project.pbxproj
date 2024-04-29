@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3F17BABC27AC449F005CA881 /* BuildioUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3F17BABB27AC449F005CA881 /* BuildioUI */; };
+		3F428FDA2BDFE46B00E999F5 /* Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F428FD92BDFE46B00E999F5 /* Setup.swift */; };
 		3F47282227A9DDF000C4CD88 /* app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F47282127A9DDF000C4CD88 /* app_icon.png */; };
 		3F68BCFF293D38750048A14F /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F68BCFE293D38750048A14F /* Shared.swift */; };
 		3F68BD02293D41090048A14F /* LoginScreenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F68BD01293D41090048A14F /* LoginScreenTests.swift */; };
@@ -54,6 +55,7 @@
 		3F17BABA27AC4487005CA881 /* BuildioUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BuildioUI; path = Modules/BuildioUI; sourceTree = "<group>"; };
 		3F1AC92227A9D7D500DB3BB6 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		3F3295842735A623001994B0 /* Buildio (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Buildio (iOS).entitlements"; sourceTree = "<group>"; };
+		3F428FD92BDFE46B00E999F5 /* Setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setup.swift; sourceTree = "<group>"; };
 		3F47282127A9DDF000C4CD88 /* app_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon.png; sourceTree = "<group>"; };
 		3F4E0354293D290800AB0322 /* BuildioUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BuildioUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F68BCFE293D38750048A14F /* Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shared.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 			children = (
 				3F68BD00293D41090048A14F /* Screens */,
 				3F68BCFE293D38750048A14F /* Shared.swift */,
+				3F428FD92BDFE46B00E999F5 /* Setup.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				3F68BD09293D42560048A14F /* SettingsScreenTests.swift in Sources */,
 				3F68BD0C293D42C40048A14F /* BuildScreenTests.swift in Sources */,
 				3F68BCFF293D38750048A14F /* Shared.swift in Sources */,
+				3F428FDA2BDFE46B00E999F5 /* Setup.swift in Sources */,
 				3F68BD04293D418A0048A14F /* BuildsScreenTests.swift in Sources */,
 				3FCBBA35293D665800647755 /* ArtifactsScreenTests.swift in Sources */,
 				3F68BD08293D42560048A14F /* AccountsScreenTests.swift in Sources */,
@@ -370,6 +374,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 6C4646EB2U;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPrincipalClass = BuildioUITests.Setup;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MARKETING_VERSION = 1.0;
@@ -392,6 +397,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6C4646EB2U;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPrincipalClass = BuildioUITests.Setup;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MARKETING_VERSION = 1.0;
@@ -414,6 +420,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6C4646EB2U;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPrincipalClass = BuildioUITests.Setup;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MARKETING_VERSION = 1.0;
@@ -758,7 +765,7 @@
 			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing";
 			requirement = {
 				kind = exactVersion;
-				version = 1.10.0;
+				version = 1.16.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
