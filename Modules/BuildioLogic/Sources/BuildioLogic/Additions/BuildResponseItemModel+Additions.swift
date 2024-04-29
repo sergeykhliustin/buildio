@@ -21,19 +21,19 @@ extension BuildResponseItemModel {
     }
     
     public var branchFromToUIString: String {
-        if let pullRequestTargetBranch = pullRequestTargetBranch {
+        if let pullRequestTargetBranch, let branch {
             return "\(branch) → \(pullRequestTargetBranch)"
         } else if let tag, !tag.isEmpty {
             return ""
         }
-        return branch
+        return branch ?? ""
     }
     
     public var branchOrigOwnerUIString: String {
         if case .string(let owner) = originalBuildParams["branch_repo_owner"] {
-            return [owner, branch].joined(separator: ":")
+            return [owner, branch ?? ""].joined(separator: ":")
         }
-        return branch
+        return branch ?? ""
     }
     
     public var extendedStatus: ExtendedStatus {

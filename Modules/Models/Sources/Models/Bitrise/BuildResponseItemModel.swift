@@ -13,7 +13,7 @@ public struct BuildResponseItemModel: Codable, Identifiable {
     }
     
     public var abortReason: String?
-    public var branch: String
+    public var branch: String?
     public var buildNumber: Int
     public var commitHash: String?
     public var commitMessage: String?
@@ -41,7 +41,7 @@ public struct BuildResponseItemModel: Codable, Identifiable {
     public var denTags: [String]?
     
     public init(abortReason: String? = nil,
-                branch: String,
+                branch: String?,
                 buildNumber: Int,
                 commitHash: String? = nil,
                 commitMessage: String? = nil,
