@@ -54,7 +54,7 @@ struct CustomTabBar: View {
         stack(style: style) {
             Group {
                 Spacer()
-                ForEach(0..<configuration.count) { index in
+                ForEach(0..<configuration.count, id: \.self) { index in
                     let item = configuration[index]
                     Button(action: {
                         if selected == index {
