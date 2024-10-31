@@ -1,16 +1,22 @@
 excluded:
-- Pods
+  - "**/.build/**"
+
+included:
+  - Shared/
+  - Modules/
+
 disabled_rules:
-- trailing_whitespace
-- line_length
-- identifier_name
-- large_tuple
-- function_body_length
-- type_name
-- unused_closure_parameter
-- nesting
+  - trailing_whitespace
+  - line_length
+  - identifier_name
+  - large_tuple
+  - function_body_length
+  - type_name
+  - unused_closure_parameter
+  - nesting
+
 opt_in_rules:
-- operator_usage_whitespace
+  - operator_usage_whitespace
 
 force_try:
   severity: warning

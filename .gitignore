@@ -96,3 +96,7 @@ Buildio.swiftpm/.swiftpm/xcode/package.xcworkspace/xcshareddata
 Modules/BuildioUI/.swiftpm/xcode/package.xcworkspace/xcshareddata
 Package.resolved
 .swiftpm/
+Modules/Derived
+Modules/Modules.xcodeproj
+Buildio.xcodeproj
+Buildio.xcworkspace

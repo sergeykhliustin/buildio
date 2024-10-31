@@ -1,0 +1,74 @@
+{
+  "entries": {
+    "cask": {
+      "periphery": {
+        "version": "2.21.1",
+        "options": {
+          "full_name": "peripheryapp/periphery/periphery"
+        }
+      }
+    },
+    "brew": {
+      "swiftlint": {
+        "version": "0.57.0_1",
+        "bottle": {
+          "rebuild": 0,
+          "root_url": "https://ghcr.io/v2/homebrew/core",
+          "files": {
+            "arm64_sequoia": {
+              "cellar": ":any_skip_relocation",
+              "url": "https://ghcr.io/v2/homebrew/core/swiftlint/blobs/sha256:29bfd9c9a44b1bdaf6656571d40192c570d6afefbce48a90a923cae6d52875b4",
+              "sha256": "29bfd9c9a44b1bdaf6656571d40192c570d6afefbce48a90a923cae6d52875b4"
+            },
+            "arm64_sonoma": {
+              "cellar": ":any_skip_relocation",
+              "url": "https://ghcr.io/v2/homebrew/core/swiftlint/blobs/sha256:c1862b912a0e6d3574761ee710cca00a53e831d92e080f448b8fe286cccc4ab8",
+              "sha256": "c1862b912a0e6d3574761ee710cca00a53e831d92e080f448b8fe286cccc4ab8"
+            },
+            "arm64_ventura": {
+              "cellar": ":any",
+              "url": "https://ghcr.io/v2/homebrew/core/swiftlint/blobs/sha256:08c334c98bbfaa64ee5cda057cb634981e9409249f493b5d40abf02b2cc24f3b",
+              "sha256": "08c334c98bbfaa64ee5cda057cb634981e9409249f493b5d40abf02b2cc24f3b"
+            },
+            "sonoma": {
+              "cellar": ":any_skip_relocation",
+              "url": "https://ghcr.io/v2/homebrew/core/swiftlint/blobs/sha256:f46a96f444a1ce89c53a183e5e95d26201276474eff7cb82dd30c3103ae2b11d",
+              "sha256": "f46a96f444a1ce89c53a183e5e95d26201276474eff7cb82dd30c3103ae2b11d"
+            },
+            "ventura": {
+              "cellar": ":any",
+              "url": "https://ghcr.io/v2/homebrew/core/swiftlint/blobs/sha256:35fdde7dc00368c3d65f03dc4290190351af844b4296f2e9cc9bfdbcf6bcce2f",
+              "sha256": "35fdde7dc00368c3d65f03dc4290190351af844b4296f2e9cc9bfdbcf6bcce2f"
+            },
+            "x86_64_linux": {
+              "cellar": ":any_skip_relocation",
+              "url": "https://ghcr.io/v2/homebrew/core/swiftlint/blobs/sha256:7aa5ef711b796a028a2f1d0b6d3b2d742f33b25738a13ebd884962f5b883abf6",
+              "sha256": "7aa5ef711b796a028a2f1d0b6d3b2d742f33b25738a13ebd884962f5b883abf6"
+            }
+          }
+        }
+      },
+      "tuist@4.31.0": {
+        "version": "4.31.0",
+        "bottle": false
+      }
+    },
+    "tap": {
+      "tuist/tuist": {
+        "revision": "acb0fe39d0bbf99609bab241f018d127928f9527"
+      }
+    }
+  },
+  "system": {
+    "macos": {
+      "sequoia": {
+        "HOMEBREW_VERSION": "4.4.3",
+        "HOMEBREW_PREFIX": "/opt/homebrew",
+        "Homebrew/homebrew-core": "api",
+        "CLT": "16.1.0.0.1.1729049160",
+        "Xcode": "16.1",
+        "macOS": "15.1"
+      }
+    }
+  }
+}

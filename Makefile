@@ -1,0 +1,2 @@
+bootstrap:
+	brew bundle install
