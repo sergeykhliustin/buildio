@@ -106,6 +106,7 @@ public final class CoordinatorPageModel: ObservableObject {
     }
 
     private func updateAppearance() {
+        #if os(iOS)
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.configureWithDefaultBackground()
         navigationBarAppearance.backgroundColor = theme.background
@@ -120,6 +121,7 @@ public final class CoordinatorPageModel: ObservableObject {
         UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
         UINavigationBar.appearance().compactScrollEdgeAppearance = navigationBarAppearance
         UINavigationBar.appearance().isTranslucent = true
+        #endif
     }
 }
 

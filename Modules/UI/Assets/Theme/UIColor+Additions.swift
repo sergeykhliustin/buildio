@@ -14,6 +14,7 @@ extension PlatformColor {
     }
 
     convenience init(light: PlatformColor, dark: PlatformColor) {
+        #if os(iOS)
         self.init { traitCollection in
             switch traitCollection.userInterfaceStyle {
             case .dark:
@@ -22,6 +23,15 @@ extension PlatformColor {
                 return light
             }
         }
+        #else
+        self.init(name: nil, dynamicProvider: { provider in
+            if provider.name == .darkAqua {
+                return dark
+            } else {
+                return light
+            }
+        })
+        #endif
     }
 
     public convenience init(hex: String) throws {

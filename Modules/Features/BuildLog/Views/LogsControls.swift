@@ -13,7 +13,9 @@ struct LogsControls: View {
         
         func _body(configuration: TextField<Self._Label>) -> some View {
             configuration
+            #if os(iOS)
                 .autocapitalization(.none)
+            #endif
                 .padding(.horizontal, 4)
                 .frame(height: 30)
                 .background(

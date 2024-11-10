@@ -25,21 +25,33 @@ private extension Rainbow.Segment {
     var attributedString: NSAttributedString {
         let fontSize = 12.0
         var attributes: [NSAttributedString.Key: Any] = [:]
+        #if os(iOS)
         attributes[.font] = UIFont.monospacedSystemFont(ofSize: fontSize, weight: .regular)
+        #elseif os(macOS)
+        attributes[.font] = NSFont.monospacedSystemFont(ofSize: fontSize, weight: .regular)
+        #endif
         if let background = self.backgroundColor, let color = Color.color(for: background) {
-            attributes[.backgroundColor] = UIColor(color)
+            attributes[.backgroundColor] = color.platformColor
         }
         if let foreground = self.color, let color = Color.color(for: foreground) {
-            attributes[.foregroundColor] = UIColor(color)
+            attributes[.foregroundColor] = color.platformColor
         } else {
-            attributes[.foregroundColor] = UIColor(Color.b_LogsDefault)
+            attributes[.foregroundColor] = Color.b_LogsDefault.platformColor
         }
         for style in styles ?? [] {
             switch style {
             case .bold:
+                #if os(iOS)
                 attributes[.font] = UIFont.monospacedSystemFont(ofSize: fontSize, weight: .bold)
+                #elseif os(macOS)
+                attributes[.font] = NSFont.monospacedSystemFont(ofSize: fontSize, weight: .bold)
+                #endif
             case .italic:
+                #if os(iOS)
                 attributes[.font] = UIFont.italicSystemFont(ofSize: fontSize)
+                #elseif os(macOS)
+                attributes[.font] = NSFont.systemFont(ofSize: fontSize)
+                #endif
             case .underline:
                 attributes[.underlineStyle] = NSUnderlineStyle.single
             case .strikethrough:

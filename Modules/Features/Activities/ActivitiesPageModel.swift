@@ -12,7 +12,9 @@ import UITypes
 import Dependencies
 import Logger
 import UserNotifications
+#if os(iOS)
 import UIKit
+#endif
 
 package final class ActivitiesPageModel: PageModelType {
     enum NotificationsAuthorization {
@@ -131,9 +133,11 @@ package final class ActivitiesPageModel: PageModelType {
                 }
             }
         } else {
+            #if os(iOS)
             if let appSettings = URL(string: UIApplication.openSettingsURLString) {
                 UIApplication.shared.open(appSettings)
             }
+            #endif
         }
     }
 }

@@ -31,6 +31,7 @@ package struct AboutPage: PageType {
     package var content: some View {
         ScrollView {
             VStack(alignment: .center, spacing: 16) {
+                #if os(iOS)
                 if let imagePath = Bundle.main.path(forResource: "app_icon", ofType: "png"),
                     let image = UIImage(contentsOfFile: imagePath) {
                     Image(uiImage: image)
@@ -39,6 +40,16 @@ package struct AboutPage: PageType {
                             RoundedRectangle(cornerRadius: 30).shadow(color: theme.shadowColor.color, radius: 10, x: 0, y: 10)
                         )
                 }
+                #else
+                if let imagePath = Bundle.main.path(forResource: "app_icon", ofType: "png"),
+                   let image = NSImage(contentsOfFile: imagePath) {
+                    Image(nsImage: image)
+                        .cornerRadius(30)
+                        .background(
+                            RoundedRectangle(cornerRadius: 30).shadow(color: theme.shadowColor.color, radius: 10, x: 0, y: 10)
+                        )
+                }
+                #endif
                 VStack(alignment: .leading, spacing: 16) {
 
                     Text("Buildio \(Bundle.main.version ?? "") (\(Bundle.main.build ?? ""))")

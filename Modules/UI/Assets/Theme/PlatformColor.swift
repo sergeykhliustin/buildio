@@ -6,6 +6,7 @@
 //
 
 #if os(macOS)
+import AppKit
 package typealias PlatformColor = NSColor
 #else
 import UIKit

@@ -17,14 +17,15 @@ struct Introspector: ViewModifier {
 
     func body(content: Content) -> some View {
         content
+#if targetEnvironment(macCatalyst)
             .introspect(.window, on: .iOS(.v16, .v17, .v18)) { window in
+
                 window.backgroundColor = theme.background
-                #if targetEnvironment(macCatalyst)
                 let titlebar = window.windowScene?.titlebar
                 titlebar?.titleVisibility = .hidden
                 titlebar?.toolbar = nil
                 titlebar?.separatorStyle = .none
-                #endif
             }
+#endif
     }
 }

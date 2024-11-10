@@ -38,7 +38,7 @@ package extension Color {
         return platformColor.hex
     }
 
-    private var platformColor: PlatformColor {
+    var platformColor: PlatformColor {
         return PlatformColor(self)
     }
 }

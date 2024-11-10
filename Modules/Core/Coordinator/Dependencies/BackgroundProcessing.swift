@@ -11,7 +11,6 @@ import Combine
 import Models
 import Dependencies
 import Logger
-import UIKit
 
 extension UserDefaults {
     struct Keys {
@@ -80,7 +79,7 @@ public final class BackgroundProcessing: @unchecked Sendable {
     private var notificationCenterPubliser: AnyCancellable?
 
     public func start() {
-        #if targetEnvironment(macCatalyst)
+        #if os(macOS) || targetEnvironment(macCatalyst)
         userDefaultsNotification = NotificationCenter.default.addObserver(forName: UserDefaults.didChangeNotification, object: nil, queue: nil) { [weak self] _ in
             guard let self else { return }
             if UserDefaults.standard.settings != self.settings {
@@ -102,7 +101,7 @@ public final class BackgroundProcessing: @unchecked Sendable {
         #endif
     }
 
-    #if targetEnvironment(macCatalyst)
+    #if os(macOS) || targetEnvironment(macCatalyst)
     private func restartTimer() {
         timer?.invalidate()
         if settings.pollingInterval <= 0 {
@@ -186,7 +185,7 @@ public final class BackgroundProcessing: @unchecked Sendable {
                 }
             }
 
-            #if !targetEnvironment(macCatalyst)
+            #if !targetEnvironment(macCatalyst) && !os(macOS)
             bgTask?.setTaskCompleted(success: true)
             self.scheduleAppRefresh()
             #endif
