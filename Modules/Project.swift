@@ -9,6 +9,12 @@ let productType: ProjectDescription.Product = {
     }
 }()
 
+let settings: ProjectDescription.Settings = .settings(
+    base: [
+        "DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER": "NO",
+    ]
+)
+
 let destinations: ProjectDescription.Destinations = [.iPhone, .iPad, .macCatalyst]
 
 let core = [
@@ -81,7 +87,8 @@ let coreTargets: [ProjectDescription.Target] = {
             bundleId: "com.sergeyk.module.\($0)",
             sources: "Core/\($0)/**",
             resources: resources[$0],
-            dependencies: dependencies[$0, default: []]
+            dependencies: dependencies[$0, default: []],
+            settings: settings
         )
     }
 }()
@@ -110,7 +117,8 @@ let featureTargets: [ProjectDescription.Target] = {
                 .target(name: "Assets"),
                 .target(name: "UITypes"),
                 .target(name: "API"),
-            ] + dependencies[$0, default: []]
+            ] + dependencies[$0, default: []],
+            settings: settings
         )
     }
 }()
@@ -140,7 +148,8 @@ let uiTargets: [ProjectDescription.Target] = {
             bundleId: "com.sergeyk.module.\($0)",
             sources: "UI/\($0)/**",
             dependencies: [
-            ] + dependencies[$0, default: []]
+            ] + dependencies[$0, default: []],
+            settings: settings
         )
     }
 }()
@@ -154,6 +163,7 @@ let project = Project(
         "SWIFT_VERSION": "6.0",
         "IPHONEOS_DEPLOYMENT_TARGET": "16.0",
         "OTHER_SWIFT_FLAGS": "$(inherited) -package-name Modules",
+        "DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER": "NO",
         "OTHER_LDFLAGS": "$(inherited) -ObjC -all_load"
     ], debug: [
         "OTHER_LDFLAGS": "$(inherited) -Xlinker -interposable"

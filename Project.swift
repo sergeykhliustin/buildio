@@ -24,6 +24,7 @@ let project = Project(
         "MARKETING_VERSION": version,
         "CURRENT_PROJECT_VERSION": "1",
         "SUPPORTS_MACCATALYST": "YES",
+        "DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER": "NO",
         "INFOPLIST_KEY_UISupportedInterfaceOrientations": "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight",
         "OTHER_LDFLAGS": "$(inherited) -ObjC -all_load"
     ], debug: [
@@ -60,7 +61,10 @@ let project = Project(
             ],
             dependencies: [
                 .project(target: "Coordinator", path: "Modules"),
-            ]
+            ],
+            settings: .settings(base: [
+                "DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER": "NO",
+            ])
         )
     ]
 )

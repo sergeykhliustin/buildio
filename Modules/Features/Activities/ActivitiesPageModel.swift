@@ -15,9 +15,14 @@ import UserNotifications
 import UIKit
 
 package final class ActivitiesPageModel: PageModelType {
+    enum NotificationsAuthorization {
+        case authorized
+        case notDetermined
+        case other
+    }
     private let fetchLimit: Int = 30
     @Published private(set) var data: V0ActivityEventListResponseModel?
-    @Published var notificationsAuthorization: UNAuthorizationStatus?
+    @Published var notificationsAuthorization: NotificationsAuthorization?
 
     deinit {
         logger.debug("Deinit \(self)")
@@ -34,9 +39,20 @@ package final class ActivitiesPageModel: PageModelType {
     func refresh() {
         guard !isLoading else { return }
         isLoading = true
-        UNUserNotificationCenter.current().getNotificationSettings { [weak self] settings in
-            DispatchQueue.main.async {
-                self?.notificationsAuthorization = settings.authorizationStatus
+        DispatchQueue.global().async {
+            UNUserNotificationCenter.current().getNotificationSettings { settings in
+                let status: NotificationsAuthorization
+                switch settings.authorizationStatus {
+                case .authorized:
+                    status = .authorized
+                case .notDetermined:
+                    status = .notDetermined
+                default:
+                    status = .other
+                }
+                DispatchQueue.main.async { [weak self] in
+                    self?.notificationsAuthorization = status
+                }
             }
         }
         Task {
@@ -104,7 +120,7 @@ package final class ActivitiesPageModel: PageModelType {
     }
 
     func onNotifications() {
-        guard let notificationsAuthorization else { return }
+        guard let notificationsAuthorization, notificationsAuthorization != .authorized else { return }
         if notificationsAuthorization == .notDetermined {
             Task {
                 let granted = try? await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge])
@@ -115,8 +131,7 @@ package final class ActivitiesPageModel: PageModelType {
                 }
             }
         } else {
-            if let appSettings = URL(string: UIApplication.openSettingsURLString),
-               UIApplication.shared.canOpenURL(appSettings) {
+            if let appSettings = URL(string: UIApplication.openSettingsURLString) {
                 UIApplication.shared.open(appSettings)
             }
         }
