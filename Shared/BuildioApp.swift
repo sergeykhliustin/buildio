@@ -6,15 +6,17 @@
 //
 
 import SwiftUI
-import BuildioUI
+import Coordinator
 
 @main
 struct BuildioApp: App {
-    @UIApplicationDelegateAdaptor(BuildioUIAppDelegate.self) var appDelegate
-    
+    #if os(iOS)
+    @UIApplicationDelegateAdaptor(BuildioAppDelegate.self) var appDelegate
+    #endif
+
     var body: some Scene {
         WindowGroup("Buildio") {
-            EntryPoint()
+            CoordinatorPage(viewModel: CoordinatorPageModel())
         }
     }
 }

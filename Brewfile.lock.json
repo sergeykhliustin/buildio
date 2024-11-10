@@ -2,7 +2,7 @@
   "entries": {
     "cask": {
       "periphery": {
-        "version": "2.21.1",
+        "version": "2.21.2",
         "options": {
           "full_name": "peripheryapp/periphery/periphery"
         }
@@ -55,14 +55,14 @@
     },
     "tap": {
       "tuist/tuist": {
-        "revision": "acb0fe39d0bbf99609bab241f018d127928f9527"
+        "revision": "d7aafddf0cce49575e80e1d65317db16565bcd83"
       }
     }
   },
   "system": {
     "macos": {
       "sequoia": {
-        "HOMEBREW_VERSION": "4.4.3",
+        "HOMEBREW_VERSION": "4.4.4",
         "HOMEBREW_PREFIX": "/opt/homebrew",
         "Homebrew/homebrew-core": "api",
         "CLT": "16.1.0.0.1.1729049160",

@@ -6,24 +6,31 @@
 //
 
 import Foundation
-import UIKit
 import Combine
 import UserNotifications
-import BuildioLogic
 
-public final class BuildioUIAppDelegate: NSObject, UIApplicationDelegate {
+#if os(iOS)
+import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
+import Coordinator
+
+#if os(iOS)
+final class BuildioAppDelegate: NSObject, UIApplicationDelegate {
     
-    public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
-        #if targetEnvironment(macCatalyst)
-        BackgroundProcessingMac.shared.start()
-        #else
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
+
         BackgroundProcessing.shared.start()
-        #endif
         
         let center = UNUserNotificationCenter.current()
         center.removeAllDeliveredNotifications()
         center.removeAllPendingNotificationRequests()
-        
+
+        URLCache.shared.memoryCapacity = 30 * 1024 * 1024   // 30MB
+        URLCache.shared.diskCapacity = 40 * 1024 * 1024    // 40MB
+
         return true
     }
 }
+#endif
