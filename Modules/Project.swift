@@ -3,7 +3,7 @@ import Foundation
 
 let productType: ProjectDescription.Product = {
     if Environment.static.getBoolean(default: false) {
-        return .staticLibrary
+        return .staticFramework
     } else {
         return .framework
     }
