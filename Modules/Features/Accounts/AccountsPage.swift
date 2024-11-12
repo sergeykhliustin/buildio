@@ -28,7 +28,9 @@ package struct AccountsPage: PageType {
                             token: token,
                             profile: viewModel.profiles[token],
                             isSelected: token == viewModel.token,
-                            onRemove: {/* viewModel.onRemove(token)*/ }
+                            onRemove: {
+                                viewModel.onRemove(token)
+                            }
                         )
                     }
                 )
@@ -45,7 +47,7 @@ package struct AccountsPage: PageType {
                 }
                 Image(.plus)
                     .button {
-                        viewModel.dependencies.navigator.show(.auth)
+                        viewModel.dependencies.navigator.show(.auth())
                     }
             }
         }

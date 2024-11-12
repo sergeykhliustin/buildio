@@ -45,6 +45,7 @@ struct AccountRowView: View {
                     Image(.checkmark)
                 }
                 Image(.trash)
+                    .padding()
                     .button(action: onRemove)
             }
             .padding(.horizontal, 8)

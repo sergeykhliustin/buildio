@@ -13,7 +13,6 @@ import Dependencies
 package struct AuthPage: PageType {
     @ObservedObject package var viewModel: AuthPageModel
     @Environment(\.theme) private var theme
-    @Environment(\.openURL) private var openURL
 
     package init(viewModel: AuthPageModel) {
         self.viewModel = viewModel
@@ -52,12 +51,7 @@ package struct AuthPage: PageType {
 
                     Text("Click here")
                         .linkButton {
-                            guard
-                                let url = URL(string: "https://app.bitrise.io/me/profile#/security")
-                            else {
-                                return
-                            }
-                            openURL(url)
+                            viewModel.onNoToken()
                         }
                 }
                 if viewModel.canDemo {

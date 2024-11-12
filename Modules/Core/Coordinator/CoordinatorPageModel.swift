@@ -23,10 +23,9 @@ public final class CoordinatorPageModel: ObservableObject {
     let tokenManager = TokenManager()
     private var activityProvider = ActivityProvider(token: nil)
     private var buildStatusProvider = BuildStatusProvider(token: nil)
-    let authDependencies: DependenciesType
     @Published var theme = ThemeV2.default
     @Published var isLoading: Bool = true
-    @Published var authPageModel: AuthPageModel?
+    @Published var authPageModel: RootPageModel?
     @Published var tab: BuildioTabItem = .builds
     @Published var tabs: [BuildioTabItem] = [.builds, .apps, .accounts, .activities, .settings]
     @Published var windowMode: WindowMode = .compact {
@@ -43,12 +42,6 @@ public final class CoordinatorPageModel: ObservableObject {
     }
 
     public init() {
-        self.authDependencies = Dependencies(
-            tokenManager: tokenManager,
-            navigator: NavigatorMock(),
-            activityProvider: activityProvider,
-            buildStatusProvider: buildStatusProvider
-        )
         updateAppearance()
         tokenManager.$token
             .receive(on: DispatchQueue.main)
@@ -56,10 +49,12 @@ public final class CoordinatorPageModel: ObservableObject {
                 guard let self else { return }
                 Task { @MainActor in
                     if token == nil {
-                        self.authPageModel = AuthPageModel(
-                            dependencies: self.authDependencies,
-                            canDemo: true
-                        )
+                        self.authPageModel = RootPageModel(
+                            root: .auth(canDemo: true),
+                            windowMode: .compact,
+                            viewModelFactory: { [unowned self] navigator, path in
+                                return viewModelFactory(navigator: navigator, path: path)
+                            })
                         self.reset()
                     } else {
                         self.authPageModel = nil
@@ -88,17 +83,21 @@ public final class CoordinatorPageModel: ObservableObject {
             root: tab.route,
             windowMode: windowMode,
             viewModelFactory: { [unowned self] navigator, path in
-                let dependencies = Dependencies(
-                    tokenManager: tokenManager,
-                    navigator: navigator,
-                    activityProvider: activityProvider,
-                    buildStatusProvider: buildStatusProvider
-                )
-                return path.viewModel(dependencies: dependencies)
+                return viewModelFactory(navigator: navigator, path: path)
             }
         )
         rootModels[tab] = model
         return model
+    }
+
+    private func viewModelFactory(navigator: NavigatorType, path: RouteType) -> PageModelType {
+        let dependencies = Dependencies(
+            tokenManager: tokenManager,
+            navigator: navigator,
+            activityProvider: activityProvider,
+            buildStatusProvider: buildStatusProvider
+        )
+        return path.viewModel(dependencies: dependencies)
     }
 
     func popToRoot(tab: BuildioTabItem) {

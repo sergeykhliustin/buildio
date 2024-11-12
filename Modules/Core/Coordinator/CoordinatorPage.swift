@@ -32,13 +32,7 @@ public struct CoordinatorPage: View {
             if viewModel.isLoading {
                 BuildioProgressView()
             } else if let authPageModel = viewModel.authPageModel {
-                FlowStack(withNavigation: true) {
-                    AuthPage(viewModel: authPageModel)
-                        .background(theme.background.color)
-                        #if os(iOS)
-                        .navigationBarTitleDisplayMode(.large)
-                        #endif
-                }
+                RootPage(viewModel: authPageModel)
             } else {
                 HStack(spacing: 0) {
                     if viewModel.windowMode == .split {

@@ -20,6 +20,7 @@ import StartBuild
 import AbortBuild
 import Settings
 import Artifacts
+import WebFlow
 
 extension RouteType {
     @MainActor
@@ -40,8 +41,8 @@ extension RouteType {
             pageModel = BuildYmlPageModel(dependencies: dependencies, build: build)
         case .accounts:
             pageModel = AccountsPageModel(dependencies: dependencies)
-        case .auth:
-            pageModel = AuthPageModel(dependencies: dependencies)
+        case .auth(let canDemo):
+            pageModel = AuthPageModel(dependencies: dependencies, canDemo: canDemo)
         case .logs(let build):
             pageModel = BuildLogPageModel(dependencies: dependencies, build: build)
         case .startBuild(let app):
@@ -60,6 +61,8 @@ extension RouteType {
             pageModel = AboutPageModel(dependencies: dependencies)
         case .artifacts(let build):
             pageModel = ArtifactsPageModel(dependencies: dependencies, build: build)
+        case .web(let url):
+            pageModel = WebFlowPageModel(dependencies: dependencies, url: url)
         }
         return pageModel
     }

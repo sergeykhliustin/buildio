@@ -40,6 +40,7 @@ let features = [
     "AbortBuild",
     "Settings",
     "Artifacts",
+    "WebFlow"
 ]
 
 let ui = [

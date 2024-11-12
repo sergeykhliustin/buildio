@@ -5,6 +5,7 @@
 //  Created by Sergey Khliustin on 06.12.2021.
 //
 
+import Foundation
 import Models
 import Combine
 import API
@@ -44,5 +45,10 @@ package final class AuthPageModel: PageModelType {
             }
             isLoading = false
         }
+    }
+
+    func onNoToken() {
+        guard let url = URL(string: "https://app.bitrise.io/me/profile#/security") else { return }
+        dependencies.navigator.show(.web(url))
     }
 }

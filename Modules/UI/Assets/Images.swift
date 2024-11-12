@@ -46,6 +46,7 @@ package enum Images: String {
     case gearshape_fill
     case bell_slash
     case text_justify
+    case safari
 }
 
 package extension Image {

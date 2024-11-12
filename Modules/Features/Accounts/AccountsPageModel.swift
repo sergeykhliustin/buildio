@@ -54,5 +54,6 @@ package final class AccountsPageModel: PageModelType {
 
     func onRemove(_ token: Token) {
         dependencies.tokenManager.remove(token)
+        refresh()
     }
 }

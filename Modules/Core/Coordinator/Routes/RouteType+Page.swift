@@ -21,6 +21,7 @@ import StartBuild
 import AbortBuild
 import Settings
 import Artifacts
+import WebFlow
 
 // swiftlint:disable force_cast
 extension RouteType {
@@ -62,6 +63,8 @@ extension RouteType {
             AboutPage(viewModel: viewModel as! AboutPageModel)
         case .artifacts:
             ArtifactsPage(viewModel: viewModel as! ArtifactsPageModel)
+        case .web:
+            WebFlowPage(viewModel: viewModel as! WebFlowPageModel)
         }
     }
 }

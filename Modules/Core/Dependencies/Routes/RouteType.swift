@@ -23,13 +23,14 @@ package enum RouteType: Hashable {
     case logs(BuildResponseItemModel)
     case artifacts(BuildResponseItemModel)
     case yml(BuildResponseItemModel)
-    case auth
+    case auth(canDemo: Bool = false)
     case startBuild(app: V0AppResponseItemModel? = nil)
     case branchSelector(app: V0AppResponseItemModel, completion: (String) -> Void)
     case workflowSelector(app: V0AppResponseItemModel, completion: (String) -> Void)
     case appSelector(completion: (V0AppResponseItemModel) -> Void)
     case abortBuild(BuildResponseItemModel)
     case about
+    case web(URL)
 
     package var style: Style {
         switch self {
@@ -98,6 +99,8 @@ package enum RouteType: Hashable {
             return lhsBuild == rhsBuild
         case (.about, .about):
             return true
+        case (.web(let lhsURL), .web(let rhsURL)):
+            return lhsURL == rhsURL
         default:
             return false
         }
@@ -129,8 +132,9 @@ package enum RouteType: Hashable {
         case .yml(let build):
             hasher.combine(10)
             hasher.combine(build)
-        case .auth:
+        case .auth(let canDemo):
             hasher.combine(11)
+            hasher.combine(canDemo)
         case .startBuild(let app):
             hasher.combine(12)
             hasher.combine(app)
@@ -147,6 +151,9 @@ package enum RouteType: Hashable {
             hasher.combine(build)
         case .about:
             hasher.combine(17)
+        case .web(let url):
+            hasher.combine(18)
+            hasher.combine(url)
         }
     }
 }

@@ -11,6 +11,7 @@ import Combine
 import Models
 import Dependencies
 import Logger
+import UIKit
 
 extension UserDefaults {
     struct Keys {
