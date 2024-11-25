@@ -14,10 +14,12 @@ struct LogsView: View {
     @State var fullscreen: Bool = false
 
     private let logs: NSAttributedString?
+    private let canFetchFullLog: Bool
     private let fetchFullLogAction: (() -> Void)?
     
-    init(logs: NSAttributedString?, fetchFullLogAction: (() -> Void)? = nil) {
+    init(logs: NSAttributedString?, canFetchFullLog: Bool = false, fetchFullLogAction: (() -> Void)? = nil) {
         self.logs = logs
+        self.canFetchFullLog = canFetchFullLog
         self.fetchFullLogAction = fetchFullLogAction
     }
     
@@ -30,7 +32,7 @@ struct LogsView: View {
                 LogsControls(fullscreen: $fullscreen,
                              follow: $follow,
                              search: $search,
-                             onFetchFullLog: fetchFullLogAction)
+                             onFetchFullLog: canFetchFullLog ? fetchFullLogAction : nil)
             }
         }
         .frame(maxHeight: .infinity)

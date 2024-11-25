@@ -17,13 +17,15 @@ package struct BuildLogPage: PageType {
     }
 
     package var content: some View {
-        LogsView(logs: viewModel.attributedLogs)
+        LogsView(logs: viewModel.attributedLogs, canFetchFullLog: viewModel.canFetchFullLog, fetchFullLogAction: viewModel.onFetchFullLog)
             .navigationTitle("Build #\(String(viewModel.build.buildNumber)) logs")
             .toolbar {
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     if viewModel.isLoading {
                         BuildioProgressView()
                     }
+                    Image(.square_and_arrow_up)
+                        .button(action: viewModel.onShareRawLog)
                 }
             }
     }

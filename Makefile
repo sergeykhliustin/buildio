@@ -5,7 +5,7 @@ setup_git_hooks:
 	@mkdir -p .git/hooks
 	@printf '#!/bin/bash\n\
 SWIFT_LINT=/opt/homebrew/bin/swiftlint\n\
-REQUIRED_VERSION="0.57.0"\n\
+REQUIRED_VERSION="0.57.1"\n\
 \n\
 if [[ -e "$${SWIFT_LINT}" ]]; then\n\
     INSTALLED_VERSION=$$($${SWIFT_LINT} version)\n\
