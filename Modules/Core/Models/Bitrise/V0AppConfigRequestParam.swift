@@ -9,7 +9,7 @@ import Foundation
 
 public struct V0AppConfigRequestParam: Codable {
 
-    public var appConfigDatastoreYaml: String
+    public let appConfigDatastoreYaml: String
 
     public init(appConfigDatastoreYaml: String) {
         self.appConfigDatastoreYaml = appConfigDatastoreYaml

@@ -9,9 +9,9 @@ import Foundation
 
 public struct V0TestDeviceResponseItemModel: Codable {
 
-    public var deviceId: String?
-    public var deviceType: String?
-    public var owner: String?
+    public let deviceId: String?
+    public let deviceType: String?
+    public let owner: String?
 
     public init(deviceId: String? = nil, deviceType: String? = nil, owner: String? = nil) {
         self.deviceId = deviceId

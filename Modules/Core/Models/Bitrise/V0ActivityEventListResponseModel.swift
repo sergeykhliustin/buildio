@@ -9,8 +9,8 @@ import Foundation
 
 public struct V0ActivityEventListResponseModel: Codable, PagingResponseModel, Sendable {
 
-    public var data: [V0ActivityEventResponseItemModel]
-    public var paging: V0PagingResponseModel
+    public let data: [V0ActivityEventResponseItemModel]
+    public let paging: V0PagingResponseModel
 
     public init(data: [V0ActivityEventResponseItemModel], paging: V0PagingResponseModel) {
         self.data = data

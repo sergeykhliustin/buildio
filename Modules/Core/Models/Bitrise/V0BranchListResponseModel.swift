@@ -9,7 +9,7 @@ import Foundation
 
 public struct V0BranchListResponseModel: Codable, Sendable {
 
-    public var data: [String]?
+    public let data: [String]?
 
     public init(data: [String]? = nil) {
         self.data = data

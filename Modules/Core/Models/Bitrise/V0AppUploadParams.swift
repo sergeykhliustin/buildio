@@ -10,17 +10,17 @@ import Foundation
 public struct V0AppUploadParams: Codable {
 
     /** The slug of the owner of the repository at the git provider */
-    public var gitOwner: String
+    public let gitOwner: String
     /** The slug of the repository at the git provider */
-    public var gitRepoSlug: String
+    public let gitRepoSlug: String
     /** If `true` then the repository visibility setting will be public, in case of `false` it will be private */
-    public var isPublic: Bool
+    public let isPublic: Bool
     /** The git provider you are using, it can be `github`, `bitbucket`, `gitlab`, `gitlab-self-hosted` or `custom` */
-    public var provider: String
+    public let provider: String
     /** The URL of your repository */
-    public var repoUrl: String
+    public let repoUrl: String
     /** It has to be provided by legacy reasons and has to have the `git` value */
-    public var type: String
+    public let type: String
 
     public init(gitOwner: String, gitRepoSlug: String, isPublic: Bool, provider: String, repoUrl: String, type: String) {
         self.gitOwner = gitOwner

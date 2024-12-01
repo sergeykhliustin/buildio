@@ -9,16 +9,16 @@ import Foundation
 
 public struct V0WebhookDeliveryItemResponseModel: Codable {
 
-    public var createdAt: String?
-    public var requestHeaders: String?
-    public var requestPayload: String?
-    public var requestUrl: String?
-    public var responseBody: String?
-    public var responseHeaders: String?
-    public var responseHttpStatus: Int?
-    public var responseSeconds: Int?
-    public var slug: String?
-    public var updatedAt: String?
+    public let createdAt: String?
+    public let requestHeaders: String?
+    public let requestPayload: String?
+    public let requestUrl: String?
+    public let responseBody: String?
+    public let responseHeaders: String?
+    public let responseHttpStatus: Int?
+    public let responseSeconds: Int?
+    public let slug: String?
+    public let updatedAt: String?
 
     public init(createdAt: String? = nil, requestHeaders: String? = nil, requestPayload: String? = nil, requestUrl: String? = nil, responseBody: String? = nil, responseHeaders: String? = nil, responseHttpStatus: Int? = nil, responseSeconds: Int? = nil, slug: String? = nil, updatedAt: String? = nil) {
         self.createdAt = createdAt

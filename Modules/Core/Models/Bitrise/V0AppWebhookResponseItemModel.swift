@@ -9,13 +9,13 @@ import Foundation
 
 public struct V0AppWebhookResponseItemModel: Codable {
 
-    public var createdAt: String?
-    public var events: [String]?
-    public var headers: [Int]?
-    public var registeredByAddon: Bool?
-    public var slug: String?
-    public var updatedAt: String?
-    public var url: String?
+    public let createdAt: String?
+    public let events: [String]?
+    public let headers: [Int]?
+    public let registeredByAddon: Bool?
+    public let slug: String?
+    public let updatedAt: String?
+    public let url: String?
 
     public init(createdAt: String? = nil, events: [String]? = nil, headers: [Int]? = nil, registeredByAddon: Bool? = nil, slug: String? = nil, updatedAt: String? = nil, url: String? = nil) {
         self.createdAt = createdAt

@@ -9,7 +9,7 @@ import Foundation
 
 public struct ServiceStandardErrorRespModel: Codable {
 
-    public var message: String?
+    public let message: String?
 
     public init(message: String? = nil) {
         self.message = message

@@ -9,7 +9,7 @@ import Foundation
 
 public struct V0BuildCertificateResponseModel: Codable {
 
-    public var data: V0BuildCertificateResponseItemModel?
+    public let data: V0BuildCertificateResponseItemModel?
 
     public init(data: V0BuildCertificateResponseItemModel? = nil) {
         self.data = data

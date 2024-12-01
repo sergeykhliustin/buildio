@@ -10,11 +10,11 @@ import Foundation
 public struct V0SSHKeyUploadParams: Codable {
 
     /** The private part of the SSH key you would like to use */
-    public var authSshPrivateKey: String
+    public let authSshPrivateKey: String
     /** The public part of the SSH key you would like to use */
-    public var authSshPublicKey: String
+    public let authSshPublicKey: String
     /** If it's set to true, the provided SSH key will be registered at the provider of the application */
-    public var isRegisterKeyIntoProviderService: Bool?
+    public let isRegisterKeyIntoProviderService: Bool?
 
     public init(authSshPrivateKey: String, authSshPublicKey: String, isRegisterKeyIntoProviderService: Bool? = nil) {
         self.authSshPrivateKey = authSshPrivateKey

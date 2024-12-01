@@ -9,14 +9,14 @@ import Foundation
 
 public struct V0BuildTriggerRespModel: Codable, Sendable {
 
-    public var buildNumber: Int?
-    public var buildSlug: String?
-    public var buildUrl: String?
-    public var message: String?
-    public var service: String?
-    public var slug: String?
-    public var status: String?
-    public var triggeredWorkflow: String?
+    public let buildNumber: Int?
+    public let buildSlug: String?
+    public let buildUrl: String?
+    public let message: String?
+    public let service: String?
+    public let slug: String?
+    public let status: String?
+    public let triggeredWorkflow: String?
 
     public init(buildNumber: Int? = nil, buildSlug: String? = nil, buildUrl: String? = nil, message: String? = nil, service: String? = nil, slug: String? = nil, status: String? = nil, triggeredWorkflow: String? = nil) {
         self.buildNumber = buildNumber

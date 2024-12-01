@@ -9,9 +9,9 @@ import Foundation
 
 public struct V0ProvProfileDocumentUpdateParams: Codable {
 
-    public var isExpose: Bool?
-    public var isProtected: Bool?
-    public var processed: Bool?
+    public let isExpose: Bool?
+    public let isProtected: Bool?
+    public let processed: Bool?
 
     public init(isExpose: Bool? = nil, isProtected: Bool? = nil, processed: Bool? = nil) {
         self.isExpose = isExpose

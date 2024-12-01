@@ -9,23 +9,23 @@ import Foundation
 
 public struct AddonsAddon: Codable {
 
-    public var bannerImage: String?
-    public var cardHeaderColors: [String]?
-    public var categories: [String]?
-    public var description: String?
-    public var developerLinks: [AddonsDeveloperLink]?
-    public var documentationUrl: String?
-    public var hasUi: Bool?
-    public var icon: String?
-    public var id: String?
-    public var isBeta: Bool?
-    public var plans: [AddonsPlan]?
-    public var platforms: [String]?
-    public var previewImages: [String]?
-    public var setupGuide: AddonsSetupGuide?
-    public var subtitle: String?
-    public var summary: String?
-    public var title: String?
+    public let bannerImage: String?
+    public let cardHeaderColors: [String]?
+    public let categories: [String]?
+    public let description: String?
+    public let developerLinks: [AddonsDeveloperLink]?
+    public let documentationUrl: String?
+    public let hasUi: Bool?
+    public let icon: String?
+    public let id: String?
+    public let isBeta: Bool?
+    public let plans: [AddonsPlan]?
+    public let platforms: [String]?
+    public let previewImages: [String]?
+    public let setupGuide: AddonsSetupGuide?
+    public let subtitle: String?
+    public let summary: String?
+    public let title: String?
 
     public init(bannerImage: String? = nil, cardHeaderColors: [String]? = nil, categories: [String]? = nil, description: String? = nil, developerLinks: [AddonsDeveloperLink]? = nil, documentationUrl: String? = nil, hasUi: Bool? = nil, icon: String? = nil, id: String? = nil, isBeta: Bool? = nil, plans: [AddonsPlan]? = nil, platforms: [String]? = nil, previewImages: [String]? = nil, setupGuide: AddonsSetupGuide? = nil, subtitle: String? = nil, summary: String? = nil, title: String? = nil) {
         self.bannerImage = bannerImage

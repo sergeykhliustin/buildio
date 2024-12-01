@@ -9,7 +9,7 @@ import Foundation
 
 public struct V0WebhookDeliveryItemShowResponseModel: Codable {
 
-    public var data: V0WebhookDeliveryItemResponseModel?
+    public let data: V0WebhookDeliveryItemResponseModel?
 
     public init(data: V0WebhookDeliveryItemResponseModel? = nil) {
         self.data = data

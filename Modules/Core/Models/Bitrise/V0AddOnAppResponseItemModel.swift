@@ -9,11 +9,11 @@ import Foundation
 
 public struct V0AddOnAppResponseItemModel: Codable {
 
-    public var icon: String?
-    public var plan: AddonsPlan?
-    public var planStartedAt: String?
-    public var slug: String?
-    public var title: String?
+    public let icon: String?
+    public let plan: AddonsPlan?
+    public let planStartedAt: String?
+    public let slug: String?
+    public let title: String?
 
     public init(icon: String? = nil, plan: AddonsPlan? = nil, planStartedAt: String? = nil, slug: String? = nil, title: String? = nil) {
         self.icon = icon

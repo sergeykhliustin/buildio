@@ -9,7 +9,7 @@ import Foundation
 
 public struct V0AppWebhookDeletedResponseModel: Codable {
 
-    public var data: V0AppWebhookResponseItemModel?
+    public let data: V0AppWebhookResponseItemModel?
 
     public init(data: V0AppWebhookResponseItemModel? = nil) {
         self.data = data

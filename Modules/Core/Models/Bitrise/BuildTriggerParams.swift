@@ -11,8 +11,8 @@ public typealias BuildTriggerParamsBuildParams = [String: JSONValue]
 
 public struct BuildTriggerParams: Codable {
 
-    public var buildParams: BuildTriggerParamsBuildParams?
-    public var hookInfo: V0BuildTriggerParamsHookInfo?
+    public let buildParams: BuildTriggerParamsBuildParams?
+    public let hookInfo: V0BuildTriggerParamsHookInfo?
     
     public init(build: BuildResponseItemModel) {
         self.buildParams = build.originalBuildParams

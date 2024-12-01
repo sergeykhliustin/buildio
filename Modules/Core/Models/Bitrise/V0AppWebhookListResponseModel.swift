@@ -9,8 +9,8 @@ import Foundation
 
 public struct V0AppWebhookListResponseModel: Codable {
 
-    public var data: [V0AppWebhookResponseItemModel]?
-    public var paging: V0PagingResponseModel?
+    public let data: [V0AppWebhookResponseItemModel]?
+    public let paging: V0PagingResponseModel?
 
     public init(data: [V0AppWebhookResponseItemModel]? = nil, paging: V0PagingResponseModel? = nil) {
         self.data = data

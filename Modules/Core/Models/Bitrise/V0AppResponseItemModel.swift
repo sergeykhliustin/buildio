@@ -15,18 +15,18 @@ public struct V0AppResponseItemModel: Codable, Identifiable, Equatable, Hashable
     public var id: String {
         return owner.slug + slug
     }
-    public var avatarUrl: String?
-    public var isDisabled: Bool
-    public var isPublic: Bool
-    public var owner: V0OwnerAccountResponseModel
-    public var projectType: String?
-    public var provider: String
-    public var repoOwner: String
-    public var repoSlug: String
-    public var repoUrl: String
-    public var slug: String
-    public var status: Int
-    public var title: String
+    public let avatarUrl: String?
+    public let isDisabled: Bool
+    public let isPublic: Bool
+    public let owner: V0OwnerAccountResponseModel
+    public let projectType: String?
+    public let provider: String
+    public let repoOwner: String
+    public let repoSlug: String
+    public let repoUrl: String
+    public let slug: String
+    public let status: Int
+    public let title: String
     
     public init(avatarUrl: String? = nil,
                 isDisabled: Bool,

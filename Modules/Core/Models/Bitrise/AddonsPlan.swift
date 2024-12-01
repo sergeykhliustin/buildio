@@ -9,10 +9,10 @@ import Foundation
 
 public struct AddonsPlan: Codable {
 
-    public var features: [AddonsFeature]?
-    public var id: String?
-    public var name: String?
-    public var price: Int?
+    public let features: [AddonsFeature]?
+    public let id: String?
+    public let name: String?
+    public let price: Int?
 
     public init(features: [AddonsFeature]? = nil, id: String? = nil, name: String? = nil, price: Int? = nil) {
         self.features = features

@@ -9,10 +9,10 @@ import Foundation
 
 public struct V0AppWebhookCreateParams: Codable {
 
-    public var events: [String]
-    public var headers: [Int]?
-    public var secret: String
-    public var url: String
+    public let events: [String]
+    public let headers: [Int]?
+    public let secret: String
+    public let url: String
 
     public init(events: [String], headers: [Int]? = nil, secret: String, url: String) {
         self.events = events

@@ -8,9 +8,9 @@
 import Foundation
 
 public struct V0OwnerAccountResponseModel: Codable, Hashable, Sendable {
-    public var accountType: String
-    public var name: String
-    public var slug: String
+    public let accountType: String
+    public let name: String
+    public let slug: String
     
     public init(accountType: String, name: String, slug: String) {
         self.accountType = accountType

@@ -9,10 +9,10 @@ import Foundation
 
 public struct V0AvatarCandidateCreateResponseItem: Codable {
 
-    public var filename: String?
-    public var filesize: Int?
-    public var slug: String?
-    public var uploadUrl: String?
+    public let filename: String?
+    public let filesize: Int?
+    public let slug: String?
+    public let uploadUrl: String?
 
     public init(filename: String? = nil, filesize: Int? = nil, slug: String? = nil, uploadUrl: String? = nil) {
         self.filename = filename

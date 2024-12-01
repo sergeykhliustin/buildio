@@ -9,11 +9,11 @@ import Foundation
 
 public struct V0ProjectFileStorageDocumentUpdateParams: Codable {
 
-    public var exposedMetaDatastore: [Int]?
-    public var isExpose: Bool?
-    public var isProtected: Bool?
-    public var processed: Bool?
-    public var userEnvKey: String?
+    public let exposedMetaDatastore: [Int]?
+    public let isExpose: Bool?
+    public let isProtected: Bool?
+    public let processed: Bool?
+    public let userEnvKey: String?
 
     public init(exposedMetaDatastore: [Int]? = nil, isExpose: Bool? = nil, isProtected: Bool? = nil, processed: Bool? = nil, userEnvKey: String? = nil) {
         self.exposedMetaDatastore = exposedMetaDatastore

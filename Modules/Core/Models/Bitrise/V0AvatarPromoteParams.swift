@@ -9,7 +9,7 @@ import Foundation
 
 public struct V0AvatarPromoteParams: Codable {
 
-    public var isPromoted: Bool
+    public let isPromoted: Bool
 
     public init(isPromoted: Bool) {
         self.isPromoted = isPromoted

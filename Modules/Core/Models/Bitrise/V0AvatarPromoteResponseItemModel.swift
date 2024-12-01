@@ -9,10 +9,10 @@ import Foundation
 
 public struct V0AvatarPromoteResponseItemModel: Codable {
 
-    public var isCandidate: Bool?
-    public var slug: String?
-    public var uploadFileName: String?
-    public var uploadFileSize: Int?
+    public let isCandidate: Bool?
+    public let slug: String?
+    public let uploadFileName: String?
+    public let uploadFileSize: Int?
 
     public init(isCandidate: Bool? = nil, slug: String? = nil, uploadFileName: String? = nil, uploadFileSize: Int? = nil) {
         self.isCandidate = isCandidate

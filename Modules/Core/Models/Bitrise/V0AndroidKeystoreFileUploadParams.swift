@@ -9,11 +9,11 @@ import Foundation
 
 public struct V0AndroidKeystoreFileUploadParams: Codable {
 
-    public var alias: String
-    public var password: String
-    public var privateKeyPassword: String
-    public var uploadFileName: String
-    public var uploadFileSize: Int
+    public let alias: String
+    public let password: String
+    public let privateKeyPassword: String
+    public let uploadFileName: String
+    public let uploadFileSize: Int
 
     public init(alias: String, password: String, privateKeyPassword: String, uploadFileName: String, uploadFileSize: Int) {
         self.alias = alias

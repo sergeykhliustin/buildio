@@ -9,7 +9,7 @@ import Foundation
 
 public struct V0BuildShowResponseModel: Codable, Sendable {
 
-    public var data: BuildResponseItemModel
+    public let data: BuildResponseItemModel
 
     public init(data: BuildResponseItemModel) {
         self.data = data

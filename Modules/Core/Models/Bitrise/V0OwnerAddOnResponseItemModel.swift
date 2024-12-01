@@ -9,14 +9,14 @@ import Foundation
 
 public struct V0OwnerAddOnResponseItemModel: Codable {
 
-    public var apps: [V0AddOnAppResponseItemModel]?
-    public var documentationUrl: String?
-    public var hasUi: Bool?
-    public var icon: String?
-    public var id: String?
-    public var isBeta: Bool?
-    public var summary: String?
-    public var title: String?
+    public let apps: [V0AddOnAppResponseItemModel]?
+    public let documentationUrl: String?
+    public let hasUi: Bool?
+    public let icon: String?
+    public let id: String?
+    public let isBeta: Bool?
+    public let summary: String?
+    public let title: String?
 
     public init(apps: [V0AddOnAppResponseItemModel]? = nil, documentationUrl: String? = nil, hasUi: Bool? = nil, icon: String? = nil, id: String? = nil, isBeta: Bool? = nil, summary: String? = nil, title: String? = nil) {
         self.apps = apps

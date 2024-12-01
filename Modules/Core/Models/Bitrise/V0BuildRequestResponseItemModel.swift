@@ -9,10 +9,10 @@ import Foundation
 
 public struct V0BuildRequestResponseItemModel: Codable {
 
-    public var buildParams: [Int]?
-    public var createdAt: String?
-    public var pullRequestUrl: String?
-    public var slug: String?
+    public let buildParams: [Int]?
+    public let createdAt: String?
+    public let pullRequestUrl: String?
+    public let slug: String?
 
     public init(buildParams: [Int]? = nil, createdAt: String? = nil, pullRequestUrl: String? = nil, slug: String? = nil) {
         self.buildParams = buildParams

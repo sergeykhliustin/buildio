@@ -10,7 +10,7 @@ import Foundation
 public struct V0BuildTriggerParamsHookInfo: Codable {
 
     /** Should be \"bitrise\" */
-    public var type: String?
+    public let type: String?
 
     public init(type: String = "bitrise") {
         self.type = type

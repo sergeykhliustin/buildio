@@ -9,7 +9,7 @@ import Foundation
 
 public struct V0AppleAPICredentialsListResponse: Codable {
 
-    public var data: [V0AppleAPICredentialResponseItem]?
+    public let data: [V0AppleAPICredentialResponseItem]?
 
     public init(data: [V0AppleAPICredentialResponseItem]? = nil) {
         self.data = data

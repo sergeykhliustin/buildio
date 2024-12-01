@@ -9,11 +9,11 @@ import Foundation
 
 public struct V0OrganizationDataModel: Codable {
 
-    public var avatarIconUrl: String?
-    public var concurrencyCount: Int?
-    public var name: String?
-    public var owners: [V0OrganizationOwner]?
-    public var slug: String?
+    public let avatarIconUrl: String?
+    public let concurrencyCount: Int?
+    public let name: String?
+    public let owners: [V0OrganizationOwner]?
+    public let slug: String?
 
     public init(avatarIconUrl: String? = nil, concurrencyCount: Int? = nil, name: String? = nil, owners: [V0OrganizationOwner]? = nil, slug: String? = nil) {
         self.avatarIconUrl = avatarIconUrl

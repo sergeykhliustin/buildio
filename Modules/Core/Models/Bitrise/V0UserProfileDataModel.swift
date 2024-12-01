@@ -8,13 +8,13 @@
 import Foundation
 
 public struct V0UserProfileDataModel: Codable, Sendable {
-    public var avatarUrl: String?
-    public var createdAt: String?
-    public var dataId: Int?
-    public var email: String
-    public var hasUsedOrganizationTrial: Bool?
-    public var paymentProcessor: String?
-    public var slug: String?
-    public var unconfirmedEmail: String?
-    public var username: String?
+    public let avatarUrl: String?
+    public let createdAt: String?
+    public let dataId: Int?
+    public let email: String
+    public let hasUsedOrganizationTrial: Bool?
+    public let paymentProcessor: String?
+    public let slug: String?
+    public let unconfirmedEmail: String?
+    public let username: String?
 }

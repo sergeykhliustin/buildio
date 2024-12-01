@@ -9,7 +9,7 @@ import Foundation
 
 public struct V0BuildAbortResponseModel: Codable, Sendable {
 
-    public var status: String?
+    public let status: String?
 
     public init(status: String? = nil) {
         self.status = status

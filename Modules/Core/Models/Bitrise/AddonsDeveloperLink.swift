@@ -9,8 +9,8 @@ import Foundation
 
 public struct AddonsDeveloperLink: Codable {
 
-    public var title: String?
-    public var url: String?
+    public let title: String?
+    public let url: String?
 
     public init(title: String? = nil, url: String? = nil) {
         self.title = title

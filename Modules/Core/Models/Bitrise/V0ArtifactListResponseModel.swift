@@ -9,8 +9,8 @@ import Foundation
 
 public struct V0ArtifactListResponseModel: Codable, PagingResponseModel, Sendable {
 
-    public var data: [V0ArtifactListElementResponseModel]
-    public var paging: V0PagingResponseModel
+    public let data: [V0ArtifactListElementResponseModel]
+    public let paging: V0PagingResponseModel
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case data

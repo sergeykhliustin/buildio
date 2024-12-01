@@ -9,8 +9,8 @@ import Foundation
 
 public struct V0AppRespModel: Codable {
 
-    public var slug: String?
-    public var status: String?
+    public let slug: String?
+    public let status: String?
 
     public init(slug: String? = nil, status: String? = nil) {
         self.slug = slug

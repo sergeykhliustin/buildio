@@ -9,7 +9,7 @@ import Foundation
 
 public struct V0BuildRequestUpdateParams: Codable {
 
-    public var isApproved: Bool
+    public let isApproved: Bool
 
     public init(isApproved: Bool) {
         self.isApproved = isApproved
