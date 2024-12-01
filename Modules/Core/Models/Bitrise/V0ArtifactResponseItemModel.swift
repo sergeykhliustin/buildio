@@ -9,14 +9,14 @@ import Foundation
 
 public struct V0ArtifactResponseItemModel: Codable {
 
-    public var artifactMeta: [Int]?
-    public var artifactType: String?
-    public var expiringDownloadUrl: String?
-    public var fileSizeBytes: Int?
-    public var isPublicPageEnabled: Bool?
-    public var publicInstallPageUrl: String?
-    public var slug: String?
-    public var title: String?
+    public let artifactMeta: [Int]?
+    public let artifactType: String?
+    public let expiringDownloadUrl: String?
+    public let fileSizeBytes: Int?
+    public let isPublicPageEnabled: Bool?
+    public let publicInstallPageUrl: String?
+    public let slug: String?
+    public let title: String?
 
     public init(artifactMeta: [Int]? = nil, artifactType: String? = nil, expiringDownloadUrl: String? = nil, fileSizeBytes: Int? = nil, isPublicPageEnabled: Bool? = nil, publicInstallPageUrl: String? = nil, slug: String? = nil, title: String? = nil) {
         self.artifactMeta = artifactMeta

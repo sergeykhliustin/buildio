@@ -9,9 +9,9 @@ import Foundation
 
 public struct V0OrganizationOwner: Codable {
 
-    public var email: String?
-    public var slug: String?
-    public var username: String?
+    public let email: String?
+    public let slug: String?
+    public let username: String?
 
     public init(email: String? = nil, slug: String? = nil, username: String? = nil) {
         self.email = email

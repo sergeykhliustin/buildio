@@ -9,15 +9,15 @@ import Foundation
 
 public struct V0BuildCertificateResponseItemModel: Codable {
 
-    public var certificatePassword: String?
-    public var downloadUrl: String?
-    public var isExpose: Bool?
-    public var isProtected: Bool?
-    public var processed: Bool?
-    public var slug: String?
-    public var uploadFileName: String?
-    public var uploadFileSize: Int?
-    public var uploadUrl: String?
+    public let certificatePassword: String?
+    public let downloadUrl: String?
+    public let isExpose: Bool?
+    public let isProtected: Bool?
+    public let processed: Bool?
+    public let slug: String?
+    public let uploadFileName: String?
+    public let uploadFileSize: Int?
+    public let uploadUrl: String?
 
     public init(certificatePassword: String? = nil, downloadUrl: String? = nil, isExpose: Bool? = nil, isProtected: Bool? = nil, processed: Bool? = nil, slug: String? = nil, uploadFileName: String? = nil, uploadFileSize: Int? = nil, uploadUrl: String? = nil) {
         self.certificatePassword = certificatePassword

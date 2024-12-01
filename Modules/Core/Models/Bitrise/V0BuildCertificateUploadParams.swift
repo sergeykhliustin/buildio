@@ -9,8 +9,8 @@ import Foundation
 
 public struct V0BuildCertificateUploadParams: Codable {
 
-    public var uploadFileName: String
-    public var uploadFileSize: Int
+    public let uploadFileName: String
+    public let uploadFileSize: Int
 
     public init(uploadFileName: String, uploadFileSize: Int) {
         self.uploadFileName = uploadFileName

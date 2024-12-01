@@ -9,8 +9,8 @@ import Foundation
 
 public struct V0BuildCertificateListResponseModel: Codable {
 
-    public var data: [V0BuildCertificateResponseItemModel]?
-    public var paging: V0PagingResponseModel?
+    public let data: [V0BuildCertificateResponseItemModel]?
+    public let paging: V0PagingResponseModel?
 
     public init(data: [V0BuildCertificateResponseItemModel]? = nil, paging: V0PagingResponseModel? = nil) {
         self.data = data

@@ -9,10 +9,10 @@ import Foundation
 
 public struct V0AppFinishRespModel: Codable {
 
-    public var branchName: String?
-    public var buildTriggerToken: String?
-    public var isWebhookAutoRegSupported: Bool?
-    public var status: String?
+    public let branchName: String?
+    public let buildTriggerToken: String?
+    public let isWebhookAutoRegSupported: Bool?
+    public let status: String?
 
     public init(branchName: String? = nil, buildTriggerToken: String? = nil, isWebhookAutoRegSupported: Bool? = nil, status: String? = nil) {
         self.branchName = branchName

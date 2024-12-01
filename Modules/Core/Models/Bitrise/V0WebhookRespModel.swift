@@ -9,7 +9,7 @@ import Foundation
 
 public struct V0WebhookRespModel: Codable {
 
-    public var status: String?
+    public let status: String?
 
     public init(status: String? = nil) {
         self.status = status

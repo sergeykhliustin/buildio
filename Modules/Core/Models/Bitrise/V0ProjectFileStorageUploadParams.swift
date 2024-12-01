@@ -9,9 +9,9 @@ import Foundation
 
 public struct V0ProjectFileStorageUploadParams: Codable {
 
-    public var uploadFileName: String
-    public var uploadFileSize: Int
-    public var userEnvKey: String
+    public let uploadFileName: String
+    public let uploadFileSize: Int
+    public let userEnvKey: String
 
     public init(uploadFileName: String, uploadFileSize: Int, userEnvKey: String) {
         self.uploadFileName = uploadFileName

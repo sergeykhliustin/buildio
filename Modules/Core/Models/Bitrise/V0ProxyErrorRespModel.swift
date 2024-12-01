@@ -9,7 +9,7 @@ import Foundation
 
 public struct V0ProxyErrorRespModel: Codable {
 
-    public var errorMsg: String?
+    public let errorMsg: String?
 
     public init(errorMsg: String? = nil) {
         self.errorMsg = errorMsg

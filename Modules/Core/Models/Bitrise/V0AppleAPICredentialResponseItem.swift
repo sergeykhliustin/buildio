@@ -9,12 +9,12 @@ import Foundation
 
 public struct V0AppleAPICredentialResponseItem: Codable {
 
-    public var createdAt: String?
-    public var issuerId: String?
-    public var keyId: String?
-    public var name: String?
-    public var slug: String?
-    public var updatedAt: String?
+    public let createdAt: String?
+    public let issuerId: String?
+    public let keyId: String?
+    public let name: String?
+    public let slug: String?
+    public let updatedAt: String?
 
     public init(createdAt: String? = nil, issuerId: String? = nil, keyId: String? = nil, name: String? = nil, slug: String? = nil, updatedAt: String? = nil) {
         self.createdAt = createdAt
