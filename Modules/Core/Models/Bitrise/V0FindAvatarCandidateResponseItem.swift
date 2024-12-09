@@ -9,9 +9,9 @@ import Foundation
 
 public struct V0FindAvatarCandidateResponseItem: Codable {
 
-    public var downloadUrl: String?
-    public var filename: String?
-    public var slug: String?
+    public let downloadUrl: String?
+    public let filename: String?
+    public let slug: String?
 
     public init(downloadUrl: String? = nil, filename: String? = nil, slug: String? = nil) {
         self.downloadUrl = downloadUrl

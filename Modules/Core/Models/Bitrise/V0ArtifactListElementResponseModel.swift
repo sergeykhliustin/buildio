@@ -12,12 +12,12 @@ public struct V0ArtifactListElementResponseModel: Codable, Identifiable, Sendabl
         return slug
     }
 
-    public var artifactMeta: [Int]?
-    public var artifactType: String?
-    public var fileSizeBytes: Int?
-    public var isPublicPageEnabled: Bool?
-    public var slug: String!
-    public var title: String?
+    public let artifactMeta: [Int]?
+    public let artifactType: String?
+    public let fileSizeBytes: Int?
+    public let isPublicPageEnabled: Bool?
+    public let slug: String!
+    public let title: String?
 
     public init(artifactMeta: [Int]? = nil, artifactType: String? = nil, fileSizeBytes: Int? = nil, isPublicPageEnabled: Bool? = nil, slug: String = "", title: String? = nil) {
         self.artifactMeta = artifactMeta

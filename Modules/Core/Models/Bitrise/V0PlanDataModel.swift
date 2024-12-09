@@ -9,11 +9,11 @@ import Foundation
 
 public struct V0PlanDataModel: Codable {
 
-    public var containerCount: Int?
-    public var expiresAt: String?
-    public var id: String?
-    public var name: String?
-    public var price: Int?
+    public let containerCount: Int?
+    public let expiresAt: String?
+    public let id: String?
+    public let name: String?
+    public let price: Int?
 
     public init(containerCount: Int? = nil, expiresAt: String? = nil, id: String? = nil, name: String? = nil, price: Int? = nil) {
         self.containerCount = containerCount

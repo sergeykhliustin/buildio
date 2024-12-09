@@ -9,16 +9,16 @@ import Foundation
 
 public struct V0ProjectFileStorageResponseItemModel: Codable {
 
-    public var downloadUrl: String?
-    public var exposedMetaDatastore: [Int]?
-    public var isExpose: Bool?
-    public var isProtected: Bool?
-    public var processed: Bool?
-    public var slug: String?
-    public var uploadFileName: String?
-    public var uploadFileSize: Int?
-    public var uploadUrl: String?
-    public var userEnvKey: String?
+    public let downloadUrl: String?
+    public let exposedMetaDatastore: [Int]?
+    public let isExpose: Bool?
+    public let isProtected: Bool?
+    public let processed: Bool?
+    public let slug: String?
+    public let uploadFileName: String?
+    public let uploadFileSize: Int?
+    public let uploadUrl: String?
+    public let userEnvKey: String?
 
     public init(downloadUrl: String? = nil, exposedMetaDatastore: [Int]? = nil, isExpose: Bool? = nil, isProtected: Bool? = nil, processed: Bool? = nil, slug: String? = nil, uploadFileName: String? = nil, uploadFileSize: Int? = nil, uploadUrl: String? = nil, userEnvKey: String? = nil) {
         self.downloadUrl = downloadUrl

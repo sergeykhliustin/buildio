@@ -9,10 +9,10 @@ import Foundation
 
 public struct V0BuildCertificateUpdateParams: Codable {
 
-    public var certificatePassword: String?
-    public var isExpose: Bool?
-    public var isProtected: Bool?
-    public var processed: Bool?
+    public let certificatePassword: String?
+    public let isExpose: Bool?
+    public let isProtected: Bool?
+    public let processed: Bool?
 
     public init(certificatePassword: String? = nil, isExpose: Bool? = nil, isProtected: Bool? = nil, processed: Bool? = nil) {
         self.certificatePassword = certificatePassword

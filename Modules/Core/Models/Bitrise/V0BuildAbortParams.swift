@@ -9,9 +9,9 @@ import Foundation
 
 public struct V0BuildAbortParams: Codable {
 
-    public var abortReason: String
-    public var abortWithSuccess: Bool
-    public var skipNotifications: Bool
+    public let abortReason: String
+    public let abortWithSuccess: Bool
+    public let skipNotifications: Bool
 
     public init(abortReason: String, abortWithSuccess: Bool, skipNotifications: Bool) {
         self.abortReason = abortReason

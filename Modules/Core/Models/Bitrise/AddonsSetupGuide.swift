@@ -9,8 +9,8 @@ import Foundation
 
 public struct AddonsSetupGuide: Codable {
 
-    public var instructions: [AddonsSetupInstruction]?
-    public var notification: String?
+    public let instructions: [AddonsSetupInstruction]?
+    public let notification: String?
 
     public init(instructions: [AddonsSetupInstruction]? = nil, notification: String? = nil) {
         self.instructions = instructions

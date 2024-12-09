@@ -12,15 +12,15 @@ public struct V0ActivityEventResponseItemModel: Codable, Identifiable, Sendable 
         return slug
     }
 
-    public var createdAt: Date
-    public var description: String?
-    public var eventIcon: String?
-    public var eventStype: String?
-    public var repositoryAvatarIconUrl: String?
-    public var repositoryTitle: String?
-    public var slug: String
-    public var targetPathString: String?
-    public var title: String?
+    public let createdAt: Date
+    public let description: String?
+    public let eventIcon: String?
+    public let eventStype: String?
+    public let repositoryAvatarIconUrl: String?
+    public let repositoryTitle: String?
+    public let slug: String
+    public let targetPathString: String?
+    public let title: String?
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)

@@ -12,33 +12,33 @@ public struct BuildResponseItemModel: Codable, Identifiable, Hashable, Sendable 
         return repository.id + slug + (durationString ?? "")
     }
 
-    public var abortReason: String?
-    public var branch: String?
-    public var buildNumber: Int
-    public var commitHash: String?
-    public var commitMessage: String?
-    public var commitViewUrl: String?
-    public var creditCost: Int?
-    public var environmentPrepareFinishedAt: Date?
-    public var finishedAt: Date?
-    public var isOnHold: Bool
-    public var isProcessed: Bool
-    public var machineTypeId: String
-    public var originalBuildParams: [String: JSONValue]
-    public var pullRequestId: Int?
-    public var pullRequestTargetBranch: String?
-    public var pullRequestViewUrl: String?
+    public let abortReason: String?
+    public let branch: String?
+    public let buildNumber: Int
+    public let commitHash: String?
+    public let commitMessage: String?
+    public let commitViewUrl: String?
+    public let creditCost: Int?
+    public let environmentPrepareFinishedAt: Date?
+    public let finishedAt: Date?
+    public let isOnHold: Bool
+    public let isProcessed: Bool
+    public let machineTypeId: String
+    public let originalBuildParams: [String: JSONValue]
+    public let pullRequestId: Int?
+    public let pullRequestTargetBranch: String?
+    public let pullRequestViewUrl: String?
     public var repository: V0AppResponseItemModel!
-    public var slug: String
-    public var stackIdentifier: String
-    public var startedOnWorkerAt: Date?
-    public var status: Status
-    public var statusText: String
-    public var tag: String?
-    public var triggeredAt: Date
-    public var triggeredBy: String?
-    public var triggeredWorkflow: String
-    public var denTags: [String]?
+    public let slug: String
+    public let stackIdentifier: String
+    public let startedOnWorkerAt: Date?
+    public let status: Status
+    public let statusText: String
+    public let tag: String?
+    public let triggeredAt: Date
+    public let triggeredBy: String?
+    public let triggeredWorkflow: String
+    public let denTags: [String]?
     public var estimatedDuration: TimeInterval?
 
     public init(abortReason: String? = nil,
@@ -93,6 +93,8 @@ public struct BuildResponseItemModel: Codable, Identifiable, Hashable, Sendable 
         self.triggeredAt = triggeredAt
         self.triggeredBy = triggeredBy
         self.triggeredWorkflow = triggeredWorkflow
+        self.denTags = nil
+        self.estimatedDuration = nil
     }
     
     @frozen public enum Status: Int, Codable {

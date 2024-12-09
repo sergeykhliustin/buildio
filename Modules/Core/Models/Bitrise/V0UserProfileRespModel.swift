@@ -9,7 +9,7 @@ import Foundation
 
 public struct V0UserProfileRespModel: Codable, Sendable {
 
-    public var data: V0UserProfileDataModel
+    public let data: V0UserProfileDataModel
 
     public init(data: V0UserProfileDataModel) {
         self.data = data

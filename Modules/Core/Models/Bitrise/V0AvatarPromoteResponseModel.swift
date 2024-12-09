@@ -9,7 +9,7 @@ import Foundation
 
 public struct V0AvatarPromoteResponseModel: Codable {
 
-    public var data: V0AvatarPromoteResponseItemModel?
+    public let data: V0AvatarPromoteResponseItemModel?
 
     public init(data: V0AvatarPromoteResponseItemModel? = nil) {
         self.data = data

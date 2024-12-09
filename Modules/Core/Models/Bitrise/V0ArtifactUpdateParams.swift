@@ -9,7 +9,7 @@ import Foundation
 
 public struct V0ArtifactUpdateParams: Codable {
 
-    public var isPublicPageEnabled: Bool
+    public let isPublicPageEnabled: Bool
 
     public init(isPublicPageEnabled: Bool) {
         self.isPublicPageEnabled = isPublicPageEnabled

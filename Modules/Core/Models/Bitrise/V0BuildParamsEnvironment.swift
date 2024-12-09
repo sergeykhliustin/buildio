@@ -9,9 +9,9 @@ import Foundation
 
 public struct V0BuildParamsEnvironment: Codable {
 
-    public var isExpand: Bool?
-    public var mappedTo: String?
-    public var value: String?
+    public let isExpand: Bool?
+    public let mappedTo: String?
+    public let value: String?
 
     public init(isExpand: Bool? = nil, mappedTo: String? = nil, value: String? = nil) {
         self.isExpand = isExpand

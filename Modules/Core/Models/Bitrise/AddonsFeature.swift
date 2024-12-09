@@ -9,9 +9,9 @@ import Foundation
 
 public struct AddonsFeature: Codable {
 
-    public var available: Bool?
-    public var description: String?
-    public var quantity: String?
+    public let available: Bool?
+    public let description: String?
+    public let quantity: String?
 
     public init(available: Bool? = nil, description: String? = nil, quantity: String? = nil) {
         self.available = available

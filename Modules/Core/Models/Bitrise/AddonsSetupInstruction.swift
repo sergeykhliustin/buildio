@@ -9,9 +9,9 @@ import Foundation
 
 public struct AddonsSetupInstruction: Codable {
 
-    public var cardContent: String?
-    public var description: String?
-    public var type: String?
+    public let cardContent: String?
+    public let description: String?
+    public let type: String?
 
     public init(cardContent: String? = nil, description: String? = nil, type: String? = nil) {
         self.cardContent = cardContent
